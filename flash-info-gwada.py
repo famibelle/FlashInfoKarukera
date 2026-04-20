@@ -786,6 +786,16 @@ def classify_tones(segments: list[str]) -> list[str]:
 
 # ── Étape 3 : Génération audio TTS par segment + assemblage FFmpeg ────────────
 
+# Prononciations locales guadeloupéennes (forme écrite → forme orale pour le TTS)
+_PRONONCIATIONS_LOCALES = {
+    "Vieux-Habitants": "Vieux Zabitan",
+    "Vieux Habitants":  "Vieux Zabitan",
+    "Delgrès":          "Delgrèsse",   # /dɛl.ɡʁɛs/ — force le s final
+}
+
+# Sigles prononcés comme des mots (ne pas épeler lettre par lettre)
+_SIGLES_MOT = {"RCI", "UNESCO", "UNICEF", "NASA"}
+
 _ABBREVS = {
     "M.": "Monsieur", "Mme.": "Madame", "Mme": "Madame",
     "Dr.": "Docteur", "Dr": "Docteur", "Pr.": "Professeur", "Pr": "Professeur",
@@ -814,6 +824,10 @@ def _normalize_for_tts(text: str) -> str:
         print("   ⚠️  num2words manquant — pip install num2words")
         _num = lambda n: n
         _ordinal = lambda n: n
+
+    # 0. Prononciations locales guadeloupéennes
+    for ecrit, oral in _PRONONCIATIONS_LOCALES.items():
+        text = text.replace(ecrit, oral)
 
     # 1a. Apostrophes et guillemets typographiques → ASCII
     text = text.replace("\u2019", "'").replace("\u2018", "'")  # ' '
@@ -879,17 +893,22 @@ def _normalize_for_tts(text: str) -> str:
     # 8. Nombres isolés restants
     text = re.sub(r"\b(\d[\d\u00a0]*(?:[,\.]\d+)?)\b", lambda m: _num(m.group(1)), text)
 
-    # 9a. Sigles avec points collés : S.D.I.S / C.H.U. → S. D. I. S. / C. H. U.
+    # 9a. Sigles prononcés comme des mots : R.C.I / R.C.I. → RCI (avant épellation)
+    for _sm in _SIGLES_MOT:
+        _dotted = ".".join(_sm)          # R.C.I
+        text = text.replace(_dotted + ".", _sm).replace(_dotted, _sm)
+
+    # 9b. Sigles avec points collés : S.D.I.S / C.H.U. → S. D. I. S. / C. H. U.
     text = re.sub(
         r"\b([A-Z](?:\.[A-Z]){1,4})\.?\b",
         lambda m: m.group(1).replace(".", ". ") + ".",
         text,
     )
 
-    # 9b. Sigles tout-majuscules sans points (2-5 lettres) → épelés : SDIS → S. D. I. S.
+    # 9c. Sigles tout-majuscules sans points (2-5 lettres) → épelés, sauf _SIGLES_MOT
     text = re.sub(
         r"\b([A-Z]{2,5})\b",
-        lambda m: ". ".join(m.group(1)) + ".",
+        lambda m: m.group(1) if m.group(1) in _SIGLES_MOT else ". ".join(m.group(1)) + ".",
         text,
     )
 
