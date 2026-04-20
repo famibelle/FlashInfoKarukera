@@ -846,7 +846,18 @@ def _normalize_for_tts(text: str) -> str:
     text = re.sub(r"\b(\d+)-(\d+)\b",
                   lambda m: f"{_num(m.group(1))} à {_num(m.group(2))}", text)
 
-    # 6. Heures : 07h30 → sept heures trente
+    # 6. Codes départementaux DOM (971–976) → lecture chiffre par chiffre
+    _DOM_CODES = {
+        "971": "quatre-vingt-dix-sept-un",
+        "972": "quatre-vingt-dix-sept-deux",
+        "973": "quatre-vingt-dix-sept-trois",
+        "974": "quatre-vingt-dix-sept-quatre",
+        "976": "quatre-vingt-dix-sept-six",
+    }
+    for code, spoken in _DOM_CODES.items():
+        text = re.sub(r"\b" + code + r"\b", spoken, text)
+
+    # 7. Heures : 07h30 → sept heures trente
     text = re.sub(
         r"\b(\d{1,2})h(\d{2})\b",
         lambda m: f"{_num(m.group(1))} heures {_num(m.group(2))}",
