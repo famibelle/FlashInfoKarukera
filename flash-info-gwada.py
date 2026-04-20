@@ -366,8 +366,8 @@ Règles absolues :
 
 Structure à respecter :
 1. INTRO : respecte ce modèle exact —
-   "Bonjour, nous sommes le [JOUR DATE MOIS ANNÉE]. Vous écoutez votre Flash Info
-   Guadeloupe. Au programme : [annonce fluide des sujets principaux en une phrase].
+   "Bonjour, la diaspora guadeloupéenne du Grand Duché du Luxembourg, nous sommes le [JOUR DATE MOIS ANNÉE]. Vous écoutez votre Flash Info avec
+   des nouvelles fraiches du pays. Au programme : [annonce fluide des sujets principaux en une phrase].
    C'est parti."
    Pas de phrase poétique, pas d'heure, sommaire obligatoire, "C'est parti" obligatoire.
 2. MÉTÉO (2 à 3 phrases) : conditions, températures, vent, pluie en langage oral direct.
@@ -683,6 +683,17 @@ def anchor_local(segments: list[str], items: list[dict]) -> list[str]:
 
     print(f"   Ancrage appliqué ({len(anchored)} segments)")
     return anchored
+
+
+def _enforce_prononciations(segments: list[str]) -> list[str]:
+    """Applique _PRONONCIATIONS_LOCALES sur chaque segment (garantit la bonne prononciation
+    indépendamment de ce que les LLMs ont pu modifier)."""
+    result = []
+    for seg in segments:
+        for ecrit, oral in _PRONONCIATIONS_LOCALES.items():
+            seg = seg.replace(ecrit, oral)
+        result.append(seg)
+    return result
 
 
 def _ensure_sources_in_outro(segments: list[str], sources: list[str]) -> list[str]:
@@ -1286,6 +1297,7 @@ def main():
     # Étape 2b — Révision stylistique
     segments = revise_style(segments_maryse)
     segments = _ensure_sources_in_outro(segments, sources)
+    segments = _enforce_prononciations(segments)
 
     if args.verbose:
         _print_segments(segments, "SORTIE RÉVISEUR STYLISTIQUE")
@@ -1303,6 +1315,7 @@ def main():
 
     segments = anchor_local(segments, items)
     segments = _ensure_sources_in_outro(segments, sources)
+    segments = _enforce_prononciations(segments)
 
     if args.verbose:
         _print_segments(segments, "SORTIE ANCRAGE LOCAL (final)")
