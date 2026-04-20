@@ -788,9 +788,12 @@ def classify_tones(segments: list[str]) -> list[str]:
 
 # Prononciations locales guadeloupéennes (forme écrite → forme orale pour le TTS)
 _PRONONCIATIONS_LOCALES = {
+    # Prononciations créoles
     "Vieux-Habitants": "Vieux Zabitan",
     "Vieux Habitants":  "Vieux Zabitan",
     "Delgrès":          "Delgrèsse",   # /dɛl.ɡʁɛs/ — force le s final
+    # Sigles locaux développés (avant l'épellation automatique)
+    "UNAR": "Union Athlétique de Rivière-des-Pères",
 }
 
 # Sigles prononcés comme des mots (ne pas épeler lettre par lettre)
