@@ -842,6 +842,10 @@ _PRONONCIATIONS_LOCALES = {
     "Vieux-Habitants": "Vieux Zabitan",
     "Vieux Habitants":  "Vieux Zabitan",
     "Delgrès":          "Delgrèsse",   # /dɛl.ɡʁɛs/ — force le s final
+    "Henri IV":         "Henri Quatre",
+    "Henri 4":          "Henri Quatre",
+    "cité Henri IV":    "cité Henri Quatre",
+    "cité Henri 4":     "cité Henri Quatre",
     # Code départemental (filet de sécurité si le LLM l'a quand même converti)
     "neuf cent soixante et onze": "quatre-vingt-dix-sept-un",
     "971": "quatre-vingt-dix-sept-un",
