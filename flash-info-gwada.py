@@ -701,12 +701,18 @@ def anchor_local(segments: list[str], items: list[dict]) -> list[str]:
 
 
 def _enforce_prononciations(segments: list[str]) -> list[str]:
-    """Applique _PRONONCIATIONS_LOCALES sur chaque segment (garantit la bonne prononciation
-    indépendamment de ce que les LLMs ont pu modifier)."""
+    """Applique _PRONONCIATIONS_LOCALES sur chaque segment.
+    - Insensible à la casse (Unar, unar, UNAR → même résultat)
+    - Normalise les apostrophes typographiques avant matching
+    - Word-boundary pour éviter les remplacements partiels
+    """
+    import re
     result = []
     for seg in segments:
+        # Normalise apostrophes typographiques pour que \b fonctionne correctement
+        seg = seg.replace("\u2019", "'").replace("\u2018", "'")
         for ecrit, oral in _PRONONCIATIONS_LOCALES.items():
-            seg = seg.replace(ecrit, oral)
+            seg = re.sub(r"\b" + re.escape(ecrit) + r"\b", oral, seg, flags=re.IGNORECASE)
         result.append(seg)
     return result
 
