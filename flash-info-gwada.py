@@ -530,7 +530,7 @@ Les mots créoles présents dans le texte : ne pas les traduire, ne pas les supp
 Les transitions thématiques sobres (« Côté sport… », « On passe à… »).
 Le format intro / outro.
 Les chiffres, scores, horaires, dates.
-Les sigles et acronymes : ne jamais supprimer ni ajouter des points. Si le texte dit « S.D.I.S » ou « SDIS », laisse exactement tel quel — la normalisation TTS s'en chargera.
+Les sigles et acronymes : ne jamais supprimer ni ajouter des points, et surtout ne jamais les développer ni les renommer. Si le texte dit « UNAR », « JSVH », « SDIS » ou tout autre sigle, laisse exactement tel quel — la normalisation TTS s'en chargera.
 Les séparateurs <<<SEG>>> : à conserver exactement en place.
 
 FORMAT DE SORTIE
@@ -616,6 +616,18 @@ Entrée : "Les élus ont voté un budget."
 JSON source : {"institution": "conseil régional"}
 Sortie incorrecte : "Les élus de la belle Région Guadeloupe ont voté à l'unanimité un budget ambitieux."
 Sortie correcte : "Les élus du conseil régional ont voté un budget."
+
+GLOSSAIRE DES SIGLES LOCAUX
+
+Ces sigles ont un sens précis en Guadeloupe. Ne jamais les développer, les renommer, ni les reformuler autrement :
+- UNAR → Union Athlétique de Rivière-des-Pères
+- JSVH → Jeunesse Sportive de Vieux-Habitants
+- SDIS → Service Départemental d'Incendie et de Secours
+- RCI  → Radio Caraïbes International
+- CHU  → Centre Hospitalier Universitaire de Pointe-à-Pitre
+- ARS  → Agence Régionale de Santé
+
+Si tu rencontres un sigle absent de ce glossaire, laisse-le tel quel sans l'interpréter.
 
 FORMAT DE SORTIE
 
@@ -794,10 +806,14 @@ _PRONONCIATIONS_LOCALES = {
     "Delgrès":          "Delgrèsse",   # /dɛl.ɡʁɛs/ — force le s final
     # Sigles locaux développés (avant l'épellation automatique)
     "UNAR": "Union Athlétique de Rivière-des-Pères",
+    "JSVH": "Jeunesse Sportive de Vieux Zabitan",
+    "SDIS": "Service Départemental d'Incendie et de Secours",
+    "S.D.I.S": "Service Départemental d'Incendie et de Secours",
+    "S.D.I.S.": "Service Départemental d'Incendie et de Secours",
 }
 
 # Sigles prononcés comme des mots (ne pas épeler lettre par lettre)
-_SIGLES_MOT = {"RCI", "SDIS", "UNESCO", "UNICEF", "NASA"}
+_SIGLES_MOT = {"RCI", "UNESCO", "UNICEF", "NASA"}
 
 _ABBREVS = {
     "M.": "Monsieur", "Mme.": "Madame", "Mme": "Madame",
