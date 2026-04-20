@@ -15,6 +15,11 @@ on:
         type: boolean
         required: false
         default: false
+      verbose:
+        description: "Verbose (affiche le détail de chaque étape)"
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   flash-info:
@@ -54,5 +59,8 @@ jobs:
           fi
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             ARGS="$ARGS --dry-run"
+          fi
+          if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
+            ARGS="$ARGS --verbose"
           fi
           python flash-info-gwada.py $ARGS

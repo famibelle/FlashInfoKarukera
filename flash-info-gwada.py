@@ -366,7 +366,7 @@ Règles absolues :
 
 Structure à respecter :
 1. INTRO : respecte ce modèle exact —
-   "Bonjour, la diaspora guadeloupéenne du Grand Duché du Luxembourg, nous sommes le [JOUR DATE MOIS ANNÉE]. Vous écoutez votre Flash Info avec
+   "Bonjour la diaspora guadeloupéenne du Grand Duché du Luxembourg, nous sommes le [JOUR DATE MOIS ANNÉE]. Vous écoutez votre Flash Info avec
    des nouvelles fraiches du pays. Au programme : [annonce fluide des sujets principaux en une phrase].
    C'est parti."
    Pas de phrase poétique, pas d'heure, sommaire obligatoire, "C'est parti" obligatoire.
