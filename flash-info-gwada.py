@@ -797,7 +797,7 @@ _PRONONCIATIONS_LOCALES = {
 }
 
 # Sigles prononcés comme des mots (ne pas épeler lettre par lettre)
-_SIGLES_MOT = {"RCI", "UNESCO", "UNICEF", "NASA"}
+_SIGLES_MOT = {"RCI", "SDIS", "UNESCO", "UNICEF", "NASA"}
 
 _ABBREVS = {
     "M.": "Monsieur", "Mme.": "Madame", "Mme": "Madame",
@@ -918,6 +918,9 @@ def _normalize_for_tts(text: str) -> str:
     # 10. Abréviations textuelles
     for abbr, full in _ABBREVS.items():
         text = text.replace(abbr, full)
+
+    # 10b. Titres honorifiques ambigus (regex : ne remplace que devant un nom propre)
+    text = re.sub(r"\bMe\b(?=\s+[A-ZÀÂÉÈÊËÎÏÔÙÛÜ])", "Maître", text)
 
     # 11. Caractères spéciaux résiduels
     text = re.sub(r"[#*\[\]_~`|\\^@]", " ", text)
