@@ -529,9 +529,16 @@ Les noms propres de lieux, clubs, associations, personnes.
 Les mots créoles présents dans le texte : ne pas les traduire, ne pas les supprimer.
 Les transitions thématiques sobres (« Côté sport… », « On passe à… »).
 Le format intro / outro.
-Les chiffres, scores, horaires, dates.
+Les scores sportifs (ex : « trois à un »).
 Les sigles et acronymes : ne jamais supprimer ni ajouter des points, et surtout ne jamais les développer ni les renommer. Si le texte dit « UNAR », « JSVH », « SDIS » ou tout autre sigle, laisse exactement tel quel — la normalisation TTS s'en chargera.
 Les séparateurs <<<SEG>>> : à conserver exactement en place.
+
+STYLE ORAL — RÈGLES TTS
+
+Le script est destiné à être lu par une voix de synthèse. À chaque intervention, veille à :
+- Écrire tous les nombres en toutes lettres : « 81 ans » → « quatre-vingt-un ans », « 3 blessés » → « trois blessés », « 2025 » → « deux mille vingt-cinq ».
+- Ne laisser aucun chiffre arabe dans le texte final.
+- Ne laisser aucun symbole (%, €, °C, km/h) — les remplacer par leur équivalent oral.
 
 FORMAT DE SORTIE
 
@@ -628,6 +635,14 @@ Ces sigles ont un sens précis en Guadeloupe. Ne jamais les développer, les ren
 - ARS  → Agence Régionale de Santé
 
 Si tu rencontres un sigle absent de ce glossaire, laisse-le tel quel sans l'interpréter.
+
+STYLE ORAL — RÈGLES TTS
+
+Le script est destiné à être lu par une voix de synthèse. À chaque intervention, veille à :
+- Écrire tous les nombres en toutes lettres : « 81 ans » → « quatre-vingt-un ans », « 3 blessés » → « trois blessés », « 2025 » → « deux mille vingt-cinq ».
+- Ne laisser aucun chiffre arabe dans le texte final.
+- Ne laisser aucun symbole (%, €, °C, km/h) — les remplacer par leur équivalent oral.
+- Maintenir le registre oral naturel d'un présentateur radio qui connaît son île.
 
 FORMAT DE SORTIE
 
