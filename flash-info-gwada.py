@@ -119,6 +119,68 @@ def _source_name(url: str) -> str:
     return host.split(".")[0].capitalize()
 
 
+# Communes et lieux guadeloupéens (plus long en premier pour éviter les faux-positifs)
+_LIEUX_GUADELOUPE = [
+    "Pointe-à-Pitre", "Capesterre-Belle-Eau", "Capesterre de Marie-Galante",
+    "Sainte-Anne", "Sainte-Rose", "Saint-François", "Saint-Claude",
+    "Le Gosier", "Les Abymes", "Baie-Mahault", "Le Moule", "Petit-Bourg",
+    "Lamentin", "Gourbeyre", "Bouillante", "Pointe-Noire", "Deshaies",
+    "Vieux-Habitants", "Baillif", "Goyave", "Morne-à-l'Eau",
+    "Port-Louis", "Anse-Bertrand", "Petit-Canal", "Dampierre",
+    "Grand-Bourg", "Capesterre", "Saint-Louis", "Les Saintes", "Terre-de-Haut",
+    "La Désirade", "Saint-Martin", "Marigot", "Saint-Barthélemy", "Gustavia",
+    "Marie-Galante", "Grande-Terre", "Basse-Terre", "Karukera",
+]
+
+# Pays et grandes villes du monde (en français, plus long en premier)
+_LIEUX_MONDE = [
+    # Caraïbes et Amériques
+    "République dominicaine", "Trinidad-et-Tobago", "États-Unis", "Costa Rica",
+    "Porto Rico", "Saint-Kitts", "Saint-Vincent", "Sainte-Lucie",
+    "Martinique", "Guadeloupe", "Guyane française", "Guyane", "La Réunion",
+    "Haïti", "Cuba", "Jamaïque", "Barbade", "Dominique", "Antigua",
+    "Venezuela", "Colombie", "Brésil", "Mexique", "Canada", "Argentine",
+    "Washington", "New York", "Miami", "Houston", "Los Angeles",
+    # Europe
+    "Royaume-Uni", "Pays-Bas", "République tchèque", "Bosnie-Herzégovine",
+    "France métropolitaine", "France",
+    "Allemagne", "Espagne", "Italie", "Portugal", "Belgique", "Suisse",
+    "Pologne", "Hongrie", "Roumanie", "Bulgarie", "Grèce", "Turquie",
+    "Russie", "Ukraine", "Suède", "Norvège", "Danemark", "Finlande",
+    "Paris", "Londres", "Berlin", "Madrid", "Rome", "Bruxelles",
+    # Afrique
+    "Afrique du Sud", "Côte d'Ivoire", "Burkina Faso", "République centrafricaine",
+    "Sénégal", "Cameroun", "Maroc", "Algérie", "Tunisie", "Égypte",
+    "Nigeria", "Ghana", "Mali", "Guinée", "Congo", "Kenya", "Éthiopie",
+    "Abidjan", "Dakar", "Casablanca",
+    # Asie / Océanie / Moyen-Orient
+    "Arabie saoudite", "Émirats arabes unis", "Corée du Sud", "Corée du Nord",
+    "Chine", "Japon", "Inde", "Pakistan", "Australie", "Nouvelle-Zélande",
+    "Israël", "Palestine", "Iran", "Irak", "Liban", "Syrie",
+    "Pékin", "Tokyo", "Séoul", "Mumbai", "Sydney",
+]
+
+_LIEUX_GUADELOUPE_LOWER = {l.lower(): l for l in _LIEUX_GUADELOUPE}
+_LIEUX_MONDE_LOWER = {l.lower(): l for l in _LIEUX_MONDE}
+
+def _extract_lieu(title: str, desc: str) -> str:
+    """
+    Cherche un lieu géographique dans title + desc.
+    Priorité : commune guadeloupéenne → pays/ville mondiale → N/A.
+    """
+    import re
+    haystack = f"{title} {desc}".lower()
+
+    def _match(mapping: dict) -> str | None:
+        for lieu_low, lieu_orig in mapping.items():
+            pat = r"(?<![a-zàâéèêëîïôùûüç])" + re.escape(lieu_low) + r"(?![a-zàâéèêëîïôùûüç])"
+            if re.search(pat, haystack):
+                return lieu_orig
+        return None
+
+    return _match(_LIEUX_GUADELOUPE_LOWER) or _match(_LIEUX_MONDE_LOWER) or "N/A"
+
+
 def _date_fr(d: Date) -> str:
     """Retourne ex: 'samedi 19 avril 2026'."""
     s = d.strftime("%A %-d %B %Y")
@@ -185,6 +247,17 @@ def _parse_feed_items(root: ET.Element, target_date: Date) -> list[tuple]:
 
 
 
+_LIEUX_GUADELOUPE_SET = {l.lower() for l in _LIEUX_GUADELOUPE} | {"guadeloupe", "karukera"}
+
+def _lieu_priority(lieu: str) -> int:
+    """0 = local Guadeloupe, 1 = lieu inconnu (N/A), 2 = international."""
+    if lieu.lower() in _LIEUX_GUADELOUPE_SET:
+        return 0
+    if lieu == "N/A":
+        return 1
+    return 2
+
+
 def fetch_news(feeds: list[str], max_items: int, target_date: Date) -> list[dict]:
     all_items = []
     for url in feeds:
@@ -202,11 +275,24 @@ def fetch_news(feeds: list[str], max_items: int, target_date: Date) -> list[dict
     # Tri par date décroissante (None en dernier)
     all_items.sort(key=lambda x: x[0] or datetime.min, reverse=True)
 
-    items = [
-        {"title": t, "date": d, "desc": desc, "source": _source_name(feed_url)}
-        for _, t, d, desc, feed_url in all_items[:max_items]
+    candidates = [
+        {
+            "title": t, "date": d, "desc": desc,
+            "source": _source_name(feed_url),
+            "lieu": _extract_lieu(t, desc),
+        }
+        for _, t, d, desc, feed_url in all_items
     ]
-    print(f"   Total retenu : {len(items)} actualités du jour")
+
+    # Priorité : local Guadeloupe (0) → lieu inconnu (1) → international (2)
+    # À priorité égale, l'ordre chronologique (déjà trié) est conservé.
+    candidates.sort(key=lambda it: _lieu_priority(it["lieu"]))
+    items = candidates[:max_items]
+
+    local_count = sum(1 for it in items if _lieu_priority(it["lieu"]) == 0)
+    intl_count  = sum(1 for it in items if _lieu_priority(it["lieu"]) == 2)
+    print(f"   Total retenu : {len(items)} actualités "
+          f"({local_count} locales, {len(items)-local_count-intl_count} N/A, {intl_count} internationales)")
     return items
 
 
@@ -269,9 +355,10 @@ MARYSE_SYSTEM = """Tu es Maryse Condé — voix antillaise, plume libre, présen
 Tu rédiges le script oral d'un flash info pour la Guadeloupe en segments distincts.
 
 Règles absolues :
-- Texte pur, sans markdown, sans astérisques, sans crochets, sans titres, sans tirets.
+- Texte pur, sans markdown, sans astérisques, sans crochets, sans titres, sans tirets, sans emojis.
 - Pas d'indications de mise en scène.
 - Style oral naturel et direct, comme un présentateur radio qui connaît son île.
+- Format TTS-ready : chaque segment doit tenir en moins de 300 mots. Pas de symboles (€, %, °C) — écris "euros", "pour cent", "degrés". Pas de sigles collés — écris "le C.H.U." et non "leCHU".
 - OBLIGATOIRE : sépare chaque segment par exactement "<<<SEG>>>" seul sur sa ligne. Aucun autre séparateur, tiret ou ligne vide entre les segments.
 - INTERDIT ABSOLU : ne cite JAMAIS le nom d'un média (France-Antilles, RCI, etc.) dans les segments d'actualité. Les sources se mentionnent UNIQUEMENT dans l'outro, nulle part ailleurs.
 - INTERDIT ABSOLU : ne fabrique jamais une transition géographique si le lieu n'est pas précisé dans la source. Si le lieu est inconnu, utilise une transition thématique ("Côté sport...", "On passe à l'économie...").
@@ -443,6 +530,7 @@ Les mots créoles présents dans le texte : ne pas les traduire, ne pas les supp
 Les transitions thématiques sobres (« Côté sport… », « On passe à… »).
 Le format intro / outro.
 Les chiffres, scores, horaires, dates.
+Les sigles et acronymes : ne jamais supprimer ni ajouter des points. Si le texte dit « S.D.I.S » ou « SDIS », laisse exactement tel quel — la normalisation TTS s'en chargera.
 Les séparateurs <<<SEG>>> : à conserver exactement en place.
 
 FORMAT DE SORTIE
@@ -494,6 +582,8 @@ TU NE DOIS PAS :
 
 5. Modifier les faits : scores, dates, horaires, noms de personnes, décisions rapportées. Tu ne touches qu'au niveau de précision géographique et institutionnelle.
 
+6. Modifier les sigles et acronymes : ne jamais supprimer ni ajouter des points dans un sigle (S.D.I.S, C.H.U., R.C.I., A.R.S.). Laisse-les exactement tels qu'ils apparaissent — la normalisation TTS s'en chargera.
+
 6. Allonger artificiellement le texte. Tes interventions doivent rester sobres : remplacer 2 mots par 4 est acceptable, remplacer une phrase par un paragraphe ne l'est pas. Vise une variation de longueur de ±10 % maximum par rapport au script initial.
 
 RÈGLE DE PRUDENCE
@@ -537,7 +627,15 @@ def anchor_local(segments: list[str], items: list[dict]) -> list[str]:
     print("📍 Ancrage local (Mistral Large)...")
     full_script = f"\n{SEG_SEPARATOR}\n".join(segments)
     json_context = json.dumps(
-        [{"titre": it["title"], "source": it["source"], "description": it["desc"]} for it in items],
+        [
+            {
+                "titre": it["title"],
+                "lieu": it.get("lieu", "N/A"),
+                "source": it["source"],
+                "description": it["desc"],
+            }
+            for it in items
+        ],
         ensure_ascii=False, indent=2
     )
     user_prompt = (
@@ -707,9 +805,15 @@ def _normalize_for_tts(text: str) -> str:
                 return _n2w(float(n) if "." in n else int(n), lang="fr")
             except Exception:
                 return n
+        def _ordinal(n: str) -> str:
+            try:
+                return _n2w(int(n), lang="fr", to="ordinal")
+            except Exception:
+                return n
     except ImportError:
         print("   ⚠️  num2words manquant — pip install num2words")
         _num = lambda n: n
+        _ordinal = lambda n: n
 
     # 1a. Apostrophes et guillemets typographiques → ASCII
     text = text.replace("\u2019", "'").replace("\u2018", "'")  # ' '
@@ -719,14 +823,37 @@ def _normalize_for_tts(text: str) -> str:
     # 1b. Emojis et symboles hors latin/ponctuation courante
     text = re.sub(r"[^\x00-\x7F\u00C0-\u024F\u1E00-\u1EFF\n]", " ", text)
 
-    # 2. Heures : 07h30 → sept heures trente
+    # 2. Numéros et abréviations de position : n° → numéro
+    text = re.sub(r"\bn°\s*", "numéro ", text, flags=re.IGNORECASE)
+    text = re.sub(r"\bN°\s*", "Numéro ", text)
+
+    # 3. Ordinaux français : 1er/1re → premier/première, 2e/2ème → deuxième…
+    text = re.sub(r"\b1er\b", "premier", text)
+    text = re.sub(r"\b1re\b", "première", text)
+    text = re.sub(r"\b(\d+)(?:e|ème|eme)\b",
+                  lambda m: _ordinal(m.group(1)), text)
+
+    # 4. Monnaies : 3,5M€ / 3 millions d'euros / 15€ / 20$
+    text = re.sub(r"(\d+(?:[,\.]\d+)?)\s*[Mm](?:illions?)?\s*€",
+                  lambda m: f"{_num(m.group(1))} millions d'euros", text)
+    text = re.sub(r"(\d+(?:[,\.]\d+)?)\s*€",
+                  lambda m: f"{_num(m.group(1))} euros", text)
+    text = re.sub(r"(\d+(?:[,\.]\d+)?)\s*\$",
+                  lambda m: f"{_num(m.group(1))} dollars", text)
+
+    # 5. Scores sportifs : 3-1 → trois à un
+    #    (ne pas toucher aux noms composés — protégé par \b\d+\b)
+    text = re.sub(r"\b(\d+)-(\d+)\b",
+                  lambda m: f"{_num(m.group(1))} à {_num(m.group(2))}", text)
+
+    # 6. Heures : 07h30 → sept heures trente
     text = re.sub(
         r"\b(\d{1,2})h(\d{2})\b",
         lambda m: f"{_num(m.group(1))} heures {_num(m.group(2))}",
         text,
     )
 
-    # 3. Nombres avec unités
+    # 7. Nombres avec unités
     _UNIT_PATTERNS = [
         (r"(\d+(?:[,\.]\d+)?)\s*°C",   lambda m: f"{_num(m.group(1))} degrés"),
         (r"(\d+(?:[,\.]\d+)?)\s*km/h",  lambda m: f"{_num(m.group(1))} kilomètres par heure"),
@@ -738,21 +865,28 @@ def _normalize_for_tts(text: str) -> str:
     for pattern, repl in _UNIT_PATTERNS:
         text = re.sub(pattern, repl, text, flags=re.IGNORECASE)
 
-    # 4. Nombres isolés restants
+    # 8. Nombres isolés restants
     text = re.sub(r"\b(\d[\d\u00a0]*(?:[,\.]\d+)?)\b", lambda m: _num(m.group(1)), text)
 
-    # 5. Sigles tout-majuscules (2-5 lettres) → épelés : RCI → R. C. I.
+    # 9a. Sigles avec points collés : S.D.I.S / C.H.U. → S. D. I. S. / C. H. U.
+    text = re.sub(
+        r"\b([A-Z](?:\.[A-Z]){1,4})\.?\b",
+        lambda m: m.group(1).replace(".", ". ") + ".",
+        text,
+    )
+
+    # 9b. Sigles tout-majuscules sans points (2-5 lettres) → épelés : SDIS → S. D. I. S.
     text = re.sub(
         r"\b([A-Z]{2,5})\b",
         lambda m: ". ".join(m.group(1)) + ".",
         text,
     )
 
-    # 6. Abréviations textuelles
+    # 10. Abréviations textuelles
     for abbr, full in _ABBREVS.items():
         text = text.replace(abbr, full)
 
-    # 7. Caractères spéciaux résiduels
+    # 11. Caractères spéciaux résiduels
     text = re.sub(r"[#*\[\]_~`|\\^@]", " ", text)
     text = re.sub(r"/", " sur ", text)
     text = re.sub(r" {2,}", " ", text)
@@ -834,7 +968,10 @@ def generate_audio(segments: list[str], output_path: Path, stinger: Path, tones:
     for i, (text, tone) in enumerate(zip(segments, tones)):
         seg_path = tmp_dir / f"_seg_{i:02d}.mp3"
         voice_id = TTS_VOICES.get(tone, TTS_VOICE_DEFAULT)
-        print(f"   [{i+1}/{len(segments)}] TTS segment ({tone} → {voice_id})…")
+        word_count = len(text.split())
+        if word_count > 300:
+            print(f"   ⚠️  Segment {i+1} : {word_count} mots > 300 (Voxtral recommande < 300 mots par appel)")
+        print(f"   [{i+1}/{len(segments)}] TTS segment ({tone} → {voice_id}, {word_count} mots)…")
         _tts_call(_normalize_for_tts(text), seg_path, voice_id=voice_id)
         # Léger padding pour éviter la troncature TTS en fin de segment
         padded = tmp_dir / f"_seg_{i:02d}_p.mp3"
