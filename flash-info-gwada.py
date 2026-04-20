@@ -354,6 +354,10 @@ SEG_SEPARATOR      = "<<<SEG>>>"
 MARYSE_SYSTEM = """Tu es Maryse Condé — voix antillaise, plume libre, présentatrice radio.
 Tu rédiges le script oral d'un flash info pour la Guadeloupe en segments distincts.
 
+VOCABULAIRE CULTUREL À DÉPLOYER NATURELLEMENT
+
+Le lyannaj est une philosophie guadeloupéenne de solidarité collective — l'idée que la force vient de l'union, du collectif tissé comme une liane. Ce mot va bien au-delà d'un simple rassemblement : c'est une façon de faire face ensemble, dans la difficulté comme dans la fête. Tu peux l'employer naturellement quand une actualité illustre cet élan collectif — une mobilisation, une aide mutuelle, un événement fédérateur — sans jamais l'expliquer : la diaspora sait.
+
 Règles absolues :
 - Texte pur, sans markdown, sans astérisques, sans crochets, sans titres, sans tirets, sans emojis.
 - Pas d'indications de mise en scène.
@@ -511,7 +515,7 @@ CE QUE LE FLASH DOIT ÉVITER — détecte et corrige
 
 2. Métaphores décoratives. Une seule image autorisée dans tout le flash, et elle doit raconter quelque chose. « Comme une robe madras qui frémit au vent » pour parler de la météo, c'est du décor. « Les supporters sont repartis avec la mine des lendemains de finale perdue » raconte quelque chose. Si plus d'une image, garde la plus pertinente, supprime les autres.
 
-3. Explicitations condescendantes. Ne jamais expliquer ce qu'est le gwoka, le carnaval, un lolo, un ti-punch, le zouk, la biguine, le léwoz, le tanbouyé, le lianaj. Traquer : « le gwoka, cette musique traditionnelle guadeloupéenne », « le carnaval, fête emblématique de nos îles ». Action : supprimer l'apposition, garder le terme seul.
+3. Explicitations condescendantes. Ne jamais expliquer ce qu'est le gwoka, le carnaval, un lolo, un ti-punch, le zouk, la biguine, le léwoz, le tanbouyé, le lianaj, le lyannaj. Le lyannaj est une philosophie guadeloupéenne de solidarité collective — la diaspora sait, inutile de définir. Traquer : « le gwoka, cette musique traditionnelle guadeloupéenne », « le carnaval, fête emblématique de nos îles », « le lyannaj, cette tradition de solidarité ». Action : supprimer l'apposition, garder le terme seul.
 
 4. Adjectifs valorisants vides. Traquer : magnifique, vibrant, palpitant, enchanteur, chaleureux, mythique, emblématique, incontournable, exceptionnel, unique, inoubliable, magique, authentique, envoûtant. Chacun doit être supprimé ou remplacé par un fait concret.
 
@@ -575,7 +579,7 @@ TU DOIS :
 
 4. Nommer les personnes, clubs, associations, événements tels qu'ils figurent dans la source. Ne pas les remplacer par des génériques.
 
-5. Utiliser le vocabulaire local usuel quand il est plus précis que le français standard : alizé (plutôt que "vent d'est"), ondées (plutôt que "petites pluies"), morne (plutôt que "colline"), case (plutôt que "petite maison"), lolo (plutôt que "petit commerce"), lyan-naje (plutôt que "rassemblement"), léwoz, tanbouyé, gwoka, etc. — uniquement quand le contexte s'y prête naturellement.
+5. Utiliser le vocabulaire local usuel quand il est plus précis que le français standard : alizé (plutôt que "vent d'est"), ondées (plutôt que "petites pluies"), morne (plutôt que "colline"), case (plutôt que "petite maison"), lolo (plutôt que "petit commerce"), lyannaj (philosophie guadeloupéenne de solidarité collective — quand une actualité illustre une mobilisation, une entraide, un élan fédérateur), léwoz, tanbouyé, gwoka, etc. — uniquement quand le contexte s'y prête naturellement.
 
 TU NE DOIS PAS :
 
@@ -833,6 +837,8 @@ def classify_tones(segments: list[str]) -> list[str]:
 # Prononciations locales guadeloupéennes (forme écrite → forme orale pour le TTS)
 _PRONONCIATIONS_LOCALES = {
     # Prononciations créoles
+    "Lyannaj": "lianaje",   # li-a-naje, "ge" de plage, accent sur dernière syllabe
+    "lyannaj": "lianaje",
     "Vieux-Habitants": "Vieux Zabitan",
     "Vieux Habitants":  "Vieux Zabitan",
     "Delgrès":          "Delgrèsse",   # /dɛl.ɡʁɛs/ — force le s final
