@@ -536,7 +536,7 @@ Les séparateurs <<<SEG>>> : à conserver exactement en place.
 STYLE ORAL — RÈGLES TTS
 
 Le script est destiné à être lu par une voix de synthèse. À chaque intervention, veille à :
-- Écrire tous les nombres en toutes lettres : « 81 ans » → « quatre-vingt-un ans », « 3 blessés » → « trois blessés », « 2025 » → « deux mille vingt-cinq ».
+- Écrire tous les nombres en toutes lettres : « 81 ans » → « quatre-vingt-un ans », « 3 blessés » → « trois blessés », « 2025 » → « deux mille vingt-cinq ». EXCEPTION : « 971 » est un code départemental, ne jamais le convertir — laisse « 971 » tel quel.
 - Ne laisser aucun chiffre arabe dans le texte final.
 - Ne laisser aucun symbole (%, €, °C, km/h) — les remplacer par leur équivalent oral.
 
@@ -639,7 +639,7 @@ Si tu rencontres un sigle absent de ce glossaire, laisse-le tel quel sans l'inte
 STYLE ORAL — RÈGLES TTS
 
 Le script est destiné à être lu par une voix de synthèse. À chaque intervention, veille à :
-- Écrire tous les nombres en toutes lettres : « 81 ans » → « quatre-vingt-un ans », « 3 blessés » → « trois blessés », « 2025 » → « deux mille vingt-cinq ».
+- Écrire tous les nombres en toutes lettres : « 81 ans » → « quatre-vingt-un ans », « 3 blessés » → « trois blessés », « 2025 » → « deux mille vingt-cinq ». EXCEPTION : « 971 » est un code départemental, ne jamais le convertir — laisse « 971 » tel quel.
 - Ne laisser aucun chiffre arabe dans le texte final.
 - Ne laisser aucun symbole (%, €, °C, km/h) — les remplacer par leur équivalent oral.
 - Maintenir le registre oral naturel d'un présentateur radio qui connaît son île.
@@ -830,6 +830,9 @@ _PRONONCIATIONS_LOCALES = {
     "Vieux-Habitants": "Vieux Zabitan",
     "Vieux Habitants":  "Vieux Zabitan",
     "Delgrès":          "Delgrèsse",   # /dɛl.ɡʁɛs/ — force le s final
+    # Code départemental (filet de sécurité si le LLM l'a quand même converti)
+    "neuf cent soixante et onze": "quatre-vingt-dix-sept-un",
+    "971": "quatre-vingt-dix-sept-un",
     # Sigles locaux développés (avant l'épellation automatique)
     "UNAR": "Union Athlétique de Rivière-des-Pères",
     "JSVH": "Jeunesse Sportive de Vieux Zabitan",
