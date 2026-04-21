@@ -961,8 +961,8 @@ def _make_ass(words: list[dict], tone: str) -> str:
         "OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, "
         "ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, "
         "Alignment, MarginL, MarginR, MarginV, Encoding\n"
-        "Style: Default,Arial,76,&H00FFFFFF,&H00FFFFFF,&H00000000,"
-        "&HA0000000,0,0,0,0,100,100,0,0,1,4,2,2,80,80,160,1\n\n"
+        "Style: Default,Arial,96,&H00FFFFFF,&H00FFFFFF,&H00000000,"
+        "&HA0000000,0,0,0,0,100,100,0,0,1,5,2,2,80,80,160,1\n\n"
         "[Events]\n"
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
     )
@@ -973,10 +973,10 @@ def _make_ass(words: list[dict], tone: str) -> str:
         end   = max(word["end"], start + 0.05)
         parts = []
         if i > 0:
-            parts.append(f"{{\\c{dim_col}\\fs60}}{words[i - 1]['word']}")
-        parts.append(f"{{\\c{tone_col}\\fs80\\b1}}{word['word']}{{\\b0}}")
+            parts.append(f"{{\\c{dim_col}\\fs80}}{words[i - 1]['word']}")
+        parts.append(f"{{\\c{tone_col}\\fs108\\b1}}{word['word']}{{\\b0}}")
         if i < len(words) - 1:
-            parts.append(f"{{\\c{dim_col}\\fs60}}{words[i + 1]['word']}")
+            parts.append(f"{{\\c{dim_col}\\fs80}}{words[i + 1]['word']}")
         events.append(
             f"Dialogue: 0,{_ass_time(start)},{_ass_time(end)},"
             f"Default,,0,0,0,,{' '.join(parts)}"
