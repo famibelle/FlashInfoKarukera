@@ -838,8 +838,8 @@ def classify_tones(segments: list[str]) -> list[str]:
 # Prononciations locales guadeloupéennes (forme écrite → forme orale pour le TTS)
 _PRONONCIATIONS_LOCALES = {
     # Prononciations créoles
-    "Lyannaj": "Lyan naje",   # Lyan-naje, deux syllabes distinctes
-    "lyannaj": "Lyan naje",
+    "Lyannaj": "Lyanhnaje",   # Lyan-naje, deux syllabes distinctes
+    "lyannaj": "Lyanhnaje",
     "Vieux-Habitants": "Vieux Zabitan",
     "Vieux Habitants":  "Vieux Zabitan",
     "Delgrès":          "Delgrèsse",   # /dɛl.ɡʁɛs/ — force le s final
