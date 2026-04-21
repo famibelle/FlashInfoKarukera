@@ -37,6 +37,7 @@ _load_env(Path(__file__).parent / ".env")
 RSS_FEEDS = [
     "https://www.guadeloupe.franceantilles.fr/actualite/vielocale/rss.xml",
     "https://www.guadeloupe.franceantilles.fr/actualite/sports/rss.xml",
+    "https://www.guadeloupe.franceantilles.fr/actualite/social/rss.xml"
     "https://rci.fm/guadeloupe/fb/articles_rss_gp",
     "https://zye-a-mangrovla.fr/?feed=rss2",
     "https://www.regionguadeloupe.fr/actualites-et-agendas/toute-lactualite/flux.rss",
