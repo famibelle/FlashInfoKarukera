@@ -19,7 +19,7 @@ on:
         description: "Génère les vidéos TikTok/Shorts et les envoie sur Telegram"
         type: boolean
         required: false
-        default: false
+        default: true
       youtube:
         description: "Publie les vidéos sur YouTube Shorts (hors intro/outro)"
         type: boolean
@@ -67,13 +67,15 @@ jobs:
           YOUTUBE_REFRESH_TOKEN:    ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
         run: |
           ARGS=""
+          # Déclenchement cron : tiktok activé par défaut
+          IS_SCHEDULE="${{ github.event_name == 'schedule' }}"
           if [ -n "${{ github.event.inputs.date }}" ]; then
             ARGS="$ARGS --date ${{ github.event.inputs.date }}"
           fi
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             ARGS="$ARGS --dry-run"
           fi
-          if [ "${{ github.event.inputs.tiktok }}" = "true" ]; then
+          if [ "$IS_SCHEDULE" = "true" ] || [ "${{ github.event.inputs.tiktok }}" = "true" ]; then
             ARGS="$ARGS --tiktok"
           fi
           if [ "${{ github.event.inputs.youtube }}" = "true" ]; then
