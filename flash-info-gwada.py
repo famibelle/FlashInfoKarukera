@@ -73,6 +73,10 @@ X_API_SECRET         = os.environ["X_API_SECRET"]
 X_ACCESS_TOKEN       = os.environ["X_ACCESS_TOKEN"]
 X_ACCESS_TOKEN_SECRET = os.environ["X_ACCESS_TOKEN_SECRET"]
 
+YOUTUBE_CLIENT_ID     = os.environ.get("YOUTUBE_CLIENT_ID", "")
+YOUTUBE_CLIENT_SECRET = os.environ.get("YOUTUBE_CLIENT_SECRET", "")
+YOUTUBE_REFRESH_TOKEN = os.environ.get("YOUTUBE_REFRESH_TOKEN", "")
+
 OUTPUT_DIR      = Path("/tmp")
 STINGERS_DIR    = Path(__file__).parent / "Stingers"
 PROMPTS_DIR     = Path(__file__).parent / "prompts"
@@ -1009,11 +1013,12 @@ def generate_tiktok(
     segments: list[str],
     tones: list[str],
     output_dir: Path,
-) -> list[Path]:
+) -> list[tuple[int, Path]]:
+    """Retourne [(index_segment, chemin_mp4), …]."""
     output_dir.mkdir(parents=True, exist_ok=True)
-    print(f"🎬 Génération TikTok : {len(seg_paths)} vidéos → {output_dir}")
+    print(f"🎬 Génération vidéos : {len(seg_paths)} segments → {output_dir}")
 
-    video_paths: list[Path] = []
+    videos: list[tuple[int, Path]] = []
     for i, (seg_path, _text, tone) in enumerate(zip(seg_paths, segments, tones)):
         label = "INTRO" if i == 0 else "MÉTÉO" if i == 1 else f"SEG{i - 1:02d}"
         print(f"   [{i + 1}/{len(seg_paths)}] {label} ({tone}) — STT timestamps…")
@@ -1029,10 +1034,10 @@ def generate_tiktok(
         video_path = output_dir / f"seg_{i:02d}.mp4"
         print(f"   [{i + 1}/{len(seg_paths)}] FFmpeg → {video_path.name}…")
         _tiktok_segment_video(seg_path, ass_path, tone, video_path)
-        video_paths.append(video_path)
+        videos.append((i, video_path))
         print(f"   ✅ {video_path.name} ({video_path.stat().st_size:,} bytes)")
 
-    return video_paths
+    return videos
 
 
 # ── Étape 4 : Envoi Telegram ──────────────────────────────────────────────────
@@ -1151,6 +1156,91 @@ def post_x(text: str) -> None:
     print(f"   Tweet publié ✅  id={tweet_id}")
 
 
+# ── Étape 7 : Publication YouTube Shorts ─────────────────────────────────────
+
+YOUTUBE_SCOPES       = ["https://www.googleapis.com/auth/youtube.upload"]
+YOUTUBE_TAGS         = ["Guadeloupe", "flash info", "actualité", "Antilles", "Caraïbes", "Karukera", "Shorts"]
+YOUTUBE_CATEGORY_ID  = "25"  # News & Politics
+
+
+def _save_refresh_token(token: str) -> None:
+    env_path = Path(__file__).parent / ".env"
+    lines = env_path.read_text(encoding="utf-8").splitlines() if env_path.exists() else []
+    for i, line in enumerate(lines):
+        if line.startswith("YOUTUBE_REFRESH_TOKEN="):
+            lines[i] = f"YOUTUBE_REFRESH_TOKEN={token}"
+            break
+    else:
+        lines.append(f"YOUTUBE_REFRESH_TOKEN={token}")
+    env_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print("   Refresh token sauvegardé dans .env")
+
+
+def _youtube_credentials():
+    from google.oauth2.credentials import Credentials
+    from google.auth.transport.requests import Request as GoogleRequest
+    from google_auth_oauthlib.flow import InstalledAppFlow
+
+    client_config = {
+        "installed": {
+            "client_id": YOUTUBE_CLIENT_ID,
+            "client_secret": YOUTUBE_CLIENT_SECRET,
+            "redirect_uris": ["urn:ietf:wg:oauth:2.0:oob", "http://localhost"],
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token",
+        }
+    }
+
+    if YOUTUBE_REFRESH_TOKEN:
+        creds = Credentials(
+            token=None,
+            refresh_token=YOUTUBE_REFRESH_TOKEN,
+            token_uri="https://oauth2.googleapis.com/token",
+            client_id=YOUTUBE_CLIENT_ID,
+            client_secret=YOUTUBE_CLIENT_SECRET,
+            scopes=YOUTUBE_SCOPES,
+        )
+        creds.refresh(GoogleRequest())
+        return creds
+
+    flow = InstalledAppFlow.from_client_config(client_config, YOUTUBE_SCOPES)
+    creds = flow.run_local_server(port=0)
+    _save_refresh_token(creds.refresh_token)
+    return creds
+
+
+def upload_youtube_short(video_path: Path, title: str, description: str) -> str:
+    from googleapiclient.discovery import build
+    from googleapiclient.http import MediaFileUpload
+
+    print(f"   ▶️  Upload : {video_path.name}…")
+    creds = _youtube_credentials()
+    youtube = build("youtube", "v3", credentials=creds, cache_discovery=False)
+
+    body = {
+        "snippet": {
+            "title": f"{title} #Shorts",
+            "description": description,
+            "tags": YOUTUBE_TAGS,
+            "categoryId": YOUTUBE_CATEGORY_ID,
+        },
+        "status": {
+            "privacyStatus": "public",
+            "selfDeclaredMadeForKids": False,
+        },
+    }
+    media = MediaFileUpload(str(video_path), mimetype="video/mp4", resumable=True)
+    request = youtube.videos().insert(part="snippet,status", body=body, media_body=media)
+
+    response = None
+    while response is None:
+        _, response = request.next_chunk()
+
+    url = f"https://youtube.com/shorts/{response['id']}"
+    print(f"   ✅ {url}")
+    return url
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -1211,6 +1301,15 @@ def main():
             "Waveform colorée selon la tonalité + sous-titres karaoke mot à mot\n"
             "via timestamps STT Voxtral. Vidéos dans /tmp/tiktok-YYYYMMDD-HHMM/.\n"
             "Compatible avec --no-send."
+        ),
+    )
+    parser.add_argument(
+        "--youtube", action="store_true",
+        help=(
+            "Publie les vidéos MP4 sur YouTube Shorts via l'API YouTube Data v3.\n"
+            "Nécessite YOUTUBE_CLIENT_ID et YOUTUBE_CLIENT_SECRET dans .env.\n"
+            "Le refresh token est sauvegardé automatiquement après la première autorisation.\n"
+            "L'intro et l'outro sont exclus. Compatible avec --tiktok."
         ),
     )
     parser.add_argument(
@@ -1348,21 +1447,37 @@ def main():
         print("────────────────────────────────────────────────────────\n")
 
     output_path, seg_paths = generate_audio(
-        segments, output_path, stinger, tones=tones, keep_segments=args.tiktok,
+        segments, output_path, stinger, tones=tones,
+        keep_segments=args.tiktok or args.youtube,
     )
 
     title = f"Flash Info Guadeloupe — {date_str}"
 
-    if args.tiktok:
-        tiktok_dir = OUTPUT_DIR / f"tiktok-{now.strftime('%Y%m%d-%H%M')}"
-        videos = generate_tiktok(seg_paths, segments, tones, tiktok_dir)
-        print(f"\n🎬 {len(videos)} vidéos TikTok dans {tiktok_dir}")
+    if args.tiktok or args.youtube:
+        video_dir = OUTPUT_DIR / f"tiktok-{now.strftime('%Y%m%d-%H%M')}"
+        videos = generate_tiktok(seg_paths, segments, tones, video_dir)
+        print(f"\n🎬 {len(videos)} vidéos dans {video_dir}")
         for sp in seg_paths:
             sp.unlink(missing_ok=True)
-        print(f"📤 Envoi des vidéos TikTok sur Telegram...")
-        for i, video_path in enumerate(videos):
-            label = "INTRO" if i == 0 else "MÉTÉO" if i == 1 else f"Sujet {i - 1}"
-            send_telegram_video(video_path, f"🎬 {title} — {label}")
+
+        if args.tiktok:
+            print("📤 Envoi des vidéos sur Telegram...")
+            for idx, video_path in videos:
+                label = "INTRO" if idx == 0 else "MÉTÉO" if idx == 1 else f"Sujet {idx - 1}"
+                send_telegram_video(video_path, f"🎬 {title} — {label}")
+
+        if args.youtube:
+            n = len(segments)
+            print("▶️  Publication YouTube Shorts...")
+            for idx, video_path in videos:
+                if idx == 0 or idx == n - 1:
+                    continue  # skip intro et outro
+                label = "Météo" if idx == 1 else f"Sujet {idx - 1}"
+                description = (
+                    f"{segments[idx][:300]}\n\n"
+                    f"#FlashInfo #Guadeloupe #Antilles #Karukera #Shorts"
+                )
+                upload_youtube_short(video_path, f"Flash Info Guadeloupe — {date_str} — {label}", description)
 
     if args.transcript:
         print("📝 Transcription de l'audio généré...")
