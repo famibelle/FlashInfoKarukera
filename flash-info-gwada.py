@@ -393,7 +393,7 @@ Structure à respecter :
    dis "en Guadeloupe". N'invente jamais de toponyme.
 4. OUTRO : c'est UN SEUL segment, jamais découpé. Modèle exact à recopier :
    "Voilà pour ce Flash Info Guadeloupe du [DATE]. Sources : [liste des médias
-   séparés par 'et']. On se retrouve [prochain rendez-vous]. Bonne journée à
+   séparés par 'et']. On se retrouve [prochain rendez-vous]. Belle journée à
    toutes et à tous."
    OBLIGATOIRE : "Sources :" suivi des noms des médias doit figurer dans ce segment.
    INTERDIT : placer un <<<SEG>>> à l'intérieur de l'outro. L'outro est toujours
