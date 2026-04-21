@@ -15,6 +15,16 @@ on:
         type: boolean
         required: false
         default: false
+      tiktok:
+        description: "Génère les vidéos TikTok/Shorts et les envoie sur Telegram"
+        type: boolean
+        required: false
+        default: false
+      youtube:
+        description: "Publie les vidéos sur YouTube Shorts (hors intro/outro)"
+        type: boolean
+        required: false
+        default: false
       verbose:
         description: "Verbose (affiche le détail de chaque étape)"
         type: boolean
@@ -24,7 +34,7 @@ on:
 jobs:
   flash-info:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
@@ -52,6 +62,9 @@ jobs:
           X_API_SECRET:             ${{ secrets.X_API_SECRET }}
           X_ACCESS_TOKEN:           ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_TOKEN_SECRET:    ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          YOUTUBE_CLIENT_ID:        ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET:    ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN:    ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
         run: |
           ARGS=""
           if [ -n "${{ github.event.inputs.date }}" ]; then
@@ -59,6 +72,12 @@ jobs:
           fi
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             ARGS="$ARGS --dry-run"
+          fi
+          if [ "${{ github.event.inputs.tiktok }}" = "true" ]; then
+            ARGS="$ARGS --tiktok"
+          fi
+          if [ "${{ github.event.inputs.youtube }}" = "true" ]; then
+            ARGS="$ARGS --youtube"
           fi
           if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
             ARGS="$ARGS --verbose"
