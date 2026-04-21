@@ -358,6 +358,42 @@ MISTRAL_CHAT_MODEL = "mistral-large-latest"
 MISTRAL_CHAT_URL   = "https://api.mistral.ai/v1/chat/completions"
 SEG_SEPARATOR      = "<<<SEG>>>"
 
+
+def call_mistral(
+    system: str,
+    user: str,
+    *,
+    temperature: float = 0.3,
+    max_tokens: int = 1500,
+    json_mode: bool = False,
+    timeout: int = 60,
+) -> str:
+    """Appelle Mistral chat completions et retourne le contenu du message de réponse."""
+    payload: dict = {
+        "model": MISTRAL_CHAT_MODEL,
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user",   "content": user},
+        ],
+    }
+    if json_mode:
+        payload["response_format"] = {"type": "json_object"}
+
+    req = urllib.request.Request(
+        MISTRAL_CHAT_URL,
+        data=json.dumps(payload).encode(),
+        headers={
+            "Authorization": f"Bearer {MISTRAL_API_KEY}",
+            "Content-Type": "application/json",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        result = json.loads(r.read())
+    return result["choices"][0]["message"]["content"]
+
+
 MARYSE_SYSTEM = _load_prompt("maryse.md")
 
 
@@ -414,28 +450,9 @@ def build_segments(items: list[dict], date_str: str, weather: str, sources: list
         f"- Segment 2 : météo du jour en style oral\n"
         f"{news_instructions}"
     )
-    payload = json.dumps({
-        "model": MISTRAL_CHAT_MODEL,
-        "temperature": 0.75,
-        "max_tokens": 1200,
-        "messages": [
-            {"role": "system", "content": MARYSE_SYSTEM},
-            {"role": "user",   "content": user_prompt},
-        ],
-    }).encode()
-
-    req = urllib.request.Request(
-        MISTRAL_CHAT_URL, data=payload,
-        headers={
-            "Authorization": f"Bearer {MISTRAL_API_KEY}",
-            "Content-Type": "application/json",
-        },
-    )
-    with urllib.request.urlopen(req, timeout=60) as r:
-        result = json.loads(r.read())
+    raw = call_mistral(MARYSE_SYSTEM, user_prompt, temperature=0.75, max_tokens=1200)
 
     import re as _re
-    raw = result["choices"][0]["message"]["content"]
     segments = [_strip_markdown(s) for s in raw.split(SEG_SEPARATOR) if s.strip()]
 
     # Fallback : Mistral a utilisé "---" (markdown) à la place du séparateur imposé
@@ -478,27 +495,7 @@ def anchor_local(segments: list[str], items: list[dict]) -> list[str]:
         f"SCRIPT_INITIAL :\n{full_script}\n\n"
         f"JSON_EXTRACTION :\n{json_context}"
     )
-    payload = json.dumps({
-        "model": MISTRAL_CHAT_MODEL,
-        "temperature": 0.3,
-        "max_tokens": 1500,
-        "messages": [
-            {"role": "system", "content": ANCHOR_SYSTEM},
-            {"role": "user",   "content": user_prompt},
-        ],
-    }).encode()
-
-    req = urllib.request.Request(
-        MISTRAL_CHAT_URL, data=payload,
-        headers={
-            "Authorization": f"Bearer {MISTRAL_API_KEY}",
-            "Content-Type": "application/json",
-        },
-    )
-    with urllib.request.urlopen(req, timeout=60) as r:
-        result = json.loads(r.read())
-
-    raw = result["choices"][0]["message"]["content"]
+    raw = call_mistral(ANCHOR_SYSTEM, user_prompt)
     anchored = [_strip_markdown(s) for s in raw.split(SEG_SEPARATOR) if s.strip()]
 
     if len(anchored) != len(segments):
@@ -547,27 +544,7 @@ def _ensure_sources_in_outro(segments: list[str], sources: list[str]) -> list[st
 def revise_style(segments: list[str]) -> list[str]:
     print("✏️  Révision stylistique (Mistral Large)...")
     full_script = f"\n{SEG_SEPARATOR}\n".join(segments)
-    payload = json.dumps({
-        "model": MISTRAL_CHAT_MODEL,
-        "temperature": 0.3,
-        "max_tokens": 1500,
-        "messages": [
-            {"role": "system", "content": STYLIST_SYSTEM},
-            {"role": "user",   "content": full_script},
-        ],
-    }).encode()
-
-    req = urllib.request.Request(
-        MISTRAL_CHAT_URL, data=payload,
-        headers={
-            "Authorization": f"Bearer {MISTRAL_API_KEY}",
-            "Content-Type": "application/json",
-        },
-    )
-    with urllib.request.urlopen(req, timeout=60) as r:
-        result = json.loads(r.read())
-
-    raw = result["choices"][0]["message"]["content"]
+    raw = call_mistral(STYLIST_SYSTEM, full_script)
     revised = [_strip_markdown(s) for s in raw.split(SEG_SEPARATOR) if s.strip()]
 
     if len(revised) != len(segments):
@@ -587,24 +564,12 @@ def classify_tones(segments: list[str]) -> list[str]:
     """Retourne une liste de tags émotionnels, un par segment."""
     print("🎭 Classification tonale (Mistral Large)...")
     numbered = [{"idx": i, "text": s} for i, s in enumerate(segments)]
-    payload = json.dumps({
-        "model": MISTRAL_CHAT_MODEL,
-        "temperature": 0.1,
-        "max_tokens": 300,
-        "response_format": {"type": "json_object"},
-        "messages": [
-            {"role": "system", "content": TONE_SYSTEM},
-            {"role": "user", "content": json.dumps({"segments": numbered}, ensure_ascii=False)},
-        ],
-    }).encode()
-    req = urllib.request.Request(
-        MISTRAL_CHAT_URL, data=payload,
-        headers={"Authorization": f"Bearer {MISTRAL_API_KEY}", "Content-Type": "application/json"},
-    )
+    user_payload = json.dumps({"segments": numbered}, ensure_ascii=False)
     try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            result = json.loads(r.read())
-        raw = result["choices"][0]["message"]["content"]
+        raw = call_mistral(
+            TONE_SYSTEM, user_payload,
+            temperature=0.1, max_tokens=300, json_mode=True,
+        )
         parsed = json.loads(raw)
         tones = parsed if isinstance(parsed, list) else parsed.get("tones") or parsed.get("tags") or next(iter(parsed.values()))
         tones = [t if t in TTS_VOICES else "neutral" for t in tones]
