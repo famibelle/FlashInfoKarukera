@@ -12,6 +12,7 @@ import argparse
 import subprocess
 import urllib.request
 import urllib.parse
+import urllib.error
 import xml.etree.ElementTree as ET
 from datetime import datetime, date as Date
 from email.utils import parsedate
@@ -37,7 +38,7 @@ _load_env(Path(__file__).parent / ".env")
 RSS_FEEDS = [
     "https://www.guadeloupe.franceantilles.fr/actualite/vielocale/rss.xml",
     "https://www.guadeloupe.franceantilles.fr/actualite/sports/rss.xml",
-    "https://www.guadeloupe.franceantilles.fr/actualite/social/rss.xml"
+    "https://www.guadeloupe.franceantilles.fr/actualite/social/rss.xml",
     "https://rci.fm/guadeloupe/fb/articles_rss_gp",
     "https://zye-a-mangrovla.fr/?feed=rss2",
     "https://www.regionguadeloupe.fr/actualites-et-agendas/toute-lactualite/flux.rss",
@@ -48,7 +49,7 @@ DESC_MAX_CHARS = 400   # description tronquée pour donner assez de contexte
 
 MISTRAL_API_KEY     = os.environ["MISTRAL_API_KEY"]
 TTS_MODEL           = "voxtral-mini-tts-2603"
-STT_MODEL           = "voxtral-mini-2507"
+STT_MODEL           = "voxtral-mini-latest"
 TTS_VOICE_DEFAULT   = "fr_marie_neutral"
 
 # Mapping tonalité → voice_id Voxtral (voix Marie en français)
@@ -791,7 +792,13 @@ def resolve_stinger(name: str | None) -> Path:
     return synthetic
 
 
-def generate_audio(segments: list[str], output_path: Path, stinger: Path, tones: list[str] | None = None) -> Path:
+def generate_audio(
+    segments: list[str],
+    output_path: Path,
+    stinger: Path,
+    tones: list[str] | None = None,
+    keep_segments: bool = False,
+) -> tuple[Path, list[Path]]:
     """Génère un MP3 par segment, insère le stinger entre chaque, concatène."""
     print(f"🔊 Génération TTS : {len(segments)} segments...")
     tmp_dir = output_path.parent
@@ -849,24 +856,33 @@ def generate_audio(segments: list[str], output_path: Path, stinger: Path, tones:
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg concat error: {proc.stderr.decode()}")
 
-    # Nettoyage des fichiers temporaires
-    for sp in seg_paths:
-        sp.unlink(missing_ok=True)
+    if not keep_segments:
+        for sp in seg_paths:
+            sp.unlink(missing_ok=True)
 
     print(f"   Fichier final : {output_path} ({output_path.stat().st_size:,} bytes)")
-    return output_path
+    return output_path, seg_paths if keep_segments else []
 
 
 # ── Étape 3b : Transcription STT (optionnelle) ───────────────────────────────
 
-def transcribe_audio(audio_path: Path) -> str:
-    """Transcrit un fichier audio via l'API Mistral STT."""
+def _mistral_stt(audio_path: Path, word_timestamps: bool = False) -> dict:
+    """Appelle l'API STT Mistral et retourne le JSON brut."""
     boundary = "----TranscriptBoundary"
     audio_data = audio_path.read_bytes()
-    body = (
-        f"--{boundary}\r\n"
-        f'Content-Disposition: form-data; name="model"\r\n\r\n'
-        f"{STT_MODEL}\r\n"
+
+    fields = [("model", STT_MODEL)]
+    if word_timestamps:
+        fields.append(("timestamp_granularities", "word"))
+
+    body = b""
+    for name, value in fields:
+        body += (
+            f"--{boundary}\r\n"
+            f'Content-Disposition: form-data; name="{name}"\r\n\r\n'
+            f"{value}\r\n"
+        ).encode()
+    body += (
         f"--{boundary}\r\n"
         f'Content-Disposition: form-data; name="file"; filename="{audio_path.name}"\r\n'
         f"Content-Type: audio/mpeg\r\n\r\n"
@@ -880,9 +896,143 @@ def transcribe_audio(audio_path: Path) -> str:
             "Content-Type": f"multipart/form-data; boundary={boundary}",
         },
     )
-    with urllib.request.urlopen(req, timeout=120) as r:
-        result = json.loads(r.read())
-    return result.get("text", "")
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            return json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        body_err = e.read().decode(errors="replace")
+        raise RuntimeError(f"STT HTTP {e.code}: {body_err}") from None
+
+
+def transcribe_audio(audio_path: Path) -> str:
+    return _mistral_stt(audio_path)["text"]
+
+
+def transcribe_with_words(audio_path: Path) -> list[dict]:
+    """Retourne [{word, start, end}, …] depuis les segments STT Voxtral."""
+    segments = _mistral_stt(audio_path, word_timestamps=True).get("segments", [])
+    return [
+        {"word": s["text"].strip(), "start": s["start"], "end": s["end"]}
+        for s in segments
+        if s.get("text", "").strip()
+    ]
+
+
+# ── Étape 3c : Vidéos TikTok par segment ─────────────────────────────────────
+
+TIKTOK_COLORS = {
+    "neutral":  "#FFFFFF",
+    "happy":    "#FFD700",
+    "excited":  "#FF4500",
+    "sad":      "#6495ED",
+    "angry":    "#FF0000",
+    "curious":  "#00CED1",
+}
+
+
+def _ass_time(s: float) -> str:
+    h = int(s // 3600)
+    m = int((s % 3600) // 60)
+    sec = s % 60
+    return f"{h}:{m:02d}:{sec:05.2f}"
+
+
+def _ass_color(hex_color: str) -> str:
+    """#RRGGBB → &H00BBGGRR& (ordre canaux ASS)."""
+    h = hex_color.lstrip("#")
+    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+    return f"&H00{b:02X}{g:02X}{r:02X}&"
+
+
+def _make_ass(words: list[dict], tone: str) -> str:
+    """Génère un fichier ASS karaoke : mot courant coloré, précédent/suivant atténués."""
+    tone_col = _ass_color(TIKTOK_COLORS.get(tone, "#FFFFFF"))
+    dim_col  = "&H80FFFFFF&"
+
+    header = (
+        "[Script Info]\n"
+        "ScriptType: v4.00+\nPlayResX: 1080\nPlayResY: 1920\nWrapStyle: 1\n\n"
+        "[V4+ Styles]\n"
+        "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, "
+        "OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, "
+        "ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, "
+        "Alignment, MarginL, MarginR, MarginV, Encoding\n"
+        "Style: Default,Arial,76,&H00FFFFFF,&H00FFFFFF,&H00000000,"
+        "&HA0000000,0,0,0,0,100,100,0,0,1,4,2,2,80,80,160,1\n\n"
+        "[Events]\n"
+        "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
+    )
+
+    events = []
+    for i, word in enumerate(words):
+        start = word["start"]
+        end   = max(word["end"], start + 0.05)
+        parts = []
+        if i > 0:
+            parts.append(f"{{\\c{dim_col}\\fs60}}{words[i - 1]['word']}")
+        parts.append(f"{{\\c{tone_col}\\fs80\\b1}}{word['word']}{{\\b0}}")
+        if i < len(words) - 1:
+            parts.append(f"{{\\c{dim_col}\\fs60}}{words[i + 1]['word']}")
+        events.append(
+            f"Dialogue: 0,{_ass_time(start)},{_ass_time(end)},"
+            f"Default,,0,0,0,,{' '.join(parts)}"
+        )
+
+    return header + "\n".join(events) + "\n"
+
+
+def _tiktok_segment_video(seg_path: Path, ass_path: Path, tone: str, output_path: Path) -> None:
+    color_hex = TIKTOK_COLORS.get(tone, "#FFFFFF").lstrip("#")
+    # waveform 600 px de haut, centrée sur 1920 px → y = (1920-600)/2 = 660
+    filter_complex = (
+        f"color=c=black:s=1080x1920:r=30[bg];"
+        f"[0:a]showwaves=s=1080x600:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=30[waves];"
+        f"[bg][waves]overlay=0:660[v];"
+        f"[v]ass={ass_path}[vout]"
+    )
+    proc = subprocess.run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-i", str(seg_path),
+        "-filter_complex", filter_complex,
+        "-map", "[vout]", "-map", "0:a",
+        "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+        "-c:a", "aac", "-b:a", "192k",
+        "-shortest",
+        str(output_path),
+    ], capture_output=True)
+    if proc.returncode != 0:
+        raise RuntimeError(f"ffmpeg tiktok error: {proc.stderr.decode()}")
+
+
+def generate_tiktok(
+    seg_paths: list[Path],
+    segments: list[str],
+    tones: list[str],
+    output_dir: Path,
+) -> list[Path]:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    print(f"🎬 Génération TikTok : {len(seg_paths)} vidéos → {output_dir}")
+
+    video_paths: list[Path] = []
+    for i, (seg_path, _text, tone) in enumerate(zip(seg_paths, segments, tones)):
+        label = "INTRO" if i == 0 else "MÉTÉO" if i == 1 else f"SEG{i - 1:02d}"
+        print(f"   [{i + 1}/{len(seg_paths)}] {label} ({tone}) — STT timestamps…")
+
+        words = transcribe_with_words(seg_path)
+        if not words:
+            print(f"   ⚠️  STT sans mots pour le segment {i + 1} — ignoré")
+            continue
+
+        ass_path = output_dir / f"seg_{i:02d}.ass"
+        ass_path.write_text(_make_ass(words, tone), encoding="utf-8")
+
+        video_path = output_dir / f"seg_{i:02d}.mp4"
+        print(f"   [{i + 1}/{len(seg_paths)}] FFmpeg → {video_path.name}…")
+        _tiktok_segment_video(seg_path, ass_path, tone, video_path)
+        video_paths.append(video_path)
+        print(f"   ✅ {video_path.name} ({video_path.stat().st_size:,} bytes)")
+
+    return video_paths
 
 
 # ── Étape 4 : Envoi Telegram ──────────────────────────────────────────────────
@@ -924,6 +1074,36 @@ def send_telegram(audio_path: Path, caption: str) -> None:
     if not result.get("ok"):
         raise RuntimeError(f"Telegram error: {result}")
     print("   Envoyé ✅")
+
+
+def send_telegram_video(video_path: Path, caption: str) -> None:
+    boundary = "----FlashInfoBoundary"
+
+    def field(name, value):
+        return (
+            f"--{boundary}\r\n"
+            f'Content-Disposition: form-data; name="{name}"\r\n\r\n'
+            f"{value}\r\n"
+        ).encode()
+
+    body = field("chat_id", TELEGRAM_CHAT_ID) + field("caption", caption)
+    body += (
+        f"--{boundary}\r\n"
+        f'Content-Disposition: form-data; name="video"; filename="{video_path.name}"\r\n'
+        f"Content-Type: video/mp4\r\n\r\n"
+    ).encode() + video_path.read_bytes() + b"\r\n"
+    body += f"--{boundary}--\r\n".encode()
+
+    req = urllib.request.Request(
+        f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendVideo",
+        data=body,
+        headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
+    )
+    with urllib.request.urlopen(req, timeout=60) as r:
+        result = json.loads(r.read())
+    if not result.get("ok"):
+        raise RuntimeError(f"Telegram video error: {result}")
+    print(f"   {video_path.name} envoyé ✅")
 
 
 # ── Étape 5 : Publication Buzzsprout → Spotify ───────────────────────────────
@@ -1022,6 +1202,15 @@ def main():
         help=(
             "Chemin complet du fichier MP3 de sortie.\n"
             "Défaut : /tmp/flash-YYYYMMDD-HHMM.mp3"
+        ),
+    )
+    parser.add_argument(
+        "--tiktok", action="store_true",
+        help=(
+            "Génère une vidéo MP4 TikTok (1080×1920) par segment audio.\n"
+            "Waveform colorée selon la tonalité + sous-titres karaoke mot à mot\n"
+            "via timestamps STT Voxtral. Vidéos dans /tmp/tiktok-YYYYMMDD-HHMM/.\n"
+            "Compatible avec --no-send."
         ),
     )
     parser.add_argument(
@@ -1158,7 +1347,22 @@ def main():
         print(f"  Segments   : {len(segments)} → {len(segments) - 1} stingers intercalés")
         print("────────────────────────────────────────────────────────\n")
 
-    generate_audio(segments, output_path, stinger, tones=tones)
+    output_path, seg_paths = generate_audio(
+        segments, output_path, stinger, tones=tones, keep_segments=args.tiktok,
+    )
+
+    title = f"Flash Info Guadeloupe — {date_str}"
+
+    if args.tiktok:
+        tiktok_dir = OUTPUT_DIR / f"tiktok-{now.strftime('%Y%m%d-%H%M')}"
+        videos = generate_tiktok(seg_paths, segments, tones, tiktok_dir)
+        print(f"\n🎬 {len(videos)} vidéos TikTok dans {tiktok_dir}")
+        for sp in seg_paths:
+            sp.unlink(missing_ok=True)
+        print(f"📤 Envoi des vidéos TikTok sur Telegram...")
+        for i, video_path in enumerate(videos):
+            label = "INTRO" if i == 0 else "MÉTÉO" if i == 1 else f"Sujet {i - 1}"
+            send_telegram_video(video_path, f"🎬 {title} — {label}")
 
     if args.transcript:
         print("📝 Transcription de l'audio généré...")
@@ -1169,8 +1373,6 @@ def main():
         transcript_path = output_path.with_suffix(".txt")
         transcript_path.write_text(transcript, encoding="utf-8")
         print(f"   Sauvegardé : {transcript_path}")
-
-    title = f"Flash Info Guadeloupe — {date_str}"
 
     # Étape 4 — Telegram (dry-run inclus)
     send_telegram(output_path, f"🎙️ {title}")
