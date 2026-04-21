@@ -1156,10 +1156,54 @@ def post_x(text: str) -> None:
     print(f"   Tweet publié ✅  id={tweet_id}")
 
 
+# ── Descriptions et hashtags par plateforme ──────────────────────────────────
+
+_HASHTAGS_BASE    = "#Guadeloupe #FlashInfo #Karukera #Antilles #Caraïbes"
+_HASHTAGS_METEO   = "#Météo #MétéoGuadeloupe #MétéoAntilles"
+_HASHTAGS_NEWS    = "#Actualités #InfosGuadeloupe #ActuGuadeloupe"
+_HASHTAGS_TIKTOK  = "#GuadeloupeTikTok #InfoTikTok"
+_HASHTAGS_YOUTUBE = "#Shorts #YouTubeShorts"
+
+
+def _video_label(idx: int, n_segments: int) -> str:
+    if idx == 1:
+        return "météo"
+    return f"sujet {idx - 1}"
+
+
+def _tiktok_caption(text: str, idx: int, n_segments: int, date_str: str) -> str:
+    """Caption courte pour TikTok : accroche + hashtags (~300 car.)."""
+    is_meteo = idx == 1
+    # Première phrase du segment comme accroche
+    first_sentence = text.split(".")[0].strip()
+    if len(first_sentence) > 120:
+        first_sentence = first_sentence[:117] + "…"
+    topic_tags = _HASHTAGS_METEO if is_meteo else _HASHTAGS_NEWS
+    label = "Météo Guadeloupe" if is_meteo else f"Flash Info — {date_str}"
+    return (
+        f"🇬🇵 {label}\n"
+        f"{first_sentence}.\n\n"
+        f"{_HASHTAGS_BASE} {topic_tags} {_HASHTAGS_TIKTOK}"
+    )
+
+
+def _youtube_description(text: str, idx: int, n_segments: int, date_str: str) -> str:
+    """Description YouTube Shorts : extrait + hashtags."""
+    is_meteo = idx == 1
+    excerpt = text[:400].rsplit(" ", 1)[0] + "…" if len(text) > 400 else text
+    topic_tags = _HASHTAGS_METEO if is_meteo else _HASHTAGS_NEWS
+    label = "Météo" if is_meteo else f"Sujet {idx - 1}"
+    return (
+        f"Flash Info Guadeloupe — {date_str} — {label}\n\n"
+        f"{excerpt}\n\n"
+        f"{_HASHTAGS_BASE} {topic_tags} {_HASHTAGS_YOUTUBE}"
+    )
+
+
 # ── Étape 7 : Publication YouTube Shorts ─────────────────────────────────────
 
 YOUTUBE_SCOPES       = ["https://www.googleapis.com/auth/youtube.upload"]
-YOUTUBE_TAGS         = ["Guadeloupe", "flash info", "actualité", "Antilles", "Caraïbes", "Karukera", "Shorts"]
+YOUTUBE_TAGS         = ["Guadeloupe", "flash info", "actualité", "Antilles", "Caraïbes", "Karukera", "météo", "Shorts"]
 YOUTUBE_CATEGORY_ID  = "25"  # News & Politics
 
 
@@ -1460,24 +1504,27 @@ def main():
         for sp in seg_paths:
             sp.unlink(missing_ok=True)
 
+        n_seg = len(segments)
+
         if args.tiktok:
             print("📤 Envoi des vidéos sur Telegram...")
             for idx, video_path in videos:
-                label = "INTRO" if idx == 0 else "MÉTÉO" if idx == 1 else f"Sujet {idx - 1}"
-                send_telegram_video(video_path, f"🎬 {title} — {label}")
+                if idx == 0 or idx == n_seg - 1:
+                    tg_label = "INTRO" if idx == 0 else "OUTRO"
+                    send_telegram_video(video_path, f"🎬 {title} — {tg_label}")
+                else:
+                    caption = _tiktok_caption(segments[idx], idx, n_seg, date_str)
+                    send_telegram_video(video_path, caption)
 
         if args.youtube:
-            n = len(segments)
             print("▶️  Publication YouTube Shorts...")
             for idx, video_path in videos:
-                if idx == 0 or idx == n - 1:
+                if idx == 0 or idx == n_seg - 1:
                     continue  # skip intro et outro
-                label = "Météo" if idx == 1 else f"Sujet {idx - 1}"
-                description = (
-                    f"{segments[idx][:300]}\n\n"
-                    f"#FlashInfo #Guadeloupe #Antilles #Karukera #Shorts"
-                )
-                upload_youtube_short(video_path, f"Flash Info Guadeloupe — {date_str} — {label}", description)
+                yt_label = "Météo" if idx == 1 else f"Sujet {idx - 1}"
+                yt_title = f"Flash Info Guadeloupe — {date_str} — {yt_label}"
+                yt_desc = _youtube_description(segments[idx], idx, n_seg, date_str)
+                upload_youtube_short(video_path, yt_title, yt_desc)
 
     if args.transcript:
         print("📝 Transcription de l'audio généré...")
