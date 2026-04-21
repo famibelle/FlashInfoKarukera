@@ -541,126 +541,185 @@ def classify_tones(segments: list[str]) -> list[str]:
 
 # ── Étape 3 : Génération audio TTS par segment + assemblage FFmpeg ────────────
 
-def _normalize_for_tts(text: str) -> str:
-    import re
-    try:
-        from num2words import num2words as _n2w
-        def _num(n: str) -> str:
-            n = n.replace("\u00a0", "").replace(" ", "").replace(",", ".")
-            try:
-                return _n2w(float(n) if "." in n else int(n), lang="fr")
-            except Exception:
-                return n
-        def _ordinal(n: str) -> str:
-            try:
-                return _n2w(int(n), lang="fr", to="ordinal")
-            except Exception:
-                return n
-    except ImportError:
-        print("   ⚠️  num2words manquant — pip install num2words")
-        _num = lambda n: n
-        _ordinal = lambda n: n
+import re as _re
 
-    # 0. Prononciations locales guadeloupéennes
+try:
+    from num2words import num2words as _n2w
+
+    def _num_fr(n: str) -> str:
+        s = n.replace(" ", "").replace(" ", "").replace(",", ".")
+        try:
+            return _n2w(float(s) if "." in s else int(s), lang="fr")
+        except Exception:
+            return n
+
+    def _ordinal_fr(n: str) -> str:
+        try:
+            return _n2w(int(n), lang="fr", to="ordinal")
+        except Exception:
+            return n
+except ImportError:
+    print("   ⚠️  num2words manquant — pip install num2words")
+    def _num_fr(n: str) -> str: return n
+    def _ordinal_fr(n: str) -> str: return n
+
+
+_DOM_CODES = {
+    "971": "quatre-vingt-dix-sept-un",
+    "972": "quatre-vingt-dix-sept-deux",
+    "973": "quatre-vingt-dix-sept-trois",
+    "974": "quatre-vingt-dix-sept-quatre",
+    "976": "quatre-vingt-dix-sept-six",
+}
+
+_UNIT_PATTERNS = [
+    (r"(\d+(?:[,\.]\d+)?)\s*°C",   lambda m: f"{_num_fr(m.group(1))} degrés"),
+    (r"(\d+(?:[,\.]\d+)?)\s*km/h", lambda m: f"{_num_fr(m.group(1))} kilomètres par heure"),
+    (r"(\d+(?:[,\.]\d+)?)\s*km\b", lambda m: f"{_num_fr(m.group(1))} kilomètres"),
+    (r"(\d+(?:[,\.]\d+)?)\s*mm\b", lambda m: f"{_num_fr(m.group(1))} millimètres"),
+    (r"(\d+(?:[,\.]\d+)?)\s*%",    lambda m: f"{_num_fr(m.group(1))} pour cent"),
+    (r"(\d+(?:[,\.]\d+)?)\s*m²",   lambda m: f"{_num_fr(m.group(1))} mètres carrés"),
+]
+
+
+def _norm_pronunciations(text: str) -> str:
+    """Applique les prononciations locales guadeloupéennes (Lyannaj → Lyan naje, etc.)."""
     for ecrit, oral in _PRONONCIATIONS_LOCALES.items():
         text = text.replace(ecrit, oral)
+    return text
 
-    # 1a. Apostrophes et guillemets typographiques → ASCII
-    text = text.replace("\u2019", "'").replace("\u2018", "'")  # ' '
-    text = text.replace("\u201c", '"').replace("\u201d", '"')  # " "
-    text = text.replace("\u2013", "-").replace("\u2014", " ")  # – —
 
-    # 1b. Emojis et symboles hors latin/ponctuation courante
-    text = re.sub(r"[^\x00-\x7F\u00C0-\u024F\u1E00-\u1EFF\n]", " ", text)
+def _norm_typography(text: str) -> str:
+    """Normalise apostrophes/guillemets typographiques et supprime les emojis."""
+    text = text.replace("’", "'").replace("‘", "'")
+    text = text.replace("“", '"').replace("”", '"')
+    text = text.replace("–", "-").replace("—", " ")
+    return _re.sub(r"[^\x00-\x7F\u00C0-\u024F\u1E00-\u1EFF\n]", " ", text)
 
-    # 2. Numéros et abréviations de position : n° → numéro
-    text = re.sub(r"\bn°\s*", "numéro ", text, flags=re.IGNORECASE)
-    text = re.sub(r"\bN°\s*", "Numéro ", text)
 
-    # 3. Ordinaux français : 1er/1re → premier/première, 2e/2ème → deuxième…
-    text = re.sub(r"\b1er\b", "premier", text)
-    text = re.sub(r"\b1re\b", "première", text)
-    text = re.sub(r"\b(\d+)(?:e|ème|eme)\b",
-                  lambda m: _ordinal(m.group(1)), text)
+def _norm_numero(text: str) -> str:
+    """n° / N° → numéro / Numéro."""
+    text = _re.sub(r"\bn°\s*", "numéro ", text, flags=_re.IGNORECASE)
+    text = _re.sub(r"\bN°\s*", "Numéro ", text)
+    return text
 
-    # 4. Monnaies : 3,5M€ / 3 millions d'euros / 15€ / 20$
-    text = re.sub(r"(\d+(?:[,\.]\d+)?)\s*[Mm](?:illions?)?\s*€",
-                  lambda m: f"{_num(m.group(1))} millions d'euros", text)
-    text = re.sub(r"(\d+(?:[,\.]\d+)?)\s*€",
-                  lambda m: f"{_num(m.group(1))} euros", text)
-    text = re.sub(r"(\d+(?:[,\.]\d+)?)\s*\$",
-                  lambda m: f"{_num(m.group(1))} dollars", text)
 
-    # 5. Scores sportifs : 3-1 → trois à un
-    #    (ne pas toucher aux noms composés — protégé par \b\d+\b)
-    text = re.sub(r"\b(\d+)-(\d+)\b",
-                  lambda m: f"{_num(m.group(1))} à {_num(m.group(2))}", text)
+def _norm_ordinals(text: str) -> str:
+    """1er/1re → premier/première, 2e/2ème → deuxième…"""
+    text = _re.sub(r"\b1er\b", "premier", text)
+    text = _re.sub(r"\b1re\b", "première", text)
+    return _re.sub(r"\b(\d+)(?:e|ème|eme)\b",
+                   lambda m: _ordinal_fr(m.group(1)), text)
 
-    # 6. Codes départementaux DOM (971–976) → lecture chiffre par chiffre
-    _DOM_CODES = {
-        "971": "quatre-vingt-dix-sept-un",
-        "972": "quatre-vingt-dix-sept-deux",
-        "973": "quatre-vingt-dix-sept-trois",
-        "974": "quatre-vingt-dix-sept-quatre",
-        "976": "quatre-vingt-dix-sept-six",
-    }
+
+def _norm_currencies(text: str) -> str:
+    """3,5M€ → millions d'euros ; 15€ → euros ; 20$ → dollars."""
+    text = _re.sub(r"(\d+(?:[,\.]\d+)?)\s*[Mm](?:illions?)?\s*€",
+                   lambda m: f"{_num_fr(m.group(1))} millions d'euros", text)
+    text = _re.sub(r"(\d+(?:[,\.]\d+)?)\s*€",
+                   lambda m: f"{_num_fr(m.group(1))} euros", text)
+    text = _re.sub(r"(\d+(?:[,\.]\d+)?)\s*\$",
+                   lambda m: f"{_num_fr(m.group(1))} dollars", text)
+    return text
+
+
+def _norm_scores(text: str) -> str:
+    """Scores sportifs : 3-1 → trois à un."""
+    return _re.sub(r"\b(\d+)-(\d+)\b",
+                   lambda m: f"{_num_fr(m.group(1))} à {_num_fr(m.group(2))}", text)
+
+
+def _norm_dom_codes(text: str) -> str:
+    """Codes DOM 971-976 → lecture spécifique."""
     for code, spoken in _DOM_CODES.items():
-        text = re.sub(r"\b" + code + r"\b", spoken, text)
+        text = _re.sub(r"\b" + code + r"\b", spoken, text)
+    return text
 
-    # 7. Heures : 07h30 → sept heures trente
-    text = re.sub(
+
+def _norm_hours(text: str) -> str:
+    """07h30 → sept heures trente."""
+    return _re.sub(
         r"\b(\d{1,2})h(\d{2})\b",
-        lambda m: f"{_num(m.group(1))} heures {_num(m.group(2))}",
+        lambda m: f"{_num_fr(m.group(1))} heures {_num_fr(m.group(2))}",
         text,
     )
 
-    # 7. Nombres avec unités
-    _UNIT_PATTERNS = [
-        (r"(\d+(?:[,\.]\d+)?)\s*°C",   lambda m: f"{_num(m.group(1))} degrés"),
-        (r"(\d+(?:[,\.]\d+)?)\s*km/h",  lambda m: f"{_num(m.group(1))} kilomètres par heure"),
-        (r"(\d+(?:[,\.]\d+)?)\s*km\b",  lambda m: f"{_num(m.group(1))} kilomètres"),
-        (r"(\d+(?:[,\.]\d+)?)\s*mm\b",  lambda m: f"{_num(m.group(1))} millimètres"),
-        (r"(\d+(?:[,\.]\d+)?)\s*%",     lambda m: f"{_num(m.group(1))} pour cent"),
-        (r"(\d+(?:[,\.]\d+)?)\s*m²",    lambda m: f"{_num(m.group(1))} mètres carrés"),
-    ]
+
+def _norm_units(text: str) -> str:
+    """Nombres avec unités : 25°C, 80km/h, 10mm, 50%, m²…"""
     for pattern, repl in _UNIT_PATTERNS:
-        text = re.sub(pattern, repl, text, flags=re.IGNORECASE)
+        text = _re.sub(pattern, repl, text, flags=_re.IGNORECASE)
+    return text
 
-    # 8. Nombres isolés restants
-    text = re.sub(r"\b(\d[\d\u00a0]*(?:[,\.]\d+)?)\b", lambda m: _num(m.group(1)), text)
 
-    # 9a. Sigles prononcés comme des mots : R.C.I / R.C.I. → RCI (avant épellation)
-    for _sm in _SIGLES_MOT:
-        _dotted = ".".join(_sm)          # R.C.I
-        text = text.replace(_dotted + ".", _sm).replace(_dotted, _sm)
+def _norm_plain_numbers(text: str) -> str:
+    """Nombres isolés restants → texte."""
+    return _re.sub(r"\b(\d[\d ]*(?:[,\.]\d+)?)\b",
+                   lambda m: _num_fr(m.group(1)), text)
 
-    # 9b. Sigles avec points collés : S.D.I.S / C.H.U. → S. D. I. S. / C. H. U.
-    text = re.sub(
+
+def _norm_acronyms(text: str) -> str:
+    """Sigles : R.C.I → RCI ; S.D.I.S → S. D. I. S. ; CHU → C. H. U. (sauf _SIGLES_MOT)."""
+    # 9a. Sigles prononcés comme des mots (R.C.I → RCI) avant épellation
+    for sm in _SIGLES_MOT:
+        dotted = ".".join(sm)
+        text = text.replace(dotted + ".", sm).replace(dotted, sm)
+    # 9b. Sigles avec points collés
+    text = _re.sub(
         r"\b([A-Z](?:\.[A-Z]){1,4})\.?\b",
         lambda m: m.group(1).replace(".", ". ") + ".",
         text,
     )
-
-    # 9c. Sigles tout-majuscules sans points (2-5 lettres) → épelés, sauf _SIGLES_MOT
-    text = re.sub(
+    # 9c. Sigles tout-majuscules sans points (2-5 lettres)
+    return _re.sub(
         r"\b([A-Z]{2,5})\b",
         lambda m: m.group(1) if m.group(1) in _SIGLES_MOT else ". ".join(m.group(1)) + ".",
         text,
     )
 
-    # 10. Abréviations textuelles
+
+def _norm_abbreviations(text: str) -> str:
+    """Abréviations textuelles (M. → Monsieur, etc.)."""
     for abbr, full in _ABBREVS.items():
         text = text.replace(abbr, full)
+    return text
 
-    # 10b. Titres honorifiques ambigus (regex : ne remplace que devant un nom propre)
-    text = re.sub(r"\bMe\b(?=\s+[A-ZÀÂÉÈÊËÎÏÔÙÛÜ])", "Maître", text)
 
-    # 11. Caractères spéciaux résiduels
-    text = re.sub(r"[#*\[\]_~`|\\^@]", " ", text)
-    text = re.sub(r"/", " sur ", text)
-    text = re.sub(r" {2,}", " ", text)
-    text = re.sub(r"\n{2,}", "\n", text)
+def _norm_honorifics(text: str) -> str:
+    """Me devant un nom propre → Maître."""
+    return _re.sub(r"\bMe\b(?=\s+[A-ZÀÂÉÈÊËÎÏÔÙÛÜ])", "Maître", text)
 
+
+def _norm_residual(text: str) -> str:
+    """Caractères spéciaux résiduels et whitespace."""
+    text = _re.sub(r"[#*\[\]_~`|\\^@]", " ", text)
+    text = _re.sub(r"/", " sur ", text)
+    text = _re.sub(r" {2,}", " ", text)
+    text = _re.sub(r"\n{2,}", "\n", text)
+    return text
+
+
+_NORMALIZATION_PIPELINE = (
+    _norm_pronunciations,
+    _norm_typography,
+    _norm_numero,
+    _norm_ordinals,
+    _norm_currencies,
+    _norm_scores,
+    _norm_dom_codes,
+    _norm_hours,
+    _norm_units,
+    _norm_plain_numbers,
+    _norm_acronyms,
+    _norm_abbreviations,
+    _norm_honorifics,
+    _norm_residual,
+)
+
+
+def _normalize_for_tts(text: str) -> str:
+    for step in _NORMALIZATION_PIPELINE:
+        text = step(text)
     return text.strip()
 
 
