@@ -80,15 +80,17 @@ WEATHER_LAT  = 16.17    # centre Guadeloupe (entre Basse-Terre et Grande-Terre)
 WEATHER_LON  = -61.58
 WEATHER_API  = "https://api.open-meteo.com/v1/forecast"
 
-# Codes WMO → description française
-_WMO = {
-    0: "ciel dégagé", 1: "principalement dégagé", 2: "partiellement nuageux", 3: "couvert",
-    45: "brouillard", 48: "brouillard givrant",
-    51: "bruine légère", 53: "bruine modérée", 55: "bruine dense",
-    61: "pluie légère", 63: "pluie modérée", 65: "pluie forte",
-    80: "averses légères", 81: "averses modérées", 82: "averses violentes",
-    95: "orage", 96: "orage avec grêle", 99: "orage violent avec grêle",
-}
+from data.geography import (
+    LIEUX_GUADELOUPE as _LIEUX_GUADELOUPE,
+    LIEUX_MONDE as _LIEUX_MONDE,
+    SOURCE_NAMES as _SOURCE_NAMES,
+)
+from data.tts_normalize import (
+    PRONONCIATIONS_LOCALES as _PRONONCIATIONS_LOCALES,
+    SIGLES_MOT as _SIGLES_MOT,
+    ABBREVS as _ABBREVS,
+)
+from data.weather_codes import WMO_CODES as _WMO
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -103,13 +105,6 @@ _FR_DAYS = {
     "Thursday": "jeudi", "Friday": "vendredi", "Saturday": "samedi", "Sunday": "dimanche",
 }
 
-_SOURCE_NAMES = {
-    "franceantilles":   "France-Antilles Guadeloupe",
-    "rci.fm":           "RCI Guadeloupe",
-    "zye-a-mangrovla":  "Zyé a Mangrov'la",
-    "regionguadeloupe": "Région Guadeloupe",
-}
-
 def _source_name(url: str) -> str:
     """Extrait un nom de média lisible depuis l'URL d'un flux RSS."""
     from urllib.parse import urlparse
@@ -120,47 +115,6 @@ def _source_name(url: str) -> str:
     # fallback : premier segment du domaine, capitalisé
     return host.split(".")[0].capitalize()
 
-
-# Communes et lieux guadeloupéens (plus long en premier pour éviter les faux-positifs)
-_LIEUX_GUADELOUPE = [
-    "Pointe-à-Pitre", "Capesterre-Belle-Eau", "Capesterre de Marie-Galante",
-    "Sainte-Anne", "Sainte-Rose", "Saint-François", "Saint-Claude",
-    "Le Gosier", "Les Abymes", "Baie-Mahault", "Le Moule", "Petit-Bourg",
-    "Lamentin", "Gourbeyre", "Bouillante", "Pointe-Noire", "Deshaies",
-    "Vieux-Habitants", "Baillif", "Goyave", "Morne-à-l'Eau",
-    "Port-Louis", "Anse-Bertrand", "Petit-Canal", "Dampierre",
-    "Grand-Bourg", "Capesterre", "Saint-Louis", "Les Saintes", "Terre-de-Haut",
-    "La Désirade", "Saint-Martin", "Marigot", "Saint-Barthélemy", "Gustavia",
-    "Marie-Galante", "Grande-Terre", "Basse-Terre", "Karukera",
-]
-
-# Pays et grandes villes du monde (en français, plus long en premier)
-_LIEUX_MONDE = [
-    # Caraïbes et Amériques
-    "République dominicaine", "Trinidad-et-Tobago", "États-Unis", "Costa Rica",
-    "Porto Rico", "Saint-Kitts", "Saint-Vincent", "Sainte-Lucie",
-    "Martinique", "Guadeloupe", "Guyane française", "Guyane", "La Réunion",
-    "Haïti", "Cuba", "Jamaïque", "Barbade", "Dominique", "Antigua",
-    "Venezuela", "Colombie", "Brésil", "Mexique", "Canada", "Argentine",
-    "Washington", "New York", "Miami", "Houston", "Los Angeles",
-    # Europe
-    "Royaume-Uni", "Pays-Bas", "République tchèque", "Bosnie-Herzégovine",
-    "France métropolitaine", "France",
-    "Allemagne", "Espagne", "Italie", "Portugal", "Belgique", "Suisse",
-    "Pologne", "Hongrie", "Roumanie", "Bulgarie", "Grèce", "Turquie",
-    "Russie", "Ukraine", "Suède", "Norvège", "Danemark", "Finlande",
-    "Paris", "Londres", "Berlin", "Madrid", "Rome", "Bruxelles",
-    # Afrique
-    "Afrique du Sud", "Côte d'Ivoire", "Burkina Faso", "République centrafricaine",
-    "Sénégal", "Cameroun", "Maroc", "Algérie", "Tunisie", "Égypte",
-    "Nigeria", "Ghana", "Mali", "Guinée", "Congo", "Kenya", "Éthiopie",
-    "Abidjan", "Dakar", "Casablanca",
-    # Asie / Océanie / Moyen-Orient
-    "Arabie saoudite", "Émirats arabes unis", "Corée du Sud", "Corée du Nord",
-    "Chine", "Japon", "Inde", "Pakistan", "Australie", "Nouvelle-Zélande",
-    "Israël", "Palestine", "Iran", "Irak", "Liban", "Syrie",
-    "Pékin", "Tokyo", "Séoul", "Mumbai", "Sydney",
-]
 
 _LIEUX_GUADELOUPE_LOWER = {l.lower(): l for l in _LIEUX_GUADELOUPE}
 _LIEUX_MONDE_LOWER = {l.lower(): l for l in _LIEUX_MONDE}
@@ -586,41 +540,6 @@ def classify_tones(segments: list[str]) -> list[str]:
 
 
 # ── Étape 3 : Génération audio TTS par segment + assemblage FFmpeg ────────────
-
-# Prononciations locales guadeloupéennes (forme écrite → forme orale pour le TTS)
-_PRONONCIATIONS_LOCALES = {
-    # Prononciations créoles
-    "Lyannaj": "Lyanhnaje",   # Lyan-naje, deux syllabes distinctes
-    "lyannaj": "Lyanhnaje",
-    "Vieux-Habitants": "Vieux Zabitan",
-    "Vieux Habitants":  "Vieux Zabitan",
-    "Delgrès":          "Delgrèsse",   # /dɛl.ɡʁɛs/ — force le s final
-    "Henri IV":         "Henri Quatre",
-    "Henri 4":          "Henri Quatre",
-    "cité Henri IV":    "cité Henri Quatre",
-    "cité Henri 4":     "cité Henri Quatre",
-    # Code départemental (filet de sécurité si le LLM l'a quand même converti)
-    "neuf cent soixante et onze": "quatre-vingt-dix-sept-un",
-    "971": "quatre-vingt-dix-sept-un",
-    # Sigles locaux développés (avant l'épellation automatique)
-    "UNAR": "Union Athlétique de Rivière-des-Pères",
-    "JSVH": "Jeunesse Sportive de Vieux Zabitan",
-    "SDIS": "Service Départemental d'Incendie et de Secours",
-    "S.D.I.S": "Service Départemental d'Incendie et de Secours",
-    "S.D.I.S.": "Service Départemental d'Incendie et de Secours",
-}
-
-# Sigles prononcés comme des mots (ne pas épeler lettre par lettre)
-_SIGLES_MOT = {"RCI", "UNESCO", "UNICEF", "NASA"}
-
-_ABBREVS = {
-    "M.": "Monsieur", "Mme.": "Madame", "Mme": "Madame",
-    "Dr.": "Docteur", "Dr": "Docteur", "Pr.": "Professeur", "Pr": "Professeur",
-    "St.": "Saint", "Ste.": "Sainte",
-    "km/h": "kilomètres par heure", "km": "kilomètres",
-    "°C": "degrés", "m²": "mètres carrés", "m³": "mètres cubes",
-    "&": "et", "...": ".",
-}
 
 def _normalize_for_tts(text: str) -> str:
     import re
