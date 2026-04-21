@@ -73,6 +73,38 @@ class TestPronunciations(unittest.TestCase):
         self.assertIn("Union Athlétique de Rivière-des-Pères", out)
         self.assertIn("Jeunesse Sportive de Vieux Zabitan", out)
 
+    def test_clubs_athletisme(self):
+        cases = {
+            "ACBM":  "Athlétic Club de Baie-Mahault",
+            "ARA":   "Athletic Racing des Abymes",
+            "BPA":   "Bik Pointois d'Athlétisme de Pointe-à-Pitre",
+            "GAC":   "Gosier Athlétic Club du Gosier",
+            "JSA":   "Jeunesse Sportive Abymienne des Abymes",
+            "NGTAC": "Nord Grande-Terre Athlétic Club de Port-Louis",
+            "USBM":  "Union Sportive de Baie-Mahault",
+        }
+        for sigle, nom in cases.items():
+            with self.subTest(sigle=sigle):
+                self.assertIn(nom, fi._norm_pronunciations(sigle))
+
+    def test_clubs_cyclisme(self):
+        cases = {
+            "CRCIG": "Comité Régional de Cyclisme des Îles de Guadeloupe",
+            "VCN":   "Vélo Club du Nord d'Anse-Bertrand",
+            "VO2C":  "Vélo d'Or du Centre et de la Caraïbe",
+        }
+        for sigle, nom in cases.items():
+            with self.subTest(sigle=sigle):
+                self.assertIn(nom, fi._norm_pronunciations(sigle))
+
+    def test_instances_federales(self):
+        self.assertIn("Ligue Guadeloupéenne d'Athlétisme",
+                      fi._norm_pronunciations("LGA"))
+        self.assertIn("Ligue Régionale d'Athlétisme de la Guadeloupe",
+                      fi._norm_pronunciations("LRAG"))
+        self.assertIn("Ligue Guadeloupéenne de Football",
+                      fi._norm_pronunciations("LGF"))
+
 
 # ── 1. Typographie ──────────────────────────────────────────────────────────
 

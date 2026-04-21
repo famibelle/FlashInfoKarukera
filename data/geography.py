@@ -4,6 +4,7 @@
 SOURCE_NAMES = {
     "franceantilles":   "France-Antilles Guadeloupe",
     "rci.fm":           "RCI Guadeloupe",
+    "la1ere":           "La Première",
     "zye-a-mangrovla":  "Zyé a Mangrov'la",
     "regionguadeloupe": "Région Guadeloupe",
 }
