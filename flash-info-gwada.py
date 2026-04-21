@@ -48,6 +48,7 @@ DESC_MAX_CHARS = 400   # description tronquée pour donner assez de contexte
 
 MISTRAL_API_KEY     = os.environ["MISTRAL_API_KEY"]
 TTS_MODEL           = "voxtral-mini-tts-2603"
+STT_MODEL           = "voxtral-mini-2507"
 TTS_VOICE_DEFAULT   = "fr_marie_neutral"
 
 # Mapping tonalité → voice_id Voxtral (voix Marie en français)
@@ -585,7 +586,7 @@ _UNIT_PATTERNS = [
 def _norm_pronunciations(text: str) -> str:
     """Applique les prononciations locales guadeloupéennes (Lyannaj → Lyan naje, etc.)."""
     for ecrit, oral in _PRONONCIATIONS_LOCALES.items():
-        text = text.replace(ecrit, oral)
+        text = _re.sub(r"\b" + _re.escape(ecrit) + r"\b", oral, text)
     return text
 
 
@@ -681,7 +682,13 @@ def _norm_acronyms(text: str) -> str:
 def _norm_abbreviations(text: str) -> str:
     """Abréviations textuelles (M. → Monsieur, etc.)."""
     for abbr, full in _ABBREVS.items():
-        text = text.replace(abbr, full)
+        if abbr[0].isalpha():
+            escaped = _re.escape(abbr)
+            # trailing \b seulement si l'abréviation finit par un caractère de mot
+            pattern = r"\b" + escaped + (r"\b" if abbr[-1].isalnum() else "")
+            text = _re.sub(pattern, full, text)
+        else:
+            text = text.replace(abbr, full)
     return text
 
 
@@ -850,6 +857,34 @@ def generate_audio(segments: list[str], output_path: Path, stinger: Path, tones:
     return output_path
 
 
+# ── Étape 3b : Transcription STT (optionnelle) ───────────────────────────────
+
+def transcribe_audio(audio_path: Path) -> str:
+    """Transcrit un fichier audio via l'API Mistral STT."""
+    boundary = "----TranscriptBoundary"
+    audio_data = audio_path.read_bytes()
+    body = (
+        f"--{boundary}\r\n"
+        f'Content-Disposition: form-data; name="model"\r\n\r\n'
+        f"{STT_MODEL}\r\n"
+        f"--{boundary}\r\n"
+        f'Content-Disposition: form-data; name="file"; filename="{audio_path.name}"\r\n'
+        f"Content-Type: audio/mpeg\r\n\r\n"
+    ).encode() + audio_data + f"\r\n--{boundary}--\r\n".encode()
+
+    req = urllib.request.Request(
+        "https://api.mistral.ai/v1/audio/transcriptions",
+        data=body,
+        headers={
+            "Authorization": f"Bearer {MISTRAL_API_KEY}",
+            "Content-Type": f"multipart/form-data; boundary={boundary}",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=120) as r:
+        result = json.loads(r.read())
+    return result.get("text", "")
+
+
 # ── Étape 4 : Envoi Telegram ──────────────────────────────────────────────────
 
 def send_telegram(audio_path: Path, caption: str) -> None:
@@ -990,6 +1025,15 @@ def main():
         ),
     )
     parser.add_argument(
+        "--transcript", action="store_true",
+        help=(
+            "Transcrit l'audio généré via l'API Mistral STT (Voxtral).\n"
+            "Permet de vérifier que le TTS a bien prononcé le texte attendu.\n"
+            "La transcription est affichée et sauvegardée à côté du MP3 (.txt).\n"
+            "Compatible avec --no-send et --dry-run."
+        ),
+    )
+    parser.add_argument(
         "--verbose", action="store_true",
         help=(
             "Mode verbeux : affiche le détail de chaque étape du pipeline.\n"
@@ -1115,6 +1159,16 @@ def main():
         print("────────────────────────────────────────────────────────\n")
 
     generate_audio(segments, output_path, stinger, tones=tones)
+
+    if args.transcript:
+        print("📝 Transcription de l'audio généré...")
+        transcript = transcribe_audio(output_path)
+        print("\n── Transcription ────────────────────────────────────────")
+        print(transcript)
+        print("────────────────────────────────────────────────────────\n")
+        transcript_path = output_path.with_suffix(".txt")
+        transcript_path.write_text(transcript, encoding="utf-8")
+        print(f"   Sauvegardé : {transcript_path}")
 
     title = f"Flash Info Guadeloupe — {date_str}"
 
