@@ -35,16 +35,7 @@ _load_env(Path(__file__).parent / ".env")
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-RSS_FEEDS = [
-    "https://www.guadeloupe.franceantilles.fr/actualite/vielocale/rss.xml",
-    "https://www.guadeloupe.franceantilles.fr/actualite/sports/rss.xml",
-    "https://www.guadeloupe.franceantilles.fr/actualite/social/rss.xml",
-    "https://rci.fm/guadeloupe/fb/articles_rss_gp",
-    "https://zye-a-mangrovla.fr/?feed=rss2",
-    "https://www.regionguadeloupe.fr/actualites-et-agendas/toute-lactualite/flux.rss",
-    "https://la1ere.franceinfo.fr/economie/rss?r=guadeloupe",
-    "https://raw.githubusercontent.com/famibelle/FlashInfoKarukera/main/rss.xml"
-]
+from data.sources import RSS_FEEDS
 MAX_ITEMS = 7          # 7 sujets → ~2m-2m30 audio
 DESC_MAX_CHARS = 400   # description tronquée pour donner assez de contexte
 
