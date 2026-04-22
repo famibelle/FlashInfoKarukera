@@ -930,7 +930,7 @@ TIKTOK_COLORS = {
 
 INTERSTITIAL_DURATION = 2.5  # secondes
 
-INTERSTITIAL_CTA          = "Si j'ai mal prononcé certains mots, dites-le moi en commentaire 👇"
+INTERSTITIAL_CTA          = "Si j'ai mal prononcé certains mots, dites-le moi en commentaire"
 INTERSTITIAL_CTA_DURATION = 5.0  # secondes (texte long à lire)
 
 # Mapping catégorie → (label affiché, couleur hex)
@@ -1003,36 +1003,37 @@ def _make_interstitial(category: str, output_path: Path) -> Path:
 
 def _make_cta_interstitial(output_path: Path) -> Path:
     """Génère un MP4 de clôture avec le call-to-action INTERSTITIAL_CTA."""
-    # Supprime l'emoji de fin pour FFmpeg (pas de support police couleur)
+    # Supprime l'emoji de fin (FFmpeg drawtext ne supporte pas les polices couleur)
     cta_text = INTERSTITIAL_CTA.rstrip().rstrip("👇").rstrip()
-    # Échappe les apostrophes pour FFmpeg drawtext
-    cta_escaped = cta_text.replace("'", "\\'")
     duration = INTERSTITIAL_CTA_DURATION
-    # Découpe en deux lignes autour de la virgule pour la lisibilité
-    if "," in cta_escaped:
-        idx = cta_escaped.index(",")
-        line1 = cta_escaped[: idx + 1]
-        line2 = cta_escaped[idx + 1 :].strip()
+    # Découpe en deux lignes autour de la virgule
+    if "," in cta_text:
+        cut = cta_text.index(",")
+        line1, line2 = cta_text[: cut + 1], cta_text[cut + 1 :].strip()
     else:
-        line1, line2 = cta_escaped, ""
+        line1, line2 = cta_text, ""
+    # Écrit les lignes dans des fichiers temporaires pour éviter les problèmes
+    # d'échappement des apostrophes dans le parser FFmpeg lavfi
+    tmp = output_path.parent
+    f1 = tmp / "cta_line1.txt"
+    f2 = tmp / "cta_line2.txt"
+    f3 = tmp / "cta_watermark.txt"
+    f1.write_text(line1, encoding="utf-8")
+    f2.write_text(line2, encoding="utf-8")
+    f3.write_text("Flash Info Karukera par Botiran", encoding="utf-8")
     filter_v = (
         f"color=c=black:s=1080x1920:r=30:d={duration},"
         f"drawbox=x=0:y=0:w=1080:h=1920:color=0x1A1A2E@1:t=fill,"
         f"drawbox=x=80:y=870:w=920:h=6:color=white@0.4:t=fill,"
         f"drawbox=x=80:y=1110:w=920:h=6:color=white@0.4:t=fill,"
-        f"drawtext=text='{line1}':"
-        f"fontsize=72:fontcolor=white:fontfile={_FONT_BOLD}:"
-        f"x=(w-tw)/2:y=900:"
-        f"shadowcolor=black@0.6:shadowx=2:shadowy=2"
+        f"drawtext=textfile={f1}:fontsize=72:fontcolor=white:fontfile={_FONT_BOLD}:"
+        f"x=(w-tw)/2:y=900:shadowcolor=black@0.6:shadowx=2:shadowy=2"
         + (
-            f",drawtext=text='{line2}':"
-            f"fontsize=72:fontcolor=white:fontfile={_FONT_BOLD}:"
-            f"x=(w-tw)/2:y=990:"
-            f"shadowcolor=black@0.6:shadowx=2:shadowy=2"
+            f",drawtext=textfile={f2}:fontsize=72:fontcolor=white:fontfile={_FONT_BOLD}:"
+            f"x=(w-tw)/2:y=990:shadowcolor=black@0.6:shadowx=2:shadowy=2"
             if line2 else ""
         ) +
-        f",drawtext=text='Flash Info Karukera par Botiran':"
-        f"fontsize=38:fontcolor=white@0.4:fontfile={_FONT_REGULAR}:"
+        f",drawtext=textfile={f3}:fontsize=38:fontcolor=white@0.4:fontfile={_FONT_REGULAR}:"
         f"x=(w-tw)/2:y=1140"
     )
     proc = subprocess.run([
@@ -1044,6 +1045,8 @@ def _make_cta_interstitial(output_path: Path) -> Path:
         "-t", str(duration), "-shortest",
         str(output_path),
     ], capture_output=True)
+    for f in (f1, f2, f3):
+        f.unlink(missing_ok=True)
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg CTA error: {proc.stderr.decode()}")
     return output_path
