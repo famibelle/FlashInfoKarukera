@@ -962,7 +962,7 @@ def _make_ass(words: list[dict], tone: str) -> str:
         "ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, "
         "Alignment, MarginL, MarginR, MarginV, Encoding\n"
         "Style: Default,Arial,96,&H00FFFFFF,&H00FFFFFF,&H00000000,"
-        "&HA0000000,0,0,0,0,100,100,0,0,1,5,2,2,80,80,160,1\n\n"
+        "&HA0000000,0,0,0,0,100,100,0,0,1,5,2,5,80,80,0,1\n\n"
         "[Events]\n"
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
     )
@@ -977,9 +977,11 @@ def _make_ass(words: list[dict], tone: str) -> str:
         parts.append(f"{{\\c{tone_col}\\fs108\\b1}}{word['word']}{{\\b0}}")
         if i < len(words) - 1:
             parts.append(f"{{\\c{dim_col}\\fs80}}{words[i + 1]['word']}")
+        # \an5 = centré horizontalement et verticalement dans la zone texte
+        # \pos(540,1210) = centre horizontal, milieu de la zone sous le spectre (500px + 710px restants / 2)
         events.append(
             f"Dialogue: 0,{_ass_time(start)},{_ass_time(end)},"
-            f"Default,,0,0,0,,{' '.join(parts)}"
+            f"Default,,0,0,0,,{{\\an5\\pos(540,1210)}}{' '.join(parts)}"
         )
 
     return header + "\n".join(events) + "\n"
@@ -987,11 +989,11 @@ def _make_ass(words: list[dict], tone: str) -> str:
 
 def _tiktok_segment_video(seg_path: Path, ass_path: Path, tone: str, output_path: Path) -> None:
     color_hex = TIKTOK_COLORS.get(tone, "#FFFFFF").lstrip("#")
-    # waveform 600 px de haut, centrée sur 1920 px → y = (1920-600)/2 = 660
+    # spectrogramme 500 px en haut, sous-titres centrés verticalement (an=5 dans ASS)
     filter_complex = (
         f"color=c=black:s=1080x1920:r=30[bg];"
-        f"[0:a]showwaves=s=1080x600:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=30[waves];"
-        f"[bg][waves]overlay=0:660[v];"
+        f"[0:a]showwaves=s=1080x500:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=30[waves];"
+        f"[bg][waves]overlay=0:0[v];"
         f"[v]ass={ass_path}[vout]"
     )
     proc = subprocess.run([
