@@ -975,8 +975,6 @@ def _make_interstitial(category: str, output_path: Path, stinger: Path) -> Path:
     text = parts[1] if len(parts) == 2 else parts[0]
     filter_v = (
         f"color=c=black:s=1080x1920:r=30:d={duration},"
-        f"drawbox=x=80:y=910:w=920:h=6:color=0x{color_hex}@1:t=fill,"
-        f"drawbox=x=80:y=1050:w=920:h=6:color=0x{color_hex}@1:t=fill,"
         f"drawtext=text='{text}':"
         f"fontsize=110:fontcolor=0x{color_hex}:fontfile={_FONT_BOLD}:"
         f"x=(w-tw)/2:y=960:"
@@ -1022,8 +1020,6 @@ def _make_cta_interstitial(output_path: Path, stinger: Path) -> Path:
     filter_v = (
         f"color=c=black:s=1080x1920:r=30:d={duration},"
         f"drawbox=x=0:y=0:w=1080:h=1920:color=0x1A1A2E@1:t=fill,"
-        f"drawbox=x=80:y=870:w=920:h=6:color=white@0.4:t=fill,"
-        f"drawbox=x=80:y=1110:w=920:h=6:color=white@0.4:t=fill,"
         f"drawtext=textfile={f1}:fontsize=72:fontcolor=white:fontfile={_FONT_BOLD}:"
         f"x=(w-tw)/2:y=900:shadowcolor=black@0.6:shadowx=2:shadowy=2"
         + (
