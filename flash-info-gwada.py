@@ -298,7 +298,7 @@ def generate_hashtags(items: list[dict]) -> list[list[str]]:
     prompt = (
         f"Tu es un expert en social media pour l'actualité guadeloupéenne.\n"
         f"Pour chaque article ci-dessous, génère exactement {HASHTAG_COUNT} hashtags "
-        f"pertinents (mélange français/anglais, sans espace, avec #).\n"
+        f"pertinents (en kréyòl typque de guadeloupe, sans espace, avec #).\n"
         f"Réponds UNIQUEMENT avec un tableau JSON de tableaux de strings, "
         f"dans le même ordre que les articles. Exemple : "
         f'[[\"#Haiti\",\"#Caraibes\"],[\"#Sport\",\"#Guadeloupe\"]].\n\n'
@@ -977,7 +977,8 @@ TIKTOK_COLORS = {
 
 INTERSTITIAL_DURATION = 2.5  # secondes
 
-SUBTITLE_FONTSIZE = 130  # taille du mot courant dans les sous-titres karaoke
+SUBTITLE_FONTSIZE  = 130    # taille du mot courant dans les sous-titres karaoke
+TRIM_SILENCE       = False  # coupe le silence de fin TTS (deux passes FFmpeg, plus lent)
 
 INTERSTITIAL_CTA          = "Si j'ai mal prononcé certains mots, dites-le moi en commentaire"
 INTERSTITIAL_CTA_DURATION = 5.0  # secondes (texte long à lire)
@@ -1201,29 +1202,42 @@ def _make_ass(words: list[dict], tone: str) -> str:
     return header + "\n".join(events) + "\n"
 
 
+def _trim_silence(seg_path: Path) -> Path:
+    """Passe 1 : supprime le silence de fin TTS, retourne un fichier MP3 temporaire."""
+    trimmed = seg_path.with_suffix(".trimmed.mp3")
+    proc = subprocess.run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-i", str(seg_path),
+        "-af", "silenceremove=stop_periods=-1:stop_duration=0.2:stop_threshold=-45dB",
+        "-c:a", "libmp3lame", "-q:a", "2",
+        str(trimmed),
+    ], capture_output=True)
+    if proc.returncode != 0:
+        raise RuntimeError(f"ffmpeg trim error: {proc.stderr.decode()}")
+    return trimmed
+
+
 def _tiktok_segment_video(seg_path: Path, ass_path: Path, tone: str, output_path: Path) -> None:
     color_hex = TIKTOK_COLORS.get(tone, "#FFFFFF").lstrip("#")
-    # silenceremove coupe le silence de fin ajouté par l'API TTS (~1-2s)
-    # stop_periods=-1 : supprime uniquement le silence en fin de fichier
-    # stop_threshold=-45dB : seuil adapté à une voix synthétique
+    audio_path = _trim_silence(seg_path) if TRIM_SILENCE else seg_path
     filter_complex = (
         f"color=c=black:s=1080x1920:r=30[bg];"
-        f"[0:a]silenceremove=stop_periods=-1:stop_duration=0.2:stop_threshold=-45dB[clean];"
-        f"[clean]asplit=2[clean_vis][clean_out];"
-        f"[clean_vis]showwaves=s=1080x500:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=30[waves];"
+        f"[0:a]showwaves=s=1080x500:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=30[waves];"
         f"[bg][waves]overlay=0:0[v];"
         f"[v]ass={ass_path}[vout]"
     )
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
-        "-i", str(seg_path),
+        "-i", str(audio_path),
         "-filter_complex", filter_complex,
-        "-map", "[vout]", "-map", "[clean_out]",
+        "-map", "[vout]", "-map", "0:a",
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
         "-c:a", "aac", "-b:a", "192k",
         "-shortest",
         str(output_path),
     ], capture_output=True)
+    if TRIM_SILENCE:
+        audio_path.unlink(missing_ok=True)
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg tiktok error: {proc.stderr.decode()}")
 
