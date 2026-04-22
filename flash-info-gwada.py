@@ -986,7 +986,9 @@ TIKTOK_COLORS = {
     "curious":  "#00CED1",
 }
 
-INTERSTITIAL_DURATION = 2.5  # secondes
+INTERSTITIAL_DURATION     = 2.5   # secondes
+INTERSTITIAL_HT_FONTSIZE  = 110   # taille des hashtags dans l'interstitiel
+INTERSTITIAL_CAT_FONTSIZE = 170   # taille du texte catégorie dans l'interstitiel
 
 SUBTITLE_FONTSIZE  = 130    # taille du mot courant dans les sous-titres karaoke
 TRIM_SILENCE       = False  # coupe le silence de fin TTS (deux passes FFmpeg, plus lent)
@@ -1039,13 +1041,26 @@ def _make_interstitial(
     text = parts[1] if len(parts) == 2 else parts[0]
     tmp = output_path.parent
 
-    # ── Hashtags : word-wrap sur ~25 chars, écrits dans des textfiles ──
+    # ── Tailles de police adaptatives (ratio 0.65 pour majuscules DejaVu Bold) ──
+    _MAX_PX     = 950  # largeur max utilisable (marges de 65px de chaque côté)
+    _CHAR_RATIO = 0.65
+
+    # Catégorie : réduction si le texte est trop long
+    cat_fontsize = min(INTERSTITIAL_CAT_FONTSIZE, int(_MAX_PX / (max(len(text), 1) * _CHAR_RATIO)))
+    cat_line_h   = round(cat_fontsize * 1.1)
+
+    # Hashtags : réduction si le hashtag le plus long dépasse la largeur
+    max_ht_len  = max((len(h) for h in (hashtags or [])), default=10)
+    ht_fontsize = min(INTERSTITIAL_HT_FONTSIZE, int(_MAX_PX / (max_ht_len * _CHAR_RATIO)))
+    ht_line_h   = round(ht_fontsize * 1.3)
+    ht_wrap     = max(6, int(_MAX_PX / (ht_fontsize * _CHAR_RATIO)))
+
     ht_files: list[Path] = []
     if hashtags:
         words, lines, current = hashtags[:], [], ""
         for w in words:
             candidate = f"{current} {w}".strip()
-            if len(candidate) <= 25:
+            if len(candidate) <= ht_wrap:
                 current = candidate
             else:
                 if current:
@@ -1058,12 +1073,13 @@ def _make_interstitial(
             f.write_text(line, encoding="utf-8")
             ht_files.append(f)
 
-    # ── Construction du filtre ──
-    ht_fontsize  = 72
-    ht_line_h    = 85
-    # Hashtags centrés dans le tiers supérieur (y ≈ 500 → 900)
-    ht_y_start   = max(500, 750 - len(ht_files) * ht_line_h // 2)
-    cat_y        = ht_y_start + len(ht_files) * ht_line_h + 60
+    # ── Layout vertical centré ──
+    n_ht = len(ht_files)
+    gap  = 70 if n_ht > 0 else 0
+    block_h   = n_ht * ht_line_h + gap + cat_line_h
+    ht_y_start = (1920 - block_h) // 2
+    cat_y      = ht_y_start + n_ht * ht_line_h + gap
+    wm_y       = cat_y + cat_line_h + 50
 
     filter_parts = [f"color=c=black:s=1080x1920:r=30:d={duration}"]
     for i, f in enumerate(ht_files):
@@ -1075,14 +1091,14 @@ def _make_interstitial(
         )
     filter_parts.append(
         f"drawtext=text='{text}':"
-        f"fontsize=110:fontcolor=0x{color_hex}:fontfile={_FONT_BOLD}:"
+        f"fontsize={cat_fontsize}:fontcolor=0x{color_hex}:fontfile={_FONT_BOLD}:"
         f"x=(w-tw)/2:y={cat_y}:"
         f"shadowcolor=black@0.6:shadowx=3:shadowy=3"
     )
     filter_parts.append(
-        f"drawtext=text='Flash Info Karukera par Botiran':"
+        f"drawtext=text='Flash Info Karukera par @Botiran':"
         f"fontsize=38:fontcolor=white@0.5:fontfile={_FONT_REGULAR}:"
-        f"x=(w-tw)/2:y={cat_y + 130}"
+        f"x=(w-tw)/2:y={wm_y}"
     )
     filter_v = ",".join(filter_parts)
 
@@ -1582,7 +1598,11 @@ def _interleave_interstitials(
     return result
 
 
-def concatenate_videos(video_paths: list[Path], output_path: Path) -> Path:
+def concatenate_videos(
+    video_paths: list[Path],
+    output_path: Path,
+    metadata: dict[str, str] | None = None,
+) -> Path:
     """
     Concatène les MP4 via le concat filter graph FFmpeg.
     Chaque stream vidéo est normalisé à 30fps/SAR=1 et chaque stream audio à 44100Hz
@@ -1605,6 +1625,10 @@ def concatenate_videos(video_paths: list[Path], output_path: Path) -> Path:
 
     filter_complex = ";".join(filter_parts)
 
+    meta_args = []
+    for k, v in (metadata or {}).items():
+        meta_args += ["-metadata", f"{k}={v}"]
+
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
         *inputs,
@@ -1612,6 +1636,7 @@ def concatenate_videos(video_paths: list[Path], output_path: Path) -> Path:
         "-map", "[vout]", "-map", "[aout]",
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
         "-c:a", "aac", "-b:a", "192k",
+        *meta_args,
         str(output_path),
     ], capture_output=True)
     if proc.returncode != 0:
@@ -1996,11 +2021,24 @@ def main():
         print("🎞️  Génération vidéo complète avec interstitiels…")
         full_video_path = video_dir / "flash-info-complet.mp4"
         ordered = _interleave_interstitials(videos, items, video_dir, stinger)
-        concatenate_videos(ordered, full_video_path)
+        video_metadata = {
+            "title":     title,
+            "artist":    "Botiran",
+            "album":     "Flash Info Karukera",
+            "comment":   "Produit par Botiran Flash News",
+            "copyright": f"© {date_str} Flash Info Karukera par Botiran",
+        }
+        concatenate_videos(ordered, full_video_path, metadata=video_metadata)
         print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
 
+        # Caption Telegram : titre + texte de l'intro (tronqué à 1024 chars)
+        intro_text = segments[0].strip() if segments else ""
+        full_caption = f"🎙️ {title}\n\n{intro_text}"
+        if len(full_caption) > 1024:
+            full_caption = full_caption[:1021] + "…"
+
         print("📤 Envoi vidéo complète sur Telegram…")
-        send_telegram_video(full_video_path, f"🎙️ {title} — émission complète")
+        send_telegram_video(full_video_path, full_caption)
 
         if args.youtube:
             print("▶️  Upload YouTube vidéo complète…")
