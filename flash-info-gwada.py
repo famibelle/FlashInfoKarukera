@@ -964,24 +964,16 @@ def _make_interstitial(category: str, output_path: Path) -> Path:
     label, color = INTERSTITIAL_STYLES.get(category, INTERSTITIAL_STYLES["general"])
     color_hex = color.lstrip("#")
     duration = INTERSTITIAL_DURATION
-    # Sépare l'emoji du texte (ex: "🌤 MÉTÉO" → emoji="🌤", text="MÉTÉO")
+    # Extrait uniquement le texte (sans l'emoji — FFmpeg drawtext ne supporte pas les polices couleur)
     parts = label.split(" ", 1)
-    emoji = parts[0] if len(parts) == 2 else ""
-    text  = parts[1] if len(parts) == 2 else parts[0]
-    # Emoji centré à y=820, texte en gras à y=940, barres colorées à y=910/930
+    text = parts[1] if len(parts) == 2 else parts[0]
     filter_v = (
         f"color=c=black:s=1080x1920:r=30:d={duration},"
         f"drawbox=x=80:y=910:w=920:h=6:color=0x{color_hex}@1:t=fill,"
         f"drawbox=x=80:y=1050:w=920:h=6:color=0x{color_hex}@1:t=fill,"
-        + (
-            f"drawtext=text='{emoji}':"
-            f"fontsize=140:fontcolor=0x{color_hex}:font=Noto Color Emoji:"
-            f"x=(w-tw)/2:y=760,"
-            if emoji else ""
-        ) +
         f"drawtext=text='{text}':"
         f"fontsize=110:fontcolor=0x{color_hex}:font=Sans:fontstyle=Bold:"
-        f"x=(w-tw)/2:y=930:"
+        f"x=(w-tw)/2:y=960:"
         f"shadowcolor=black@0.6:shadowx=3:shadowy=3,"
         f"drawtext=text='Flash Info Karukera par Botiran':"
         f"fontsize=38:fontcolor=white@0.5:font=Sans:"
