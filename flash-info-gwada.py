@@ -1840,7 +1840,7 @@ def main():
         videos = [(int(p.stem.split("_")[1]), p) for p in seg_files]
         print("🎞️  Génération des interstitiels…")
         ordered = _interleave_interstitials(videos, saved_items, video_dir, resolve_stinger(args.stinger))
-        full_video_path = video_dir / "flash-info-complet.mp4"
+        full_video_path = video_dir / f"flash-info-complet-{target_date}.mp4"
         print("🎞️  Concaténation…")
         concatenate_videos(ordered, full_video_path)
         print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
@@ -2032,7 +2032,7 @@ def main():
 
         # Vidéo complète : générée dès que --tiktok ou --youtube est actif
         print("🎞️  Génération vidéo complète avec interstitiels…")
-        full_video_path = video_dir / "flash-info-complet.mp4"
+        full_video_path = video_dir / f"flash-info-complet-{target_date}.mp4"
         ordered = _interleave_interstitials(videos, items, video_dir, stinger)
         video_metadata = {
             "title":     title,
@@ -2044,9 +2044,16 @@ def main():
         concatenate_videos(ordered, full_video_path, metadata=video_metadata)
         print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
 
-        # Caption Telegram : titre + texte de l'intro (tronqué à 1024 chars)
+        # Caption Telegram : titre + intro + hashtags agrégés (tronqué à 1024 chars)
         intro_text = segments[0].strip() if segments else ""
-        full_caption = f"🎙️ {title}\n\n{intro_text}"
+        seen, all_hashtags = set(), []
+        for it in items:
+            for h in it.get("hashtags", []):
+                if h not in seen:
+                    seen.add(h)
+                    all_hashtags.append(h)
+        hashtags_line = " ".join(all_hashtags)
+        full_caption = f"🎙️ {title}\n\n{intro_text}\n\n{hashtags_line}".strip()
         if len(full_caption) > 1024:
             full_caption = full_caption[:1021] + "…"
 
