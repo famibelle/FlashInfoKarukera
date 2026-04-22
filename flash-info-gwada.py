@@ -930,6 +930,9 @@ TIKTOK_COLORS = {
 
 INTERSTITIAL_DURATION = 2.5  # secondes
 
+INTERSTITIAL_CTA          = "Si j'ai mal prononcé certains mots, dites-le moi en commentaire 👇"
+INTERSTITIAL_CTA_DURATION = 5.0  # secondes (texte long à lire)
+
 # Mapping catégorie → (label affiché, couleur hex)
 INTERSTITIAL_STYLES: dict[str, tuple[str, str]] = {
     "météo":        ("🌤  MÉTÉO",         "#4A90D9"),
@@ -959,6 +962,10 @@ def _ass_color(hex_color: str) -> str:
     return f"&H00{b:02X}{g:02X}{r:02X}&"
 
 
+_FONT_BOLD    = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+_FONT_REGULAR = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+
+
 def _make_interstitial(category: str, output_path: Path) -> Path:
     """Génère un MP4 interstitiel 1080×1920 de INTERSTITIAL_DURATION secondes."""
     label, color = INTERSTITIAL_STYLES.get(category, INTERSTITIAL_STYLES["general"])
@@ -972,11 +979,11 @@ def _make_interstitial(category: str, output_path: Path) -> Path:
         f"drawbox=x=80:y=910:w=920:h=6:color=0x{color_hex}@1:t=fill,"
         f"drawbox=x=80:y=1050:w=920:h=6:color=0x{color_hex}@1:t=fill,"
         f"drawtext=text='{text}':"
-        f"fontsize=110:fontcolor=0x{color_hex}:font=Sans:fontstyle=Bold:"
+        f"fontsize=110:fontcolor=0x{color_hex}:fontfile={_FONT_BOLD}:"
         f"x=(w-tw)/2:y=960:"
         f"shadowcolor=black@0.6:shadowx=3:shadowy=3,"
         f"drawtext=text='Flash Info Karukera par Botiran':"
-        f"fontsize=38:fontcolor=white@0.5:font=Sans:"
+        f"fontsize=38:fontcolor=white@0.5:fontfile={_FONT_REGULAR}:"
         f"x=(w-tw)/2:y=1080"
     )
     proc = subprocess.run([
@@ -991,6 +998,54 @@ def _make_interstitial(category: str, output_path: Path) -> Path:
     ], capture_output=True)
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg interstitiel error: {proc.stderr.decode()}")
+    return output_path
+
+
+def _make_cta_interstitial(output_path: Path) -> Path:
+    """Génère un MP4 de clôture avec le call-to-action INTERSTITIAL_CTA."""
+    # Supprime l'emoji de fin pour FFmpeg (pas de support police couleur)
+    cta_text = INTERSTITIAL_CTA.rstrip().rstrip("👇").rstrip()
+    # Échappe les apostrophes pour FFmpeg drawtext
+    cta_escaped = cta_text.replace("'", "\\'")
+    duration = INTERSTITIAL_CTA_DURATION
+    # Découpe en deux lignes autour de la virgule pour la lisibilité
+    if "," in cta_escaped:
+        idx = cta_escaped.index(",")
+        line1 = cta_escaped[: idx + 1]
+        line2 = cta_escaped[idx + 1 :].strip()
+    else:
+        line1, line2 = cta_escaped, ""
+    filter_v = (
+        f"color=c=black:s=1080x1920:r=30:d={duration},"
+        f"drawbox=x=0:y=0:w=1080:h=1920:color=0x1A1A2E@1:t=fill,"
+        f"drawbox=x=80:y=870:w=920:h=6:color=white@0.4:t=fill,"
+        f"drawbox=x=80:y=1110:w=920:h=6:color=white@0.4:t=fill,"
+        f"drawtext=text='{line1}':"
+        f"fontsize=72:fontcolor=white:fontfile={_FONT_BOLD}:"
+        f"x=(w-tw)/2:y=900:"
+        f"shadowcolor=black@0.6:shadowx=2:shadowy=2"
+        + (
+            f",drawtext=text='{line2}':"
+            f"fontsize=72:fontcolor=white:fontfile={_FONT_BOLD}:"
+            f"x=(w-tw)/2:y=990:"
+            f"shadowcolor=black@0.6:shadowx=2:shadowy=2"
+            if line2 else ""
+        ) +
+        f",drawtext=text='Flash Info Karukera par Botiran':"
+        f"fontsize=38:fontcolor=white@0.4:fontfile={_FONT_REGULAR}:"
+        f"x=(w-tw)/2:y=1140"
+    )
+    proc = subprocess.run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-f", "lavfi", "-i", filter_v,
+        "-f", "lavfi", "-i", f"anullsrc=r=44100:cl=stereo:d={duration}",
+        "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+        "-c:a", "aac", "-b:a", "192k",
+        "-t", str(duration), "-shortest",
+        str(output_path),
+    ], capture_output=True)
+    if proc.returncode != 0:
+        raise RuntimeError(f"ffmpeg CTA error: {proc.stderr.decode()}")
     return output_path
 
 
@@ -1364,6 +1419,11 @@ def _interleave_interstitials(
         _make_interstitial(category, inter_path)
         result.append(inter_path)
         result.append(video_path)
+
+    cta_path = output_dir / "inter_cta.mp4"
+    print("   Interstitiel CTA — clôture")
+    _make_cta_interstitial(cta_path)
+    result.append(cta_path)
 
     return result
 
