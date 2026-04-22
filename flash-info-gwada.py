@@ -109,7 +109,10 @@ _FR_DAYS = {
 def _source_name(url: str) -> str:
     """Extrait un nom de média lisible depuis l'URL d'un flux RSS."""
     from urllib.parse import urlparse
-    host = (urlparse(url).hostname or "").removeprefix("www.")
+    parsed = urlparse(url)
+    if parsed.scheme == "file":
+        return "Botiran News"
+    host = (parsed.hostname or "").removeprefix("www.")
     for key, name in _SOURCE_NAMES.items():
         if key in host:
             return name
