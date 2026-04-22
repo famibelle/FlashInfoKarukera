@@ -3,8 +3,8 @@
 # Prononciations locales guadeloupéennes (forme écrite → forme orale pour le TTS)
 PRONONCIATIONS_LOCALES = {
     # Prononciations créoles
-    "Lyannaj": "Lyan naje",   # Lyan-naje, deux syllabes distinctes
-    "lyannaj": "Lyan naje",
+    "Lyannaj": "Lyanhnage",   # Lyan-naje, deux syllabes distinctes
+    "lyannaj": "Lyanhnage",
     "Goyave":          "Gwayave",
     "Vieux-Habitants": "Vieux Zabitan",
     "Vieux Habitants":  "Vieux Zabitan",
@@ -23,6 +23,8 @@ PRONONCIATIONS_LOCALES = {
     "SDIS": "Service Départemental d'Incendie et de Secours",
     "S.D.I.S": "Service Départemental d'Incendie et de Secours",
     "S.D.I.S.": "Service Départemental d'Incendie et de Secours",
+    "SMGEAG" : "Syndicat Mixte de Gestion de l'Eau et de l'Assainissement de Guadeloupe",
+    "S.M.G.E.A.G" : "Syndicat Mixte de Gestion de l'Eau et de l'Assainissement de Guadeloupe",
     # Clubs sportifs guadeloupéens – athlétisme
     "ACBM":    "Athlétic Club de Baie-Mahault",
     "ACCBE":   "Athlétic Club de Capesterre-Belle-Eau",
