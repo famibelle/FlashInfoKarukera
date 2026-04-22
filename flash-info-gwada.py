@@ -35,7 +35,9 @@ _load_env(Path(__file__).parent / ".env")
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-from data.sources import RSS_FEEDS
+from data.sources import RSS_FEEDS, RSS_SOURCES
+
+_FEED_CATEGORY: dict[str, str] = {s.url: s.category for s in RSS_SOURCES}
 MAX_ITEMS = 7          # 7 sujets → ~2m-2m30 audio
 DESC_MAX_CHARS = 400   # description tronquée pour donner assez de contexte
 
@@ -239,6 +241,7 @@ def fetch_news(feeds: list[str], max_items: int, target_date: Date) -> list[dict
             "title": t, "date": d, "desc": desc,
             "source": _source_name(feed_url),
             "lieu": _extract_lieu(t, desc),
+            "category": _FEED_CATEGORY.get(feed_url, "general"),
         }
         for _, t, d, desc, feed_url in all_items
     ]
@@ -1279,6 +1282,79 @@ def upload_youtube_short(video_path: Path, title: str, description: str) -> str:
     return url
 
 
+def concatenate_videos(video_paths: list[Path], output_path: Path) -> Path:
+    """Concatène les MP4 dans l'ordre via le concat demuxer FFmpeg (re-encode)."""
+    filelist = output_path.parent / "filelist.txt"
+    filelist.write_text(
+        "\n".join(f"file '{p.resolve()}'" for p in video_paths),
+        encoding="utf-8",
+    )
+    proc = subprocess.run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-f", "concat", "-safe", "0", "-i", str(filelist),
+        "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+        "-c:a", "aac", "-b:a", "192k",
+        str(output_path),
+    ], capture_output=True)
+    filelist.unlink(missing_ok=True)
+    if proc.returncode != 0:
+        raise RuntimeError(f"ffmpeg concat error: {proc.stderr.decode()}")
+    return output_path
+
+
+def _youtube_full_description(segments: list[str], date_str: str) -> str:
+    """Description YouTube pour la vidéo complète : chapitres + hashtags."""
+    lines = [f"Flash Info Guadeloupe — {date_str}\n"]
+    for i, seg in enumerate(segments):
+        if i == 0:
+            label = "Intro"
+        elif i == len(segments) - 1:
+            label = "Outro"
+        elif i == 1:
+            label = "Météo"
+        else:
+            label = f"Sujet {i - 1}"
+        first = seg.split(".")[0].strip()
+        if len(first) > 80:
+            first = first[:77] + "…"
+        lines.append(f"▸ {label} — {first}.")
+    lines.append(f"\n{_HASHTAGS_BASE} {_HASHTAGS_NEWS} {_HASHTAGS_METEO}")
+    return "\n".join(lines)
+
+
+def upload_youtube_video(video_path: Path, title: str, description: str) -> str:
+    """Upload une vidéo YouTube normale (pas un Short)."""
+    from googleapiclient.discovery import build
+    from googleapiclient.http import MediaFileUpload
+
+    print(f"   ▶️  Upload vidéo complète : {video_path.name}…")
+    creds = _youtube_credentials()
+    youtube = build("youtube", "v3", credentials=creds, cache_discovery=False)
+
+    body = {
+        "snippet": {
+            "title": title,
+            "description": description,
+            "tags": YOUTUBE_TAGS + ["flash info complet", "radio Guadeloupe"],
+            "categoryId": YOUTUBE_CATEGORY_ID,
+        },
+        "status": {
+            "privacyStatus": "public",
+            "selfDeclaredMadeForKids": False,
+        },
+    }
+    media = MediaFileUpload(str(video_path), mimetype="video/mp4", resumable=True)
+    request = youtube.videos().insert(part="snippet,status", body=body, media_body=media)
+
+    response = None
+    while response is None:
+        _, response = request.next_chunk()
+
+    url = f"https://youtube.com/watch?v={response['id']}"
+    print(f"   ✅ {url}")
+    return url
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -1519,6 +1595,18 @@ def main():
                 yt_title = f"Flash Info Guadeloupe — {date_str} — {yt_label}"
                 yt_desc = _youtube_description(segments[idx], idx, n_seg, date_str)
                 upload_youtube_short(video_path, yt_title, yt_desc)
+
+            print("🎞️  Génération vidéo complète…")
+            full_video_path = video_dir / "flash-info-complet.mp4"
+            concatenate_videos([p for _, p in videos], full_video_path)
+            print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
+
+            print("📤 Envoi vidéo complète sur Telegram…")
+            send_telegram_video(full_video_path, f"🎙️ {title} — émission complète")
+
+            print("▶️  Upload YouTube vidéo complète…")
+            yt_full_desc = _youtube_full_description(segments, date_str)
+            upload_youtube_video(full_video_path, title, yt_full_desc)
 
     if args.transcript:
         print("📝 Transcription de l'audio généré...")
