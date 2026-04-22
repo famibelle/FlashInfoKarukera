@@ -116,6 +116,12 @@ def _source_name(url: str) -> str:
     return host.split(".")[0].capitalize()
 
 
+# Fallback pour reconstruire category depuis le nom de source (items.json anciens)
+_SOURCE_CATEGORY: dict[str, str] = {
+    _source_name(s.url): s.category for s in RSS_SOURCES
+}
+
+
 _LIEUX_GUADELOUPE_LOWER = {l.lower(): l for l in _LIEUX_GUADELOUPE}
 _LIEUX_MONDE_LOWER = {l.lower(): l for l in _LIEUX_MONDE}
 
@@ -1664,7 +1670,18 @@ def main():
             print(f"❌ Aucun fichier seg_*.mp4 dans {video_dir}", file=sys.stderr)
             sys.exit(1)
         items_json = video_dir / "items.json"
-        saved_items = json.loads(items_json.read_text(encoding="utf-8")) if items_json.exists() else []
+        if items_json.exists():
+            saved_items = json.loads(items_json.read_text(encoding="utf-8"))
+            # Reconstruit le champ category si absent (items.json généré avant cette feature)
+            missing = sum(1 for it in saved_items if "category" not in it)
+            if missing:
+                print(f"   ⚠️  {missing} items sans category — reconstruction depuis le champ source")
+                for it in saved_items:
+                    if "category" not in it:
+                        it["category"] = _SOURCE_CATEGORY.get(it.get("source", ""), "general")
+        else:
+            print("   ⚠️  items.json absent — catégories indisponibles, tout sera 'general'")
+            saved_items = []
         print(f"🎞️  {len(seg_files)} segments trouvés dans {video_dir}")
         videos = [(int(p.stem.split("_")[1]), p) for p in seg_files]
         print("🎞️  Génération des interstitiels…")
