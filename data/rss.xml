@@ -1,12 +1,21 @@
-<item>
-  <title>Kalash en live à Luxembourg – 9 mai</title>
-  <link>https://www.encoreluxembourg.lu</link>
-  <description>
-    Kalash sera en live à Encore Luxembourg le samedi 9 mai.
-    Line-up : Max, Adickson.
-    Sound system : Irie Crew.
-  </description>
-  <pubDate>22 April 2026 20:00:00 GMT</pubDate>
-  <guid>kalash-luxembourg-2026-05-09</guid>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Flash Info Karukera — fil custom</title>
+    <link>https://flashinfokarukera.example</link>
+    <description>Articles personnalisés ajoutés manuellement</description>
 
-</item>
+    <item>
+      <title>Kalash en live à Luxembourg – 9 mai</title>
+      <link>https://www.encoreluxembourg.lu</link>
+      <description>
+        Kalash sera en live à Encore Luxembourg le samedi 9 mai.
+        Line-up : Max, Adickson.
+        Sound system : Irie Crew.
+      </description>
+      <pubDate>Wed, 22 Apr 2026 20:00:00 +0000</pubDate>
+      <guid>kalash-luxembourg-2026-05-09</guid>
+    </item>
+
+  </channel>
+</rss>
