@@ -966,12 +966,11 @@ _FONT_BOLD    = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 _FONT_REGULAR = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 
 
-def _make_interstitial(category: str, output_path: Path) -> Path:
-    """Génère un MP4 interstitiel 1080×1920 de INTERSTITIAL_DURATION secondes."""
+def _make_interstitial(category: str, output_path: Path, stinger: Path) -> Path:
+    """Génère un MP4 interstitiel 1080×1920, durée et audio calés sur le stinger."""
     label, color = INTERSTITIAL_STYLES.get(category, INTERSTITIAL_STYLES["general"])
     color_hex = color.lstrip("#")
-    duration = INTERSTITIAL_DURATION
-    # Extrait uniquement le texte (sans l'emoji — FFmpeg drawtext ne supporte pas les polices couleur)
+    duration = _stinger_duration(stinger)
     parts = label.split(" ", 1)
     text = parts[1] if len(parts) == 2 else parts[0]
     filter_v = (
@@ -989,10 +988,9 @@ def _make_interstitial(category: str, output_path: Path) -> Path:
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
         "-f", "lavfi", "-i", filter_v,
-        "-f", "lavfi", "-i", f"anullsrc=r=44100:cl=stereo:d={duration}",
+        "-i", str(stinger),
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
         "-c:a", "aac", "-b:a", "192k",
-        "-t", str(duration),
         "-shortest",
         str(output_path),
     ], capture_output=True)
@@ -1001,11 +999,11 @@ def _make_interstitial(category: str, output_path: Path) -> Path:
     return output_path
 
 
-def _make_cta_interstitial(output_path: Path) -> Path:
+def _make_cta_interstitial(output_path: Path, stinger: Path) -> Path:
     """Génère un MP4 de clôture avec le call-to-action INTERSTITIAL_CTA."""
     # Supprime l'emoji de fin (FFmpeg drawtext ne supporte pas les polices couleur)
     cta_text = INTERSTITIAL_CTA.rstrip().rstrip("👇").rstrip()
-    duration = INTERSTITIAL_CTA_DURATION
+    duration = _stinger_duration(stinger)
     # Découpe en deux lignes autour de la virgule
     if "," in cta_text:
         cut = cta_text.index(",")
@@ -1039,10 +1037,10 @@ def _make_cta_interstitial(output_path: Path) -> Path:
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
         "-f", "lavfi", "-i", filter_v,
-        "-f", "lavfi", "-i", f"anullsrc=r=44100:cl=stereo:d={duration}",
+        "-i", str(stinger),
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
         "-c:a", "aac", "-b:a", "192k",
-        "-t", str(duration), "-shortest",
+        "-shortest",
         str(output_path),
     ], capture_output=True)
     for f in (f1, f2, f3):
@@ -1391,25 +1389,36 @@ def upload_youtube_short(video_path: Path, title: str, description: str) -> str:
     return url
 
 
+def _stinger_duration(stinger: Path) -> float:
+    """Retourne la durée du stinger en secondes via ffprobe."""
+    proc = subprocess.run([
+        "ffprobe", "-v", "error",
+        "-show_entries", "format=duration",
+        "-of", "default=noprint_wrappers=1:nokey=1",
+        str(stinger),
+    ], capture_output=True, text=True)
+    return float(proc.stdout.strip())
+
+
 def _interleave_interstitials(
     videos: list[tuple[int, Path]],
     items: list[dict],
     output_dir: Path,
+    stinger: Path,
 ) -> list[Path]:
     """
     Intercale un interstitiel avant chaque segment de contenu (MÉTÉO et sujets).
     - videos  : [(segment_index, path), …] dans l'ordre
     - items   : articles collectés (items[0] → segment 2, items[1] → segment 3, …)
+    - stinger : fichier audio utilisé comme fond sonore des interstitiels
     Retourne la liste ordonnée de paths (interstitiels + segments) prête pour concat.
     """
     result: list[Path] = []
     for idx, video_path in videos:
         if idx == 0:
-            # INTRO : pas d'interstitiel avant
             result.append(video_path)
             continue
 
-        # Déterminer la catégorie du segment
         if idx == 1:
             category = "météo"
         elif idx - 2 < len(items):
@@ -1419,13 +1428,13 @@ def _interleave_interstitials(
 
         inter_path = output_dir / f"inter_{idx:02d}_{category.replace(' ', '_')}.mp4"
         print(f"   Interstitiel [{idx}] — {category}")
-        _make_interstitial(category, inter_path)
+        _make_interstitial(category, inter_path, stinger)
         result.append(inter_path)
         result.append(video_path)
 
     cta_path = output_dir / "inter_cta.mp4"
     print("   Interstitiel CTA — clôture")
-    _make_cta_interstitial(cta_path)
+    _make_cta_interstitial(cta_path, stinger)
     result.append(cta_path)
 
     return result
@@ -1639,7 +1648,7 @@ def main():
         print(f"🎞️  {len(seg_files)} segments trouvés dans {video_dir}")
         videos = [(int(p.stem.split("_")[1]), p) for p in seg_files]
         print("🎞️  Génération des interstitiels…")
-        ordered = _interleave_interstitials(videos, saved_items, video_dir)
+        ordered = _interleave_interstitials(videos, saved_items, video_dir, resolve_stinger(args.stinger))
         full_video_path = video_dir / "flash-info-complet.mp4"
         print("🎞️  Concaténation…")
         concatenate_videos(ordered, full_video_path)
@@ -1826,7 +1835,7 @@ def main():
         # Vidéo complète : générée dès que --tiktok ou --youtube est actif
         print("🎞️  Génération vidéo complète avec interstitiels…")
         full_video_path = video_dir / "flash-info-complet.mp4"
-        ordered = _interleave_interstitials(videos, items, video_dir)
+        ordered = _interleave_interstitials(videos, items, video_dir, stinger)
         concatenate_videos(ordered, full_video_path)
         print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
 
