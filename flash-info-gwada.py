@@ -1209,7 +1209,8 @@ def _tiktok_segment_video(seg_path: Path, ass_path: Path, tone: str, output_path
     filter_complex = (
         f"color=c=black:s=1080x1920:r=30[bg];"
         f"[0:a]silenceremove=stop_periods=-1:stop_duration=0.2:stop_threshold=-45dB[clean];"
-        f"[clean]showwaves=s=1080x500:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=30[waves];"
+        f"[clean]asplit=2[clean_vis][clean_out];"
+        f"[clean_vis]showwaves=s=1080x500:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=30[waves];"
         f"[bg][waves]overlay=0:0[v];"
         f"[v]ass={ass_path}[vout]"
     )
@@ -1217,7 +1218,7 @@ def _tiktok_segment_video(seg_path: Path, ass_path: Path, tone: str, output_path
         "ffmpeg", "-y", "-loglevel", "error",
         "-i", str(seg_path),
         "-filter_complex", filter_complex,
-        "-map", "[vout]", "-map", "[clean]",
+        "-map", "[vout]", "-map", "[clean_out]",
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
         "-c:a", "aac", "-b:a", "192k",
         "-shortest",
