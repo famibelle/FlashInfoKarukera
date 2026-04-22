@@ -1087,10 +1087,13 @@ def _make_ass(words: list[dict], tone: str) -> str:
 
 def _tiktok_segment_video(seg_path: Path, ass_path: Path, tone: str, output_path: Path) -> None:
     color_hex = TIKTOK_COLORS.get(tone, "#FFFFFF").lstrip("#")
-    # spectrogramme 500 px en haut, sous-titres centrés verticalement (an=5 dans ASS)
+    # silenceremove coupe le silence de fin ajouté par l'API TTS (~1-2s)
+    # stop_periods=-1 : supprime uniquement le silence en fin de fichier
+    # stop_threshold=-45dB : seuil adapté à une voix synthétique
     filter_complex = (
         f"color=c=black:s=1080x1920:r=30[bg];"
-        f"[0:a]showwaves=s=1080x500:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=30[waves];"
+        f"[0:a]silenceremove=stop_periods=-1:stop_duration=0.2:stop_threshold=-45dB[clean];"
+        f"[clean]showwaves=s=1080x500:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=30[waves];"
         f"[bg][waves]overlay=0:0[v];"
         f"[v]ass={ass_path}[vout]"
     )
@@ -1098,7 +1101,7 @@ def _tiktok_segment_video(seg_path: Path, ass_path: Path, tone: str, output_path
         "ffmpeg", "-y", "-loglevel", "error",
         "-i", str(seg_path),
         "-filter_complex", filter_complex,
-        "-map", "[vout]", "-map", "0:a",
+        "-map", "[vout]", "-map", "[clean]",
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
         "-c:a", "aac", "-b:a", "192k",
         "-shortest",
