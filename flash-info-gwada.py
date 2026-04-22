@@ -932,16 +932,16 @@ INTERSTITIAL_DURATION = 2.5  # secondes
 
 # Mapping catégorie → (label affiché, couleur hex)
 INTERSTITIAL_STYLES: dict[str, tuple[str, str]] = {
-    "météo":        ("MÉTÉO",        "#4A90D9"),
-    "vie locale":   ("VIE LOCALE",   "#2ECC71"),
-    "sports":       ("SPORTS",       "#FF6B00"),
-    "social":       ("SOCIAL",       "#9B59B6"),
-    "politique":    ("POLITIQUE",    "#E74C3C"),
-    "economie":     ("ÉCONOMIE",     "#F39C12"),
-    "environement": ("ENVIRONNEMENT","#27AE60"),
-    "en bref":      ("EN BREF",      "#1ABC9C"),
-    "general":      ("ACTUALITÉS",   "#95A5A6"),
-    "custom":       ("FLASH INFO",   "#FFFFFF"),
+    "météo":        ("🌤  MÉTÉO",         "#4A90D9"),
+    "vie locale":   ("🏘  VIE LOCALE",    "#2ECC71"),
+    "sports":       ("⚽ SPORTS",        "#FF6B00"),
+    "social":       ("🤝 SOCIAL",        "#9B59B6"),
+    "politique":    ("🏛  POLITIQUE",     "#E74C3C"),
+    "economie":     ("💼 ÉCONOMIE",      "#F39C12"),
+    "environement": ("🌿 ENVIRONNEMENT", "#27AE60"),
+    "en bref":      ("📰 EN BREF",       "#1ABC9C"),
+    "general":      ("📡 ACTUALITÉS",    "#95A5A6"),
+    "custom":       ("🎙  FLASH INFO",    "#FFFFFF"),
 }
 
 
@@ -970,7 +970,7 @@ def _make_interstitial(category: str, output_path: Path) -> Path:
         f"drawbox=x=80:y=930:w=920:h=8:color=0x{color_hex}@1:t=fill,"
         f"drawbox=x=80:y=982:w=920:h=8:color=0x{color_hex}@1:t=fill,"
         f"drawtext=text='{label}':"
-        f"fontsize=110:fontcolor=0x{color_hex}:font=Sans:bold=1:"
+        f"fontsize=110:fontcolor=0x{color_hex}:font=Noto Color Emoji:bold=1:"
         f"x=(w-tw)/2:y=(h-th)/2-30:"
         f"shadowcolor=black@0.6:shadowx=3:shadowy=3,"
         f"drawtext=text='Flash Info Karukera par Botiran':"

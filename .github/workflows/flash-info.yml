@@ -40,8 +40,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Installer FFmpeg
-        run: sudo apt-get install -y ffmpeg
+      - name: Installer FFmpeg et polices emoji
+        run: sudo apt-get install -y ffmpeg fonts-noto-color-emoji
 
       - name: Configurer Python
         uses: actions/setup-python@v5
