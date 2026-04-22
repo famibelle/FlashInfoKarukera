@@ -928,6 +928,22 @@ TIKTOK_COLORS = {
     "curious":  "#00CED1",
 }
 
+INTERSTITIAL_DURATION = 2.5  # secondes
+
+# Mapping catégorie → (label affiché, couleur hex)
+INTERSTITIAL_STYLES: dict[str, tuple[str, str]] = {
+    "météo":        ("MÉTÉO",        "#4A90D9"),
+    "vie locale":   ("VIE LOCALE",   "#2ECC71"),
+    "sports":       ("SPORTS",       "#FF6B00"),
+    "social":       ("SOCIAL",       "#9B59B6"),
+    "politique":    ("POLITIQUE",    "#E74C3C"),
+    "economie":     ("ÉCONOMIE",     "#F39C12"),
+    "environement": ("ENVIRONNEMENT","#27AE60"),
+    "en bref":      ("EN BREF",      "#1ABC9C"),
+    "general":      ("ACTUALITÉS",   "#95A5A6"),
+    "custom":       ("FLASH INFO",   "#FFFFFF"),
+}
+
 
 def _ass_time(s: float) -> str:
     h = int(s // 3600)
@@ -941,6 +957,39 @@ def _ass_color(hex_color: str) -> str:
     h = hex_color.lstrip("#")
     r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
     return f"&H00{b:02X}{g:02X}{r:02X}&"
+
+
+def _make_interstitial(category: str, output_path: Path) -> Path:
+    """Génère un MP4 interstitiel 1080×1920 de INTERSTITIAL_DURATION secondes."""
+    label, color = INTERSTITIAL_STYLES.get(category, INTERSTITIAL_STYLES["general"])
+    color_hex = color.lstrip("#")
+    duration = INTERSTITIAL_DURATION
+    # Deux barres colorées encadrant le label centré verticalement
+    filter_v = (
+        f"color=c=black:s=1080x1920:r=30:d={duration},"
+        f"drawbox=x=80:y=930:w=920:h=8:color=0x{color_hex}@1:t=fill,"
+        f"drawbox=x=80:y=982:w=920:h=8:color=0x{color_hex}@1:t=fill,"
+        f"drawtext=text='{label}':"
+        f"fontsize=110:fontcolor=0x{color_hex}:font=Sans:bold=1:"
+        f"x=(w-tw)/2:y=(h-th)/2-30:"
+        f"shadowcolor=black@0.6:shadowx=3:shadowy=3,"
+        f"drawtext=text='Flash Info Karukera par Botiran':"
+        f"fontsize=38:fontcolor=white@0.5:font=Sans:"
+        f"x=(w-tw)/2:y=1060"
+    )
+    proc = subprocess.run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-f", "lavfi", "-i", filter_v,
+        "-f", "lavfi", "-i", f"anullsrc=r=44100:cl=stereo:d={duration}",
+        "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+        "-c:a", "aac", "-b:a", "192k",
+        "-t", str(duration),
+        "-shortest",
+        str(output_path),
+    ], capture_output=True)
+    if proc.returncode != 0:
+        raise RuntimeError(f"ffmpeg interstitiel error: {proc.stderr.decode()}")
+    return output_path
 
 
 def _make_ass(words: list[dict], tone: str) -> str:
@@ -1282,6 +1331,41 @@ def upload_youtube_short(video_path: Path, title: str, description: str) -> str:
     return url
 
 
+def _interleave_interstitials(
+    videos: list[tuple[int, Path]],
+    items: list[dict],
+    output_dir: Path,
+) -> list[Path]:
+    """
+    Intercale un interstitiel avant chaque segment de contenu (MÉTÉO et sujets).
+    - videos  : [(segment_index, path), …] dans l'ordre
+    - items   : articles collectés (items[0] → segment 2, items[1] → segment 3, …)
+    Retourne la liste ordonnée de paths (interstitiels + segments) prête pour concat.
+    """
+    result: list[Path] = []
+    for idx, video_path in videos:
+        if idx == 0:
+            # INTRO : pas d'interstitiel avant
+            result.append(video_path)
+            continue
+
+        # Déterminer la catégorie du segment
+        if idx == 1:
+            category = "météo"
+        elif idx - 2 < len(items):
+            category = items[idx - 2].get("category", "general")
+        else:
+            category = "general"
+
+        inter_path = output_dir / f"inter_{idx:02d}_{category.replace(' ', '_')}.mp4"
+        print(f"   Interstitiel [{idx}] — {category}")
+        _make_interstitial(category, inter_path)
+        result.append(inter_path)
+        result.append(video_path)
+
+    return result
+
+
 def concatenate_videos(video_paths: list[Path], output_path: Path) -> Path:
     """Concatène les MP4 dans l'ordre via le concat demuxer FFmpeg (re-encode)."""
     filelist = output_path.parent / "filelist.txt"
@@ -1596,9 +1680,10 @@ def main():
                 yt_desc = _youtube_description(segments[idx], idx, n_seg, date_str)
                 upload_youtube_short(video_path, yt_title, yt_desc)
 
-            print("🎞️  Génération vidéo complète…")
+            print("🎞️  Génération vidéo complète avec interstitiels…")
             full_video_path = video_dir / "flash-info-complet.mp4"
-            concatenate_videos([p for _, p in videos], full_video_path)
+            ordered = _interleave_interstitials(videos, items, video_dir)
+            concatenate_videos(ordered, full_video_path)
             print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
 
             print("📤 Envoi vidéo complète sur Telegram…")
