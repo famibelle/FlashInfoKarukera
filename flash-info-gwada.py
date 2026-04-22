@@ -1432,20 +1432,37 @@ def _interleave_interstitials(
 
 
 def concatenate_videos(video_paths: list[Path], output_path: Path) -> Path:
-    """Concatène les MP4 dans l'ordre via le concat demuxer FFmpeg (re-encode)."""
-    filelist = output_path.parent / "filelist.txt"
-    filelist.write_text(
-        "\n".join(f"file '{p.resolve()}'" for p in video_paths),
-        encoding="utf-8",
-    )
+    """
+    Concatène les MP4 via le concat filter graph FFmpeg.
+    Chaque stream vidéo est normalisé à 30fps/SAR=1 et chaque stream audio à 44100Hz
+    avant d'être passé au filtre concat, ce qui garantit A/V sync parfaite à chaque
+    jonction quelle que soit la source (segments TTS ou interstitiels lavfi).
+    """
+    n = len(video_paths)
+    inputs = []
+    for p in video_paths:
+        inputs += ["-i", str(p)]
+
+    # Normalise chaque clip indépendamment, puis les enchaîne
+    filter_parts = []
+    for i in range(n):
+        filter_parts.append(f"[{i}:v]fps=30,setsar=1[v{i}]")
+        filter_parts.append(f"[{i}:a]aresample=44100[a{i}]")
+
+    concat_inputs = "".join(f"[v{i}][a{i}]" for i in range(n))
+    filter_parts.append(f"{concat_inputs}concat=n={n}:v=1:a=1[vout][aout]")
+
+    filter_complex = ";".join(filter_parts)
+
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
-        "-f", "concat", "-safe", "0", "-i", str(filelist),
+        *inputs,
+        "-filter_complex", filter_complex,
+        "-map", "[vout]", "-map", "[aout]",
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
         "-c:a", "aac", "-b:a", "192k",
         str(output_path),
     ], capture_output=True)
-    filelist.unlink(missing_ok=True)
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg concat error: {proc.stderr.decode()}")
     return output_path
