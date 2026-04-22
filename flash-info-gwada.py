@@ -253,10 +253,13 @@ def fetch_news(feeds: list[str], max_items: int, target_date: Date) -> list[dict
         for _, t, d, desc, feed_url in all_items
     ]
 
-    # Priorité : local Guadeloupe (0) → lieu inconnu (1) → international (2)
-    # À priorité égale, l'ordre chronologique (déjà trié) est conservé.
-    candidates.sort(key=lambda it: _lieu_priority(it["lieu"]))
-    items = candidates[:max_items]
+    # Les articles du fil custom sont toujours inclus s'il y en a pour le jour J.
+    # Les autres slots sont remplis par priorité géographique (local → N/A → international).
+    custom_items = [c for c in candidates if c["category"] == "custom"]
+    other_items  = [c for c in candidates if c["category"] != "custom"]
+    other_items.sort(key=lambda it: _lieu_priority(it["lieu"]))
+    slots = max(0, max_items - len(custom_items))
+    items = custom_items + other_items[:slots]
 
     local_count = sum(1 for it in items if _lieu_priority(it["lieu"]) == 0)
     intl_count  = sum(1 for it in items if _lieu_priority(it["lieu"]) == 2)
@@ -953,12 +956,19 @@ def _mistral_stt(audio_path: Path, word_timestamps: bool = False) -> dict:
             "Content-Type": f"multipart/form-data; boundary={boundary}",
         },
     )
-    try:
-        with urllib.request.urlopen(req, timeout=120) as r:
-            return json.loads(r.read())
-    except urllib.error.HTTPError as e:
-        body_err = e.read().decode(errors="replace")
-        raise RuntimeError(f"STT HTTP {e.code}: {body_err}") from None
+    import time as _time
+    for attempt in range(5):
+        try:
+            with urllib.request.urlopen(req, timeout=120) as r:
+                return json.loads(r.read())
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < 4:
+                wait = 10 * 2 ** attempt
+                print(f"   ⏳ STT 429 — attente {wait}s (tentative {attempt + 1}/5)…")
+                _time.sleep(wait)
+            else:
+                body_err = e.read().decode(errors="replace")
+                raise RuntimeError(f"STT HTTP {e.code}: {body_err}") from None
 
 
 def transcribe_audio(audio_path: Path) -> str:
