@@ -304,12 +304,14 @@ def generate_hashtags(items: list[dict]) -> list[list[str]]:
         f'[[\"#Haiti\",\"#Caraibes\"],[\"#Sport\",\"#Guadeloupe\"]].\n\n'
         f"Articles :\n{articles_json}"
     )
-    raw = _mistral_chat(prompt, system="Tu es un assistant JSON strict. Réponds uniquement avec du JSON valide.")
-    # Extrait le JSON même si le modèle ajoute du texte autour
-    start = raw.find("[")
-    end   = raw.rfind("]") + 1
+    raw = call_mistral(
+        system="Tu es un assistant JSON strict. Réponds uniquement avec du JSON valide.",
+        user=prompt,
+        json_mode=True,
+        max_tokens=500,
+    )
     try:
-        result = json.loads(raw[start:end])
+        result = json.loads(raw)
         # Normalise : s'assure qu'on a bien une liste de listes
         return [
             [h if h.startswith("#") else f"#{h}" for h in row][:HASHTAG_COUNT]
