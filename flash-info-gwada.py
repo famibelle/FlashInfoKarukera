@@ -999,37 +999,57 @@ def _make_interstitial(category: str, output_path: Path, stinger: Path) -> Path:
 
 def _make_cta_interstitial(output_path: Path, stinger: Path) -> Path:
     """Génère un MP4 de clôture avec le call-to-action INTERSTITIAL_CTA."""
-    # Supprime l'emoji de fin (FFmpeg drawtext ne supporte pas les polices couleur)
     cta_text = INTERSTITIAL_CTA.rstrip().rstrip("👇").rstrip()
     duration = _stinger_duration(stinger)
-    # Découpe en deux lignes autour de la virgule
-    if "," in cta_text:
-        cut = cta_text.index(",")
-        line1, line2 = cta_text[: cut + 1], cta_text[cut + 1 :].strip()
-    else:
-        line1, line2 = cta_text, ""
-    # Écrit les lignes dans des fichiers temporaires pour éviter les problèmes
-    # d'échappement des apostrophes dans le parser FFmpeg lavfi
+
+    # Word-wrap : max ~20 caractères par ligne pour tenir dans 1080px à fontsize=62
+    words = cta_text.split()
+    lines, current = [], ""
+    for word in words:
+        candidate = f"{current} {word}".strip()
+        if len(candidate) <= 20:
+            current = candidate
+        else:
+            if current:
+                lines.append(current)
+            current = word
+    if current:
+        lines.append(current)
+
+    # Écrit chaque ligne + le watermark dans des fichiers temporaires
     tmp = output_path.parent
-    f1 = tmp / "cta_line1.txt"
-    f2 = tmp / "cta_line2.txt"
-    f3 = tmp / "cta_watermark.txt"
-    f1.write_text(line1, encoding="utf-8")
-    f2.write_text(line2, encoding="utf-8")
-    f3.write_text("Flash Info Karukera par Botiran", encoding="utf-8")
-    filter_v = (
-        f"color=c=black:s=1080x1920:r=30:d={duration},"
-        f"drawbox=x=0:y=0:w=1080:h=1920:color=0x1A1A2E@1:t=fill,"
-        f"drawtext=textfile={f1}:fontsize=72:fontcolor=white:fontfile={_FONT_BOLD}:"
-        f"x=(w-tw)/2:y=900:shadowcolor=black@0.6:shadowx=2:shadowy=2"
-        + (
-            f",drawtext=textfile={f2}:fontsize=72:fontcolor=white:fontfile={_FONT_BOLD}:"
-            f"x=(w-tw)/2:y=990:shadowcolor=black@0.6:shadowx=2:shadowy=2"
-            if line2 else ""
-        ) +
-        f",drawtext=textfile={f3}:fontsize=38:fontcolor=white@0.4:fontfile={_FONT_REGULAR}:"
-        f"x=(w-tw)/2:y=1140"
+    line_files = []
+    for i, line in enumerate(lines):
+        f = tmp / f"cta_line{i}.txt"
+        f.write_text(line, encoding="utf-8")
+        line_files.append(f)
+    wm_file = tmp / "cta_watermark.txt"
+    wm_file.write_text("Flash Info Karukera par Botiran", encoding="utf-8")
+
+    # Centre le bloc de texte verticalement (ligne_height=80px)
+    fontsize   = 62
+    line_h     = 80
+    block_h    = len(lines) * line_h
+    y_start    = (1920 - block_h) // 2 - 40  # légèrement au-dessus du centre
+
+    filter_parts = [
+        f"color=c=black:s=1080x1920:r=30:d={duration}",
+        f"drawbox=x=0:y=0:w=1080:h=1920:color=0x1A1A2E@1:t=fill",
+    ]
+    for i, f in enumerate(line_files):
+        y = y_start + i * line_h
+        filter_parts.append(
+            f"drawtext=textfile={f}:fontsize={fontsize}:fontcolor=white:"
+            f"fontfile={_FONT_BOLD}:x=(w-tw)/2:y={y}:"
+            f"shadowcolor=black@0.6:shadowx=2:shadowy=2"
+        )
+    y_wm = y_start + len(lines) * line_h + 40
+    filter_parts.append(
+        f"drawtext=textfile={wm_file}:fontsize=36:fontcolor=white@0.4:"
+        f"fontfile={_FONT_REGULAR}:x=(w-tw)/2:y={y_wm}"
     )
+    filter_v = ",".join(filter_parts)
+
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
         "-f", "lavfi", "-i", filter_v,
@@ -1039,8 +1059,9 @@ def _make_cta_interstitial(output_path: Path, stinger: Path) -> Path:
         "-shortest",
         str(output_path),
     ], capture_output=True)
-    for f in (f1, f2, f3):
+    for f in line_files:
         f.unlink(missing_ok=True)
+    wm_file.unlink(missing_ok=True)
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg CTA error: {proc.stderr.decode()}")
     return output_path
