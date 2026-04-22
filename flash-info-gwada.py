@@ -1015,23 +1015,65 @@ _FONT_BOLD    = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 _FONT_REGULAR = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 
 
-def _make_interstitial(category: str, output_path: Path, stinger: Path) -> Path:
+def _make_interstitial(
+    category: str, output_path: Path, stinger: Path,
+    hashtags: list[str] | None = None,
+) -> Path:
     """Génère un MP4 interstitiel 1080×1920, durée et audio calés sur le stinger."""
     label, color = INTERSTITIAL_STYLES.get(category, INTERSTITIAL_STYLES["general"])
     color_hex = color.lstrip("#")
     duration = _stinger_duration(stinger)
     parts = label.split(" ", 1)
     text = parts[1] if len(parts) == 2 else parts[0]
-    filter_v = (
-        f"color=c=black:s=1080x1920:r=30:d={duration},"
+    tmp = output_path.parent
+
+    # ── Hashtags : word-wrap sur ~25 chars, écrits dans des textfiles ──
+    ht_files: list[Path] = []
+    if hashtags:
+        words, lines, current = hashtags[:], [], ""
+        for w in words:
+            candidate = f"{current} {w}".strip()
+            if len(candidate) <= 25:
+                current = candidate
+            else:
+                if current:
+                    lines.append(current)
+                current = w
+        if current:
+            lines.append(current)
+        for i, line in enumerate(lines):
+            f = tmp / f"inter_ht_{output_path.stem}_{i}.txt"
+            f.write_text(line, encoding="utf-8")
+            ht_files.append(f)
+
+    # ── Construction du filtre ──
+    ht_fontsize  = 72
+    ht_line_h    = 85
+    # Hashtags centrés dans le tiers supérieur (y ≈ 500 → 900)
+    ht_y_start   = max(500, 750 - len(ht_files) * ht_line_h // 2)
+    cat_y        = ht_y_start + len(ht_files) * ht_line_h + 60
+
+    filter_parts = [f"color=c=black:s=1080x1920:r=30:d={duration}"]
+    for i, f in enumerate(ht_files):
+        y = ht_y_start + i * ht_line_h
+        filter_parts.append(
+            f"drawtext=textfile={f}:fontsize={ht_fontsize}:fontcolor=0x{color_hex}:"
+            f"fontfile={_FONT_BOLD}:x=(w-tw)/2:y={y}:"
+            f"shadowcolor=black@0.6:shadowx=2:shadowy=2"
+        )
+    filter_parts.append(
         f"drawtext=text='{text}':"
         f"fontsize=110:fontcolor=0x{color_hex}:fontfile={_FONT_BOLD}:"
-        f"x=(w-tw)/2:y=960:"
-        f"shadowcolor=black@0.6:shadowx=3:shadowy=3,"
+        f"x=(w-tw)/2:y={cat_y}:"
+        f"shadowcolor=black@0.6:shadowx=3:shadowy=3"
+    )
+    filter_parts.append(
         f"drawtext=text='Flash Info Karukera par Botiran':"
         f"fontsize=38:fontcolor=white@0.5:fontfile={_FONT_REGULAR}:"
-        f"x=(w-tw)/2:y=1080"
+        f"x=(w-tw)/2:y={cat_y + 130}"
     )
+    filter_v = ",".join(filter_parts)
+
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
         "-f", "lavfi", "-i", filter_v,
@@ -1041,6 +1083,8 @@ def _make_interstitial(category: str, output_path: Path, stinger: Path) -> Path:
         "-shortest",
         str(output_path),
     ], capture_output=True)
+    for f in ht_files:
+        f.unlink(missing_ok=True)
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg interstitiel error: {proc.stderr.decode()}")
     return output_path
@@ -1498,8 +1542,9 @@ def _interleave_interstitials(
             category = "general"
 
         inter_path = output_dir / f"inter_{idx:02d}_{category.replace(' ', '_')}.mp4"
-        print(f"   Interstitiel [{idx}] — {category}")
-        _make_interstitial(category, inter_path, stinger)
+        hashtags = items[idx - 2].get("hashtags", []) if idx >= 2 and idx - 2 < len(items) else []
+        print(f"   Interstitiel [{idx}] — {category} {hashtags[:2]}")
+        _make_interstitial(category, inter_path, stinger, hashtags)
         result.append(inter_path)
         result.append(video_path)
 
