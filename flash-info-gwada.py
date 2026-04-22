@@ -936,6 +936,8 @@ TIKTOK_COLORS = {
 
 INTERSTITIAL_DURATION = 2.5  # secondes
 
+SUBTITLE_FONTSIZE = 130  # taille du mot courant dans les sous-titres karaoke
+
 INTERSTITIAL_CTA          = "Si j'ai mal prononcé certains mots, dites-le moi en commentaire"
 INTERSTITIAL_CTA_DURATION = 5.0  # secondes (texte long à lire)
 
@@ -1086,7 +1088,7 @@ def _make_ass(words: list[dict], tone: str) -> str:
         "OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, "
         "ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, "
         "Alignment, MarginL, MarginR, MarginV, Encoding\n"
-        "Style: Default,Arial,96,&H00FFFFFF,&H00FFFFFF,&H00000000,"
+        f"Style: Default,Arial,{round(SUBTITLE_FONTSIZE * 0.74)},&H00FFFFFF,&H00FFFFFF,&H00000000,"
         "&HA0000000,0,0,0,0,100,100,0,0,1,5,2,5,80,80,0,1\n\n"
         "[Events]\n"
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
@@ -1097,11 +1099,13 @@ def _make_ass(words: list[dict], tone: str) -> str:
         start = word["start"]
         end   = max(word["end"], start + 0.05)
         parts = []
+        fs_curr = SUBTITLE_FONTSIZE
+        fs_adj  = round(SUBTITLE_FONTSIZE * 0.74)
         if i > 0:
-            parts.append(f"{{\\c{dim_col}\\fs80}}{words[i - 1]['word']}")
-        parts.append(f"{{\\c{tone_col}\\fs108\\b1}}{word['word']}{{\\b0}}")
+            parts.append(f"{{\\c{dim_col}\\fs{fs_adj}}}{words[i - 1]['word']}")
+        parts.append(f"{{\\c{tone_col}\\fs{fs_curr}\\b1}}{word['word']}{{\\b0}}")
         if i < len(words) - 1:
-            parts.append(f"{{\\c{dim_col}\\fs80}}{words[i + 1]['word']}")
+            parts.append(f"{{\\c{dim_col}\\fs{fs_adj}}}{words[i + 1]['word']}")
         # \an5 = centré horizontalement et verticalement dans la zone texte
         # \pos(540,1210) = centre horizontal, milieu de la zone sous le spectre (500px + 710px restants / 2)
         events.append(
