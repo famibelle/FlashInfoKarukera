@@ -369,8 +369,10 @@ def call_mistral(
     max_tokens: int = 1500,
     json_mode: bool = False,
     timeout: int = 60,
+    _retries: int = 4,
 ) -> str:
-    """Appelle Mistral chat completions et retourne le contenu du message de réponse."""
+    """Appelle Mistral chat completions avec retry exponentiel sur 429."""
+    import time
     payload: dict = {
         "model": MISTRAL_CHAT_MODEL,
         "temperature": temperature,
@@ -391,9 +393,18 @@ def call_mistral(
             "Content-Type": "application/json",
         },
     )
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        result = json.loads(r.read())
-    return result["choices"][0]["message"]["content"]
+    for attempt in range(_retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                result = json.loads(r.read())
+            return result["choices"][0]["message"]["content"]
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < _retries:
+                wait = 10 * 2 ** attempt  # 10s, 20s, 40s, 80s
+                print(f"   ⏳ Mistral 429 — attente {wait}s (tentative {attempt + 1}/{_retries})…")
+                time.sleep(wait)
+            else:
+                raise
 
 
 MARYSE_SYSTEM = _load_prompt("maryse.md")
