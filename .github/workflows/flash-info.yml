@@ -75,7 +75,9 @@ jobs:
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             ARGS="$ARGS --dry-run"
           fi
-          if [ "$IS_SCHEDULE" = "true" ] || [ "${{ github.event.inputs.tiktok }}" = "true" ]; then
+          # tiktok activé par défaut (cron, workflow_dispatch sans paramètre, ou paramètre explicite)
+          TIKTOK_INPUT="${{ github.event.inputs.tiktok }}"
+          if [ "$IS_SCHEDULE" = "true" ] || [ "$TIKTOK_INPUT" = "true" ] || [ -z "$TIKTOK_INPUT" ]; then
             ARGS="$ARGS --tiktok"
           fi
           if [ "${{ github.event.inputs.youtube }}" = "true" ]; then
