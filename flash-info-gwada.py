@@ -43,7 +43,7 @@ RSS_FEEDS = [
     "https://zye-a-mangrovla.fr/?feed=rss2",
     "https://www.regionguadeloupe.fr/actualites-et-agendas/toute-lactualite/flux.rss",
     "https://la1ere.franceinfo.fr/economie/rss?r=guadeloupe",
-    "rss.xml"
+    "https://raw.githubusercontent.com/famibelle/FlashInfoKarukera/main/rss.xml"
 ]
 MAX_ITEMS = 7          # 7 sujets → ~2m-2m30 audio
 DESC_MAX_CHARS = 400   # description tronquée pour donner assez de contexte
