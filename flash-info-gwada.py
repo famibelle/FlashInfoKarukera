@@ -1680,15 +1680,17 @@ def main():
                 yt_desc = _youtube_description(segments[idx], idx, n_seg, date_str)
                 upload_youtube_short(video_path, yt_title, yt_desc)
 
-            print("🎞️  Génération vidéo complète avec interstitiels…")
-            full_video_path = video_dir / "flash-info-complet.mp4"
-            ordered = _interleave_interstitials(videos, items, video_dir)
-            concatenate_videos(ordered, full_video_path)
-            print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
+        # Vidéo complète : générée dès que --tiktok ou --youtube est actif
+        print("🎞️  Génération vidéo complète avec interstitiels…")
+        full_video_path = video_dir / "flash-info-complet.mp4"
+        ordered = _interleave_interstitials(videos, items, video_dir)
+        concatenate_videos(ordered, full_video_path)
+        print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
 
-            print("📤 Envoi vidéo complète sur Telegram…")
-            send_telegram_video(full_video_path, f"🎙️ {title} — émission complète")
+        print("📤 Envoi vidéo complète sur Telegram…")
+        send_telegram_video(full_video_path, f"🎙️ {title} — émission complète")
 
+        if args.youtube:
             print("▶️  Upload YouTube vidéo complète…")
             yt_full_desc = _youtube_full_description(segments, date_str)
             upload_youtube_video(full_video_path, title, yt_full_desc)
