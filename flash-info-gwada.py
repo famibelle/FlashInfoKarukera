@@ -38,8 +38,9 @@ _load_env(Path(__file__).parent / ".env")
 from data.sources import RSS_FEEDS, RSS_SOURCES
 
 _FEED_CATEGORY: dict[str, str] = {s.url: s.category for s in RSS_SOURCES}
-MAX_ITEMS = 7          # 7 sujets → ~2m-2m30 audio
+MAX_ITEMS      = 7     # 7 sujets → ~2m-2m30 audio
 DESC_MAX_CHARS = 400   # description tronquée pour donner assez de contexte
+HASHTAG_COUNT  = 5     # nombre de hashtags générés par article
 
 MISTRAL_API_KEY     = os.environ["MISTRAL_API_KEY"]
 TTS_MODEL           = "voxtral-mini-tts-2603"
@@ -280,6 +281,44 @@ def _wind_label(kmh: float) -> str:
     if kmh < 50:  return "vent modéré"
     if kmh < 70:  return "vent fort"
     return "vent très fort"
+
+
+def generate_hashtags(items: list[dict]) -> list[list[str]]:
+    """
+    Génère HASHTAG_COUNT hashtags pertinents par article via un seul appel Mistral.
+    Retourne une liste de listes de hashtags dans le même ordre que items.
+    """
+    if not items:
+        return []
+    articles_json = json.dumps(
+        [{"titre": it["title"], "desc": it["desc"], "categorie": it.get("category", "")}
+         for it in items],
+        ensure_ascii=False,
+    )
+    prompt = (
+        f"Tu es un expert en social media pour l'actualité guadeloupéenne.\n"
+        f"Pour chaque article ci-dessous, génère exactement {HASHTAG_COUNT} hashtags "
+        f"pertinents (mélange français/anglais, sans espace, avec #).\n"
+        f"Réponds UNIQUEMENT avec un tableau JSON de tableaux de strings, "
+        f"dans le même ordre que les articles. Exemple : "
+        f'[[\"#Haiti\",\"#Caraibes\"],[\"#Sport\",\"#Guadeloupe\"]].\n\n'
+        f"Articles :\n{articles_json}"
+    )
+    raw = _mistral_chat(prompt, system="Tu es un assistant JSON strict. Réponds uniquement avec du JSON valide.")
+    # Extrait le JSON même si le modèle ajoute du texte autour
+    start = raw.find("[")
+    end   = raw.rfind("]") + 1
+    try:
+        result = json.loads(raw[start:end])
+        # Normalise : s'assure qu'on a bien une liste de listes
+        return [
+            [h if h.startswith("#") else f"#{h}" for h in row][:HASHTAG_COUNT]
+            if isinstance(row, list) else []
+            for row in result
+        ]
+    except (json.JSONDecodeError, ValueError):
+        print("   ⚠️  Hashtags : réponse JSON invalide, hashtags ignorés")
+        return [[] for _ in items]
 
 
 def fetch_weather(target_date: Date) -> str:
@@ -1740,6 +1779,13 @@ def main():
     items = fetch_news(RSS_FEEDS, MAX_ITEMS, target_date)
     if not items:
         print(f"⚠️  Aucune actualité pour le {date_str} — flash météo uniquement.")
+
+    if items:
+        print("🏷️  Génération des hashtags…")
+        hashtags_list = generate_hashtags(items)
+        for item, hashtags in zip(items, hashtags_list):
+            item["hashtags"] = hashtags
+        print(f"   {sum(len(h) for h in hashtags_list)} hashtags générés pour {len(items)} articles")
 
     if args.verbose:
         print("\n══════════════════════════════════════════════════════════")
