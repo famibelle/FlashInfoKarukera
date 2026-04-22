@@ -1352,7 +1352,7 @@ def send_telegram(audio_path: Path, caption: str) -> None:
     print("   Envoyé ✅")
 
 
-def send_telegram_video(video_path: Path, caption: str) -> None:
+def send_telegram_video(video_path: Path, caption: str, timeout: int = 120) -> None:
     boundary = "----FlashInfoBoundary"
 
     def field(name, value):
@@ -1370,12 +1370,15 @@ def send_telegram_video(video_path: Path, caption: str) -> None:
     ).encode() + video_path.read_bytes() + b"\r\n"
     body += f"--{boundary}--\r\n".encode()
 
+    size_mb = video_path.stat().st_size / 1_048_576
+    print(f"   Upload Telegram : {video_path.name} ({size_mb:.1f} Mo)…")
+
     req = urllib.request.Request(
         f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendVideo",
         data=body,
         headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
     )
-    with urllib.request.urlopen(req, timeout=60) as r:
+    with urllib.request.urlopen(req, timeout=timeout) as r:
         result = json.loads(r.read())
     if not result.get("ok"):
         raise RuntimeError(f"Telegram video error: {result}")
@@ -2048,7 +2051,7 @@ def main():
             full_caption = full_caption[:1021] + "…"
 
         print("📤 Envoi vidéo complète sur Telegram…")
-        send_telegram_video(full_video_path, full_caption)
+        send_telegram_video(full_video_path, full_caption, timeout=300)
 
         if args.youtube:
             print("▶️  Upload YouTube vidéo complète…")
