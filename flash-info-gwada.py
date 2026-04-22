@@ -964,18 +964,28 @@ def _make_interstitial(category: str, output_path: Path) -> Path:
     label, color = INTERSTITIAL_STYLES.get(category, INTERSTITIAL_STYLES["general"])
     color_hex = color.lstrip("#")
     duration = INTERSTITIAL_DURATION
-    # Deux barres colorées encadrant le label centré verticalement
+    # Sépare l'emoji du texte (ex: "🌤 MÉTÉO" → emoji="🌤", text="MÉTÉO")
+    parts = label.split(" ", 1)
+    emoji = parts[0] if len(parts) == 2 else ""
+    text  = parts[1] if len(parts) == 2 else parts[0]
+    # Emoji centré à y=820, texte en gras à y=940, barres colorées à y=910/930
     filter_v = (
         f"color=c=black:s=1080x1920:r=30:d={duration},"
-        f"drawbox=x=80:y=930:w=920:h=8:color=0x{color_hex}@1:t=fill,"
-        f"drawbox=x=80:y=982:w=920:h=8:color=0x{color_hex}@1:t=fill,"
-        f"drawtext=text='{label}':"
-        f"fontsize=110:fontcolor=0x{color_hex}:font=Noto Color Emoji:bold=1:"
-        f"x=(w-tw)/2:y=(h-th)/2-30:"
+        f"drawbox=x=80:y=910:w=920:h=6:color=0x{color_hex}@1:t=fill,"
+        f"drawbox=x=80:y=1050:w=920:h=6:color=0x{color_hex}@1:t=fill,"
+        + (
+            f"drawtext=text='{emoji}':"
+            f"fontsize=140:fontcolor=0x{color_hex}:font=Noto Color Emoji:"
+            f"x=(w-tw)/2:y=760,"
+            if emoji else ""
+        ) +
+        f"drawtext=text='{text}':"
+        f"fontsize=110:fontcolor=0x{color_hex}:font=Sans:fontstyle=Bold:"
+        f"x=(w-tw)/2:y=930:"
         f"shadowcolor=black@0.6:shadowx=3:shadowy=3,"
         f"drawtext=text='Flash Info Karukera par Botiran':"
         f"fontsize=38:fontcolor=white@0.5:font=Sans:"
-        f"x=(w-tw)/2:y=1060"
+        f"x=(w-tw)/2:y=1080"
     )
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
@@ -1529,7 +1539,34 @@ def main():
             "Compatible avec --dry-run."
         ),
     )
+    parser.add_argument(
+        "--check-feeds", action="store_true",
+        help="Vérifie la disponibilité de chaque flux RSS et affiche un rapport. Arrêt sans générer d'audio.",
+    )
     args = parser.parse_args()
+
+    if args.check_feeds:
+        print("🔍 Vérification des flux RSS…\n")
+        ok, ko = [], []
+        for source in RSS_SOURCES:
+            try:
+                with urllib.request.urlopen(source.url, timeout=10) as r:
+                    content = r.read()
+                root = ET.fromstring(content)
+                items_found = len(root.findall(".//item")) + len(root.findall(".//entry"))
+                print(f"  ✅  {source.name}")
+                print(f"      {source.url}")
+                print(f"      {items_found} entrées trouvées\n")
+                ok.append(source.name)
+            except Exception as e:
+                print(f"  ❌  {source.name}")
+                print(f"      {source.url}")
+                print(f"      Erreur : {e}\n")
+                ko.append(source.name)
+        print(f"Résultat : {len(ok)} OK, {len(ko)} en erreur")
+        if ko:
+            sys.exit(1)
+        return
 
     now_gwada = datetime.now(GUADELOUPE_TZ)
     print(f"🕐 Heure locale Guadeloupe : {_date_fr(now_gwada.date())} — {now_gwada.strftime('%H:%M')} (UTC{now_gwada.strftime('%z')[:3]}:{now_gwada.strftime('%z')[3:]})")
