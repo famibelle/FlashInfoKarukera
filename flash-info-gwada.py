@@ -1595,7 +1595,38 @@ def main():
         "--check-feeds", action="store_true",
         help="Vérifie la disponibilité de chaque flux RSS et affiche un rapport. Arrêt sans générer d'audio.",
     )
+    parser.add_argument(
+        "--test-interstitials", metavar="RÉPERTOIRE",
+        help=(
+            "Relit les seg_*.mp4 d'un répertoire généré précédemment, recrée les interstitiels,\n"
+            "concatène et envoie la vidéo complète sur Telegram. Ne refait pas la pipeline audio.\n"
+            "Exemple : --test-interstitials /tmp/tiktok-20260422-1100"
+        ),
+    )
     args = parser.parse_args()
+
+    if args.test_interstitials:
+        video_dir = Path(args.test_interstitials)
+        if not video_dir.is_dir():
+            print(f"❌ Répertoire introuvable : {video_dir}", file=sys.stderr)
+            sys.exit(1)
+        seg_files = sorted(video_dir.glob("seg_*.mp4"))
+        if not seg_files:
+            print(f"❌ Aucun fichier seg_*.mp4 dans {video_dir}", file=sys.stderr)
+            sys.exit(1)
+        items_json = video_dir / "items.json"
+        saved_items = json.loads(items_json.read_text(encoding="utf-8")) if items_json.exists() else []
+        print(f"🎞️  {len(seg_files)} segments trouvés dans {video_dir}")
+        videos = [(int(p.stem.split("_")[1]), p) for p in seg_files]
+        print("🎞️  Génération des interstitiels…")
+        ordered = _interleave_interstitials(videos, saved_items, video_dir)
+        full_video_path = video_dir / "flash-info-complet.mp4"
+        print("🎞️  Concaténation…")
+        concatenate_videos(ordered, full_video_path)
+        print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
+        send_telegram_video(full_video_path, f"🎙️ Test interstitiels — {video_dir.name}")
+        print("✅ Envoyé sur Telegram.")
+        return
 
     if args.check_feeds:
         print("🔍 Vérification des flux RSS…\n")
@@ -1744,6 +1775,9 @@ def main():
         video_dir = OUTPUT_DIR / f"tiktok-{now.strftime('%Y%m%d-%H%M')}"
         videos = generate_tiktok(seg_paths, segments, tones, video_dir)
         print(f"\n🎬 {len(videos)} vidéos dans {video_dir}")
+        (video_dir / "items.json").write_text(
+            json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
         for sp in seg_paths:
             sp.unlink(missing_ok=True)
 
