@@ -4,6 +4,7 @@
 PRONONCIATIONS_LOCALES = {
     # Prononciations créoles
     "Gwoka" : "GroKa",
+    "Raizet" : "Rézé",
     "Lyannaj": "Lyanhnage",   # Lyan-naje, deux syllabes distinctes
     "lyannaj": "Lyanhnage",
     "Goyave":          "Gwayave",
