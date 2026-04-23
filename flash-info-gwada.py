@@ -7,6 +7,7 @@ Collecte RSS → Script → Audio TTS (Voxtral) → Envoi Telegram
 import os
 import sys
 import json
+import random
 import base64
 import argparse
 import subprocess
@@ -1662,7 +1663,8 @@ def _interleave_interstitials(
 
 
 def generate_thumbnail(
-    intro_text: str, target_date: "Date", output_dir: Path, verbose: bool = False
+    intro_text: str, target_date: "Date", output_dir: Path,
+    hashtags: list[str] | None = None, verbose: bool = False
 ) -> "Path | None":
     """Génère une illustration verticale via OpenAI gpt-image-2 à partir du texte d'intro."""
     if not OPENAI_API_KEY:
@@ -1677,10 +1679,15 @@ def generate_thumbnail(
         print("   ⚠️  Package 'openai' non installé — thumbnail ignoré.")
         return None
 
+    hashtags_str = ""
+    if hashtags:
+        sample = random.sample(hashtags, min(5, len(hashtags)))
+        hashtags_str = " Thèmes clés : " + " ".join(sample) + "."
     prompt = (
         "Inspire-toi de l'image d'origine pour créer une illustration verticale au style "
         "journalistique pour un flash info audio de Guadeloupe. "
         f"Résumé du flash info : {intro_text[:600]}"
+        f"{hashtags_str}"
     )
     print("🖼️  Génération thumbnail via OpenAI gpt-image-2…")
     if verbose:
@@ -1712,25 +1719,33 @@ def generate_thumbnail(
         print(f"   Thumbnail : {thumbnail_path} ({len(image_bytes) // 1024} Ko)")
         return thumbnail_path
     except BadRequestError as e:
-        print(f"   ⚠️  Génération thumbnail échouée : {e.message} — thumbnail ignoré.")
-        return None
+        default = MEDIA_DIR / "botiran_news_default_thumbnail.png"
+        print(f"   ⚠️  Génération thumbnail échouée : {e.message} — utilisation du thumbnail par défaut.")
+        return default if default.exists() else None
 
 
 def _embed_thumbnail(video_path: Path, thumbnail_path: Path) -> Path:
-    """Embarque le thumbnail PNG dans le MP4 comme pochette (attached_pic)."""
+    """Insère le thumbnail comme première frame du MP4 (1 frame à 30fps ≈ 33ms)."""
     tmp_path = video_path.with_suffix(".thumb.mp4")
+    one_frame = f"{1/30:.6f}"
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
-        "-i", str(video_path),
+        "-loop", "1", "-framerate", "30", "-t", one_frame,
         "-i", str(thumbnail_path),
-        "-map", "0", "-map", "1",
-        "-c", "copy",
-        "-c:v:1", "png",
-        "-disposition:v:1", "attached_pic",
+        "-f", "lavfi", "-t", one_frame,
+        "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
+        "-i", str(video_path),
+        "-filter_complex",
+        "[0:v][2:v]scale2ref[thumb][vid];"
+        "[thumb]setsar=1[thumb_s];"
+        "[thumb_s][1:a][vid][2:a]concat=n=2:v=1:a=1[v][a]",
+        "-map", "[v]", "-map", "[a]",
+        "-c:v", "libx264", "-c:a", "aac",
+        "-movflags", "+faststart",
         str(tmp_path),
     ], capture_output=True)
     if proc.returncode != 0:
-        print(f"   ⚠️  Embedding thumbnail échoué : {proc.stderr.decode()[:200]}")
+        print(f"   ⚠️  Insertion première frame échouée : {proc.stderr.decode()[:200]}")
         tmp_path.unlink(missing_ok=True)
         return video_path
     tmp_path.replace(video_path)
@@ -2204,6 +2219,15 @@ def main():
         concatenate_videos(ordered, full_video_path, metadata=video_metadata)
         print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
 
+        # Hashtags agrégés (dédupliqués, ordre d'apparition)
+        seen, all_hashtags = set(), []
+        for it in items:
+            for h in it.get("hashtags", []):
+                if h not in seen:
+                    seen.add(h)
+                    all_hashtags.append(h)
+        hashtags_line = " ".join(all_hashtags)
+
         # Thumbnail : fichier fourni par l'utilisateur ou génération OpenAI
         intro_text = segments[0].strip() if segments else ""
         if args.thumbnail:
@@ -2214,20 +2238,14 @@ def main():
                 thumbnail_path = args.thumbnail
                 print(f"   Thumbnail fourni : {thumbnail_path}")
         else:
-            thumbnail_path = generate_thumbnail(intro_text, target_date, video_dir, verbose=args.verbose)
+            thumbnail_path = generate_thumbnail(
+                intro_text, target_date, video_dir,
+                hashtags=all_hashtags, verbose=args.verbose,
+            )
         if thumbnail_path:
             _embed_thumbnail(full_video_path, thumbnail_path)
             print("📤 Envoi thumbnail sur Telegram…")
             send_telegram_photo(thumbnail_path, caption=f"🖼️ {title}")
-
-        # Caption Telegram : titre + intro + hashtags agrégés (tronqué à 1024 chars)
-        seen, all_hashtags = set(), []
-        for it in items:
-            for h in it.get("hashtags", []):
-                if h not in seen:
-                    seen.add(h)
-                    all_hashtags.append(h)
-        hashtags_line = " ".join(all_hashtags)
         full_caption = f"🎙️ {title}\n\n{intro_text}\n\n{hashtags_line}".strip()
         if len(full_caption) > 1024:
             full_caption = full_caption[:1021] + "…"
