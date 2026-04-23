@@ -72,9 +72,13 @@ YOUTUBE_CLIENT_ID     = os.environ.get("YOUTUBE_CLIENT_ID", "")
 YOUTUBE_CLIENT_SECRET = os.environ.get("YOUTUBE_CLIENT_SECRET", "")
 YOUTUBE_REFRESH_TOKEN = os.environ.get("YOUTUBE_REFRESH_TOKEN", "")
 
+OPENAI_API_KEY  = os.environ.get("OPENAI_API_KEY", "")
+
 OUTPUT_DIR      = Path("/tmp")
 STINGERS_DIR    = Path(__file__).parent / "Stingers"
 PROMPTS_DIR     = Path(__file__).parent / "prompts"
+MEDIA_DIR       = Path(__file__).parent / "Media"
+BOTIRAN_PROFILE = MEDIA_DIR / "botiran_profile.jpg"
 GUADELOUPE_TZ   = ZoneInfo("America/Guadeloupe")
 
 WEATHER_LAT  = 16.17    # centre Guadeloupe (entre Basse-Terre et Grande-Terre)
@@ -1355,7 +1359,12 @@ def send_telegram(audio_path: Path, caption: str) -> None:
     print("   Envoyé ✅")
 
 
-def send_telegram_video(video_path: Path, caption: str, timeout: int = 120) -> None:
+def send_telegram_video(
+    video_path: Path,
+    caption: str,
+    timeout: int = 120,
+    thumbnail_path: "Path | None" = None,
+) -> None:
     boundary = "----FlashInfoBoundary"
 
     def field(name, value):
@@ -1365,12 +1374,17 @@ def send_telegram_video(video_path: Path, caption: str, timeout: int = 120) -> N
             f"{value}\r\n"
         ).encode()
 
+    def file_field(name, filename, content_type, data):
+        return (
+            f"--{boundary}\r\n"
+            f'Content-Disposition: form-data; name="{name}"; filename="{filename}"\r\n'
+            f"Content-Type: {content_type}\r\n\r\n"
+        ).encode() + data + b"\r\n"
+
     body = field("chat_id", TELEGRAM_CHAT_ID) + field("caption", caption)
-    body += (
-        f"--{boundary}\r\n"
-        f'Content-Disposition: form-data; name="video"; filename="{video_path.name}"\r\n'
-        f"Content-Type: video/mp4\r\n\r\n"
-    ).encode() + video_path.read_bytes() + b"\r\n"
+    body += file_field("video", video_path.name, "video/mp4", video_path.read_bytes())
+    if thumbnail_path and thumbnail_path.exists():
+        body += file_field("thumbnail", thumbnail_path.name, "image/png", thumbnail_path.read_bytes())
     body += f"--{boundary}--\r\n".encode()
 
     size_mb = video_path.stat().st_size / 1_048_576
@@ -1612,6 +1626,68 @@ def _interleave_interstitials(
     result.append(cta_path)
 
     return result
+
+
+def generate_thumbnail(
+    intro_text: str, target_date: "Date", output_dir: Path, verbose: bool = False
+) -> "Path | None":
+    """Génère une illustration verticale via OpenAI gpt-image-2 à partir du texte d'intro."""
+    if not OPENAI_API_KEY:
+        print("   ⚠️  OPENAI_API_KEY absent — thumbnail ignoré.")
+        return None
+    if not BOTIRAN_PROFILE.exists():
+        print(f"   ⚠️  Image de référence introuvable : {BOTIRAN_PROFILE} — thumbnail ignoré.")
+        return None
+    try:
+        from openai import OpenAI
+    except ImportError:
+        print("   ⚠️  Package 'openai' non installé — thumbnail ignoré.")
+        return None
+
+    prompt = (
+        "Inspire-toi de l'image d'origine pour créer une illustration verticale au style "
+        "journalistique pour un flash info audio de Guadeloupe. "
+        f"Résumé du flash info : {intro_text[:600]}"
+    )
+    print("🖼️  Génération thumbnail via OpenAI gpt-image-2…")
+    if verbose:
+        print("── Prompt thumbnail ─────────────────────────────────────")
+        print(prompt)
+        print("─────────────────────────────────────────────────────────")
+    client = OpenAI(api_key=OPENAI_API_KEY)
+    result = client.images.edit(
+        model="gpt-image-2",
+        image=[open(str(BOTIRAN_PROFILE), "rb")],
+        prompt=prompt,
+        size="1024x1536",
+        response_format="b64_json",
+    )
+    image_bytes = base64.b64decode(result.data[0].b64_json)
+    thumbnail_path = output_dir / f"thumbnail-{target_date}.png"
+    thumbnail_path.write_bytes(image_bytes)
+    print(f"   Thumbnail : {thumbnail_path} ({len(image_bytes) // 1024} Ko)")
+    return thumbnail_path
+
+
+def _embed_thumbnail(video_path: Path, thumbnail_path: Path) -> Path:
+    """Embarque le thumbnail PNG dans le MP4 comme pochette (attached_pic)."""
+    tmp_path = video_path.with_suffix(".thumb.mp4")
+    proc = subprocess.run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-i", str(video_path),
+        "-i", str(thumbnail_path),
+        "-map", "0", "-map", "1",
+        "-c", "copy",
+        "-c:v:1", "png",
+        "-disposition:v:1", "attached_pic",
+        str(tmp_path),
+    ], capture_output=True)
+    if proc.returncode != 0:
+        print(f"   ⚠️  Embedding thumbnail échoué : {proc.stderr.decode()[:200]}")
+        tmp_path.unlink(missing_ok=True)
+        return video_path
+    tmp_path.replace(video_path)
+    return video_path
 
 
 def concatenate_videos(
@@ -2047,8 +2123,13 @@ def main():
         concatenate_videos(ordered, full_video_path, metadata=video_metadata)
         print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
 
-        # Caption Telegram : titre + intro + hashtags agrégés (tronqué à 1024 chars)
+        # Thumbnail : génération + embed dans le MP4
         intro_text = segments[0].strip() if segments else ""
+        thumbnail_path = generate_thumbnail(intro_text, target_date, video_dir, verbose=args.verbose)
+        if thumbnail_path:
+            _embed_thumbnail(full_video_path, thumbnail_path)
+
+        # Caption Telegram : titre + intro + hashtags agrégés (tronqué à 1024 chars)
         seen, all_hashtags = set(), []
         for it in items:
             for h in it.get("hashtags", []):
@@ -2061,7 +2142,7 @@ def main():
             full_caption = full_caption[:1021] + "…"
 
         print("📤 Envoi vidéo complète sur Telegram…")
-        send_telegram_video(full_video_path, full_caption, timeout=300)
+        send_telegram_video(full_video_path, full_caption, timeout=300, thumbnail_path=thumbnail_path)
 
         if args.youtube:
             print("▶️  Upload YouTube vidéo complète…")
