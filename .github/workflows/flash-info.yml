@@ -2,8 +2,8 @@ name: Flash Info Guadeloupe
 
 on:
   schedule:
-    # 7h00 heure Guadeloupe (UTC-4) = 11h00 UTC, tous les jours
-    - cron: "0 11 * * *"
+    # 6h40 heure Guadeloupe (UTC-4) = 10h40 UTC, tous les jours
+    - cron: "40 10 * * *"
   workflow_dispatch:
     inputs:
       date:
