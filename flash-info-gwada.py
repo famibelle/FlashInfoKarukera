@@ -1607,9 +1607,16 @@ def upload_youtube_short(video_path: Path, title: str, description: str) -> str:
     media = MediaFileUpload(str(video_path), mimetype="video/mp4", resumable=True)
     request = youtube.videos().insert(part="snippet,status", body=body, media_body=media)
 
-    response = None
-    while response is None:
-        _, response = request.next_chunk()
+    from googleapiclient.errors import ResumableUploadError
+    try:
+        response = None
+        while response is None:
+            _, response = request.next_chunk()
+    except ResumableUploadError as e:
+        if "uploadLimitExceeded" in str(e):
+            print(f"   ⚠️  Quota YouTube dépassé : limite journalière d'uploads atteinte — vidéo ignorée.")
+            return ""
+        raise
 
     url = f"https://youtube.com/shorts/{response['id']}"
     print(f"   ✅ {url}")
@@ -1848,9 +1855,16 @@ def upload_youtube_video(video_path: Path, title: str, description: str) -> str:
     media = MediaFileUpload(str(video_path), mimetype="video/mp4", resumable=True)
     request = youtube.videos().insert(part="snippet,status", body=body, media_body=media)
 
-    response = None
-    while response is None:
-        _, response = request.next_chunk()
+    from googleapiclient.errors import ResumableUploadError
+    try:
+        response = None
+        while response is None:
+            _, response = request.next_chunk()
+    except ResumableUploadError as e:
+        if "uploadLimitExceeded" in str(e):
+            print(f"   ⚠️  Quota YouTube dépassé : limite journalière d'uploads atteinte — vidéo ignorée.")
+            return ""
+        raise
 
     url = f"https://youtube.com/watch?v={response['id']}"
     print(f"   ✅ {url}")
