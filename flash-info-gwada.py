@@ -73,6 +73,12 @@ YOUTUBE_CLIENT_ID     = os.environ.get("YOUTUBE_CLIENT_ID", "")
 YOUTUBE_CLIENT_SECRET = os.environ.get("YOUTUBE_CLIENT_SECRET", "")
 YOUTUBE_REFRESH_TOKEN = os.environ.get("YOUTUBE_REFRESH_TOKEN", "")
 
+LINKEDIN_ACCESS_TOKEN  = os.environ.get("LINKEDIN_ACCESS_TOKEN", "")
+LINKEDIN_REFRESH_TOKEN = os.environ.get("LINKEDIN_REFRESH_TOKEN", "")
+LINKEDIN_CLIENT_ID     = os.environ.get("LINKEDIN_CLIENT_ID", "")
+LINKEDIN_CLIENT_SECRET = os.environ.get("LINKEDIN_CLIENT_SECRET", "")
+LINKEDIN_PERSON_ID     = os.environ.get("LINKEDIN_PERSON_ID", "")
+
 OPENAI_API_KEY  = os.environ.get("OPENAI_API_KEY", "")
 
 OUTPUT_DIR      = Path("/tmp")
@@ -1851,6 +1857,143 @@ def upload_youtube_video(video_path: Path, title: str, description: str) -> str:
     return url
 
 
+# ── Étape 8 : Publication LinkedIn ───────────────────────────────────────────
+
+_LINKEDIN_CHUNK = 4 * 1024 * 1024  # 4 Mo par chunk
+
+
+def _linkedin_save_tokens(access_token: str, refresh_token: str) -> None:
+    env_path = Path(__file__).parent / ".env"
+    lines = env_path.read_text(encoding="utf-8").splitlines() if env_path.exists() else []
+    updates = {
+        "LINKEDIN_ACCESS_TOKEN":  access_token,
+        "LINKEDIN_REFRESH_TOKEN": refresh_token,
+    }
+    for key, val in updates.items():
+        for i, line in enumerate(lines):
+            if line.startswith(f"{key}="):
+                lines[i] = f"{key}={val}"
+                break
+        else:
+            lines.append(f"{key}={val}")
+    env_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print("   Tokens LinkedIn sauvegardés dans .env")
+
+
+def _linkedin_ensure_token() -> str:
+    """Retourne un access token valide, en le rafraîchissant si possible."""
+    global LINKEDIN_ACCESS_TOKEN, LINKEDIN_REFRESH_TOKEN
+    if not (LINKEDIN_REFRESH_TOKEN and LINKEDIN_CLIENT_ID and LINKEDIN_CLIENT_SECRET):
+        return LINKEDIN_ACCESS_TOKEN
+    body = urllib.parse.urlencode({
+        "grant_type":    "refresh_token",
+        "refresh_token": LINKEDIN_REFRESH_TOKEN,
+        "client_id":     LINKEDIN_CLIENT_ID,
+        "client_secret": LINKEDIN_CLIENT_SECRET,
+    }).encode()
+    req = urllib.request.Request(
+        "https://www.linkedin.com/oauth/v2/accessToken",
+        data=body,
+        headers={"Content-Type": "application/x-www-form-urlencoded"},
+    )
+    with urllib.request.urlopen(req, timeout=30) as r:
+        data = json.loads(r.read())
+    LINKEDIN_ACCESS_TOKEN  = data["access_token"]
+    LINKEDIN_REFRESH_TOKEN = data.get("refresh_token", LINKEDIN_REFRESH_TOKEN)
+    _linkedin_save_tokens(LINKEDIN_ACCESS_TOKEN, LINKEDIN_REFRESH_TOKEN)
+    return LINKEDIN_ACCESS_TOKEN
+
+
+def upload_linkedin_video(video_path: Path, commentary: str) -> str:
+    """Publie une vidéo sur LinkedIn avec le texte fourni."""
+    token = _linkedin_ensure_token()
+    owner = f"urn:li:person:{LINKEDIN_PERSON_ID}"
+    file_size = video_path.stat().st_size
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+        "LinkedIn-Version": "202501",
+    }
+
+    # 1. Initialiser l'upload
+    print(f"   ▶️  Initialisation upload LinkedIn : {video_path.name}…")
+    init_body = json.dumps({
+        "initializeUploadRequest": {
+            "owner": owner,
+            "fileSizeBytes": file_size,
+            "uploadCaptions": False,
+            "uploadThumbnail": False,
+        }
+    }).encode()
+    req = urllib.request.Request(
+        "https://api.linkedin.com/v2/videos?action=initializeUpload",
+        data=init_body, headers=headers,
+    )
+    with urllib.request.urlopen(req, timeout=30) as r:
+        init_data = json.loads(r.read())
+
+    video_urn   = init_data["value"]["video"]
+    upload_token = init_data["value"]["uploadToken"]
+    instructions = init_data["value"]["uploadInstructions"]
+
+    # 2. Upload par chunks
+    video_bytes = video_path.read_bytes()
+    etags = []
+    for i, instruction in enumerate(instructions):
+        first, last = instruction["firstByteOffset"], instruction["lastByteOffset"]
+        chunk = video_bytes[first:last + 1]
+        print(f"   Chunk {i + 1}/{len(instructions)} ({len(chunk) // 1024} Ko)…")
+        put_req = urllib.request.Request(
+            instruction["uploadUrl"],
+            data=chunk, method="PUT",
+            headers={"Content-Type": "application/octet-stream"},
+        )
+        with urllib.request.urlopen(put_req, timeout=300) as r:
+            etags.append(r.headers.get("ETag", ""))
+
+    # 3. Finaliser l'upload
+    final_body = json.dumps({
+        "finalizeUploadRequest": {
+            "video": video_urn,
+            "token": upload_token,
+            "uploadedPartIds": etags,
+        }
+    }).encode()
+    req = urllib.request.Request(
+        "https://api.linkedin.com/v2/videos?action=finalizeUpload",
+        data=final_body, headers=headers,
+    )
+    with urllib.request.urlopen(req, timeout=30) as r:
+        r.read()
+
+    # 4. Créer le post
+    post_body = json.dumps({
+        "author": owner,
+        "commentary": commentary,
+        "visibility": "PUBLIC",
+        "distribution": {
+            "feedDistribution": "MAIN_FEED",
+            "targetEntities": [],
+            "thirdPartyDistributionChannels": [],
+        },
+        "content": {
+            "media": {"id": video_urn},
+        },
+        "lifecycleState": "PUBLISHED",
+        "isReshareDisabledByAuthor": False,
+    }).encode()
+    req = urllib.request.Request(
+        "https://api.linkedin.com/v2/posts",
+        data=post_body, headers=headers,
+    )
+    with urllib.request.urlopen(req, timeout=30) as r:
+        post_id = r.headers.get("x-restli-id", "")
+
+    url = f"https://www.linkedin.com/feed/update/{post_id}/" if post_id else "https://www.linkedin.com/feed/"
+    print(f"   ✅ {url}")
+    return url
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -1923,6 +2066,14 @@ def main():
         ),
     )
     parser.add_argument(
+        "--linkedin", action="store_true",
+        help=(
+            "Publie la vidéo complète sur LinkedIn avec l'intro et 5 hashtags aléatoires.\n"
+            "Nécessite LINKEDIN_ACCESS_TOKEN et LINKEDIN_PERSON_ID dans .env.\n"
+            "Compatible avec --tiktok et --youtube."
+        ),
+    )
+    parser.add_argument(
         "--transcript", action="store_true",
         help=(
             "Transcrit l'audio généré via l'API Mistral STT (Voxtral).\n"
@@ -1966,6 +2117,10 @@ def main():
             "Utilise l'image fournie comme thumbnail (PNG/JPG) au lieu de la générer via OpenAI. "
             "L'image est embarquée dans le MP4 et envoyée sur Telegram avec la vidéo complète."
         ),
+    )
+    parser.add_argument(
+        "--no-thumbnail", action="store_true",
+        help="Désactive la génération et l'embed du thumbnail (première frame et envoi Telegram).",
     )
     args = parser.parse_args()
 
@@ -2168,12 +2323,12 @@ def main():
 
     output_path, seg_paths = generate_audio(
         segments, output_path, stinger, tones=tones,
-        keep_segments=args.tiktok or args.youtube,
+        keep_segments=args.tiktok or args.youtube or args.linkedin,
     )
 
     title = f"Flash Info Guadeloupe — {date_str}"
 
-    if args.tiktok or args.youtube:
+    if args.tiktok or args.youtube or args.linkedin:
         video_dir = OUTPUT_DIR / f"tiktok-{now.strftime('%Y%m%d-%H%M')}"
         videos = generate_tiktok(seg_paths, segments, tones, video_dir)
         print(f"\n🎬 {len(videos)} vidéos dans {video_dir}")
@@ -2230,18 +2385,19 @@ def main():
 
         # Thumbnail : fichier fourni par l'utilisateur ou génération OpenAI
         intro_text = segments[0].strip() if segments else ""
-        if args.thumbnail:
-            if not args.thumbnail.exists():
-                print(f"   ⚠️  Thumbnail introuvable : {args.thumbnail} — ignoré.")
-                thumbnail_path = None
+        thumbnail_path = None
+        if not args.no_thumbnail:
+            if args.thumbnail:
+                if not args.thumbnail.exists():
+                    print(f"   ⚠️  Thumbnail introuvable : {args.thumbnail} — ignoré.")
+                else:
+                    thumbnail_path = args.thumbnail
+                    print(f"   Thumbnail fourni : {thumbnail_path}")
             else:
-                thumbnail_path = args.thumbnail
-                print(f"   Thumbnail fourni : {thumbnail_path}")
-        else:
-            thumbnail_path = generate_thumbnail(
-                intro_text, target_date, video_dir,
-                hashtags=all_hashtags, verbose=args.verbose,
-            )
+                thumbnail_path = generate_thumbnail(
+                    intro_text, target_date, video_dir,
+                    hashtags=all_hashtags, verbose=args.verbose,
+                )
         if thumbnail_path:
             _embed_thumbnail(full_video_path, thumbnail_path)
             print("📤 Envoi thumbnail sur Telegram…")
@@ -2257,6 +2413,12 @@ def main():
             print("▶️  Upload YouTube vidéo complète…")
             yt_full_desc = _youtube_full_description(segments, date_str)
             upload_youtube_video(full_video_path, title, yt_full_desc)
+
+        if args.linkedin:
+            print("▶️  Publication LinkedIn…")
+            li_hashtags = random.sample(all_hashtags, min(5, len(all_hashtags)))
+            li_commentary = f"{intro_text}\n\n{' '.join(li_hashtags)}".strip()
+            upload_linkedin_video(full_video_path, li_commentary)
 
     if args.transcript:
         print("📝 Transcription de l'audio généré...")
