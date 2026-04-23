@@ -1359,6 +1359,39 @@ def send_telegram(audio_path: Path, caption: str) -> None:
     print("   Envoyé ✅")
 
 
+def send_telegram_photo(photo_path: Path, caption: str = "") -> None:
+    """Envoie une image sur Telegram via sendPhoto."""
+    boundary = "----FlashInfoBoundary"
+    body = (
+        f"--{boundary}\r\n"
+        f'Content-Disposition: form-data; name="chat_id"\r\n\r\n'
+        f"{TELEGRAM_CHAT_ID}\r\n"
+    ).encode()
+    if caption:
+        body += (
+            f"--{boundary}\r\n"
+            f'Content-Disposition: form-data; name="caption"\r\n\r\n'
+            f"{caption}\r\n"
+        ).encode()
+    body += (
+        f"--{boundary}\r\n"
+        f'Content-Disposition: form-data; name="photo"; filename="{photo_path.name}"\r\n'
+        f"Content-Type: image/png\r\n\r\n"
+    ).encode() + photo_path.read_bytes() + b"\r\n"
+    body += f"--{boundary}--\r\n".encode()
+
+    req = urllib.request.Request(
+        f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPhoto",
+        data=body,
+        headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
+    )
+    with urllib.request.urlopen(req, timeout=60) as r:
+        result = json.loads(r.read())
+    if not result.get("ok"):
+        raise RuntimeError(f"Telegram photo error: {result}")
+    print(f"   {photo_path.name} envoyé ✅")
+
+
 def send_telegram_video(
     video_path: Path,
     caption: str,
@@ -1654,19 +1687,33 @@ def generate_thumbnail(
         print("── Prompt thumbnail ─────────────────────────────────────")
         print(prompt)
         print("─────────────────────────────────────────────────────────")
-    client = OpenAI(api_key=OPENAI_API_KEY)
-    result = client.images.edit(
-        model="gpt-image-2",
-        image=[open(str(BOTIRAN_PROFILE), "rb")],
-        prompt=prompt,
-        size="1024x1536",
-        response_format="b64_json",
-    )
-    image_bytes = base64.b64decode(result.data[0].b64_json)
-    thumbnail_path = output_dir / f"thumbnail-{target_date}.png"
-    thumbnail_path.write_bytes(image_bytes)
-    print(f"   Thumbnail : {thumbnail_path} ({len(image_bytes) // 1024} Ko)")
-    return thumbnail_path
+    # dall-e-2 n'accepte que du PNG — conversion via FFmpeg si nécessaire
+    profile_png = OUTPUT_DIR / "botiran_profile_ref.png"
+    if BOTIRAN_PROFILE.suffix.lower() != ".png" or not profile_png.exists():
+        subprocess.run([
+            "ffmpeg", "-y", "-loglevel", "error",
+            "-i", str(BOTIRAN_PROFILE),
+            str(profile_png),
+        ], check=True)
+    try:
+        from openai import BadRequestError
+        client = OpenAI(api_key=OPENAI_API_KEY)
+        result = client.images.edit(
+            model="gpt-image-1.5",
+            image=[open(str(profile_png), "rb")],
+            prompt=prompt,
+            size="1024x1536",
+            quality="low",
+            input_fidelity="high",
+        )
+        image_bytes = base64.b64decode(result.data[0].b64_json)
+        thumbnail_path = output_dir / f"thumbnail-{target_date}.png"
+        thumbnail_path.write_bytes(image_bytes)
+        print(f"   Thumbnail : {thumbnail_path} ({len(image_bytes) // 1024} Ko)")
+        return thumbnail_path
+    except BadRequestError as e:
+        print(f"   ⚠️  Génération thumbnail échouée : {e.message} — thumbnail ignoré.")
+        return None
 
 
 def _embed_thumbnail(video_path: Path, thumbnail_path: Path) -> Path:
@@ -1891,7 +1938,41 @@ def main():
             "Exemple : --test-interstitials /tmp/tiktok-20260422-1100"
         ),
     )
+    parser.add_argument(
+        "--generate-thumbnail", action="store_true",
+        help=(
+            "Génère uniquement le thumbnail via OpenAI gpt-image-1.5 à partir d'un texte d'intro "
+            "par défaut, sans lancer la pipeline complète. Utile pour tester la génération d'image."
+        ),
+    )
+    parser.add_argument(
+        "--thumbnail", type=Path, metavar="FICHIER",
+        help=(
+            "Utilise l'image fournie comme thumbnail (PNG/JPG) au lieu de la générer via OpenAI. "
+            "L'image est embarquée dans le MP4 et envoyée sur Telegram avec la vidéo complète."
+        ),
+    )
     args = parser.parse_args()
+
+    if args.generate_thumbnail:
+        _DEFAULT_THUMBNAIL_INTRO = (
+            "Flash Info Guadeloupe — jeudi 23 avril 2026 "
+            "Bèl bonjou à toute la diaspora, nous sommes le jeudi vingt-trois avril deux mille vingt-six "
+            "et vous écoutez votre Flash Info avec les nouvelles de la Guadeloupe. "
+            "Au programme : Kalash en concert à Luxembourg, le tribunal mixte de commerce de Pointe-à-Pitre "
+            "qui doit trancher sur l'avenir d'Air Antilles et une joyeux anniversaire à Anne. C'est parti."
+        )
+        out = generate_thumbnail(
+            _DEFAULT_THUMBNAIL_INTRO,
+            Date.today(),
+            OUTPUT_DIR,
+            verbose=True,
+        )
+        if out:
+            print(f"✅ Thumbnail généré : {out}")
+            print("📤 Envoi thumbnail sur Telegram…")
+            send_telegram_photo(out, caption=f"🖼️ Thumbnail test — {Date.today()}")
+        return
 
     if args.test_interstitials:
         video_dir = Path(args.test_interstitials)
@@ -2123,11 +2204,21 @@ def main():
         concatenate_videos(ordered, full_video_path, metadata=video_metadata)
         print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
 
-        # Thumbnail : génération + embed dans le MP4
+        # Thumbnail : fichier fourni par l'utilisateur ou génération OpenAI
         intro_text = segments[0].strip() if segments else ""
-        thumbnail_path = generate_thumbnail(intro_text, target_date, video_dir, verbose=args.verbose)
+        if args.thumbnail:
+            if not args.thumbnail.exists():
+                print(f"   ⚠️  Thumbnail introuvable : {args.thumbnail} — ignoré.")
+                thumbnail_path = None
+            else:
+                thumbnail_path = args.thumbnail
+                print(f"   Thumbnail fourni : {thumbnail_path}")
+        else:
+            thumbnail_path = generate_thumbnail(intro_text, target_date, video_dir, verbose=args.verbose)
         if thumbnail_path:
             _embed_thumbnail(full_video_path, thumbnail_path)
+            print("📤 Envoi thumbnail sur Telegram…")
+            send_telegram_photo(thumbnail_path, caption=f"🖼️ {title}")
 
         # Caption Telegram : titre + intro + hashtags agrégés (tronqué à 1024 chars)
         seen, all_hashtags = set(), []
