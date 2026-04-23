@@ -3,7 +3,7 @@
 # Prononciations locales guadeloupéennes (forme écrite → forme orale pour le TTS)
 PRONONCIATIONS_LOCALES = {
     # Prononciations créoles
-    "Gwoka" : "Gro Ka",
+    "Gwoka" : "GroKa",
     "Lyannaj": "Lyanhnage",   # Lyan-naje, deux syllabes distinctes
     "lyannaj": "Lyanhnage",
     "Goyave":          "Gwayave",
