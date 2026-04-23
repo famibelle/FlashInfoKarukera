@@ -7,6 +7,7 @@ Collecte RSS → Script → Audio TTS (Voxtral) → Envoi Telegram
 import os
 import sys
 import json
+import time
 import random
 import base64
 import argparse
@@ -78,6 +79,9 @@ LINKEDIN_REFRESH_TOKEN = os.environ.get("LINKEDIN_REFRESH_TOKEN", "")
 LINKEDIN_CLIENT_ID     = os.environ.get("LINKEDIN_CLIENT_ID", "")
 LINKEDIN_CLIENT_SECRET = os.environ.get("LINKEDIN_CLIENT_SECRET", "")
 LINKEDIN_PERSON_ID     = os.environ.get("LINKEDIN_PERSON_ID", "")
+
+INSTAGRAM_ACCESS_TOKEN = os.environ.get("INSTAGRAM_ACCESS_TOKEN", "")
+INSTAGRAM_USER_ID      = os.environ.get("INSTAGRAM_USER_ID", "")
 
 OPENAI_API_KEY  = os.environ.get("OPENAI_API_KEY", "")
 
@@ -2008,6 +2012,120 @@ def upload_linkedin_video(video_path: Path, commentary: str) -> str:
     return url
 
 
+# ── Étape 9 : Publication Instagram ──────────────────────────────────────────
+
+_INSTAGRAM_API = "https://graph.facebook.com/v21.0"
+
+
+def _instagram_save_token(access_token: str) -> None:
+    env_path = Path(__file__).parent / ".env"
+    lines = env_path.read_text(encoding="utf-8").splitlines() if env_path.exists() else []
+    for i, line in enumerate(lines):
+        if line.startswith("INSTAGRAM_ACCESS_TOKEN="):
+            lines[i] = f"INSTAGRAM_ACCESS_TOKEN={access_token}"
+            break
+    else:
+        lines.append(f"INSTAGRAM_ACCESS_TOKEN={access_token}")
+    env_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print("   Token Instagram sauvegardé dans .env")
+
+
+def _instagram_refresh_token() -> str:
+    """Renouvelle le token Instagram long-lived (valide 60 jours)."""
+    global INSTAGRAM_ACCESS_TOKEN
+    if not INSTAGRAM_ACCESS_TOKEN:
+        return INSTAGRAM_ACCESS_TOKEN
+    qs = urllib.parse.urlencode({
+        "grant_type":   "ig_refresh_token",
+        "access_token": INSTAGRAM_ACCESS_TOKEN,
+    })
+    req = urllib.request.Request(
+        f"https://graph.instagram.com/refresh_access_token?{qs}"
+    )
+    with urllib.request.urlopen(req, timeout=30) as r:
+        data = json.loads(r.read())
+    INSTAGRAM_ACCESS_TOKEN = data["access_token"]
+    _instagram_save_token(INSTAGRAM_ACCESS_TOKEN)
+    return INSTAGRAM_ACCESS_TOKEN
+
+
+def upload_instagram_reel(video_path: Path, caption: str) -> str:
+    """Publie un Reel Instagram via upload direct (sans URL publique)."""
+    token = _instagram_refresh_token()
+    file_size = video_path.stat().st_size
+
+    # 1. Créer le container en mode upload resumable
+    print(f"   ▶️  Initialisation upload Instagram : {video_path.name}…")
+    qs = urllib.parse.urlencode({
+        "media_type":  "REELS",
+        "upload_type": "resumable",
+        "caption":     caption,
+        "access_token": token,
+    })
+    req = urllib.request.Request(
+        f"{_INSTAGRAM_API}/{INSTAGRAM_USER_ID}/media?{qs}",
+        data=b"", method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=30) as r:
+        data = json.loads(r.read())
+    container_id = data["id"]
+    upload_uri   = data["uri"]
+
+    # 2. Upload la vidéo
+    print(f"   Upload vidéo ({file_size // 1024 // 1024} Mo)…")
+    video_bytes = video_path.read_bytes()
+    upload_req = urllib.request.Request(
+        upload_uri,
+        data=video_bytes, method="POST",
+        headers={
+            "Authorization": f"OAuth {token}",
+            "offset":        "0",
+            "file_size":     str(file_size),
+            "Content-Type":  "video/mp4",
+        },
+    )
+    with urllib.request.urlopen(upload_req, timeout=300) as r:
+        r.read()
+
+    # 3. Attendre que le container soit prêt (max 2 min 30)
+    print("   Traitement Instagram en cours…")
+    for attempt in range(30):
+        qs_status = urllib.parse.urlencode({
+            "fields": "status_code",
+            "access_token": token,
+        })
+        status_req = urllib.request.Request(
+            f"{_INSTAGRAM_API}/{container_id}?{qs_status}"
+        )
+        with urllib.request.urlopen(status_req, timeout=30) as r:
+            status = json.loads(r.read())
+        code = status.get("status_code", "")
+        if code == "FINISHED":
+            break
+        if code == "ERROR":
+            raise RuntimeError(f"Instagram container en erreur : {status}")
+        time.sleep(5)
+    else:
+        raise RuntimeError("Instagram : timeout en attente du container (150s)")
+
+    # 4. Publier
+    qs_pub = urllib.parse.urlencode({
+        "creation_id":  container_id,
+        "access_token": token,
+    })
+    pub_req = urllib.request.Request(
+        f"{_INSTAGRAM_API}/{INSTAGRAM_USER_ID}/media_publish?{qs_pub}",
+        data=b"", method="POST",
+    )
+    with urllib.request.urlopen(pub_req, timeout=30) as r:
+        pub_data = json.loads(r.read())
+
+    media_id = pub_data.get("id", "")
+    url = f"https://www.instagram.com/p/{media_id}/" if media_id else "https://www.instagram.com/"
+    print(f"   ✅ {url}")
+    return url
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -2085,6 +2203,15 @@ def main():
             "Publie la vidéo complète sur LinkedIn avec l'intro et 5 hashtags aléatoires.\n"
             "Nécessite LINKEDIN_ACCESS_TOKEN et LINKEDIN_PERSON_ID dans .env.\n"
             "Compatible avec --tiktok et --youtube."
+        ),
+    )
+    parser.add_argument(
+        "--instagram", action="store_true",
+        help=(
+            "Publie la vidéo complète en Reel Instagram avec l'intro et 5 hashtags aléatoires.\n"
+            "Nécessite INSTAGRAM_ACCESS_TOKEN et INSTAGRAM_USER_ID dans .env.\n"
+            "Requiert un compte Instagram Business ou Créateur lié à une Page Facebook.\n"
+            "Compatible avec --tiktok, --youtube et --linkedin."
         ),
     )
     parser.add_argument(
@@ -2337,12 +2464,12 @@ def main():
 
     output_path, seg_paths = generate_audio(
         segments, output_path, stinger, tones=tones,
-        keep_segments=args.tiktok or args.youtube or args.linkedin,
+        keep_segments=args.tiktok or args.youtube or args.linkedin or args.instagram,
     )
 
     title = f"Flash Info Guadeloupe — {date_str}"
 
-    if args.tiktok or args.youtube or args.linkedin:
+    if args.tiktok or args.youtube or args.linkedin or args.instagram:
         video_dir = OUTPUT_DIR / f"tiktok-{now.strftime('%Y%m%d-%H%M')}"
         videos = generate_tiktok(seg_paths, segments, tones, video_dir)
         print(f"\n🎬 {len(videos)} vidéos dans {video_dir}")
@@ -2433,6 +2560,12 @@ def main():
             li_hashtags = random.sample(all_hashtags, min(5, len(all_hashtags)))
             li_commentary = f"{intro_text}\n\n{' '.join(li_hashtags)}".strip()
             upload_linkedin_video(full_video_path, li_commentary)
+
+        if args.instagram:
+            print("▶️  Publication Instagram Reel…")
+            ig_hashtags = random.sample(all_hashtags, min(5, len(all_hashtags)))
+            ig_caption = f"{intro_text}\n\n{' '.join(ig_hashtags)}".strip()
+            upload_instagram_reel(full_video_path, ig_caption)
 
     if args.transcript:
         print("📝 Transcription de l'audio généré...")

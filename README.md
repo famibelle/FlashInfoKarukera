@@ -1,6 +1,6 @@
 # Flash Info Karukera
 
-> Bulletin audio quotidien de l'actualité guadeloupéenne, généré automatiquement et diffusé sur Telegram, Buzzsprout (Spotify), X/Twitter, YouTube et LinkedIn.
+> Bulletin audio quotidien de l'actualité guadeloupéenne, généré automatiquement et diffusé sur Telegram, Buzzsprout (Spotify), X/Twitter, YouTube, LinkedIn et Instagram.
 
 ---
 
@@ -29,7 +29,7 @@
 3. **Synthétise** l'audio avec la voix Marie (Voxtral TTS), adaptée à la tonalité de chaque segment
 4. **Génère** (optionnel) des vidéos courtes TikTok/Shorts avec waveform animée et sous-titres karaoké
 5. **Crée** (optionnel) un thumbnail illustré via OpenAI GPT-Image
-6. **Diffuse** sur Telegram, Buzzsprout → Spotify, X/Twitter, YouTube Shorts et LinkedIn
+6. **Diffuse** sur Telegram, Buzzsprout → Spotify, X/Twitter, YouTube Shorts, LinkedIn et Instagram
 
 ```
 Flux RSS + Météo
@@ -42,7 +42,7 @@ Flux RSS + Météo
       │
       ├──► Audio MP3 ──► Telegram / Buzzsprout / X
       │
-      └──► Vidéos MP4 ──► Telegram / YouTube / LinkedIn
+      └──► Vidéos MP4 ──► Telegram / YouTube / LinkedIn / Instagram
 ```
 
 ---
@@ -76,6 +76,7 @@ Les comptes marqués **obligatoire** sont nécessaires pour le fonctionnement de
 | [OpenAI](https://platform.openai.com/) | Génération thumbnail (GPT-Image) | Non |
 | [YouTube](https://console.cloud.google.com/) | Publication YouTube Shorts | Non |
 | [LinkedIn](https://www.linkedin.com/developers/) | Publication vidéo LinkedIn | Non |
+| [Meta for Developers](https://developers.facebook.com/) | Publication Reel Instagram | Non |
 
 ---
 
@@ -181,6 +182,21 @@ LINKEDIN_PERSON_ID=             # votre identifiant LinkedIn (visible dans l'URL
 
 > **Générer les tokens LinkedIn :** créez une app sur le [portail LinkedIn Developers](https://www.linkedin.com/developers/), activez les scopes `w_member_social` et `video.upload`, puis utilisez le flow OAuth 2.0 pour obtenir votre premier `access_token` et `refresh_token`. Le script les renouvelle ensuite automatiquement.
 
+### Clés optionnelles — Instagram
+
+Requis pour publier en Reel Instagram avec `--instagram`.
+
+```env
+INSTAGRAM_ACCESS_TOKEN=         # token long-lived valide 60 jours, renouvelé automatiquement
+INSTAGRAM_USER_ID=              # ID numérique de votre compte Instagram Business
+```
+
+> **Prérequis Instagram :** votre compte Instagram doit être de type **Business** ou **Créateur** et être lié à une **Page Facebook**. Un compte personnel ne peut pas utiliser l'API de publication.
+
+> **Trouver votre `INSTAGRAM_USER_ID` :** une fois votre app Meta configurée et votre token obtenu, appelez `https://graph.facebook.com/v21.0/me?fields=id&access_token=VOTRE_TOKEN`. La valeur `id` retournée est votre `INSTAGRAM_USER_ID`.
+
+> **Renouvellement automatique :** contrairement à LinkedIn, Instagram n'utilise pas de refresh token séparé. Le script appelle `graph.instagram.com/refresh_access_token` avant chaque publication pour repousser l'expiration de 60 jours supplémentaires. Le nouveau token est sauvegardé dans `.env` automatiquement.
+
 ---
 
 ## Dossiers requis
@@ -249,8 +265,9 @@ python flash-info-gwada.py [OPTIONS]
 | `--tiktok` | Génère une vidéo MP4 (1080×1920) par segment avec waveform et sous-titres karaoké | `--tiktok` |
 | `--youtube` | Publie les vidéos sur YouTube Shorts + la vidéo complète | `--tiktok --youtube` |
 | `--linkedin` | Publie la vidéo complète sur LinkedIn avec l'intro et 5 hashtags aléatoires | `--tiktok --linkedin` |
+| `--instagram` | Publie la vidéo complète en Reel Instagram avec l'intro et 5 hashtags aléatoires | `--tiktok --instagram` |
 
-> `--youtube` et `--linkedin` requièrent `--tiktok` pour générer les vidéos au préalable.
+> `--youtube`, `--linkedin` et `--instagram` requièrent `--tiktok` pour générer les vidéos au préalable.
 
 ### Options thumbnail
 
@@ -272,7 +289,7 @@ python flash-info-gwada.py [OPTIONS]
 
 ```bash
 # Flash du jour complet avec vidéo et publication partout
-python flash-info-gwada.py --tiktok --youtube --linkedin
+python flash-info-gwada.py --tiktok --youtube --linkedin --instagram
 
 # Test sans aucune publication
 python flash-info-gwada.py --dry-run --verbose
@@ -313,6 +330,7 @@ Le workflow `.github/workflows/flash-info.yml` lance le pipeline automatiquement
 | `tiktok` | Générer les vidéos TikTok/Shorts | `true` |
 | `youtube` | Publier sur YouTube | `false` |
 | `linkedin` | Publier sur LinkedIn | `false` |
+| `instagram` | Publier en Reel Instagram | `false` |
 | `no_thumbnail` | Désactiver le thumbnail | `false` |
 | `verbose` | Logs détaillés | `false` |
 
@@ -354,7 +372,13 @@ LINKEDIN_REFRESH_TOKEN
 LINKEDIN_PERSON_ID
 ```
 
-> **Important :** les tokens LinkedIn et YouTube sont renouvelés automatiquement par le script. Après chaque renouvellement, les nouvelles valeurs sont écrites dans `.env` en local. Pour GitHub Actions, il faut mettre à jour les secrets manuellement si les tokens expirent (LinkedIn : 60 jours pour l'access token, 1 an pour le refresh token).
+**Optionnels — Instagram :**
+```
+INSTAGRAM_ACCESS_TOKEN
+INSTAGRAM_USER_ID
+```
+
+> **Important :** les tokens LinkedIn, Instagram et YouTube sont renouvelés automatiquement par le script en local. Pour GitHub Actions, mettre à jour les secrets manuellement si les tokens expirent (LinkedIn access token : 60 jours / refresh token : 1 an — Instagram : 60 jours renouvelés à chaque exécution).
 
 ---
 
@@ -393,6 +417,26 @@ LINKEDIN_PERSON_ID
 4. Générer un access token via le flow OAuth 2.0 avec les scopes `w_member_social` et `video.upload`
 5. Copier `access_token` et `refresh_token` dans `.env`
 6. Le script renouvelle automatiquement les tokens à chaque exécution
+
+### Instagram
+
+1. Avoir un compte Instagram **Business** ou **Créateur** lié à une **Page Facebook** (obligatoire — l'API n'est pas disponible pour les comptes personnels)
+2. Créer une app sur [Meta for Developers](https://developers.facebook.com/) → **Ajouter un produit → Instagram Graph API**
+3. Dans **Permissions**, activer `instagram_content_publish` et `instagram_basic`
+4. Générer un token utilisateur via le **Graph API Explorer**, puis l'échanger contre un token long-lived :
+   ```
+   GET https://graph.facebook.com/v21.0/oauth/access_token
+     ?grant_type=fb_exchange_token
+     &client_id={app-id}
+     &client_secret={app-secret}
+     &fb_exchange_token={short-lived-token}
+   ```
+5. Récupérer votre `INSTAGRAM_USER_ID` :
+   ```
+   GET https://graph.facebook.com/v21.0/me?fields=id&access_token={token}
+   ```
+6. Copier `access_token` et `id` dans `.env`
+7. Le script renouvelle automatiquement le token avant chaque publication
 
 ---
 

@@ -25,6 +25,21 @@ on:
         type: boolean
         required: false
         default: false
+      linkedin:
+        description: "Publie la vidéo complète sur LinkedIn (intro + 5 hashtags aléatoires)"
+        type: boolean
+        required: false
+        default: false
+      instagram:
+        description: "Publie la vidéo complète en Reel Instagram (intro + 5 hashtags aléatoires)"
+        type: boolean
+        required: false
+        default: false
+      no_thumbnail:
+        description: "Désactive la génération et l'embed du thumbnail"
+        type: boolean
+        required: false
+        default: false
       verbose:
         description: "Verbose (affiche le détail de chaque étape)"
         type: boolean
@@ -65,6 +80,13 @@ jobs:
           YOUTUBE_CLIENT_ID:        ${{ secrets.YOUTUBE_CLIENT_ID }}
           YOUTUBE_CLIENT_SECRET:    ${{ secrets.YOUTUBE_CLIENT_SECRET }}
           YOUTUBE_REFRESH_TOKEN:    ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          LINKEDIN_ACCESS_TOKEN:    ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_REFRESH_TOKEN:   ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
+          LINKEDIN_CLIENT_ID:       ${{ secrets.LINKEDIN_CLIENT_ID }}
+          LINKEDIN_CLIENT_SECRET:   ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+          LINKEDIN_PERSON_ID:       ${{ secrets.LINKEDIN_PERSON_ID }}
+          INSTAGRAM_ACCESS_TOKEN:   ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_USER_ID:        ${{ secrets.INSTAGRAM_USER_ID }}
           OPENAI_API_KEY:           ${{ secrets.OPENAI_API_KEY }}
         run: |
           ARGS=""
@@ -83,6 +105,15 @@ jobs:
           fi
           if [ "${{ github.event.inputs.youtube }}" = "true" ]; then
             ARGS="$ARGS --youtube"
+          fi
+          if [ "${{ github.event.inputs.linkedin }}" = "true" ]; then
+            ARGS="$ARGS --linkedin"
+          fi
+          if [ "${{ github.event.inputs.instagram }}" = "true" ]; then
+            ARGS="$ARGS --instagram"
+          fi
+          if [ "${{ github.event.inputs.no_thumbnail }}" = "true" ]; then
+            ARGS="$ARGS --no-thumbnail"
           fi
           if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
             ARGS="$ARGS --verbose"
