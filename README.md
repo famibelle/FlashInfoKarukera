@@ -1,304 +1,446 @@
 # Flash Info Karukera
 
-> Bulletin audio quotidien de l'actualité guadeloupéenne, généré automatiquement et diffusé sur Telegram, Buzzsprout (Spotify) et X.
+> Bulletin audio quotidien de l'actualité guadeloupéenne, généré automatiquement et diffusé sur Telegram, Buzzsprout (Spotify), X/Twitter, YouTube et LinkedIn.
 
 ---
 
-## Vue d'ensemble
+## Sommaire
 
-**Flash Info Karukera** est un pipeline entièrement automatisé qui collecte les flux RSS locaux chaque matin, rédige un script radio en créole oral guadeloupéen, le synthétise en audio via Voxtral TTS, et le diffuse sur plusieurs canaux.
-
-Le pipeline enchaîne six étapes principales :
-
-```mermaid
-flowchart TD
-    A([⏰ Cron GitHub Actions\n7h00 Guadeloupe]) --> B
-
-    subgraph COLLECTE["① Collecte"]
-        B[RSS Feeds\n6 sources locales] --> D[Filtrage par date\net priorité locale]
-        C[Open-Meteo\nMétéo sans clé API] --> D
-    end
-
-    subgraph REDACTION["② Rédaction — 3 passes LLM"]
-        D --> E[🖊️ Maryse\nRédactrice principale\nMistral Large]
-        E --> F[✏️ Réviseur stylistique\nMistral Large]
-        F --> G[📍 Ancrage local\nMistral Large]
-    end
-
-    subgraph POSTPROCESS["③ Post-traitement"]
-        G --> H[_enforce_prononciations\nSigles, noms créoles,\ncodes DOM]
-        H --> I[_ensure_sources_in_outro\nSécurité citations]
-        I --> J[classify_tones\nTonalité par segment]
-    end
-
-    subgraph AUDIO["④ Génération audio"]
-        J --> K[_normalize_for_tts\nNormalisation texte]
-        K --> L[Voxtral TTS\nVoix Marie par tonalité]
-        L --> M[FFmpeg\nAssemblage + stingers]
-    end
-
-    subgraph DIFFUSION["⑤ Diffusion"]
-        M --> N[📱 Telegram]
-        M --> O[🎙️ Buzzsprout → Spotify]
-        M --> P[🐦 X / Twitter]
-    end
-```
+1. [Ce que fait le script](#ce-que-fait-le-script)
+2. [Prérequis](#prérequis)
+3. [Installation](#installation)
+4. [Configuration — fichier `.env`](#configuration--fichier-env)
+5. [Dossiers requis](#dossiers-requis)
+6. [Utilisation — toutes les options](#utilisation--toutes-les-options)
+7. [Automatisation GitHub Actions](#automatisation-github-actions)
+8. [Configuration des comptes tiers](#configuration-des-comptes-tiers)
+9. [Personnalisation du script](#personnalisation-du-script)
+10. [Structure du projet](#structure-du-projet)
+11. [Pipeline détaillé](#pipeline-détaillé)
 
 ---
 
-## Architecture détaillée
+## Ce que fait le script
 
-### ① Collecte RSS et météo
+**Flash Info Karukera** est un pipeline entièrement automatisé qui, chaque matin :
 
-Six flux RSS sont interrogés en parallèle et filtrés à la date cible :
-
-| Source | URL |
-|--------|-----|
-| France-Antilles — Vie locale | `franceantilles.fr` |
-| France-Antilles — Sports | `franceantilles.fr` |
-| RCI Guadeloupe | `rci.fm` |
-| Zyé a Mangrov'la | `zye-a-mangrovla.fr` |
-| Région Guadeloupe | `regionguadeloupe.fr` |
-| La 1ère — Économie | `la1ere.franceinfo.fr` |
-
-Les articles sont **triés par priorité géographique** avant sélection des 7 meilleurs :
-
-```mermaid
-flowchart LR
-    A[Tous les articles\ndu jour] --> B{Lieu détecté ?}
-    B -->|Commune guadeloupéenne| C[Priorité 0 🟢]
-    B -->|N/A inconnu| D[Priorité 1 🟡]
-    B -->|Pays étranger| E[Priorité 2 🔴]
-    C --> F[Tri final\nchronologique\npar groupe]
-    D --> F
-    E --> F
-    F --> G[Top 7 retenus]
-```
-
-La météo est récupérée via [Open-Meteo](https://open-meteo.com/) (sans clé API) pour Pointe-à-Pitre.
-
----
-
-### ② Rédaction — 3 passes LLM (Mistral Large)
-
-Chaque passe a un rôle distinct et reçoit le script du précédent :
-
-```mermaid
-sequenceDiagram
-    participant Items as Articles RSS + Météo
-    participant Maryse as 🖊️ Maryse<br/>(Rédactrice)
-    participant Style as ✏️ Réviseur<br/>Stylistique
-    participant Anchor as 📍 Ancrage<br/>Local
-
-    Items->>Maryse: JSON articles + météo
-    Maryse-->>Style: Script brut segmenté
-    Note over Maryse: temp=0.75<br/>intro + météo + sujets + outro
-
-    Style-->>Anchor: Script révisé
-    Note over Style: temp=0.3<br/>Supprime lyrisme, cartes postales<br/>Vérifie style oral
-
-    Anchor-->>Anchor: Identifie lieux explicites
-    Anchor-->>Items: Script ancré
-    Note over Anchor: temp=0.3<br/>Remplace génériques par noms propres<br/>Glossaire sigles locaux
-```
-
-**Structure du script produit :**
+1. **Collecte** les dernières actualités guadeloupéennes depuis 6 flux RSS locaux et récupère la météo de Pointe-à-Pitre
+2. **Rédige** un script radio en créole oral guadeloupéen via 3 passes LLM (Mistral Large)
+3. **Synthétise** l'audio avec la voix Marie (Voxtral TTS), adaptée à la tonalité de chaque segment
+4. **Génère** (optionnel) des vidéos courtes TikTok/Shorts avec waveform animée et sous-titres karaoké
+5. **Crée** (optionnel) un thumbnail illustré via OpenAI GPT-Image
+6. **Diffuse** sur Telegram, Buzzsprout → Spotify, X/Twitter, YouTube Shorts et LinkedIn
 
 ```
-INTRO      → "Bonjour, nous sommes le [DATE]... C'est parti."
-MÉTÉO      → 2-3 phrases, conditions + températures + vent
-SUJET 1    → 60-90 mots, transition géographique ou thématique
-SUJET 2    → ...
-...
-SUJET N    → ...
-OUTRO      → "Voilà pour ce Flash Info... Sources : X et Y."
-```
-
-Les segments sont séparés par `<<<SEG>>>`.
-
----
-
-### ③ Post-traitement déterministe
-
-Après les LLMs, trois passes de correction garantissent la qualité :
-
-```mermaid
-flowchart TD
-    A[Script ancré] --> B[_enforce_prononciations\ninsensible à la casse\nnormalisation apostrophes]
-    B --> C[_ensure_sources_in_outro\ninjecte Sources si absent]
-    C --> D[classify_tones\nJSON array de tonalités]
-
-    B -.->|Remplacements| E["JSVH → Jeunesse Sportive de Vieux Zabitan
-UNAR → Union Athlétique de Rivière-des-Pères
-SDIS → Service Départemental d'Incendie et de Secours
-971 → quatre-vingt-dix-sept-un
-Vieux-Habitants → Vieux Zabitan
-Delgrès → Delgrèsse"]
-
-    D -.->|Tonalités| F["neutral · happy · excited
-sad · angry · curious"]
+Flux RSS + Météo
+      │
+      ▼
+  Rédaction LLM (Mistral) ×3 passes
+      │
+      ▼
+  Synthèse vocale TTS (Voxtral)
+      │
+      ├──► Audio MP3 ──► Telegram / Buzzsprout / X
+      │
+      └──► Vidéos MP4 ──► Telegram / YouTube / LinkedIn
 ```
 
 ---
 
-### ④ Normalisation TTS et génération audio
+## Prérequis
 
-Avant chaque appel Voxtral, `_normalize_for_tts()` applique une chaîne de transformations dans un ordre strict :
+### Logiciels à installer sur votre machine
 
-```mermaid
-flowchart TD
-    T([Texte segment]) --> S0
-    S0["0. Prononciations locales\n_PRONONCIATIONS_LOCALES"] --> S1
-    S1["1. Apostrophes / emojis → ASCII"] --> S2
-    S2["2. n° → numéro"] --> S3
-    S3["3. Ordinaux : 1er → premier"] --> S4
-    S4["4. Monnaies : 15€ → quinze euros"] --> S5
-    S5["5. Scores : 3-1 → trois à un"] --> S6
-    S6["6. Codes DOM : 971 → quatre-vingt-dix-sept-un"] --> S7
-    S7["7. Heures : 07h30 → sept heures trente"] --> S8
-    S8["8. Unités : 28°C → vingt-huit degrés"] --> S9
-    S9["9. Nombres → num2words FR"] --> S10
-    S10["9a. Sigles pointés : S.D.I.S → S. D. I. S."] --> S11
-    S11["9b/c. Sigles caps → épelés\nsauf _SIGLES_MOT (RCI...)"] --> S12
-    S12["10. Abréviations : M. → Monsieur"] --> S13
-    S13["10b. Me + Majuscule → Maître"] --> DONE
-    DONE([Texte TTS-ready])
+| Logiciel | Version minimale | Installation |
+|----------|-----------------|--------------|
+| Python | 3.12 | [python.org](https://www.python.org/downloads/) |
+| FFmpeg | 6.0+ | `apt install ffmpeg` (Linux) / `brew install ffmpeg` (Mac) |
+| Git | toute version | [git-scm.com](https://git-scm.com/) |
+
+Vérifier que tout est bien installé :
+```bash
+python --version      # doit afficher Python 3.12.x ou plus
+ffmpeg -version       # doit afficher une version >= 6.0
 ```
 
-**Voix par tonalité (voix Marie, Voxtral) :**
+### Comptes et clés API requis
 
-| Tonalité | Voice ID | Cas d'usage |
-|----------|----------|-------------|
-| `neutral` | `fr_marie_neutral` | Info factuelle, météo, administratif |
-| `happy` | `fr_marie_happy` | Intro, outro, bonne nouvelle |
-| `excited` | `fr_marie_excited` | Sport, exploit, événement culturel |
-| `sad` | `fr_marie_sad` | Drame, accident, décès |
-| `angry` | `fr_marie_angry` | Grève, conflit, polémique |
-| `curious` | `fr_marie_curious` | Insolite, découverte, enquête |
+Les comptes marqués **obligatoire** sont nécessaires pour le fonctionnement de base. Les autres sont optionnels selon les fonctionnalités souhaitées.
 
----
-
-### ⑤ Diffusion
-
-```mermaid
-flowchart LR
-    MP3[flash-YYYYMMDD-HHMM.mp3] --> TG[📱 Telegram\nchat privé ou canal]
-    MP3 --> BZ[🎙️ Buzzsprout\n→ Spotify, Apple Podcasts...]
-    MP3 --> XX[🐦 X / Twitter]
-```
+| Service | Utilité | Obligatoire |
+|---------|---------|-------------|
+| [Mistral AI](https://console.mistral.ai/) | Rédaction LLM + TTS Voxtral | ✅ Oui |
+| [Telegram](https://telegram.org/) | Diffusion audio et vidéo | ✅ Oui |
+| [Buzzsprout](https://www.buzzsprout.com/) | Hébergement podcast → Spotify | ✅ Oui |
+| [X / Twitter](https://developer.x.com/) | Publication tweet | ✅ Oui |
+| [OpenAI](https://platform.openai.com/) | Génération thumbnail (GPT-Image) | Non |
+| [YouTube](https://console.cloud.google.com/) | Publication YouTube Shorts | Non |
+| [LinkedIn](https://www.linkedin.com/developers/) | Publication vidéo LinkedIn | Non |
 
 ---
 
 ## Installation
 
-### Prérequis
+### 1. Cloner le projet
 
-- Python 3.12+
-- FFmpeg (`apt install ffmpeg` ou `brew install ffmpeg`)
-- Compte Mistral AI (Maryse + Voxtral TTS)
-- Bot Telegram + chat ID
-- Compte Buzzsprout
-- App X/Twitter (tweepy)
+```bash
+git clone https://github.com/votre-compte/FlashInfoKarukera.git
+cd FlashInfoKarukera
+```
 
-### Dépendances Python
+### 2. Créer un environnement virtuel Python (recommandé)
+
+```bash
+python -m venv .venv
+source .venv/bin/activate        # Linux / Mac
+.venv\Scripts\activate           # Windows
+```
+
+### 3. Installer les dépendances Python
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Configuration `.env`
+### 4. Installer les polices emoji (Linux uniquement, requis pour les vidéos)
 
-Créer un fichier `.env` à la racine du projet :
+```bash
+sudo apt install fonts-noto-color-emoji
+```
+
+### 5. Créer le fichier `.env`
+
+Copier le modèle et remplir les valeurs (voir section suivante) :
+
+```bash
+cp .env.example .env   # si le fichier exemple existe
+# ou créer directement :
+nano .env
+```
+
+---
+
+## Configuration — fichier `.env`
+
+Créer un fichier `.env` à la racine du projet. **Ne jamais committer ce fichier** (il est listé dans `.gitignore`).
+
+### Clés obligatoires
 
 ```env
-MISTRAL_API_KEY=...
-TELEGRAM_BOT_TOKEN=...
-TELEGRAM_CHAT_ID=...
+# Mistral AI — rédaction et synthèse vocale
+MISTRAL_API_KEY=sk-...
+
+# Telegram — envoi des messages
+TELEGRAM_BOT_TOKEN=123456:ABC-...
+TELEGRAM_CHAT_ID=-1001234567890
+
+# Buzzsprout — hébergement podcast
 BUZZSPROUT_API_TOKEN=...
 BUZZSPROUT_PODCAST_ID=...
+
+# X / Twitter — publication tweet
 X_API_KEY=...
 X_API_SECRET=...
 X_ACCESS_TOKEN=...
 X_ACCESS_TOKEN_SECRET=...
 ```
 
-### Stingers
+### Clés optionnelles — Thumbnail (OpenAI)
 
-Déposer les fichiers audio de jingle dans le dossier `Stingers/` (`.mp3` ou `.wav`).
-Si le dossier est vide, un stinger synthétique est généré automatiquement.
+Requis uniquement si vous souhaitez générer un thumbnail illustré automatiquement.
+
+```env
+OPENAI_API_KEY=sk-...
+```
+
+### Clés optionnelles — YouTube
+
+Requis pour publier sur YouTube Shorts avec `--youtube`.
+
+```env
+YOUTUBE_CLIENT_ID=...
+YOUTUBE_CLIENT_SECRET=...
+YOUTUBE_REFRESH_TOKEN=          # rempli automatiquement après la première connexion
+```
+
+> **Première connexion YouTube :** lancez le script avec `--youtube` une première fois sur votre machine. Une fenêtre de navigateur s'ouvrira pour autoriser l'accès. Le `YOUTUBE_REFRESH_TOKEN` sera sauvegardé automatiquement dans `.env`.
+
+### Clés optionnelles — LinkedIn
+
+Requis pour publier sur LinkedIn avec `--linkedin`.
+
+```env
+LINKEDIN_CLIENT_ID=...
+LINKEDIN_CLIENT_SECRET=...
+LINKEDIN_ACCESS_TOKEN=          # token OAuth valide 60 jours
+LINKEDIN_REFRESH_TOKEN=         # renouvelé automatiquement, valide 1 an
+LINKEDIN_PERSON_ID=             # votre identifiant LinkedIn (visible dans l'URL de votre profil)
+```
+
+> **Trouver votre `LINKEDIN_PERSON_ID` :** connectez-vous à LinkedIn, allez sur votre profil, copiez la partie après `/in/` dans l'URL. Exemple : `https://www.linkedin.com/in/jean-dupont-abc123/` → `jean-dupont-abc123`.
+
+> **Générer les tokens LinkedIn :** créez une app sur le [portail LinkedIn Developers](https://www.linkedin.com/developers/), activez les scopes `w_member_social` et `video.upload`, puis utilisez le flow OAuth 2.0 pour obtenir votre premier `access_token` et `refresh_token`. Le script les renouvelle ensuite automatiquement.
 
 ---
 
-## Utilisation
+## Dossiers requis
+
+### `Stingers/`
+
+Contient les fichiers audio de jingle insérés entre chaque segment. Formats acceptés : `.mp3`, `.wav`.
+
+```
+Stingers/
+└── mon_jingle.mp3
+```
+
+Si le dossier est vide, un stinger synthétique est généré automatiquement.
+
+### `Media/`
+
+Contient les images utilisées pour les thumbnails et les interstitiels vidéo.
+
+```
+Media/
+├── botiran_profile.jpg               # image de référence pour GPT-Image (obligatoire si --tiktok)
+├── botiran_news_default_thumbnail.png # thumbnail de secours si la génération OpenAI échoue
+├── botiran_news_banner.png           # bannière utilisée dans les interstitiels
+└── botiran_news_*.png                # autres visuels
+```
+
+### `prompts/`
+
+Contient les prompts LLM utilisés par les trois passes de rédaction. Modifiables pour adapter le style éditorial.
+
+```
+prompts/
+├── maryse.md     # rédactrice principale
+├── styliste.md   # réviseur stylistique
+├── ancrage.md    # ancrage géographique local
+└── tones.md      # classification des tonalités
+```
+
+---
+
+## Utilisation — toutes les options
+
+### Syntaxe générale
 
 ```bash
-# Flash du jour (publication complète)
-python flash-info-gwada.py
+python flash-info-gwada.py [OPTIONS]
+```
 
-# Flash d'une date passée
-python flash-info-gwada.py --date 2026-04-17
+### Options de base
 
-# Test : génère + Telegram, sans Buzzsprout ni X
-python flash-info-gwada.py --dry-run
+| Option | Description | Exemple |
+|--------|-------------|---------|
+| *(aucune)* | Flash du jour, publication complète | `python flash-info-gwada.py` |
+| `--date YYYY-MM-DD` | Rejouer un flash pour une date précise | `--date 2026-04-17` |
+| `--dry-run` | Génère + envoie sur Telegram, sans Buzzsprout ni X | `--dry-run` |
+| `--no-send` | Génère l'audio MP3 uniquement, sans aucun envoi | `--no-send` |
+| `--output CHEMIN` | Chemin du fichier MP3 de sortie | `--output /tmp/test.mp3` |
+| `--stinger FICHIER` | Choisir un stinger précis (doit être dans `Stingers/`) | `--stinger jingle.mp3` |
+| `--verbose` | Logs détaillés : articles, JSONs, tonalités | `--verbose` |
 
-# Génère l'audio seulement, sans aucun envoi
-python flash-info-gwada.py --no-send
+### Options vidéo
 
-# Logs détaillés (textes, JSONs, tonalités)
+| Option | Description | Exemple |
+|--------|-------------|---------|
+| `--tiktok` | Génère une vidéo MP4 (1080×1920) par segment avec waveform et sous-titres karaoké | `--tiktok` |
+| `--youtube` | Publie les vidéos sur YouTube Shorts + la vidéo complète | `--tiktok --youtube` |
+| `--linkedin` | Publie la vidéo complète sur LinkedIn avec l'intro et 5 hashtags aléatoires | `--tiktok --linkedin` |
+
+> `--youtube` et `--linkedin` requièrent `--tiktok` pour générer les vidéos au préalable.
+
+### Options thumbnail
+
+| Option | Description | Exemple |
+|--------|-------------|---------|
+| `--thumbnail FICHIER` | Utiliser une image existante comme thumbnail à la place de la génération OpenAI | `--thumbnail Media/mon_image.png` |
+| `--no-thumbnail` | Désactiver complètement le thumbnail (pas de génération, pas d'embed, pas d'envoi) | `--no-thumbnail` |
+| `--generate-thumbnail` | Générer uniquement le thumbnail sans lancer toute la pipeline (pour tester) | `--generate-thumbnail` |
+
+### Options de diagnostic
+
+| Option | Description |
+|--------|-------------|
+| `--check-feeds` | Vérifie la disponibilité de chaque flux RSS et affiche un rapport. S'arrête sans générer d'audio. |
+| `--transcript` | Transcrit l'audio généré via Voxtral STT pour vérifier la prononciation. Sauvegarde un `.txt` à côté du MP3. |
+| `--test-interstitials RÉPERTOIRE` | Relit les vidéos d'un dossier généré précédemment, recrée les interstitiels et envoie sur Telegram. Évite de régénérer tout l'audio. |
+
+### Exemples complets
+
+```bash
+# Flash du jour complet avec vidéo et publication partout
+python flash-info-gwada.py --tiktok --youtube --linkedin
+
+# Test sans aucune publication
 python flash-info-gwada.py --dry-run --verbose
 
-# Choisir un stinger précis
-python flash-info-gwada.py --stinger mon_jingle.mp3
+# Flash d'une date passée, vidéo TikTok uniquement, sans thumbnail
+python flash-info-gwada.py --date 2026-04-15 --tiktok --no-thumbnail
 
-# Chemin de sortie personnalisé
-python flash-info-gwada.py --no-send --output /tmp/test.mp3
+# Utiliser un thumbnail personnalisé
+python flash-info-gwada.py --tiktok --thumbnail Media/botiran_news_2304.png
+
+# Rejouer les interstitiels d'une session précédente
+python flash-info-gwada.py --test-interstitials /tmp/tiktok-20260423-1040
+
+# Vérifier les flux RSS avant de lancer
+python flash-info-gwada.py --check-feeds
+
+# Générer et tester uniquement le thumbnail
+python flash-info-gwada.py --generate-thumbnail --verbose
 ```
 
 ---
 
 ## Automatisation GitHub Actions
 
-Le workflow `.github/workflows/flash-info.yml` déclenche le pipeline :
+Le workflow `.github/workflows/flash-info.yml` lance le pipeline automatiquement.
 
-- **Automatiquement** tous les jours à 7h00 heure Guadeloupe (11h00 UTC)
-- **Manuellement** depuis l'onglet Actions avec les options :
-  - `date` — rejouer un flash passé
-  - `dry_run` — test sans publication Buzzsprout/X
-  - `verbose` — logs détaillés dans les Actions
+### Déclenchement
 
-Les secrets API sont configurés dans **Settings → Secrets and variables → Actions** :
-`MISTRAL_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `BUZZSPROUT_API_TOKEN`, `BUZZSPROUT_PODCAST_ID`, `X_API_KEY`, `X_API_SECRET`, `X_ACCESS_TOKEN`, `X_ACCESS_TOKEN_SECRET`.
+- **Automatique** : tous les jours à **6h40 heure Guadeloupe** (10h40 UTC), avec `--tiktok` activé
+- **Manuel** : depuis l'onglet **Actions** → **Flash Info Guadeloupe** → **Run workflow**
+
+### Paramètres du déclenchement manuel
+
+| Paramètre | Description | Valeur par défaut |
+|-----------|-------------|-------------------|
+| `date` | Date YYYY-MM-DD (vide = aujourd'hui) | *(vide)* |
+| `dry_run` | Test sans publication Buzzsprout/X | `false` |
+| `tiktok` | Générer les vidéos TikTok/Shorts | `true` |
+| `youtube` | Publier sur YouTube | `false` |
+| `linkedin` | Publier sur LinkedIn | `false` |
+| `no_thumbnail` | Désactiver le thumbnail | `false` |
+| `verbose` | Logs détaillés | `false` |
+
+### Secrets GitHub à configurer
+
+Dans **Settings → Secrets and variables → Actions → New repository secret**, ajouter :
+
+**Obligatoires :**
+```
+MISTRAL_API_KEY
+TELEGRAM_BOT_TOKEN
+TELEGRAM_CHAT_ID
+BUZZSPROUT_API_TOKEN
+BUZZSPROUT_PODCAST_ID
+X_API_KEY
+X_API_SECRET
+X_ACCESS_TOKEN
+X_ACCESS_TOKEN_SECRET
+```
+
+**Optionnels — Thumbnail OpenAI :**
+```
+OPENAI_API_KEY
+```
+
+**Optionnels — YouTube :**
+```
+YOUTUBE_CLIENT_ID
+YOUTUBE_CLIENT_SECRET
+YOUTUBE_REFRESH_TOKEN
+```
+
+**Optionnels — LinkedIn :**
+```
+LINKEDIN_CLIENT_ID
+LINKEDIN_CLIENT_SECRET
+LINKEDIN_ACCESS_TOKEN
+LINKEDIN_REFRESH_TOKEN
+LINKEDIN_PERSON_ID
+```
+
+> **Important :** les tokens LinkedIn et YouTube sont renouvelés automatiquement par le script. Après chaque renouvellement, les nouvelles valeurs sont écrites dans `.env` en local. Pour GitHub Actions, il faut mettre à jour les secrets manuellement si les tokens expirent (LinkedIn : 60 jours pour l'access token, 1 an pour le refresh token).
 
 ---
 
-## Personnalisation
+## Configuration des comptes tiers
+
+### Telegram
+
+1. Créer un bot via [@BotFather](https://t.me/BotFather) (`/newbot`) → copier le token
+2. Ajouter le bot à votre canal ou groupe
+3. Récupérer le `chat_id` : envoyer un message et appeler `https://api.telegram.org/bot<TOKEN>/getUpdates`
+
+### Buzzsprout
+
+1. Aller dans **Account → API Access** sur buzzsprout.com
+2. Copier le token et l'ID du podcast (visible dans l'URL de votre podcast)
+
+### X / Twitter
+
+1. Créer une app sur [developer.x.com](https://developer.x.com/) avec les permissions **Read and Write**
+2. Dans **Keys and Tokens**, générer les 4 clés : API Key, API Secret, Access Token, Access Token Secret
+
+### YouTube
+
+1. Créer un projet sur [Google Cloud Console](https://console.cloud.google.com/)
+2. Activer l'**YouTube Data API v3**
+3. Créer des identifiants **OAuth 2.0** (type : application de bureau)
+4. Télécharger le fichier JSON des identifiants
+5. Copier `client_id` et `client_secret` dans `.env`
+6. Lancer le script une première fois avec `--youtube` : une fenêtre de navigateur s'ouvre pour autoriser → le `YOUTUBE_REFRESH_TOKEN` est sauvegardé automatiquement
+
+### LinkedIn
+
+1. Créer une app sur [LinkedIn Developers](https://www.linkedin.com/developers/)
+2. Dans **Products**, activer **Share on LinkedIn** et **Video Upload API**
+3. Dans **Auth**, copier `Client ID` et `Client Secret`
+4. Générer un access token via le flow OAuth 2.0 avec les scopes `w_member_social` et `video.upload`
+5. Copier `access_token` et `refresh_token` dans `.env`
+6. Le script renouvelle automatiquement les tokens à chaque exécution
+
+---
+
+## Personnalisation du script
 
 ### Ajouter un flux RSS
 
+Dans `flash-info-gwada.py`, section `RSS_FEEDS` :
+
 ```python
 RSS_FEEDS = [
-    ...
+    "https://www.franceantilles.fr/...",
+    # Ajouter ici :
     "https://mon-media-local.fr/rss",
 ]
 ```
 
-Ajouter la correspondance nom dans `_SOURCE_NAMES` si besoin.
+Ajouter le nom lisible dans `_SOURCE_NAMES` si besoin.
 
 ### Ajouter une prononciation locale
 
+Dans `_PRONONCIATIONS_LOCALES` :
+
 ```python
 _PRONONCIATIONS_LOCALES = {
-    ...
-    "Mon Sigle": "développement oral complet",
-    "Nom-Composé": "Prononziation Kréyòl",
+    "SDIS": "Service Départemental d'Incendie et de Secours",
+    # Ajouter ici :
+    "MONSIGLE": "développement oral complet",
+    "Cap-Excellence": "Cap Excèlans",
 }
 ```
 
-### Ajouter un sigle prononcé comme un mot
+### Ajouter un sigle prononcé comme un mot (pas épelé)
+
+Dans `_SIGLES_MOT` :
 
 ```python
-_SIGLES_MOT = {"RCI", "MON_SIGLE", ...}
+_SIGLES_MOT = {"RCI", "BFMTV", "MON_SIGLE"}
 ```
+
+### Modifier le style éditorial
+
+Éditer les fichiers dans `prompts/` :
+
+- `prompts/maryse.md` — prompt de la rédactrice principale (structure, ton, registre de langue)
+- `prompts/styliste.md` — révision stylistique (supprimer le lyrisme, vérifier l'oralité)
+- `prompts/ancrage.md` — ancrage géographique guadeloupéen (remplacer les génériques par des noms propres)
+- `prompts/tones.md` — règles de classification des tonalités par segment
 
 ---
 
@@ -306,12 +448,88 @@ _SIGLES_MOT = {"RCI", "MON_SIGLE", ...}
 
 ```
 FlashInfoKarukera/
-├── flash-info-gwada.py       # Script principal
-├── requirements.txt          # num2words, tweepy
-├── .env                      # Clés API (non versionné)
-├── Stingers/                 # Fichiers audio jingle
+├── flash-info-gwada.py           # Script principal — pipeline complet
+├── tts_normalize.py              # Normalisation texte pour le TTS
+├── requirements.txt              # Dépendances Python
+├── .env                          # Clés API (non versionné)
+│
+├── Stingers/                     # Jingles audio insérés entre les segments
 │   └── *.mp3 / *.wav
+│
+├── Media/                        # Images pour thumbnails et interstitiels
+│   ├── botiran_profile.jpg
+│   ├── botiran_news_default_thumbnail.png
+│   ├── botiran_news_banner.png
+│   └── ...
+│
+├── prompts/                      # Prompts LLM des 3 passes de rédaction
+│   ├── maryse.md
+│   ├── styliste.md
+│   ├── ancrage.md
+│   └── tones.md
+│
+├── data/
+│   └── rss.xml                   # Cache RSS local
+│
 └── .github/
     └── workflows/
-        └── flash-info.yml    # GitHub Actions
+        └── flash-info.yml        # GitHub Actions — cron + déclenchement manuel
 ```
+
+---
+
+## Pipeline détaillé
+
+```mermaid
+flowchart TD
+    A([Cron 6h40 Guadeloupe]) --> B
+
+    subgraph COLLECTE["① Collecte"]
+        B[6 flux RSS locaux] --> D[Filtrage date + priorité géo]
+        C[Open-Meteo météo] --> D
+    end
+
+    subgraph REDACTION["② Rédaction — 3 passes LLM Mistral Large"]
+        D --> E[Maryse — rédactrice principale]
+        E --> F[Réviseur stylistique]
+        F --> G[Ancrage local guadeloupéen]
+    end
+
+    subgraph POSTPROCESS["③ Post-traitement"]
+        G --> H[Prononciations locales]
+        H --> I[Vérification sources]
+        I --> J[Classification tonalités]
+    end
+
+    subgraph AUDIO["④ Audio"]
+        J --> K[Normalisation TTS]
+        K --> L[Voxtral TTS — voix Marie par tonalité]
+        L --> M[FFmpeg — assemblage + stingers]
+    end
+
+    subgraph VIDEO["⑤ Vidéo — si --tiktok"]
+        M --> N[Waveform colorée + karaoké]
+        N --> O[Thumbnail OpenAI GPT-Image]
+        O --> P[Première frame + embed MP4]
+    end
+
+    subgraph DIFFUSION["⑥ Diffusion"]
+        M --> Q[Telegram audio]
+        P --> R[Telegram vidéo + photo]
+        P --> S[YouTube Shorts]
+        P --> T[LinkedIn]
+        M --> U[Buzzsprout → Spotify]
+        M --> V[X / Twitter]
+    end
+```
+
+### Voix par tonalité
+
+| Tonalité | Cas d'usage |
+|----------|-------------|
+| `neutral` | Info factuelle, météo, administratif |
+| `happy` | Intro, outro, bonne nouvelle |
+| `excited` | Sport, exploit, événement culturel |
+| `sad` | Drame, accident, décès |
+| `angry` | Grève, conflit, polémique |
+| `curious` | Insolite, découverte, enquête |
