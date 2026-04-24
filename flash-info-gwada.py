@@ -487,9 +487,41 @@ def _strip_markdown(text: str) -> str:
     return text.strip()
 
 
+# ── Prénom du jour ────────────────────────────────────────────────────────────
+
+NOMINIS_API = "https://nominis.cef.fr/json/nominis.php"
+
+
+def fetch_prenom_du_jour(target_date: "datetime.date") -> "list[str] | None":
+    """Retourne la liste des prénoms fêtés à la date donnée, ou None si l'API est indisponible."""
+    print("🎂  Collecte prénom du jour (nominis.cef.fr)...")
+    try:
+        qs = urllib.parse.urlencode({
+            "jour": target_date.day,
+            "mois": target_date.month,
+            "annee": target_date.year,
+        })
+        req = urllib.request.Request(
+            f"{NOMINIS_API}?{qs}",
+            headers={"User-Agent": "Mozilla/5.0 (compatible; FlashInfoKarukera/1.0)"},
+        )
+        with urllib.request.urlopen(req, timeout=10) as r:
+            data = json.loads(r.read().decode())
+        prenoms = list(data.get("response", {}).get("prenoms", {}).get("majeurs", {}).keys())
+        if prenoms:
+            print(f"   Prénoms du jour : {', '.join(prenoms)}")
+            return prenoms
+        print("   ⚠️  Aucun prénom trouvé pour cette date")
+        return None
+    except Exception as exc:
+        print(f"   ⚠️  Impossible de récupérer le prénom du jour : {exc}")
+        return None
+
+
 def build_segments(
     items: list[dict], date_str: str, weather: str, sources: list[str],
     horoscope: str | None = None,
+    prenoms_du_jour: "list[str] | None" = None,
 ) -> list[str]:
     print("✍️  Rédaction des segments par Maryse (Mistral Large)...")
     articles = "\n\n".join(
@@ -540,13 +572,21 @@ def build_segments(
             "Puis présente chaque signe avec son symbole et son message.\n"
         )
 
+    prenoms_block = ""
+    if prenoms_du_jour:
+        prenoms_str = " et ".join(prenoms_du_jour)
+        prenoms_block = f"PRÉNOM DU JOUR : {prenoms_str}\n\n"
+
     user_prompt = (
         f"Flash info Guadeloupe du {date_str}.\n\n"
         f"MÉTÉO DU JOUR (toute la Guadeloupe) :\n{weather}\n\n"
+        f"{prenoms_block}"
         f"{horoscope_block}"
         f"{news_block}"
         f"Rédige exactement {n_segs} segments séparés par \"{SEG_SEPARATOR}\" :\n"
-        f"- Segment 1 : intro (jour + date + accroche)\n"
+        f"- Segment 1 : intro (jour + date + accroche"
+        + (f", souhaite une bonne fête à {' et '.join(prenoms_du_jour)}" if prenoms_du_jour else "")
+        + f")\n"
         f"- Segment 2 : météo du jour en style oral\n"
         f"{horoscope_instruction}"
         f"{news_instructions}"
@@ -2512,6 +2552,7 @@ def main():
     weather          = fetch_weather(target_date)
     horoscope_result = fetch_horoscope()
     horoscope, horoscope_signs = horoscope_result if horoscope_result else (None, [])
+    prenoms_du_jour  = fetch_prenom_du_jour(target_date)
 
     # Étape 2
     sources = list(dict.fromkeys(item["source"] for item in items))  # unique, ordre conservé
@@ -2523,7 +2564,11 @@ def main():
         print(f"  {weather}")
         print("══════════════════════════════════════════════════════════\n")
 
-    segments_maryse = build_segments(items, date_str, weather, sources, horoscope=horoscope)
+    segments_maryse = build_segments(
+        items, date_str, weather, sources,
+        horoscope=horoscope,
+        prenoms_du_jour=prenoms_du_jour,
+    )
 
     def _print_segments(segs: list[str], label: str) -> None:
         print(f"\n══════════════════════════════════════════════════════════")
