@@ -16,6 +16,7 @@ PRONONCIATIONS_LOCALES = {
     "Henri 4":          "Henri Quatre",
     "cité Henri IV":    "cité Henri Quatre",
     "cité Henri 4":     "cité Henri Quatre",
+    "FEADER" : "Fonds européen agricole pour le développement rural",
     # Code départemental (filet de sécurité si le LLM l'a quand même converti)
     "neuf cent soixante et onze": "quatre-vingt-dix-sept-un",
     "971": "quatre-vingt-dix-sept-un",
