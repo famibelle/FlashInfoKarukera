@@ -1377,7 +1377,7 @@ def generate_tiktok(
 
     videos: list[tuple[int, Path]] = []
     for i, (seg_path, _text, tone) in enumerate(zip(seg_paths, segments, tones)):
-        label = "INTRO" if i == 0 else "MÉTÉO" if i == 1 else f"SEG{i - 1:02d}"
+        label = _seg_label(i, len(seg_paths))
         print(f"   [{i + 1}/{len(seg_paths)}] {label} ({tone}) — STT timestamps…")
 
         words = transcribe_with_words(seg_path)
@@ -1569,6 +1569,19 @@ _HASHTAGS_YOUTUBE = "#Shorts #YouTubeShorts"
 
 
 _HASHTAGS_HOROSCOPE = "#Horoscope #AstroGuadeloupe #Zodiaque"
+
+
+def _seg_label(i: int, n: int, has_horoscope: bool = False) -> str:
+    """Retourne le label lisible d'un segment selon son index."""
+    if i == 0:
+        return "INTRO"
+    if i == 1:
+        return "MÉTÉO"
+    if has_horoscope and i == 2:
+        return "HOROSCOPE"
+    if i == n - 1:
+        return "OUTRO"
+    return f"SUJET {i - (2 if has_horoscope else 1)}"
 
 
 def _video_label(idx: int, n_segments: int) -> str:
@@ -2517,7 +2530,7 @@ def main():
         print(f"  VERBOSE — {label}")
         print(f"══════════════════════════════════════════════════════════")
         for i, seg in enumerate(segs):
-            tag = "INTRO" if i == 0 else "MÉTÉO" if i == 1 else ("OUTRO" if i == len(segs)-1 else f"SUJET {i-1}")
+            tag = _seg_label(i, len(segs), has_horoscope=horoscope is not None)
             print(f"\n  ── {tag} ──")
             print(f"  {seg.strip()}")
         print(f"\n  Texte brut (séparateurs inclus) :")
@@ -2555,7 +2568,7 @@ def main():
     else:
         print("\n── Script final (après ancrage) ────────────────────────")
         for i, seg in enumerate(segments):
-            label = "INTRO" if i == 0 else "MÉTÉO" if i == 1 else ("OUTRO" if i == len(segments)-1 else f"[{i-1}]")
+            label = _seg_label(i, len(segments), has_horoscope=horoscope is not None)
             print(f"\n{label}\n{seg}")
         print("\n────────────────────────────────────────────────────────\n")
 
@@ -2569,7 +2582,7 @@ def main():
         print("  VERBOSE — TONALITÉS PAR SEGMENT")
         print("══════════════════════════════════════════════════════════")
         for i, (tone, seg) in enumerate(zip(tones, segments)):
-            label = "INTRO" if i == 0 else "MÉTÉO" if i == 1 else ("OUTRO" if i == len(segments)-1 else f"SUJET {i-1}")
+            label = _seg_label(i, len(segments), has_horoscope=horoscope is not None)
             print(f"  {label:8s} → {tone:8s} ({TTS_VOICES.get(tone, TTS_VOICE_DEFAULT)})")
         print("══════════════════════════════════════════════════════════\n")
 
