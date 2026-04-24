@@ -1,5 +1,6 @@
 """Marroniers annuels de Guadeloupe — événements récurrents à date fixe ou variable.
 
+Ne contient PAS les fêtes communales/patronales (gérées dans fetes_patronales.py).
 Les dates variables (carnaval, Pâques) sont calculées dynamiquement pour chaque année.
 Utiliser `get_marroniers_du_jour(date)` pour obtenir les événements d'une date donnée.
 """
@@ -69,7 +70,7 @@ MARRONIERS: list[Marronieur] = [
     Marronieur(
         evenement="Fête des Grands-Fonds — courses de bœufs tirant et remise de prix",
         lieu="Sainte-Anne",
-        categorie="Fête communale",
+        categorie="Tradition",
         date_debut="01-01",
     ),
     Marronieur(
@@ -93,8 +94,6 @@ MARRONIERS: list[Marronieur] = [
         categorie="Carnaval",
         date_variable="samedi_avant_mardi_gras",
     ),
-
-    # ── Mars ──────────────────────────────────────────────────────────────────
     Marronieur(
         evenement="Parade du dimanche gras",
         lieu="Pointe-à-Pitre",
@@ -113,6 +112,8 @@ MARRONIERS: list[Marronieur] = [
         categorie="Carnaval",
         date_variable="mercredi_des_cendres",
     ),
+
+    # ── Mars / Avril ──────────────────────────────────────────────────────────
     Marronieur(
         evenement="Fête du crabe — cuisine créole, plages animées",
         lieu="Toute l'île",
@@ -120,8 +121,6 @@ MARRONIERS: list[Marronieur] = [
         date_variable="semaine_apres_paques",
         duree_jours=7,
     ),
-
-    # ── Avril ─────────────────────────────────────────────────────────────────
     Marronieur(
         evenement="Fête du poisson et de la mer",
         lieu="Saint-François",
@@ -135,83 +134,21 @@ MARRONIERS: list[Marronieur] = [
         date_debut="04-15",
     ),
 
-    # ── Mai ───────────────────────────────────────────────────────────────────
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Petit-Canal",
-        categorie="Fête communale",
-        date_debut="05-02",
-    ),
-    Marronieur(
-        evenement="Festivités communales",
-        lieu="Vieux-Habitants",
-        categorie="Fête communale",
-        date_debut="05-02",
-    ),
-
     # ── Juin ──────────────────────────────────────────────────────────────────
-    Marronieur(
-        evenement="Fête de la ville",
-        lieu="Lamentin",
-        categorie="Fête communale",
-        date_debut="06-06",
-    ),
     Marronieur(
         evenement="Fête de la musique — Place de la Victoire",
         lieu="Pointe-à-Pitre",
         categorie="Culture / Musique",
         date_debut="06-21",
     ),
-    Marronieur(
-        evenement="Festivités communales",
-        lieu="Baie-Mahault",
-        categorie="Fête communale",
-        date_debut="06-27",
-    ),
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Le Moule",
-        categorie="Fête communale",
-        date_debut="06-27",
-    ),
 
     # ── Juillet ───────────────────────────────────────────────────────────────
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Deshaies",
-        categorie="Fête communale",
-        date_debut="07-04",
-    ),
-    Marronieur(
-        evenement="Festivité patronale",
-        lieu="Port-Louis",
-        categorie="Fête communale",
-        date_debut="07-04",
-    ),
     Marronieur(
         evenement="Festival de Gwoka — animations multiples",
         lieu="Sainte-Anne",
         categorie="Culture",
         date_debut="07-05",
         date_fin="07-14",
-    ),
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Goyave",
-        categorie="Fête communale",
-        date_debut="07-11",
-    ),
-    Marronieur(
-        evenement="Festivités",
-        lieu="Sainte-Anne",
-        categorie="Fête communale",
-        date_debut="07-18",
-    ),
-    Marronieur(
-        evenement="Festivité patronale",
-        lieu="Capesterre-de-Marie-Galante",
-        categorie="Fête communale",
-        date_debut="07-25",
     ),
 
     # ── Août ──────────────────────────────────────────────────────────────────
@@ -223,128 +160,16 @@ MARRONIERS: list[Marronieur] = [
         date_fin="08-15",
     ),
     Marronieur(
-        evenement="Fête communale",
-        lieu="Baillif",
-        categorie="Fête communale",
-        date_debut="08-08",
-    ),
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Vieux-Fort",
-        categorie="Fête communale",
-        date_debut="08-08",
-    ),
-    Marronieur(
         evenement="Fête des Cuisinières — défilé en costume traditionnel, dégustation créole",
         lieu="Pointe-à-Pitre",
         categorie="Tradition / Gastronomie",
         date_debut="08-15",
     ),
     Marronieur(
-        evenement="Fête communale",
-        lieu="Les Saintes (Terre-de-Haut)",
-        categorie="Fête communale",
-        date_debut="08-15",
-    ),
-    Marronieur(
-        evenement="Animations et fête communale",
-        lieu="Grand-Bourg (Marie-Galante)",
-        categorie="Fête communale",
-        date_debut="08-15",
-    ),
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Bouillante",
-        categorie="Fête communale",
-        date_debut="08-15",
-    ),
-    Marronieur(
-        evenement="Fête de l'île",
-        lieu="La Désirade",
-        categorie="Fête communale",
-        date_debut="08-15",
-    ),
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Petit-Bourg",
-        categorie="Fête communale",
-        date_debut="08-15",
-    ),
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Pointe-Noire",
-        categorie="Fête communale",
-        date_debut="08-15",
-    ),
-    Marronieur(
-        evenement="Festivités",
-        lieu="Sainte-Rose",
-        categorie="Fête communale",
-        date_debut="08-15",
-    ),
-    Marronieur(
-        evenement="Fête patronale",
-        lieu="Trois-Rivières",
-        categorie="Fête communale",
-        date_debut="08-15",
-    ),
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Capesterre-Belle-Eau",
-        categorie="Fête communale",
-        date_debut="08-22",
-    ),
-    Marronieur(
-        evenement="Manifestations culturelles",
+        evenement="Manifestations culturelles de Saint-Barthélemy",
         lieu="Saint-Barthélemy",
         categorie="Culture",
         date_debut="08-22",
-    ),
-    Marronieur(
-        evenement="Festivités",
-        lieu="Saint-Louis (Marie-Galante)",
-        categorie="Fête communale",
-        date_debut="08-22",
-    ),
-    Marronieur(
-        evenement="Fête patronale",
-        lieu="Le Gosier",
-        categorie="Fête communale",
-        date_debut="08-29",
-    ),
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Saint-Claude",
-        categorie="Fête communale",
-        date_debut="08-29",
-    ),
-
-    # ── Octobre ───────────────────────────────────────────────────────────────
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Saint-François",
-        categorie="Fête communale",
-        date_debut="10-03",
-    ),
-    Marronieur(
-        evenement="Fête patronale",
-        lieu="Anse-Bertrand",
-        categorie="Fête communale",
-        date_debut="10-10",
-    ),
-
-    # ── Novembre ──────────────────────────────────────────────────────────────
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Gourbeyre",
-        categorie="Fête communale",
-        date_debut="11-07",
-    ),
-    Marronieur(
-        evenement="Festivités multiples",
-        lieu="Saint-Martin",
-        categorie="Fête communale",
-        date_debut="11-11",
     ),
 
     # ── Décembre ──────────────────────────────────────────────────────────────
@@ -353,24 +178,6 @@ MARRONIERS: list[Marronieur] = [
         lieu="Pointe-à-Pitre",
         categorie="Culture",
         date_debut="12-01",
-    ),
-    Marronieur(
-        evenement="Festivités communales",
-        lieu="Les Abymes",
-        categorie="Fête communale",
-        date_debut="12-05",
-    ),
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Basse-Terre",
-        categorie="Fête communale",
-        date_debut="12-12",
-    ),
-    Marronieur(
-        evenement="Fête communale",
-        lieu="Morne-à-l'Eau",
-        categorie="Fête communale",
-        date_debut="12-12",
     ),
 ]
 

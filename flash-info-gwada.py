@@ -405,12 +405,29 @@ _SIGN_FR = {
     "libra": "Balance", "scorpio": "Scorpion", "sagittarius": "Sagittaire",
     "capricorn": "Capricorne", "aquarius": "Verseau", "pisces": "Poissons",
 }
+# Lookup inverse : nom français (minuscules) → clé anglaise
+_SIGN_FR_TO_EN = {v.lower(): k for k, v in _SIGN_FR.items()}
 
 
-def fetch_horoscope(n_signs: int = 2) -> "tuple[str, list[str]] | None":
-    """Retourne (texte, signes_fr) pour n_signs signes aléatoires, ou None si l'API est indisponible."""
-    print(f"🔮  Collecte horoscope ({n_signs} signe{'s' if n_signs > 1 else ''})...")
-    signs = random.sample(_SIGNS, min(n_signs, len(_SIGNS)))
+def _resolve_sign(name: str) -> str | None:
+    """Convertit un nom de signe (fr ou en, casse libre) en clé anglaise, ou None si inconnu."""
+    key = name.strip().lower()
+    if key in _SIGNS:
+        return key
+    return _SIGN_FR_TO_EN.get(key)
+
+
+def fetch_horoscope(n_signs: int = 2, include_signs: "list[str] | None" = None) -> "tuple[str, list[str]] | None":
+    """Retourne (texte, signes_fr) pour n_signs signes aléatoires, ou None si l'API est indisponible.
+
+    include_signs : liste de clés anglaises à inclure de force ; les slots restants sont tirés au hasard.
+    """
+    forced = list(dict.fromkeys(include_signs or []))  # dédoublonnage, ordre conservé
+    pool = [s for s in _SIGNS if s not in forced]
+    n_random = max(0, n_signs - len(forced))
+    signs = forced + random.sample(pool, min(n_random, len(pool)))
+    print(f"🔮  Collecte horoscope ({len(signs)} signe{'s' if len(signs) > 1 else ''}" +
+          (f", dont {', '.join(_SIGN_FR[s] for s in forced)} imposé{'s' if len(forced) > 1 else ''}" if forced else "") + ")...")
     entries, signs_fr = [], []
     for sign in signs:
         try:
@@ -491,7 +508,9 @@ def call_mistral(
                 raise
 
 
-MARYSE_SYSTEM = _load_prompt("maryse.md")
+MARYSE_SYSTEM        = _load_prompt("maryse_ame.md") + "\n\n" + _load_prompt("maryse.md")
+PRENOM_TEMPLATE      = _load_prompt("prenom.md")
+HOROSCOPE_TEMPLATE   = _load_prompt("horoscope.md")
 
 
 def _strip_markdown(text: str) -> str:
@@ -545,6 +564,7 @@ def build_segments(
     horoscope_signs: "list[str] | None" = None,
     prenoms_du_jour: "list[str] | None" = None,
     communes_du_jour: "list[str] | None" = None,
+    marroniers_du_jour: "list | None" = None,
 ) -> list[str]:
     print("✍️  Rédaction des segments par Maryse (Mistral Large)...")
     articles = "\n\n".join(
@@ -598,9 +618,10 @@ def build_segments(
             f" Mentionne aussi la fête patronale de {' et '.join(communes_du_jour)}."
             if communes_du_jour else ""
         )
-        prenom_instruction = (
-            f"- Segment {prenom_seg} : souhaits de bonne fête chaleureux et enjoués à {prenoms_str}, "
-            f"style oral créole guadeloupéen, ton festif, 20 à 30 mots maximum.{communes_mention}\n"
+        prenom_instruction = PRENOM_TEMPLATE.format(
+            segment=prenom_seg,
+            prenoms=prenoms_str,
+            communes_mention=communes_mention,
         )
 
     horoscope_block = ""
@@ -608,13 +629,7 @@ def build_segments(
     if has_horoscope:
         n_signs = len(horoscope_signs) if horoscope_signs else 2
         horoscope_block = f"HOROSCOPE DU JOUR ({n_signs} signe{'s' if n_signs > 1 else ''} tiré{'s' if n_signs > 1 else ''} au hasard) :\n{horoscope}\n\n"
-        horoscope_instruction = (
-            f"- Segment {horoscope_seg} : horoscope en style oral créole guadeloupéen, ton curieux et bienveillant, "
-            "environ 40 à 60 mots. Commence par une phrase d'annonce sobre, style bulletin radio "
-            "(exemple : \"On passe maintenant à votre horoscope du jour.\") — "
-            "tu peux varier la formulation tant qu'elle reste neutre et directe. "
-            "Puis présente chaque signe avec son symbole et son message.\n"
-        )
+        horoscope_instruction = HOROSCOPE_TEMPLATE.format(segment=horoscope_seg)
 
     prenoms_block = ""
     if has_prenom:
@@ -624,11 +639,19 @@ def build_segments(
     if communes_du_jour:
         communes_block = f"FÊTE PATRONALE DU JOUR : {' et '.join(communes_du_jour)}\n\n"
 
+    marroniers_block = ""
+    if marroniers_du_jour:
+        lignes = "\n".join(
+            f"- {m.evenement} ({m.lieu})" for m in marroniers_du_jour
+        )
+        marroniers_block = f"ÉVÉNEMENTS RÉCURRENTS DU JOUR (marroniers) :\n{lignes}\n\nTu peux mentionner ces événements dans l'intro ou dans un segment d'actualité si cela enrichit le flash, mais sans les inventer ni les développer au-delà de ce qui est indiqué.\n\n"
+
     user_prompt = (
         f"Flash info Guadeloupe du {date_str}.\n\n"
         f"MÉTÉO DU JOUR (toute la Guadeloupe) :\n{weather}\n\n"
         f"{prenoms_block}"
         f"{communes_block}"
+        f"{marroniers_block}"
         f"{horoscope_block}"
         f"{news_block}"
         f"Rédige exactement {n_segs} segments séparés par \"{SEG_SEPARATOR}\" :\n"
@@ -2472,6 +2495,15 @@ def main():
         help="Nombre de signes astrologiques à inclure dans la rubrique horoscope (défaut : 2).",
     )
     parser.add_argument(
+        "--horoscope-include", action="append", default=[], metavar="SIGNE",
+        help=(
+            "Inclure ce signe de force dans l'horoscope (français ou anglais). Répétable. "
+            "Signes disponibles : "
+            + ", ".join(f"{fr} ({en})" for en, fr in _SIGN_FR.items())
+            + "."
+        ),
+    )
+    parser.add_argument(
         "--test-horoscope", action="store_true",
         help=(
             "Récupère l'horoscope du jour pour N signes aléatoires (voir --horoscope-signs) "
@@ -2506,7 +2538,8 @@ def main():
     args = parser.parse_args()
 
     if args.test_horoscope:
-        result = fetch_horoscope(n_signs=args.horoscope_signs)
+        _inc = [s for name in args.horoscope_include if (s := _resolve_sign(name))]
+        result = fetch_horoscope(n_signs=args.horoscope_signs, include_signs=_inc or None)
         if result:
             text, signs_fr = result
             print("\n── Horoscope brut ───────────────────────────────────────")
@@ -2655,10 +2688,20 @@ def main():
         print("══════════════════════════════════════════════════════════\n")
 
     weather          = fetch_weather(target_date)
-    horoscope_result = fetch_horoscope(n_signs=args.horoscope_signs)
+    include_signs = []
+    for name in args.horoscope_include:
+        resolved = _resolve_sign(name)
+        if resolved:
+            include_signs.append(resolved)
+        else:
+            print(f"⚠️  Signe inconnu ignoré : '{name}' (valeurs valides : {', '.join(_SIGNS)})")
+    horoscope_result = fetch_horoscope(n_signs=args.horoscope_signs, include_signs=include_signs or None)
     horoscope, horoscope_signs = horoscope_result if horoscope_result else (None, [])
-    prenoms_du_jour  = fetch_prenom_du_jour(target_date)
-    communes_du_jour = get_communes_du_jour(target_date) or None
+    prenoms_du_jour   = fetch_prenom_du_jour(target_date)
+    communes_du_jour  = get_communes_du_jour(target_date) or None
+    marroniers_du_jour = _get_marroniers_du_jour(target_date) or None
+    if marroniers_du_jour:
+        print(f"📅  Marroniers du jour : {', '.join(m.evenement for m in marroniers_du_jour)}")
 
     # Étape 2
     sources = list(dict.fromkeys(item["source"] for item in items))  # unique, ordre conservé
@@ -2678,6 +2721,7 @@ def main():
         horoscope_signs=horoscope_signs,
         prenoms_du_jour=prenoms_du_jour,
         communes_du_jour=communes_du_jour,
+        marroniers_du_jour=marroniers_du_jour,
     )
 
     def _print_segments(segs: list[str], label: str) -> None:
