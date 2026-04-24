@@ -600,12 +600,13 @@ def get_communes_du_jour(target_date: "Date") -> list[str]:
 
 def fetch_prenom_du_jour(target_date: "datetime.date") -> "list[str] | None":
     """Retourne la liste des prénoms fêtés à la date donnée, ou None si l'API est indisponible."""
-    print("🎂  Collecte prénom du jour (nominis.cef.fr)...")
+    date_label = _date_fr(target_date)
+    print(f"🎂  Collecte prénoms du {date_label} (nominis.cef.fr)...")
     try:
         qs = urllib.parse.urlencode({
-            "jour": target_date.day,
-            "mois": target_date.month,
-            "annee": target_date.year,
+            "jour":   target_date.day,
+            "mois":   target_date.month,
+            "année":  target_date.year,
         })
         req = urllib.request.Request(
             f"{NOMINIS_API}?{qs}",
@@ -615,12 +616,12 @@ def fetch_prenom_du_jour(target_date: "datetime.date") -> "list[str] | None":
             data = json.loads(r.read().decode())
         prenoms = list(data.get("response", {}).get("prenoms", {}).get("majeurs", {}).keys())
         if prenoms:
-            print(f"   Prénoms du jour : {', '.join(prenoms)}")
+            print(f"   Prénoms du {date_label} : {', '.join(prenoms)}")
             return prenoms
-        print("   ⚠️  Aucun prénom trouvé pour cette date")
+        print(f"   ⚠️  Aucun prénom trouvé pour le {date_label}")
         return None
     except Exception as exc:
-        print(f"   ⚠️  Impossible de récupérer le prénom du jour : {exc}")
+        print(f"   ⚠️  Impossible de récupérer les prénoms du {date_label} : {exc}")
         return None
 
 
@@ -690,6 +691,7 @@ def build_segments(
     prenom_instruction = ""
     if has_prenom:
         prenoms_str = " et ".join(prenoms_du_jour)
+        is_demain = edition == "soir"
         communes_mention = (
             f" Mentionne aussi la fête patronale de {' et '.join(communes_du_jour)}."
             if communes_du_jour else ""
@@ -698,6 +700,7 @@ def build_segments(
             segment=prenom_seg,
             prenoms=prenoms_str,
             communes_mention=communes_mention,
+            demain_context=" de demain" if is_demain else "",
         )
 
     horoscope_block = ""
@@ -709,7 +712,8 @@ def build_segments(
 
     prenoms_block = ""
     if has_prenom:
-        prenoms_block = f"PRÉNOM DU JOUR : {' et '.join(prenoms_du_jour)}\n\n"
+        label_prenom = "PRÉNOM DE DEMAIN" if edition == "soir" else "PRÉNOM DU JOUR"
+        prenoms_block = f"{label_prenom} : {' et '.join(prenoms_du_jour)}\n\n"
 
     communes_block = ""
     if communes_du_jour:
@@ -2632,10 +2636,11 @@ def main():
         ),
     )
     parser.add_argument(
-        "--test-prenom", action="store_true",
+        "--test-prenom", nargs="?", const="today", metavar="YYYY-MM-DD",
         help=(
-            "Récupère le prénom du jour depuis nominis.cef.fr et affiche le résultat, "
-            "sans lancer la pipeline complète."
+            "Récupère les prénoms depuis nominis.cef.fr sans lancer la pipeline. "
+            "Sans date : utilise aujourd'hui (ou --date si fourni). "
+            "Exemple : --test-prenom 2026-04-26"
         ),
     )
     parser.add_argument(
@@ -2669,15 +2674,21 @@ def main():
             print("─────────────────────────────────────────────────────────")
         return
 
-    if args.test_prenom:
-        target_date = (
-            Date.fromisoformat(args.date) if args.date
-            else Date.today()
-        )
+    if args.test_prenom is not None:
+        if args.test_prenom not in (None, "today"):
+            try:
+                target_date = Date.fromisoformat(args.test_prenom)
+            except ValueError:
+                print(f"❌ Date invalide : '{args.test_prenom}'. Attendu : YYYY-MM-DD", file=sys.stderr)
+                sys.exit(1)
+        elif args.date:
+            target_date = Date.fromisoformat(args.date)
+        else:
+            target_date = Date.today()
         prenoms = fetch_prenom_du_jour(target_date)
         if prenoms:
-            print("\n── Prénom du jour ───────────────────────────────────────")
-            print(f"Date : {target_date.strftime('%A %d %B %Y')}")
+            print("\n── Prénoms ──────────────────────────────────────────────")
+            print(f"Date    : {_date_fr(target_date)}")
             print(f"Prénoms : {', '.join(prenoms)}")
             print("─────────────────────────────────────────────────────────")
         return
@@ -2841,6 +2852,8 @@ def main():
         horoscope_signs = []
 
     prenoms_date = tomorrow if edition == "soir" else target_date
+    if edition == "soir":
+        print(f"📅  Édition soir : prénoms et communes pour demain ({_date_fr(tomorrow)})")
     if edition != "midi":
         prenoms_du_jour  = fetch_prenom_du_jour(prenoms_date)
         communes_du_jour = get_communes_du_jour(prenoms_date) or None
