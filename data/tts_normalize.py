@@ -3,6 +3,7 @@
 # Prononciations locales guadeloupéennes (forme écrite → forme orale pour le TTS)
 PRONONCIATIONS_LOCALES = {
     # Prononciations créoles
+    "Jaden" : "Jadin",
     "Gwoka" : "GroKa",
     "Raizet" : "Rézé",
     "Lyannaj": "Lyanhnage",   # Lyan-naje, deux syllabes distinctes
