@@ -375,6 +375,52 @@ def fetch_weather(target_date: Date) -> str:
     return summary
 
 
+# ── Horoscope ────────────────────────────────────────────────────────────────
+
+HOROSCOPE_API = "https://freehoroscopeapi.com/api/v1/get-horoscope/daily"
+
+_SIGNS = [
+    "aries", "taurus", "gemini", "cancer", "leo", "virgo",
+    "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces",
+]
+_SIGN_FR = {
+    "aries": "Bélier", "taurus": "Taureau", "gemini": "Gémeaux",
+    "cancer": "Cancer", "leo": "Lion", "virgo": "Vierge",
+    "libra": "Balance", "scorpio": "Scorpion", "sagittarius": "Sagittaire",
+    "capricorn": "Capricorne", "aquarius": "Verseau", "pisces": "Poissons",
+}
+
+
+def fetch_horoscope() -> str | None:
+    """Retourne les horoscopes de 2 signes tirés au hasard, ou None si l'API est indisponible."""
+    print("🔮  Collecte horoscope (2 signes)...")
+    signs = random.sample(_SIGNS, 2)
+    entries = []
+    for sign in signs:
+        try:
+            qs = urllib.parse.urlencode({"sign": sign})
+            req = urllib.request.Request(
+                f"{HOROSCOPE_API}?{qs}",
+                headers={"User-Agent": "Mozilla/5.0 (compatible; FlashInfoKarukera/1.0)"},
+            )
+            with urllib.request.urlopen(req, timeout=15) as r:
+                data = json.loads(r.read())
+            text = (
+                data.get("horoscope")
+                or data.get("data", {}).get("horoscope", "")
+                or data.get("description", "")
+            )
+            if text:
+                entries.append(f"{_SIGN_FR[sign]} ({sign.capitalize()}) : {text}")
+                print(f"   {_SIGN_FR[sign]} ✅")
+        except Exception as e:
+            print(f"   ⚠️  Horoscope {sign} : {e}")
+    if not entries:
+        print("   ⚠️  Horoscope indisponible — rubrique omise.")
+        return None
+    return "\n".join(entries)
+
+
 # ── Étape 2 : Segments rédigés par Maryse via Mistral ────────────────────────
 
 MISTRAL_CHAT_MODEL = "mistral-large-latest"
@@ -440,15 +486,21 @@ def _strip_markdown(text: str) -> str:
     return text.strip()
 
 
-def build_segments(items: list[dict], date_str: str, weather: str, sources: list[str]) -> list[str]:
+def build_segments(
+    items: list[dict], date_str: str, weather: str, sources: list[str],
+    horoscope: str | None = None,
+) -> list[str]:
     print("✍️  Rédaction des segments par Maryse (Mistral Large)...")
     articles = "\n\n".join(
         f"[{i+1}] {item['title']}\n{item['desc']}" for i, item in enumerate(items)
     )
-    n_segs = len(items) + 3  # intro + météo + items + outro
+    has_horoscope = horoscope is not None
+    news_offset = 4 if has_horoscope else 3  # premier segment d'actu
+    sources_str = " et ".join(sources) if sources else "les médias locaux"
+
     if items:
+        n_segs = len(items) + (4 if has_horoscope else 3)
         news_block = f"Voici les {len(items)} actualités du jour :\n\n{articles}\n\n"
-        sources_str = " et ".join(sources) if sources else "les médias locaux"
         outro_template = (
             f"Voilà pour ce Flash Info Guadeloupe du {date_str}. "
             f"Sources : {sources_str}. "
@@ -456,14 +508,14 @@ def build_segments(items: list[dict], date_str: str, weather: str, sources: list
             f"Bonne journée à toutes et à tous."
         )
         news_instructions = (
-            f"- Segments 3 à {len(items)+2} : un seul sujet par segment, 60 à 90 mots chacun.\n"
+            f"- Segments {news_offset} à {len(items) + news_offset - 1} : "
+            f"un seul sujet par segment, 60 à 90 mots chacun.\n"
             f"- Segment {n_segs} : outro. Recopie ce modèle en remplaçant uniquement "
             f"[prochain rendez-vous] :\n  \"{outro_template}\""
         )
     else:
-        n_segs = 3  # intro + météo + outro seulement
+        n_segs = 4 if has_horoscope else 3
         news_block = ""
-        sources_str = " et ".join(sources) if sources else "les médias locaux"
         outro_template = (
             f"Voilà pour ce Flash Info Guadeloupe du {date_str}. "
             f"Sources : {sources_str}. "
@@ -471,20 +523,34 @@ def build_segments(items: list[dict], date_str: str, weather: str, sources: list
             f"Bonne journée à toutes et à tous."
         )
         news_instructions = (
-            f"- Segment 3 : outro. Recopie ce modèle en remplaçant uniquement "
+            f"- Segment {n_segs} : outro. Recopie ce modèle en remplaçant uniquement "
             f"[prochain rendez-vous] :\n  \"{outro_template}\""
+        )
+
+    horoscope_block = ""
+    horoscope_instruction = ""
+    if has_horoscope:
+        horoscope_block = f"HOROSCOPE DU JOUR (2 signes tirés au hasard) :\n{horoscope}\n\n"
+        horoscope_instruction = (
+            "- Segment 3 : horoscope en style oral créole guadeloupéen, ton curieux et bienveillant, "
+            "environ 40 à 60 mots. Commence par une phrase d'annonce sobre, style bulletin radio "
+            "(exemple : \"On passe maintenant à votre horoscope du jour.\") — "
+            "tu peux varier la formulation tant qu'elle reste neutre et directe. "
+            "Puis présente chaque signe avec son symbole et son message.\n"
         )
 
     user_prompt = (
         f"Flash info Guadeloupe du {date_str}.\n\n"
         f"MÉTÉO DU JOUR (toute la Guadeloupe) :\n{weather}\n\n"
+        f"{horoscope_block}"
         f"{news_block}"
         f"Rédige exactement {n_segs} segments séparés par \"{SEG_SEPARATOR}\" :\n"
         f"- Segment 1 : intro (jour + date + accroche)\n"
         f"- Segment 2 : météo du jour en style oral\n"
+        f"{horoscope_instruction}"
         f"{news_instructions}"
     )
-    raw = call_mistral(MARYSE_SYSTEM, user_prompt, temperature=0.75, max_tokens=1200)
+    raw = call_mistral(MARYSE_SYSTEM, user_prompt, temperature=0.75, max_tokens=1600 if has_horoscope else 1200)
 
     import re as _re
     segments = [_strip_markdown(s) for s in raw.split(SEG_SEPARATOR) if s.strip()]
@@ -1500,21 +1566,33 @@ _HASHTAGS_TIKTOK  = "#GuadeloupeTikTok #InfoTikTok"
 _HASHTAGS_YOUTUBE = "#Shorts #YouTubeShorts"
 
 
+_HASHTAGS_HOROSCOPE = "#Horoscope #AstroGuadeloupe #Zodiaque"
+
+
 def _video_label(idx: int, n_segments: int) -> str:
     if idx == 1:
         return "météo"
-    return f"sujet {idx - 1}"
+    if idx == 2:
+        return "horoscope"
+    return f"sujet {idx - 2}"
 
 
 def _tiktok_caption(text: str, idx: int, n_segments: int, date_str: str) -> str:
     """Caption courte pour TikTok : accroche + hashtags (~300 car.)."""
-    is_meteo = idx == 1
-    # Première phrase du segment comme accroche
+    is_meteo     = idx == 1
+    is_horoscope = idx == 2
     first_sentence = text.split(".")[0].strip()
     if len(first_sentence) > 120:
         first_sentence = first_sentence[:117] + "…"
-    topic_tags = _HASHTAGS_METEO if is_meteo else _HASHTAGS_NEWS
-    label = "Météo Guadeloupe" if is_meteo else f"Flash Info — {date_str}"
+    if is_meteo:
+        topic_tags = _HASHTAGS_METEO
+        label = "Météo Guadeloupe"
+    elif is_horoscope:
+        topic_tags = _HASHTAGS_HOROSCOPE
+        label = "Horoscope du jour"
+    else:
+        topic_tags = _HASHTAGS_NEWS
+        label = f"Flash Info — {date_str}"
     return (
         f"🇬🇵 {label}\n"
         f"{first_sentence}.\n\n"
@@ -1524,10 +1602,18 @@ def _tiktok_caption(text: str, idx: int, n_segments: int, date_str: str) -> str:
 
 def _youtube_description(text: str, idx: int, n_segments: int, date_str: str) -> str:
     """Description YouTube Shorts : extrait + hashtags."""
-    is_meteo = idx == 1
+    is_meteo     = idx == 1
+    is_horoscope = idx == 2
     excerpt = text[:400].rsplit(" ", 1)[0] + "…" if len(text) > 400 else text
-    topic_tags = _HASHTAGS_METEO if is_meteo else _HASHTAGS_NEWS
-    label = "Météo" if is_meteo else f"Sujet {idx - 1}"
+    if is_meteo:
+        topic_tags = _HASHTAGS_METEO
+        label = "Météo"
+    elif is_horoscope:
+        topic_tags = _HASHTAGS_HOROSCOPE
+        label = "Horoscope"
+    else:
+        topic_tags = _HASHTAGS_NEWS
+        label = f"Sujet {idx - 2}"
     return (
         f"Flash Info Guadeloupe — {date_str} — {label}\n\n"
         f"{excerpt}\n\n"
@@ -1643,14 +1729,17 @@ def _interleave_interstitials(
     items: list[dict],
     output_dir: Path,
     stinger: Path,
+    has_horoscope: bool = False,
 ) -> list[Path]:
     """
-    Intercale un interstitiel avant chaque segment de contenu (MÉTÉO et sujets).
-    - videos  : [(segment_index, path), …] dans l'ordre
-    - items   : articles collectés (items[0] → segment 2, items[1] → segment 3, …)
-    - stinger : fichier audio utilisé comme fond sonore des interstitiels
+    Intercale un interstitiel avant chaque segment de contenu (MÉTÉO, horoscope et sujets).
+    - videos        : [(segment_index, path), …] dans l'ordre
+    - items         : articles collectés
+    - has_horoscope : si True, idx=2 est l'horoscope et les sujets commencent à idx=3
+                      si False (défaut), les sujets commencent à idx=2
     Retourne la liste ordonnée de paths (interstitiels + segments) prête pour concat.
     """
+    news_start = 3 if has_horoscope else 2
     result: list[Path] = []
     for idx, video_path in videos:
         if idx == 0:
@@ -1659,13 +1748,15 @@ def _interleave_interstitials(
 
         if idx == 1:
             category = "météo"
-        elif idx - 2 < len(items):
-            category = items[idx - 2].get("category", "general")
+        elif has_horoscope and idx == 2:
+            category = "horoscope"
+        elif idx - news_start < len(items):
+            category = items[idx - news_start].get("category", "general")
         else:
             category = "general"
 
         inter_path = output_dir / f"inter_{idx:02d}_{category.replace(' ', '_')}.mp4"
-        hashtags = items[idx - 2].get("hashtags", []) if idx >= 2 and idx - 2 < len(items) else []
+        hashtags = items[idx - news_start].get("hashtags", []) if idx >= news_start and idx - news_start < len(items) else []
         print(f"   Interstitiel [{idx}] — {category} {hashtags[:2]}")
         _make_interstitial(category, inter_path, stinger, hashtags)
         result.append(inter_path)
@@ -2253,6 +2344,14 @@ def main():
         ),
     )
     parser.add_argument(
+        "--test-horoscope", action="store_true",
+        help=(
+            "Récupère l'horoscope du jour pour 2 signes aléatoires et affiche le résultat brut "
+            "de l'API, sans lancer la pipeline complète. Utile pour vérifier la disponibilité "
+            "de l'API et le format de la réponse."
+        ),
+    )
+    parser.add_argument(
         "--thumbnail", type=Path, metavar="FICHIER",
         help=(
             "Utilise l'image fournie comme thumbnail (PNG/JPG) au lieu de la générer via OpenAI. "
@@ -2264,6 +2363,14 @@ def main():
         help="Désactive la génération et l'embed du thumbnail (première frame et envoi Telegram).",
     )
     args = parser.parse_args()
+
+    if args.test_horoscope:
+        result = fetch_horoscope()
+        if result:
+            print("\n── Horoscope brut ───────────────────────────────────────")
+            print(result)
+            print("─────────────────────────────────────────────────────────")
+        return
 
     if args.generate_thumbnail:
         _DEFAULT_THUMBNAIL_INTRO = (
@@ -2378,7 +2485,8 @@ def main():
         print(json.dumps(items, ensure_ascii=False, indent=2))
         print("══════════════════════════════════════════════════════════\n")
 
-    weather = fetch_weather(target_date)
+    weather   = fetch_weather(target_date)
+    horoscope = fetch_horoscope()
 
     # Étape 2
     sources = list(dict.fromkeys(item["source"] for item in items))  # unique, ordre conservé
@@ -2390,7 +2498,7 @@ def main():
         print(f"  {weather}")
         print("══════════════════════════════════════════════════════════\n")
 
-    segments_maryse = build_segments(items, date_str, weather, sources)
+    segments_maryse = build_segments(items, date_str, weather, sources, horoscope=horoscope)
 
     def _print_segments(segs: list[str], label: str) -> None:
         print(f"\n══════════════════════════════════════════════════════════")
@@ -2441,6 +2549,8 @@ def main():
 
     # Étape 2d — Classification tonale (avant dry-run pour que le verbose la montre)
     tones = classify_tones(segments)
+    if horoscope is not None and len(tones) > 2:
+        tones[2] = "curious"
 
     if args.verbose:
         print("\n══════════════════════════════════════════════════════════")
@@ -2496,7 +2606,7 @@ def main():
             for idx, video_path in videos:
                 if idx == 0 or idx == n_seg - 1:
                     continue  # skip intro et outro
-                yt_label = "Météo" if idx == 1 else f"Sujet {idx - 1}"
+                yt_label = "Météo" if idx == 1 else "Horoscope" if idx == 2 else f"Sujet {idx - 2}"
                 yt_title = f"Flash Info Guadeloupe — {date_str} — {yt_label}"
                 yt_desc = _youtube_description(segments[idx], idx, n_seg, date_str)
                 upload_youtube_short(video_path, yt_title, yt_desc)
@@ -2504,7 +2614,7 @@ def main():
         # Vidéo complète : générée dès que --tiktok ou --youtube est actif
         print("🎞️  Génération vidéo complète avec interstitiels…")
         full_video_path = video_dir / f"flash-info-complet-{target_date}.mp4"
-        ordered = _interleave_interstitials(videos, items, video_dir, stinger)
+        ordered = _interleave_interstitials(videos, items, video_dir, stinger, has_horoscope=horoscope is not None)
         video_metadata = {
             "title":     title,
             "artist":    "Botiran",
