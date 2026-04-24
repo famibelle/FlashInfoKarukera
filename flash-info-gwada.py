@@ -391,11 +391,11 @@ _SIGN_FR = {
 }
 
 
-def fetch_horoscope() -> str | None:
-    """Retourne les horoscopes de 2 signes tirés au hasard, ou None si l'API est indisponible."""
+def fetch_horoscope() -> "tuple[str, list[str]] | None":
+    """Retourne (texte, signes_fr) pour 2 signes aléatoires, ou None si l'API est indisponible."""
     print("🔮  Collecte horoscope (2 signes)...")
     signs = random.sample(_SIGNS, 2)
-    entries = []
+    entries, signs_fr = [], []
     for sign in signs:
         try:
             qs = urllib.parse.urlencode({"sign": sign})
@@ -412,13 +412,14 @@ def fetch_horoscope() -> str | None:
             )
             if text:
                 entries.append(f"{_SIGN_FR[sign]} ({sign.capitalize()}) : {text}")
+                signs_fr.append(_SIGN_FR[sign])
                 print(f"   {_SIGN_FR[sign]} ✅")
         except Exception as e:
             print(f"   ⚠️  Horoscope {sign} : {e}")
     if not entries:
         print("   ⚠️  Horoscope indisponible — rubrique omise.")
         return None
-    return "\n".join(entries)
+    return "\n".join(entries), signs_fr
 
 
 # ── Étape 2 : Segments rédigés par Maryse via Mistral ────────────────────────
@@ -1093,6 +1094,7 @@ INTERSTITIAL_CTA_DURATION = 5.0  # secondes (texte long à lire)
 # Mapping catégorie → (label affiché, couleur hex)
 INTERSTITIAL_STYLES: dict[str, tuple[str, str]] = {
     "météo":        ("🌤  MÉTÉO",         "#4A90D9"),
+    "horoscope":    ("HOROSCOPE",         "#6C3483"),
     "vie locale":   ("🏘  VIE LOCALE",    "#2ECC71"),
     "sports":       ("⚽ SPORTS",        "#FF6B00"),
     "social":       ("🤝 SOCIAL",        "#9B59B6"),
@@ -1730,6 +1732,7 @@ def _interleave_interstitials(
     output_dir: Path,
     stinger: Path,
     has_horoscope: bool = False,
+    horoscope_signs: list[str] | None = None,
 ) -> list[Path]:
     """
     Intercale un interstitiel avant chaque segment de contenu (MÉTÉO, horoscope et sujets).
@@ -1756,7 +1759,13 @@ def _interleave_interstitials(
             category = "general"
 
         inter_path = output_dir / f"inter_{idx:02d}_{category.replace(' ', '_')}.mp4"
-        hashtags = items[idx - news_start].get("hashtags", []) if idx >= news_start and idx - news_start < len(items) else []
+        if has_horoscope and idx == 2:
+            sign_tags = [f"#{s}" for s in (horoscope_signs or [])]
+            hashtags = ["#Horoscope", "#Zodiaque", "#AstroGuadeloupe"] + sign_tags
+        elif idx >= news_start and idx - news_start < len(items):
+            hashtags = items[idx - news_start].get("hashtags", [])
+        else:
+            hashtags = []
         print(f"   Interstitiel [{idx}] — {category} {hashtags[:2]}")
         _make_interstitial(category, inter_path, stinger, hashtags)
         result.append(inter_path)
@@ -2367,8 +2376,10 @@ def main():
     if args.test_horoscope:
         result = fetch_horoscope()
         if result:
+            text, signs_fr = result
             print("\n── Horoscope brut ───────────────────────────────────────")
-            print(result)
+            print(text)
+            print(f"\nSignes retenus : {', '.join(signs_fr)}")
             print("─────────────────────────────────────────────────────────")
         return
 
@@ -2485,8 +2496,9 @@ def main():
         print(json.dumps(items, ensure_ascii=False, indent=2))
         print("══════════════════════════════════════════════════════════\n")
 
-    weather   = fetch_weather(target_date)
-    horoscope = fetch_horoscope()
+    weather          = fetch_weather(target_date)
+    horoscope_result = fetch_horoscope()
+    horoscope, horoscope_signs = horoscope_result if horoscope_result else (None, [])
 
     # Étape 2
     sources = list(dict.fromkeys(item["source"] for item in items))  # unique, ordre conservé
@@ -2614,7 +2626,7 @@ def main():
         # Vidéo complète : générée dès que --tiktok ou --youtube est actif
         print("🎞️  Génération vidéo complète avec interstitiels…")
         full_video_path = video_dir / f"flash-info-complet-{target_date}.mp4"
-        ordered = _interleave_interstitials(videos, items, video_dir, stinger, has_horoscope=horoscope is not None)
+        ordered = _interleave_interstitials(videos, items, video_dir, stinger, has_horoscope=horoscope is not None, horoscope_signs=horoscope_signs)
         video_metadata = {
             "title":     title,
             "artist":    "Botiran",
