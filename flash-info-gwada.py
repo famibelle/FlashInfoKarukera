@@ -1239,6 +1239,7 @@ _FONT_REGULAR = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 def _make_interstitial(
     category: str, output_path: Path, stinger: Path,
     hashtags: list[str] | None = None,
+    subtitle: str | None = None,
 ) -> Path:
     """Génère un MP4 interstitiel 1080×1920, durée et audio calés sur le stinger."""
     label, color = INTERSTITIAL_STYLES.get(category, INTERSTITIAL_STYLES["general"])
@@ -1248,19 +1249,20 @@ def _make_interstitial(
     text = parts[1] if len(parts) == 2 else parts[0]
     tmp = output_path.parent
 
-    # ── Tailles de police adaptatives (ratio 0.65 pour majuscules DejaVu Bold) ──
-    _MAX_PX     = 950  # largeur max utilisable (marges de 65px de chaque côté)
-    _CHAR_RATIO = 0.65
+    # ── Tailles de police adaptatives ──
+    _MAX_PX          = 920   # largeur max utilisable (marges de 80px de chaque côté)
+    _CHAR_RATIO_UPPER = 0.72  # majuscules DejaVu Bold (plus larges qu'estimé à 0.65)
+    _CHAR_RATIO_MIXED = 0.60  # casse mixte (hashtags)
 
     # Catégorie : réduction si le texte est trop long
-    cat_fontsize = min(INTERSTITIAL_CAT_FONTSIZE, int(_MAX_PX / (max(len(text), 1) * _CHAR_RATIO)))
+    cat_fontsize = min(INTERSTITIAL_CAT_FONTSIZE, int(_MAX_PX / (max(len(text), 1) * _CHAR_RATIO_UPPER)))
     cat_line_h   = round(cat_fontsize * 1.1)
 
     # Hashtags : réduction si le hashtag le plus long dépasse la largeur
     max_ht_len  = max((len(h) for h in (hashtags or [])), default=10)
-    ht_fontsize = min(INTERSTITIAL_HT_FONTSIZE, int(_MAX_PX / (max_ht_len * _CHAR_RATIO)))
+    ht_fontsize = min(INTERSTITIAL_HT_FONTSIZE, int(_MAX_PX / (max_ht_len * _CHAR_RATIO_MIXED)))
     ht_line_h   = round(ht_fontsize * 1.3)
-    ht_wrap     = max(6, int(_MAX_PX / (ht_fontsize * _CHAR_RATIO)))
+    ht_wrap     = max(6, int(_MAX_PX / (ht_fontsize * _CHAR_RATIO_MIXED)))
 
     ht_files: list[Path] = []
     if hashtags:
@@ -1302,6 +1304,18 @@ def _make_interstitial(
         f"x=(w-tw)/2:y={cat_y}:"
         f"shadowcolor=black@0.6:shadowx=3:shadowy=3"
     )
+    if subtitle:
+        sub_fontsize = min(72, int(_MAX_PX / (max(len(subtitle), 1) * _CHAR_RATIO_MIXED)))
+        sub_y = cat_y + cat_line_h + 30
+        sub_file = tmp / f"inter_sub_{output_path.stem}.txt"
+        sub_file.write_text(subtitle, encoding="utf-8")
+        filter_parts.append(
+            f"drawtext=textfile={sub_file}:"
+            f"fontsize={sub_fontsize}:fontcolor=white:fontfile={_FONT_REGULAR}:"
+            f"x=(w-tw)/2:y={sub_y}:"
+            f"shadowcolor=black@0.5:shadowx=2:shadowy=2"
+        )
+        wm_y = sub_y + round(sub_fontsize * 1.2) + 30
     filter_parts.append(
         f"drawtext=text='Flash Info Karukera par @Botiran':"
         f"fontsize=38:fontcolor=white@0.5:fontfile={_FONT_REGULAR}:"
@@ -1320,6 +1334,8 @@ def _make_interstitial(
     ], capture_output=True)
     for f in ht_files:
         f.unlink(missing_ok=True)
+    if subtitle:
+        sub_file.unlink(missing_ok=True)
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg interstitiel error: {proc.stderr.decode()}")
     return output_path
@@ -1865,6 +1881,7 @@ def _interleave_interstitials(
     has_prenom: bool = False,
     has_horoscope: bool = False,
     horoscope_signs: list[str] | None = None,
+    prenoms_du_jour: list[str] | None = None,
 ) -> list[Path]:
     """
     Intercale un interstitiel avant chaque segment de contenu.
@@ -1904,8 +1921,9 @@ def _interleave_interstitials(
             hashtags = items[idx - news_start].get("hashtags", [])
         else:
             hashtags = []
+        subtitle = " & ".join(prenoms_du_jour) if (category == "prenom" and prenoms_du_jour) else None
         print(f"   Interstitiel [{idx}] — {category} {hashtags[:2]}")
-        _make_interstitial(category, inter_path, stinger, hashtags)
+        _make_interstitial(category, inter_path, stinger, hashtags, subtitle=subtitle)
         result.append(inter_path)
         result.append(video_path)
 
@@ -2848,7 +2866,8 @@ def main():
         ordered = _interleave_interstitials(videos, items, video_dir, stinger,
                                              has_prenom=bool(prenoms_du_jour),
                                              has_horoscope=horoscope is not None,
-                                             horoscope_signs=horoscope_signs)
+                                             horoscope_signs=horoscope_signs,
+                                             prenoms_du_jour=prenoms_du_jour)
         video_metadata = {
             "title":     title,
             "artist":    "Botiran",
