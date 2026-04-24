@@ -28,9 +28,9 @@ PRONONCIATIONS_LOCALES = {
     "S.D.I.S.": "Service Départemental d'Incendie et de Secours",
     "SMGEAG" : "Syndicat Mixte de Gestion de l'Eau et de l'Assainissement de Guadeloupe",
     "S.M.G.E.A.G" : "Syndicat Mixte de Gestion de l'Eau et de l'Assainissement de Guadeloupe",
-    "MGEN":    "M. G. E. N.",
-    "M.G.E.N": "M. G. E. N.",
-    "M.G.E.N.": "M. G. E. N.",
+    "MGEN":    "Mutuelle Générale de l'éducation Nationale",
+    "M.G.E.N": "mutuelle générale éducation nationale",
+    "M.G.E.N.": "mutuelle générale éducation nationale",
     # Clubs sportifs guadeloupéens – athlétisme
     "ACBM":    "Athlétic Club de Baie-Mahault",
     "ACCBE":   "Athlétic Club de Capesterre-Belle-Eau",
