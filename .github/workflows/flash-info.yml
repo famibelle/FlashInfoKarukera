@@ -2,12 +2,22 @@ name: Flash Info Guadeloupe
 
 on:
   schedule:
-    # 6h40 heure Guadeloupe (UTC-4) = 10h40 UTC, tous les jours
-    - cron: "40 10 * * *"
+    # Édition matin  — 6h Paris (5h UTC hiver / 4h UTC été)
+    - cron: "0 5 * * *"
+    # Édition midi   — 12h Paris (11h UTC hiver / 10h UTC été)
+    - cron: "0 11 * * *"
+    # Édition soir   — 22h Paris (21h UTC hiver / 20h UTC été)
+    - cron: "0 21 * * *"
   workflow_dispatch:
     inputs:
       date:
         description: "Date (YYYY-MM-DD) — laisser vide pour aujourd'hui"
+        required: false
+        default: ""
+      edition:
+        description: "Édition (matin / midi / soir) — auto-détection si vide"
+        type: choice
+        options: ["", "matin", "midi", "soir"]
         required: false
         default: ""
       dry_run:
@@ -59,6 +69,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Installer FFmpeg et polices emoji
         run: sudo apt-get install -y ffmpeg fonts-noto-color-emoji
@@ -95,15 +107,16 @@ jobs:
           OPENAI_API_KEY:           ${{ secrets.OPENAI_API_KEY }}
         run: |
           ARGS=""
-          # Déclenchement cron : tiktok activé par défaut
           IS_SCHEDULE="${{ github.event_name == 'schedule' }}"
           if [ -n "${{ github.event.inputs.date }}" ]; then
             ARGS="$ARGS --date ${{ github.event.inputs.date }}"
           fi
+          if [ -n "${{ github.event.inputs.edition }}" ]; then
+            ARGS="$ARGS --edition ${{ github.event.inputs.edition }}"
+          fi
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             ARGS="$ARGS --dry-run"
           fi
-          # tiktok activé par défaut (cron, workflow_dispatch sans paramètre, ou paramètre explicite)
           TIKTOK_INPUT="${{ github.event.inputs.tiktok }}"
           if [ "$IS_SCHEDULE" = "true" ] || [ "$TIKTOK_INPUT" = "true" ] || [ -z "$TIKTOK_INPUT" ]; then
             ARGS="$ARGS --tiktok"
@@ -128,3 +141,11 @@ jobs:
             ARGS="$ARGS --verbose"
           fi
           python flash-info-gwada.py $ARGS
+
+      - name: Sauvegarder l'anti-répétition
+        run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions [Flash Info]"
+          git add data/used_articles_*.json
+          git diff --cached --quiet || git commit -m "chore: anti-répétition articles $(date +%Y-%m-%d) [skip ci]"
+          git push || true

@@ -89,8 +89,65 @@ OUTPUT_DIR      = Path("/tmp")
 STINGERS_DIR    = Path(__file__).parent / "Stingers"
 PROMPTS_DIR     = Path(__file__).parent / "prompts"
 MEDIA_DIR       = Path(__file__).parent / "Media"
+DATA_DIR        = Path(__file__).parent / "data"
 BOTIRAN_PROFILE = MEDIA_DIR / "botiran_profile.jpg"
 GUADELOUPE_TZ   = ZoneInfo("America/Guadeloupe")
+PARIS_TZ        = ZoneInfo("Europe/Paris")
+
+# ── Éditions ──────────────────────────────────────────────────────────────────
+
+_EDITION_INTRO_INSTRUCTION = {
+    "matin": (
+        "ÉDITION DU MATIN — Intro : commence par 'Bèl bonjou' — ton chaleureux et "
+        "énergique de début de matinée, comme on démarre ensemble la journée."
+    ),
+    "midi": (
+        "ÉDITION DU MIDI — Intro : ton de mi-journée, direct et dynamique. "
+        "Varie la formule (ex : 'On fait le point à midi', 'Voici vos infos de la mi-journée', "
+        "'Pause actualité'...). Pas de 'Bèl bonjou' — réservé au matin."
+    ),
+    "soir": (
+        "ÉDITION DU SOIR — Intro : bonsoir posé et chaleureux, comme un bulletin du soir "
+        "qui clôture la journée et prépare le lendemain. Commence par 'Bonsoir' ou 'Bèl bonsoir'."
+    ),
+}
+
+_EDITION_OUTRO = {
+    "matin": ("Bonne journée",      "ce midi pour une nouvelle édition"),
+    "midi":  ("Bonne après-midi",   "ce soir pour les prévisions et les dernières infos"),
+    "soir":  ("Bonne soirée",       "demain matin pour démarrer la journée"),
+}
+
+
+def _detect_edition() -> str:
+    """Détecte l'édition (matin/midi/soir) selon l'heure courante à Paris."""
+    h = datetime.now(PARIS_TZ).hour
+    if h < 11:
+        return "matin"
+    if h < 18:
+        return "midi"
+    return "soir"
+
+
+def _used_articles_path(target_date: Date) -> Path:
+    return DATA_DIR / f"used_articles_{target_date}.json"
+
+
+def load_used_titles(target_date: Date) -> set[str]:
+    p = _used_articles_path(target_date)
+    if not p.exists():
+        return set()
+    try:
+        return set(json.loads(p.read_text(encoding="utf-8")).get("titles", []))
+    except Exception:
+        return set()
+
+
+def save_used_titles(target_date: Date, new_titles: list[str]) -> None:
+    p = _used_articles_path(target_date)
+    all_titles = list(load_used_titles(target_date) | set(new_titles))
+    p.write_text(json.dumps({"titles": all_titles}, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"💾  Anti-répétition : {len(all_titles)} titres enregistrés ({p.name})")
 
 WEATHER_LAT  = 16.17    # centre Guadeloupe (entre Basse-Terre et Grande-Terre)
 WEATHER_LON  = -61.58
@@ -248,7 +305,7 @@ def _lieu_priority(lieu: str) -> int:
     return 2
 
 
-def fetch_news(feeds: list[str], max_items: int, target_date: Date) -> list[dict]:
+def fetch_news(feeds: list[str], max_items: int, target_date: Date, exclude_titles: "set[str] | None" = None) -> list[dict]:
     all_items = []
     for url in feeds:
         print(f"📰 Collecte : {url}")
@@ -274,6 +331,15 @@ def fetch_news(feeds: list[str], max_items: int, target_date: Date) -> list[dict
         }
         for _, t, d, desc, feed_url in all_items
     ]
+
+    # Filtre anti-répétition : exclut les articles déjà diffusés dans une édition précédente
+    if exclude_titles:
+        _norm = str.lower
+        excluded = {_norm(t) for t in exclude_titles}
+        before = len(candidates)
+        candidates = [c for c in candidates if _norm(c["title"]) not in excluded]
+        if before != len(candidates):
+            print(f"   🔁  Anti-répétition : {before - len(candidates)} article(s) déjà diffusé(s) exclus")
 
     # Les articles du fil custom sont toujours inclus s'il y en a pour le jour J.
     # Les autres slots sont remplis par priorité géographique (local → N/A → international).
@@ -559,37 +625,47 @@ def fetch_prenom_du_jour(target_date: "datetime.date") -> "list[str] | None":
 
 
 def build_segments(
-    items: list[dict], date_str: str, weather: str, sources: list[str],
+    items: list[dict], date_str: str, weather: "str | None", sources: list[str],
     horoscope: str | None = None,
     horoscope_signs: "list[str] | None" = None,
     prenoms_du_jour: "list[str] | None" = None,
     communes_du_jour: "list[str] | None" = None,
     marroniers_du_jour: "list | None" = None,
+    edition: str = "matin",
+    weather_label: str = "MÉTÉO DU JOUR",
+    tomorrow_str: "str | None" = None,
 ) -> list[str]:
-    print("✍️  Rédaction des segments par Maryse (Mistral Large)...")
+    print(f"✍️  Rédaction des segments par Maryse — édition {edition.upper()} (Mistral Large)...")
     articles = "\n\n".join(
         f"[{i+1}] {item['title']}\n{item['desc']}" for i, item in enumerate(items)
     )
+    has_meteo     = weather is not None
     has_horoscope = horoscope is not None
-    has_prenom = bool(prenoms_du_jour)
+    has_prenom    = bool(prenoms_du_jour)
 
-    # Indices des segments fixes
-    prenom_seg     = 1 if has_prenom else None      # BONNE FÊTE (optionnel)
-    meteo_seg      = 2 if has_prenom else 1          # MÉTÉO
-    horoscope_seg  = meteo_seg + 1 if has_horoscope else None
-    news_offset    = meteo_seg + 1 + (1 if has_horoscope else 0)  # premier segment d'actu
+    # Calcul dynamique des indices (1-based dans le prompt LLM)
+    _idx = 1  # INTRO = segment 1
+    prenom_seg = horoscope_seg = meteo_seg = None
+    if has_prenom:
+        _idx += 1; prenom_seg = _idx
+    if has_meteo:
+        _idx += 1; meteo_seg = _idx
+    if has_horoscope:
+        _idx += 1; horoscope_seg = _idx
+    news_offset = _idx + 1  # premier segment d'actu (1-based)
 
     sources_str = " et ".join(sources) if sources else "les médias locaux"
-    base_segs = 3 + (1 if has_prenom else 0) + (1 if has_horoscope else 0)
+    base_segs = 2 + (1 if has_prenom else 0) + (1 if has_meteo else 0) + (1 if has_horoscope else 0)
 
+    salut, rdv = _EDITION_OUTRO[edition]
     if items:
         n_segs = len(items) + base_segs
         news_block = f"Voici les {len(items)} actualités du jour :\n\n{articles}\n\n"
         outro_template = (
             f"Voilà pour ce Flash Info Guadeloupe du {date_str}. "
             f"Sources : {sources_str}. "
-            f"On se retrouve [prochain rendez-vous, ex: demain matin]. "
-            f"Bonne journée à toutes et à tous."
+            f"On se retrouve {rdv}. "
+            f"{salut} à toutes et à tous."
         )
         news_instructions = (
             f"- Segments {news_offset} à {len(items) + news_offset - 1} : "
@@ -603,8 +679,8 @@ def build_segments(
         outro_template = (
             f"Voilà pour ce Flash Info Guadeloupe du {date_str}. "
             f"Sources : {sources_str}. "
-            f"On se retrouve [prochain rendez-vous]. "
-            f"Bonne journée à toutes et à tous."
+            f"On se retrouve {rdv}. "
+            f"{salut} à toutes et à tous."
         )
         news_instructions = (
             f"- Segment {n_segs} : outro. Recopie ce modèle en remplaçant uniquement "
@@ -646,9 +722,22 @@ def build_segments(
         )
         marroniers_block = f"ÉVÉNEMENTS RÉCURRENTS DU JOUR (marroniers) :\n{lignes}\n\nTu peux mentionner ces événements dans l'intro ou dans un segment d'actualité si cela enrichit le flash, mais sans les inventer ni les développer au-delà de ce qui est indiqué.\n\n"
 
+    meteo_block = ""
+    meteo_instruction = ""
+    if has_meteo:
+        label_detail = f"prévisions pour demain {tomorrow_str}" if tomorrow_str else "toute la Guadeloupe"
+        meteo_block = f"{weather_label} ({label_detail}) :\n{weather}\n\n"
+        meteo_instr_text = (
+            "prévisions météo de demain en style oral — prépare les auditeurs pour la journée de demain"
+            if edition == "soir" else "météo du jour en style oral"
+        )
+        meteo_instruction = f"- Segment {meteo_seg} : {meteo_instr_text}\n"
+
+    edition_instruction = _EDITION_INTRO_INSTRUCTION[edition]
+
     user_prompt = (
-        f"Flash info Guadeloupe du {date_str}.\n\n"
-        f"MÉTÉO DU JOUR (toute la Guadeloupe) :\n{weather}\n\n"
+        f"Flash info Guadeloupe du {date_str} — {edition_instruction}\n\n"
+        f"{meteo_block}"
         f"{prenoms_block}"
         f"{communes_block}"
         f"{marroniers_block}"
@@ -657,7 +746,7 @@ def build_segments(
         f"Rédige exactement {n_segs} segments séparés par \"{SEG_SEPARATOR}\" :\n"
         f"- Segment 1 : intro (jour + date + accroche)\n"
         f"{prenom_instruction}"
-        f"- Segment {meteo_seg} : météo du jour en style oral\n"
+        f"{meteo_instruction}"
         f"{horoscope_instruction}"
         f"{news_instructions}"
     )
@@ -1499,6 +1588,7 @@ def generate_tiktok(
     output_dir: Path,
     has_prenom: bool = False,
     has_horoscope: bool = False,
+    has_meteo: bool = True,
 ) -> list[tuple[int, Path]]:
     """Retourne [(index_segment, chemin_mp4), …]."""
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -1506,7 +1596,7 @@ def generate_tiktok(
 
     videos: list[tuple[int, Path]] = []
     for i, (seg_path, _text, tone) in enumerate(zip(seg_paths, segments, tones)):
-        label = _seg_label(i, len(seg_paths), has_prenom=has_prenom, has_horoscope=has_horoscope)
+        label = _seg_label(i, len(seg_paths), has_prenom=has_prenom, has_horoscope=has_horoscope, has_meteo=has_meteo)
         print(f"   [{i + 1}/{len(seg_paths)}] {label} ({tone}) — STT timestamps…")
 
         words = transcribe_with_words(seg_path)
@@ -1700,21 +1790,27 @@ _HASHTAGS_YOUTUBE = "#Shorts #YouTubeShorts"
 _HASHTAGS_HOROSCOPE = "#Horoscope #AstroGuadeloupe #Zodiaque"
 
 
-def _seg_label(i: int, n: int, has_prenom: bool = False, has_horoscope: bool = False) -> str:
-    """Retourne le label lisible d'un segment selon son index."""
+def _seg_label(i: int, n: int, has_prenom: bool = False, has_horoscope: bool = False, has_meteo: bool = True) -> str:
+    """Retourne le label lisible d'un segment selon son index (0-based)."""
     if i == 0:
         return "INTRO"
-    meteo_idx = 2 if has_prenom else 1
-    if has_prenom and i == 1:
+    _k = 0
+    prenom_idx = horoscope_idx = meteo_idx = None
+    if has_prenom:
+        _k += 1; prenom_idx = _k
+    if has_meteo:
+        _k += 1; meteo_idx = _k
+    if has_horoscope:
+        _k += 1; horoscope_idx = _k
+    news_start = _k + 1
+    if prenom_idx is not None and i == prenom_idx:
         return "BONNE FÊTE"
-    if i == meteo_idx:
+    if meteo_idx is not None and i == meteo_idx:
         return "MÉTÉO"
-    horoscope_idx = meteo_idx + 1
-    if has_horoscope and i == horoscope_idx:
+    if horoscope_idx is not None and i == horoscope_idx:
         return "HOROSCOPE"
     if i == n - 1:
         return "OUTRO"
-    news_start = horoscope_idx + (1 if has_horoscope else 0)
     return f"SUJET {i - news_start + 1}"
 
 
@@ -1880,21 +1976,20 @@ def _interleave_interstitials(
     stinger: Path,
     has_prenom: bool = False,
     has_horoscope: bool = False,
+    has_meteo: bool = True,
     horoscope_signs: list[str] | None = None,
     prenoms_du_jour: list[str] | None = None,
 ) -> list[Path]:
-    """
-    Intercale un interstitiel avant chaque segment de contenu.
-    Structure des indices selon les rubriques présentes :
-      0            → INTRO (pas d'interstitiel)
-      1            → BONNE FÊTE (si has_prenom)
-      1 ou 2       → MÉTÉO
-      2 ou 3       → HOROSCOPE (si has_horoscope)
-      news_start+  → SUJETS
-    """
-    meteo_idx     = 2 if has_prenom else 1
-    horoscope_idx = meteo_idx + 1 if has_horoscope else None
-    news_start    = meteo_idx + 1 + (1 if has_horoscope else 0)
+    """Intercale un interstitiel avant chaque segment de contenu."""
+    _k = 0
+    prenom_idx = horoscope_idx = meteo_idx = None
+    if has_prenom:
+        _k += 1; prenom_idx = _k
+    if has_meteo:
+        _k += 1; meteo_idx = _k
+    if has_horoscope:
+        _k += 1; horoscope_idx = _k
+    news_start = _k + 1
 
     result: list[Path] = []
     for idx, video_path in videos:
@@ -1902,9 +1997,9 @@ def _interleave_interstitials(
             result.append(video_path)
             continue
 
-        if has_prenom and idx == 1:
+        if prenom_idx is not None and idx == prenom_idx:
             category = "prenom"
-        elif idx == meteo_idx:
+        elif meteo_idx is not None and idx == meteo_idx:
             category = "météo"
         elif horoscope_idx is not None and idx == horoscope_idx:
             category = "horoscope"
@@ -2404,6 +2499,14 @@ def main():
         ),
     )
     parser.add_argument(
+        "--edition", choices=["matin", "midi", "soir"], default=None,
+        help=(
+            "Édition à diffuser : matin (météo+prénoms+horoscope+infos), "
+            "midi (infos uniquement), soir (météo demain+prénoms demain+infos). "
+            "Auto-détection par heure de Paris si omis."
+        ),
+    )
+    parser.add_argument(
         "--stinger", metavar="FICHIER",
         help=(
             f"Nom du fichier stinger à insérer entre chaque segment audio.\n"
@@ -2669,8 +2772,13 @@ def main():
             sys.exit(1)
         return
 
+    from datetime import timedelta
+
     now_gwada = datetime.now(GUADELOUPE_TZ)
     print(f"🕐 Heure locale Guadeloupe : {_date_fr(now_gwada.date())} — {now_gwada.strftime('%H:%M')} (UTC{now_gwada.strftime('%z')[:3]}:{now_gwada.strftime('%z')[3:]})")
+
+    edition = args.edition or _detect_edition()
+    print(f"📻  Édition : {edition.upper()}")
 
     if args.date:
         try:
@@ -2681,11 +2789,15 @@ def main():
     else:
         target_date = now_gwada.date()
 
+    tomorrow = target_date + timedelta(days=1)
     now = datetime.combine(target_date, datetime.min.time())
     date_str = _date_fr(target_date)
 
-    # Étape 1
-    items = fetch_news(RSS_FEEDS, MAX_ITEMS, target_date)
+    # Étape 1 — Collecte RSS avec filtre anti-répétition
+    used_titles = load_used_titles(target_date)
+    if used_titles:
+        print(f"🔁  Anti-répétition : {len(used_titles)} titre(s) déjà diffusé(s) aujourd'hui")
+    items = fetch_news(RSS_FEEDS, MAX_ITEMS, target_date, exclude_titles=used_titles or None)
     if not items:
         print(f"⚠️  Aucune actualité pour le {date_str} — flash météo uniquement.")
 
@@ -2700,23 +2812,43 @@ def main():
         print("\n══════════════════════════════════════════════════════════")
         print("  VERBOSE — ÉTAPE 1 : COLLECTE RSS")
         print("══════════════════════════════════════════════════════════")
-        print(f"  Date cible : {target_date}  |  Flux : {len(RSS_FEEDS)}  |  Articles retenus : {len(items)}\n")
+        print(f"  Date cible : {target_date}  |  Édition : {edition}  |  Articles retenus : {len(items)}\n")
         print("  JSON des articles collectés :")
         print(json.dumps(items, ensure_ascii=False, indent=2))
         print("══════════════════════════════════════════════════════════\n")
 
-    weather          = fetch_weather(target_date)
-    include_signs = []
-    for name in args.horoscope_include:
-        resolved = _resolve_sign(name)
-        if resolved:
-            include_signs.append(resolved)
-        else:
-            print(f"⚠️  Signe inconnu ignoré : '{name}' (valeurs valides : {', '.join(_SIGNS)})")
-    horoscope_result = fetch_horoscope(n_signs=args.horoscope_signs, include_signs=include_signs or None)
-    horoscope, horoscope_signs = horoscope_result if horoscope_result else (None, [])
-    prenoms_du_jour   = fetch_prenom_du_jour(target_date)
-    communes_du_jour  = get_communes_du_jour(target_date) or None
+    # Collectes conditionnelles selon l'édition
+    if edition in ("matin", "soir"):
+        weather_date   = tomorrow if edition == "soir" else target_date
+        weather        = fetch_weather(weather_date)
+        weather_label  = "MÉTÉO DE DEMAIN" if edition == "soir" else "MÉTÉO DU JOUR"
+        tomorrow_str   = _date_fr(tomorrow) if edition == "soir" else None
+    else:
+        weather = weather_label = tomorrow_str = None
+
+    if edition == "matin":
+        include_signs = []
+        for name in args.horoscope_include:
+            resolved = _resolve_sign(name)
+            if resolved:
+                include_signs.append(resolved)
+            else:
+                print(f"⚠️  Signe inconnu ignoré : '{name}' (valeurs valides : {', '.join(_SIGNS)})")
+        horoscope_result = fetch_horoscope(n_signs=args.horoscope_signs, include_signs=include_signs or None)
+        horoscope, horoscope_signs = horoscope_result if horoscope_result else (None, [])
+    else:
+        horoscope = None
+        horoscope_signs = []
+
+    prenoms_date = tomorrow if edition == "soir" else target_date
+    if edition != "midi":
+        prenoms_du_jour  = fetch_prenom_du_jour(prenoms_date)
+        communes_du_jour = get_communes_du_jour(prenoms_date) or None
+        if communes_du_jour:
+            print(f"⛪  Fête patronale {'de demain' if edition == 'soir' else 'du jour'} : {', '.join(communes_du_jour)}")
+    else:
+        prenoms_du_jour = communes_du_jour = None
+
     marroniers_du_jour = _get_marroniers_du_jour(target_date) or None
     if marroniers_du_jour:
         print(f"📅  Marroniers du jour : {', '.join(m.evenement for m in marroniers_du_jour)}")
@@ -2724,14 +2856,12 @@ def main():
     # Étape 2
     sources = list(dict.fromkeys(item["source"] for item in items))  # unique, ordre conservé
 
-    if args.verbose:
+    if args.verbose and weather:
         print("\n══════════════════════════════════════════════════════════")
-        print("  VERBOSE — MÉTÉO")
+        print(f"  VERBOSE — {weather_label}")
         print("══════════════════════════════════════════════════════════")
         print(f"  {weather}")
         print("══════════════════════════════════════════════════════════\n")
-    if communes_du_jour:
-        print(f"⛪  Fête patronale du jour : {', '.join(communes_du_jour)}")
 
     segments_maryse = build_segments(
         items, date_str, weather, sources,
@@ -2740,6 +2870,9 @@ def main():
         prenoms_du_jour=prenoms_du_jour,
         communes_du_jour=communes_du_jour,
         marroniers_du_jour=marroniers_du_jour,
+        edition=edition,
+        weather_label=weather_label or "MÉTÉO DU JOUR",
+        tomorrow_str=tomorrow_str,
     )
 
     def _print_segments(segs: list[str], label: str) -> None:
@@ -2747,7 +2880,8 @@ def main():
         print(f"  VERBOSE — {label}")
         print(f"══════════════════════════════════════════════════════════")
         for i, seg in enumerate(segs):
-            tag = _seg_label(i, len(segs), has_prenom=bool(prenoms_du_jour), has_horoscope=horoscope is not None)
+            tag = _seg_label(i, len(segs), has_prenom=bool(prenoms_du_jour),
+                             has_horoscope=horoscope is not None, has_meteo=weather is not None)
             print(f"\n  ── {tag} ──")
             print(f"  {seg.strip()}")
         print(f"\n  Texte brut (séparateurs inclus) :")
@@ -2780,38 +2914,47 @@ def main():
     segments = _ensure_sources_in_outro(segments, sources)
     segments = _enforce_prononciations(segments)
 
+    _seg_label_kwargs = dict(has_prenom=bool(prenoms_du_jour),
+                             has_horoscope=horoscope is not None,
+                             has_meteo=weather is not None)
+
     if args.verbose:
         _print_segments(segments, "SORTIE ANCRAGE LOCAL (final)")
     else:
         print("\n── Script final (après ancrage) ────────────────────────")
         for i, seg in enumerate(segments):
-            label = _seg_label(i, len(segments), has_prenom=bool(prenoms_du_jour), has_horoscope=horoscope is not None)
+            label = _seg_label(i, len(segments), **_seg_label_kwargs)
             print(f"\n{label}\n{seg}")
         print("\n────────────────────────────────────────────────────────\n")
 
-    # Étape 2d — Classification tonale (avant dry-run pour que le verbose la montre)
+    # Étape 2d — Classification tonale
     tones = classify_tones(segments)
-    _has_prenom    = bool(prenoms_du_jour)
-    _has_horoscope = horoscope is not None
-    _meteo_idx     = 2 if _has_prenom else 1
-    _horoscope_idx = _meteo_idx + 1 if _has_horoscope else None
-    if _has_prenom and len(tones) > 1:
-        tones[1] = "happy"
-    if _horoscope_idx is not None and len(tones) > _horoscope_idx:
-        tones[_horoscope_idx] = "curious"
+    prenom_idx_0 = 1 if bool(prenoms_du_jour) else None
+    horoscope_idx_0 = _seg_label_kwargs  # reuse dict to compute idx
+    # Force tonalités fixes pour prénoms et horoscope
+    _k0 = 0
+    if bool(prenoms_du_jour): _k0 += 1; _pi = _k0
+    else: _pi = None
+    if weather is not None: _k0 += 1
+    if horoscope is not None: _k0 += 1; _hi = _k0
+    else: _hi = None
+    if _pi is not None and len(tones) > _pi:
+        tones[_pi] = "happy"
+    if _hi is not None and len(tones) > _hi:
+        tones[_hi] = "curious"
 
     if args.verbose:
         print("\n══════════════════════════════════════════════════════════")
         print("  VERBOSE — TONALITÉS PAR SEGMENT")
         print("══════════════════════════════════════════════════════════")
         for i, (tone, seg) in enumerate(zip(tones, segments)):
-            label = _seg_label(i, len(segments), has_prenom=bool(prenoms_du_jour), has_horoscope=horoscope is not None)
+            label = _seg_label(i, len(segments), **_seg_label_kwargs)
             print(f"  {label:8s} → {tone:8s} ({TTS_VOICES.get(tone, TTS_VOICE_DEFAULT)})")
         print("══════════════════════════════════════════════════════════\n")
 
     # Étape 3
     stinger = resolve_stinger(args.stinger)
-    output_path = args.output or OUTPUT_DIR / f"flash-{now.strftime('%Y%m%d-%H%M')}.mp3"
+    output_path = args.output or OUTPUT_DIR / f"flash-{edition}-{now.strftime('%Y%m%d-%H%M')}.mp3"
 
     if args.verbose:
         print("\n── VERBOSE : Étape 3 — Génération audio ────────────────")
@@ -2825,12 +2968,17 @@ def main():
         keep_segments=args.tiktok or args.youtube or args.linkedin or args.instagram,
     )
 
-    title = f"Flash Info Guadeloupe — {date_str}"
+    # Sauvegarde anti-répétition
+    if items:
+        save_used_titles(target_date, [it["title"] for it in items])
+
+    title = f"Flash Info Guadeloupe — {date_str}, édition du {edition}"
 
     if args.tiktok or args.youtube or args.linkedin or args.instagram:
-        video_dir = OUTPUT_DIR / f"tiktok-{now.strftime('%Y%m%d-%H%M')}"
+        video_dir = OUTPUT_DIR / f"tiktok-{edition}-{now.strftime('%Y%m%d-%H%M')}"
         videos = generate_tiktok(seg_paths, segments, tones, video_dir,
-                                  has_prenom=bool(prenoms_du_jour), has_horoscope=horoscope is not None)
+                                  has_prenom=bool(prenoms_du_jour), has_horoscope=horoscope is not None,
+                                  has_meteo=weather is not None)
         print(f"\n🎬 {len(videos)} vidéos dans {video_dir}")
         (video_dir / "items.json").write_text(
             json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -2866,6 +3014,7 @@ def main():
         ordered = _interleave_interstitials(videos, items, video_dir, stinger,
                                              has_prenom=bool(prenoms_du_jour),
                                              has_horoscope=horoscope is not None,
+                                             has_meteo=weather is not None,
                                              horoscope_signs=horoscope_signs,
                                              prenoms_du_jour=prenoms_du_jour)
         video_metadata = {
