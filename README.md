@@ -24,7 +24,7 @@
 
 **Flash Info Karukera** est un pipeline entièrement automatisé qui, chaque matin :
 
-1. **Collecte** les dernières actualités guadeloupéennes depuis 6 flux RSS locaux et récupère la météo de Pointe-à-Pitre
+1. **Collecte** les dernières actualités guadeloupéennes depuis 6 flux RSS locaux, récupère la météo de Pointe-à-Pitre, le prénom du jour (nominis.cef.fr), l'horoscope de 2 signes aléatoires, et les communes en fête patronale
 2. **Rédige** un script radio en créole oral guadeloupéen via 3 passes LLM (Mistral Large)
 3. **Synthétise** l'audio avec la voix Marie (Voxtral TTS), adaptée à la tonalité de chaque segment
 4. **Génère** (optionnel) des vidéos courtes TikTok/Shorts avec waveform animée et sous-titres karaoké
@@ -277,6 +277,13 @@ python flash-info-gwada.py [OPTIONS]
 | `--no-thumbnail` | Désactiver complètement le thumbnail (pas de génération, pas d'embed, pas d'envoi) | `--no-thumbnail` |
 | `--generate-thumbnail` | Générer uniquement le thumbnail sans lancer toute la pipeline (pour tester) | `--generate-thumbnail` |
 
+### Options horoscope
+
+| Option | Description | Exemple |
+|--------|-------------|---------|
+| `--horoscope-signs N` | Nombre de signes astrologiques dans la rubrique horoscope (défaut : 2, max : 12) | `--horoscope-signs 3` |
+| `--test-horoscope` | Récupère et affiche l'horoscope du jour sans lancer la pipeline complète | `--test-horoscope --horoscope-signs 4` |
+
 ### Options de diagnostic
 
 | Option | Description |
@@ -284,6 +291,7 @@ python flash-info-gwada.py [OPTIONS]
 | `--check-feeds` | Vérifie la disponibilité de chaque flux RSS et affiche un rapport. S'arrête sans générer d'audio. |
 | `--transcript` | Transcrit l'audio généré via Voxtral STT pour vérifier la prononciation. Sauvegarde un `.txt` à côté du MP3. |
 | `--test-interstitials RÉPERTOIRE` | Relit les vidéos d'un dossier généré précédemment, recrée les interstitiels et envoie sur Telegram. Évite de régénérer tout l'audio. |
+| `--test-prenom` | Récupère et affiche le prénom du jour depuis nominis.cef.fr sans lancer la pipeline complète. Combinable avec `--date`. |
 
 ### Exemples complets
 
@@ -299,6 +307,15 @@ python flash-info-gwada.py --date 2026-04-15 --tiktok --no-thumbnail
 
 # Utiliser un thumbnail personnalisé
 python flash-info-gwada.py --tiktok --thumbnail Media/botiran_news_2304.png
+
+# Horoscope avec 3 signes au lieu de 2
+python flash-info-gwada.py --horoscope-signs 3
+
+# Tester uniquement l'horoscope (4 signes)
+python flash-info-gwada.py --test-horoscope --horoscope-signs 4
+
+# Tester le prénom du jour pour une date précise
+python flash-info-gwada.py --test-prenom --date 2026-08-15
 
 # Rejouer les interstitiels d'une session précédente
 python flash-info-gwada.py --test-interstitials /tmp/tiktok-20260423-1040
@@ -444,7 +461,7 @@ INSTAGRAM_USER_ID
 
 ### Ajouter un flux RSS
 
-Dans `flash-info-gwada.py`, section `RSS_FEEDS` :
+Dans `data/sources.py`, section `RSS_FEEDS` :
 
 ```python
 RSS_FEEDS = [
@@ -454,14 +471,14 @@ RSS_FEEDS = [
 ]
 ```
 
-Ajouter le nom lisible dans `_SOURCE_NAMES` si besoin.
+Ajouter le nom lisible dans `RSS_SOURCES` si besoin.
 
 ### Ajouter une prononciation locale
 
-Dans `_PRONONCIATIONS_LOCALES` :
+Dans `data/tts_normalize.py`, dictionnaire `PRONONCIATIONS_LOCALES` :
 
 ```python
-_PRONONCIATIONS_LOCALES = {
+PRONONCIATIONS_LOCALES = {
     "SDIS": "Service Départemental d'Incendie et de Secours",
     # Ajouter ici :
     "MONSIGLE": "développement oral complet",
@@ -471,11 +488,25 @@ _PRONONCIATIONS_LOCALES = {
 
 ### Ajouter un sigle prononcé comme un mot (pas épelé)
 
-Dans `_SIGLES_MOT` :
+Dans `data/tts_normalize.py`, ensemble `SIGLES_MOT` :
 
 ```python
-_SIGLES_MOT = {"RCI", "BFMTV", "MON_SIGLE"}
+SIGLES_MOT = {"RCI", "BFMTV", "MON_SIGLE"}
 ```
+
+### Ajouter ou corriger une fête patronale
+
+Dans `data/fetes_patronales.py`, dictionnaire `COMMUNES_FETES_PATRONALES` :
+
+```python
+COMMUNES_FETES_PATRONALES = {
+    # clé au format "MM-DD" → liste de communes
+    "09-15": ["Nouvelle-Commune"],
+    # ...
+}
+```
+
+Les communes listées sont automatiquement mentionnées dans l'intro du flash le jour de leur fête patronale. La date de Lamentin (Sainte-Trinité, variable selon Pâques) n'est pas incluse car elle ne peut pas être définie par une clé fixe `MM-DD`.
 
 ### Modifier le style éditorial
 
@@ -513,6 +544,11 @@ FlashInfoKarukera/
 │   └── tones.md
 │
 ├── data/
+│   ├── sources.py                # Flux RSS et noms de sources
+│   ├── tts_normalize.py          # Prononciations, sigles, abréviations pour le TTS
+│   ├── fetes_patronales.py       # Fêtes patronales des communes (MM-DD → [communes])
+│   ├── geography.py              # Lieux et géographie guadeloupéenne
+│   ├── weather_codes.py          # Codes météo WMO → libellés
 │   └── rss.xml                   # Cache RSS local
 │
 └── .github/
@@ -531,6 +567,9 @@ flowchart TD
     subgraph COLLECTE["① Collecte"]
         B[6 flux RSS locaux] --> D[Filtrage date + priorité géo]
         C[Open-Meteo météo] --> D
+        E2[Nominis — prénom du jour] --> D
+        E3[Horoscope API — N signes] --> D
+        E4[Fêtes patronales — données locales] --> D
     end
 
     subgraph REDACTION["② Rédaction — 3 passes LLM Mistral Large"]
