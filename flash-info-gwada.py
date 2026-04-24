@@ -94,7 +94,9 @@ GUADELOUPE_TZ   = ZoneInfo("America/Guadeloupe")
 
 WEATHER_LAT  = 16.17    # centre Guadeloupe (entre Basse-Terre et Grande-Terre)
 WEATHER_LON  = -61.58
-WEATHER_API  = "https://api.open-meteo.com/v1/forecast"
+WEATHER_API         = "https://api.open-meteo.com/v1/forecast"
+WEATHER_API_ARCHIVE = "https://archive-api.open-meteo.com/v1/archive"
+WEATHER_FORECAST_DAYS = 16  # fenêtre maximale de l'API forecast
 
 from data.geography import (
     LIEUX_GUADELOUPE as _LIEUX_GUADELOUPE,
@@ -102,6 +104,7 @@ from data.geography import (
     SOURCE_NAMES as _SOURCE_NAMES,
 )
 from data.fetes_patronales import COMMUNES_FETES_PATRONALES as _COMMUNES_FETES_PATRONALES
+from data.marroniers import get_marroniers_du_jour as _get_marroniers_du_jour
 from data.tts_normalize import (
     PRONONCIATIONS_LOCALES as _PRONONCIATIONS_LOCALES,
     SIGLES_MOT as _SIGLES_MOT,
@@ -348,7 +351,15 @@ def generate_hashtags(items: list[dict]) -> list[list[str]]:
 def fetch_weather(target_date: Date) -> str:
     """Retourne un résumé météo pour Pointe-à-Pitre à la date donnée."""
     print("🌤️  Collecte météo (Open-Meteo)...")
+    today = Date.today()
+    delta = (target_date - today).days
+
+    if delta > WEATHER_FORECAST_DAYS:
+        print(f"   ⚠️  Date trop éloignée ({delta}j) — météo indisponible, message générique utilisé.")
+        return "Météo indisponible pour cette date (prévision hors fenêtre)."
+
     date_iso = target_date.isoformat()
+    api_url = WEATHER_API_ARCHIVE if delta < 0 else WEATHER_API
     params = urllib.parse.urlencode({
         "latitude": WEATHER_LAT,
         "longitude": WEATHER_LON,
@@ -357,8 +368,12 @@ def fetch_weather(target_date: Date) -> str:
         "start_date": date_iso,
         "end_date": date_iso,
     })
-    with urllib.request.urlopen(f"{WEATHER_API}?{params}", timeout=15) as r:
-        data = json.loads(r.read())
+    try:
+        with urllib.request.urlopen(f"{api_url}?{params}", timeout=15) as r:
+            data = json.loads(r.read())
+    except Exception as exc:
+        print(f"   ⚠️  Météo indisponible : {exc}")
+        return "Météo indisponible pour cette date."
 
     daily  = data["daily"]
     code   = daily["weathercode"][0]
@@ -2471,6 +2486,13 @@ def main():
         ),
     )
     parser.add_argument(
+        "--test-marroniers", action="store_true",
+        help=(
+            "Affiche les marroniers actifs à la date donnée (voir --date), "
+            "sans lancer la pipeline complète."
+        ),
+    )
+    parser.add_argument(
         "--thumbnail", type=Path, metavar="FICHIER",
         help=(
             "Utilise l'image fournie comme thumbnail (PNG/JPG) au lieu de la générer via OpenAI. "
@@ -2504,6 +2526,19 @@ def main():
             print(f"Date : {target_date.strftime('%A %d %B %Y')}")
             print(f"Prénoms : {', '.join(prenoms)}")
             print("─────────────────────────────────────────────────────────")
+        return
+
+    if args.test_marroniers:
+        target_date = Date.fromisoformat(args.date) if args.date else Date.today()
+        marroniers = _get_marroniers_du_jour(target_date)
+        print(f"\n── Marroniers du {target_date.strftime('%A %d %B %Y')} ─────────────────")
+        if marroniers:
+            for m in marroniers:
+                print(f"  [{m.categorie}] {m.lieu}")
+                print(f"    {m.evenement}")
+        else:
+            print("  Aucun marronieur pour cette date.")
+        print("─────────────────────────────────────────────────────────")
         return
 
     if args.generate_thumbnail:
