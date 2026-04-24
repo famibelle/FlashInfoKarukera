@@ -101,6 +101,7 @@ from data.geography import (
     LIEUX_MONDE as _LIEUX_MONDE,
     SOURCE_NAMES as _SOURCE_NAMES,
 )
+from data.fetes_patronales import COMMUNES_FETES_PATRONALES as _COMMUNES_FETES_PATRONALES
 from data.tts_normalize import (
     PRONONCIATIONS_LOCALES as _PRONONCIATIONS_LOCALES,
     SIGLES_MOT as _SIGLES_MOT,
@@ -491,6 +492,11 @@ def _strip_markdown(text: str) -> str:
 
 NOMINIS_API = "https://nominis.cef.fr/json/nominis.php"
 
+def get_communes_du_jour(target_date: "Date") -> list[str]:
+    """Retourne les communes de Guadeloupe fêtant leur fête patronale à la date donnée."""
+    key = target_date.strftime("%m-%d")
+    return _COMMUNES_FETES_PATRONALES.get(key, [])
+
 
 def fetch_prenom_du_jour(target_date: "datetime.date") -> "list[str] | None":
     """Retourne la liste des prénoms fêtés à la date donnée, ou None si l'API est indisponible."""
@@ -522,6 +528,7 @@ def build_segments(
     items: list[dict], date_str: str, weather: str, sources: list[str],
     horoscope: str | None = None,
     prenoms_du_jour: "list[str] | None" = None,
+    communes_du_jour: "list[str] | None" = None,
 ) -> list[str]:
     print("✍️  Rédaction des segments par Maryse (Mistral Large)...")
     articles = "\n\n".join(
@@ -577,15 +584,22 @@ def build_segments(
         prenoms_str = " et ".join(prenoms_du_jour)
         prenoms_block = f"PRÉNOM DU JOUR : {prenoms_str}\n\n"
 
+    communes_block = ""
+    if communes_du_jour:
+        communes_str = " et ".join(communes_du_jour)
+        communes_block = f"FÊTE PATRONALE DU JOUR : {communes_str}\n\n"
+
     user_prompt = (
         f"Flash info Guadeloupe du {date_str}.\n\n"
         f"MÉTÉO DU JOUR (toute la Guadeloupe) :\n{weather}\n\n"
         f"{prenoms_block}"
+        f"{communes_block}"
         f"{horoscope_block}"
         f"{news_block}"
         f"Rédige exactement {n_segs} segments séparés par \"{SEG_SEPARATOR}\" :\n"
         f"- Segment 1 : intro (jour + date + accroche"
         + (f", souhaite une bonne fête à {' et '.join(prenoms_du_jour)}" if prenoms_du_jour else "")
+        + (f", mentionne la fête patronale de {' et '.join(communes_du_jour)}" if communes_du_jour else "")
         + f")\n"
         f"- Segment 2 : météo du jour en style oral\n"
         f"{horoscope_instruction}"
@@ -2414,6 +2428,13 @@ def main():
         ),
     )
     parser.add_argument(
+        "--test-prenom", action="store_true",
+        help=(
+            "Récupère le prénom du jour depuis nominis.cef.fr et affiche le résultat, "
+            "sans lancer la pipeline complète."
+        ),
+    )
+    parser.add_argument(
         "--thumbnail", type=Path, metavar="FICHIER",
         help=(
             "Utilise l'image fournie comme thumbnail (PNG/JPG) au lieu de la générer via OpenAI. "
@@ -2433,6 +2454,19 @@ def main():
             print("\n── Horoscope brut ───────────────────────────────────────")
             print(text)
             print(f"\nSignes retenus : {', '.join(signs_fr)}")
+            print("─────────────────────────────────────────────────────────")
+        return
+
+    if args.test_prenom:
+        target_date = (
+            Date.fromisoformat(args.date) if args.date
+            else Date.today()
+        )
+        prenoms = fetch_prenom_du_jour(target_date)
+        if prenoms:
+            print("\n── Prénom du jour ───────────────────────────────────────")
+            print(f"Date : {target_date.strftime('%A %d %B %Y')}")
+            print(f"Prénoms : {', '.join(prenoms)}")
             print("─────────────────────────────────────────────────────────")
         return
 
@@ -2553,6 +2587,7 @@ def main():
     horoscope_result = fetch_horoscope()
     horoscope, horoscope_signs = horoscope_result if horoscope_result else (None, [])
     prenoms_du_jour  = fetch_prenom_du_jour(target_date)
+    communes_du_jour = get_communes_du_jour(target_date) or None
 
     # Étape 2
     sources = list(dict.fromkeys(item["source"] for item in items))  # unique, ordre conservé
@@ -2563,11 +2598,14 @@ def main():
         print("══════════════════════════════════════════════════════════")
         print(f"  {weather}")
         print("══════════════════════════════════════════════════════════\n")
+    if communes_du_jour:
+        print(f"⛪  Fête patronale du jour : {', '.join(communes_du_jour)}")
 
     segments_maryse = build_segments(
         items, date_str, weather, sources,
         horoscope=horoscope,
         prenoms_du_jour=prenoms_du_jour,
+        communes_du_jour=communes_du_jour,
     )
 
     def _print_segments(segs: list[str], label: str) -> None:
