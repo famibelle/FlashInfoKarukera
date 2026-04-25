@@ -708,7 +708,11 @@ def build_segments(
     if has_horoscope:
         n_signs = len(horoscope_signs) if horoscope_signs else 2
         horoscope_block = f"HOROSCOPE DU JOUR ({n_signs} signe{'s' if n_signs > 1 else ''} tiré{'s' if n_signs > 1 else ''} au hasard) :\n{horoscope}\n\n"
-        horoscope_instruction = HOROSCOPE_TEMPLATE.format(segment=horoscope_seg)
+        horoscope_instruction = HOROSCOPE_TEMPLATE.format(
+            segment=horoscope_seg,
+            n_signs=n_signs,
+            s="s" if n_signs > 1 else "",
+        )
 
     prenoms_block = ""
     if has_prenom:
