@@ -1761,12 +1761,21 @@ def send_telegram_photo(photo_path: Path, caption: str = "") -> None:
     print(f"   {photo_path.name} envoyé ✅")
 
 
+TELEGRAM_VIDEO_MAX_MB = 49  # limite Telegram bot API
+
+
 def send_telegram_video(
     video_path: Path,
     caption: str,
-    timeout: int = 120,
+    timeout: int = 180,
     thumbnail_path: "Path | None" = None,
 ) -> None:
+    size_mb = video_path.stat().st_size / 1_048_576
+    print(f"   Upload Telegram : {video_path.name} ({size_mb:.1f} Mo)…")
+    if size_mb > TELEGRAM_VIDEO_MAX_MB:
+        print(f"   ⚠️  Vidéo trop volumineuse ({size_mb:.1f} Mo > {TELEGRAM_VIDEO_MAX_MB} Mo) — upload ignoré.")
+        return
+
     boundary = "----FlashInfoBoundary"
 
     def field(name, value):
@@ -1789,19 +1798,27 @@ def send_telegram_video(
         body += file_field("thumbnail", thumbnail_path.name, "image/png", thumbnail_path.read_bytes())
     body += f"--{boundary}--\r\n".encode()
 
-    size_mb = video_path.stat().st_size / 1_048_576
-    print(f"   Upload Telegram : {video_path.name} ({size_mb:.1f} Mo)…")
-
     req = urllib.request.Request(
         f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendVideo",
         data=body,
         headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
     )
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        result = json.loads(r.read())
-    if not result.get("ok"):
-        raise RuntimeError(f"Telegram video error: {result}")
-    print(f"   {video_path.name} envoyé ✅")
+
+    for attempt in range(1, 4):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                result = json.loads(r.read())
+            if not result.get("ok"):
+                raise RuntimeError(f"Telegram video error: {result}")
+            print(f"   {video_path.name} envoyé ✅")
+            return
+        except (urllib.error.URLError, ConnectionResetError, TimeoutError) as exc:
+            if attempt < 3:
+                wait = 10 * attempt
+                print(f"   ⚠️  Tentative {attempt}/3 échouée ({exc}) — nouvel essai dans {wait}s…")
+                time.sleep(wait)
+            else:
+                raise
 
 
 # ── Étape 5 : Publication Buzzsprout → Spotify ───────────────────────────────
