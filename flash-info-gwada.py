@@ -2812,10 +2812,13 @@ def main():
         _date_label = _date_fr(_gen_date)
         _horoscope_only_system = (
             _load_prompt("maryse_ame.md") + "\n\n"
-            "Tu rédiges UNIQUEMENT le segment horoscope — pas d'intro, pas d'outro, "
-            "pas de météo, pas d'actualités. Juste la lecture de l'horoscope dans ta voix.\n"
+            "Tu rédiges UNIQUEMENT le segment horoscope — pas de météo, pas d'actualités. "
+            "Juste la lecture de l'horoscope dans ta voix.\n"
             f"Commence OBLIGATOIREMENT par : 'Nous sommes le {_date_label} et ' "
-            "puis enchaîne directement avec ta formule ancestrale d'introduction des signes."
+            "puis enchaîne directement avec ta formule ancestrale d'introduction des signes.\n"
+            "Termine OBLIGATOIREMENT par une courte formule de clôture dans ta voix — "
+            "une phrase de bénédiction ou de congé, puis une formule de rendez-vous du type "
+            "'À demain pour un nouvel horoscope' ou une variante naturelle, jamais la même tournure."
         )
         horoscope_instruction = HOROSCOPE_TEMPLATE.format(
             segment=1, n_signs=n_signs, s="s" if n_signs > 1 else "",
