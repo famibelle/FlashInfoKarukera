@@ -1,0 +1,86 @@
+name: Horoscope Quotidien
+
+on:
+  schedule:
+    # 7h Paris hiver (UTC+1) = 6h UTC / 8h Paris été (UTC+2) — GitHub Actions ne gère pas le DST
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Date (YYYY-MM-DD) — laisser vide pour aujourd'hui"
+        required: false
+        default: ""
+      horoscope_signs:
+        description: "Nombre de signes (défaut : 7)"
+        type: integer
+        required: false
+        default: 7
+      horoscope_include:
+        description: "Forcer un ou plusieurs signes (noms anglais séparés par des espaces, ex: gemini capricorn)"
+        required: false
+        default: ""
+      tiktok:
+        description: "Génère les vidéos TikTok/Shorts et les envoie sur Telegram"
+        type: boolean
+        required: false
+        default: true
+      verbose:
+        description: "Verbose (affiche le détail de chaque étape)"
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  horoscope:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Installer FFmpeg et polices emoji
+        run: sudo apt-get install -y ffmpeg fonts-noto-color-emoji
+
+      - name: Configurer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dépendances Python
+        run: pip install -r requirements.txt
+
+      - name: Générer l'horoscope du jour
+        env:
+          MISTRAL_API_KEY:        ${{ secrets.MISTRAL_API_KEY }}
+          TELEGRAM_BOT_TOKEN:     ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:       ${{ secrets.TELEGRAM_CHAT_ID }}
+          OPENAI_API_KEY:         ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          ARGS="--generate-horoscope only"
+
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            ARGS="$ARGS --date ${{ github.event.inputs.date }}"
+          fi
+
+          HOROSCOPE_SIGNS="${{ github.event.inputs.horoscope_signs }}"
+          HOROSCOPE_SIGNS="${HOROSCOPE_SIGNS:-7}"
+          ARGS="$ARGS --horoscope-signs $HOROSCOPE_SIGNS"
+
+          HOROSCOPE_INCLUDE="${{ github.event.inputs.horoscope_include }}"
+          if [ -n "$HOROSCOPE_INCLUDE" ]; then
+            ARGS="$ARGS --horoscope-include $HOROSCOPE_INCLUDE"
+          fi
+
+          TIKTOK_INPUT="${{ github.event.inputs.tiktok }}"
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "$TIKTOK_INPUT" = "true" ] || [ -z "$TIKTOK_INPUT" ]; then
+            ARGS="$ARGS --tiktok"
+          fi
+
+          if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
+            ARGS="$ARGS --verbose"
+          fi
+
+          python flash-info-gwada.py $ARGS
