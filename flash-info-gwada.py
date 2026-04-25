@@ -484,6 +484,23 @@ def _resolve_sign(name: str) -> str | None:
     return _SIGN_FR_TO_EN.get(key)
 
 
+def _sign_for_date(d: Date) -> str:
+    """Retourne la clé anglaise du signe zodiacal correspondant à la date."""
+    m, day = d.month, d.day
+    if (m == 3 and day >= 21) or (m == 4 and day <= 19): return "aries"
+    if (m == 4 and day >= 20) or (m == 5 and day <= 20): return "taurus"
+    if (m == 5 and day >= 21) or (m == 6 and day <= 20): return "gemini"
+    if (m == 6 and day >= 21) or (m == 7 and day <= 22): return "cancer"
+    if (m == 7 and day >= 23) or (m == 8 and day <= 22): return "leo"
+    if (m == 8 and day >= 23) or (m == 9 and day <= 22): return "virgo"
+    if (m == 9 and day >= 23) or (m == 10 and day <= 22): return "libra"
+    if (m == 10 and day >= 23) or (m == 11 and day <= 21): return "scorpio"
+    if (m == 11 and day >= 22) or (m == 12 and day <= 21): return "sagittarius"
+    if (m == 12 and day >= 22) or (m == 1 and day <= 19): return "capricorn"
+    if (m == 1 and day >= 20) or (m == 2 and day <= 18): return "aquarius"
+    return "pisces"
+
+
 def fetch_horoscope(n_signs: int = 2, include_signs: "list[str] | None" = None) -> "tuple[str, list[str]] | None":
     """Retourne (texte, signes_fr) pour n_signs signes aléatoires, ou None si l'API est indisponible.
 
@@ -2699,6 +2716,12 @@ def main():
 
     if args.generate_horoscope:
         _inc = [s for name in args.horoscope_include if (s := _resolve_sign(name))]
+        # Déduit le signe de la date cible et l'inclut automatiquement
+        _gen_date = Date.fromisoformat(args.date) if args.date else Date.today()
+        _date_sign = _sign_for_date(_gen_date)
+        if _date_sign not in _inc:
+            _inc = [_date_sign] + _inc
+            print(f"📅 Signe déduit de la date ({_gen_date}) : {_SIGN_FR[_date_sign]}")
         result = fetch_horoscope(n_signs=args.horoscope_signs, include_signs=_inc or None)
         if not result:
             print("❌ Impossible de récupérer l'horoscope.", file=sys.stderr)
