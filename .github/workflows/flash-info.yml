@@ -53,8 +53,8 @@ on:
       horoscope_signs:
         description: "Nombre de signes astrologiques dans la rubrique horoscope (défaut : 3)"
         type: number
-        required: false
-        default: 3
+        required: string
+        default: "3"
 
       horoscope_include:
         description: "Signes à inclure dans l'horoscope (séparés par des espaces, ex: 'bélier taureau' ou 'aries taurus')"
