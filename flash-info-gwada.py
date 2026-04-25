@@ -2791,17 +2791,34 @@ def main():
         return
 
     if args.check_feeds:
-        print("🔍 Vérification des flux RSS…\n")
+        if args.date:
+            try:
+                check_date = Date.fromisoformat(args.date)
+            except ValueError:
+                print(f"❌ Format de date invalide : '{args.date}'. Attendu : YYYY-MM-DD", file=sys.stderr)
+                sys.exit(1)
+        else:
+            check_date = datetime.now(GUADELOUPE_TZ).date()
+
+        print(f"🔍 Vérification des flux RSS pour le {_date_fr(check_date)}…\n")
         ok, ko = [], []
         for source in RSS_SOURCES:
             try:
                 with urllib.request.urlopen(source.url, timeout=10) as r:
                     content = r.read()
                 root = ET.fromstring(content)
-                items_found = len(root.findall(".//item")) + len(root.findall(".//entry"))
+                total_found = len(root.findall(".//item")) + len(root.findall(".//entry"))
+                day_items = _parse_feed_items(root, check_date)
                 print(f"  ✅  {source.name}")
                 print(f"      {source.url}")
-                print(f"      {items_found} entrées trouvées\n")
+                print(f"      {total_found} entrées au total, {len(day_items)} pour le {check_date}")
+                if args.verbose and day_items:
+                    for _, title, date_str_item, desc in day_items:
+                        print(f"        • [{date_str_item}] {title}")
+                        if desc:
+                            preview = desc[:120].replace("\n", " ")
+                            print(f"          {preview}{'…' if len(desc) > 120 else ''}")
+                print()
                 ok.append(source.name)
             except Exception as e:
                 print(f"  ❌  {source.name}")
