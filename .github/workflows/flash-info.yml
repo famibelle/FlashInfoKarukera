@@ -52,7 +52,7 @@ on:
         default: false
       horoscope_signs:
         description: "Nombre de signes astrologiques dans la rubrique horoscope (défaut : 3)"
-        type: number
+        type: integer
         required: false
         default: 3
       verbose:
