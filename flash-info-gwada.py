@@ -2676,6 +2676,14 @@ def main():
             "Exemple : --flush-used-articles 2026-04-25"
         ),
     )
+    parser.add_argument(
+        "--generate-horoscope", action="store_true",
+        help=(
+            "Génère uniquement le segment horoscope (rédaction Maryse + TTS) et sauvegarde le MP3. "
+            "Combinable avec --horoscope-signs et --horoscope-include. "
+            "Utilise --output pour choisir le chemin du fichier (défaut : horoscope.mp3)."
+        ),
+    )
     args = parser.parse_args()
 
     if args.test_horoscope:
@@ -2686,6 +2694,48 @@ def main():
             print("\n── Horoscope brut ───────────────────────────────────────")
             print(text)
             print(f"\nSignes retenus : {', '.join(signs_fr)}")
+            print("─────────────────────────────────────────────────────────")
+        return
+
+    if args.generate_horoscope:
+        _inc = [s for name in args.horoscope_include if (s := _resolve_sign(name))]
+        result = fetch_horoscope(n_signs=args.horoscope_signs, include_signs=_inc or None)
+        if not result:
+            print("❌ Impossible de récupérer l'horoscope.", file=sys.stderr)
+            sys.exit(1)
+        horoscope_text, signs_fr = result
+        n_signs = len(signs_fr)
+        print(f"🔮 Signes retenus : {', '.join(signs_fr)}")
+
+        # Rédaction Maryse
+        horoscope_instruction = HOROSCOPE_TEMPLATE.format(
+            segment=1,
+            n_signs=n_signs,
+            s="s" if n_signs > 1 else "",
+        )
+        horoscope_block = (
+            f"HOROSCOPE DU JOUR ({n_signs} signe{'s' if n_signs > 1 else ''} "
+            f"tiré{'s' if n_signs > 1 else ''} au hasard) :\n{horoscope_text}\n\n"
+        )
+        user_prompt = (
+            f"{horoscope_block}"
+            f"INSTRUCTIONS :\n{horoscope_instruction}"
+        )
+        print("✍️  Rédaction horoscope par Maryse (Mistral Large)...")
+        segment = _strip_markdown(call_mistral(MARYSE_SYSTEM, user_prompt, temperature=0.75, max_tokens=600))
+
+        # TTS
+        output_path = Path(args.output) if args.output else Path("horoscope.mp3")
+        tmp = output_path.with_suffix(".tmp.mp3")
+        print(f"🔊 Synthèse vocale → {output_path}")
+        tone = classify_tones([segment])[0]
+        print(f"   Tonalité : {tone}")
+        _tts_call(_normalize_for_tts(segment), tmp, TTS_VOICES.get(tone, TTS_VOICE_DEFAULT))
+        tmp.rename(output_path)
+        print(f"✅ Segment horoscope sauvegardé : {output_path}")
+        if args.verbose:
+            print("\n── Texte rédigé ─────────────────────────────────────────")
+            print(segment)
             print("─────────────────────────────────────────────────────────")
         return
 
