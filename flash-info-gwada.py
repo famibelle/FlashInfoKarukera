@@ -5,6 +5,7 @@ Collecte RSS → Script → Audio TTS (Voxtral) → Envoi Telegram
 """
 
 import os
+import re
 import sys
 import json
 import time
@@ -804,6 +805,8 @@ def anchor_local(segments: list[str], items: list[dict]) -> list[str]:
         f"JSON_EXTRACTION :\n{json_context}"
     )
     raw = call_mistral(ANCHOR_SYSTEM, user_prompt)
+    # Supprime tout préambule que le LLM ajoute avant le script (ex. "SCRIPT_ENRICHI :", "Voici le script...")
+    raw = re.sub(r'(?im)^(?:script_\w+\s*:|voici\s+le\s+script\b)[^\n]*\n', '', raw.lstrip())
     anchored = [_strip_markdown(s) for s in raw.split(SEG_SEPARATOR) if s.strip()]
 
     if len(anchored) != len(segments):
@@ -853,6 +856,7 @@ def revise_style(segments: list[str]) -> list[str]:
     print("✏️  Révision stylistique (Mistral Large)...")
     full_script = f"\n{SEG_SEPARATOR}\n".join(segments)
     raw = call_mistral(STYLIST_SYSTEM, full_script)
+    raw = re.sub(r'(?im)^(?:script_\w+\s*:|voici\s+le\s+script\b)[^\n]*\n', '', raw.lstrip())
     revised = [_strip_markdown(s) for s in raw.split(SEG_SEPARATOR) if s.strip()]
 
     if len(revised) != len(segments):
