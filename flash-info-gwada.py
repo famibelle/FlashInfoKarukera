@@ -2811,7 +2811,7 @@ def main():
         )
         user_prompt = f"{horoscope_block}INSTRUCTIONS :\n{horoscope_instruction}"
         print("✍️  Rédaction horoscope par Maryse (Mistral Large)...")
-        segment = _strip_markdown(call_mistral(_horoscope_only_system, user_prompt, temperature=0.75, max_tokens=150 * n_signs + 200))
+        segment = _strip_markdown(call_mistral(_horoscope_only_system, user_prompt, temperature=0.75, max_tokens=250 * n_signs + 300))
 
         # TTS
         output_path = Path(args.output) if args.output else Path("horoscope.mp3")
