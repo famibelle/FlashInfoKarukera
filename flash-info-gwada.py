@@ -63,8 +63,8 @@ TTS_VOICES = {
 TELEGRAM_BOT_TOKEN  = os.environ["TELEGRAM_BOT_TOKEN"]
 TELEGRAM_CHAT_ID    = os.environ["TELEGRAM_CHAT_ID"]
 
-BUZZSPROUT_API_TOKEN  = os.environ["BUZZSPROUT_API_TOKEN"]
-BUZZSPROUT_PODCAST_ID = os.environ["BUZZSPROUT_PODCAST_ID"]
+BUZZSPROUT_API_TOKEN  = os.environ.get("BUZZSPROUT_API_TOKEN", "")
+BUZZSPROUT_PODCAST_ID = os.environ.get("BUZZSPROUT_PODCAST_ID", "")
 
 X_API_KEY            = os.environ["X_API_KEY"]
 X_API_SECRET         = os.environ["X_API_SECRET"]
@@ -2843,6 +2843,22 @@ def main():
                 _, video_path = videos[0]
                 print(f"🎬 Vidéo horoscope : {video_path}")
                 send_telegram_video(video_path, f"🔮 Horoscope — {_date_fr(_gen_date)}")
+
+        # Publication Buzzsprout
+        if not args.dry_run and BUZZSPROUT_API_TOKEN and BUZZSPROUT_PODCAST_ID:
+            _signs_label = ", ".join(signs_fr)
+            _bz_title = f"Horoscope du {_date_fr(_gen_date)} — {_signs_label}"
+            _bz_description = (
+                f"Horoscope du {_date_fr(_gen_date)} par Maryse.\n"
+                f"Signes du jour : {_signs_label}.\n\n"
+                "Flash Info Karukera — actualités et horoscope de la Guadeloupe."
+            )
+            publish_buzzsprout(output_path, _bz_title, _bz_description, BUZZSPROUT_TAGS)
+        elif args.dry_run:
+            print("--dry-run : pas de publication Buzzsprout.")
+        else:
+            print("⚠️  BUZZSPROUT_API_TOKEN / BUZZSPROUT_PODCAST_ID manquants — publication ignorée.")
+
         return
 
     if args.test_prenom is not None:
