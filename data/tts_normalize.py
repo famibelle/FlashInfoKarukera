@@ -23,6 +23,7 @@ PRONONCIATIONS_LOCALES = {
     "971": "quatre-vingt-dix-sept-un",
     # Sigles locaux développés (avant l'épellation automatique)
     "UNAR": "Union Athlétique de Rivière-des-Pères",
+    "SEM Patrimoniale": "S.E.M Patrimoniale",
     "JSVH": "Jeunesse Sportive de Vieux Zabitan",
     "URSSAF": "Ursaffe",
     "SDIS": "Service Départemental d'Incendie et de Secours",
