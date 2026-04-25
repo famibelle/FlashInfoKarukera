@@ -50,21 +50,11 @@ on:
         type: boolean
         required: false
         default: false
-
       horoscope_signs:
         description: "Nombre de signes astrologiques dans la rubrique horoscope (défaut : 3)"
-        type: integer
+        type: number
         required: false
         default: 3
-
-      horoscope_include:
-        description: "Signes à inclure dans l'horoscope (séparés par des espaces, ex: 'bélier taureau' ou 'aries taurus')"
-        type: string
-        required: false
-        default: "gemini virgo aries"
-
-
-
       verbose:
         description: "Verbose (affiche le détail de chaque étape)"
         type: boolean
@@ -147,15 +137,6 @@ jobs:
           if [ -n "$HOROSCOPE_SIGNS" ] && [ "$HOROSCOPE_SIGNS" != "3" ]; then
             ARGS="$ARGS --horoscope-signs $HOROSCOPE_SIGNS"
           fi
-
-          HOROSCOPE_INCLUDE="${{ github.event.inputs.horoscope_include }}"
-          if [ -n "$HOROSCOPE_INCLUDE" ]; then
-            for signe in $HOROSCOPE_INCLUDE; do
-              ARGS="$ARGS --horoscope-include $signe"
-            done
-          fi
-
-
           if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
             ARGS="$ARGS --verbose"
           fi
