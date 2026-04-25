@@ -55,6 +55,16 @@ on:
         type: integer
         required: false
         default: 3
+      horoscope_include:
+        description: "Forcer un ou plusieurs signes (noms anglais séparés par des espaces, ex: gemini capricorn taurus)"
+        required: false
+        default: ""
+      generate_horoscope:
+        description: "Génère uniquement le segment horoscope (sans flash complet) — passer 'only'"
+        type: choice
+        options: ["", "only"]
+        required: false
+        default: ""
       verbose:
         description: "Verbose (affiche le détail de chaque étape)"
         type: boolean
@@ -136,6 +146,14 @@ jobs:
           HOROSCOPE_SIGNS="${{ github.event.inputs.horoscope_signs }}"
           if [ -n "$HOROSCOPE_SIGNS" ] && [ "$HOROSCOPE_SIGNS" != "3" ]; then
             ARGS="$ARGS --horoscope-signs $HOROSCOPE_SIGNS"
+          fi
+          HOROSCOPE_INCLUDE="${{ github.event.inputs.horoscope_include }}"
+          if [ -n "$HOROSCOPE_INCLUDE" ]; then
+            ARGS="$ARGS --horoscope-include $HOROSCOPE_INCLUDE"
+          fi
+          GENERATE_HOROSCOPE="${{ github.event.inputs.generate_horoscope }}"
+          if [ "$GENERATE_HOROSCOPE" = "only" ]; then
+            ARGS="$ARGS --generate-horoscope only"
           fi
           if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
             ARGS="$ARGS --verbose"
