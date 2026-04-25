@@ -2661,6 +2661,13 @@ def main():
         "--no-thumbnail", action="store_true",
         help="Désactive la génération et l'embed du thumbnail (première frame et envoi Telegram).",
     )
+    parser.add_argument(
+        "--flush-used-articles", nargs="?", const="today", metavar="YYYY-MM-DD",
+        help=(
+            "Vide la mémoire anti-répétition pour la date donnée (ou aujourd'hui si absent). "
+            "Exemple : --flush-used-articles 2026-04-25"
+        ),
+    )
     args = parser.parse_args()
 
     if args.test_horoscope:
@@ -2691,6 +2698,25 @@ def main():
             print(f"Date    : {_date_fr(target_date)}")
             print(f"Prénoms : {', '.join(prenoms)}")
             print("─────────────────────────────────────────────────────────")
+        return
+
+    if args.flush_used_articles is not None:
+        if args.flush_used_articles not in (None, "today"):
+            try:
+                target_date = Date.fromisoformat(args.flush_used_articles)
+            except ValueError:
+                print(f"❌ Date invalide : '{args.flush_used_articles}'. Attendu : YYYY-MM-DD", file=sys.stderr)
+                sys.exit(1)
+        elif args.date:
+            target_date = Date.fromisoformat(args.date)
+        else:
+            target_date = Date.today()
+        p = _used_articles_path(target_date)
+        if p.exists():
+            p.write_text(json.dumps({"titles": []}, ensure_ascii=False, indent=2), encoding="utf-8")
+            print(f"🗑️  Anti-répétition vidée pour le {_date_fr(target_date)} ({p.name})")
+        else:
+            print(f"ℹ️  Aucun fichier anti-répétition pour le {_date_fr(target_date)} ({p.name})")
         return
 
     if args.test_marroniers:
