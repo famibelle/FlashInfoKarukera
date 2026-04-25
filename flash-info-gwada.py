@@ -2620,7 +2620,7 @@ def main():
         ),
     )
     parser.add_argument(
-        "--horoscope-signs", type=int, default=2, metavar="N",
+        "--horoscope-signs", type=int, default=3, metavar="N",
         help="Nombre de signes astrologiques à inclure dans la rubrique horoscope (défaut : 2).",
     )
     parser.add_argument(

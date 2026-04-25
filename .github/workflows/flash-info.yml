@@ -51,10 +51,10 @@ on:
         required: false
         default: false
       horoscope_signs:
-        description: "Nombre de signes astrologiques dans la rubrique horoscope (défaut : 2)"
+        description: "Nombre de signes astrologiques dans la rubrique horoscope (défaut : 3)"
         type: number
         required: false
-        default: 2
+        default: 3
       verbose:
         description: "Verbose (affiche le détail de chaque étape)"
         type: boolean
@@ -134,7 +134,7 @@ jobs:
             ARGS="$ARGS --no-thumbnail"
           fi
           HOROSCOPE_SIGNS="${{ github.event.inputs.horoscope_signs }}"
-          if [ -n "$HOROSCOPE_SIGNS" ] && [ "$HOROSCOPE_SIGNS" != "2" ]; then
+          if [ -n "$HOROSCOPE_SIGNS" ] && [ "$HOROSCOPE_SIGNS" != "3" ]; then
             ARGS="$ARGS --horoscope-signs $HOROSCOPE_SIGNS"
           fi
           if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
