@@ -93,7 +93,6 @@ MEDIA_DIR       = Path(__file__).parent / "Media"
 DATA_DIR        = Path(__file__).parent / "data"
 BOTIRAN_PROFILE = MEDIA_DIR / "botiran_profile.jpg"
 GUADELOUPE_TZ   = ZoneInfo("America/Guadeloupe")
-PARIS_TZ        = ZoneInfo("Europe/Paris")
 
 # ── Éditions ──────────────────────────────────────────────────────────────────
 
@@ -120,9 +119,17 @@ _EDITION_OUTRO = {
 }
 
 
+def _now_paris_str(fmt: str) -> str:
+    """Retourne l'heure courante à Paris via la commande date Linux."""
+    return subprocess.check_output(
+        ["date", f"+{fmt}"],
+        env={**os.environ, "TZ": "Europe/Paris"},
+    ).decode().strip()
+
+
 def _detect_edition() -> str:
     """Détecte l'édition (matin/midi/soir) selon l'heure courante à Paris."""
-    h = datetime.now(PARIS_TZ).hour
+    h = int(_now_paris_str("%H"))
     if h < 11:
         return "matin"
     if h < 18:
@@ -595,6 +602,10 @@ def call_mistral(
 MARYSE_SYSTEM        = _load_prompt("maryse_ame.md") + "\n\n" + _load_prompt("maryse.md")
 PRENOM_TEMPLATE      = _load_prompt("prenom.md")
 HOROSCOPE_TEMPLATE   = _load_prompt("horoscope.md")
+LIEUX_SPIRITUELS     = (
+    "\n\n" + _load_prompt("lieux_spirituels.md") +
+    "\n\n" + _load_prompt("flore_guadeloupe.md")
+)
 
 
 def _strip_markdown(text: str) -> str:
@@ -653,6 +664,8 @@ def build_segments(
     edition: str = "matin",
     weather_label: str = "MÉTÉO DU JOUR",
     tomorrow_str: "str | None" = None,
+    heure_paris: "str | None" = None,
+    verbose: bool = False,
 ) -> list[str]:
     print(f"✍️  Rédaction des segments par Maryse — édition {edition.upper()} (Mistral Large)...")
     articles = "\n\n".join(
@@ -730,6 +743,8 @@ def build_segments(
             segment=horoscope_seg,
             n_signs=n_signs,
             s="s" if n_signs > 1 else "",
+            lieux_spirituels=LIEUX_SPIRITUELS,
+            contexte_local="",
         )
 
     prenoms_block = ""
@@ -761,8 +776,9 @@ def build_segments(
 
     edition_instruction = _EDITION_INTRO_INSTRUCTION[edition]
 
+    heure_ctx = f" — il est {heure_paris} à Paris" if heure_paris else ""
     user_prompt = (
-        f"Flash info Guadeloupe du {date_str} — {edition_instruction}\n\n"
+        f"Flash info Guadeloupe du {date_str}{heure_ctx} — {edition_instruction}\n\n"
         f"{meteo_block}"
         f"{prenoms_block}"
         f"{communes_block}"
@@ -776,7 +792,17 @@ def build_segments(
         f"{horoscope_instruction}"
         f"{news_instructions}"
     )
-    raw = call_mistral(MARYSE_SYSTEM, user_prompt, temperature=0.75, max_tokens=1800 if (has_horoscope or has_prenom) else 1200)
+    if verbose:
+        print("\n══════════════════════════════════════════════════════════")
+        print("  VERBOSE — PROMPT MARYSE (system)")
+        print("══════════════════════════════════════════════════════════")
+        print(MARYSE_SYSTEM)
+        print("\n  ── user_prompt ──")
+        print(user_prompt)
+        print("══════════════════════════════════════════════════════════\n")
+    _horoscope_tokens = 150 * (len(horoscope_signs) if horoscope_signs else 2) if has_horoscope else 0
+    _base_tokens = 1400 if (has_prenom or has_meteo) else 1200
+    raw = call_mistral(MARYSE_SYSTEM, user_prompt, temperature=0.75, max_tokens=_base_tokens + _horoscope_tokens)
 
     import re as _re
     segments = [_strip_markdown(s) for s in raw.split(SEG_SEPARATOR) if s.strip()]
@@ -802,7 +828,7 @@ STYLIST_SYSTEM = _load_prompt("styliste.md")
 ANCHOR_SYSTEM = _load_prompt("ancrage.md")
 
 
-def anchor_local(segments: list[str], items: list[dict]) -> list[str]:
+def anchor_local(segments: list[str], items: list[dict], verbose: bool = False) -> list[str]:
     print("📍 Ancrage local (Mistral Large)...")
     full_script = f"\n{SEG_SEPARATOR}\n".join(segments)
     json_context = json.dumps(
@@ -821,6 +847,14 @@ def anchor_local(segments: list[str], items: list[dict]) -> list[str]:
         f"SCRIPT_INITIAL :\n{full_script}\n\n"
         f"JSON_EXTRACTION :\n{json_context}"
     )
+    if verbose:
+        print("\n══════════════════════════════════════════════════════════")
+        print("  VERBOSE — PROMPT ANCRAGE LOCAL (system)")
+        print("══════════════════════════════════════════════════════════")
+        print(ANCHOR_SYSTEM)
+        print("\n  ── user_prompt ──")
+        print(user_prompt)
+        print("══════════════════════════════════════════════════════════\n")
     raw = call_mistral(ANCHOR_SYSTEM, user_prompt)
     # Supprime tout préambule que le LLM ajoute avant le script (ex. "SCRIPT_ENRICHI :", "Voici le script...")
     raw = re.sub(r'(?im)^(?:script_\w+\s*:|voici\s+le\s+script\b)[^\n]*\n', '', raw.lstrip())
@@ -869,9 +903,17 @@ def _ensure_sources_in_outro(segments: list[str], sources: list[str]) -> list[st
     return segments
 
 
-def revise_style(segments: list[str]) -> list[str]:
+def revise_style(segments: list[str], verbose: bool = False) -> list[str]:
     print("✏️  Révision stylistique (Mistral Large)...")
     full_script = f"\n{SEG_SEPARATOR}\n".join(segments)
+    if verbose:
+        print("\n══════════════════════════════════════════════════════════")
+        print("  VERBOSE — PROMPT RÉVISEUR STYLISTIQUE (system)")
+        print("══════════════════════════════════════════════════════════")
+        print(STYLIST_SYSTEM)
+        print("\n  ── user_prompt (script) ──")
+        print(full_script)
+        print("══════════════════════════════════════════════════════════\n")
     raw = call_mistral(STYLIST_SYSTEM, full_script)
     raw = re.sub(r'(?im)^(?:script_\w+\s*:|voici\s+le\s+script\b)[^\n]*\n', '', raw.lstrip())
     revised = [_strip_markdown(s) for s in raw.split(SEG_SEPARATOR) if s.strip()]
@@ -2645,9 +2687,10 @@ def main():
         help="Nombre de signes astrologiques à inclure dans la rubrique horoscope (défaut : 2).",
     )
     parser.add_argument(
-        "--horoscope-include", action="append", default=[], metavar="SIGNE",
+        "--horoscope-include", nargs="+", action="append", default=[], metavar="SIGNE",
         help=(
-            "Inclure ce signe de force dans l'horoscope (français ou anglais). Répétable. "
+            "Inclure un ou plusieurs signes de force dans l'horoscope (français ou anglais). "
+            "Exemple : --horoscope-include gemini capricorn taurus. Répétable. "
             "Signes disponibles : "
             + ", ".join(f"{fr} ({en})" for en, fr in _SIGN_FR.items())
             + "."
@@ -2694,17 +2737,18 @@ def main():
         ),
     )
     parser.add_argument(
-        "--generate-horoscope", action="store_true",
+        "--generate-horoscope", nargs="?", const="only", metavar="only",
         help=(
-            "Génère uniquement le segment horoscope (rédaction Maryse + TTS) et sauvegarde le MP3. "
-            "Combinable avec --horoscope-signs et --horoscope-include. "
-            "Utilise --output pour choisir le chemin du fichier (défaut : horoscope.mp3)."
+            "Sans argument : lance la pipeline complète en forçant l'inclusion de l'horoscope. "
+            "Avec 'only' (--generate-horoscope only) : génère UNIQUEMENT le segment horoscope "
+            "(rédaction Maryse + TTS, sans intro/météo/conclusion) et sauvegarde le MP3. "
+            "Combinable avec --horoscope-signs, --horoscope-include, --tiktok, --output."
         ),
     )
     args = parser.parse_args()
 
     if args.test_horoscope:
-        _inc = [s for name in args.horoscope_include if (s := _resolve_sign(name))]
+        _inc = [s for name in (n for group in args.horoscope_include for n in group) if (s := _resolve_sign(name))]
         result = fetch_horoscope(n_signs=args.horoscope_signs, include_signs=_inc or None)
         if result:
             text, signs_fr = result
@@ -2714,9 +2758,8 @@ def main():
             print("─────────────────────────────────────────────────────────")
         return
 
-    if args.generate_horoscope:
-        _inc = [s for name in args.horoscope_include if (s := _resolve_sign(name))]
-        # Déduit le signe de la date cible et l'inclut automatiquement
+    if args.generate_horoscope == "only":
+        _inc = [s for name in (n for group in args.horoscope_include for n in group) if (s := _resolve_sign(name))]
         _gen_date = Date.fromisoformat(args.date) if args.date else Date.today()
         _date_sign = _sign_for_date(_gen_date)
         if _date_sign not in _inc:
@@ -2730,22 +2773,45 @@ def main():
         n_signs = len(signs_fr)
         print(f"🔮 Signes retenus : {', '.join(signs_fr)}")
 
-        # Rédaction Maryse
+        # Collecte du contexte local pour ancrage
+        _weather_summary = None
+        try:
+            _weather_summary = fetch_weather(_gen_date)
+        except Exception:
+            pass
+        _marroniers = _get_marroniers_du_jour(_gen_date)
+        _contexte_lines = []
+        if _weather_summary:
+            _contexte_lines.append(f"Météo du jour à Pointe-à-Pitre : {_weather_summary}")
+        if _marroniers:
+            _contexte_lines.append("Événements du jour en Guadeloupe : " +
+                " ; ".join(f"{m.evenement} ({m.lieu})" for m in _marroniers))
+        _contexte_local = (
+            "\n\nCONTEXTE LOCAL DU JOUR :\n" + "\n".join(_contexte_lines)
+            if _contexte_lines else ""
+        )
+
+        # Prompt ciblé : âme de Maryse + instruction horoscope seule, sans structure de flash
+        _date_label = _date_fr(_gen_date)
+        _horoscope_only_system = (
+            _load_prompt("maryse_ame.md") + "\n\n"
+            "Tu rédiges UNIQUEMENT le segment horoscope — pas d'intro, pas d'outro, "
+            "pas de météo, pas d'actualités. Juste la lecture de l'horoscope dans ta voix.\n"
+            f"Commence OBLIGATOIREMENT par : 'Nous sommes le {_date_label} et ' "
+            "puis enchaîne directement avec ta formule ancestrale d'introduction des signes."
+        )
         horoscope_instruction = HOROSCOPE_TEMPLATE.format(
-            segment=1,
-            n_signs=n_signs,
-            s="s" if n_signs > 1 else "",
+            segment=1, n_signs=n_signs, s="s" if n_signs > 1 else "",
+            lieux_spirituels=LIEUX_SPIRITUELS,
+            contexte_local=_contexte_local,
         )
         horoscope_block = (
             f"HOROSCOPE DU JOUR ({n_signs} signe{'s' if n_signs > 1 else ''} "
             f"tiré{'s' if n_signs > 1 else ''} au hasard) :\n{horoscope_text}\n\n"
         )
-        user_prompt = (
-            f"{horoscope_block}"
-            f"INSTRUCTIONS :\n{horoscope_instruction}"
-        )
+        user_prompt = f"{horoscope_block}INSTRUCTIONS :\n{horoscope_instruction}"
         print("✍️  Rédaction horoscope par Maryse (Mistral Large)...")
-        segment = _strip_markdown(call_mistral(MARYSE_SYSTEM, user_prompt, temperature=0.75, max_tokens=600))
+        segment = _strip_markdown(call_mistral(_horoscope_only_system, user_prompt, temperature=0.75, max_tokens=150 * n_signs + 200))
 
         # TTS
         output_path = Path(args.output) if args.output else Path("horoscope.mp3")
@@ -2760,6 +2826,23 @@ def main():
             print("\n── Texte rédigé ─────────────────────────────────────────")
             print(segment)
             print("─────────────────────────────────────────────────────────")
+
+        # Génération vidéo TikTok/Shorts
+        if args.tiktok:
+            video_dir = output_path.parent / f"horoscope-{_gen_date.strftime('%Y%m%d')}"
+            videos = generate_tiktok(
+                seg_paths=[output_path],
+                segments=[segment],
+                tones=[tone],
+                output_dir=video_dir,
+                has_prenom=False,
+                has_horoscope=True,
+                has_meteo=False,
+            )
+            if videos:
+                _, video_path = videos[0]
+                print(f"🎬 Vidéo horoscope : {video_path}")
+                send_telegram_video(video_path, f"🔮 Horoscope — {_date_fr(_gen_date)}")
         return
 
     if args.test_prenom is not None:
@@ -2910,6 +2993,7 @@ def main():
     from datetime import timedelta
 
     now_gwada = datetime.now(GUADELOUPE_TZ)
+    heure_paris = _now_paris_str("%Hh%M")
     print(f"🕐 Heure locale Guadeloupe : {_date_fr(now_gwada.date())} — {now_gwada.strftime('%H:%M')} (UTC{now_gwada.strftime('%z')[:3]}:{now_gwada.strftime('%z')[3:]})")
 
     edition = args.edition or _detect_edition()
@@ -2963,7 +3047,7 @@ def main():
 
     if edition == "matin":
         include_signs = []
-        for name in args.horoscope_include:
+        for name in (n for group in args.horoscope_include for n in group):
             resolved = _resolve_sign(name)
             if resolved:
                 include_signs.append(resolved)
@@ -3010,6 +3094,8 @@ def main():
         edition=edition,
         weather_label=weather_label or "MÉTÉO DU JOUR",
         tomorrow_str=tomorrow_str,
+        heure_paris=heure_paris,
+        verbose=args.verbose,
     )
 
     def _print_segments(segs: list[str], label: str) -> None:
@@ -3029,7 +3115,7 @@ def main():
         _print_segments(segments_maryse, "SORTIE MARYSE (brut)")
 
     # Étape 2b — Révision stylistique
-    segments = revise_style(segments_maryse)
+    segments = revise_style(segments_maryse, verbose=args.verbose)
     segments = _ensure_sources_in_outro(segments, sources)
     segments = _enforce_prononciations(segments)
 
@@ -3047,7 +3133,7 @@ def main():
         ))
         print("══════════════════════════════════════════════════════════\n")
 
-    segments = anchor_local(segments, items)
+    segments = anchor_local(segments, items, verbose=args.verbose)
     segments = _ensure_sources_in_outro(segments, sources)
     segments = _enforce_prononciations(segments)
 
