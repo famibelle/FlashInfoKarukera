@@ -975,6 +975,31 @@ def generate_tiktok(
 
 # ── Telegram ──────────────────────────────────────────────────────────────────
 
+def _compress_video(video_path: Path, target_mb: float = 45.0) -> Path:
+    """Recompresse la vidéo avec un bitrate calculé pour tenir dans target_mb."""
+    probe = subprocess.run(
+        ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+         "-of", "default=noprint_wrappers=1:nokey=1", str(video_path)],
+        capture_output=True, text=True,
+    )
+    duration = float(probe.stdout.strip() or "0")
+    if duration <= 0:
+        return video_path
+    target_kbps = max(300, int((target_mb * 8 * 1024) / duration) - 128)
+    out_path = video_path.with_stem(video_path.stem + "_compressed")
+    print(f"   Compression → {target_kbps} kbps vidéo ({duration:.0f}s)…")
+    subprocess.run([
+        "ffmpeg", "-y", "-i", str(video_path),
+        "-c:v", "libx264", "-b:v", f"{target_kbps}k", "-maxrate", f"{target_kbps}k",
+        "-bufsize", f"{target_kbps * 2}k", "-preset", "fast",
+        "-c:a", "aac", "-b:a", "128k",
+        str(out_path),
+    ], check=True, capture_output=True)
+    out_mb = out_path.stat().st_size / 1_048_576
+    print(f"   Compressé : {out_mb:.1f} Mo → {out_path.name}")
+    return out_path
+
+
 def send_telegram_video(
     video_path: Path,
     caption: str,
@@ -983,8 +1008,12 @@ def send_telegram_video(
     size_mb = video_path.stat().st_size / 1_048_576
     print(f"   Upload Telegram : {video_path.name} ({size_mb:.1f} Mo)…")
     if size_mb > TELEGRAM_VIDEO_MAX_MB:
-        print(f"   ⚠️  Vidéo trop volumineuse ({size_mb:.1f} Mo > {TELEGRAM_VIDEO_MAX_MB} Mo) — upload ignoré.")
-        return
+        print(f"   Vidéo trop volumineuse ({size_mb:.1f} Mo) — compression automatique…")
+        video_path = _compress_video(video_path, target_mb=TELEGRAM_VIDEO_MAX_MB - 2)
+        size_mb = video_path.stat().st_size / 1_048_576
+        if size_mb > TELEGRAM_VIDEO_MAX_MB:
+            print(f"   ⚠️  Toujours trop volumineuse après compression ({size_mb:.1f} Mo) — upload ignoré.")
+            return
 
     boundary = "----FlashInfoBoundary"
 
