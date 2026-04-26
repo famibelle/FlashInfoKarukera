@@ -4,7 +4,7 @@
 PRONONCIATIONS_LOCALES = {
     # Prononciations créoles
     
-    "soukouyan”: "soukougnan",
+    "soukouyan": "soukougnan",
     "punch": "ponche",
     "Jaden" : "Jadin",
     "Gwoka" : "GroKa",
