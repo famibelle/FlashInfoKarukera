@@ -2849,20 +2849,23 @@ def main():
 
         # Génération vidéo TikTok/Shorts
         if args.tiktok:
-            video_dir = output_path.parent / f"horoscope-{_gen_date.strftime('%Y%m%d')}"
-            videos = generate_tiktok(
-                seg_paths=[output_path],
-                segments=[segment],
-                tones=[tone],
-                output_dir=video_dir,
-                has_prenom=False,
-                has_horoscope=True,
-                has_meteo=False,
-            )
-            if videos:
-                _, video_path = videos[0]
-                print(f"🎬 Vidéo horoscope : {video_path}")
-                send_telegram_video(video_path, f"🔮 Horoscope — {_date_fr(_gen_date)}")
+            try:
+                video_dir = output_path.parent / f"horoscope-{_gen_date.strftime('%Y%m%d')}"
+                videos = generate_tiktok(
+                    seg_paths=[output_path],
+                    segments=[segment],
+                    tones=[tone],
+                    output_dir=video_dir,
+                    has_prenom=False,
+                    has_horoscope=True,
+                    has_meteo=False,
+                )
+                if videos:
+                    _, video_path = videos[0]
+                    print(f"🎬 Vidéo horoscope : {video_path}")
+                    send_telegram_video(video_path, f"🔮 Horoscope — {_date_fr(_gen_date)}")
+            except Exception as _e:
+                print(f"⚠️  TikTok/Telegram échoué (non bloquant) : {_e}")
 
         # Publication Buzzsprout
         if not args.dry_run and BUZZSPROUT_API_TOKEN and BUZZSPROUT_PODCAST_ID:
