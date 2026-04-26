@@ -307,7 +307,7 @@ HOROSCOPE_TEMPLATE = _load_prompt("horoscope.md")
 _FLORA_KEYWORDS = [
     # Flore
     "malomé", "zanno", "jasmin de nuit", "flanbwayan", "gommier", "palétuwyé",
-    "manglier", "kalbas", "calebasse", "patchouli", "roucou", "woucou",
+    "mangrove", "manglier", "kalbas", "calebasse", "patchouli", "roucou", "woucou",
     "figuiye", "figuier maudit", "balizié", "piman", "marakoudja",
     "fruit de la passion", "manyòk", "manioc", "chadon béni", "brizée",
     "zeb a pik", "mimosa", "alowes", "aloès", "zeb a femme", "dachine",
