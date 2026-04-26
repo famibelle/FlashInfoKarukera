@@ -1298,7 +1298,7 @@ def main():
 
         print(f"✍️  [{i + 1}/{n_signs}] Rédaction {sign_fr} (Mistral Large)…")
         segment = _strip_markdown(
-            call_mistral(system, user_prompt, temperature=0.75, max_tokens=500)
+            call_mistral(system, user_prompt, temperature=0.75, max_tokens=600)
         )
 
         newly_used = _extract_used_flora(segment)
