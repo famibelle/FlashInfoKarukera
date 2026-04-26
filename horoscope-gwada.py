@@ -351,14 +351,15 @@ def _load_recent_flora(window_days: int = FLORA_MEMORY_DAYS, exclude_date: "Date
 
 
 def _save_used_flora(target_date: Date, flora: list[str]) -> None:
-    """Ajoute ou met à jour l'entrée du jour dans used_flora.json."""
+    """Ajoute ou met à jour l'entrée du jour dans used_flora.json (fusion avec l'existant)."""
     data: dict = {}
     if USED_FLORA_PATH.exists():
         try:
             data = json.loads(USED_FLORA_PATH.read_text(encoding="utf-8"))
         except Exception:
             pass
-    data[target_date.isoformat()] = list(dict.fromkeys(flora))
+    existing = data.get(target_date.isoformat(), [])
+    data[target_date.isoformat()] = list(dict.fromkeys(existing + flora))
     # Purge des entrées trop anciennes (> 2 * window pour ne pas grossir indéfiniment)
     cutoff = Date.today().toordinal() - FLORA_MEMORY_DAYS * 2
     data = {k: v for k, v in data.items() if Date.fromisoformat(k).toordinal() >= cutoff}
@@ -1253,7 +1254,7 @@ def main():
     seg_paths: list[Path] = []
 
     # Anti-répétition inter-jours
-    recent_flora = _load_recent_flora(exclude_date=gen_date)
+    recent_flora = _load_recent_flora()
     if recent_flora:
         print(f"🌿 Flore récente ({FLORA_MEMORY_DAYS}j) exclue : {', '.join(recent_flora)}")
     used_flora: list[str] = list(recent_flora)
@@ -1326,10 +1327,10 @@ def main():
     print(f"🔊 TTS outro → {outro_path.name}")
     _tts_call(_normalize_for_tts(outro_text), outro_path, TTS_VOICES["curious"])
 
-    # Sauvegarde anti-répétition flore
-    today_flora = [kw for kw in used_flora if kw not in recent_flora]
-    if today_flora:
-        _save_used_flora(gen_date, today_flora)
+    # Sauvegarde anti-répétition flore (uniquement les nouveaux éléments de ce run)
+    new_flora = [kw for kw in used_flora if kw not in recent_flora]
+    if new_flora:
+        _save_used_flora(gen_date, new_flora)
 
     # ── Assemblage audio final : intro + signes + outro ───────────────────────
     stinger = resolve_stinger(args.stinger)
