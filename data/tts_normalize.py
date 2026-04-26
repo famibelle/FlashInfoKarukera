@@ -3,6 +3,8 @@
 # Prononciations locales guadeloupéennes (forme écrite → forme orale pour le TTS)
 PRONONCIATIONS_LOCALES = {
     # Prononciations créoles
+    
+    "soukouyan”: "soukougnan",
     "punch": "ponche",
     "Jaden" : "Jadin",
     "Gwoka" : "GroKa",
