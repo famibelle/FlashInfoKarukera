@@ -17,7 +17,7 @@ import urllib.request
 import urllib.parse
 import urllib.error
 import xml.etree.ElementTree as ET
-from datetime import datetime, date as Date
+from datetime import datetime, date as Date, timedelta
 from email.utils import parsedate
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -256,8 +256,9 @@ def _shorten_desc(text: str, max_chars: int) -> str:
     return text[:max_chars].rsplit(" ", 1)[0] if len(text) > max_chars else text
 
 
-def _parse_feed_items(root: ET.Element, target_date: Date) -> list[tuple]:
-    """Retourne une liste de (datetime_or_None, title, pub_date_str, desc) depuis RSS ou Atom."""
+def _parse_feed_items(root: ET.Element, cutoff: datetime) -> list[tuple]:
+    """Retourne une liste de (datetime_or_None, title, pub_date_str, desc) depuis RSS ou Atom.
+    Ne conserve que les articles publiés après `cutoff` (fenêtre glissante)."""
     results = []
     ns = {"atom": "http://www.w3.org/2005/Atom"}
 
@@ -271,7 +272,7 @@ def _parse_feed_items(root: ET.Element, target_date: Date) -> list[tuple]:
         parsed = parsedate(pub_date)
         if parsed:
             item_date = datetime(*parsed[:6])
-            if item_date.date() != target_date:
+            if item_date < cutoff:
                 continue
         else:
             item_date = None
@@ -292,7 +293,9 @@ def _parse_feed_items(root: ET.Element, target_date: Date) -> list[tuple]:
         if pub_date:
             try:
                 item_date = datetime.fromisoformat(pub_date.replace("Z", "+00:00"))
-                if item_date.date() != target_date:
+                # Comparer en naive UTC si cutoff est naive
+                item_date_naive = item_date.replace(tzinfo=None)
+                if item_date_naive < cutoff:
                     continue
             except ValueError:
                 pass
@@ -313,7 +316,12 @@ def _lieu_priority(lieu: str) -> int:
     return 2
 
 
+NEWS_WINDOW_HOURS = 24  # fenêtre glissante de collecte des actualités
+
+
 def fetch_news(feeds: list[str], max_items: int, target_date: Date, exclude_titles: "set[str] | None" = None) -> list[dict]:
+    cutoff = datetime.utcnow() - timedelta(hours=NEWS_WINDOW_HOURS)
+    print(f"📅 Fenêtre actualités : {NEWS_WINDOW_HOURS}h (depuis {cutoff.strftime('%Y-%m-%d %H:%M')} UTC)")
     all_items = []
     for url in feeds:
         print(f"📰 Collecte : {url}")
@@ -321,8 +329,8 @@ def fetch_news(feeds: list[str], max_items: int, target_date: Date, exclude_titl
             with urllib.request.urlopen(url, timeout=15) as r:
                 content = r.read()
             root = ET.fromstring(content)
-            parsed = _parse_feed_items(root, target_date)
-            print(f"   {len(parsed)} actualités du jour")
+            parsed = _parse_feed_items(root, cutoff)
+            print(f"   {len(parsed)} actualités dans la fenêtre")
             all_items.extend((dt, t, d, desc, url) for dt, t, d, desc in parsed)
         except Exception as e:
             print(f"   ⚠️  Erreur sur {url} : {e}")
@@ -3035,8 +3043,6 @@ def main():
         if ko:
             sys.exit(1)
         return
-
-    from datetime import timedelta
 
     now_gwada = datetime.now(GUADELOUPE_TZ)
     heure_paris = _now_paris_str("%Hh%M")
