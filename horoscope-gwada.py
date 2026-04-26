@@ -16,7 +16,7 @@ import subprocess
 import urllib.request
 import urllib.parse
 import urllib.error
-from datetime import date as Date
+from datetime import date as Date, datetime as DateTime
 from pathlib import Path
 
 # ── Chargement du .env ────────────────────────────────────────────────────────
@@ -129,6 +129,14 @@ def _date_fr(d: Date) -> str:
     for en, fr in {**_FR_DAYS, **_FR_MONTHS}.items():
         s = s.replace(en, fr)
     return s
+
+
+def _moment_du_jour() -> str:
+    h = DateTime.now().hour
+    if 5 <= h < 12:  return "ce matin"
+    if 12 <= h < 18: return "cet après-midi"
+    if 18 <= h < 22: return "ce soir"
+    return "cette nuit"
 
 
 def _load_prompt(filename: str) -> str:
@@ -1215,7 +1223,8 @@ def main():
     )
 
     # Prompts de base
-    date_label  = _date_fr(gen_date)
+    date_label   = _date_fr(gen_date)
+    moment_label = _moment_du_jour()
     maryse_base = (
         _load_prompt("maryse_ame.md") + "\n\n"
         "Tu rédiges UNIQUEMENT le segment horoscope — pas de météo, pas d'actualités. "
@@ -1281,6 +1290,7 @@ def main():
         )
         user_prompt = (
             f"HOROSCOPE DU JOUR — {sign_fr} ({sign_en.capitalize()}) :\n{raw_text}\n\n"
+            f"MOMENT DE LA JOURNÉE : {moment_label}\n\n"
             f"INSTRUCTIONS :\n{horoscope_instruction}"
         )
 
