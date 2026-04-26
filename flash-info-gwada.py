@@ -316,12 +316,17 @@ def _lieu_priority(lieu: str) -> int:
     return 2
 
 
-NEWS_WINDOW_HOURS = 24  # fenêtre glissante de collecte des actualités
+NEWS_WINDOW_HOURS = {
+    "matin": 24,  # rattrape le décalage Guadeloupe UTC-4 vs Paris
+    "midi":   8,  # nouvelles depuis le flash du matin
+    "soir":   8,  # nouvelles depuis le flash du midi
+}
 
 
-def fetch_news(feeds: list[str], max_items: int, target_date: Date, exclude_titles: "set[str] | None" = None) -> list[dict]:
-    cutoff = datetime.utcnow() - timedelta(hours=NEWS_WINDOW_HOURS)
-    print(f"📅 Fenêtre actualités : {NEWS_WINDOW_HOURS}h (depuis {cutoff.strftime('%Y-%m-%d %H:%M')} UTC)")
+def fetch_news(feeds: list[str], max_items: int, target_date: Date, edition: str = "matin", exclude_titles: "set[str] | None" = None) -> list[dict]:
+    window = NEWS_WINDOW_HOURS.get(edition, 24)
+    cutoff = datetime.utcnow() - timedelta(hours=window)
+    print(f"📅 Fenêtre actualités : {window}h (depuis {cutoff.strftime('%Y-%m-%d %H:%M')} UTC)")
     all_items = []
     for url in feeds:
         print(f"📰 Collecte : {url}")
@@ -3068,7 +3073,7 @@ def main():
     used_titles = load_used_titles(target_date)
     if used_titles:
         print(f"🔁  Anti-répétition : {len(used_titles)} titre(s) déjà diffusé(s) aujourd'hui")
-    items = fetch_news(RSS_FEEDS, MAX_ITEMS, target_date, exclude_titles=used_titles or None)
+    items = fetch_news(RSS_FEEDS, MAX_ITEMS, target_date, edition=edition, exclude_titles=used_titles or None)
     if not items:
         print(f"⚠️  Aucune actualité pour le {date_str} — flash météo uniquement.")
 
