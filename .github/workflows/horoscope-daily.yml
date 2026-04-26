@@ -2,8 +2,8 @@ name: Horoscope Quotidien
 
 on:
   schedule:
-    # 7h Paris hiver (UTC+1) = 6h UTC / 8h Paris été (UTC+2) — GitHub Actions ne gère pas le DST
-    - cron: "0 6 * * *"
+    # 6h Paris hiver (UTC+1) = 5h UTC / 7h Paris été (UTC+2) — GitHub Actions ne gère pas le DST
+    - cron: "0 5 * * *"
   workflow_dispatch:
     inputs:
       date:

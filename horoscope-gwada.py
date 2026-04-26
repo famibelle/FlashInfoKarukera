@@ -539,6 +539,8 @@ def _normalize_for_tts(text: str) -> str:
 # ── TTS ───────────────────────────────────────────────────────────────────────
 
 def _tts_call(text: str, output_path: Path, voice_id: str = TTS_VOICE_DEFAULT) -> None:
+    if not text.strip():
+        raise RuntimeError("_tts_call: texte vide, rien à synthétiser")
     payload = json.dumps({
         "input": text,
         "model": TTS_MODEL,
@@ -553,8 +555,12 @@ def _tts_call(text: str, output_path: Path, voice_id: str = TTS_VOICE_DEFAULT) -
             "Content-Type": "application/json",
         },
     )
-    with urllib.request.urlopen(req, timeout=60) as r:
-        response = json.loads(r.read())
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            response = json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        body = e.read().decode(errors="replace")
+        raise RuntimeError(f"TTS HTTP {e.code} ({e.reason}): {body}") from None
     if "audio_data" not in response:
         raise RuntimeError(f"TTS error: {response}")
     output_path.write_bytes(base64.b64decode(response["audio_data"]))
@@ -870,45 +876,68 @@ def _make_horoscope_interstitial(output_path: Path, stinger: Path, sign_fr: str)
     return output_path
 
 
+def _make_segment_video(audio_path: Path, output_path: Path, output_dir: Path, tone: str, label: str) -> "Path | None":
+    """STT + ASS + waveform video pour un segment audio. Retourne le chemin vidéo ou None."""
+    print(f"   {label} — STT timestamps…")
+    words = transcribe_with_words(audio_path)
+    if not words:
+        print(f"   ⚠️  STT sans mots pour {label} — segment ignoré")
+        return None
+    ass_path = output_path.with_suffix(".ass")
+    ass_path.write_text(_make_ass(words, tone), encoding="utf-8")
+    print(f"   {label} — FFmpeg → {output_path.name}…")
+    _tiktok_segment_video(audio_path, ass_path, tone, output_path)
+    print(f"   ✅ {label} ({output_path.stat().st_size:,} bytes)")
+    return output_path
+
+
 def generate_tiktok(
+    intro_path: Path,
     seg_paths: list[Path],
-    seg_texts: list[str],
+    outro_path: Path,
     signs_fr: list[str],
     output_dir: Path,
     stinger: Path,
 ) -> "Path | None":
-    """Génère une vidéo par signe puis concatène : inter_signe → seg → … → CTA."""
+    """Génère : intro → (inter_signe + signe) × N → outro → CTA puis concatène."""
     output_dir.mkdir(parents=True, exist_ok=True)
-    print(f"🎬 Génération vidéos TikTok ({len(seg_paths)} signes) → {output_dir}")
+    n_signs = len(seg_paths)
+    print(f"🎬 Génération vidéos TikTok (intro + {n_signs} signes + outro) → {output_dir}")
 
-    all_parts: list[Path] = []
     tone = "curious"
+    all_parts: list[Path] = []
 
+    # Intro
+    intro_video = _make_segment_video(
+        intro_path, output_dir / "seg_intro.mp4", output_dir, tone, "INTRO"
+    )
+    if intro_video:
+        all_parts.append(intro_video)
+
+    # Signes : interstitiel + vidéo
     for i, (seg_path, sign_fr) in enumerate(zip(seg_paths, signs_fr)):
-        print(f"   [{i + 1}/{len(seg_paths)}] {sign_fr} — STT timestamps…")
-        words = transcribe_with_words(seg_path)
-        if not words:
-            print(f"   ⚠️  STT sans mots pour {sign_fr} — segment ignoré")
-            continue
-
-        ass_path = output_dir / f"seg_{i:02d}.ass"
-        ass_path.write_text(_make_ass(words, tone), encoding="utf-8")
-
-        video_path = output_dir / f"seg_{i:02d}.mp4"
-        print(f"   [{i + 1}/{len(seg_paths)}] FFmpeg → {video_path.name}…")
-        _tiktok_segment_video(seg_path, ass_path, tone, video_path)
-
         inter_path = output_dir / f"inter_{i:02d}.mp4"
         _make_horoscope_interstitial(inter_path, stinger, sign_fr)
 
-        all_parts.append(inter_path)
-        all_parts.append(video_path)
-        print(f"   ✅ {sign_fr} ({video_path.stat().st_size:,} bytes)")
+        seg_video = _make_segment_video(
+            seg_path, output_dir / f"seg_{i:02d}.mp4", output_dir, tone,
+            f"[{i + 1}/{n_signs}] {sign_fr}"
+        )
+        if seg_video:
+            all_parts.append(inter_path)
+            all_parts.append(seg_video)
 
     if not all_parts:
         return None
 
-    # CTA final
+    # Outro
+    outro_video = _make_segment_video(
+        outro_path, output_dir / "seg_outro.mp4", output_dir, tone, "OUTRO"
+    )
+    if outro_video:
+        all_parts.append(outro_video)
+
+    # CTA
     cta_path = output_dir / "inter_cta.mp4"
     _make_cta_interstitial(cta_path, stinger)
     all_parts.append(cta_path)
@@ -989,6 +1018,56 @@ def send_telegram_video(
             else:
                 raise
 
+def send_telegram_audio(
+    audio_path: Path,
+    caption: str,
+    timeout: int = 120,
+) -> None:
+    size_mb = audio_path.stat().st_size / 1_048_576
+    print(f"   Upload Telegram audio : {audio_path.name} ({size_mb:.1f} Mo)…")
+
+    boundary = "----FlashInfoBoundary"
+
+    def field(name, value):
+        return (
+            f"--{boundary}\r\n"
+            f'Content-Disposition: form-data; name="{name}"\r\n\r\n'
+            f"{value}\r\n"
+        ).encode()
+
+    def file_field(name, filename, content_type, data):
+        return (
+            f"--{boundary}\r\n"
+            f'Content-Disposition: form-data; name="{name}"; filename="{filename}"\r\n'
+            f"Content-Type: {content_type}\r\n\r\n"
+        ).encode() + data + b"\r\n"
+
+    body = field("chat_id", TELEGRAM_CHAT_ID) + field("caption", caption)
+    body += file_field("audio", audio_path.name, "audio/mpeg", audio_path.read_bytes())
+    body += f"--{boundary}--\r\n".encode()
+
+    req = urllib.request.Request(
+        f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendAudio",
+        data=body,
+        headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
+    )
+    for attempt in range(1, 4):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                result = json.loads(r.read())
+            if not result.get("ok"):
+                raise RuntimeError(f"Telegram audio error: {result}")
+            print(f"   {audio_path.name} envoyé ✅")
+            return
+        except (urllib.error.URLError, ConnectionResetError, TimeoutError) as exc:
+            if attempt < 3:
+                wait = 10 * attempt
+                print(f"   ⚠️  Tentative {attempt}/3 échouée ({exc}) — nouvel essai dans {wait}s…")
+                time.sleep(wait)
+            else:
+                raise
+
+
 # ── Buzzsprout ────────────────────────────────────────────────────────────────
 
 def publish_buzzsprout(audio_path: Path, title: str, description: str, tags: str) -> str:
@@ -1033,7 +1112,7 @@ def main():
         help="Nombre de signes astrologiques (défaut : 7).",
     )
     parser.add_argument(
-        "--horoscope-include", nargs="+", action="append", default=[], metavar="SIGNE",
+        "--horoscope-include", nargs="+", action="append", default=None, metavar="SIGNE",
         help=(
             "Inclure un ou plusieurs signes de force (français ou anglais). "
             "Exemple : --horoscope-include gemini capricorn. Répétable. "
@@ -1045,6 +1124,10 @@ def main():
     parser.add_argument(
         "--tiktok", action="store_true",
         help="Génère une vidéo TikTok 1080×1920 avec karaoke et l'envoie sur Telegram.",
+    )
+    parser.add_argument(
+        "--telegram", action="store_true",
+        help="Envoie l'audio MP3 final sur Telegram (indépendamment de --tiktok).",
     )
     parser.add_argument(
         "--stinger", metavar="FICHIER",
@@ -1075,14 +1158,26 @@ def main():
     )
 
     # Résolution des signes forcés
-    inc = [s for name in (n for group in args.horoscope_include for n in group) if (s := _resolve_sign(name))]
+    inc: list[str] = []
+    for group in (args.horoscope_include or []):
+        for name in group:
+            resolved = _resolve_sign(name)
+            if resolved:
+                if resolved not in inc:
+                    inc.append(resolved)
+            else:
+                hint = f" (pour limiter le nombre de signes, utilisez --horoscope-signs {name})" if name.isdigit() else ""
+                print(f"⚠️  Signe inconnu ignoré : '{name}' — utilisez le nom anglais ou français.{hint}", file=sys.stderr)
+
     date_sign = _sign_for_date(gen_date)
-    if date_sign not in inc:
-        inc = [date_sign] + inc
+    if not inc:
+        inc = [date_sign]
         print(f"📅 Signe déduit de la date ({gen_date}) : {_SIGN_FR[date_sign]}")
 
+    n_signs = max(args.horoscope_signs, len(inc))
+
     # Fetch horoscope
-    horoscope_entries = fetch_horoscope(n_signs=args.horoscope_signs, include_signs=inc or None)
+    horoscope_entries = fetch_horoscope(n_signs=n_signs, include_signs=inc or None)
     if not horoscope_entries:
         print("❌ Impossible de récupérer l'horoscope.", file=sys.stderr)
         sys.exit(1)
@@ -1118,7 +1213,7 @@ def main():
         if contexte_lines else ""
     )
 
-    # Base du system prompt (commun à tous les signes)
+    # Prompts de base
     date_label  = _date_fr(gen_date)
     maryse_base = (
         _load_prompt("maryse_ame.md") + "\n\n"
@@ -1126,43 +1221,57 @@ def main():
         "Juste la lecture de l'horoscope dans ta voix.\n"
     )
 
-    # ── Boucle par signe : Mistral + TTS ─────────────────────────────────────
-    seg_dir   = output_path.parent / f"horoscope-segs-{gen_date.strftime('%Y%m%d')}"
+    seg_dir = output_path.parent / f"horoscope-segs-{gen_date.strftime('%Y%m%d')}"
     seg_dir.mkdir(parents=True, exist_ok=True)
-    seg_paths: list[Path] = []
-    seg_texts: list[str]  = []
 
-    # Anti-répétition inter-jours : flore des 7 derniers jours
+    # ── Intro dédiée ──────────────────────────────────────────────────────────
+    print("✍️  Rédaction intro (Mistral Large)…")
+    intro_system = (
+        maryse_base +
+        "Tu rédiges UNIQUEMENT l'introduction de l'horoscope du jour — "
+        "pas de lecture de signe. Deux à trois phrases dans ta voix."
+    )
+    intro_user = (
+        f"DATE : {date_label}\n"
+        f"SIGNES DU JOUR : {', '.join(signs_fr)}\n\n"
+        f"Commence OBLIGATOIREMENT par : 'Nous sommes le {date_label} et ' "
+        "puis enchaîne avec ta formule ancestrale pour annoncer les signes retenus. "
+        "Deux à trois phrases, pas plus."
+    )
+    intro_text = _strip_markdown(
+        call_mistral(intro_system, intro_user, temperature=0.75, max_tokens=120)
+    )
+    if args.verbose:
+        print(f"\n── INTRO ────────────────────────────────────────────────")
+        print(intro_text)
+        print("─────────────────────────────────────────────────────────\n")
+    intro_path = seg_dir / "seg_intro.mp3"
+    print(f"🔊 TTS intro → {intro_path.name}")
+    _tts_call(_normalize_for_tts(intro_text), intro_path, TTS_VOICES["curious"])
+
+    # ── Boucle par signe : Mistral + TTS ─────────────────────────────────────
+    seg_paths: list[Path] = []
+
+    # Anti-répétition inter-jours
     recent_flora = _load_recent_flora(exclude_date=gen_date)
     if recent_flora:
         print(f"🌿 Flore récente ({FLORA_MEMORY_DAYS}j) exclue : {', '.join(recent_flora)}")
-    used_flora: list[str] = list(recent_flora)  # accumulateur pour ce run
+    used_flora: list[str] = list(recent_flora)
+
+    sign_system = (
+        maryse_base +
+        "Tu rédiges UNIQUEMENT la lecture d'un signe astrologique dans ta voix — "
+        "pas d'intro, pas de clôture, pas de formule de date. "
+        "Juste ce signe, dans ta voix.\n"
+    )
 
     for i, (sign_en, sign_fr, raw_text) in enumerate(horoscope_entries):
-        is_first = (i == 0)
-        is_last  = (i == n_signs - 1)
-
-        # Instruction d'intro (premier signe uniquement)
-        intro_instruction = (
-            f"Commence OBLIGATOIREMENT par : 'Nous sommes le {date_label} et ' "
-            "puis enchaîne directement avec ta formule ancestrale d'introduction des signes.\n"
-            if is_first else ""
-        )
-        # Instruction de clôture (dernier signe uniquement)
-        outro_instruction = (
-            "Termine OBLIGATOIREMENT par une courte formule de clôture dans ta voix — "
-            "une phrase de bénédiction ou de congé, puis une formule de rendez-vous du type "
-            "'À demain pour un nouvel horoscope' ou une variante naturelle, jamais la même tournure.\n"
-            if is_last else ""
-        )
-        # Anti-répétition floristique : liste des éléments déjà utilisés
         avoid_instruction = (
-            f"INTERDIT pour ce signe — ces éléments de flore ont déjà été utilisés dans "
+            f"INTERDIT pour ce signe — ces éléments ont déjà été utilisés dans "
             f"cet horoscope, n'en reprends aucun : {', '.join(used_flora)}.\n"
             if used_flora else ""
         )
-
-        system = maryse_base + intro_instruction + outro_instruction + avoid_instruction
+        system = sign_system + avoid_instruction
 
         horoscope_instruction = HOROSCOPE_TEMPLATE.format(
             segment=i + 1, n_signs=1, s="",
@@ -1176,11 +1285,9 @@ def main():
 
         print(f"✍️  [{i + 1}/{n_signs}] Rédaction {sign_fr} (Mistral Large)…")
         segment = _strip_markdown(
-            call_mistral(system, user_prompt, temperature=0.75, max_tokens=350)
+            call_mistral(system, user_prompt, temperature=0.75, max_tokens=500)
         )
-        seg_texts.append(segment)
 
-        # Mémoriser les éléments de flore utilisés pour les signes suivants
         newly_used = _extract_used_flora(segment)
         if newly_used and args.verbose:
             print(f"   🌿 Flore détectée : {', '.join(newly_used)}")
@@ -1196,24 +1303,57 @@ def main():
         _tts_call(_normalize_for_tts(segment), seg_path, TTS_VOICES["curious"])
         seg_paths.append(seg_path)
 
-    # Sauvegarde des éléments de flore utilisés aujourd'hui
+    # ── Outro dédiée ──────────────────────────────────────────────────────────
+    print("✍️  Rédaction outro (Mistral Large)…")
+    outro_system = (
+        maryse_base +
+        "Tu rédiges UNIQUEMENT la conclusion de l'horoscope du jour — "
+        "pas de signe, juste la clôture."
+    )
+    outro_user = (
+        "Une courte formule de clôture dans ta voix — bénédiction ou congé — "
+        "puis une formule de rendez-vous du type 'À demain pour un nouvel horoscope' "
+        "ou une variante naturelle, jamais la même tournure. Deux phrases maximum."
+    )
+    outro_text = _strip_markdown(
+        call_mistral(outro_system, outro_user, temperature=0.75, max_tokens=100)
+    )
+    if args.verbose:
+        print(f"\n── OUTRO ────────────────────────────────────────────────")
+        print(outro_text)
+        print("─────────────────────────────────────────────────────────\n")
+    outro_path = seg_dir / "seg_outro.mp3"
+    print(f"🔊 TTS outro → {outro_path.name}")
+    _tts_call(_normalize_for_tts(outro_text), outro_path, TTS_VOICES["curious"])
+
+    # Sauvegarde anti-répétition flore
     today_flora = [kw for kw in used_flora if kw not in recent_flora]
     if today_flora:
         _save_used_flora(gen_date, today_flora)
 
-    # ── Assemblage audio final ────────────────────────────────────────────────
+    # ── Assemblage audio final : intro + signes + outro ───────────────────────
     stinger = resolve_stinger(args.stinger)
-    print(f"🔗 Assemblage {n_signs} segments → {output_path}")
-    _assemble_audio(seg_paths, stinger, output_path)
+    all_audio = [intro_path] + seg_paths + [outro_path]
+    print(f"🔗 Assemblage intro + {n_signs} signes + outro → {output_path}")
+    _assemble_audio(all_audio, stinger, output_path)
     print(f"✅ Horoscope sauvegardé : {output_path}")
+
+    # ── Telegram audio ────────────────────────────────────────────────────────
+    if args.telegram:
+        try:
+            signs_label = ", ".join(signs_fr)
+            send_telegram_audio(output_path, f"🔮 Horoscope — {_date_fr(gen_date)}\n{signs_label}")
+        except Exception as _e:
+            print(f"⚠️  Telegram audio échoué (non bloquant) : {_e}")
 
     # ── Vidéo TikTok + Telegram ───────────────────────────────────────────────
     if args.tiktok:
         try:
             video_dir = output_path.parent / f"horoscope-{gen_date.strftime('%Y%m%d')}"
             concat_video = generate_tiktok(
+                intro_path=intro_path,
                 seg_paths=seg_paths,
-                seg_texts=seg_texts,
+                outro_path=outro_path,
                 signs_fr=signs_fr,
                 output_dir=video_dir,
                 stinger=stinger,
