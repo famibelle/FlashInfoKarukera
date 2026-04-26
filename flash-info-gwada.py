@@ -66,10 +66,10 @@ TELEGRAM_CHAT_ID    = os.environ["TELEGRAM_CHAT_ID"]
 BUZZSPROUT_API_TOKEN  = os.environ.get("BUZZSPROUT_API_TOKEN", "")
 BUZZSPROUT_PODCAST_ID = os.environ.get("BUZZSPROUT_PODCAST_ID", "")
 
-X_API_KEY            = os.environ["X_API_KEY"]
-X_API_SECRET         = os.environ["X_API_SECRET"]
-X_ACCESS_TOKEN       = os.environ["X_ACCESS_TOKEN"]
-X_ACCESS_TOKEN_SECRET = os.environ["X_ACCESS_TOKEN_SECRET"]
+X_API_KEY            = os.environ.get("X_API_KEY", "")
+X_API_SECRET         = os.environ.get("X_API_SECRET", "")
+X_ACCESS_TOKEN       = os.environ.get("X_ACCESS_TOKEN", "")
+X_ACCESS_TOKEN_SECRET = os.environ.get("X_ACCESS_TOKEN_SECRET", "")
 
 YOUTUBE_CLIENT_ID     = os.environ.get("YOUTUBE_CLIENT_ID", "")
 YOUTUBE_CLIENT_SECRET = os.environ.get("YOUTUBE_CLIENT_SECRET", "")
