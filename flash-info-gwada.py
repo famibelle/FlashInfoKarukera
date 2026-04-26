@@ -604,7 +604,8 @@ PRENOM_TEMPLATE      = _load_prompt("prenom.md")
 HOROSCOPE_TEMPLATE   = _load_prompt("horoscope.md")
 LIEUX_SPIRITUELS     = (
     "\n\n" + _load_prompt("lieux_spirituels.md") +
-    "\n\n" + _load_prompt("flore_guadeloupe.md")
+    "\n\n" + _load_prompt("flore_guadeloupe.md") +
+    "\n\n" + _load_prompt("faune_guadeloupe.md")
 )
 
 

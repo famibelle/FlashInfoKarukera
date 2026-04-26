@@ -295,8 +295,9 @@ def call_mistral(
 
 HOROSCOPE_TEMPLATE = _load_prompt("horoscope.md")
 
-# Noms-clés de la flore guadeloupéenne pour détecter les répétitions inter-signes
+# Noms-clés de la flore et faune guadeloupéennes pour détecter les répétitions inter-signes
 _FLORA_KEYWORDS = [
+    # Flore
     "malomé", "zanno", "jasmin de nuit", "flanbwayan", "gommier", "palétuwyé",
     "manglier", "kalbas", "calebasse", "patchouli", "roucou", "woucou",
     "figuiye", "figuier maudit", "balizié", "piman", "marakoudja",
@@ -307,6 +308,20 @@ _FLORA_KEYWORDS = [
     "zanmann", "amandier", "érytrin", "bwa flotant", "ibiskis", "oseille pays",
     "kokoye", "coco", "gwayav", "goyave", "sapotiy", "kannel", "cannelle",
     "antwiriyòm", "anthurium", "pòm malaka", "manguié", "friyapen", "fruit à pain",
+    # Faune
+    "fwou-fwou", "kolibri", "colibri", "soukouyan", "sucrier",
+    "pélikan", "frégat", "frégate", "pic de gwadloup", "yòlò", "siffleur",
+    "jakòt", "perroquet", "urakan", "ouragan",
+    "igwann", "iguane", "zandoli", "anoli", "mabouya", "koures", "couresse",
+    "gouti", "agouti", "guimbo", "chauve-souris", "balèn", "baleine",
+    "manman dlo", "lamantin", "raton laveur",
+    "tòti", "tortue",
+    "grenn-bwa", "hylode", "krapo", "crapaud",
+    "krab tè", "crabe", "touloulou", "wasou", "ouassou", "langous", "langouste",
+    "myèl", "abeille", "foumi", "fourmi", "kabribo", "grillon", "cabrit-bois",
+    "luciole", "ti flambeau", "papillon nwè", "papillon noir", "papillon transparent",
+    "myg", "mygale", "ravèt", "cafard",
+    "poul nwè", "poule noire", "kab nwè", "cabri noir", "chatou", "chatrou", "poulpe",
 ]
 
 
@@ -351,7 +366,8 @@ def _save_used_flora(target_date: Date, flora: list[str]) -> None:
     print(f"💾  Anti-répétition flore : {len(flora)} éléments sauvegardés ({USED_FLORA_PATH.name})")
 LIEUX_SPIRITUELS   = (
     "\n\n" + _load_prompt("lieux_spirituels.md") +
-    "\n\n" + _load_prompt("flore_guadeloupe.md")
+    "\n\n" + _load_prompt("flore_guadeloupe.md") +
+    "\n\n" + _load_prompt("faune_guadeloupe.md")
 )
 
 def _strip_markdown(text: str) -> str:
