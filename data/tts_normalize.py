@@ -6,6 +6,7 @@ PRONONCIATIONS_LOCALES = {
     
     "soukouyan": "soukougnan",
     "Piman Bouk" : "piment bouc",
+    "bondamanjak" : "bonda ment jacques",
     
     "punch": "ponche",
     "Jaden" : "Jadin",
