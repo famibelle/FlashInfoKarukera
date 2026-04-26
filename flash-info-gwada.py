@@ -1865,17 +1865,48 @@ def publish_buzzsprout(audio_path: Path, title: str, description: str, tags: str
 
 # ── Étape 6 : Post X/Twitter ─────────────────────────────────────────────────
 
-def post_x(text: str) -> None:
+def post_x(text: str, video_path: "Path | None" = None) -> None:
     import tweepy
 
     print("🐦 Post X/Twitter...")
+
+    auth = tweepy.OAuth1UserHandler(
+        X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET
+    )
+    api = tweepy.API(auth, wait_on_rate_limit=True)
     client = tweepy.Client(
         consumer_key=X_API_KEY,
         consumer_secret=X_API_SECRET,
         access_token=X_ACCESS_TOKEN,
         access_token_secret=X_ACCESS_TOKEN_SECRET,
     )
-    response = client.create_tweet(text=text)
+
+    media_ids = None
+    if video_path:
+        size_mb = video_path.stat().st_size / 1_048_576
+        print(f"   Upload vidéo : {video_path.name} ({size_mb:.1f} Mo)…")
+        media = api.media_upload(
+            filename=str(video_path),
+            media_category="tweet_video",
+            chunked=True,
+        )
+        # Attendre la fin du processing
+        for _ in range(30):
+            status = api.get_media_upload_status(media.media_id)
+            state = status.processing_info.get("state") if hasattr(status, "processing_info") and status.processing_info else "succeeded"
+            if state in ("succeeded", "failed"):
+                break
+            wait = status.processing_info.get("check_after_secs", 5) if status.processing_info else 5
+            print(f"   Processing vidéo ({state})… attente {wait}s")
+            time.sleep(wait)
+        if state == "failed":
+            raise RuntimeError(f"Twitter media processing failed: {status.processing_info}")
+        media_ids = [media.media_id_string]
+        print(f"   Vidéo uploadée ✅  media_id={media.media_id_string}")
+
+    # Tronquer le texte à 280 caractères (Twitter limite)
+    tweet_text = text[:277] + "…" if len(text) > 280 else text
+    response = client.create_tweet(text=tweet_text, media_ids=media_ids)
     tweet_id = response.data["id"]
     print(f"   Tweet publié ✅  id={tweet_id}")
 
@@ -2676,6 +2707,14 @@ def main():
         ),
     )
     parser.add_argument(
+        "--twitter", action="store_true",
+        help=(
+            "Publie la vidéo complète du flash info sur X/Twitter.\n"
+            "Nécessite X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET dans .env.\n"
+            "Compatible avec --tiktok."
+        ),
+    )
+    parser.add_argument(
         "--transcript", action="store_true",
         help=(
             "Transcrit l'audio généré via l'API Mistral STT (Voxtral).\n"
@@ -3245,7 +3284,7 @@ def main():
 
     output_path, seg_paths = generate_audio(
         segments, output_path, stinger, tones=tones,
-        keep_segments=args.tiktok or args.youtube or args.linkedin or args.instagram,
+        keep_segments=args.tiktok or args.youtube or args.linkedin or args.instagram or args.twitter,
     )
 
     # Sauvegarde anti-répétition
@@ -3254,7 +3293,7 @@ def main():
 
     title = f"Flash Info Guadeloupe — {date_str}, édition du {edition}"
 
-    if args.tiktok or args.youtube or args.linkedin or args.instagram:
+    if args.tiktok or args.youtube or args.linkedin or args.instagram or args.twitter:
         video_dir = OUTPUT_DIR / f"tiktok-{edition}-{now.strftime('%Y%m%d-%H%M')}"
         videos = generate_tiktok(seg_paths, segments, tones, video_dir,
                                   has_prenom=bool(prenoms_du_jour), has_horoscope=horoscope is not None,
@@ -3358,6 +3397,12 @@ def main():
             ig_hashtags = random.sample(all_hashtags, min(5, len(all_hashtags)))
             ig_caption = f"{intro_text}\n\n{' '.join(ig_hashtags)}".strip()
             upload_instagram_reel(full_video_path, ig_caption)
+
+        if args.twitter:
+            print("🐦 Publication X/Twitter…")
+            x_hashtags = random.sample(all_hashtags, min(4, len(all_hashtags)))
+            x_text = f"{title}\n\n{' '.join(x_hashtags)}"
+            post_x(x_text, video_path=full_video_path)
 
     if args.transcript:
         print("📝 Transcription de l'audio généré...")
