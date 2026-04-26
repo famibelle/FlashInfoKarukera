@@ -1243,9 +1243,11 @@ def main():
     )
     intro_user = (
         f"DATE : {date_label}\n"
+        f"MOMENT : {moment_label}\n"
         f"SIGNES DU JOUR : {', '.join(signs_fr)}\n\n"
         f"Commence OBLIGATOIREMENT par : 'Nous sommes le {date_label} et ' "
         "puis enchaîne avec ta formule ancestrale pour annoncer les signes retenus. "
+        f"Utilise '{moment_label}' pour ancrer le moment — jamais 'ce matin' si le moment est différent. "
         "Deux à trois phrases, pas plus."
     )
     intro_text = _strip_markdown(
