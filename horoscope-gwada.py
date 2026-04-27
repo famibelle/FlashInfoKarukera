@@ -1596,7 +1596,7 @@ def main():
         "Deux à trois phrases, pas plus."
     )
     intro_text = _strip_markdown(
-        call_mistral(intro_system, intro_user, temperature=0.75, max_tokens=120)
+        call_mistral(intro_system, intro_user, temperature=0.75, max_tokens=240)
     )
     if args.verbose:
         print(f"\n── INTRO ────────────────────────────────────────────────")
@@ -1659,6 +1659,7 @@ def main():
             print(f"\n── {sign_fr} ──────────────────────────────────────────")
             print(f"\n── USER_PROMPT ──────────────────────────────────────────")
             print(user_prompt)
+            print(f"\n── GENERATED TEXT ──────────────────────────────────────────")
             print(segment)
             print("─────────────────────────────────────────────────────────\n")
 

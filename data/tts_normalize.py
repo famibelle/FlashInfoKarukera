@@ -8,7 +8,11 @@ PRONONCIATIONS_LOCALES = {
     "Piman Bouk" : "piment bouc",
     "bondamanjak" : "bonda ment jacques",
     "Pélikan" : "Pélican",
-    
+    "awokasié" : "avokassié",
+    "palétuwyé" : "palétuvier",
+    "mwen" : "moins",
+
+
     "punch": "ponche",
     "Jaden" : "Jadin",
     "Gwoka" : "GroKa",
