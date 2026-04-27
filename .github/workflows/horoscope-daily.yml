@@ -14,7 +14,7 @@ on:
         description: "Nombre de signes (défaut : 7)"
         type: integer
         required: false
-        default: 7
+        default: 3
       horoscope_include:
         description: "Forcer un ou plusieurs signes (noms anglais séparés par des espaces, ex: gemini capricorn)"
         required: false
