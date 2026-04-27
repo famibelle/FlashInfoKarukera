@@ -204,6 +204,49 @@ def _resolve_sign(name: str) -> str | None:
     return _SIGN_FR_TO_EN.get(key)
 
 
+def _load_zodiak_kreyol() -> dict:
+    """Parse prompts/zodiak_kreyol_ref.md → dict[sign_en, {...}]."""
+    path = PROMPTS_DIR / "zodiak_kreyol_ref.md"
+    if not path.exists():
+        return {}
+    result = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line.startswith("|") or "---" in line:
+            continue
+        cols = [c.strip() for c in line.split("|") if c.strip()]
+        if len(cols) < 9 or cols[0] == "Signe occidental":
+            continue
+        sign_en = _SIGN_FR_TO_EN.get(cols[0].lower())
+        if not sign_en:
+            continue
+        result[sign_en] = {
+            "animal":    cols[2],
+            "nom_kreyol": cols[3],
+            "plante":    cols[4],
+            "arbre":     cols[5],
+            "lieu":      cols[6],
+            "element":   cols[7],
+            "spirituel": cols[8],
+        }
+    return result
+
+
+def _kreyol_context_for_sign(sign_en: str) -> str:
+    data = _ZODIAK_KREYOL.get(sign_en)
+    if not data:
+        return ""
+    return (
+        "CORRESPONDANCE CRÉOLE DU SIGNE :\n"
+        f"- Totem : {data['animal']} ({data['nom_kreyol']})\n"
+        f"- Plante / Fleur : {data['plante']}\n"
+        f"- Arbre : {data['arbre']}\n"
+        f"- Lieu totem : {data['lieu']}\n"
+        f"- Élément : {data['element']}\n"
+        f"- Dimension spirituelle : {data['spirituel']}"
+    )
+
+
 def _sign_for_date(d: Date) -> str:
     m, day = d.month, d.day
     if (m == 3 and day >= 21) or (m == 4 and day <= 19): return "aries"
@@ -302,13 +345,14 @@ def call_mistral(
 
 
 HOROSCOPE_TEMPLATE = _load_prompt("horoscope.md")
+_ZODIAK_KREYOL = _load_zodiak_kreyol()
 
 # Noms-clés de la flore et faune guadeloupéennes pour détecter les répétitions inter-signes
 _FLORA_KEYWORDS = [
     # Flore
     "malomé", "zanno", "jasmin de nuit", "flanbwayan", "gommier", "palétuwyé",
     "mangrove", "manglier", "kalbas", "calebasse", "patchouli", "roucou", "woucou",
-    "figuiye", "figuier maudit", "balizié", "piman", "marakoudja",
+    "figuiye", "figuier maudit", "fromajé", "fromager", "balizié", "piman", "marakoudja",
     "fruit de la passion", "manyòk", "manioc", "chadon béni", "brizée",
     "zeb a pik", "mimosa", "alowes", "aloès", "zeb a femme", "dachine",
     "vaniy", "vanille", "mango", "mangue", "gombo", "cacao",
@@ -316,6 +360,8 @@ _FLORA_KEYWORDS = [
     "zanmann", "amandier", "érytrin", "bwa flotant", "ibiskis", "oseille pays",
     "kokoye", "coco", "gwayav", "goyave", "sapotiy", "kannel", "cannelle",
     "antwiriyòm", "anthurium", "pòm malaka", "manguié", "friyapen", "fruit à pain",
+    # Résistance (flore)
+    "iyam", "igname",
     # Faune
     "fwou-fwou", "kolibri", "colibri", "soukouyan", "sucrier",
     "pélikan", "frégat", "frégate", "pic de gwadloup", "yòlò", "siffleur",
@@ -1319,10 +1365,12 @@ def main():
             lieux_spirituels=LIEUX_SPIRITUELS,
             contexte_local=contexte_local,
         )
+        kreyol_ctx = _kreyol_context_for_sign(sign_en)
         user_prompt = (
             f"HOROSCOPE DU JOUR — {sign_fr} ({sign_en.capitalize()}) :\n{raw_text}\n\n"
             f"MOMENT DE LA JOURNÉE : {moment_label}\n\n"
-            f"INSTRUCTIONS :\n{horoscope_instruction}"
+            + (f"{kreyol_ctx}\n\n" if kreyol_ctx else "")
+            + f"INSTRUCTIONS :\n{horoscope_instruction}"
         )
 
         print(f"✍️  [{i + 1}/{n_signs}] Rédaction {sign_fr} (Mistral Large)…")
