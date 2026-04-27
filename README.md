@@ -1,6 +1,6 @@
 # Flash Info Karukera
 
-> Bulletin audio quotidien de l'actualité guadeloupéenne, lu par Maryse Condé, généré automatiquement trois fois par jour et diffusé sur Telegram, Spotify, X/Twitter, YouTube, LinkedIn et Instagram.
+> Bulletin audio quotidien de l'actualité guadeloupéenne + horoscope créole, lu par Maryse Condé, généré automatiquement quatre fois par jour et diffusé sur Telegram, Spotify, X/Twitter, YouTube, LinkedIn et Instagram.
 
 ---
 
@@ -79,9 +79,10 @@ Le programme publie **trois flash infos par jour**, chacun avec un contenu adapt
 
 | Édition | Heure (Guadeloupe) | Heure (Paris) | Contenu |
 |---------|-------------------|---------------|---------|
-| **Matin** | 2h du matin | 6h | Intro du matin · Actualités · Météo · Prénom du jour · Horoscope |
-| **Midi** | 6h du matin | 12h | Intro du midi · Actualités · (pas de météo ni de prénoms) |
-| **Soir** | 16h | 22h | Intro du soir · Actualités · Prénom de demain · Marée haute/basse |
+| **Horoscope** | 1h du matin | 5h–6h | Horoscope 7 signes · 5 rubriques · vidéo TikTok · Buzzsprout |
+| **Matin** | 2h du matin | 6h | Intro du matin · Actualités (24h) · Météo · Prénom du jour |
+| **Midi** | 7h du matin | 12h | Intro du midi · Actualités (8h) |
+| **Soir** | 15h | 20h | Intro du soir · Actualités (8h) · Prénom de demain |
 
 > La Guadeloupe a **4 heures de retard** sur Paris en hiver, **5 heures** en été.
 
@@ -471,13 +472,64 @@ python flash-info-gwada.py [OPTIONS]
 | `--no-thumbnail` | Désactiver complètement le thumbnail (pas de génération, pas d'image de couverture) | `--no-thumbnail` |
 | `--generate-thumbnail` | Générer **uniquement** le thumbnail sans lancer tout le flash (pour tester l'image) | `--generate-thumbnail` |
 
-### Options horoscope
+### Options horoscope (dans flash-info-gwada.py)
 
 | Option | Ce que ça fait | Exemple |
 |--------|----------------|---------|
-| `--horoscope-signs N` | Nombre de signes astrologiques dans la rubrique (défaut : 2, max : 12) | `--horoscope-signs 3` |
-| `--horoscope-include SIGNE` | Forcer l'inclusion d'un signe précis (peut être répété pour plusieurs signes) | `--horoscope-include verseau --horoscope-include lion` |
-| `--test-horoscope` | Récupère et affiche l'horoscope sans lancer tout le flash (pour tester) | `--test-horoscope` |
+| `--horoscope-signs N` | Nombre de signes astrologiques dans la rubrique (défaut : 3) | `--horoscope-signs 3` |
+| `--horoscope-include SIGNE` | Forcer un ou plusieurs signes (français ou anglais). Si spécifié, le signe du jour n'est plus ajouté automatiquement | `--horoscope-include verseau --horoscope-include lion` |
+
+---
+
+## Horoscope Karukera — script dédié
+
+Le script `horoscope-gwada.py` génère un horoscope complet indépendant du flash info, avec une intro et une outro dédiées, chaque signe structuré en 5 rubriques dans la voix de Maryse, et une vidéo TikTok.
+
+### Pipeline
+
+```
+fetch_horoscope (API) → Mistral Large (intro) → TTS
+                      → Mistral Large × N signes → TTS × N
+                      → Mistral Large (outro) → TTS
+                      → FFmpeg assemblage audio
+                      → Vidéo TikTok (si --tiktok) → compression auto → Telegram
+                      → Buzzsprout
+```
+
+### Les 5 rubriques de chaque signe
+
+Chaque signe est structuré en 5 mouvements dans la voix de Maryse, sans balises visibles dans l'audio mais clairement annoncés :
+
+1. **Amour** — vie intime, image créole incarnée
+2. **Travail** — vie professionnelle et projets
+3. **Argent** — finances, dépenses, opportunités du jour
+4. **Amitiés** — famille, amis, collectif
+5. **Prévisions** — ce que les astres annoncent pour les jours qui viennent
+
+### Options de horoscope-gwada.py
+
+```bash
+python horoscope-gwada.py [OPTIONS]
+```
+
+| Option | Ce que ça fait | Exemple |
+|--------|----------------|---------|
+| `--horoscope-signs N` | Nombre de signes (défaut : 7) | `--horoscope-signs 3` |
+| `--horoscope-include SIGNE` | Forcer un signe précis. Sans cette option, le signe du jour est inclus automatiquement | `--horoscope-include libra` |
+| `--tiktok` | Génère et envoie la vidéo TikTok sur Telegram | `--tiktok` |
+| `--telegram` | Envoie l'audio MP3 sur Telegram (indépendamment de `--tiktok`) | `--telegram` |
+| `--no-send` | Génère sans publier sur Buzzsprout | `--no-send` |
+| `--date AAAA-MM-JJ` | Générer l'horoscope pour une date précise | `--date 2026-04-27` |
+| `--stinger FICHIER` | Jingle entre les signes | `--stinger jingle.mp3` |
+| `--verbose` | Affiche le texte généré par Maryse pour chaque signe | `--verbose` |
+
+### Anti-répétition flore/faune
+
+Le script mémorise les éléments de la palette créole (plantes, animaux, lieux) utilisés dans chaque signe et les interdit aux signes suivants. La mémoire persiste 7 jours dans `data/used_flora.json` — commité automatiquement par GitHub Actions.
+
+### Compression vidéo automatique
+
+Si la vidéo générée dépasse 49 Mo (limite Telegram), elle est automatiquement recompressée via FFmpeg avant l'envoi, avec un bitrate calculé dynamiquement selon la durée.
 
 **Liste complète des signes acceptés** (en français ou en anglais) :
 
@@ -827,7 +879,8 @@ Pour en ajouter un, ouvrir `data/marroniers.py` et suivre les exemples existants
 ```
 FlashInfoKarukera/
 │
-├── flash-info-gwada.py           # ★ Script principal — tout le pipeline
+├── flash-info-gwada.py           # ★ Script principal — flash info (3 éditions/jour)
+├── horoscope-gwada.py            # ★ Script horoscope — pipeline dédié (1 fois/jour)
 ├── requirements.txt              # Liste des bibliothèques Python nécessaires
 ├── .env                          # Vos clés API (privé, non envoyé sur GitHub)
 ├── .gitignore                    # Liste des fichiers à ne pas envoyer sur GitHub
@@ -858,13 +911,15 @@ FlashInfoKarukera/
 │   ├── geography.py              # Lieux et géographie
 │   ├── weather_codes.py          # Codes météo WMO → texte lisible
 │   ├── rss.xml                   # Cache des actualités (mis à jour automatiquement)
-│   └── used_articles_AAAA-MM-JJ.json  # Anti-répétition du jour (créé automatiquement)
+│   ├── used_articles_AAAA-MM-JJ.json  # Anti-répétition articles du jour (créé automatiquement)
+│   └── used_flora.json           # Anti-répétition flore/faune horoscope — fenêtre 7 jours
 │
 ├── tests/                        # Tests automatisés
 │
 └── .github/
     └── workflows/
-        └── flash-info.yml        # Configuration du pilote automatique GitHub Actions
+        ├── flash-info.yml        # Pilote automatique flash info (3×/jour)
+        └── horoscope-daily.yml   # Pilote automatique horoscope (1×/jour à 5h UTC)
 ```
 
 ---
