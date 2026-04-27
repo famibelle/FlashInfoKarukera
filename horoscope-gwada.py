@@ -54,8 +54,9 @@ TTS_VOICES = {
     "curious":  "fr_marie_curious",
 }
 
-MISTRAL_CHAT_MODEL = "mistral-large-latest"
-MISTRAL_CHAT_URL   = "https://api.mistral.ai/v1/chat/completions"
+MISTRAL_CHAT_MODEL  = "mistral-large-latest"
+MISTRAL_SMALL_MODEL = "open-mistral-nemo"
+MISTRAL_CHAT_URL    = "https://api.mistral.ai/v1/chat/completions"
 
 OUTPUT_DIR   = Path("/tmp")
 STINGERS_DIR = Path(__file__).parent / "Stingers"
@@ -92,6 +93,61 @@ _FONT_BOLD    = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 _FONT_REGULAR = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 
 BUZZSPROUT_TAGS = "Guadeloupe, actualité, flash info, Antilles, Caraïbes, France-Antilles, info locale"
+HOROSCOPE_HASHTAGS_BASE = [
+    "Horoscope", "Guadeloupe", "Karukera", "Antilles", "Astrologie", "Zodiaque",
+]
+
+EDITION_CONFIGS = {
+    "matin": {
+        "moment": "ce matin",
+        "sign_instruction": (
+            "C'est l'ÉDITION DU MATIN. "
+            "Oriente le message vers l'intention, l'élan du jour, ce qu'on peut initier, "
+            "ce qu'on porte en soi au réveil. Formules d'éveil, d'ouverture, de commencement. "
+            "Jamais de bilan — seulement ce qui s'ouvre devant."
+        ),
+        "intro_instruction": (
+            "Tu rédiges UNIQUEMENT l'introduction de l'horoscope du MATIN — "
+            "formule d'éveil, invitation à commencer la journée. "
+            "Deux à trois phrases dans ta voix."
+        ),
+        "outro_system_suffix": (
+            "Tu rédiges UNIQUEMENT la conclusion de l'horoscope du matin — "
+            "pas de signe, juste la clôture."
+        ),
+        "outro_user": (
+            "Une courte formule de clôture matinale dans ta voix — bénédiction du lever, "
+            "souffle donné pour traverser la journée — "
+            "puis une formule d'au revoir du type 'Bonne journée' ou une variante naturelle, "
+            "jamais la même tournure. Deux phrases maximum."
+        ),
+    },
+    "soir": {
+        "moment": "ce soir",
+        "sign_instruction": (
+            "C'est l'ÉDITION DU SOIR. "
+            "Oriente le message vers le bilan de la journée, ce qu'on a traversé, "
+            "ce qu'on peut lâcher, ce qui mérite d'être honoré avant de dormir. "
+            "Formules de clôture, de nuit, de repos bien mérité. "
+            "Jamais d'élan vers demain — seulement ce qui se pose ce soir."
+        ),
+        "intro_instruction": (
+            "Tu rédiges UNIQUEMENT l'introduction de l'horoscope du SOIR — "
+            "formule de clôture, invitation à souffler, à poser la journée. "
+            "Deux à trois phrases dans ta voix."
+        ),
+        "outro_system_suffix": (
+            "Tu rédiges UNIQUEMENT la conclusion de l'horoscope du soir — "
+            "pas de signe, juste la clôture nocturne."
+        ),
+        "outro_user": (
+            "Une courte formule de bonne nuit dans ta voix — bénédiction du coucher, "
+            "permission de se reposer — "
+            "puis une formule d'au revoir du soir du type 'Bonne nuit' ou une variante naturelle, "
+            "jamais la même tournure. Deux phrases maximum."
+        ),
+    },
+}
 
 # ── Imports données locales ───────────────────────────────────────────────────
 
@@ -237,8 +293,8 @@ def _kreyol_context_for_sign(sign_en: str) -> str:
     if not data:
         return ""
     return (
-        "CORRESPONDANCE CRÉOLE DU SIGNE :\n"
-        f"- Totem : {data['animal']} ({data['nom_kreyol']})\n"
+        f"CORRESPONDANCE CRÉOLE DU SIGNE {sign_en}:\n"
+        f"- Totem : {data['animal']} et son nom kréyol est {data['nom_kreyol']}\n"
         f"- Plante / Fleur : {data['plante']}\n"
         f"- Arbre : {data['arbre']}\n"
         f"- Lieu totem : {data['lieu']}\n"
@@ -342,6 +398,51 @@ def call_mistral(
                 time.sleep(wait)
             else:
                 raise
+
+
+def _generate_hashtags(sign_fr: str, sign_en: str, segment_text: str) -> list[str]:
+    """Génère 5-6 hashtags TikTok pour un signe via Mistral Small (open-mistral-nemo)."""
+    payload = {
+        "model": MISTRAL_SMALL_MODEL,
+        "temperature": 0.4,
+        "max_tokens": 80,
+        "response_format": {"type": "json_object"},
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "Tu génères uniquement des hashtags TikTok en JSON. "
+                    'Réponds avec {"hashtags": ["tag1", "tag2", ...]}. '
+                    "5 à 6 hashtags max. Sans le symbole #. "
+                    "Mélange français, créole guadeloupéen et anglais selon la pertinence."
+                ),
+            },
+            {
+                "role": "user",
+                "content": (
+                    f"Signe : {sign_fr} ({sign_en}). "
+                    f"Horoscope : {segment_text[:250]}. "
+                    "Génère 5-6 hashtags TikTok pertinents pour une audience guadeloupéenne."
+                ),
+            },
+        ],
+    }
+    req = urllib.request.Request(
+        MISTRAL_CHAT_URL,
+        data=json.dumps(payload).encode(),
+        headers={
+            "Authorization": f"Bearer {MISTRAL_API_KEY}",
+            "Content-Type": "application/json",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            result = json.loads(r.read())
+        data = json.loads(result["choices"][0]["message"]["content"])
+        return [str(t).strip().lstrip("#") for t in data.get("hashtags", []) if t]
+    except Exception as e:
+        print(f"   ⚠️  Hashtags {sign_fr} — erreur : {e}")
+        return []
 
 
 HOROSCOPE_TEMPLATE = _load_prompt("horoscope.md")
@@ -886,36 +987,73 @@ def _assemble_audio(seg_paths: list[Path], stinger: Path, output_path: Path) -> 
         raise RuntimeError(f"ffmpeg concat error: {proc.stderr.decode()}")
 
 
-def _make_horoscope_interstitial(output_path: Path, stinger: Path, sign_fr: str) -> Path:
-    """Écran titre pour un signe : HOROSCOPE + nom du signe."""
+def _make_horoscope_interstitial(
+    output_path: Path,
+    stinger: Path,
+    sign_fr: str,
+    hashtags: "list[str] | None" = None,
+) -> Path:
+    """Écran titre pour un signe : HOROSCOPE + nom du signe + hashtags optionnels."""
     label, color = INTERSTITIAL_STYLES["horoscope"]
     color_hex = color.lstrip("#")
     duration = _stinger_duration(stinger)
-    cat_fontsize = INTERSTITIAL_CAT_FONTSIZE
-    cat_line_h   = round(cat_fontsize * 1.1)
-    sign_fontsize = 90
+    cat_fontsize  = 140           # réduit : "HOROSCOPE" à 170px ≈ 1050px sur 1080
+    cat_line_h    = round(cat_fontsize * 1.1)
+    sign_fontsize = 84
     sign_line_h   = round(sign_fontsize * 1.3)
+    tags_fs  = 32                 # réduit pour éviter le débordement
+    tags_lh  = round(tags_fs * 1.3)
     gap      = 50
-    block_h  = cat_line_h + gap + sign_line_h
+
+    # hashtags découpés en lignes de 2 max (≤ 6 au total)
+    tags_lines: list[str] = []
+    if hashtags:
+        capped = hashtags[:6]
+        tags_lines = [
+            "  ".join(f"#{t}" for t in capped[i:i + 2])
+            for i in range(0, len(capped), 2)
+        ]
+
+    n_tl     = len(tags_lines)
+    block_h  = (
+        cat_line_h + gap + sign_line_h
+        + (gap // 2 + tags_lh * n_tl + 6 * max(0, n_tl - 1) if n_tl else 0)
+    )
     cat_y    = (1920 - block_h) // 2
     sign_y   = cat_y + cat_line_h + gap
-    wm_y     = sign_y + sign_line_h + 40
-    sign_file = output_path.parent / f"inter_sign_{output_path.stem}.txt"
+    tag_y0   = sign_y + sign_line_h + gap // 2
+    tags_ys  = [tag_y0 + i * (tags_lh + 6) for i in range(n_tl)]
+    y_last   = (tags_ys[-1] + tags_lh) if tags_ys else (sign_y + sign_line_h)
+    wm_y     = y_last + 40
+
+    tmp       = output_path.parent
+    sign_file = tmp / f"inter_sign_{output_path.stem}.txt"
     sign_file.write_text(sign_fr, encoding="utf-8")
+
     filter_parts = [
         f"color=c=black:s=1080x1920:r=30:d={duration}",
         f"drawtext=text='{label}':"
         f"fontsize={cat_fontsize}:fontcolor=0x{color_hex}:fontfile={_FONT_BOLD}:"
-        f"x=(w-tw)/2:y={cat_y}:"
-        f"shadowcolor=black@0.6:shadowx=3:shadowy=3",
+        f"x=(w-tw)/2:y={cat_y}:shadowcolor=black@0.6:shadowx=3:shadowy=3",
         f"drawtext=textfile={sign_file}:"
         f"fontsize={sign_fontsize}:fontcolor=white:fontfile={_FONT_BOLD}:"
-        f"x=(w-tw)/2:y={sign_y}:"
-        f"shadowcolor=black@0.5:shadowx=2:shadowy=2",
+        f"x=(w-tw)/2:y={sign_y}:shadowcolor=black@0.5:shadowx=2:shadowy=2",
         f"drawtext=text='Flash Info Karukera par @Botiran':"
-        f"fontsize=38:fontcolor=white@0.5:fontfile={_FONT_REGULAR}:"
+        f"fontsize=36:fontcolor=white@0.5:fontfile={_FONT_REGULAR}:"
         f"x=(w-tw)/2:y={wm_y}",
     ]
+
+    tag_files: list[Path] = []
+    for j, (line, y) in enumerate(zip(tags_lines, tags_ys)):
+        f = tmp / f"inter_tags_{output_path.stem}_{j}.txt"
+        f.write_text(line, encoding="utf-8")
+        tag_files.append(f)
+        filter_parts.insert(-1,
+            f"drawtext=textfile={f}:"
+            f"fontsize={tags_fs}:fontcolor=white@0.65:fontfile={_FONT_REGULAR}:"
+            f"x=(w-tw)/2:y={y}"
+        )
+
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
         "-f", "lavfi", "-i", ",".join(filter_parts),
@@ -926,8 +1064,122 @@ def _make_horoscope_interstitial(output_path: Path, stinger: Path, sign_fr: str)
         str(output_path),
     ], capture_output=True)
     sign_file.unlink(missing_ok=True)
+    for f in tag_files:
+        f.unlink(missing_ok=True)
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg interstitiel error: {proc.stderr.decode()}")
+    return output_path
+
+
+def _make_intro_interstitial(
+    output_path: Path,
+    stinger: Path,
+    date_label: str,
+    signs_fr: list[str],
+    hashtags: list[str],
+) -> Path:
+    """Écran d'ouverture : HOROSCOPE KARUKERA + date + signes + hashtags."""
+    _, color = INTERSTITIAL_STYLES["horoscope"]
+    color_hex = color.lstrip("#")
+    duration = _stinger_duration(stinger)
+    tmp = output_path.parent
+
+    title_fs = 148           # légèrement réduit pour laisser des marges
+    title_lh = round(title_fs * 1.08)
+    date_fs  = 54
+    date_lh  = round(date_fs * 1.2)
+    signs_fs = 44            # 3 signes par ligne → ≈ "Sagittaire · Capricorne · Verseau" ~960px
+    signs_lh = round(signs_fs * 1.2)
+    tags_fs  = 33
+    tags_lh  = round(tags_fs * 1.2)
+    blk_gap  = 28            # espace entre blocs
+    ln_gap   = 6             # espace entre lignes d'un même bloc
+
+    # signes : chunks de 3
+    signs_lines = [
+        " · ".join(signs_fr[i:i + 3])
+        for i in range(0, len(signs_fr), 3)
+    ]
+    # hashtags : chunks de 3, max 9
+    tags_lines = [
+        "  ".join(f"#{t}" for t in hashtags[i:i + 3])
+        for i in range(0, min(len(hashtags), 9), 3)
+    ]
+
+    n_sl = len(signs_lines)
+    n_tl = len(tags_lines)
+
+    block_h = (
+        title_lh * 2 + ln_gap            # HOROSCOPE + KARUKERA
+        + blk_gap + date_lh              # date
+        + blk_gap + signs_lh * n_sl + ln_gap * max(0, n_sl - 1)   # signes
+        + (blk_gap + tags_lh * n_tl + ln_gap * max(0, n_tl - 1) if n_tl else 0)  # hashtags
+    )
+
+    y0      = max(120, (1920 - block_h) // 2 - 20)
+    y_t1    = y0
+    y_t2    = y_t1 + title_lh + ln_gap
+    y_date  = y_t2 + title_lh + blk_gap
+    y_signs = [y_date + date_lh + blk_gap + i * (signs_lh + ln_gap) for i in range(n_sl)]
+    y_tags0 = (y_signs[-1] + signs_lh + blk_gap) if y_signs else (y_date + date_lh + blk_gap)
+    y_tags  = [y_tags0 + i * (tags_lh + ln_gap) for i in range(n_tl)]
+    y_last  = (y_tags[-1] + tags_lh) if y_tags else (y_signs[-1] + signs_lh if y_signs else y_date + date_lh)
+    y_wm    = min(1870, y_last + 44)
+
+    # Fichiers temporaires
+    t1_file   = tmp / "iit1.txt"
+    t2_file   = tmp / "iit2.txt"
+    date_file = tmp / "iidate.txt"
+    wm_file   = tmp / "iiwm.txt"
+    t1_file.write_text("HOROSCOPE", encoding="utf-8")
+    t2_file.write_text("KARUKERA",  encoding="utf-8")
+    date_file.write_text(date_label, encoding="utf-8")
+    wm_file.write_text("Flash Info Karukera par @Botiran", encoding="utf-8")
+
+    sign_files = [tmp / f"iisign{j}.txt" for j in range(n_sl)]
+    tag_files  = [tmp / f"iitag{j}.txt"  for j in range(n_tl)]
+    for f, line in zip(sign_files, signs_lines):
+        f.write_text(line, encoding="utf-8")
+    for f, line in zip(tag_files, tags_lines):
+        f.write_text(line, encoding="utf-8")
+
+    filter_parts = [
+        f"color=c=black:s=1080x1920:r=30:d={duration}",
+        f"drawtext=textfile={t1_file}:fontsize={title_fs}:fontcolor=0x{color_hex}:"
+        f"fontfile={_FONT_BOLD}:x=(w-tw)/2:y={y_t1}:shadowcolor=black@0.6:shadowx=3:shadowy=3",
+        f"drawtext=textfile={t2_file}:fontsize={title_fs}:fontcolor=0x{color_hex}:"
+        f"fontfile={_FONT_BOLD}:x=(w-tw)/2:y={y_t2}:shadowcolor=black@0.6:shadowx=3:shadowy=3",
+        f"drawtext=textfile={date_file}:fontsize={date_fs}:fontcolor=white:"
+        f"fontfile={_FONT_REGULAR}:x=(w-tw)/2:y={y_date}:shadowcolor=black@0.5:shadowx=2:shadowy=2",
+    ]
+    for f, y in zip(sign_files, y_signs):
+        filter_parts.append(
+            f"drawtext=textfile={f}:fontsize={signs_fs}:fontcolor=white:"
+            f"fontfile={_FONT_BOLD}:x=(w-tw)/2:y={y}:shadowcolor=black@0.4:shadowx=1:shadowy=1"
+        )
+    for f, y in zip(tag_files, y_tags):
+        filter_parts.append(
+            f"drawtext=textfile={f}:fontsize={tags_fs}:fontcolor=white@0.65:"
+            f"fontfile={_FONT_REGULAR}:x=(w-tw)/2:y={y}"
+        )
+    filter_parts.append(
+        f"drawtext=textfile={wm_file}:fontsize=32:fontcolor=white@0.4:"
+        f"fontfile={_FONT_REGULAR}:x=(w-tw)/2:y={y_wm}"
+    )
+
+    proc = subprocess.run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-f", "lavfi", "-i", ",".join(filter_parts),
+        "-i", str(stinger),
+        "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+        "-c:a", "aac", "-b:a", "192k",
+        "-shortest",
+        str(output_path),
+    ], capture_output=True)
+    for f in [t1_file, t2_file, date_file, wm_file, *sign_files, *tag_files]:
+        f.unlink(missing_ok=True)
+    if proc.returncode != 0:
+        raise RuntimeError(f"ffmpeg intro interstitiel error: {proc.stderr.decode()}")
     return output_path
 
 
@@ -953,14 +1205,27 @@ def generate_tiktok(
     signs_fr: list[str],
     output_dir: Path,
     stinger: Path,
+    date_label: str = "",
+    hashtags: "list[str] | None" = None,
+    signs_hashtags: "list[list[str]] | None" = None,
 ) -> "Path | None":
-    """Génère : intro → (inter_signe + signe) × N → outro → CTA puis concatène."""
+    """Génère : inter_intro → intro → (inter_signe + signe) × N → outro → CTA puis concatène."""
     output_dir.mkdir(parents=True, exist_ok=True)
     n_signs = len(seg_paths)
     print(f"🎬 Génération vidéos TikTok (intro + {n_signs} signes + outro) → {output_dir}")
 
     tone = "curious"
     all_parts: list[Path] = []
+
+    # Interstitiel d'introduction
+    intro_inter_path = output_dir / "inter_intro.mp4"
+    _make_intro_interstitial(
+        intro_inter_path, stinger,
+        date_label=date_label,
+        signs_fr=signs_fr,
+        hashtags=hashtags or [],
+    )
+    all_parts.append(intro_inter_path)
 
     # Intro
     intro_video = _make_segment_video(
@@ -971,8 +1236,9 @@ def generate_tiktok(
 
     # Signes : interstitiel + vidéo
     for i, (seg_path, sign_fr) in enumerate(zip(seg_paths, signs_fr)):
-        inter_path = output_dir / f"inter_{i:02d}.mp4"
-        _make_horoscope_interstitial(inter_path, stinger, sign_fr)
+        inter_path  = output_dir / f"inter_{i:02d}.mp4"
+        sign_tags   = (signs_hashtags[i] if signs_hashtags and i < len(signs_hashtags) else None)
+        _make_horoscope_interstitial(inter_path, stinger, sign_fr, hashtags=sign_tags)
 
         seg_video = _make_segment_video(
             seg_path, output_dir / f"seg_{i:02d}.mp4", output_dir, tone,
@@ -1230,15 +1496,20 @@ def main():
         help="Chemin du fichier MP3 de sortie (défaut : horoscope-YYYYMMDD.mp3 dans /tmp).",
     )
     parser.add_argument(
+        "--edition", choices=["matin", "soir"], default="matin",
+        help="Édition du jour : 'matin' (intention, éveil) ou 'soir' (bilan, nuit). Défaut : matin.",
+    )
+    parser.add_argument(
         "--verbose", action="store_true",
         help="Affiche le texte brut de l'API et le texte rédigé par Maryse.",
     )
     args = parser.parse_args()
 
     gen_date = Date.fromisoformat(args.date) if args.date else Date.today()
+    edition_cfg = EDITION_CONFIGS[args.edition]
     output_path = (
         Path(args.output) if args.output
-        else OUTPUT_DIR / f"horoscope-{gen_date.strftime('%Y%m%d')}.mp3"
+        else OUTPUT_DIR / f"horoscope-{args.edition}-{gen_date.strftime('%Y%m%d')}.mp3"
     )
 
     # Résolution des signes forcés
@@ -1299,22 +1570,21 @@ def main():
 
     # Prompts de base
     date_label   = _date_fr(gen_date)
-    moment_label = _moment_du_jour()
+    moment_label = edition_cfg["moment"]
     maryse_base = (
         _load_prompt("maryse_ame.md") + "\n\n"
         "Tu rédiges UNIQUEMENT le segment horoscope — pas de météo, pas d'actualités. "
         "Juste la lecture de l'horoscope dans ta voix.\n"
     )
 
-    seg_dir = output_path.parent / f"horoscope-segs-{gen_date.strftime('%Y%m%d')}"
+    seg_dir = output_path.parent / f"horoscope-{args.edition}-segs-{gen_date.strftime('%Y%m%d')}"
     seg_dir.mkdir(parents=True, exist_ok=True)
 
     # ── Intro dédiée ──────────────────────────────────────────────────────────
-    print("✍️  Rédaction intro (Mistral Large)…")
+    print(f"✍️  Rédaction intro {args.edition} (Mistral Large)…")
     intro_system = (
         maryse_base +
-        "Tu rédiges UNIQUEMENT l'introduction de l'horoscope du jour — "
-        "pas de lecture de signe. Deux à trois phrases dans ta voix."
+        edition_cfg["intro_instruction"]
     )
     intro_user = (
         f"DATE : {date_label}\n"
@@ -1337,7 +1607,8 @@ def main():
     _tts_call(_normalize_for_tts(intro_text), intro_path, TTS_VOICES["curious"])
 
     # ── Boucle par signe : Mistral + TTS ─────────────────────────────────────
-    seg_paths: list[Path] = []
+    seg_paths:      list[Path]       = []
+    signs_hashtags: list[list[str]] = []
 
     # Anti-répétition inter-jours
     recent_flora = _load_recent_flora()
@@ -1369,6 +1640,7 @@ def main():
         user_prompt = (
             f"HOROSCOPE DU JOUR — {sign_fr} ({sign_en.capitalize()}) :\n{raw_text}\n\n"
             f"MOMENT DE LA JOURNÉE : {moment_label}\n\n"
+            f"ÉDITION : {edition_cfg['sign_instruction']}\n\n"
             + (f"{kreyol_ctx}\n\n" if kreyol_ctx else "")
             + f"INSTRUCTIONS :\n{horoscope_instruction}"
         )
@@ -1385,8 +1657,19 @@ def main():
 
         if args.verbose:
             print(f"\n── {sign_fr} ──────────────────────────────────────────")
+            print(f"\n── USER_PROMPT ──────────────────────────────────────────")
+            print(user_prompt)
             print(segment)
             print("─────────────────────────────────────────────────────────\n")
+
+        if args.tiktok:
+            print(f"   🏷️  Hashtags {sign_fr} (Mistral Small)…")
+            sign_tags = _generate_hashtags(sign_fr, sign_en, segment)
+            if sign_tags and args.verbose:
+                print(f"   🏷️  {' '.join('#' + t for t in sign_tags)}")
+        else:
+            sign_tags = []
+        signs_hashtags.append(sign_tags)
 
         seg_path = seg_dir / f"seg_{i:02d}.mp3"
         print(f"🔊 [{i + 1}/{n_signs}] TTS {sign_fr} → {seg_path.name}")
@@ -1394,17 +1677,9 @@ def main():
         seg_paths.append(seg_path)
 
     # ── Outro dédiée ──────────────────────────────────────────────────────────
-    print("✍️  Rédaction outro (Mistral Large)…")
-    outro_system = (
-        maryse_base +
-        "Tu rédiges UNIQUEMENT la conclusion de l'horoscope du jour — "
-        "pas de signe, juste la clôture."
-    )
-    outro_user = (
-        "Une courte formule de clôture dans ta voix — bénédiction ou congé — "
-        "puis une formule de rendez-vous du type 'À demain pour un nouvel horoscope' "
-        "ou une variante naturelle, jamais la même tournure. Deux phrases maximum."
-    )
+    print(f"✍️  Rédaction outro {args.edition} (Mistral Large)…")
+    outro_system = maryse_base + edition_cfg["outro_system_suffix"]
+    outro_user   = edition_cfg["outro_user"]
     outro_text = _strip_markdown(
         call_mistral(outro_system, outro_user, temperature=0.75, max_tokens=100)
     )
@@ -1432,14 +1707,20 @@ def main():
     if args.telegram:
         try:
             signs_label = ", ".join(signs_fr)
-            send_telegram_audio(output_path, f"🔮 Horoscope — {_date_fr(gen_date)}\n{signs_label}")
+            edition_emoji = "🌅" if args.edition == "matin" else "🌙"
+            send_telegram_audio(
+                output_path,
+                f"{edition_emoji} Horoscope {args.edition} — {_date_fr(gen_date)}\n{signs_label}",
+            )
         except Exception as _e:
             print(f"⚠️  Telegram audio échoué (non bloquant) : {_e}")
 
     # ── Vidéo TikTok + Telegram ───────────────────────────────────────────────
     if args.tiktok:
         try:
-            video_dir = output_path.parent / f"horoscope-{gen_date.strftime('%Y%m%d')}"
+            video_dir = output_path.parent / f"horoscope-{args.edition}-{gen_date.strftime('%Y%m%d')}"
+            all_sign_tags   = list(dict.fromkeys(t for tags in signs_hashtags for t in tags))
+            tiktok_hashtags = HOROSCOPE_HASHTAGS_BASE + all_sign_tags
             concat_video = generate_tiktok(
                 intro_path=intro_path,
                 seg_paths=seg_paths,
@@ -1447,19 +1728,26 @@ def main():
                 signs_fr=signs_fr,
                 output_dir=video_dir,
                 stinger=stinger,
+                date_label=date_label,
+                hashtags=tiktok_hashtags,
+                signs_hashtags=signs_hashtags,
             )
             if concat_video:
                 print(f"🎬 Vidéo horoscope : {concat_video}")
-                send_telegram_video(concat_video, f"🔮 Horoscope — {_date_fr(gen_date)}")
+                edition_emoji = "🌅" if args.edition == "matin" else "🌙"
+                send_telegram_video(
+                    concat_video,
+                    f"{edition_emoji} Horoscope {args.edition} — {_date_fr(gen_date)}",
+                )
         except Exception as _e:
             print(f"⚠️  TikTok/Telegram échoué (non bloquant) : {_e}")
 
     # ── Buzzsprout ────────────────────────────────────────────────────────────
     if not args.dry_run and not args.no_send and BUZZSPROUT_API_TOKEN and BUZZSPROUT_PODCAST_ID:
         signs_label = ", ".join(signs_fr)
-        bz_title = f"Horoscope du {_date_fr(gen_date)} — {signs_label}"
+        bz_title = f"Horoscope {args.edition} du {_date_fr(gen_date)} — {signs_label}"
         bz_description = (
-            f"Horoscope du {_date_fr(gen_date)} par Maryse.\n"
+            f"Horoscope {args.edition} du {_date_fr(gen_date)} par Maryse.\n"
             f"Signes du jour : {signs_label}.\n\n"
             "Flash Info Karukera — actualités et horoscope de la Guadeloupe."
         )
