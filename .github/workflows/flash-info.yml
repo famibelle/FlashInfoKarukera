@@ -6,7 +6,7 @@ on:
     - cron: "0 5 * * *"
     # Édition midi   — 12h Paris (11h UTC hiver / 10h UTC été)
     - cron: "0 11 * * *"
-    # Édition soir   — 19h Paris (21h UTC hiver / 20h UTC été)
+    # Édition soir   — 19h Paris (20h UTC hiver / 19h UTC été)
     - cron: "0 18 * * *"
   workflow_dispatch:
     inputs:
@@ -69,7 +69,7 @@ on:
         description: "Verbose (affiche le détail de chaque étape)"
         type: boolean
         required: false
-        default: false
+        default: true
 
 jobs:
   flash-info:
