@@ -2,10 +2,20 @@ name: Horoscope Quotidien
 
 on:
   schedule:
-    # 6h Paris hiver (UTC+1) = 5h UTC / 7h Paris été (UTC+2) — GitHub Actions ne gère pas le DST
-    - cron: "0 5 * * *"
+    # Matin : 5h Paris hiver (UTC+1) = 4h UTC / 6h Paris été (UTC+2)
+    - cron: "0 4 * * *"
+    # Soir  : 18h Paris hiver (UTC+1) = 17h UTC / 19h Paris été (UTC+2)
+    - cron: "0 17 * * *"
   workflow_dispatch:
     inputs:
+      edition:
+        description: "Édition : matin ou soir"
+        type: choice
+        options:
+          - matin
+          - soir
+        required: false
+        default: matin
       date:
         description: "Date (YYYY-MM-DD) — laisser vide pour aujourd'hui"
         required: false
@@ -61,7 +71,21 @@ jobs:
           BUZZSPROUT_API_TOKEN:     ${{ secrets.BUZZSPROUT_API_TOKEN }}
           BUZZSPROUT_PODCAST_ID:    ${{ secrets.BUZZSPROUT_PODCAST_ID }}
         run: |
-          ARGS=""
+          # Déterminer l'édition : schedule → heure UTC, workflow_dispatch → input
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            HOUR=$(date -u +%H)
+            if [ "$HOUR" -lt 12 ]; then
+              EDITION="matin"
+            else
+              EDITION="soir"
+            fi
+          else
+            EDITION="${{ github.event.inputs.edition }}"
+            EDITION="${EDITION:-matin}"
+          fi
+
+          echo "📅 Édition : $EDITION"
+          ARGS="--edition $EDITION"
 
           if [ -n "${{ github.event.inputs.date }}" ]; then
             ARGS="$ARGS --date ${{ github.event.inputs.date }}"
