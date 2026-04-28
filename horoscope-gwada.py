@@ -1005,13 +1005,13 @@ def _make_horoscope_interstitial(
     tags_lh  = round(tags_fs * 1.3)
     gap      = 50
 
-    # hashtags découpés en lignes de 2 max (≤ 6 au total)
+    # hashtags : tronqué à 14 chars max, 2 par ligne, ≤ 4 lignes
     tags_lines: list[str] = []
     if hashtags:
-        capped = hashtags[:6]
+        safe = [t[:14] for t in hashtags[:8]]
         tags_lines = [
-            "  ".join(f"#{t}" for t in capped[i:i + 2])
-            for i in range(0, len(capped), 2)
+            "  ".join(f"#{t}" for t in safe[i:i + 2])
+            for i in range(0, len(safe), 2)
         ]
 
     n_tl     = len(tags_lines)
@@ -1088,9 +1088,9 @@ def _make_intro_interstitial(
     title_lh = round(title_fs * 1.08)
     date_fs  = 54
     date_lh  = round(date_fs * 1.2)
-    signs_fs = 44            # 3 signes par ligne → ≈ "Sagittaire · Capricorne · Verseau" ~960px
+    signs_fs = 40            # 3 signes par ligne → "Sagittaire · Capricorne · Verseau" ≈ 792px
     signs_lh = round(signs_fs * 1.2)
-    tags_fs  = 33
+    tags_fs  = 30
     tags_lh  = round(tags_fs * 1.2)
     blk_gap  = 28            # espace entre blocs
     ln_gap   = 6             # espace entre lignes d'un même bloc
@@ -1100,10 +1100,11 @@ def _make_intro_interstitial(
         " · ".join(signs_fr[i:i + 3])
         for i in range(0, len(signs_fr), 3)
     ]
-    # hashtags : chunks de 3, max 9
+    # hashtags : tronqué à 14 chars max, 3 par ligne, max 9
+    safe_tags = [t[:14] for t in hashtags[:9]]
     tags_lines = [
-        "  ".join(f"#{t}" for t in hashtags[i:i + 3])
-        for i in range(0, min(len(hashtags), 9), 3)
+        "  ".join(f"#{t}" for t in safe_tags[i:i + 3])
+        for i in range(0, len(safe_tags), 3)
     ]
 
     n_sl = len(signs_lines)
