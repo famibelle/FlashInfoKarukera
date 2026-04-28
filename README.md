@@ -79,10 +79,11 @@ Le programme publie **trois flash infos par jour**, chacun avec un contenu adapt
 
 | Édition | Heure (Guadeloupe) | Heure (Paris) | Contenu |
 |---------|-------------------|---------------|---------|
-| **Horoscope** | 1h du matin | 5h–6h | Horoscope 7 signes · 5 rubriques · vidéo TikTok · Buzzsprout |
+| **Horoscope matin** | 1h du matin | 5h | Formule d'éveil · 7 signes · intention du jour · vidéo TikTok · Buzzsprout |
 | **Matin** | 2h du matin | 6h | Intro du matin · Actualités (24h) · Météo · Prénom du jour |
 | **Midi** | 7h du matin | 12h | Intro du midi · Actualités (8h) |
 | **Soir** | 15h | 20h | Intro du soir · Actualités (8h) · Prénom de demain |
+| **Horoscope soir** | 14h | 18h | Formule de clôture · 7 signes · bilan du jour · bonne nuit · vidéo TikTok · Buzzsprout |
 
 > La Guadeloupe a **4 heures de retard** sur Paris en hiver, **5 heures** en été.
 
@@ -506,6 +507,13 @@ Chaque signe est structuré en 5 mouvements dans la voix de Maryse, sans balises
 4. **Amitiés** — famille, amis, collectif
 5. **Prévisions** — ce que les astres annoncent pour les jours qui viennent
 
+### Les deux éditions de l'horoscope
+
+| Édition | Orientation | Intro | Outro |
+|---------|-------------|-------|-------|
+| `matin` | Intention, élan, ce qui s'ouvre devant la journée | Formule d'éveil, invitation à commencer | Bénédiction du lever, "Bonne journée" |
+| `soir` | Bilan, lâcher-prise, ce qui mérite d'être honoré avant de dormir | Formule de clôture, invitation à souffler | Bénédiction du coucher, "Bonne nuit" |
+
 ### Options de horoscope-gwada.py
 
 ```bash
@@ -514,6 +522,7 @@ python horoscope-gwada.py [OPTIONS]
 
 | Option | Ce que ça fait | Exemple |
 |--------|----------------|---------|
+| `--edition` | Édition `matin` (intention, éveil) ou `soir` (bilan, nuit). Défaut : `matin` | `--edition soir` |
 | `--horoscope-signs N` | Nombre de signes (défaut : 7) | `--horoscope-signs 3` |
 | `--horoscope-include SIGNE` | Forcer un signe précis. Sans cette option, le signe du jour est inclus automatiquement | `--horoscope-include libra` |
 | `--tiktok` | Génère et envoie la vidéo TikTok sur Telegram | `--tiktok` |
@@ -673,34 +682,57 @@ Vous pouvez déclencher un flash à la demande depuis le site GitHub :
 
 Voici le déroulement complet d'une journée type :
 
-### 6h00 (Paris) — Édition du matin
+### 5h00 (Paris) — Horoscope matin
+
+1. GitHub lance `horoscope-gwada.py --edition matin` automatiquement
+2. L'horoscope du jour est récupéré pour 7 signes via l'API
+3. Maryse **rédige** l'introduction avec une formule d'éveil
+4. Chaque signe est rédigé avec des **formules d'intention** — ce qu'on peut initier, porter en soi au réveil
+5. Maryse **conclut** avec une bénédiction du lever
+6. Le tout est **lu à voix haute** (synthèse vocale, tonalité curieuse)
+7. Une **vidéo TikTok** avec interstitiels et hashtags est générée
+8. L'audio et la vidéo sont **envoyés sur Telegram**
+9. L'audio est **publié sur Buzzsprout** (→ Spotify)
+10. L'anti-répétition flore/faune est **sauvegardée** dans `data/used_flora.json`
+
+### 6h00 (Paris) — Édition du matin (flash info)
 
 1. GitHub lance le programme automatiquement
 2. Le programme récupère les **actualités de la nuit** depuis les sites d'info locaux
 3. Il récupère la **météo** de Pointe-à-Pitre
 4. Il récupère le **prénom du jour** depuis nominis.cef.fr
-5. Il récupère l'**horoscope** de 2 signes choisis au hasard
-6. Il vérifie s'il y a des **fêtes patronales** dans les communes
-7. Il vérifie les **maronniers** du calendrier guadeloupéen
-8. Maryse **rédige** le flash en 3 passes (rédaction → révision → ancrage local)
-9. Le texte est **lu à voix haute** (synthèse vocale)
-10. Les vidéos sont **générées** (si activé)
-11. L'image de couverture est **créée** (si OpenAI configuré)
-12. Tout est **envoyé** sur Telegram, Spotify, X, YouTube...
-13. La liste des articles utilisés est **sauvegardée** dans `data/used_articles_2026-04-24.json`
+5. Il vérifie s'il y a des **fêtes patronales** dans les communes
+6. Il vérifie les **maronniers** du calendrier guadeloupéen
+7. Maryse **rédige** le flash en 3 passes (rédaction → révision → ancrage local)
+8. Le texte est **lu à voix haute** (synthèse vocale)
+9. Les vidéos sont **générées** (si activé)
+10. L'image de couverture est **créée** (si OpenAI configuré)
+11. Tout est **envoyé** sur Telegram, Spotify, X, YouTube...
+12. La liste des articles utilisés est **sauvegardée** dans `data/used_articles_AAAA-MM-JJ.json`
 
-### 12h00 (Paris) — Édition du midi
+### 12h00 (Paris) — Édition du midi (flash info)
 
 Même processus, mais :
-- Pas de météo, pas de prénoms, pas d'horoscope
+- Pas de météo, pas de prénoms
 - Les articles déjà publiés le matin sont **exclus automatiquement**
 - Maryse fait une intro spécifique pour le midi
 - La liste des articles utilisés est **mise à jour**
 
-### 22h00 (Paris) — Édition du soir
+### 18h00 (Paris) — Horoscope soir
 
-Même processus, mais :
-- Pas de météo, pas d'horoscope
+1. GitHub lance `horoscope-gwada.py --edition soir` automatiquement
+2. L'horoscope du jour est récupéré pour les mêmes 7 signes
+3. Maryse **rédige** l'introduction avec une formule de clôture
+4. Chaque signe est rédigé avec des **formules de bilan** — ce qu'on a traversé, ce qu'on peut lâcher
+5. Maryse **conclut** avec une bénédiction du coucher et une formule "Bonne nuit"
+6. Le tout est **lu à voix haute** et une **vidéo TikTok** est générée
+7. L'audio et la vidéo sont **envoyés sur Telegram**
+8. L'audio est **publié sur Buzzsprout**
+
+### 20h00 (Paris) — Édition du soir (flash info)
+
+Même processus que le matin, mais :
+- Pas de météo
 - Les **prénoms de demain** sont annoncés (pas ceux d'aujourd'hui)
 - Les articles déjà publiés matin et midi sont **exclus automatiquement**
 - Maryse fait une intro spécifique pour le soir
@@ -919,7 +951,7 @@ FlashInfoKarukera/
 └── .github/
     └── workflows/
         ├── flash-info.yml        # Pilote automatique flash info (3×/jour)
-        └── horoscope-daily.yml   # Pilote automatique horoscope (1×/jour à 5h UTC)
+        └── horoscope-daily.yml   # Pilote automatique horoscope (matin 4h UTC / soir 17h UTC)
 ```
 
 ---
@@ -1056,12 +1088,16 @@ python flash-info-gwada.py --test-prenom 2026-08-15
 
 Les crons GitHub Actions sont en **UTC** (temps universel). La Guadeloupe a -4h par rapport à UTC en été et -4h en hiver (pas de changement d'heure). Paris a +2h en été et +1h en hiver.
 
-Le fichier `.github/workflows/flash-info.yml` configure :
-- `0 5 * * *` → 5h UTC = 6h Paris hiver = 5h Paris été
-- `0 11 * * *` → 11h UTC = 12h Paris hiver = 11h Paris été
-- `0 21 * * *` → 21h UTC = 22h Paris hiver = 21h Paris été
+Le fichier `.github/workflows/flash-info.yml` (flash info) configure :
+- `0 5 * * *` → 5h UTC = 6h Paris hiver / 7h Paris été
+- `0 11 * * *` → 11h UTC = 12h Paris hiver / 13h Paris été
+- `0 21 * * *` → 21h UTC = 22h Paris hiver / 23h Paris été
 
-Le programme détecte automatiquement l'édition (matin/midi/soir) selon l'heure de Paris au moment de l'exécution.
+Le fichier `.github/workflows/horoscope-daily.yml` (horoscope) configure :
+- `0 4 * * *` → 4h UTC = 5h Paris hiver / 6h Paris été → **édition matin** (heure < 12h UTC)
+- `0 17 * * *` → 17h UTC = 18h Paris hiver / 19h Paris été → **édition soir** (heure ≥ 12h UTC)
+
+L'édition (matin/soir) est déduite automatiquement de l'heure UTC : avant 12h → matin, à partir de 12h → soir. Pour le flash info, l'édition (matin/midi/soir) est détectée selon l'heure de Paris.
 
 ### Le token LinkedIn ou Instagram a expiré
 
