@@ -105,6 +105,8 @@ jobs:
             ARGS="$ARGS --tiktok"
           fi
 
+          ARGS="$ARGS --telegram"
+
           if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
             ARGS="$ARGS --verbose"
           fi
