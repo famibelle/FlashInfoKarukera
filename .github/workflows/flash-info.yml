@@ -160,10 +160,10 @@ jobs:
           fi
           python flash-info-gwada.py $ARGS
 
-      - name: Sauvegarder l'anti-répétition
+      - name: Sauvegarder l'anti-répétition et les archives
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions [Flash Info]"
-          git add data/used_articles_*.json
-          git diff --cached --quiet || git commit -m "chore: anti-répétition articles $(date +%Y-%m-%d) [skip ci]"
+          git add data/used_articles_*.json archives/flash-info/
+          git diff --cached --quiet || git commit -m "chore: flash info $(date +%Y-%m-%d) — archive + anti-répétition [skip ci]"
           git push || true

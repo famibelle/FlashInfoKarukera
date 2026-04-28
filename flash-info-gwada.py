@@ -91,6 +91,7 @@ STINGERS_DIR    = Path(__file__).parent / "Stingers"
 PROMPTS_DIR     = Path(__file__).parent / "prompts"
 MEDIA_DIR       = Path(__file__).parent / "Media"
 DATA_DIR        = Path(__file__).parent / "data"
+ARCHIVES_DIR    = Path(__file__).parent / "archives" / "flash-info"
 BOTIRAN_PROFILE = MEDIA_DIR / "botiran_profile.jpg"
 GUADELOUPE_TZ   = ZoneInfo("America/Guadeloupe")
 
@@ -3245,6 +3246,23 @@ def main():
             label = _seg_label(i, len(segments), **_seg_label_kwargs)
             print(f"\n{label}\n{seg}")
         print("\n────────────────────────────────────────────────────────\n")
+
+    # ── Archive texte ─────────────────────────────────────────────────────────
+    try:
+        ARCHIVES_DIR.mkdir(parents=True, exist_ok=True)
+        archive_path = ARCHIVES_DIR / f"{target_date.strftime('%Y%m%d')}-{edition}.txt"
+        header = (
+            f"FLASH INFO KARUKERA — {edition.upper()} — {date_str}\n"
+            f"Articles : {len(items)}\n"
+            + "=" * 60 + "\n\n"
+        )
+        archive_path.write_text(
+            header + ("\n\n" + "—" * 40 + "\n\n").join(segments),
+            encoding="utf-8",
+        )
+        print(f"📁 Archive texte → {archive_path}")
+    except Exception as _e:
+        print(f"⚠️  Archive texte échouée (non bloquant) : {_e}")
 
     # Étape 2d — Classification tonale
     tones = classify_tones(segments)

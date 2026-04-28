@@ -113,10 +113,10 @@ jobs:
 
           python horoscope-gwada.py $ARGS
 
-      - name: Sauvegarder l'anti-répétition flore
+      - name: Sauvegarder l'anti-répétition flore et les archives
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions [Horoscope]"
-          git add data/used_flora.json
-          git diff --cached --quiet || git commit -m "chore: anti-répétition flore $(date +%Y-%m-%d) [skip ci]"
+          git add data/used_flora.json archives/horoscope/
+          git diff --cached --quiet || git commit -m "chore: horoscope $(date +%Y-%m-%d) — archive + flore [skip ci]"
           git push || true

@@ -62,6 +62,7 @@ OUTPUT_DIR   = Path("/tmp")
 STINGERS_DIR = Path(__file__).parent / "Stingers"
 PROMPTS_DIR  = Path(__file__).parent / "prompts"
 DATA_DIR     = Path(__file__).parent / "data"
+ARCHIVES_DIR = Path(__file__).parent / "archives" / "horoscope"
 USED_FLORA_PATH = DATA_DIR / "used_flora.json"
 FLORA_MEMORY_DAYS = 7  # fenêtre glissante d'anti-répétition
 MEDIA_DIR    = Path(__file__).parent / "Media"
@@ -1619,6 +1620,7 @@ def main():
     # ── Boucle par signe : Mistral + TTS ─────────────────────────────────────
     seg_paths:      list[Path]       = []
     signs_hashtags: list[list[str]] = []
+    archive_texts:  list[str]        = [f"=== INTRO ===\n{intro_text}"]
 
     # Anti-répétition inter-jours
     recent_flora = _load_recent_flora()
@@ -1682,6 +1684,7 @@ def main():
             sign_tags = []
         signs_hashtags.append(sign_tags)
 
+        archive_texts.append(f"=== {sign_fr.upper()} ===\n{segment}")
         seg_path = seg_dir / f"seg_{i:02d}.mp3"
         print(f"🔊 [{i + 1}/{n_signs}] TTS {sign_fr} → {seg_path.name}")
         _tts_call(_normalize_for_tts(segment), seg_path, TTS_VOICES["curious"])
@@ -1701,6 +1704,19 @@ def main():
     outro_path = seg_dir / "seg_outro.mp3"
     print(f"🔊 TTS outro → {outro_path.name}")
     _tts_call(_normalize_for_tts(outro_text), outro_path, TTS_VOICES["curious"])
+
+    archive_texts.append(f"=== OUTRO ===\n{outro_text}")
+
+    # ── Archive texte ─────────────────────────────────────────────────────────
+    ARCHIVES_DIR.mkdir(parents=True, exist_ok=True)
+    archive_path = ARCHIVES_DIR / f"{gen_date.strftime('%Y%m%d')}-{args.edition}.txt"
+    header = (
+        f"HOROSCOPE KARUKERA — {args.edition.upper()} — {date_label}\n"
+        f"Signes : {', '.join(signs_fr)}\n"
+        + "=" * 60 + "\n\n"
+    )
+    archive_path.write_text(header + "\n\n".join(archive_texts), encoding="utf-8")
+    print(f"📁 Archive texte → {archive_path}")
 
     # Sauvegarde anti-répétition flore (uniquement les nouveaux éléments de ce run)
     new_flora = [kw for kw in used_flora if kw not in recent_flora]
