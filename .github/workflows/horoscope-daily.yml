@@ -62,20 +62,9 @@ jobs:
       - name: Installer les dépendances Python
         run: pip install -r requirements.txt
 
-      - name: Générer l'horoscope du jour
-        env:
-          MISTRAL_API_KEY:          ${{ secrets.MISTRAL_API_KEY }}
-          TELEGRAM_BOT_TOKEN:       ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID:         ${{ secrets.TELEGRAM_CHAT_ID }}
-          OPENAI_API_KEY:           ${{ secrets.OPENAI_API_KEY }}
-          BUZZSPROUT_API_TOKEN:     ${{ secrets.BUZZSPROUT_API_TOKEN }}
-          BUZZSPROUT_PODCAST_ID:    ${{ secrets.BUZZSPROUT_PODCAST_ID }}
-          R2_ACCOUNT_ID:            ${{ secrets.R2_ACCOUNT_ID }}
-          R2_ACCESS_KEY_ID:         ${{ secrets.R2_ACCESS_KEY_ID }}
-          R2_SECRET_ACCESS_KEY:     ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          R2_BUCKET_NAME:           ${{ secrets.R2_BUCKET_NAME }}
+      - name: Détecter l'édition
+        id: edition
         run: |
-          # Déterminer l'édition : schedule → heure UTC, workflow_dispatch → input
           if [ "${{ github.event_name }}" = "schedule" ]; then
             HOUR=$(date -u +%H)
             if [ "$HOUR" -lt 12 ]; then
@@ -87,35 +76,47 @@ jobs:
             EDITION="${{ github.event.inputs.edition }}"
             EDITION="${EDITION:-matin}"
           fi
+          echo "EDITION=$EDITION" >> $GITHUB_ENV
+          echo "Édition détectée : $EDITION"
 
-          echo "📅 Édition : $EDITION"
-          ARGS="--edition $EDITION"
-
+      - name: Préparer les arguments
+        id: args
+        run: |
+          ARGS="--edition ${{ env.EDITION }}"
           if [ -n "${{ github.event.inputs.date }}" ]; then
             ARGS="$ARGS --date ${{ github.event.inputs.date }}"
           fi
-
           HOROSCOPE_SIGNS="${{ github.event.inputs.horoscope_signs }}"
           HOROSCOPE_SIGNS="${HOROSCOPE_SIGNS:-7}"
           ARGS="$ARGS --horoscope-signs $HOROSCOPE_SIGNS"
-
           HOROSCOPE_INCLUDE="${{ github.event.inputs.horoscope_include }}"
           if [ -n "$HOROSCOPE_INCLUDE" ]; then
             ARGS="$ARGS --horoscope-include $HOROSCOPE_INCLUDE"
           fi
-
           TIKTOK_INPUT="${{ github.event.inputs.tiktok }}"
           if [ "${{ github.event_name }}" = "schedule" ] || [ "$TIKTOK_INPUT" = "true" ] || [ -z "$TIKTOK_INPUT" ]; then
             ARGS="$ARGS --tiktok"
           fi
-
           ARGS="$ARGS --telegram"
-
           if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
             ARGS="$ARGS --verbose"
           fi
+          echo "HORO_ARGS=$ARGS" >> $GITHUB_ENV
+          echo "Arguments : $ARGS"
 
-          python horoscope-gwada.py $ARGS
+      - name: Générer l'horoscope
+        env:
+          MISTRAL_API_KEY:       ${{ secrets.MISTRAL_API_KEY }}
+          TELEGRAM_BOT_TOKEN:    ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:      ${{ secrets.TELEGRAM_CHAT_ID }}
+          OPENAI_API_KEY:        ${{ secrets.OPENAI_API_KEY }}
+          BUZZSPROUT_API_TOKEN:  ${{ secrets.BUZZSPROUT_API_TOKEN }}
+          BUZZSPROUT_PODCAST_ID: ${{ secrets.BUZZSPROUT_PODCAST_ID }}
+          B2_KEY_ID:             ${{ secrets.B2_KEY_ID }}
+          B2_APPLICATION_KEY:    ${{ secrets.B2_APPLICATION_KEY }}
+          B2_BUCKET_NAME:        ${{ secrets.B2_BUCKET_NAME }}
+          B2_ENDPOINT:           ${{ secrets.B2_ENDPOINT }}
+        run: python horoscope-gwada.py ${{ env.HORO_ARGS }}
 
       - name: Sauvegarder l'anti-répétition flore et les archives
         run: |
