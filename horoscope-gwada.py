@@ -42,6 +42,11 @@ TELEGRAM_CHAT_ID    = os.environ["TELEGRAM_CHAT_ID"]
 BUZZSPROUT_API_TOKEN  = os.environ.get("BUZZSPROUT_API_TOKEN", "")
 BUZZSPROUT_PODCAST_ID = os.environ.get("BUZZSPROUT_PODCAST_ID", "")
 
+R2_ACCOUNT_ID        = os.environ.get("R2_ACCOUNT_ID", "")
+R2_ACCESS_KEY_ID     = os.environ.get("R2_ACCESS_KEY_ID", "")
+R2_SECRET_ACCESS_KEY = os.environ.get("R2_SECRET_ACCESS_KEY", "")
+R2_BUCKET_NAME       = os.environ.get("R2_BUCKET_NAME", "")
+
 TTS_MODEL           = "voxtral-mini-tts-2603"
 STT_MODEL           = "voxtral-mini-latest"
 TTS_VOICE_DEFAULT   = "fr_marie_neutral"
@@ -1296,6 +1301,38 @@ def generate_tiktok(
     print(f"   ✅ {concat_path.name} ({concat_path.stat().st_size:,} bytes)")
     return concat_path
 
+# ── Cloudflare R2 ─────────────────────────────────────────────────────────────
+
+def _upload_to_r2(local_path: Path, remote_key: str) -> str | None:
+    """Upload un fichier vers Cloudflare R2. Retourne l'URL publique ou None si non configuré."""
+    if not all([R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME]):
+        return None
+    try:
+        import boto3
+        from botocore.config import Config
+        client = boto3.client(
+            "s3",
+            endpoint_url=f"https://{R2_ACCOUNT_ID}.r2.cloudflarestorage.com",
+            aws_access_key_id=R2_ACCESS_KEY_ID,
+            aws_secret_access_key=R2_SECRET_ACCESS_KEY,
+            config=Config(signature_version="s3v4"),
+            region_name="auto",
+        )
+        content_type = "audio/mpeg" if local_path.suffix == ".mp3" else "video/mp4"
+        client.upload_file(
+            str(local_path),
+            R2_BUCKET_NAME,
+            remote_key,
+            ExtraArgs={"ContentType": content_type},
+        )
+        url = f"https://{R2_ACCOUNT_ID}.r2.cloudflarestorage.com/{R2_BUCKET_NAME}/{remote_key}"
+        print(f"   ☁️  R2 → {remote_key}")
+        return url
+    except Exception as e:
+        print(f"   ⚠️  R2 upload échoué (non bloquant) : {e}")
+        return None
+
+
 # ── Telegram ──────────────────────────────────────────────────────────────────
 
 def _compress_video(video_path: Path, target_mb: float = 45.0) -> Path:
@@ -1732,6 +1769,10 @@ def main():
     _assemble_audio(all_audio, stinger, output_path)
     print(f"✅ Horoscope sauvegardé : {output_path}")
 
+    # ── Cloudflare R2 — audio ─────────────────────────────────────────────────
+    r2_key_audio = f"horoscope/{gen_date.strftime('%Y/%m')}/{output_path.name}"
+    _upload_to_r2(output_path, r2_key_audio)
+
     # ── Telegram audio ────────────────────────────────────────────────────────
     if args.telegram:
         try:
@@ -1763,6 +1804,8 @@ def main():
             )
             if concat_video:
                 print(f"🎬 Vidéo horoscope : {concat_video}")
+                r2_key_video = f"horoscope/{gen_date.strftime('%Y/%m')}/{concat_video.name}"
+                _upload_to_r2(concat_video, r2_key_video)
                 edition_emoji = "🌅" if args.edition == "matin" else "🌙"
                 send_telegram_video(
                     concat_video,

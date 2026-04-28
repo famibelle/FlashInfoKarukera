@@ -86,6 +86,11 @@ INSTAGRAM_USER_ID      = os.environ.get("INSTAGRAM_USER_ID", "")
 
 OPENAI_API_KEY  = os.environ.get("OPENAI_API_KEY", "")
 
+R2_ACCOUNT_ID        = os.environ.get("R2_ACCOUNT_ID", "")
+R2_ACCESS_KEY_ID     = os.environ.get("R2_ACCESS_KEY_ID", "")
+R2_SECRET_ACCESS_KEY = os.environ.get("R2_SECRET_ACCESS_KEY", "")
+R2_BUCKET_NAME       = os.environ.get("R2_BUCKET_NAME", "")
+
 OUTPUT_DIR      = Path("/tmp")
 STINGERS_DIR    = Path(__file__).parent / "Stingers"
 PROMPTS_DIR     = Path(__file__).parent / "prompts"
@@ -1702,6 +1707,37 @@ def generate_tiktok(
     return videos
 
 
+# ── Cloudflare R2 ─────────────────────────────────────────────────────────────
+
+def _upload_to_r2(local_path: Path, remote_key: str) -> str | None:
+    """Upload un fichier vers Cloudflare R2. Retourne l'URL ou None si non configuré."""
+    if not all([R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME]):
+        return None
+    try:
+        import boto3
+        from botocore.config import Config
+        client = boto3.client(
+            "s3",
+            endpoint_url=f"https://{R2_ACCOUNT_ID}.r2.cloudflarestorage.com",
+            aws_access_key_id=R2_ACCESS_KEY_ID,
+            aws_secret_access_key=R2_SECRET_ACCESS_KEY,
+            config=Config(signature_version="s3v4"),
+            region_name="auto",
+        )
+        content_type = "audio/mpeg" if local_path.suffix == ".mp3" else "video/mp4"
+        client.upload_file(
+            str(local_path),
+            R2_BUCKET_NAME,
+            remote_key,
+            ExtraArgs={"ContentType": content_type},
+        )
+        print(f"   ☁️  R2 → {remote_key}")
+        return f"https://{R2_ACCOUNT_ID}.r2.cloudflarestorage.com/{R2_BUCKET_NAME}/{remote_key}"
+    except Exception as e:
+        print(f"   ⚠️  R2 upload échoué (non bloquant) : {e}")
+        return None
+
+
 # ── Étape 4 : Envoi Telegram ──────────────────────────────────────────────────
 
 def send_telegram(audio_path: Path, caption: str) -> None:
@@ -3311,6 +3347,10 @@ def main():
 
     title = f"Flash Info Guadeloupe — {date_str}, édition du {edition}"
 
+    # ── Cloudflare R2 — audio ─────────────────────────────────────────────────
+    r2_key_audio = f"flash-info/{target_date.strftime('%Y/%m')}/{output_path.name}"
+    _upload_to_r2(output_path, r2_key_audio)
+
     if args.tiktok or args.youtube or args.linkedin or args.instagram or args.twitter:
         video_dir = OUTPUT_DIR / f"tiktok-{edition}-{now.strftime('%Y%m%d-%H%M')}"
         videos = generate_tiktok(seg_paths, segments, tones, video_dir,
@@ -3363,6 +3403,8 @@ def main():
         }
         concatenate_videos(ordered, full_video_path, metadata=video_metadata)
         print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
+        r2_key_video = f"flash-info/{target_date.strftime('%Y/%m')}/{full_video_path.name}"
+        _upload_to_r2(full_video_path, r2_key_video)
 
         # Hashtags agrégés (dédupliqués, ordre d'apparition)
         seen, all_hashtags = set(), []
