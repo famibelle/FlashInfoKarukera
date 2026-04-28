@@ -584,7 +584,7 @@ def _norm_pronunciations(text: str) -> str:
 def _norm_typography(text: str) -> str:
     text = text.replace("’", "'").replace("‘", "'")
     text = text.replace("“", '"').replace("”", '"')
-    text = text.replace("–", "-").replace("—", " ")
+    text = text.replace("–", ", ").replace("—", ", ")
     return _re.sub(r"[^\x00-\x7FÀ-ɏḀ-ỿ\n]", " ", text)
 
 
