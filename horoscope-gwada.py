@@ -694,7 +694,8 @@ def _normalize_for_tts(text: str) -> str:
 
 # ── TTS ───────────────────────────────────────────────────────────────────────
 
-def _tts_call(text: str, output_path: Path, voice_id: str = TTS_VOICE_DEFAULT) -> None:
+def _tts_call(text: str, output_path: Path, voice_id: str = TTS_VOICE_DEFAULT,
+              _retries: int = 4) -> None:
     if not text.strip():
         raise RuntimeError("_tts_call: texte vide, rien à synthétiser")
     payload = json.dumps({
@@ -711,12 +712,20 @@ def _tts_call(text: str, output_path: Path, voice_id: str = TTS_VOICE_DEFAULT) -
             "Content-Type": "application/json",
         },
     )
-    try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            response = json.loads(r.read())
-    except urllib.error.HTTPError as e:
-        body = e.read().decode(errors="replace")
-        raise RuntimeError(f"TTS HTTP {e.code} ({e.reason}): {body}") from None
+    for attempt in range(_retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                response = json.loads(r.read())
+            break
+        except urllib.error.HTTPError as e:
+            body = e.read().decode(errors="replace")
+            # Retry sur 429 (rate limit) et 5xx (erreurs transitoires)
+            if e.code in (429, 500, 502, 503, 504) and attempt < _retries:
+                wait = 15 * 2 ** attempt
+                print(f"   ⏳ TTS {e.code} — attente {wait}s (tentative {attempt + 1}/{_retries})…")
+                time.sleep(wait)
+            else:
+                raise RuntimeError(f"TTS HTTP {e.code} ({e.reason}): {body}") from None
     if "audio_data" not in response:
         raise RuntimeError(f"TTS error: {response}")
     output_path.write_bytes(base64.b64decode(response["audio_data"]))
