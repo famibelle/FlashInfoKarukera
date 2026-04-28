@@ -1668,12 +1668,14 @@ def main():
         used_flora = list(dict.fromkeys(used_flora + newly_used))
 
         if args.verbose:
-            print(f"\n── {sign_fr} ──────────────────────────────────────────")
+            print(f"\n{'═' * 58}")
+            print(f"  [{i + 1}/{n_signs}] {sign_fr.upper()}")
+            print(f"{'═' * 58}")
             print(f"\n── USER_PROMPT ──────────────────────────────────────────")
             print(user_prompt)
-            print(f"\n── GENERATED TEXT ──────────────────────────────────────────")
+            print(f"\n── GENERATED TEXT ───────────────────────────────────────")
             print(segment)
-            print("─────────────────────────────────────────────────────────\n")
+            print(f"{'─' * 58}\n")
 
         if args.tiktok:
             print(f"   🏷️  Hashtags {sign_fr} (Mistral Small)…")
