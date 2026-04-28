@@ -893,6 +893,27 @@ def _stinger_duration(stinger: Path) -> float:
     return float(proc.stdout.strip())
 
 
+def _build_srt(pairs: "list[tuple[str | None, float]]", words_per_line: int = 12) -> str:
+    """Génère un fichier SRT depuis (texte_ou_None, durée_s). Découpe en chunks lisibles."""
+    def _ts(s: float) -> str:
+        h, rem = divmod(s, 3600)
+        m, s = divmod(rem, 60)
+        return f"{int(h):02d}:{int(m):02d}:{s:06.3f}".replace(".", ",")
+    lines, t, n = [], 0.0, 1
+    for text, dur in pairs:
+        if text and text.strip():
+            words = text.strip().split()
+            chunks = [words[i:i + words_per_line] for i in range(0, len(words), words_per_line)]
+            chunk_dur = dur / len(chunks)
+            for j, chunk in enumerate(chunks):
+                cs = t + j * chunk_dur
+                ce = cs + chunk_dur
+                lines += [str(n), f"{_ts(cs)} --> {_ts(ce)}", " ".join(chunk), ""]
+                n += 1
+        t += dur
+    return "\n".join(lines)
+
+
 def _tiktok_segment_video(seg_path: Path, ass_path: Path, tone: str, output_path: Path) -> None:
     color_hex = TIKTOK_COLORS.get(tone, "#FFFFFF").lstrip("#")
     audio_path = _trim_silence(seg_path) if TRIM_SILENCE else seg_path
@@ -1224,6 +1245,8 @@ def generate_tiktok(
     date_label: str = "",
     hashtags: "list[str] | None" = None,
     signs_hashtags: "list[list[str]] | None" = None,
+    metadata: "dict[str, str] | None" = None,
+    segment_texts: "list[str] | None" = None,
 ) -> "Path | None":
     """Génère : inter_intro → intro → (inter_signe + signe) × N → outro → CTA puis concatène."""
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -1232,6 +1255,8 @@ def generate_tiktok(
 
     tone = "curious"
     all_parts: list[Path] = []
+    srt_pairs: "list[tuple[str | None, float]]" = []
+    stinger_dur = _stinger_duration(stinger)
 
     # Interstitiel d'introduction
     intro_inter_path = output_dir / "inter_intro.mp4"
@@ -1242,6 +1267,7 @@ def generate_tiktok(
         hashtags=hashtags or [],
     )
     all_parts.append(intro_inter_path)
+    srt_pairs.append((None, stinger_dur))
 
     # Intro
     intro_video = _make_segment_video(
@@ -1249,6 +1275,8 @@ def generate_tiktok(
     )
     if intro_video:
         all_parts.append(intro_video)
+        intro_txt = segment_texts[0] if segment_texts else None
+        srt_pairs.append((intro_txt, _stinger_duration(intro_path)))
 
     # Signes : interstitiel + vidéo
     for i, (seg_path, sign_fr) in enumerate(zip(seg_paths, signs_fr)):
@@ -1262,7 +1290,10 @@ def generate_tiktok(
         )
         if seg_video:
             all_parts.append(inter_path)
+            srt_pairs.append((None, stinger_dur))
             all_parts.append(seg_video)
+            seg_txt = segment_texts[i + 1] if segment_texts and i + 1 < len(segment_texts) else None
+            srt_pairs.append((seg_txt, _stinger_duration(seg_path)))
 
     if not all_parts:
         return None
@@ -1273,26 +1304,52 @@ def generate_tiktok(
     )
     if outro_video:
         all_parts.append(outro_video)
+        outro_txt = segment_texts[-1] if segment_texts else None
+        srt_pairs.append((outro_txt, _stinger_duration(outro_path)))
 
     # CTA
     cta_path = output_dir / "inter_cta.mp4"
     _make_cta_interstitial(cta_path, stinger)
     all_parts.append(cta_path)
+    srt_pairs.append((None, stinger_dur))
+
+    # SRT embarqué
+    srt_path: "Path | None" = None
+    if segment_texts:
+        srt_path = output_dir / "subtitles.srt"
+        srt_path.write_text(_build_srt(srt_pairs), encoding="utf-8")
+
+    # Métadonnées
+    meta_args: list[str] = []
+    for k, v in (metadata or {}).items():
+        meta_args += ["-metadata", f"{k}={v}"]
 
     # Concaténation finale
     concat_path = output_dir / "horoscope_full.mp4"
+    n = len(all_parts)
     inputs_args = []
     for p in all_parts:
         inputs_args += ["-i", str(p)]
-    n = len(all_parts)
+    has_srt = srt_path is not None and srt_path.exists()
+    if has_srt:
+        inputs_args += ["-i", str(srt_path)]
+
     filter_str = "".join(f"[{i}:v][{i}:a]" for i in range(n)) + f"concat=n={n}:v=1:a=1[vout][aout]"
+    map_args = ["-map", "[vout]", "-map", "[aout]"]
+    sub_args: list[str] = []
+    if has_srt:
+        map_args += ["-map", f"{n}:s"]
+        sub_args  = ["-c:s", "mov_text", "-metadata:s:s:0", "language=fra"]
+
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
         *inputs_args,
         "-filter_complex", filter_str,
-        "-map", "[vout]", "-map", "[aout]",
+        *map_args,
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
         "-c:a", "aac", "-b:a", "192k",
+        *sub_args,
+        *meta_args,
         str(concat_path),
     ], capture_output=True)
     if proc.returncode != 0:
@@ -1555,7 +1612,7 @@ def main():
     edition_cfg = EDITION_CONFIGS[args.edition]
     output_path = (
         Path(args.output) if args.output
-        else OUTPUT_DIR / f"horoscope-{args.edition}-{gen_date.strftime('%Y%m%d')}.mp3"
+        else OUTPUT_DIR / f"horoscope-{gen_date.strftime('%Y%m%d')}-{args.edition}.mp3"
     )
 
     # Résolution des signes forcés
@@ -1655,6 +1712,7 @@ def main():
     # ── Boucle par signe : Mistral + TTS ─────────────────────────────────────
     seg_paths:      list[Path]       = []
     signs_hashtags: list[list[str]] = []
+    sign_texts:     list[str]        = []
     archive_texts:  list[str]        = [f"=== INTRO ===\n{intro_text}"]
 
     # Anti-répétition inter-jours
@@ -1720,6 +1778,7 @@ def main():
         else:
             sign_tags = []
         signs_hashtags.append(sign_tags)
+        sign_texts.append(segment)
 
         archive_texts.append(f"=== {sign_fr.upper()} ===\n{segment}")
         seg_path = seg_dir / f"seg_{i:02d}.mp3"
@@ -1776,10 +1835,13 @@ def main():
         try:
             signs_label = ", ".join(signs_fr)
             edition_emoji = "🌅" if args.edition == "matin" else "🌙"
-            send_telegram_audio(
-                output_path,
-                f"{edition_emoji} Horoscope {args.edition} — {_date_fr(gen_date)}\n{signs_label}",
-            )
+            tg_audio_caption = (
+                f"{edition_emoji} Horoscope {args.edition} — {_date_fr(gen_date)}\n"
+                f"{signs_label}\n\n{intro_text}"
+            ).strip()
+            if len(tg_audio_caption) > 1024:
+                tg_audio_caption = tg_audio_caption[:1021] + "…"
+            send_telegram_audio(output_path, tg_audio_caption)
         except Exception as _e:
             print(f"⚠️  Telegram audio échoué (non bloquant) : {_e}")
 
@@ -1789,6 +1851,17 @@ def main():
             video_dir = output_path.parent / f"horoscope-{args.edition}-{gen_date.strftime('%Y%m%d')}"
             all_sign_tags   = list(dict.fromkeys(t for tags in signs_hashtags for t in tags))
             tiktok_hashtags = HOROSCOPE_HASHTAGS_BASE + all_sign_tags
+            edition_emoji = "🌅" if args.edition == "matin" else "🌙"
+            video_metadata = {
+                "title":       f"{edition_emoji} Horoscope Karukera — {date_label}",
+                "artist":      "Botiran",
+                "album":       "Horoscope Karukera",
+                "description": intro_text[:500],
+                "comment":     f"Signes : {', '.join(signs_fr)}",
+                "date":        gen_date.strftime("%Y-%m-%d"),
+                "genre":       "Horoscope / Astrologie",
+                "copyright":   f"© {gen_date.year} Horoscope Karukera par Botiran",
+            }
             concat_video = generate_tiktok(
                 intro_path=intro_path,
                 seg_paths=seg_paths,
@@ -1799,12 +1872,13 @@ def main():
                 date_label=date_label,
                 hashtags=tiktok_hashtags,
                 signs_hashtags=signs_hashtags,
+                metadata=video_metadata,
+                segment_texts=[intro_text] + sign_texts + [outro_text],
             )
             if concat_video:
                 print(f"🎬 Vidéo horoscope : {concat_video}")
                 b2_key_video = f"horoscope/{gen_date.strftime('%Y/%m')}/{concat_video.name}"
                 _upload_to_b2(concat_video, b2_key_video)
-                edition_emoji = "🌅" if args.edition == "matin" else "🌙"
                 send_telegram_video(
                     concat_video,
                     f"{edition_emoji} Horoscope {args.edition} — {_date_fr(gen_date)}",

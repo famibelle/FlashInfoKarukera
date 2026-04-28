@@ -2138,6 +2138,27 @@ def _stinger_duration(stinger: Path) -> float:
     return float(proc.stdout.strip())
 
 
+def _build_srt(pairs: "list[tuple[str | None, float]]", words_per_line: int = 12) -> str:
+    """Génère un fichier SRT depuis (texte_ou_None, durée_s). Découpe en chunks lisibles."""
+    def _ts(s: float) -> str:
+        h, rem = divmod(s, 3600)
+        m, s = divmod(rem, 60)
+        return f"{int(h):02d}:{int(m):02d}:{s:06.3f}".replace(".", ",")
+    lines, t, n = [], 0.0, 1
+    for text, dur in pairs:
+        if text and text.strip():
+            words = text.strip().split()
+            chunks = [words[i:i + words_per_line] for i in range(0, len(words), words_per_line)]
+            chunk_dur = dur / len(chunks)
+            for j, chunk in enumerate(chunks):
+                cs = t + j * chunk_dur
+                ce = cs + chunk_dur
+                lines += [str(n), f"{_ts(cs)} --> {_ts(ce)}", " ".join(chunk), ""]
+                n += 1
+        t += dur
+    return "\n".join(lines)
+
+
 def _interleave_interstitials(
     videos: list[tuple[int, Path]],
     items: list[dict],
@@ -2293,6 +2314,7 @@ def concatenate_videos(
     video_paths: list[Path],
     output_path: Path,
     metadata: dict[str, str] | None = None,
+    srt_path: Path | None = None,
 ) -> Path:
     """
     Concatène les MP4 via le concat filter graph FFmpeg.
@@ -2304,6 +2326,10 @@ def concatenate_videos(
     inputs = []
     for p in video_paths:
         inputs += ["-i", str(p)]
+
+    has_srt = srt_path is not None and srt_path.exists()
+    if has_srt:
+        inputs += ["-i", str(srt_path)]
 
     # Normalise chaque clip indépendamment, puis les enchaîne
     filter_parts = []
@@ -2320,13 +2346,20 @@ def concatenate_videos(
     for k, v in (metadata or {}).items():
         meta_args += ["-metadata", f"{k}={v}"]
 
+    map_args  = ["-map", "[vout]", "-map", "[aout]"]
+    sub_args  = []
+    if has_srt:
+        map_args += ["-map", f"{n}:s"]
+        sub_args  = ["-c:s", "mov_text", "-metadata:s:s:0", "language=fra"]
+
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
         *inputs,
         "-filter_complex", filter_complex,
-        "-map", "[vout]", "-map", "[aout]",
+        *map_args,
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
         "-c:a", "aac", "-b:a", "192k",
+        *sub_args,
         *meta_args,
         str(output_path),
     ], capture_output=True)
@@ -3326,7 +3359,7 @@ def main():
 
     # Étape 3
     stinger = resolve_stinger(args.stinger)
-    output_path = args.output or OUTPUT_DIR / f"flash-{edition}-{now.strftime('%Y%m%d-%H%M')}.mp3"
+    output_path = args.output or OUTPUT_DIR / f"flash-info-{target_date.strftime('%Y%m%d')}-{edition}.mp3"
 
     if args.verbose:
         print("\n── VERBOSE : Étape 3 — Génération audio ────────────────")
@@ -3393,14 +3426,23 @@ def main():
                                              has_meteo=weather is not None,
                                              horoscope_signs=horoscope_signs,
                                              prenoms_du_jour=prenoms_du_jour)
+        intro_text = segments[0].strip() if segments else ""
         video_metadata = {
-            "title":     title,
-            "artist":    "Botiran",
-            "album":     "Flash Info Karukera",
-            "comment":   "Produit par Botiran Flash News",
-            "copyright": f"© {date_str} Flash Info Karukera par Botiran",
+            "title":       title,
+            "artist":      "Botiran",
+            "album":       "Flash Info Karukera",
+            "comment":     "Produit par Botiran Flash News",
+            "copyright":   f"© {date_str} Flash Info Karukera par Botiran",
+            "description": intro_text[:500],
+            "date":        date_str,
+            "genre":       "Flash Info / Actualités Guadeloupe",
         }
-        concatenate_videos(ordered, full_video_path, metadata=video_metadata)
+        # Sous-titres SRT embarqués (un chunk toutes les ~12 mots par segment)
+        path_to_text = {str(vp): segments[idx] for idx, vp in videos if idx < len(segments)}
+        srt_pairs = [(path_to_text.get(str(p)), _stinger_duration(p)) for p in ordered]
+        srt_path = video_dir / "subtitles.srt"
+        srt_path.write_text(_build_srt(srt_pairs), encoding="utf-8")
+        concatenate_videos(ordered, full_video_path, metadata=video_metadata, srt_path=srt_path)
         print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
         b2_key_video = f"flash-info/{target_date.strftime('%Y/%m')}/{full_video_path.name}"
         _upload_to_b2(full_video_path, b2_key_video)
@@ -3415,7 +3457,6 @@ def main():
         hashtags_line = " ".join(all_hashtags)
 
         # Thumbnail : fichier fourni par l'utilisateur ou génération OpenAI
-        intro_text = segments[0].strip() if segments else ""
         thumbnail_path = None
         if not args.no_thumbnail:
             if args.thumbnail:
@@ -3474,7 +3515,10 @@ def main():
         print(f"   Sauvegardé : {transcript_path}")
 
     # Étape 4 — Telegram (dry-run inclus)
-    send_telegram(output_path, f"🎙️ {title}")
+    tg_audio_caption = f"🎙️ {title}\n\n{intro_text}".strip()
+    if len(tg_audio_caption) > 1024:
+        tg_audio_caption = tg_audio_caption[:1021] + "…"
+    send_telegram(output_path, tg_audio_caption)
 
     if args.dry_run:
         print(f"--dry-run : audio généré et envoyé sur Telegram. Arrêt avant Buzzsprout/X.")
