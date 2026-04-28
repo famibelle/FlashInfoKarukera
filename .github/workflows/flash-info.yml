@@ -2,8 +2,8 @@ name: Flash Info Guadeloupe
 
 on:
   schedule:
-    # Édition matin  — 6h Paris (5h UTC hiver / 4h UTC été)
-    - cron: "0 5 * * *"
+    # Édition matin  — 4h30 Paris hiver (UTC+1) = 3h30 UTC / 5h30 Paris été (UTC+2)
+    - cron: "30 3 * * *"
     # Édition midi   — 12h Paris (11h UTC hiver / 10h UTC été)
     - cron: "0 11 * * *"
     # Édition soir   — 19h Paris (20h UTC hiver / 19h UTC été)
