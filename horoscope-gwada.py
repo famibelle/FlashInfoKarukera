@@ -1709,7 +1709,7 @@ def main():
 
     # ── Archive texte ─────────────────────────────────────────────────────────
     ARCHIVES_DIR.mkdir(parents=True, exist_ok=True)
-    archive_path = ARCHIVES_DIR / f"{gen_date.strftime('%Y%m%d')}-{args.edition}.txt"
+    archive_path = ARCHIVES_DIR / f"horoscope-{gen_date.strftime('%Y%m%d')}-{args.edition}.txt"
     header = (
         f"HOROSCOPE KARUKERA — {args.edition.upper()} — {date_label}\n"
         f"Signes : {', '.join(signs_fr)}\n"

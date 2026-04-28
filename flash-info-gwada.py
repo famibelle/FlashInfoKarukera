@@ -3250,7 +3250,7 @@ def main():
     # ── Archive texte ─────────────────────────────────────────────────────────
     try:
         ARCHIVES_DIR.mkdir(parents=True, exist_ok=True)
-        archive_path = ARCHIVES_DIR / f"{target_date.strftime('%Y%m%d')}-{edition}.txt"
+        archive_path = ARCHIVES_DIR / f"flash-info-{target_date.strftime('%Y%m%d')}-{edition}.txt"
         header = (
             f"FLASH INFO KARUKERA — {edition.upper()} — {date_str}\n"
             f"Articles : {len(items)}\n"
