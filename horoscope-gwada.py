@@ -398,9 +398,16 @@ def call_mistral(
                 result = json.loads(r.read())
             return result["choices"][0]["message"]["content"]
         except urllib.error.HTTPError as e:
-            if e.code == 429 and attempt < _retries:
-                wait = 10 * 2 ** attempt
-                print(f"   ⏳ Mistral 429 — attente {wait}s (tentative {attempt + 1}/{_retries})…")
+            if e.code in (429, 500, 502, 503, 504) and attempt < _retries:
+                wait = 15 * 2 ** attempt
+                print(f"   ⏳ Mistral {e.code} — attente {wait}s (tentative {attempt + 1}/{_retries})…")
+                time.sleep(wait)
+            else:
+                raise
+        except (TimeoutError, OSError) as e:
+            if attempt < _retries:
+                wait = 15 * 2 ** attempt
+                print(f"   ⏳ Mistral timeout réseau — attente {wait}s (tentative {attempt + 1}/{_retries})…")
                 time.sleep(wait)
             else:
                 raise
