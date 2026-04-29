@@ -116,12 +116,14 @@ jobs:
           B2_APPLICATION_KEY:    ${{ secrets.B2_APPLICATION_KEY }}
           B2_BUCKET_NAME:        ${{ secrets.B2_BUCKET_NAME }}
           B2_ENDPOINT:           ${{ secrets.B2_ENDPOINT }}
+          IA_ACCESS_KEY:         ${{ secrets.IA_ACCESS_KEY }}
+          IA_SECRET_KEY:         ${{ secrets.IA_SECRET_KEY }}
         run: python horoscope-gwada.py ${{ env.HORO_ARGS }}
 
       - name: Sauvegarder l'anti-répétition flore et les archives
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions [Horoscope]"
-          git add data/used_flora.json archives/horoscope/
-          git diff --cached --quiet || git commit -m "chore: horoscope $(date +%Y-%m-%d) — archive + flore [skip ci]"
+          git add data/used_flora.json archives/horoscope/ docs/
+          git diff --cached --quiet || git commit -m "chore: horoscope $(date +%Y-%m-%d) — archive + RSS + flore [skip ci]"
           git push || true

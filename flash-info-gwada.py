@@ -91,12 +91,17 @@ B2_APPLICATION_KEY = os.environ.get("B2_APPLICATION_KEY", "")
 B2_BUCKET_NAME     = os.environ.get("B2_BUCKET_NAME", "")
 B2_ENDPOINT        = os.environ.get("B2_ENDPOINT", "")  # ex: https://s3.us-west-004.backblazeb2.com
 
+IA_ACCESS_KEY = os.environ.get("IA_ACCESS_KEY", "")
+IA_SECRET_KEY = os.environ.get("IA_SECRET_KEY", "")
+
 OUTPUT_DIR      = Path("/tmp")
 STINGERS_DIR    = Path(__file__).parent / "Stingers"
 PROMPTS_DIR     = Path(__file__).parent / "prompts"
 MEDIA_DIR       = Path(__file__).parent / "Media"
 DATA_DIR        = Path(__file__).parent / "data"
 ARCHIVES_DIR    = Path(__file__).parent / "archives" / "flash-info"
+DOCS_DIR        = Path(__file__).parent / "docs"
+PODCAST_RSS_PATH = DOCS_DIR / "podcast.xml"
 BOTIRAN_PROFILE = MEDIA_DIR / "botiran_profile.jpg"
 GUADELOUPE_TZ   = ZoneInfo("America/Guadeloupe")
 
@@ -1744,6 +1749,103 @@ def _upload_to_b2(local_path: Path, remote_key: str) -> str | None:
         return None
 
 
+# ── Internet Archive (archive.org) ────────────────────────────────────────────
+
+def _upload_to_archive_org(
+    local_path: Path,
+    identifier: str,
+    title: str,
+    description: str = "",
+    subject: str = "guadeloupe;podcast;karukera",
+) -> str | None:
+    """Upload vers archive.org via l'API S3. Non bloquant si non configuré."""
+    if not all([IA_ACCESS_KEY, IA_SECRET_KEY]):
+        return None
+    try:
+        import requests as _req
+        filename = local_path.name
+        url = f"https://s3.us.archive.org/{identifier}/{filename}"
+        mediatype = "audio" if local_path.suffix == ".mp3" else "movies"
+        headers = {
+            "Authorization": f"LOW {IA_ACCESS_KEY}:{IA_SECRET_KEY}",
+            "x-archive-auto-make-bucket": "1",
+            "x-archive-ignore-preexisting-bucket": "1",
+            "x-archive-meta-mediatype": mediatype,
+            "x-archive-meta-title": title,
+            "x-archive-meta-language": "fre",
+            "x-archive-meta-creator": "Botiran",
+            "x-archive-meta-subject": subject,
+            "Content-Type": "audio/mpeg" if local_path.suffix == ".mp3" else "video/mp4",
+        }
+        if description:
+            headers["x-archive-meta-description"] = description
+        print(f"   🏛️  archive.org upload → {identifier}/{filename}…")
+        with open(local_path, "rb") as f:
+            resp = _req.put(url, data=f, headers=headers, timeout=300)
+        resp.raise_for_status()
+        public_url = f"https://archive.org/download/{identifier}/{filename}"
+        print(f"   🏛️  archive.org → {public_url}")
+        return public_url
+    except Exception as e:
+        print(f"   ⚠️  archive.org upload échoué (non bloquant) : {e}")
+        return None
+
+
+def _rfc2822(dt: datetime) -> str:
+    return dt.strftime("%a, %d %b %Y %H:%M:%S +0000")
+
+
+def _update_podcast_rss(
+    rss_path: Path,
+    channel_title: str,
+    channel_desc: str,
+    episode_title: str,
+    episode_desc: str,
+    audio_url: str,
+    audio_size: int,
+    duration_s: float,
+    guid: str,
+    pub_date: datetime,
+) -> None:
+    """Insère un épisode en tête du flux RSS podcast (iTunes-compatible)."""
+    import re as _re_rss
+    existing: list[str] = []
+    if rss_path.exists():
+        existing = _re_rss.findall(r"<item>.*?</item>", rss_path.read_text(encoding="utf-8"), _re_rss.DOTALL)
+
+    mins, secs = divmod(int(duration_s), 60)
+    new_item = (
+        f"    <item>\n"
+        f"      <title>{episode_title}</title>\n"
+        f"      <description><![CDATA[{episode_desc}]]></description>\n"
+        f"      <pubDate>{_rfc2822(pub_date)}</pubDate>\n"
+        f"      <enclosure url=\"{audio_url}\" length=\"{audio_size}\" type=\"audio/mpeg\"/>\n"
+        f"      <guid isPermaLink=\"false\">{guid}</guid>\n"
+        f"      <itunes:duration>{mins:02d}:{secs:02d}</itunes:duration>\n"
+        f"    </item>"
+    )
+    items_block = "\n\n".join([new_item] + existing[:199])
+    rss_path.parent.mkdir(parents=True, exist_ok=True)
+    rss_path.write_text(
+        f'<?xml version="1.0" encoding="UTF-8"?>\n'
+        f'<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">\n'
+        f'  <channel>\n'
+        f'    <title>{channel_title}</title>\n'
+        f'    <link>https://famibelle.github.io/FlashInfoKarukera/</link>\n'
+        f'    <description>{channel_desc}</description>\n'
+        f'    <language>fr</language>\n'
+        f'    <copyright>© Botiran</copyright>\n'
+        f'    <itunes:author>Botiran</itunes:author>\n'
+        f'    <itunes:category text="News"/>\n'
+        f'    <itunes:explicit>no</itunes:explicit>\n\n'
+        f'{items_block}\n\n'
+        f'  </channel>\n'
+        f'</rss>\n',
+        encoding="utf-8",
+    )
+    print(f"   📻 RSS mis à jour → {rss_path.name} ({len(existing) + 1} épisodes)")
+
+
 # ── Étape 4 : Envoi Telegram ──────────────────────────────────────────────────
 
 def send_telegram(audio_path: Path, caption: str) -> None:
@@ -3384,11 +3486,35 @@ def main():
     if items:
         save_used_titles(target_date, [it["title"] for it in items])
 
-    title = f"Flash Info Guadeloupe — {date_str}, édition du {edition}"
+    title      = f"Flash Info Guadeloupe — {date_str}, édition du {edition}"
+    intro_text = segments[0].strip() if segments else ""
 
-    # ── Cloudflare R2 — audio ─────────────────────────────────────────────────
+    # ── Backblaze B2 — audio ──────────────────────────────────────────────────
     b2_key_audio = f"flash-info/{target_date.strftime('%Y/%m')}/{output_path.name}"
     _upload_to_b2(output_path, b2_key_audio)
+
+    # ── Internet Archive — audio + RSS ────────────────────────────────────────
+    ia_identifier = f"botiran-flash-info-{target_date.strftime('%Y-%m')}"
+    ia_url = _upload_to_archive_org(
+        output_path,
+        identifier=ia_identifier,
+        title=title,
+        description=intro_text,
+        subject="guadeloupe;flash info;actualités;karukera;antilles;botiran",
+    )
+    if ia_url:
+        _update_podcast_rss(
+            rss_path=PODCAST_RSS_PATH,
+            channel_title="L'actualité de la Guadeloupe",
+            channel_desc="Le flash info de la Guadeloupe — matin, midi et soir par Botiran",
+            episode_title=title,
+            episode_desc=intro_text,
+            audio_url=ia_url,
+            audio_size=output_path.stat().st_size,
+            duration_s=_stinger_duration(output_path),
+            guid=output_path.stem,
+            pub_date=datetime.utcnow(),
+        )
 
     if args.tiktok or args.youtube or args.linkedin or args.instagram or args.twitter:
         video_dir = OUTPUT_DIR / f"tiktok-{edition}-{now.strftime('%Y%m%d-%H%M')}"
@@ -3433,7 +3559,6 @@ def main():
                                              has_meteo=weather is not None,
                                              horoscope_signs=horoscope_signs,
                                              prenoms_du_jour=prenoms_du_jour)
-        intro_text = segments[0].strip() if segments else ""
         video_metadata = {
             "title":       title,
             "artist":      "Botiran",

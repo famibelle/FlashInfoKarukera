@@ -47,6 +47,9 @@ B2_APPLICATION_KEY = os.environ.get("B2_APPLICATION_KEY", "")
 B2_BUCKET_NAME     = os.environ.get("B2_BUCKET_NAME", "")
 B2_ENDPOINT        = os.environ.get("B2_ENDPOINT", "")  # ex: https://s3.us-west-004.backblazeb2.com
 
+IA_ACCESS_KEY = os.environ.get("IA_ACCESS_KEY", "")
+IA_SECRET_KEY = os.environ.get("IA_SECRET_KEY", "")
+
 TTS_MODEL           = "voxtral-mini-tts-2603"
 STT_MODEL           = "voxtral-mini-latest"
 TTS_VOICE_DEFAULT   = "fr_marie_neutral"
@@ -68,6 +71,8 @@ STINGERS_DIR = Path(__file__).parent / "Stingers"
 PROMPTS_DIR  = Path(__file__).parent / "prompts"
 DATA_DIR     = Path(__file__).parent / "data"
 ARCHIVES_DIR = Path(__file__).parent / "archives" / "horoscope"
+DOCS_DIR     = Path(__file__).parent / "docs"
+HOROSCOPE_RSS_PATH = DOCS_DIR / "horoscope.xml"
 USED_FLORA_PATH = DATA_DIR / "used_flora.json"
 FLORA_MEMORY_DAYS = 7  # fenêtre glissante d'anti-répétition
 MEDIA_DIR    = Path(__file__).parent / "Media"
@@ -1395,6 +1400,100 @@ def _upload_to_b2(local_path: Path, remote_key: str) -> str | None:
         return None
 
 
+# ── Internet Archive (archive.org) ────────────────────────────────────────────
+
+def _upload_to_archive_org(
+    local_path: Path,
+    identifier: str,
+    title: str,
+    description: str = "",
+    subject: str = "guadeloupe;podcast;karukera",
+) -> str | None:
+    if not all([IA_ACCESS_KEY, IA_SECRET_KEY]):
+        return None
+    try:
+        import requests as _req
+        filename = local_path.name
+        url = f"https://s3.us.archive.org/{identifier}/{filename}"
+        mediatype = "audio" if local_path.suffix == ".mp3" else "movies"
+        headers = {
+            "Authorization": f"LOW {IA_ACCESS_KEY}:{IA_SECRET_KEY}",
+            "x-archive-auto-make-bucket": "1",
+            "x-archive-ignore-preexisting-bucket": "1",
+            "x-archive-meta-mediatype": mediatype,
+            "x-archive-meta-title": title,
+            "x-archive-meta-language": "fre",
+            "x-archive-meta-creator": "Botiran",
+            "x-archive-meta-subject": subject,
+            "Content-Type": "audio/mpeg" if local_path.suffix == ".mp3" else "video/mp4",
+        }
+        if description:
+            headers["x-archive-meta-description"] = description
+        print(f"   🏛️  archive.org upload → {identifier}/{filename}…")
+        with open(local_path, "rb") as f:
+            resp = _req.put(url, data=f, headers=headers, timeout=300)
+        resp.raise_for_status()
+        public_url = f"https://archive.org/download/{identifier}/{filename}"
+        print(f"   🏛️  archive.org → {public_url}")
+        return public_url
+    except Exception as e:
+        print(f"   ⚠️  archive.org upload échoué (non bloquant) : {e}")
+        return None
+
+
+def _rfc2822(dt: "DateTime") -> str:
+    return dt.strftime("%a, %d %b %Y %H:%M:%S +0000")
+
+
+def _update_podcast_rss(
+    rss_path: Path,
+    channel_title: str,
+    channel_desc: str,
+    episode_title: str,
+    episode_desc: str,
+    audio_url: str,
+    audio_size: int,
+    duration_s: float,
+    guid: str,
+    pub_date: "DateTime",
+) -> None:
+    import re as _re_rss
+    existing: list[str] = []
+    if rss_path.exists():
+        existing = _re_rss.findall(r"<item>.*?</item>", rss_path.read_text(encoding="utf-8"), _re_rss.DOTALL)
+    mins, secs = divmod(int(duration_s), 60)
+    new_item = (
+        f"    <item>\n"
+        f"      <title>{episode_title}</title>\n"
+        f"      <description><![CDATA[{episode_desc}]]></description>\n"
+        f"      <pubDate>{_rfc2822(pub_date)}</pubDate>\n"
+        f"      <enclosure url=\"{audio_url}\" length=\"{audio_size}\" type=\"audio/mpeg\"/>\n"
+        f"      <guid isPermaLink=\"false\">{guid}</guid>\n"
+        f"      <itunes:duration>{mins:02d}:{secs:02d}</itunes:duration>\n"
+        f"    </item>"
+    )
+    items_block = "\n\n".join([new_item] + existing[:199])
+    rss_path.parent.mkdir(parents=True, exist_ok=True)
+    rss_path.write_text(
+        f'<?xml version="1.0" encoding="UTF-8"?>\n'
+        f'<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">\n'
+        f'  <channel>\n'
+        f'    <title>{channel_title}</title>\n'
+        f'    <link>https://famibelle.github.io/FlashInfoKarukera/</link>\n'
+        f'    <description>{channel_desc}</description>\n'
+        f'    <language>fr</language>\n'
+        f'    <copyright>© Botiran</copyright>\n'
+        f'    <itunes:author>Botiran</itunes:author>\n'
+        f'    <itunes:category text="News"/>\n'
+        f'    <itunes:explicit>no</itunes:explicit>\n\n'
+        f'{items_block}\n\n'
+        f'  </channel>\n'
+        f'</rss>\n',
+        encoding="utf-8",
+    )
+    print(f"   📻 RSS mis à jour → {rss_path.name} ({len(existing) + 1} épisodes)")
+
+
 # ── Telegram ──────────────────────────────────────────────────────────────────
 
 def _compress_video(video_path: Path, target_mb: float = 45.0) -> Path:
@@ -1833,9 +1932,34 @@ def main():
     _assemble_audio(all_audio, stinger, output_path)
     print(f"✅ Horoscope sauvegardé : {output_path}")
 
-    # ── Cloudflare R2 — audio ─────────────────────────────────────────────────
+    # ── Backblaze B2 — audio ──────────────────────────────────────────────────
     b2_key_audio = f"horoscope/{gen_date.strftime('%Y/%m')}/{output_path.name}"
     _upload_to_b2(output_path, b2_key_audio)
+
+    # ── Internet Archive — audio + RSS ────────────────────────────────────────
+    ia_identifier = f"botiran-horoscope-karukera-{gen_date.strftime('%Y-%m')}"
+    edition_emoji = "🌅" if args.edition == "matin" else "🌙"
+    ia_episode_title = f"{edition_emoji} Horoscope {args.edition} — {_date_fr(gen_date)}"
+    ia_url = _upload_to_archive_org(
+        output_path,
+        identifier=ia_identifier,
+        title=ia_episode_title,
+        description=intro_text,
+        subject="guadeloupe;horoscope;astrologie;karukera;antilles;botiran",
+    )
+    if ia_url:
+        _update_podcast_rss(
+            rss_path=HOROSCOPE_RSS_PATH,
+            channel_title="Horoscope Karukera",
+            channel_desc="L'horoscope de la Guadeloupe — matin et soir par Botiran",
+            episode_title=ia_episode_title,
+            episode_desc=intro_text,
+            audio_url=ia_url,
+            audio_size=output_path.stat().st_size,
+            duration_s=_stinger_duration(output_path),
+            guid=output_path.stem,
+            pub_date=DateTime.utcnow(),
+        )
 
     # ── Telegram audio ────────────────────────────────────────────────────────
     if args.telegram:

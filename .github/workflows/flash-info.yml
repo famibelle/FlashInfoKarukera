@@ -167,12 +167,14 @@ jobs:
           B2_APPLICATION_KEY:       ${{ secrets.B2_APPLICATION_KEY }}
           B2_BUCKET_NAME:           ${{ secrets.B2_BUCKET_NAME }}
           B2_ENDPOINT:              ${{ secrets.B2_ENDPOINT }}
+          IA_ACCESS_KEY:            ${{ secrets.IA_ACCESS_KEY }}
+          IA_SECRET_KEY:            ${{ secrets.IA_SECRET_KEY }}
         run: python flash-info-gwada.py ${{ env.FLASH_ARGS }}
 
       - name: Sauvegarder l'anti-répétition et les archives
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions [Flash Info]"
-          git add data/used_articles_*.json archives/flash-info/
-          git diff --cached --quiet || git commit -m "chore: flash info $(date +%Y-%m-%d) — archive + anti-répétition [skip ci]"
+          git add data/used_articles_*.json archives/flash-info/ docs/
+          git diff --cached --quiet || git commit -m "chore: flash info $(date +%Y-%m-%d) — archive + RSS + anti-répétition [skip ci]"
           git push || true
