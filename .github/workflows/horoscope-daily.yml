@@ -46,6 +46,9 @@ jobs:
     timeout-minutes: 15
 
     steps:
+      - name: Configurer les credentials git pour le submodule privé
+        run: git config --global url."https://${{ secrets.PAT_SUBMODULE }}@github.com/".insteadOf "https://github.com/"
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
