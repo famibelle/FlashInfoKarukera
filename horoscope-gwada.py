@@ -68,7 +68,7 @@ MISTRAL_CHAT_URL    = "https://api.mistral.ai/v1/chat/completions"
 
 OUTPUT_DIR   = Path("/tmp")
 STINGERS_DIR = Path(__file__).parent / "Stingers"
-PROMPTS_DIR  = Path(__file__).parent / "prompts"
+PROMPTS_DIR  = Path(__file__).parent / "private" / "prompts"
 DATA_DIR     = Path(__file__).parent / "data"
 ARCHIVES_DIR = Path(__file__).parent / "archives" / "horoscope"
 DOCS_DIR     = Path(__file__).parent / "docs"

@@ -38,7 +38,7 @@ _load_env(Path(__file__).parent / ".env")
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-from data.sources import RSS_FEEDS, RSS_SOURCES
+from private.data.sources import RSS_FEEDS, RSS_SOURCES
 
 _FEED_CATEGORY: dict[str, str] = {s.url: s.category for s in RSS_SOURCES}
 MAX_ITEMS      = 7     # 7 sujets → ~2m-2m30 audio
@@ -96,7 +96,7 @@ ARCHIVE_IDENTIFIER = os.environ.get("ARCHIVE_IDENTIFIER", "")
 
 OUTPUT_DIR      = Path("/tmp")
 STINGERS_DIR    = Path(__file__).parent / "Stingers"
-PROMPTS_DIR     = Path(__file__).parent / "prompts"
+PROMPTS_DIR     = Path(__file__).parent / "private" / "prompts"
 MEDIA_DIR       = Path(__file__).parent / "Media"
 DATA_DIR        = Path(__file__).parent / "data"
 ARCHIVES_DIR    = Path(__file__).parent / "archives" / "flash-info"
