@@ -1413,6 +1413,9 @@ def _upload_to_archive_org(
         return None
     try:
         import requests as _req
+        # Les headers HTTP doivent être ASCII — on encode en UTF-8 puis on passe en bytes
+        def _h(s: str) -> bytes:
+            return s.encode("utf-8")
         filename = local_path.name
         url = f"https://s3.us.archive.org/{identifier}/{filename}"
         mediatype = "audio" if local_path.suffix == ".mp3" else "movies"
@@ -1421,14 +1424,14 @@ def _upload_to_archive_org(
             "x-archive-auto-make-bucket": "1",
             "x-archive-ignore-preexisting-bucket": "1",
             "x-archive-meta-mediatype": mediatype,
-            "x-archive-meta-title": title,
+            "x-archive-meta-title": _h(title),
             "x-archive-meta-language": "fre",
             "x-archive-meta-creator": "Botiran",
             "x-archive-meta-subject": subject,
             "Content-Type": "audio/mpeg" if local_path.suffix == ".mp3" else "video/mp4",
         }
         if description:
-            headers["x-archive-meta-description"] = description
+            headers["x-archive-meta-description"] = _h(description)
         print(f"   🏛️  archive.org upload → {identifier}/{filename}…")
         with open(local_path, "rb") as f:
             resp = _req.put(url, data=f, headers=headers, timeout=300)
