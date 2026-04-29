@@ -1790,7 +1790,12 @@ def _upload_to_archive_org(
         print(f"   🏛️  archive.org → {public_url}")
         return public_url
     except Exception as e:
-        print(f"   ⚠️  archive.org upload échoué (non bloquant) : {e}")
+        body = ""
+        try:
+            body = f" — {resp.text[:300]}"
+        except Exception:
+            pass
+        print(f"   ⚠️  archive.org upload échoué (non bloquant) : {e}{body}")
         return None
 
 
