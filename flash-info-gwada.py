@@ -3578,6 +3578,13 @@ def main():
         print(f"   Vidéo complète : {full_video_path} ({full_video_path.stat().st_size // 1024 // 1024} Mo)")
         b2_key_video = f"flash-info/{target_date.strftime('%Y/%m')}/{full_video_path.name}"
         _upload_to_b2(full_video_path, b2_key_video)
+        _upload_to_archive_org(
+            full_video_path,
+            identifier=ia_identifier,
+            title=title,
+            description=intro_text,
+            subject="guadeloupe;flash info;vidéo;karukera;antilles;botiran",
+        )
 
         # Hashtags agrégés (dédupliqués, ordre d'apparition)
         seen, all_hashtags = set(), []

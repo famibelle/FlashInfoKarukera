@@ -2010,6 +2010,13 @@ def main():
                 print(f"🎬 Vidéo horoscope : {concat_video}")
                 b2_key_video = f"horoscope/{gen_date.strftime('%Y/%m')}/{concat_video.name}"
                 _upload_to_b2(concat_video, b2_key_video)
+                _upload_to_archive_org(
+                    concat_video,
+                    identifier=ia_identifier,
+                    title=ia_episode_title,
+                    description=intro_text,
+                    subject="guadeloupe;horoscope;vidéo;karukera;antilles;botiran",
+                )
                 send_telegram_video(
                     concat_video,
                     f"{edition_emoji} Horoscope {args.edition} — {_date_fr(gen_date)}",
