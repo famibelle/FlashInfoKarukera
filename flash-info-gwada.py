@@ -91,8 +91,8 @@ B2_APPLICATION_KEY = os.environ.get("B2_APPLICATION_KEY", "")
 B2_BUCKET_NAME     = os.environ.get("B2_BUCKET_NAME", "")
 B2_ENDPOINT        = os.environ.get("B2_ENDPOINT", "")  # ex: https://s3.us-west-004.backblazeb2.com
 
-IA_ACCESS_KEY = os.environ.get("IA_ACCESS_KEY", "")
-IA_SECRET_KEY = os.environ.get("IA_SECRET_KEY", "")
+ARCHIVE_ACCESS_KEY = os.environ.get("ARCHIVE_ACCESS_KEY", "")
+ARCHIVE_IDENTIFIER = os.environ.get("ARCHIVE_IDENTIFIER", "")
 
 OUTPUT_DIR      = Path("/tmp")
 STINGERS_DIR    = Path(__file__).parent / "Stingers"
@@ -1759,7 +1759,7 @@ def _upload_to_archive_org(
     subject: str = "guadeloupe;podcast;karukera",
 ) -> str | None:
     """Upload vers archive.org via l'API S3. Non bloquant si non configuré."""
-    if not all([IA_ACCESS_KEY, IA_SECRET_KEY]):
+    if not all([ARCHIVE_ACCESS_KEY, ARCHIVE_IDENTIFIER]):
         return None
     try:
         import requests as _req
@@ -1767,7 +1767,7 @@ def _upload_to_archive_org(
         url = f"https://s3.us.archive.org/{identifier}/{filename}"
         mediatype = "audio" if local_path.suffix == ".mp3" else "movies"
         headers = {
-            "Authorization": f"LOW {IA_ACCESS_KEY}:{IA_SECRET_KEY}",
+            "Authorization": f"LOW {ARCHIVE_ACCESS_KEY}:{ARCHIVE_IDENTIFIER}",
             "x-archive-auto-make-bucket": "1",
             "x-archive-ignore-preexisting-bucket": "1",
             "x-archive-meta-mediatype": mediatype,
