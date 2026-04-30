@@ -1431,7 +1431,7 @@ def _upload_to_archive_org(
             "Content-Type": "audio/mpeg" if local_path.suffix == ".mp3" else "video/mp4",
         }
         if description:
-            headers["x-archive-meta-description"] = _h(description)
+            headers["x-archive-meta-description"] = _h(description[:500])
         print(f"   🏛️  archive.org upload → {identifier}/{filename}…")
         resp = None
         for attempt in range(4):
