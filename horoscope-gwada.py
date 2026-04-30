@@ -1601,7 +1601,8 @@ def send_telegram_video(
     video_path: Path,
     caption: str,
     timeout: int = 180,
-) -> None:
+    reply_to_message_id: int | None = None,
+) -> int | None:
     size_mb = video_path.stat().st_size / 1_048_576
     print(f"   Upload Telegram : {video_path.name} ({size_mb:.1f} Mo)…")
     if size_mb > TELEGRAM_VIDEO_MAX_MB:
@@ -1610,7 +1611,7 @@ def send_telegram_video(
         size_mb = video_path.stat().st_size / 1_048_576
         if size_mb > TELEGRAM_VIDEO_MAX_MB:
             print(f"   ⚠️  Toujours trop volumineuse après compression ({size_mb:.1f} Mo) — upload ignoré.")
-            return
+            return None
 
     boundary = "----FlashInfoBoundary"
 
@@ -1629,6 +1630,8 @@ def send_telegram_video(
         ).encode() + data + b"\r\n"
 
     body = field("chat_id", TELEGRAM_CHAT_ID) + field("caption", caption)
+    if reply_to_message_id is not None:
+        body += field("reply_to_message_id", str(reply_to_message_id))
     body += file_field("video", video_path.name, "video/mp4", video_path.read_bytes())
     body += f"--{boundary}--\r\n".encode()
 
@@ -1644,7 +1647,7 @@ def send_telegram_video(
             if not result.get("ok"):
                 raise RuntimeError(f"Telegram video error: {result}")
             print(f"   {video_path.name} envoyé ✅")
-            return
+            return result.get("result", {}).get("message_id")
         except (urllib.error.URLError, ConnectionResetError, TimeoutError) as exc:
             if attempt < 3:
                 wait = 10 * attempt
@@ -1652,12 +1655,14 @@ def send_telegram_video(
                 time.sleep(wait)
             else:
                 raise
+    return None
 
 def send_telegram_audio(
     audio_path: Path,
     caption: str,
     timeout: int = 120,
-) -> None:
+    reply_to_message_id: int | None = None,
+) -> int | None:
     size_mb = audio_path.stat().st_size / 1_048_576
     print(f"   Upload Telegram audio : {audio_path.name} ({size_mb:.1f} Mo)…")
 
@@ -1678,6 +1683,8 @@ def send_telegram_audio(
         ).encode() + data + b"\r\n"
 
     body = field("chat_id", TELEGRAM_CHAT_ID) + field("caption", caption)
+    if reply_to_message_id is not None:
+        body += field("reply_to_message_id", str(reply_to_message_id))
     body += file_field("audio", audio_path.name, "audio/mpeg", audio_path.read_bytes())
     body += f"--{boundary}--\r\n".encode()
 
@@ -1693,7 +1700,7 @@ def send_telegram_audio(
             if not result.get("ok"):
                 raise RuntimeError(f"Telegram audio error: {result}")
             print(f"   {audio_path.name} envoyé ✅")
-            return
+            return result.get("result", {}).get("message_id")
         except (urllib.error.URLError, ConnectionResetError, TimeoutError) as exc:
             if attempt < 3:
                 wait = 10 * attempt
@@ -1701,6 +1708,7 @@ def send_telegram_audio(
                 time.sleep(wait)
             else:
                 raise
+    return None
 
 
 # ── Buzzsprout ────────────────────────────────────────────────────────────────
@@ -2048,28 +2056,15 @@ def main():
     else:
         print("   ⚠️  podcast.xml non mis à jour (aucune URL audio disponible)")
 
-    # ── Telegram audio ────────────────────────────────────────────────────────
-    if args.telegram:
-        try:
-            signs_label = ", ".join(signs_fr)
-            edition_emoji = "🌅" if args.edition == "matin" else "🌙"
-            tg_audio_caption = (
-                f"{edition_emoji} Horoscope {args.edition} — {_date_fr(gen_date)}\n"
-                f"{signs_label}\n\n{intro_text}"
-            ).strip()
-            if len(tg_audio_caption) > 1024:
-                tg_audio_caption = tg_audio_caption[:1021] + "…"
-            send_telegram_audio(output_path, tg_audio_caption)
-        except Exception as _e:
-            print(f"⚠️  Telegram audio échoué (non bloquant) : {_e}")
+    main_msg_id: int | None = None
+    edition_emoji = "🌅" if args.edition == "matin" else "🌙"
 
-    # ── Vidéo TikTok + Telegram ───────────────────────────────────────────────
+    # ── Vidéo TikTok + Telegram (post principal) ──────────────────────────────
     if args.tiktok:
         try:
             video_dir = output_path.parent / f"horoscope-{args.edition}-{gen_date.strftime('%Y%m%d')}"
             all_sign_tags   = list(dict.fromkeys(t for tags in signs_hashtags for t in tags))
             tiktok_hashtags = HOROSCOPE_HASHTAGS_BASE + all_sign_tags
-            edition_emoji = "🌅" if args.edition == "matin" else "🌙"
             video_metadata = {
                 "title":       f"{edition_emoji} Horoscope Karukera — {date_label}",
                 "artist":      "Botiran",
@@ -2104,12 +2099,27 @@ def main():
                     description=intro_text,
                     subject="guadeloupe;horoscope;vidéo;karukera;antilles;botiran",
                 )
-                send_telegram_video(
+                print("📤 Envoi vidéo horoscope sur Telegram (post principal)…")
+                main_msg_id = send_telegram_video(
                     concat_video,
                     f"{edition_emoji} Horoscope {args.edition} — {_date_fr(gen_date)}",
                 )
         except Exception as _e:
             print(f"⚠️  TikTok/Telegram échoué (non bloquant) : {_e}")
+
+    # ── Telegram audio (reply au post vidéo si disponible) ───────────────────
+    if args.telegram:
+        try:
+            signs_label = ", ".join(signs_fr)
+            tg_audio_caption = (
+                f"{edition_emoji} Horoscope {args.edition} — {_date_fr(gen_date)}\n"
+                f"{signs_label}\n\n{intro_text}"
+            ).strip()
+            if len(tg_audio_caption) > 1024:
+                tg_audio_caption = tg_audio_caption[:1021] + "…"
+            send_telegram_audio(output_path, tg_audio_caption, reply_to_message_id=main_msg_id)
+        except Exception as _e:
+            print(f"⚠️  Telegram audio échoué (non bloquant) : {_e}")
 
     # ── Buzzsprout ────────────────────────────────────────────────────────────
     if not args.dry_run and not args.no_send and BUZZSPROUT_API_TOKEN and BUZZSPROUT_PODCAST_ID:

@@ -1928,10 +1928,9 @@ def _update_podcast_rss(
 
 # ── Étape 4 : Envoi Telegram ──────────────────────────────────────────────────
 
-def send_telegram(audio_path: Path, caption: str) -> None:
-    print(f"📤 Envoi Telegram (chat_id={TELEGRAM_CHAT_ID})...")
+def send_telegram(audio_path: Path, caption: str, reply_to_message_id: int | None = None) -> int | None:
+    print(f"📤 Envoi Telegram audio (chat_id={TELEGRAM_CHAT_ID})...")
     boundary = "----FlashInfoBoundary"
-    body_parts = []
 
     def field(name, value):
         return (
@@ -1944,7 +1943,9 @@ def send_telegram(audio_path: Path, caption: str) -> None:
     body += field("chat_id", TELEGRAM_CHAT_ID)
     body += field("caption", caption)
     body += field("title", "Flash info Guadeloupe")
-    body += field("performer", "Équipe Toutmoun")
+    body += field("performer", "Botiran")
+    if reply_to_message_id:
+        body += field("reply_to_message_id", str(reply_to_message_id))
 
     audio_data = audio_path.read_bytes()
     body += (
@@ -1965,6 +1966,7 @@ def send_telegram(audio_path: Path, caption: str) -> None:
     if not result.get("ok"):
         raise RuntimeError(f"Telegram error: {result}")
     print("   Envoyé ✅")
+    return result.get("result", {}).get("message_id")
 
 
 def send_telegram_photo(photo_path: Path, caption: str = "") -> None:
@@ -2008,12 +2010,13 @@ def send_telegram_video(
     caption: str,
     timeout: int = 180,
     thumbnail_path: "Path | None" = None,
-) -> None:
+    reply_to_message_id: int | None = None,
+) -> int | None:
     size_mb = video_path.stat().st_size / 1_048_576
     print(f"   Upload Telegram : {video_path.name} ({size_mb:.1f} Mo)…")
     if size_mb > TELEGRAM_VIDEO_MAX_MB:
         print(f"   ⚠️  Vidéo trop volumineuse ({size_mb:.1f} Mo > {TELEGRAM_VIDEO_MAX_MB} Mo) — upload ignoré.")
-        return
+        return None
 
     boundary = "----FlashInfoBoundary"
 
@@ -2032,6 +2035,8 @@ def send_telegram_video(
         ).encode() + data + b"\r\n"
 
     body = field("chat_id", TELEGRAM_CHAT_ID) + field("caption", caption)
+    if reply_to_message_id:
+        body += field("reply_to_message_id", str(reply_to_message_id))
     body += file_field("video", video_path.name, "video/mp4", video_path.read_bytes())
     if thumbnail_path and thumbnail_path.exists():
         body += file_field("thumbnail", thumbnail_path.name, "image/png", thumbnail_path.read_bytes())
@@ -2050,7 +2055,7 @@ def send_telegram_video(
             if not result.get("ok"):
                 raise RuntimeError(f"Telegram video error: {result}")
             print(f"   {video_path.name} envoyé ✅")
-            return
+            return result.get("result", {}).get("message_id")
         except (urllib.error.URLError, ConnectionResetError, TimeoutError) as exc:
             if attempt < 3:
                 wait = 10 * attempt
@@ -2058,6 +2063,7 @@ def send_telegram_video(
                 time.sleep(wait)
             else:
                 raise
+    return None
 
 
 # ── Étape 5 : Publication Buzzsprout → Spotify ───────────────────────────────
@@ -3608,6 +3614,8 @@ def main():
         subject="guadeloupe;flash info;actualités;karukera;antilles;botiran",
     )
 
+    main_msg_id: int | None = None
+
     if args.tiktok or args.youtube or args.linkedin or args.instagram or args.twitter:
         video_dir = OUTPUT_DIR / f"tiktok-{edition}-{now.strftime('%Y%m%d-%H%M')}"
         videos = generate_tiktok(seg_paths, segments, tones, video_dir,
@@ -3622,15 +3630,8 @@ def main():
 
         n_seg = len(segments)
 
-        if args.tiktok:
-            print("📤 Envoi des vidéos sur Telegram...")
-            for idx, video_path in videos:
-                if idx == 0 or idx == n_seg - 1:
-                    tg_label = "INTRO" if idx == 0 else "OUTRO"
-                    send_telegram_video(video_path, f"🎬 {title} — {tg_label}")
-                else:
-                    caption = _tiktok_caption(segments[idx], idx, n_seg, date_str)
-                    send_telegram_video(video_path, caption)
+        # Segment videos stockés pour envoi en reply après la vidéo intégrale
+        _segment_videos = [(idx, vp) for idx, vp in videos if idx != 0 and idx != n_seg - 1]
 
         if args.youtube:
             print("▶️  Publication YouTube Shorts...")
@@ -3703,14 +3704,20 @@ def main():
                 )
         if thumbnail_path:
             _embed_thumbnail(full_video_path, thumbnail_path)
-            print("📤 Envoi thumbnail sur Telegram…")
-            send_telegram_photo(thumbnail_path, caption=f"🖼️ {title}")
-        full_caption = f"🎙️ {title}\n\n{intro_text}\n\n{hashtags_line}".strip()
+
+        headlines = "\n".join(f"• {it['title']}" for it in items if it.get("title"))
+        full_caption = f"🎙️ {title}\n\n{headlines}\n\n{hashtags_line}".strip()
         if len(full_caption) > 1024:
             full_caption = full_caption[:1021] + "…"
 
-        print("📤 Envoi vidéo complète sur Telegram…")
-        send_telegram_video(full_video_path, full_caption, timeout=300, thumbnail_path=thumbnail_path)
+        print("📤 Envoi vidéo complète sur Telegram (post principal)…")
+        main_msg_id = send_telegram_video(full_video_path, full_caption, timeout=300, thumbnail_path=thumbnail_path)
+
+        if args.tiktok and _segment_videos:
+            print("📤 Envoi des segments en reply…")
+            for idx, video_path in _segment_videos:
+                caption = _tiktok_caption(segments[idx], idx, n_seg, date_str)
+                send_telegram_video(video_path, caption, reply_to_message_id=main_msg_id)
 
         if args.youtube:
             print("▶️  Upload YouTube vidéo complète…")
@@ -3749,7 +3756,7 @@ def main():
     tg_audio_caption = f"🎙️ {title}\n\n{intro_text}".strip()
     if len(tg_audio_caption) > 1024:
         tg_audio_caption = tg_audio_caption[:1021] + "…"
-    send_telegram(output_path, tg_audio_caption)
+    send_telegram(output_path, tg_audio_caption, reply_to_message_id=main_msg_id)
 
     if args.dry_run:
         print(f"--dry-run : audio généré et envoyé sur Telegram. Arrêt avant Buzzsprout/X.")
