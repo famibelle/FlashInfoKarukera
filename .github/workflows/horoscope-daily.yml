@@ -121,7 +121,7 @@ jobs:
           B2_BUCKET_NAME:        ${{ secrets.B2_BUCKET_NAME }}
           B2_ENDPOINT:           ${{ secrets.B2_ENDPOINT }}
           ARCHIVE_ACCESS_KEY:         ${{ secrets.ARCHIVE_ACCESS_KEY }}
-          ARCHIVE_IDENTIFIER:         ${{ secrets.ARCHIVE_IDENTIFIER }}
+          ARCHIVE_SECRET_KEY:         ${{ secrets.ARCHIVE_SECRET_KEY }}
         run: python horoscope-gwada.py ${{ env.HORO_ARGS }}
 
       - name: Sauvegarder l'anti-répétition flore et les archives
