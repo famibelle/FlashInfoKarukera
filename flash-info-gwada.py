@@ -1832,6 +1832,7 @@ def _update_podcast_rss(
         f"      <itunes:duration>{mins:02d}:{secs:02d}</itunes:duration>\n"
         f"    </item>"
     )
+    artwork = "https://famibelle.github.io/FlashInfoKarukera/artwork.jpg"
     items_block = "\n\n".join([new_item] + existing[:199])
     rss_path.parent.mkdir(parents=True, exist_ok=True)
     rss_path.write_text(
@@ -1844,7 +1845,10 @@ def _update_podcast_rss(
         f'    <language>fr</language>\n'
         f'    <copyright>© Botiran</copyright>\n'
         f'    <itunes:author>Botiran</itunes:author>\n'
-        f'    <itunes:category text="News"/>\n'
+        f'    <itunes:owner><itunes:name>Botiran</itunes:name><itunes:email>medhi.famibelle@gmail.com</itunes:email></itunes:owner>\n'
+        f'    <itunes:image href="{artwork}"/>\n'
+        f'    <image><url>{artwork}</url><title>{channel_title}</title><link>https://famibelle.github.io/FlashInfoKarukera/</link></image>\n'
+        f'    <itunes:category text="News"><itunes:category text="Daily News"/></itunes:category>\n'
         f'    <itunes:explicit>no</itunes:explicit>\n\n'
         f'{items_block}\n\n'
         f'  </channel>\n'
