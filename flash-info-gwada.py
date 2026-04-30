@@ -1845,7 +1845,7 @@ def _update_podcast_rss(
         f'    <language>fr</language>\n'
         f'    <copyright>© Botiran</copyright>\n'
         f'    <itunes:author>Botiran</itunes:author>\n'
-        f'    <itunes:owner><itunes:name>Botiran</itunes:name><itunes:email>medhi.famibelle@gmail.com</itunes:email></itunes:owner>\n'
+        f'    <itunes:owner><itunes:name>Botiran</itunes:name><itunes:email>medhi.famibelle@outlook.fr</itunes:email></itunes:owner>\n'
         f'    <itunes:image href="{artwork}"/>\n'
         f'    <image><url>{artwork}</url><title>{channel_title}</title><link>https://famibelle.github.io/FlashInfoKarukera/</link></image>\n'
         f'    <itunes:category text="News"><itunes:category text="Daily News"/></itunes:category>\n'
