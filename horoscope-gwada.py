@@ -50,6 +50,9 @@ B2_ENDPOINT        = os.environ.get("B2_ENDPOINT", "")  # ex: https://s3.us-west
 ARCHIVE_ACCESS_KEY = os.environ.get("ARCHIVE_ACCESS_KEY", "")
 ARCHIVE_SECRET_KEY = os.environ.get("ARCHIVE_SECRET_KEY", "")
 
+GITHUB_TOKEN     = os.environ.get("GITHUB_TOKEN", "")
+GITHUB_REPO      = "famibelle/FlashInfoKarukera"
+
 TTS_MODEL           = "voxtral-mini-tts-2603"
 STT_MODEL           = "voxtral-mini-latest"
 TTS_VOICE_DEFAULT   = "fr_marie_neutral"
@@ -1400,6 +1403,59 @@ def _upload_to_b2(local_path: Path, remote_key: str) -> str | None:
         return None
 
 
+# ── GitHub Releases ───────────────────────────────────────────────────────────
+
+def _upload_to_github_release(local_path: Path, tag: str, release_name: str) -> str | None:
+    """Upload un MP3 vers une GitHub Release (publique). Crée la release si nécessaire."""
+    if not GITHUB_TOKEN:
+        return None
+    try:
+        import requests as _req
+        api = "https://api.github.com"
+        headers = {
+            "Authorization": f"Bearer {GITHUB_TOKEN}",
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+        }
+        r = _req.get(f"{api}/repos/{GITHUB_REPO}/releases/tags/{tag}", headers=headers, timeout=15)
+        if r.status_code == 200:
+            release = r.json()
+        else:
+            r = _req.post(f"{api}/repos/{GITHUB_REPO}/releases", headers=headers, timeout=15, json={
+                "tag_name": tag,
+                "name": release_name,
+                "body": f"Épisodes audio — {release_name}",
+                "prerelease": False,
+                "draft": False,
+            })
+            r.raise_for_status()
+            release = r.json()
+
+        upload_url = release["upload_url"].split("{")[0]
+        filename = local_path.name
+
+        for asset in release.get("assets", []):
+            if asset["name"] == filename:
+                print(f"   📦 GitHub Release → déjà présent : {asset['browser_download_url']}")
+                return asset["browser_download_url"]
+
+        print(f"   📦 GitHub Release upload → {tag}/{filename}…")
+        with open(local_path, "rb") as f:
+            r = _req.post(
+                f"{upload_url}?name={filename}",
+                headers={**headers, "Content-Type": "audio/mpeg"},
+                data=f,
+                timeout=300,
+            )
+        r.raise_for_status()
+        url = r.json()["browser_download_url"]
+        print(f"   📦 GitHub Release → {url}")
+        return url
+    except Exception as e:
+        print(f"   ⚠️  GitHub Release upload échoué (non bloquant) : {e}")
+        return None
+
+
 # ── Internet Archive (archive.org) ────────────────────────────────────────────
 
 def _upload_to_archive_org(
@@ -1956,10 +2012,16 @@ def main():
     b2_key_audio = f"horoscope/{gen_date.strftime('%Y/%m')}/{output_path.name}"
     _upload_to_b2(output_path, b2_key_audio)
 
-    # ── Internet Archive — audio + RSS ────────────────────────────────────────
-    ia_identifier = f"botiran-horoscope-karukera-{gen_date.strftime('%Y-%m')}"
     edition_emoji = "🌅" if args.edition == "matin" else "🌙"
     ia_episode_title = f"{edition_emoji} Horoscope {args.edition} — {_date_fr(gen_date)}"
+
+    # ── GitHub Releases — audio public ───────────────────────────────────────
+    gh_tag = f"horoscope-{gen_date.strftime('%Y-%m')}"
+    gh_release_name = f"Horoscope Karukera — {gen_date.strftime('%B %Y')}"
+    gh_audio_url = _upload_to_github_release(output_path, gh_tag, gh_release_name)
+
+    # ── Internet Archive — audio (non bloquant) ───────────────────────────────
+    ia_identifier = f"botiran-horoscope-karukera-{gen_date.strftime('%Y-%m')}"
     ia_url = _upload_to_archive_org(
         output_path,
         identifier=ia_identifier,
@@ -1967,19 +2029,24 @@ def main():
         description=intro_text,
         subject="guadeloupe;horoscope;astrologie;karukera;antilles;botiran",
     )
-    if ia_url:
+
+    podcast_audio_url = gh_audio_url or ia_url
+    if podcast_audio_url:
         _update_podcast_rss(
             rss_path=HOROSCOPE_RSS_PATH,
             channel_title="Horoscope Karukera",
             channel_desc="L'horoscope de la Guadeloupe — matin et soir par Botiran",
             episode_title=ia_episode_title,
             episode_desc=intro_text,
-            audio_url=ia_url,
+            audio_url=podcast_audio_url,
             audio_size=output_path.stat().st_size,
             duration_s=_stinger_duration(output_path),
             guid=output_path.stem,
             pub_date=DateTime.utcnow(),
         )
+        print(f"   📻 horoscope.xml mis à jour → {podcast_audio_url}")
+    else:
+        print("   ⚠️  horoscope.xml non mis à jour (aucune URL audio disponible)")
 
     # ── Telegram audio ────────────────────────────────────────────────────────
     if args.telegram:
