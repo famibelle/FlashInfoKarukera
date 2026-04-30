@@ -179,6 +179,8 @@ jobs:
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions [Flash Info]"
-          git add data/used_articles_*.json archives/flash-info/ docs/
-          git diff --cached --quiet || git commit -m "chore: flash info $(date +%Y-%m-%d) — archive + RSS + anti-répétition [skip ci]"
+          git add data/used_articles_*.json archives/flash-info/
+          git diff --cached --quiet || git commit -m "chore: flash info $(date +%Y-%m-%d) — archive + anti-répétition [skip ci]"
+          git add docs/
+          git diff --cached --quiet || git commit -m "chore: flash info $(date +%Y-%m-%d) — RSS"
           git push || true
