@@ -930,8 +930,8 @@ def _tiktok_segment_video(seg_path: Path, ass_path: Path, tone: str, output_path
     color_hex = TIKTOK_COLORS.get(tone, "#FFFFFF").lstrip("#")
     audio_path = _trim_silence(seg_path) if TRIM_SILENCE else seg_path
     filter_complex = (
-        f"color=c=black:s=1080x1920:r=30[bg];"
-        f"[0:a]showwaves=s=1080x500:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=30[waves];"
+        f"color=c=black:s=1080x1920:r=24[bg];"
+        f"[0:a]showwaves=s=1080x500:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=24[waves];"
         f"[bg][waves]overlay=0:0[v];"
         f"[v]ass={ass_path}[vout]"
     )
@@ -978,7 +978,7 @@ def _make_cta_interstitial(output_path: Path, stinger: Path) -> Path:
     block_h = len(lines) * line_h
     y_start = (1920 - block_h) // 2 - 40
     filter_parts = [
-        f"color=c=black:s=1080x1920:r=30:d={duration}",
+        f"color=c=black:s=1080x1920:r=24:d={duration}",
         f"drawbox=x=0:y=0:w=1080:h=1920:color=0x1A1A2E@1:t=fill",
     ]
     for i, f in enumerate(line_files):
@@ -1079,7 +1079,7 @@ def _make_horoscope_interstitial(
     sign_file.write_text(sign_fr, encoding="utf-8")
 
     filter_parts = [
-        f"color=c=black:s=1080x1920:r=30:d={duration}",
+        f"color=c=black:s=1080x1920:r=24:d={duration}",
         f"drawtext=text='{label}':"
         f"fontsize={cat_fontsize}:fontcolor=0x{color_hex}:fontfile={_FONT_BOLD}:"
         f"x=(w-tw)/2:y={cat_y}:shadowcolor=black@0.6:shadowx=3:shadowy=3",
@@ -1193,7 +1193,7 @@ def _make_intro_interstitial(
         f.write_text(line, encoding="utf-8")
 
     filter_parts = [
-        f"color=c=black:s=1080x1920:r=30:d={duration}",
+        f"color=c=black:s=1080x1920:r=24:d={duration}",
         f"drawtext=textfile={t1_file}:fontsize={title_fs}:fontcolor=0x{color_hex}:"
         f"fontfile={_FONT_BOLD}:x=(w-tw)/2:y={y_t1}:shadowcolor=black@0.6:shadowx=3:shadowy=3",
         f"drawtext=textfile={t2_file}:fontsize={title_fs}:fontcolor=0x{color_hex}:"

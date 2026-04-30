@@ -1482,7 +1482,7 @@ def _make_interstitial(
     cat_y      = ht_y_start + n_ht * ht_line_h + gap
     wm_y       = cat_y + cat_line_h + 50
 
-    filter_parts = [f"color=c=black:s=1080x1920:r=30:d={duration}"]
+    filter_parts = [f"color=c=black:s=1080x1920:r=24:d={duration}"]
     for i, f in enumerate(ht_files):
         y = ht_y_start + i * ht_line_h
         filter_parts.append(
@@ -1569,7 +1569,7 @@ def _make_cta_interstitial(output_path: Path, stinger: Path) -> Path:
     y_start    = (1920 - block_h) // 2 - 40  # légèrement au-dessus du centre
 
     filter_parts = [
-        f"color=c=black:s=1080x1920:r=30:d={duration}",
+        f"color=c=black:s=1080x1920:r=24:d={duration}",
         f"drawbox=x=0:y=0:w=1080:h=1920:color=0x1A1A2E@1:t=fill",
     ]
     for i, f in enumerate(line_files):
@@ -1663,8 +1663,8 @@ def _tiktok_segment_video(seg_path: Path, ass_path: Path, tone: str, output_path
     color_hex = TIKTOK_COLORS.get(tone, "#FFFFFF").lstrip("#")
     audio_path = _trim_silence(seg_path) if TRIM_SILENCE else seg_path
     filter_complex = (
-        f"color=c=black:s=1080x1920:r=30[bg];"
-        f"[0:a]showwaves=s=1080x500:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=30[waves];"
+        f"color=c=black:s=1080x1920:r=24[bg];"
+        f"[0:a]showwaves=s=1080x500:mode=cline:colors=0x{color_hex}:scale=sqrt:rate=24[waves];"
         f"[bg][waves]overlay=0:0[v];"
         f"[v]ass={ass_path}[vout]"
     )
