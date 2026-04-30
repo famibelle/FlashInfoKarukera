@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>Horoscope Karukera</title>
+    <link>https://famibelle.github.io/FlashInfoKarukera/</link>
+    <description>L'horoscope de la Guadeloupe — matin et soir par Botiran</description>
+    <language>fr</language>
+    <copyright>© Botiran</copyright>
+    <itunes:author>Botiran</itunes:author>
+    <itunes:category text="News"/>
+    <itunes:explicit>no</itunes:explicit>
+
+    <item>
+      <title>🌙 Horoscope soir — jeudi 30 avril 2026</title>
+      <description><![CDATA[Nous sommes le jeudi 30 avril 2026 et ce soir, mes chers, c’est la lune qui décide. Elle a choisi de murmurer à l’oreille des Taureau, des Cancer, des Balance — ceux qui savent ce que peser veut dire, ceux qui portent leur maison sur le dos comme un bernard-l’ermite, ceux qui équilibrent le monde sur le bout de leur doigt sans jamais le casser. Alors posez vos paniers, laissez la journée s’égoutter comme une lessive au soleil couchant, et écoutez.]]></description>
+      <pubDate>Thu, 30 Apr 2026 07:04:48 +0000</pubDate>
+      <enclosure url="https://archive.org/download/botiran-horoscope-karukera-2026-04/horoscope-20260430-soir.mp3" length="2728744" type="audio/mpeg"/>
+      <guid isPermaLink="false">horoscope-20260430-soir</guid>
+      <itunes:duration>05:42</itunes:duration>
+    </item>
+
+  </channel>
+</rss>
