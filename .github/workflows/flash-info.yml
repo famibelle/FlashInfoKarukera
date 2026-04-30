@@ -173,7 +173,7 @@ jobs:
           B2_ENDPOINT:              ${{ secrets.B2_ENDPOINT }}
           ARCHIVE_ACCESS_KEY:            ${{ secrets.ARCHIVE_ACCESS_KEY }}
           ARCHIVE_SECRET_KEY:            ${{ secrets.ARCHIVE_SECRET_KEY }}
-        run: python flash-info-gwada.py ${{ env.FLASH_ARGS }}
+        run: python -u flash-info-gwada.py ${{ env.FLASH_ARGS }}
 
       - name: Sauvegarder l'anti-répétition et les archives
         run: |
