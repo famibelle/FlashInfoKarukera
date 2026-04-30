@@ -2003,7 +2003,7 @@ def send_telegram_video(
 
 BUZZSPROUT_TAGS = "Guadeloupe, actualité, flash info, Antilles, Caraïbes, France-Antilles, info locale"
 
-def publish_buzzsprout(audio_path: Path, title: str, description: str, tags: str) -> str:
+def publish_buzzsprout(audio_path: Path, title: str, description: str, tags: str) -> tuple[str, str]:
     print(f"🎙️  Publication Buzzsprout (podcast {BUZZSPROUT_PODCAST_ID})...")
     cmd = [
         "curl", "-s",
@@ -2022,9 +2022,10 @@ def publish_buzzsprout(audio_path: Path, title: str, description: str, tags: str
     result = json.loads(proc.stdout)
 
     episode_url = result.get("url", "")
+    audio_url = result.get("audio_url", "")
     episode_id = result.get("id", "")
     print(f"   Épisode publié ✅  id={episode_id}  url={episode_url}")
-    return episode_url
+    return episode_url, audio_url
 
 
 # ── Étape 6 : Post X/Twitter ─────────────────────────────────────────────────
@@ -3132,7 +3133,7 @@ def main():
                 f"Signes du jour : {_signs_label}.\n\n"
                 "Flash Info Karukera — actualités et horoscope de la Guadeloupe."
             )
-            publish_buzzsprout(output_path, _bz_title, _bz_description, BUZZSPROUT_TAGS)
+            publish_buzzsprout(output_path, _bz_title, _bz_description, BUZZSPROUT_TAGS)  # retourne (episode_url, audio_url) mais non utilisé ici
         elif args.dry_run:
             print("--dry-run : pas de publication Buzzsprout.")
         else:
@@ -3512,7 +3513,7 @@ def main():
     b2_key_audio = f"flash-info/{target_date.strftime('%Y/%m')}/{output_path.name}"
     _upload_to_b2(output_path, b2_key_audio)
 
-    # ── Internet Archive — audio + RSS ────────────────────────────────────────
+    # ── Internet Archive — audio (non bloquant) ───────────────────────────────
     ia_identifier = f"karukera-flash-info-{target_date.strftime('%Y-%m')}"
     ia_url = _upload_to_archive_org(
         output_path,
@@ -3521,19 +3522,6 @@ def main():
         description=intro_text,
         subject="guadeloupe;flash info;actualités;karukera;antilles;botiran",
     )
-    if ia_url:
-        _update_podcast_rss(
-            rss_path=PODCAST_RSS_PATH,
-            channel_title="L'actualité de la Guadeloupe",
-            channel_desc="Le flash info de la Guadeloupe — matin, midi et soir par Botiran",
-            episode_title=title,
-            episode_desc=intro_text,
-            audio_url=ia_url,
-            audio_size=output_path.stat().st_size,
-            duration_s=_stinger_duration(output_path),
-            guid=output_path.stem,
-            pub_date=datetime.utcnow(),
-        )
 
     if args.tiktok or args.youtube or args.linkedin or args.instagram or args.twitter:
         video_dir = OUTPUT_DIR / f"tiktok-{edition}-{now.strftime('%Y%m%d-%H%M')}"
@@ -3696,7 +3684,26 @@ def main():
     tags = BUZZSPROUT_TAGS
 
     # Étape 5 — Buzzsprout → Spotify
-    episode_url = publish_buzzsprout(output_path, title, description, tags)
+    episode_url, bz_audio_url = publish_buzzsprout(output_path, title, description, tags)
+
+    # ── Podcast RSS — utilise archive.org si disponible, sinon Buzzsprout ─────
+    podcast_audio_url = ia_url or bz_audio_url
+    if podcast_audio_url:
+        _update_podcast_rss(
+            rss_path=PODCAST_RSS_PATH,
+            channel_title="L'actualité de la Guadeloupe",
+            channel_desc="Le flash info de la Guadeloupe — matin, midi et soir par Botiran",
+            episode_title=title,
+            episode_desc=intro_text,
+            audio_url=podcast_audio_url,
+            audio_size=output_path.stat().st_size,
+            duration_s=_stinger_duration(output_path),
+            guid=output_path.stem,
+            pub_date=datetime.utcnow(),
+        )
+        print(f"   📻 podcast.xml mis à jour → {podcast_audio_url}")
+    else:
+        print("   ⚠️  podcast.xml non mis à jour (archive.org et Buzzsprout sans URL audio)")
 
     print(f"\n✅ Flash info terminé : {output_path}")
 
