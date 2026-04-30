@@ -1421,7 +1421,7 @@ def _upload_to_archive_org(
         mediatype = "audio" if local_path.suffix == ".mp3" else "movies"
         headers = {
             "Authorization": f"LOW {ARCHIVE_ACCESS_KEY}:{ARCHIVE_SECRET_KEY}",
-            "x-archive-auto-make-bucket": "1",
+            "x-amz-auto-make-bucket": "1",
             "x-archive-ignore-preexisting-bucket": "1",
             "x-archive-meta-mediatype": mediatype,
             "x-archive-meta-title": _h(title),
