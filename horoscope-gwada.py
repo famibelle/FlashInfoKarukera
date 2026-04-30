@@ -1429,6 +1429,7 @@ def _upload_to_archive_org(
             "x-archive-meta-creator": "Botiran",
             "x-archive-meta-subject": subject,
             "Content-Type": "audio/mpeg" if local_path.suffix == ".mp3" else "video/mp4",
+            "Content-Length": str(local_path.stat().st_size),
         }
         if description:
             headers["x-archive-meta-description"] = _h(description[:500])
