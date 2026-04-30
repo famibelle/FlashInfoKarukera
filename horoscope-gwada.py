@@ -1413,9 +1413,9 @@ def _upload_to_archive_org(
         return None
     try:
         import requests as _req
-        # Les headers HTTP doivent être ASCII — on encode en UTF-8 puis on passe en bytes
+        # Les headers HTTP : pas de newlines, encodage UTF-8 en bytes
         def _h(s: str) -> bytes:
-            return s.encode("utf-8")
+            return s.replace("\n", " ").replace("\r", "").strip().encode("utf-8")
         filename = local_path.name
         url = f"https://s3.us.archive.org/{identifier}/{filename}"
         mediatype = "audio" if local_path.suffix == ".mp3" else "movies"
