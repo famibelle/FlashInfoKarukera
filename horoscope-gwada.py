@@ -1434,13 +1434,14 @@ def _upload_to_archive_org(
             headers["x-archive-meta-description"] = _h(description)
         print(f"   🏛️  archive.org upload → {identifier}/{filename}…")
         resp = None
-        for attempt in range(3):
+        for attempt in range(4):
             with open(local_path, "rb") as f:
                 resp = _req.put(url, data=f, headers=headers, timeout=300)
             if resp.status_code < 500:
                 break
-            print(f"   ⏳ archive.org 5xx — attente 15s (tentative {attempt + 1}/3)…")
-            import time as _time; _time.sleep(15)
+            wait = 30 * (attempt + 1)
+            print(f"   ⏳ archive.org 5xx — attente {wait}s (tentative {attempt + 1}/4)…")
+            import time as _time; _time.sleep(wait)
         resp.raise_for_status()
         public_url = f"https://archive.org/download/{identifier}/{filename}"
         print(f"   🏛️  archive.org → {public_url}")
