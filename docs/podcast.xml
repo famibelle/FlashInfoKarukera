@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
   <channel>
-    <title>Karukera — Flash Info &amp; Horoscope</title>
+    <title>Karukera — Flash Info & Horoscope</title>
     <link>https://famibelle.github.io/FlashInfoKarukera/</link>
     <description>Flash info et horoscope de la Guadeloupe — matin, midi et soir par Botiran</description>
     <language>fr</language>
@@ -9,11 +9,20 @@
     <itunes:author>Botiran</itunes:author>
     <itunes:owner><itunes:name>Botiran</itunes:name><itunes:email>medhi.famibelle@outlook.fr</itunes:email></itunes:owner>
     <itunes:image href="https://famibelle.github.io/FlashInfoKarukera/artwork.jpg"/>
-    <image><url>https://famibelle.github.io/FlashInfoKarukera/artwork.jpg</url><title>Karukera — Flash Info &amp; Horoscope</title><link>https://famibelle.github.io/FlashInfoKarukera/</link></image>
+    <image><url>https://famibelle.github.io/FlashInfoKarukera/artwork.jpg</url><title>Karukera — Flash Info & Horoscope</title><link>https://famibelle.github.io/FlashInfoKarukera/</link></image>
     <itunes:category text="News"><itunes:category text="Daily News"/></itunes:category>
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Flash Info Guadeloupe — jeudi 30 avril 2026, édition du soir</title>
+      <description><![CDATA[Bèl bonsoir à toute la Guadeloupe, à ceux qui sont là et à ceux qui écoutent depuis loin. Nous sommes le jeudi trente avril deux mille vingt-six et vous écoutez votre flash info du soir. Au programme : un procès qui secoue l'archipel, un projet éolien qui patine à Petit-Canal, et la fin brutale d'Air Antilles qui laisse des centaines de passagers dans l'embarras. C'est parti.]]></description>
+      <pubDate>Thu, 30 Apr 2026 18:24:49 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-04/flash-info-20260430-soir.mp3" length="955947" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20260430-soir</guid>
+      <itunes:duration>02:05</itunes:duration>
+    </item>
+
+<item>
       <title>🌙 Horoscope soir — jeudi 30 avril 2026</title>
       <description><![CDATA[Nous sommes le jeudi 30 avril 2026 et ce soir, mes chers, c'est la lune qui décide. Elle a choisi de murmurer à l'oreille des Taureau, des Cancer, des Balance.]]></description>
       <pubDate>Thu, 30 Apr 2026 16:44:01 +0000</pubDate>
@@ -22,7 +31,7 @@
       <itunes:duration>05:42</itunes:duration>
     </item>
 
-    <item>
+<item>
       <title>Flash Info Guadeloupe — jeudi 30 avril 2026, édition du soir</title>
       <description><![CDATA[Bèl bonsoir à toute la Guadeloupe et à ceux qui nous écoutent de loin, nous sommes le jeudi trente avril deux mille vingt-six. Au programme ce soir : une disparition qui préoccupe entre Petit-Canal et Port-Louis, et les pharmacies de garde pour ce long week-end férié.]]></description>
       <pubDate>Thu, 30 Apr 2026 16:16:20 +0000</pubDate>
