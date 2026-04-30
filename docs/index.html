@@ -97,6 +97,29 @@
       margin-top: 2rem;
       font-size: 0.8rem;
       color: #555;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .rss-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: #f26522;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+
+    .rss-link:hover { opacity: 0.75; }
+
+    .rss-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
     }
 
     .badge {
@@ -118,17 +141,6 @@
     <h1>Botiran</h1>
     <p class="tagline">Flash info et horoscope de la Guadeloupe<br>Matin, midi et soir — par Botiran</p>
 
-    <a href="podcast.xml" class="btn">
-      <span class="btn-icon">🎙️</span>
-      <span class="btn-text">
-        <span class="btn-label">Flux RSS Podcast<span class="badge">LIVE</span></span>
-        <span class="btn-sub">Flash Info &amp; Horoscope Karukera</span>
-      </span>
-      <span class="btn-arrow">›</span>
-    </a>
-
-    <hr class="divider">
-
     <a href="https://podcasts.apple.com/fr/podcast/lactualit%C3%A9-de-la-guadeloupe/id1894299367" class="btn" target="_blank" rel="noopener">
       <span class="btn-icon">🎵</span>
       <span class="btn-text">
@@ -148,6 +160,14 @@
     </a>
 
   </div>
-  <p class="footer">© Botiran — Karukera</p>
+  <div class="footer">
+    <a href="podcast.xml" class="rss-link">
+      <svg class="rss-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 3a1 1 0 0 0 0 2c8.837 0 16 7.163 16 16a1 1 0 1 0 2 0C21 11.058 12.942 3 3 3zm0 6a1 1 0 0 0 0 2c5.514 0 10 4.486 10 10a1 1 0 1 0 2 0c0-6.617-5.383-12-12-12zm1 9a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+      </svg>
+      Flux RSS Podcast <span class="badge">LIVE</span>
+    </a>
+    <span>© Botiran — Karukera</span>
+  </div>
 </body>
 </html>
