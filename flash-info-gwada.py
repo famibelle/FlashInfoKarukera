@@ -3776,8 +3776,8 @@ def main():
     if podcast_audio_url:
         _update_podcast_rss(
             rss_path=PODCAST_RSS_PATH,
-            channel_title="L'actualité de la Guadeloupe",
-            channel_desc="Le flash info de la Guadeloupe — matin, midi et soir par Botiran",
+            channel_title="Karukera — Flash Info & Horoscope",
+            channel_desc="Flash info et horoscope de la Guadeloupe — matin, midi et soir par Botiran",
             episode_title=title,
             episode_desc=intro_text,
             audio_url=podcast_audio_url,

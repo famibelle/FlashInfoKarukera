@@ -75,7 +75,7 @@ PROMPTS_DIR  = Path(__file__).parent / "private" / "prompts"
 DATA_DIR     = Path(__file__).parent / "data"
 ARCHIVES_DIR = Path(__file__).parent / "archives" / "horoscope"
 DOCS_DIR     = Path(__file__).parent / "docs"
-HOROSCOPE_RSS_PATH = DOCS_DIR / "horoscope.xml"
+HOROSCOPE_RSS_PATH = DOCS_DIR / "podcast.xml"
 USED_FLORA_PATH = DATA_DIR / "used_flora.json"
 FLORA_MEMORY_DAYS = 7  # fenêtre glissante d'anti-répétition
 MEDIA_DIR    = Path(__file__).parent / "Media"
@@ -2034,8 +2034,8 @@ def main():
     if podcast_audio_url:
         _update_podcast_rss(
             rss_path=HOROSCOPE_RSS_PATH,
-            channel_title="Horoscope Karukera",
-            channel_desc="L'horoscope de la Guadeloupe — matin et soir par Botiran",
+            channel_title="Karukera — Flash Info & Horoscope",
+            channel_desc="Flash info et horoscope de la Guadeloupe — matin, midi et soir par Botiran",
             episode_title=ia_episode_title,
             episode_desc=intro_text,
             audio_url=podcast_audio_url,
@@ -2044,9 +2044,9 @@ def main():
             guid=output_path.stem,
             pub_date=DateTime.utcnow(),
         )
-        print(f"   📻 horoscope.xml mis à jour → {podcast_audio_url}")
+        print(f"   📻 podcast.xml mis à jour → {podcast_audio_url}")
     else:
-        print("   ⚠️  horoscope.xml non mis à jour (aucune URL audio disponible)")
+        print("   ⚠️  podcast.xml non mis à jour (aucune URL audio disponible)")
 
     # ── Telegram audio ────────────────────────────────────────────────────────
     if args.telegram:
