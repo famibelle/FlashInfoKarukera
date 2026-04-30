@@ -94,6 +94,9 @@ B2_ENDPOINT        = os.environ.get("B2_ENDPOINT", "")  # ex: https://s3.us-west
 ARCHIVE_ACCESS_KEY = os.environ.get("ARCHIVE_ACCESS_KEY", "")
 ARCHIVE_SECRET_KEY = os.environ.get("ARCHIVE_SECRET_KEY", "")
 
+GITHUB_TOKEN     = os.environ.get("GITHUB_TOKEN", "")
+GITHUB_REPO      = "famibelle/FlashInfoKarukera"
+
 OUTPUT_DIR      = Path("/tmp")
 STINGERS_DIR    = Path(__file__).parent / "Stingers"
 PROMPTS_DIR     = Path(__file__).parent / "private" / "prompts"
@@ -1749,6 +1752,63 @@ def _upload_to_b2(local_path: Path, remote_key: str) -> str | None:
         return None
 
 
+# ── GitHub Releases ───────────────────────────────────────────────────────────
+
+def _upload_to_github_release(local_path: Path, tag: str, release_name: str) -> str | None:
+    """Upload un MP3 vers une GitHub Release (publique). Crée la release si nécessaire."""
+    if not GITHUB_TOKEN:
+        return None
+    try:
+        import requests as _req
+        api = "https://api.github.com"
+        headers = {
+            "Authorization": f"Bearer {GITHUB_TOKEN}",
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+        }
+
+        # Récupérer ou créer la release
+        r = _req.get(f"{api}/repos/{GITHUB_REPO}/releases/tags/{tag}", headers=headers, timeout=15)
+        if r.status_code == 200:
+            release = r.json()
+        else:
+            r = _req.post(f"{api}/repos/{GITHUB_REPO}/releases", headers=headers, timeout=15, json={
+                "tag_name": tag,
+                "name": release_name,
+                "body": f"Épisodes audio — {release_name}",
+                "prerelease": False,
+                "draft": False,
+            })
+            r.raise_for_status()
+            release = r.json()
+
+        upload_url = release["upload_url"].split("{")[0]
+        filename = local_path.name
+
+        # Vérifier si l'asset existe déjà
+        for asset in release.get("assets", []):
+            if asset["name"] == filename:
+                print(f"   📦 GitHub Release → déjà présent : {asset['browser_download_url']}")
+                return asset["browser_download_url"]
+
+        # Uploader l'asset
+        print(f"   📦 GitHub Release upload → {tag}/{filename}…")
+        with open(local_path, "rb") as f:
+            r = _req.post(
+                f"{upload_url}?name={filename}",
+                headers={**headers, "Content-Type": "audio/mpeg"},
+                data=f,
+                timeout=300,
+            )
+        r.raise_for_status()
+        url = r.json()["browser_download_url"]
+        print(f"   📦 GitHub Release → {url}")
+        return url
+    except Exception as e:
+        print(f"   ⚠️  GitHub Release upload échoué (non bloquant) : {e}")
+        return None
+
+
 # ── Internet Archive (archive.org) ────────────────────────────────────────────
 
 def _upload_to_archive_org(
@@ -2023,9 +2083,28 @@ def publish_buzzsprout(audio_path: Path, title: str, description: str, tags: str
     result = json.loads(proc.stdout)
 
     episode_url = result.get("url", "")
-    audio_url = result.get("audio_url", "")
+    audio_url = result.get("audio_url", "") or ""
     episode_id = result.get("id", "")
     print(f"   Épisode publié ✅  id={episode_id}  url={episode_url}")
+
+    # Buzzsprout traite l'audio de façon asynchrone — on attend l'audio_url
+    if not audio_url and episode_id and BUZZSPROUT_API_TOKEN and BUZZSPROUT_PODCAST_ID:
+        import time as _time
+        for _ in range(8):
+            _time.sleep(15)
+            r = subprocess.run([
+                "curl", "-s",
+                "-H", f"Authorization: Token token={BUZZSPROUT_API_TOKEN}",
+                f"https://www.buzzsprout.com/api/{BUZZSPROUT_PODCAST_ID}/episodes/{episode_id}.json",
+            ], capture_output=True, timeout=30)
+            if r.returncode == 0:
+                ep = json.loads(r.stdout)
+                audio_url = ep.get("audio_url", "") or ""
+                if audio_url:
+                    print(f"   🔗 audio_url Buzzsprout : {audio_url}")
+                    break
+            _time.sleep(5)
+
     return episode_url, audio_url
 
 
@@ -3514,6 +3593,11 @@ def main():
     b2_key_audio = f"flash-info/{target_date.strftime('%Y/%m')}/{output_path.name}"
     b2_audio_url = _upload_to_b2(output_path, b2_key_audio)
 
+    # ── GitHub Releases — audio public ───────────────────────────────────────
+    gh_tag = f"flash-info-{target_date.strftime('%Y-%m')}"
+    gh_release_name = f"Flash Info Guadeloupe — {target_date.strftime('%B %Y')}"
+    gh_audio_url = _upload_to_github_release(output_path, gh_tag, gh_release_name)
+
     # ── Internet Archive — audio (non bloquant) ───────────────────────────────
     ia_identifier = f"botiran-flash-info-gwada-{target_date.strftime('%Y-%m')}"
     ia_url = _upload_to_archive_org(
@@ -3688,7 +3772,7 @@ def main():
     episode_url, bz_audio_url = publish_buzzsprout(output_path, title, description, tags)
 
     # ── Podcast RSS — archive.org > Buzzsprout > B2 ──────────────────────────
-    podcast_audio_url = ia_url or bz_audio_url or b2_audio_url
+    podcast_audio_url = gh_audio_url or ia_url or bz_audio_url or b2_audio_url
     if podcast_audio_url:
         _update_podcast_rss(
             rss_path=PODCAST_RSS_PATH,
