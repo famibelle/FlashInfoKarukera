@@ -3511,7 +3511,7 @@ def main():
 
     # ── Backblaze B2 — audio ──────────────────────────────────────────────────
     b2_key_audio = f"flash-info/{target_date.strftime('%Y/%m')}/{output_path.name}"
-    _upload_to_b2(output_path, b2_key_audio)
+    b2_audio_url = _upload_to_b2(output_path, b2_key_audio)
 
     # ── Internet Archive — audio (non bloquant) ───────────────────────────────
     ia_identifier = f"karukera-flash-info-{target_date.strftime('%Y-%m')}"
@@ -3686,8 +3686,8 @@ def main():
     # Étape 5 — Buzzsprout → Spotify
     episode_url, bz_audio_url = publish_buzzsprout(output_path, title, description, tags)
 
-    # ── Podcast RSS — utilise archive.org si disponible, sinon Buzzsprout ─────
-    podcast_audio_url = ia_url or bz_audio_url
+    # ── Podcast RSS — archive.org > Buzzsprout > B2 ──────────────────────────
+    podcast_audio_url = ia_url or bz_audio_url or b2_audio_url
     if podcast_audio_url:
         _update_podcast_rss(
             rss_path=PODCAST_RSS_PATH,
@@ -3703,7 +3703,7 @@ def main():
         )
         print(f"   📻 podcast.xml mis à jour → {podcast_audio_url}")
     else:
-        print("   ⚠️  podcast.xml non mis à jour (archive.org et Buzzsprout sans URL audio)")
+        print("   ⚠️  podcast.xml non mis à jour (aucune URL audio disponible)")
 
     print(f"\n✅ Flash info terminé : {output_path}")
 
