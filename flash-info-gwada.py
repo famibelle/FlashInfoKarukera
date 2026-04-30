@@ -3514,7 +3514,7 @@ def main():
     b2_audio_url = _upload_to_b2(output_path, b2_key_audio)
 
     # ── Internet Archive — audio (non bloquant) ───────────────────────────────
-    ia_identifier = f"karukera-flash-info-{target_date.strftime('%Y-%m')}"
+    ia_identifier = f"botiran-flash-info-gwada-{target_date.strftime('%Y-%m')}"
     ia_url = _upload_to_archive_org(
         output_path,
         identifier=ia_identifier,
