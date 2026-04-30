@@ -1262,6 +1262,7 @@ def generate_tiktok(
     signs_hashtags: "list[list[str]] | None" = None,
     metadata: "dict[str, str] | None" = None,
     segment_texts: "list[str] | None" = None,
+    output_filename: str = "horoscope_full.mp4",
 ) -> "Path | None":
     """Génère : inter_intro → intro → (inter_signe + signe) × N → outro → CTA puis concatène."""
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -1340,7 +1341,7 @@ def generate_tiktok(
         meta_args += ["-metadata", f"{k}={v}"]
 
     # Concaténation finale
-    concat_path = output_dir / "horoscope_full.mp4"
+    concat_path = output_dir / output_filename
     n = len(all_parts)
     inputs_args = []
     for p in all_parts:
@@ -2075,6 +2076,7 @@ def main():
                 "genre":       "Horoscope / Astrologie",
                 "copyright":   f"© {gen_date.year} Horoscope Karukera par Botiran",
             }
+            ts = gen_date.strftime("%Y%m%d-%H%M")
             concat_video = generate_tiktok(
                 intro_path=intro_path,
                 seg_paths=seg_paths,
@@ -2087,6 +2089,7 @@ def main():
                 signs_hashtags=signs_hashtags,
                 metadata=video_metadata,
                 segment_texts=[intro_text] + sign_texts + [outro_text],
+                output_filename=f"horoscope-{args.edition}-{ts}.mp4",
             )
             if concat_video:
                 print(f"🎬 Vidéo horoscope : {concat_video}")
