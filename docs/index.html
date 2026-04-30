@@ -1,11 +1,153 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head><meta charset="UTF-8"><title>Botiran — Flash Info Karukera</title></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Botiran — Flash Info Karukera</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f1117;
+      color: #e8e8e8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .card {
+      background: #1a1d27;
+      border: 1px solid #2a2d3a;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .artwork {
+      width: 120px;
+      height: 120px;
+      border-radius: 16px;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: #8b8fa8;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #252836;
+      border: 1px solid #333646;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      text-decoration: none;
+      color: #e8e8e8;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.15s, border-color 0.15s;
+      margin-bottom: 0.75rem;
+    }
+
+    .btn:hover {
+      background: #2e3245;
+      border-color: #4a4f6a;
+    }
+
+    .btn-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .btn-text { text-align: left; }
+    .btn-label { display: block; color: #fff; }
+    .btn-sub { display: block; font-size: 0.8rem; color: #8b8fa8; margin-top: 2px; }
+
+    .btn-arrow {
+      margin-left: auto;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #2a2d3a;
+      margin: 1.5rem 0;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #1e3a2f;
+      color: #4ade80;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+  </style>
+</head>
 <body>
-<h1>Botiran — Flash Info Karukera</h1>
-<ul>
-  <li><a href="podcast.xml">🎙️ Flux RSS — Flash Info Guadeloupe</a></li>
-  <li><a href="horoscope.xml">🔮 Flux RSS — Horoscope Karukera</a></li>
-</ul>
+  <div class="card">
+    <img src="artwork.jpg" alt="Botiran" class="artwork">
+    <h1>Botiran</h1>
+    <p class="tagline">Flash info et horoscope de la Guadeloupe<br>Matin, midi et soir — par Botiran</p>
+
+    <a href="podcast.xml" class="btn">
+      <span class="btn-icon">🎙️</span>
+      <span class="btn-text">
+        <span class="btn-label">Flux RSS Podcast<span class="badge">LIVE</span></span>
+        <span class="btn-sub">Flash Info &amp; Horoscope Karukera</span>
+      </span>
+      <span class="btn-arrow">›</span>
+    </a>
+
+    <hr class="divider">
+
+    <a href="https://podcasts.apple.com/fr/podcast/lactualit%C3%A9-de-la-guadeloupe/id1894299367" class="btn" target="_blank" rel="noopener">
+      <span class="btn-icon">🎵</span>
+      <span class="btn-text">
+        <span class="btn-label">Apple Podcasts</span>
+        <span class="btn-sub">L'actualité de la Guadeloupe</span>
+      </span>
+      <span class="btn-arrow">›</span>
+    </a>
+
+    <a href="https://t.me/+votre_lien_telegram" class="btn" target="_blank" rel="noopener">
+      <span class="btn-icon">✈️</span>
+      <span class="btn-text">
+        <span class="btn-label">Telegram</span>
+        <span class="btn-sub">Vidéos et audios en direct</span>
+      </span>
+      <span class="btn-arrow">›</span>
+    </a>
+
+  </div>
+  <p class="footer">© Botiran — Karukera</p>
 </body>
 </html>
