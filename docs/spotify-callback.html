@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 Spotify OAuth Callback</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            color: #1DB954;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .content {
+            margin: 30px 0;
+        }
+        
+        .code-box {
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            font-size: 12px;
+            color: #333;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .copy-btn {
+            background: #1DB954;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .copy-btn:hover {
+            background: #1ed760;
+        }
+        
+        .error {
+            background: #fee;
+            color: #c00;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #c00;
+        }
+        
+        .success {
+            background: #efe;
+            color: #060;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #060;
+        }
+        
+        .instructions {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+        }
+        
+        .instructions li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 Spotify Radio Auth</h1>
+            <p>Autorisation Spotify complétée</p>
+        </div>
+        
+        <div id="content"></div>
+        
+        <script>
+            // Récupérer les paramètres de l'URL
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get('code');
+            const error = params.get('error');
+            const contentDiv = document.getElementById('content');
+            
+            if (error) {
+                // Erreur d'authentification
+                contentDiv.innerHTML = `
+                    <div class="error">
+                        <h3>❌ Erreur d'authentification</h3>
+                        <p><strong>Erreur :</strong> ${encodeURIComponent(error)}</p>
+                        <p>L'autorisation a été refusée ou a expiré.</p>
+                    </div>
+                    <div class="instructions">
+                        <h4>Que faire :</h4>
+                        <ol>
+                            <li>Fermer cette page</li>
+                            <li>Relancer le script : <code>python auth_spotify.py</code></li>
+                            <li>Autoriser à nouveau l'application</li>
+                        </ol>
+                    </div>
+                `;
+            } else if (code) {
+                // Succès - afficher le code
+                contentDiv.innerHTML = `
+                    <div class="success">
+                        <h3>✅ Autorisation réussie !</h3>
+                        <p>Le code d'autorisation a été généré.</p>
+                    </div>
+                    
+                    <div class="instructions">
+                        <h4>🔐 Votre code d'autorisation :</h4>
+                        <div class="code-box" id="codeBox">${code}</div>
+                        <button class="copy-btn" onclick="copyCode()">📋 Copier le code</button>
+                    </div>
+                    
+                    <div class="instructions">
+                        <h4>Prochaines étapes :</h4>
+                        <ol>
+                            <li><strong>Copier le code</strong> (bouton ci-dessus)</li>
+                            <li>Aller dans la <strong>fenêtre terminal</strong> où tu as lancé <code>python auth_spotify.py</code></li>
+                            <li><strong>Coller le code</strong> à la demande du script</li>
+                            <li>Le script générera ton <strong>REFRESH_TOKEN</strong></li>
+                        </ol>
+                    </div>
+                    
+                    <div class="instructions" style="background: #ffe6e6;">
+                        <strong>⚠️ Important :</strong> Ce code expire dans quelques secondes.
+                        <br>Copie et colle-le rapidement dans le terminal.
+                    </div>
+                `;
+            } else {
+                // Pas de code ni erreur
+                contentDiv.innerHTML = `
+                    <div class="error">
+                        <h3>⚠️ Pas d'autorisation détectée</h3>
+                        <p>L'URL ne contient pas de code d'autorisation.</p>
+                    </div>
+                    <div class="instructions">
+                        <p>Cela signifie que vous n'avez pas encore autorisé l'application Spotify.</p>
+                        <ol>
+                            <li>Lancer : <code>python auth_spotify.py</code></li>
+                            <li>Ouvrir le lien fourni dans le terminal</li>
+                            <li>Autoriser l'application</li>
+                        </ol>
+                    </div>
+                `;
+            }
+            
+            // Fonction pour copier le code
+            function copyCode() {
+                const codeBox = document.getElementById('codeBox');
+                const text = codeBox.innerText;
+                
+                navigator.clipboard.writeText(text).then(() => {
+                    const btn = event.target;
+                    const originalText = btn.innerText;
+                    btn.innerText = '✅ Copié !';
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    alert('Erreur lors de la copie : ' + err);
+                });
+            }
+        </script>
+    </div>
+</body>
+</html>
