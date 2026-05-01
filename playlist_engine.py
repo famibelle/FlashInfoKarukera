@@ -41,18 +41,18 @@ class RadioMode:
 RADIO_CONFIG = {
     RadioMode.MORNING: {
         "time_range": "06:00-11:59",
-        "description": "🌅 Ambiance matinale - Zouk doux & musique classique caribéenne",
-        "fallback_artists": ["Kassav", "Zouk Machine", "Edith Lefel", "Bob Marley", "Damian Marley", "Shaggy"],
+        "description": "🌅 Ambiance matinale - Zouk doux & Gwoka",
+        "fallback_artists": ["Kassav", "Zouk Machine", "Edith Lefel", "Tanya Saint-Val", "Gérald Thalius", "Valérie Dhorasoo"],
     },
     RadioMode.MIDDAY: {
         "time_range": "12:00-17:59",
-        "description": "☀️ Ambiance midi - Kompa & Zouk festif radio",
-        "fallback_artists": ["Kassav", "Tabou Combo", "T-Vice", "Sean Paul", "Shabba Ranks", "Machel Montano"],
+        "description": "☀️ Ambiance midi - Kompa & Zouk festif",
+        "fallback_artists": ["T-Vice", "Tabou Combo", "Carimi", "Harmonik", "Kassav", "Zouk Machine"],
     },
     RadioMode.EVENING: {
         "time_range": "18:00-05:59",
-        "description": "🌙 Ambiance soirée - Gwoka, Léwoz & vibes relaxantes",
-        "fallback_artists": ["Bob Marley", "Burning Spear", "Damian Marley", "Kassav", "Shaggy", "Luciano"],
+        "description": "🌙 Ambiance soirée - Gwoka, Zouk & Kompa",
+        "fallback_artists": ["Gérald Thalius", "Valérie Dhorasoo", "Kassav", "Edith Lefel", "T-Vice", "Nu-Look"],
     },
 }
 
