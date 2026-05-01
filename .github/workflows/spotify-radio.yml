@@ -40,26 +40,32 @@ jobs:
       - name: 🔑 Write YouTube Data API token
         run: echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > youtube_token.json
 
-      - name: 🎵 Run YouTube Music Playlist Engine
+      - name: 🎵 Mise à jour playlist courte (22 pistes)
         env:
           YTMUSIC_PLAYLIST_ID: ${{ secrets.YTMUSIC_PLAYLIST_ID }}
           YOUTUBE_TOKEN_PATH: youtube_token.json
         run: python playlist_engine.py
 
-      - name: 💾 Commit YouTube upload cache
+      - name: 📻 Mise à jour playlist 24h
+        env:
+          YTMUSIC_PLAYLIST_24H_ID: ${{ secrets.YTMUSIC_PLAYLIST_24H_ID }}
+          YOUTUBE_TOKEN_PATH: youtube_token.json
+        run: python playlist_24h.py
+
+      - name: 💾 Commit caches
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add playlists/youtube_cache.json
-          git diff --cached --quiet || git commit -m "chore: update youtube upload cache [skip ci]"
+          git add playlists/youtube_cache.json playlists/music_pool_cache.json playlists/playlist_24h_id.txt
+          git diff --cached --quiet || git commit -m "chore: update playlists cache [skip ci]"
           git push
 
       - name: ✅ Playlist Update Success
         if: success()
-        run: echo "✅ Playlist updated at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+        run: echo "✅ Playlists mises à jour à $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
 
       - name: ❌ Playlist Update Failed
         if: failure()
         run: |
-          echo "❌ Playlist update failed — check logs"
+          echo "❌ Mise à jour échouée — voir les logs"
           exit 1
