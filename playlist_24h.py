@@ -8,6 +8,7 @@ Le pool musical est mis en cache une fois par jour pour éviter 200+ recherches 
 import os
 import sys
 import json
+import time
 import random
 import logging
 import argparse
@@ -28,15 +29,19 @@ BROWSER_JSON     = os.getenv("YTMUSIC_BROWSER_JSON_PATH", "browser.json")
 POOL_CACHE_FILE  = Path("playlists/music_pool_cache.json")
 PLAYLIST_ID_FILE = Path("playlists/playlist_24h_id.txt")
 
-AVG_DURATION  = 210        # secondes — fallback si duration_seconds absent
-BLOCK_SECONDS = 6 * 3600   # 6h par bloc
+AVG_DURATION = 210  # secondes — fallback si duration_seconds absent
 
-# Genres privilégiés par bloc horaire pour varier l'ambiance au fil de la journée
+# 100 pistes max (limite YouTube Music API)
+# 5 slots spéciaux (flash ×3 + horoscope ×2) → 95 pistes musicales
+TRACKS_MORNING  = 32   # [3–34]  après flash matin + horoscope matin
+TRACKS_MIDDAY   = 32   # [36–67] après flash midi
+TRACKS_EVENING  = 31   # [70–100] après flash soir + horoscope soir
+
+# Genres par bloc pour varier l'ambiance
 BLOCK_GENRES = {
-    "night":      ["gwoka", "bouillon", "zouk_retro"],
-    "morning":    ["zouk", "zouk_retro", "gwoka", "chatta"],
-    "afternoon":  ["kompa", "zouk", "chatta"],
-    "evening":    ["gwoka", "bouillon", "zouk_retro", "kompa"],
+    "morning":   ["zouk", "zouk_retro", "gwoka", "chatta"],
+    "midday":    ["kompa", "zouk", "chatta"],
+    "evening":   ["gwoka", "bouillon", "zouk_retro", "kompa"],
 }
 
 
@@ -110,24 +115,22 @@ def resolve_music_pool(yt: YTMusic) -> list:
 
 # ── Construction des blocs ────────────────────────────────────────────────────
 
-def fill_block(pool: list, genres: list, target_seconds: int) -> List[str]:
+def fill_block(pool: list, genres: list, n: int) -> List[str]:
     """
-    Remplit un bloc temporel avec des pistes du pool filtrées par genre.
-    Répète le sous-pool (shufflé) jusqu'à atteindre target_seconds.
+    Retourne exactement n videoIds du pool filtrés par genre.
+    Répète le sous-pool (shufflé) si nécessaire.
     """
     sub = [t for t in pool if t["genre"] in genres]
     if not sub:
-        sub = pool  # fallback sur le pool complet
+        sub = pool
 
     result = []
-    total  = 0
-    while total < target_seconds:
+    while len(result) < n:
         random.shuffle(sub)
         for track in sub:
-            if total >= target_seconds:
+            if len(result) >= n:
                 break
             result.append(track["videoId"])
-            total += track["duration"]
 
     return result
 
@@ -147,14 +150,15 @@ def _add_special(playlist: list, label: str, fn):
 
 def build_24h_playlist(yt: YTMusic) -> List[str]:
     """
-    Structure :
-      00:00–06:00  musique nuit        (~103 pistes)
-      06:00        Flash Info matin + Horoscope matin
-      06:xx–12:00  musique matinée     (~103 pistes)
-      12:00        Flash Info midi
-      12:xx–18:00  musique après-midi  (~103 pistes)
-      18:00        Flash Info soir + Horoscope soir
-      18:xx–24:00  musique soirée      (~103 pistes)
+    Structure (100 pistes max — limite YouTube Music API) :
+      [1]      Flash Info matin
+      [2]      Horoscope matin
+      [3–34]   32 pistes  zouk + zouk_retro + gwoka + chatta
+      [35]     Flash Info midi
+      [36–67]  32 pistes  kompa + zouk + chatta
+      [68]     Flash Info soir
+      [69]     Horoscope soir
+      [70–100] 31 pistes  gwoka + bouillon + zouk_retro + kompa
     """
     pool = resolve_music_pool(yt)
     if not pool:
@@ -163,31 +167,34 @@ def build_24h_playlist(yt: YTMusic) -> List[str]:
 
     playlist = []
 
-    logger.info("Bloc 00:00–06:00 (nuit)...")
-    playlist += fill_block(pool, BLOCK_GENRES["night"], BLOCK_SECONDS)
+    # Flash Info matin + Horoscope matin
+    logger.info("Slots 1-2 — Flash Info matin + Horoscope matin")
+    _add_special(playlist, "Flash Info matin", lambda: get_or_upload_episode("morning"))
+    _add_special(playlist, "Horoscope matin",  lambda: get_or_upload_horoscope("morning"))
 
-    logger.info("Insertion 06:00 — Flash Info matin + Horoscope matin")
-    _add_special(playlist, "Flash Info matin",  lambda: get_or_upload_episode("morning"))
-    _add_special(playlist, "Horoscope matin",   lambda: get_or_upload_horoscope("morning"))
+    # Bloc matin [3-34]
+    logger.info(f"Bloc matin ({TRACKS_MORNING} pistes)...")
+    playlist += fill_block(pool, BLOCK_GENRES["morning"], TRACKS_MORNING)
 
-    logger.info("Bloc 06:00–12:00 (matinée)...")
-    playlist += fill_block(pool, BLOCK_GENRES["morning"], BLOCK_SECONDS)
+    # Flash Info midi
+    logger.info("Slot 35 — Flash Info midi")
+    _add_special(playlist, "Flash Info midi",  lambda: get_or_upload_episode("midday"))
 
-    logger.info("Insertion 12:00 — Flash Info midi")
-    _add_special(playlist, "Flash Info midi",   lambda: get_or_upload_episode("midday"))
+    # Bloc après-midi [36-67]
+    logger.info(f"Bloc après-midi ({TRACKS_MIDDAY} pistes)...")
+    playlist += fill_block(pool, BLOCK_GENRES["midday"], TRACKS_MIDDAY)
 
-    logger.info("Bloc 12:00–18:00 (après-midi)...")
-    playlist += fill_block(pool, BLOCK_GENRES["afternoon"], BLOCK_SECONDS)
+    # Flash Info soir + Horoscope soir
+    logger.info("Slots 68-69 — Flash Info soir + Horoscope soir")
+    _add_special(playlist, "Flash Info soir",  lambda: get_or_upload_episode("evening"))
+    _add_special(playlist, "Horoscope soir",   lambda: get_or_upload_horoscope("evening"))
 
-    logger.info("Insertion 18:00 — Flash Info soir + Horoscope soir")
-    _add_special(playlist, "Flash Info soir",   lambda: get_or_upload_episode("evening"))
-    _add_special(playlist, "Horoscope soir",    lambda: get_or_upload_horoscope("evening"))
+    # Bloc soirée [70-100]
+    logger.info(f"Bloc soirée ({TRACKS_EVENING} pistes)...")
+    playlist += fill_block(pool, BLOCK_GENRES["evening"], TRACKS_EVENING)
 
-    logger.info("Bloc 18:00–24:00 (soirée)...")
-    playlist += fill_block(pool, BLOCK_GENRES["evening"], BLOCK_SECONDS)
-
-    music_count = len(playlist) - 5  # 3 flash + 2 horoscopes
-    logger.info(f"Playlist 24h : {len(playlist)} items ({music_count} pistes musicales)")
+    music_count = len(playlist) - 5
+    logger.info(f"Playlist : {len(playlist)} items ({music_count} pistes musicales)")
     return playlist
 
 
@@ -219,23 +226,54 @@ def get_playlist_id(yt: YTMusic) -> str:
     return pid
 
 
+def _get_removable(yt: YTMusic, playlist_id: str) -> list:
+    try:
+        tracks = yt.get_playlist(playlist_id, limit=200).get("tracks", [])
+        return [t for t in tracks if t.get("setVideoId")]
+    except Exception:
+        return []
+
+
+def _remove_all(yt: YTMusic, playlist_id: str, removable: list):
+    if removable:
+        yt.remove_playlist_items(playlist_id, removable)
+        logger.info(f"  Supprimé {len(removable)} pistes")
+        time.sleep(2)
+
+
 def update_playlist(yt: YTMusic, playlist_id: str, video_ids: List[str]):
-    """Vide la playlist et la remplit par batches de 100."""
+    """
+    Règle YouTube Music : après remove(N), un seul add(M) fonctionne si M ≤ 2×N.
+    Bootstrap depuis 0 → 1 → 25 → 50 → 100 si nécessaire.
+    Run normal (playlist déjà à 100) : remove 100 → add 100 en un seul appel.
+    """
     logger.info(f"Mise à jour playlist {playlist_id} ({len(video_ids)} items)...")
 
-    try:
-        existing = yt.get_playlist(playlist_id, limit=500).get("tracks", [])
-        removable = [t for t in existing if t.get("setVideoId")]
-        if removable:
-            yt.remove_playlist_items(playlist_id, removable)
-            logger.info(f"  Supprimé {len(removable)} pistes existantes")
-    except Exception as e:
-        logger.warning(f"  Impossible de vider la playlist : {e}")
+    removable = _get_removable(yt, playlist_id)
+    current   = len(removable)
+    target    = len(video_ids)
 
-    for i in range(0, len(video_ids), 100):
-        batch = video_ids[i:i + 100]
-        yt.add_playlist_items(playlist_id, batch)
-        logger.info(f"  Ajouté {min(i + 100, len(video_ids))}/{len(video_ids)}")
+    if current >= target // 2:
+        # Run normal : remove tout → add tout en un seul appel
+        _remove_all(yt, playlist_id, removable)
+        yt.add_playlist_items(playlist_id, video_ids)
+        logger.info(f"  Ajouté {target}/{target}")
+    else:
+        # Bootstrap depuis zéro : remove tout → 1 → 25 → 50 → target
+        # Chaque étape : add N, wait 6s (setVideoId propagation), remove N, wait 5s, add 2N
+        logger.info(f"  Bootstrap nécessaire (état actuel : {current} pistes)...")
+        _remove_all(yt, playlist_id, removable)
+        time.sleep(3)
+
+        for step in [1, 25, 50, target]:
+            yt.add_playlist_items(playlist_id, video_ids[:step])
+            logger.info(f"  Bootstrap add {step}...")
+            time.sleep(6)
+            if step < target:
+                _remove_all(yt, playlist_id, _get_removable(yt, playlist_id))
+                time.sleep(5)
+
+        logger.info(f"  Bootstrap terminé → {target} pistes")
 
 
 # ── Affichage ─────────────────────────────────────────────────────────────────

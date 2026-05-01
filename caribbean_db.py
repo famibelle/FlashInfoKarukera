@@ -268,6 +268,7 @@ CARIBBEAN_TRACKS = {
 }
 
 MODE_MAPPING = {
+    "night":   ["zouk_retro", "gwoka", "bouillon"],
     "morning": ["zouk", "gwoka"],
     "midday":  ["kompa", "zouk"],
     "evening": ["gwoka", "zouk", "kompa"],

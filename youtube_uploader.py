@@ -22,9 +22,10 @@ from google.oauth2.credentials import Credentials
 
 logger = logging.getLogger(__name__)
 
-RSS_URL     = "https://famibelle.github.io/FlashInfoKarukera/podcast.xml"
-ARTWORK_URL = "https://famibelle.github.io/FlashInfoKarukera/artwork.jpg"
-CACHE_FILE  = Path("playlists/youtube_cache.json")
+RSS_URL              = "https://famibelle.github.io/FlashInfoKarukera/podcast.xml"
+ARTWORK_URL          = "https://famibelle.github.io/FlashInfoKarukera/artwork.jpg"
+CACHE_FILE           = Path("playlists/youtube_cache.json")
+PLAYLIST_ID_FILE     = Path("playlists/youtube_playlist_id.txt")
 
 YOUTUBE_TOKEN_PATH = Path(os.getenv("YOUTUBE_TOKEN_PATH", "youtube_token.json"))
 SCOPES = [
@@ -160,7 +161,7 @@ def _upload(yt, mp4: Path, title: str, tags: list) -> str:
             "categoryId": "25",
         },
         "status": {
-            "privacyStatus": "unlisted",
+            "privacyStatus": "public",
             "selfDeclaredMadeForKids": False,
         },
     }
@@ -214,6 +215,73 @@ def _get_or_upload(episode: dict, label: str, tags: list) -> str:
     cache[key] = video_id
     save_cache(cache)
     return video_id
+
+
+# ── Gestion playlist YouTube classique ───────────────────────────────────────
+
+def get_or_create_youtube_playlist(title: str) -> str:
+    """Retourne l'ID de la playlist YouTube. La crée si elle n'existe pas."""
+    if PLAYLIST_ID_FILE.exists():
+        pid = PLAYLIST_ID_FILE.read_text().strip()
+        if pid:
+            return pid
+    env_id = os.getenv("YOUTUBE_PLAYLIST_ID")
+    if env_id:
+        PLAYLIST_ID_FILE.parent.mkdir(exist_ok=True)
+        PLAYLIST_ID_FILE.write_text(env_id)
+        return env_id
+    yt = get_youtube_client()
+    resp = yt.playlists().insert(
+        part="snippet,status",
+        body={
+            "snippet": {"title": title, "description": "Radio caribéenne — Botiran News"},
+            "status": {"privacyStatus": "public"},
+        }
+    ).execute()
+    pid = resp["id"]
+    PLAYLIST_ID_FILE.parent.mkdir(exist_ok=True)
+    PLAYLIST_ID_FILE.write_text(pid)
+    logger.info(f"Playlist YouTube créée : {pid}")
+    logger.info(f"→ Ajoute ce secret GitHub : YOUTUBE_PLAYLIST_ID={pid}")
+    return pid
+
+
+def update_youtube_playlist(playlist_id: str, video_ids: list):
+    """Vide la playlist YouTube puis la remplit dans l'ordre."""
+    if not video_ids:
+        logger.warning("Aucun videoId à ajouter")
+        return
+    yt = get_youtube_client()
+
+    # Lister et supprimer les items existants
+    existing = []
+    try:
+        next_page = None
+        while True:
+            resp = yt.playlistItems().list(
+                part="id", playlistId=playlist_id,
+                maxResults=50, pageToken=next_page
+            ).execute()
+            existing.extend(resp.get("items", []))
+            next_page = resp.get("nextPageToken")
+            if not next_page:
+                break
+    except Exception as e:
+        logger.warning(f"  Impossible de lister les items (playlist vide ?) : {e}")
+    for item in existing:
+        yt.playlistItems().delete(id=item["id"]).execute()
+    logger.info(f"  Supprimé {len(existing)} items")
+
+    # Insérer les nouveaux items dans l'ordre
+    for vid in video_ids:
+        yt.playlistItems().insert(
+            part="snippet",
+            body={"snippet": {
+                "playlistId": playlist_id,
+                "resourceId": {"kind": "youtube#video", "videoId": vid},
+            }}
+        ).execute()
+    logger.info(f"  Ajouté {len(video_ids)} items")
 
 
 # ── Points d'entrée publics ───────────────────────────────────────────────────
