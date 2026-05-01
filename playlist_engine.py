@@ -281,5 +281,35 @@ def run_playlist_engine(playlist_id: str = None):
     logger.info(f"   https://music.youtube.com/playlist?list={playlist_id}")
 
 
+def show_playlist(playlist_id: str = None):
+    """Affiche le contenu de la playlist et son URL."""
+    playlist_id = playlist_id or os.getenv("YTMUSIC_PLAYLIST_ID")
+    if not playlist_id:
+        print("YTMUSIC_PLAYLIST_ID non défini")
+        sys.exit(1)
+
+    yt = init_ytmusic()
+    pl = yt.get_playlist(playlist_id, limit=100)
+
+    url = f"https://music.youtube.com/playlist?list={playlist_id}"
+    print(f"\n{pl['title']}")
+    print(f"{url}\n")
+
+    tracks = pl.get("tracks", [])
+    for i, t in enumerate(tracks, 1):
+        artists = ", ".join(a["name"] for a in (t.get("artists") or []))
+        print(f"  {i:2d}. {t['title']} — {artists}")
+
+    print(f"\n{len(tracks)} piste(s)")
+
+
 if __name__ == "__main__":
-    run_playlist_engine()
+    import argparse
+    parser = argparse.ArgumentParser(description="Botiran News — moteur de playlist")
+    parser.add_argument("--show", action="store_true", help="Affiche la playlist sans la mettre à jour")
+    args = parser.parse_args()
+
+    if args.show:
+        show_playlist()
+    else:
+        run_playlist_engine()
