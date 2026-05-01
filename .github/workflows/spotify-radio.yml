@@ -1,0 +1,51 @@
+name: 🎶 Spotify Radio Playlist Update
+
+on:
+  # Run on schedule (3 times per day)
+  schedule:
+    - cron: '0 6 * * *'   # 06:00 UTC - Morning mode
+    - cron: '0 12 * * *'  # 12:00 UTC - Midday mode
+    - cron: '0 18 * * *'  # 18:00 UTC - Evening mode
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  update-playlist:
+    runs-on: ubuntu-latest
+    name: Generate & Update Radio Playlist
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 🎵 Run Spotify Playlist Engine (Static Version)
+        run: |
+          python playlist_engine_static.py
+
+      - name: ✅ Playlist Update Success
+        if: success()
+        run: |
+          echo "✅ Playlist successfully updated!"
+          echo "⏰ Updated at: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+
+      - name: ❌ Playlist Update Failed
+        if: failure()
+        run: |
+          echo "❌ Playlist update failed!"
+          echo "Check logs for details"
+          exit 1
