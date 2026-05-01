@@ -1,2 +1,6 @@
 .env
 __pycache__/
+curl_headers.txt
+browser.json
+client_secret.json
+youtube_token.json

@@ -1,23 +1,21 @@
-name: 🎶 Spotify Radio Playlist Update
+name: 🎶 YouTube Music Radio Playlist Update
 
 on:
-  # Run on schedule (3 times per day)
   schedule:
     - cron: '0 6 * * *'   # 06:00 UTC - Morning mode
     - cron: '0 12 * * *'  # 12:00 UTC - Midday mode
     - cron: '0 18 * * *'  # 18:00 UTC - Evening mode
-  
-  # Allow manual trigger
+
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   update-playlist:
     runs-on: ubuntu-latest
     name: Generate & Update Radio Playlist
-    
+
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -33,19 +31,35 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 🎵 Run Spotify Playlist Engine (Static Version)
+      - name: 🎬 Install ffmpeg
+        run: sudo apt-get install -y ffmpeg
+
+      - name: 🔑 Write YouTube Music auth file
+        run: echo '${{ secrets.YTMUSIC_BROWSER_JSON }}' > browser.json
+
+      - name: 🔑 Write YouTube Data API token
+        run: echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > youtube_token.json
+
+      - name: 🎵 Run YouTube Music Playlist Engine
+        env:
+          YTMUSIC_PLAYLIST_ID: ${{ secrets.YTMUSIC_PLAYLIST_ID }}
+          YOUTUBE_TOKEN_PATH: youtube_token.json
+        run: python playlist_engine.py
+
+      - name: 💾 Commit YouTube upload cache
         run: |
-          python playlist_engine_static.py
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add playlists/youtube_cache.json
+          git diff --cached --quiet || git commit -m "chore: update youtube upload cache [skip ci]"
+          git push
 
       - name: ✅ Playlist Update Success
         if: success()
-        run: |
-          echo "✅ Playlist successfully updated!"
-          echo "⏰ Updated at: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+        run: echo "✅ Playlist updated at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
 
       - name: ❌ Playlist Update Failed
         if: failure()
         run: |
-          echo "❌ Playlist update failed!"
-          echo "Check logs for details"
+          echo "❌ Playlist update failed — check logs"
           exit 1

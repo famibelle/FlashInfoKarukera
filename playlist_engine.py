@@ -1,28 +1,31 @@
 #!/usr/bin/env python3
 """
-Spotify Dynamic Radio Playlist Engine
-Generates and updates a "Radio des Îles" playlist based on time of day
-Using Spotify Web API with OAuth refresh token authentication
+YouTube Music Dynamic Radio Playlist Engine
+Generates and updates a "Radio des Îles" playlist based on time of day.
+Uses ytmusicapi — auth via browser.json (cookie-based, no API key needed).
 """
 
 import os
 import sys
+import json
+import random
+import logging
 from datetime import datetime
 from typing import List, Dict, Set
-import logging
 from dotenv import load_dotenv
-import spotipy
-from spotipy.oauth2 import SpotifyOAuth
+from ytmusicapi import YTMusic
+from caribbean_db import get_tracks_by_mode
+from youtube_uploader import get_or_upload_episode, get_or_upload_horoscope
 
-# Charger les variables d'environnement depuis .env
 load_dotenv()
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+BROWSER_JSON = os.getenv("YTMUSIC_BROWSER_JSON_PATH", "browser.json")
 
 
 # ============================================================================
@@ -30,88 +33,28 @@ logger = logging.getLogger(__name__)
 # ============================================================================
 
 class RadioMode:
-    """Enum for radio modes"""
     MORNING = "morning"
-    MIDDAY = "midday"
+    MIDDAY  = "midday"
     EVENING = "evening"
 
 
 RADIO_CONFIG = {
     RadioMode.MORNING: {
         "time_range": "06:00-11:59",
-        "genres": ["zouk", "classical", "calm", "ambient"],
-        "queries": [
-            "zouk doux",
-            "musique classique caribéenne",
-            "morning calm",
-            "ambient guadeloupe",
-            "classical caribbean"
-        ],
-        "energy_max": 0.6,
-        "description": "🌅 Ambiance matinale - Zouk doux & musique classique caribéenne"
+        "description": "🌅 Ambiance matinale - Zouk doux & musique classique caribéenne",
+        "fallback_artists": ["Kassav", "Zouk Machine", "Edith Lefel", "Bob Marley", "Damian Marley", "Shaggy"],
     },
     RadioMode.MIDDAY: {
         "time_range": "12:00-17:59",
-        "genres": ["kompa", "zouk", "festive", "dance"],
-        "queries": [
-            "kompa",
-            "zouk festif",
-            "caribbean dance",
-            "radio energy",
-            "festival music"
-        ],
-        "energy_max": 0.85,
-        "description": "☀️ Ambiance midi - Kompa & Zouk festif radio"
+        "description": "☀️ Ambiance midi - Kompa & Zouk festif radio",
+        "fallback_artists": ["Kassav", "Tabou Combo", "T-Vice", "Sean Paul", "Shabba Ranks", "Machel Montano"],
     },
     RadioMode.EVENING: {
         "time_range": "18:00-05:59",
-        "genres": ["gwoka", "roots", "chill", "deep", "reggae"],
-        "queries": [
-            "gwoka",
-            "léwoz",
-            "roots caribbean",
-            "chill evening",
-            "deep relaxation"
-        ],
-        "energy_max": 0.65,
-        "description": "🌙 Ambiance soirée - Gwoka, Léwoz & vibes relaxantes"
-    }
+        "description": "🌙 Ambiance soirée - Gwoka, Léwoz & vibes relaxantes",
+        "fallback_artists": ["Bob Marley", "Burning Spear", "Damian Marley", "Kassav", "Shaggy", "Luciano"],
+    },
 }
-
-
-# ============================================================================
-# SPOTIFY AUTHENTICATION & INITIALIZATION
-# ============================================================================
-
-def init_spotify_client():
-    """
-    Initialize Spotify client with OAuth authentication.
-    Requires environment variables:
-    - SPOTIPY_CLIENT_ID
-    - SPOTIPY_CLIENT_SECRET
-    - SPOTIPY_REFRESH_TOKEN
-    """
-    client_id = os.getenv("SPOTIPY_CLIENT_ID")
-    client_secret = os.getenv("SPOTIPY_CLIENT_SECRET")
-    refresh_token = os.getenv("SPOTIPY_REFRESH_TOKEN")
-
-    if not all([client_id, client_secret, refresh_token]):
-        logger.error("Missing required Spotify credentials in environment variables")
-        sys.exit(1)
-
-    # Create OAuth manager
-    oauth = SpotifyOAuth(
-        client_id=client_id,
-        client_secret=client_secret,
-        redirect_uri="http://127.0.0.1:8888/callback",
-        scope="playlist-modify-public playlist-modify-private"
-    )
-
-    # Get access token using refresh token
-    token_info = oauth.refresh_access_token(refresh_token)
-    access_token = token_info["access_token"]
-
-    return spotipy.Spotify(auth=access_token)
 
 
 # ============================================================================
@@ -119,18 +62,8 @@ def init_spotify_client():
 # ============================================================================
 
 def get_radio_mode(hour: int = None) -> str:
-    """
-    Determine radio mode based on current or provided hour.
-
-    Args:
-        hour: Optional hour (0-23). If None, uses current hour.
-
-    Returns:
-        RadioMode constant (MORNING, MIDDAY, or EVENING)
-    """
     if hour is None:
         hour = datetime.now().hour
-
     if 6 <= hour < 12:
         return RadioMode.MORNING
     elif 12 <= hour < 18:
@@ -140,179 +73,165 @@ def get_radio_mode(hour: int = None) -> str:
 
 
 # ============================================================================
-# SPOTIFY SEARCH & TRACK RETRIEVAL
+# YOUTUBE MUSIC AUTH
 # ============================================================================
 
-def search_tracks(sp: spotipy.Spotify, query: str, limit: int = 20) -> List[Dict]:
+def init_ytmusic() -> YTMusic:
     """
-    Search for tracks on Spotify.
-
-    Args:
-        sp: Spotify client instance
-        query: Search query string
-        limit: Maximum number of results (max 50)
-
-    Returns:
-        List of track dictionaries with id, name, artist, etc.
+    Initialize YTMusic client from browser.json.
+    The file can be generated with: ytmusicapi browser
+    For GitHub Actions, write the YTMUSIC_BROWSER_JSON secret to browser.json first.
     """
+    if not os.path.exists(BROWSER_JSON):
+        logger.error(f"Auth file not found: {BROWSER_JSON}")
+        logger.error("Run: ytmusicapi browser  (then paste your browser headers)")
+        sys.exit(1)
+    return YTMusic(BROWSER_JSON)
+
+
+# ============================================================================
+# SEARCH HELPERS
+# ============================================================================
+
+def _artist_matches(search_artist: str, result_artist: str) -> bool:
+    """Loose artist match — handles 'Bob Marley' vs 'Bob Marley & The Wailers'."""
+    a = search_artist.lower()
+    b = result_artist.lower()
+    return a in b or b in a or any(w in b for w in a.split() if len(w) > 3)
+
+
+def _result_artists(result: dict) -> str:
+    """Extract a single artist string from a ytmusicapi result."""
+    artists = result.get("artists") or []
+    return ", ".join(a["name"] for a in artists if "name" in a)
+
+
+def search_track(yt: YTMusic, name: str, artist: str) -> str | None:
+    """
+    Search YouTube Music for a specific track.
+    Returns the videoId if a confident match is found, else None.
+    """
+    for query in [f"{name} {artist}", name]:
+        try:
+            results = yt.search(query, filter="songs", limit=10)
+            for r in results:
+                result_artist = _result_artists(r)
+                if _artist_matches(artist, result_artist):
+                    return r["videoId"]
+        except Exception as e:
+            logger.warning(f"  Search error for '{name}': {e}")
+            break
+    return None
+
+
+def search_artist_top_tracks(yt: YTMusic, artist: str, limit: int = 5) -> List[str]:
+    """Search top tracks for an artist. Returns a list of videoIds."""
     try:
-        results = sp.search(q=query, type="track", limit=min(limit, 50))
-        tracks = []
-        for item in results.get("tracks", {}).get("items", []):
-            tracks.append({
-                "id": item["id"],
-                "name": item["name"],
-                "artists": [artist["name"] for artist in item["artists"]],
-                "duration_ms": item["duration_ms"],
-                "popularity": item["popularity"],
-                "uri": item["uri"]
-            })
-        return tracks
+        results = yt.search(artist, filter="songs", limit=limit * 2)
+        ids = []
+        for r in results:
+            if len(ids) >= limit:
+                break
+            if _artist_matches(artist, _result_artists(r)):
+                ids.append(r["videoId"])
+        return ids
     except Exception as e:
-        logger.error(f"Error searching tracks for '{query}': {e}")
+        logger.warning(f"  Artist search error for '{artist}': {e}")
         return []
 
 
-def get_recent_used_tracks(playlist_id: str, sp: spotipy.Spotify, limit: int = 50) -> Set[str]:
-    """
-    Get recently used track IDs from the playlist to avoid repeats.
-
-    Args:
-        playlist_id: Spotify playlist ID
-        sp: Spotify client instance
-        limit: Number of recent tracks to consider
-
-    Returns:
-        Set of recently used track IDs
-    """
-    try:
-        results = sp.playlist_tracks(playlist_id, limit=limit)
-        recent_ids = {item["track"]["id"] for item in results.get("items", []) if item["track"]}
-        return recent_ids
-    except Exception as e:
-        logger.error(f"Error getting recent playlist tracks: {e}")
-        return set()
-
-
 # ============================================================================
-# PLAYLIST BUILDING LOGIC
+# PLAYLIST BUILDING
 # ============================================================================
 
-def build_playlist(
-    sp: spotipy.Spotify,
-    mode: str,
-    target_size: int = 20,
-    playlist_id: str = None
-) -> List[str]:
+def build_playlist(yt: YTMusic, mode: str, target_size: int = 20) -> List[str]:
     """
-    Build a curated playlist for the given radio mode.
-
-    Args:
-        sp: Spotify client instance
-        mode: RadioMode constant
-        target_size: Target number of tracks (default 20)
-        playlist_id: Playlist ID to avoid recent repeats
-
-    Returns:
-        List of track URIs for the playlist
+    Build a playlist for the given mode.
+    1. Search each curated DB track on YouTube Music
+    2. Fill remaining slots with artist-based fallback searches
+    Returns a list of YouTube videoIds.
     """
     config = RADIO_CONFIG[mode]
-    queries = config["queries"]
-    energy_max = config["energy_max"]
-
     logger.info(f"Building playlist for mode: {mode} ({config['description']})")
 
-    # Get recently used tracks to avoid repetition
-    recent_ids = set()
-    if playlist_id:
-        recent_ids = get_recent_used_tracks(playlist_id, sp, limit=50)
+    db_tracks = get_tracks_by_mode(mode)
+    random.shuffle(db_tracks)
 
-    # Collect candidate tracks
-    all_tracks = []
-    artist_counts = {}
+    video_ids: List[str] = []
+    used_ids: Set[str] = set()
 
-    for query in queries:
-        logger.info(f"  Searching: {query}")
-        tracks = search_tracks(sp, query, limit=30)
-
-        for track in tracks:
-            track_id = track["id"]
-
-            # Skip if recently used
-            if track_id in recent_ids:
-                continue
-
-            # Limit tracks per artist (max 2 per artist)
-            main_artist = track["artists"][0] if track["artists"] else "Unknown"
-            artist_counts[main_artist] = artist_counts.get(main_artist, 0) + 1
-            if artist_counts[main_artist] > 2:
-                continue
-
-            # Add to candidates
-            all_tracks.append(track)
-
-    # Sort by popularity to prioritize well-known tracks
-    all_tracks.sort(key=lambda x: x["popularity"], reverse=True)
-
-    # Select top tracks (remove duplicates by ID)
-    selected_tracks = []
-    used_ids = set()
-
-    for track in all_tracks:
-        if len(selected_tracks) >= target_size:
+    # Step 1 — curated DB tracks
+    for db_track in db_tracks:
+        if len(video_ids) >= target_size:
             break
-        if track["id"] not in used_ids:
-            selected_tracks.append(track)
-            used_ids.add(track["id"])
+        name   = db_track["name"]
+        artist = db_track["artists"][0] if db_track["artists"] else ""
+        vid = search_track(yt, name, artist)
+        if vid and vid not in used_ids:
+            video_ids.append(vid)
+            used_ids.add(vid)
+            logger.info(f"  ✓ {name} — {artist}")
+        else:
+            logger.warning(f"  ✗ Not found: {name} — {artist}")
 
-    logger.info(f"Selected {len(selected_tracks)} tracks for playlist")
+    logger.info(f"Curated tracks: {len(video_ids)}/{len(db_tracks)}")
 
-    # Return track URIs (ready for Spotify API)
-    track_uris = [track["uri"] for track in selected_tracks]
-    return track_uris
+    # Step 2 — fallback: fill via artist search
+    if len(video_ids) < target_size:
+        logger.info(f"Filling {target_size - len(video_ids)} slots via artist search...")
+        for artist in config.get("fallback_artists", []):
+            if len(video_ids) >= target_size:
+                break
+            for vid in search_artist_top_tracks(yt, artist, limit=5):
+                if len(video_ids) >= target_size:
+                    break
+                if vid not in used_ids:
+                    video_ids.append(vid)
+                    used_ids.add(vid)
+                    logger.info(f"  + fallback: {artist}")
+
+    logger.info(f"Playlist built: {len(video_ids)} tracks")
+    return video_ids
 
 
 # ============================================================================
 # PLAYLIST UPDATE
 # ============================================================================
 
-def update_playlist(sp: spotipy.Spotify, playlist_id: str, track_uris: List[str]):
+def get_or_create_playlist(yt: YTMusic, playlist_id: str | None, title: str) -> str:
     """
-    Replace playlist content with new tracks.
+    Return the playlist ID to use.
+    If playlist_id is set, uses it. Otherwise creates a new playlist.
+    """
+    if playlist_id:
+        return playlist_id
+    logger.info(f"Creating new playlist: {title}")
+    new_id = yt.create_playlist(title, "Radio caribéenne automatique", privacy_status="PUBLIC")
+    logger.info(f"Playlist created: {new_id}")
+    return new_id
 
-    Args:
-        sp: Spotify client instance
-        playlist_id: Spotify playlist ID to update
-        track_uris: List of track URIs to add to playlist
-    """
-    if not track_uris:
-        logger.warning("No tracks to add to playlist")
+
+def update_playlist(yt: YTMusic, playlist_id: str, video_ids: List[str]):
+    """Replace the playlist content with the given videoIds."""
+    if not video_ids:
+        logger.warning("No tracks to add")
         return
 
+    logger.info(f"Updating playlist {playlist_id}...")
+
+    # Remove existing tracks — only items that have setVideoId (required by ytmusicapi)
     try:
-        # Clear existing tracks (in batches of 100)
-        logger.info(f"Clearing playlist {playlist_id}...")
-        while True:
-            results = sp.playlist_tracks(playlist_id, limit=100)
-            items = results.get("items", [])
-            if not items:
-                break
-            track_ids = [item["track"]["id"] for item in items if item["track"]]
-            if track_ids:
-                sp.playlist_remove_all_occurrences_of_items(playlist_id, track_ids)
-
-        # Add new tracks (in batches of 100)
-        logger.info(f"Adding {len(track_uris)} tracks to playlist...")
-        for i in range(0, len(track_uris), 100):
-            batch = track_uris[i:i + 100]
-            sp.playlist_add_items(playlist_id, batch)
-            logger.info(f"  Added {min(100, len(track_uris) - i)} tracks")
-
-        logger.info("Playlist updated successfully!")
-
+        playlist = yt.get_playlist(playlist_id, limit=200)
+        existing = [t for t in playlist.get("tracks", []) if t.get("setVideoId")]
+        if existing:
+            yt.remove_playlist_items(playlist_id, existing)
+            logger.info(f"Removed {len(existing)} existing tracks")
     except Exception as e:
-        logger.error(f"Error updating playlist: {e}")
-        sys.exit(1)
+        logger.warning(f"Could not clear playlist: {e}")
+
+    # Add new tracks
+    yt.add_playlist_items(playlist_id, video_ids)
+    logger.info(f"Added {len(video_ids)} tracks")
 
 
 # ============================================================================
@@ -321,46 +240,45 @@ def update_playlist(sp: spotipy.Spotify, playlist_id: str, track_uris: List[str]
 
 def run_playlist_engine(playlist_id: str = None):
     """
-    Main orchestration function: detect hour → select mode → build → update.
-
-    Args:
-        playlist_id: Spotify playlist ID (from env if not provided)
+    Main function: detect mode → search YouTube Music → update playlist.
+    Required: browser.json (run `ytmusicapi browser` to generate it)
+    Optional env var: YTMUSIC_PLAYLIST_ID (if not set, creates a new playlist)
     """
-    playlist_id = playlist_id or os.getenv("SPOTIFY_PLAYLIST_ID")
+    playlist_id = playlist_id or os.getenv("YTMUSIC_PLAYLIST_ID")
 
-    if not playlist_id:
-        logger.error("SPOTIFY_PLAYLIST_ID not found in environment variables")
+    yt = init_ytmusic()
+
+    now  = datetime.now()
+    mode = get_radio_mode(now.hour)
+    config = RADIO_CONFIG[mode]
+
+    logger.info(f"Current time: {now.strftime('%H:%M:%S')}")
+    logger.info(f"Radio mode: {mode} ({config['description']})")
+
+    video_ids = build_playlist(yt, mode, target_size=20)
+
+    if not video_ids:
+        logger.error("No tracks found")
         sys.exit(1)
 
-    try:
-        # Initialize Spotify client
-        logger.info("Initializing Spotify client...")
-        sp = init_spotify_client()
+    # Prepend Flash Info + Horoscope (uploaded to YouTube if not cached)
+    prepend = []
+    for label, fn in [("Flash Info", get_or_upload_episode), ("Horoscope", get_or_upload_horoscope)]:
+        try:
+            vid = fn(mode)
+            if vid:
+                prepend.append(vid)
+                logger.info(f"{label} prepended: https://youtu.be/{vid}")
+        except Exception as e:
+            logger.warning(f"{label} upload skipped: {e}")
 
-        # Get current time and determine mode
-        now = datetime.now()
-        hour = now.hour
-        mode = get_radio_mode(hour)
-        config = RADIO_CONFIG[mode]
+    video_ids = prepend + video_ids
 
-        logger.info(f"Current time: {now.strftime('%H:%M:%S')}")
-        logger.info(f"Radio mode: {mode} ({config['description']})")
+    playlist_id = get_or_create_playlist(yt, playlist_id, "Botiran News: La radio de la diaspora Guadeloupéenne au Luxembourg")
+    update_playlist(yt, playlist_id, video_ids)
 
-        # Build playlist
-        track_uris = build_playlist(sp, mode, target_size=20, playlist_id=playlist_id)
-
-        if not track_uris:
-            logger.error("Failed to build playlist: no tracks found")
-            sys.exit(1)
-
-        # Update Spotify playlist
-        update_playlist(sp, playlist_id, track_uris)
-
-        logger.info("✅ Playlist updated successfully!")
-
-    except Exception as e:
-        logger.error(f"Fatal error in playlist engine: {e}")
-        sys.exit(1)
+    logger.info("✅ Playlist updated successfully!")
+    logger.info(f"   https://music.youtube.com/playlist?list={playlist_id}")
 
 
 if __name__ == "__main__":
