@@ -1,10 +1,11 @@
 name: 🎶 YouTube Music Radio Playlist Update
 
 on:
-  schedule:
-    - cron: '0 4 * * *'   # 04:00 UTC — début matin (6h Paris été / 5h hiver)
-    - cron: '0 12 * * *'  # 12:00 UTC — début après-midi
-    - cron: '0 20 * * *'  # 20:00 UTC — début soirée
+  workflow_run:
+    workflows:
+      - "Horoscope Quotidien"
+      - "Flash Info Guadeloupe"
+    types: [completed]
 
   workflow_dispatch:
 
@@ -15,6 +16,7 @@ jobs:
   update-playlist:
     runs-on: ubuntu-latest
     name: Generate & Update Radio Playlist
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - name: 📥 Checkout code
