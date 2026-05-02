@@ -123,6 +123,13 @@
       flex-shrink: 0;
     }
 
+    .apple-embed {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
     .yt-wrap {
       position: relative;
       width: 100%;
@@ -160,14 +167,15 @@
     <h1>Botiran</h1>
     <p class="tagline">Flash info et horoscope de la Guadeloupe<br>Matin, midi et soir — par Botiran</p>
 
-    <a href="https://podcasts.apple.com/fr/podcast/lactualit%C3%A9-de-la-guadeloupe/id1894299367" class="btn" target="_blank" rel="noopener">
-      <span class="btn-icon">🎵</span>
-      <span class="btn-text">
-        <span class="btn-label">Apple Podcasts</span>
-        <span class="btn-sub">L'actualité de la Guadeloupe</span>
-      </span>
-      <span class="btn-arrow">›</span>
-    </a>
+    <iframe
+      class="apple-embed"
+      src="https://embed.podcasts.apple.com/fr/podcast/lactualit%C3%A9-de-la-guadeloupe/id1894299367"
+      height="450"
+      frameborder="0"
+      sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+      allow="autoplay *; encrypted-media *; clipboard-write"
+      title="Apple Podcasts — L'actualité de la Guadeloupe">
+    </iframe>
 
     <div class="yt-wrap">
       <iframe
