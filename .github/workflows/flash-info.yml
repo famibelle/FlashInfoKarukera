@@ -187,4 +187,5 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: flash info $(date +%Y-%m-%d) — archive + anti-répétition [skip ci]"
           git add docs/
           git diff --cached --quiet || git commit -m "chore: flash info $(date +%Y-%m-%d) — RSS"
-          git push || true
+          git pull --rebase origin main
+          git push

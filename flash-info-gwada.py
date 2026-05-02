@@ -1492,6 +1492,8 @@ def _update_podcast_rss(
 ) -> None:
     """Insère un épisode en tête du flux RSS podcast (iTunes-compatible)."""
     import re as _re_rss
+    def _xe(s: str) -> str:
+        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
     existing: list[str] = []
     if rss_path.exists():
         existing = _re_rss.findall(r"<item>.*?</item>", rss_path.read_text(encoding="utf-8"), _re_rss.DOTALL)
@@ -1499,7 +1501,7 @@ def _update_podcast_rss(
     mins, secs = divmod(int(duration_s), 60)
     new_item = (
         f"    <item>\n"
-        f"      <title>{episode_title}</title>\n"
+        f"      <title>{_xe(episode_title)}</title>\n"
         f"      <description><![CDATA[{episode_desc}]]></description>\n"
         f"      <pubDate>{_rfc2822(pub_date)}</pubDate>\n"
         f"      <enclosure url=\"{audio_url}\" length=\"{audio_size}\" type=\"audio/mpeg\"/>\n"
@@ -1514,15 +1516,15 @@ def _update_podcast_rss(
         f'<?xml version="1.0" encoding="UTF-8"?>\n'
         f'<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">\n'
         f'  <channel>\n'
-        f'    <title>{channel_title}</title>\n'
+        f'    <title>{_xe(channel_title)}</title>\n'
         f'    <link>https://famibelle.github.io/FlashInfoKarukera/</link>\n'
-        f'    <description>{channel_desc}</description>\n'
+        f'    <description>{_xe(channel_desc)}</description>\n'
         f'    <language>fr</language>\n'
         f'    <copyright>© Botiran</copyright>\n'
         f'    <itunes:author>Botiran</itunes:author>\n'
         f'    <itunes:owner><itunes:name>Botiran</itunes:name><itunes:email>medhi.famibelle@outlook.fr</itunes:email></itunes:owner>\n'
         f'    <itunes:image href="{artwork}"/>\n'
-        f'    <image><url>{artwork}</url><title>{channel_title}</title><link>https://famibelle.github.io/FlashInfoKarukera/</link></image>\n'
+        f'    <image><url>{artwork}</url><title>{_xe(channel_title)}</title><link>https://famibelle.github.io/FlashInfoKarukera/</link></image>\n'
         f'    <itunes:category text="News"><itunes:category text="Daily News"/></itunes:category>\n'
         f'    <itunes:explicit>no</itunes:explicit>\n\n'
         f'{items_block}\n\n'
