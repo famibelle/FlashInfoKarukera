@@ -291,39 +291,65 @@ def _remove_all(yt: YTMusic, playlist_id: str, removable: list):
         time.sleep(2)
 
 
+def _add_items(yt: YTMusic, playlist_id: str, video_ids: list, label: str = ""):
+    """Appelle add_playlist_items et logue le statut retourné."""
+    status = yt.add_playlist_items(playlist_id, video_ids)
+    tag = f" [{label}]" if label else ""
+    logger.info(f"  add{tag} {len(video_ids)} items → status: {status}")
+    if isinstance(status, dict) and status.get("status") not in (None, "STATUS_SUCCEEDED"):
+        logger.warning(f"  Statut inattendu : {status}")
+    return status
+
+
 def update_playlist(yt: YTMusic, playlist_id: str, video_ids: List[str]):
     """
     Règle YouTube Music : après remove(N), un seul add(M) fonctionne si M ≤ 2×N.
-    Bootstrap depuis 0 → 1 → 25 → 50 → 100 si nécessaire.
-    Run normal (playlist déjà à 100) : remove 100 → add 100 en un seul appel.
+
+    - Playlist vide (current=0)  : ajout direct, aucun remove préalable → pas de contrainte.
+    - Run normal (current ≥ target//2) : remove tout → add tout en un appel.
+    - Bootstrap (0 < current < target//2) : doublement 1→2→4→…→target
+      (chaque remove libère N slots, le add suivant respecte M ≤ 2×N).
     """
     logger.info(f"Mise à jour playlist {playlist_id} ({len(video_ids)} items)...")
 
     removable = _get_removable(yt, playlist_id)
     current   = len(removable)
     target    = len(video_ids)
+    logger.info(f"  État actuel : {current} pistes → cible : {target}")
 
-    if current >= target // 2:
+    if current == 0:
+        # Playlist vide : pas de remove préalable, ajout direct sans contrainte
+        logger.info("  Playlist vide — ajout direct...")
+        _add_items(yt, playlist_id, video_ids, "direct")
+
+    elif current >= target // 2:
         # Run normal : remove tout → add tout en un seul appel
         _remove_all(yt, playlist_id, removable)
-        yt.add_playlist_items(playlist_id, video_ids)
-        logger.info(f"  Ajouté {target}/{target}")
+        _add_items(yt, playlist_id, video_ids, "normal")
+
     else:
-        # Bootstrap depuis zéro : remove tout → 1 → 25 → 50 → target
-        # Chaque étape : add N, wait 6s (setVideoId propagation), remove N, wait 5s, add 2N
-        logger.info(f"  Bootstrap nécessaire (état actuel : {current} pistes)...")
+        # Bootstrap : doublement strict pour respecter la règle M ≤ 2×N
+        logger.info(f"  Bootstrap nécessaire ({current} < {target // 2})...")
         _remove_all(yt, playlist_id, removable)
         time.sleep(3)
 
-        for step in [1, 25, 50, target]:
-            yt.add_playlist_items(playlist_id, video_ids[:step])
-            logger.info(f"  Bootstrap add {step}...")
+        step = 1
+        while step < target:
+            _add_items(yt, playlist_id, video_ids[:step], f"step {step}")
             time.sleep(6)
-            if step < target:
-                _remove_all(yt, playlist_id, _get_removable(yt, playlist_id))
-                time.sleep(5)
+            _remove_all(yt, playlist_id, _get_removable(yt, playlist_id))
+            time.sleep(5)
+            step = min(step * 2, target)
 
-        logger.info(f"  Bootstrap terminé → {target} pistes")
+        # Ajout final de toutes les pistes (step vient d'atteindre target)
+        _add_items(yt, playlist_id, video_ids, "final")
+
+    # Vérification post-update
+    actual = len(_get_removable(yt, playlist_id))
+    if actual >= target:
+        logger.info(f"  ✅ Vérification OK : {actual} pistes dans la playlist")
+    else:
+        logger.warning(f"  ⚠️ Vérification : {actual}/{target} pistes — ajout partiel ou délai API")
 
 
 # ── Test pipeline annonces ───────────────────────────────────────────────────
