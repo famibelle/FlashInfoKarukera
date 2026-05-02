@@ -1511,6 +1511,14 @@ def main():
         help="Génère et affiche uniquement les textes (Mistral) sans TTS ni publication.",
     )
     parser.add_argument(
+        "--test-flora", action="store_true",
+        help="Teste uniquement le signe du jour : sélection, Mistral, TTS → MP3 dans /tmp.",
+    )
+    parser.add_argument(
+        "--weather", metavar="TEXTE",
+        help="Météo simulée pour --test-flora (ex: 'Soleil voilé, 28°C'). Défaut : fetch réel.",
+    )
+    parser.add_argument(
         "--verbose", action="store_true",
         help="Affiche le texte brut de l'API et le texte rédigé par Maryse.",
     )
@@ -1522,6 +1530,62 @@ def main():
         Path(args.output) if args.output
         else OUTPUT_DIR / f"horoscope-{gen_date.strftime('%Y%m%d')}-{args.edition}.mp3"
     )
+
+    # ── --test-flora : test isolé du signe du jour ────────────────────────────
+    if args.test_flora:
+        weather_test = args.weather
+        if not weather_test:
+            try:
+                weather_test = fetch_weather(gen_date)
+                print(f"🌤  Météo fetchée : {weather_test}")
+            except Exception:
+                weather_test = None
+                print("🌤  Météo indisponible — utilisation du fallback")
+
+        recent_flora = _load_recent_flora()
+        entry = pick_flora_signe(weather_test, args.edition, recent_flora)
+        if not entry:
+            print("❌ Aucune plante disponible pour ces paramètres.", file=sys.stderr)
+            sys.exit(1)
+
+        print(f"\n🌿 Plante sélectionnée : {entry['nom_commun']} ({entry['nom_creole']})")
+        print(f"   Famille    : {entry['famille']}")
+        print(f"   Conditions : {', '.join(entry['conditions']) or 'toutes'}")
+
+        moment_label = edition_cfg["moment"]
+        maryse_base = (
+            _load_prompt("maryse_ame.md") + "\n\n"
+            + _load_prompt("kreyol_resistance_symbol.md") + "\n\n"
+            + "Tu rédiges UNIQUEMENT le segment horoscope — pas de météo, pas d'actualités. "
+            "Juste la lecture de l'horoscope dans ta voix.\n"
+        )
+        flora_system = (
+            maryse_base +
+            "Tu rédiges UNIQUEMENT le signe du jour — une plante ou un arbre, "
+            "son savoir, son invitation. Deux phrases dans ta voix. "
+            "Commence par une phrase qui ancre dans le temps du jour (la météo, la lumière), "
+            "puis enchaîne avec la plante, son savoir concret, et une invitation courte. "
+            "Pas de titre, pas de formule introductive du type 'Signe du jour :'."
+        )
+        flora_user = (
+            f"PLANTE : {entry['nom_commun']} ({entry['nom_creole']})\n"
+            f"MÉTÉO DU JOUR : {weather_test or 'Temps variable'}\n"
+            f"MOMENT : {moment_label}\n"
+            f"SAVOIR : {entry['savoir']}"
+        )
+        print("\n✍️  Génération Mistral…")
+        flora_text = _strip_markdown(
+            call_mistral(flora_system, flora_user, temperature=0.75, max_tokens=120)
+        )
+        print(f"\n── TEXTE GÉNÉRÉ ─────────────────────────────────────────")
+        print(flora_text)
+        print("─────────────────────────────────────────────────────────")
+
+        out_mp3 = OUTPUT_DIR / f"flora-test-{args.edition}-{DateTime.now().strftime('%H%M%S')}.mp3"
+        print(f"\n🔊 TTS → {out_mp3}")
+        _tts_call(_normalize_for_tts(flora_text), out_mp3, TTS_VOICES["curious"])
+        print(f"✅ {out_mp3} ({out_mp3.stat().st_size:,} bytes)")
+        return
 
     # Résolution des signes forcés
     inc: list[str] = []
