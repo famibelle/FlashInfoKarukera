@@ -589,12 +589,13 @@ def _strip_markdown(text: str) -> str:
 def _generate_flora_text(maryse_base: str, flora_entry: dict, weather_summary: "str | None", moment_label: str) -> str:
     flora_system = (
         maryse_base +
-        "Tu rédiges UNIQUEMENT le signe du jour — une plante ou un arbre, "
-        "Tu introduis en disant une variation sur 'Si tu croises' la plante ou l'arbre du jour"
-        "Ensuite tu expliques avec un seul exemple comment les anciens, que tu nommes avec énornement de respect, l'utilisaient"
-        "Pas de titre, pas de formule introductive du type 'Signe du jour :'. Pas de formulation familière comme 'les vieux' pour désigner les anciens."
-        "Tu peux utiliser des formules comme 'nos anciens', 'nos prédécesseurs sur notre île', 'nos grands mères', 'nos grands pères', 'an tan lontan', 'lè dyab té ti piti', 'du temps de l'esclavage'"
-        "L'ensemble est rédigié pour être lu et fait une phrase maximum"
+        "Tu rédiges UNIQUEMENT le signe du jour — une plante ou un arbre. "
+        "Commence OBLIGATOIREMENT par une variation de 'Si tu croises' suivie du nom de la plante — rien d'autre avant. "
+        "PAS de description physique ou visuelle : pas de taille, couleur, forme des feuilles, ni aucune autre caractéristique apparente. "
+        "Enchaîne IMMÉDIATEMENT avec UN exemple concret de savoir ancestral : comment les anciens l'utilisaient. "
+        "Nomme les anciens avec respect : 'nos anciens', 'nos prédécesseurs', 'nos grands-mères', 'an tan lontan', 'lè dyab té ti piti', 'du temps de l'esclavage'. Jamais 'les vieux'. "
+        "Pas de titre, pas de formule introductive. "
+        "UNE SEULE phrase courte — s'arrêter après le premier point."
     )
     flora_user = (
         f"PLANTE : {flora_entry['nom_commun']} ({flora_entry['nom_creole']})\n"
@@ -603,7 +604,7 @@ def _generate_flora_text(maryse_base: str, flora_entry: dict, weather_summary: "
         f"SAVOIR : {flora_entry['savoir']}"
     )
     return _strip_markdown(
-        call_mistral(flora_system, flora_user, temperature=0.75, max_tokens=120)
+        call_mistral(flora_system, flora_user, temperature=0.75, max_tokens=90)
     )
 
 
@@ -611,11 +612,12 @@ def _generate_faune_text(maryse_base: str, faune_entry: dict, weather_summary: "
     faune_system = (
         maryse_base +
         "Tu rédiges UNIQUEMENT le signe du jour — un animal de la Caraïbe. "
-        "Tu introduis en disant une variation sur 'Si tu croises' l'animal du jour. "
-        "Ensuite tu expliques avec un seul exemple ce que les anciens savaient de cet animal — son rapport au monde spirituel ou au quotidien créole. "
-        "Pas de titre, pas de formule introductive du type 'Signe du jour :'. Pas de formulation familière comme 'les vieux' pour désigner les anciens. "
-        "Tu peux utiliser des formules comme 'nos anciens', 'nos prédécesseurs sur notre île', 'nos grands mères', 'nos grands pères', 'an tan lontan', 'lè dyab té ti piti', 'du temps des Kalinagos'. "
-        "L'ensemble est rédigé pour être lu et fait une phrase maximum."
+        "Commence OBLIGATOIREMENT par une variation de 'Si tu croises' suivie du nom de l'animal — rien d'autre avant. "
+        "PAS de description physique ou visuelle : pas de taille, couleur, forme, ni aucune caractéristique apparente. "
+        "Enchaîne IMMÉDIATEMENT avec UN exemple concret de savoir ancestral : ce que les anciens savaient de cet animal. "
+        "Nomme les anciens avec respect : 'nos anciens', 'nos prédécesseurs', 'nos grands-mères', 'an tan lontan', 'lè dyab té ti piti', 'du temps des Kalinagos'. Jamais 'les vieux'. "
+        "Pas de titre, pas de formule introductive. "
+        "UNE SEULE phrase courte — s'arrêter après le premier point."
     )
     faune_user = (
         f"ANIMAL : {faune_entry['nom_commun']} ({faune_entry['nom_creole']})\n"
@@ -624,7 +626,7 @@ def _generate_faune_text(maryse_base: str, faune_entry: dict, weather_summary: "
         f"SAVOIR : {faune_entry['savoir']}"
     )
     return _strip_markdown(
-        call_mistral(faune_system, faune_user, temperature=0.75, max_tokens=120)
+        call_mistral(faune_system, faune_user, temperature=0.75, max_tokens=90)
     )
 
 
