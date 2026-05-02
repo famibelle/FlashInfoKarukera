@@ -1578,7 +1578,8 @@ def main():
     moment_label = edition_cfg["moment"]
     maryse_base = (
         _load_prompt("maryse_ame.md") + "\n\n"
-        "Tu rédiges UNIQUEMENT le segment horoscope — pas de météo, pas d'actualités. "
+        + _load_prompt("kreyol_resistance_symbol.md") + "\n\n"
+        + "Tu rédiges UNIQUEMENT le segment horoscope — pas de météo, pas d'actualités. "
         "Juste la lecture de l'horoscope dans ta voix.\n"
     )
 
