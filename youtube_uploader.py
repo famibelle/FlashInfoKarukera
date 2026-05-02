@@ -323,7 +323,7 @@ def _mistral_chat(system: str, user: str) -> str:
             {"role": "system", "content": system},
             {"role": "user",   "content": user},
         ],
-        "max_tokens": 120,
+        "max_tokens": 180,
         "temperature": 0.85,
     }).encode()
     req = urllib.request.Request(
@@ -358,26 +358,23 @@ def get_or_upload_announcement(bloc: str, artists: list[str]) -> str | None:
 
     logger.info(f"Génération annonce {bloc} — artistes : {', '.join(artists)}")
 
-    # Construire le prompt système (âme + savoir symbolique)
+    # Construire le prompt système : âme + savoir symbolique + brief d'annonce
     try:
         system_prompt = (
             _load_prompt("solitude_ame.md")
             + "\n\n"
             + _load_prompt("kreyol_resistance_symbol.md")
+            + "\n\n"
+            + _load_prompt("solitude.md")
         )
-        brief = _load_prompt("solitude.md")
     except FileNotFoundError as e:
         logger.warning(f"Annonce {bloc} ignorée : {e}")
         return None
 
-    # Construire le prompt utilisateur
-    label    = ANNOUNCE_BLOC_LABEL.get(bloc, bloc)
+    # Construire le prompt utilisateur (données uniquement)
+    label       = ANNOUNCE_BLOC_LABEL.get(bloc, bloc)
     artists_str = ", ".join(artists)
-    user_prompt = (
-        f"{brief}\n\n"
-        f"Moment : {label}\n"
-        f"Artistes : {artists_str}"
-    )
+    user_prompt = f"Moment : {label}\nArtistes : {artists_str}"
 
     # Générer le texte via Mistral
     try:

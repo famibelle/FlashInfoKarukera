@@ -399,14 +399,15 @@ def test_announce_pipeline(yt: YTMusic):
                 _load_prompt("solitude_ame.md")
                 + "\n\n"
                 + _load_prompt("kreyol_resistance_symbol.md")
+                + "\n\n"
+                + _load_prompt("solitude.md")
             )
-            brief = _load_prompt("solitude.md")
         except FileNotFoundError as e:
             logger.error(f"  Prompt manquant : {e}")
             ko += 1
             continue
 
-        user_prompt = f"{brief}\n\nMoment : {label}\nArtistes : {', '.join(artists)}"
+        user_prompt = f"Moment : {label}\nArtistes : {', '.join(artists)}"
         try:
             text = _mistral_chat(system_prompt, user_prompt)
             logger.info(f"  Texte : {text!r}")
