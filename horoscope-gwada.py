@@ -577,6 +577,17 @@ LIEUX_SPIRITUELS   = (
     "\n\n" + _load_prompt("faune_guadeloupe.md")
 )
 
+def _first_sentence(text: str) -> str:
+    """Retourne la première phrase complète.
+    Reconnaît un point comme fin de phrase seulement s'il est suivi
+    d'une majuscule (nouvelle phrase) ou de la fin du texte — évite M., Dr., etc.
+    """
+    m = _re.search(r'(?<![A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÆŒ])[.!?](?=\s+[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÆŒ]|\s*$)', text)
+    if m:
+        return text[:m.start() + 1].strip()
+    return text.strip()
+
+
 def _strip_markdown(text: str) -> str:
     text = _re.sub(r"\*+([^*]+)\*+", r"\1", text)
     text = _re.sub(r"\[.*?\]", "", text)
@@ -603,9 +614,9 @@ def _generate_flora_text(maryse_base: str, flora_entry: dict, weather_summary: "
         f"MOMENT : {moment_label}\n"
         f"SAVOIR : {flora_entry['savoir']}"
     )
-    return _strip_markdown(
-        call_mistral(flora_system, flora_user, temperature=0.75, max_tokens=90)
-    )
+    return _first_sentence(_strip_markdown(
+        call_mistral(flora_system, flora_user, temperature=0.75, max_tokens=120)
+    ))
 
 
 def _generate_faune_text(maryse_base: str, faune_entry: dict, weather_summary: "str | None", moment_label: str) -> str:
@@ -625,9 +636,9 @@ def _generate_faune_text(maryse_base: str, faune_entry: dict, weather_summary: "
         f"MOMENT : {moment_label}\n"
         f"SAVOIR : {faune_entry['savoir']}"
     )
-    return _strip_markdown(
-        call_mistral(faune_system, faune_user, temperature=0.75, max_tokens=90)
-    )
+    return _first_sentence(_strip_markdown(
+        call_mistral(faune_system, faune_user, temperature=0.75, max_tokens=120)
+    ))
 
 
 def _pick_signe_du_jour(
