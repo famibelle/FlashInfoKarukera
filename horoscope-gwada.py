@@ -163,6 +163,7 @@ EDITION_CONFIGS = {
 
 from data.marroniers import get_marroniers_du_jour as _get_marroniers_du_jour
 from data.weather_codes import WMO_CODES as _WMO
+from data.flora_signes import pick_flora_signe
 
 # ── Date & heure Paris ────────────────────────────────────────────────────────
 
@@ -1618,17 +1619,55 @@ def main():
         print(f"🔊 TTS intro → {intro_path.name}")
         _tts_call(_normalize_for_tts(intro_text), intro_path, TTS_VOICES["curious"])
 
+    # ── Signe du jour : flore caribéenne ─────────────────────────────────────
+    # Anti-répétition inter-jours (chargé tôt pour le filtrage flora aussi)
+    recent_flora = _load_recent_flora()
+    if recent_flora:
+        print(f"🌿 Flore récente ({FLORA_MEMORY_DAYS}j) exclue : {', '.join(recent_flora)}")
+    used_flora: list[str] = list(recent_flora)
+
+    flora_entry   = pick_flora_signe(weather_summary, args.edition, used_flora)
+    flora_text    = None
+    flora_path    = seg_dir / "seg_flora.mp3"
+
+    if flora_entry:
+        print(f"🌿 Signe du jour : {flora_entry['nom_commun']} ({flora_entry['nom_creole']})")
+        flora_system = (
+            maryse_base +
+            "Tu rédiges UNIQUEMENT le signe du jour — une plante ou un arbre, "
+            "son savoir, son invitation. Deux phrases dans ta voix. "
+            "Commence par une phrase qui ancre dans le temps du jour (la météo, la lumière), "
+            "puis enchaîne avec la plante, son savoir concret, et une invitation courte. "
+            "Pas de titre, pas de formule introductive du type 'Signe du jour :'."
+        )
+        flora_user = (
+            f"PLANTE : {flora_entry['nom_commun']} ({flora_entry['nom_creole']})\n"
+            f"MÉTÉO DU JOUR : {weather_summary or 'Temps variable'}\n"
+            f"MOMENT : {moment_label}\n"
+            f"SAVOIR : {flora_entry['savoir']}"
+        )
+        print(f"✍️  Rédaction signe du jour (Mistral Large)…")
+        flora_text = _strip_markdown(
+            call_mistral(flora_system, flora_user, temperature=0.75, max_tokens=120)
+        )
+        if args.verbose:
+            print(f"\n── SIGNE DU JOUR ────────────────────────────────────────")
+            print(flora_text)
+            print("─────────────────────────────────────────────────────────\n")
+        used_flora = list(dict.fromkeys(used_flora + [flora_entry["nom_creole"]]))
+        if not args.text_only:
+            print(f"🔊 TTS signe du jour → {flora_path.name}")
+            _tts_call(_normalize_for_tts(flora_text), flora_path, TTS_VOICES["curious"])
+    else:
+        print("🌿 Signe du jour ignoré (aucune plante disponible)")
+
     # ── Boucle par signe : Mistral + TTS ─────────────────────────────────────
     seg_paths:      list[Path]       = []
     signs_hashtags: list[list[str]] = []
     sign_texts:     list[str]        = []
     archive_texts:  list[str]        = [f"=== INTRO ===\n{intro_text}"]
-
-    # Anti-répétition inter-jours
-    recent_flora = _load_recent_flora()
-    if recent_flora:
-        print(f"🌿 Flore récente ({FLORA_MEMORY_DAYS}j) exclue : {', '.join(recent_flora)}")
-    used_flora: list[str] = list(recent_flora)
+    if flora_text:
+        archive_texts.append(f"=== SIGNE DU JOUR ===\n{flora_text}")
 
     sign_system = (
         maryse_base +
@@ -1740,8 +1779,9 @@ def main():
 
     # ── Assemblage audio final : intro + signes + outro ───────────────────────
     stinger = resolve_stinger(args.stinger)
-    all_audio = [intro_path] + seg_paths + [outro_path]
-    print(f"🔗 Assemblage intro + {n_signs} signes + outro → {output_path}")
+    flora_audio = [flora_path] if (flora_text and flora_path.exists()) else []
+    all_audio = [intro_path] + flora_audio + seg_paths + [outro_path]
+    print(f"🔗 Assemblage intro + signe du jour + {n_signs} signes + outro → {output_path}")
     _assemble_audio(all_audio, stinger, output_path)
     print(f"✅ Horoscope sauvegardé : {output_path}")
 

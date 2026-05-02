@@ -4,9 +4,55 @@ Chaque entrée : nom créole, nom commun, famille, conditions météo, éditions
 et le `savoir` factuel que Mistral formulera dans la voix de Maryse Condé.
 """
 
+import random
+
 # conditions : "soleil", "nuageux", "pluie", "vent", "orage", "chaleur"
 #              liste vide = toutes conditions
 # editions   : "matin", "soir", ou les deux
+
+_WEATHER_KEYWORDS: list[tuple[str, list[str]]] = [
+    ("orage",   ["orage", "orageux", "tempête", "foudre"]),
+    ("pluie",   ["pluie", "averse", "pluvieux", "bruine", "précipitation", "mouillé"]),
+    ("vent",    ["vent", "venteux", "brise", "rafale", "souffle"]),
+    ("nuageux", ["nuageux", "nuages", "couvert", "voilé", "brumeux", "gris"]),
+    ("chaleur", ["chaleur", "chaud", "tropical", "caniculaire"]),
+    ("soleil",  ["soleil", "ensoleillé", "dégagé", "beau temps", "clair"]),
+]
+
+
+def _parse_conditions(weather_summary: str | None) -> list[str]:
+    if not weather_summary:
+        return []
+    text = weather_summary.lower()
+    return [cond for cond, kws in _WEATHER_KEYWORDS if any(kw in text for kw in kws)]
+
+
+def pick_flora_signe(
+    weather_summary: str | None,
+    edition: str,
+    exclude: list[str],
+) -> dict | None:
+    """Retourne une entrée de FLORA_SIGNES adaptée à la météo, l'édition et l'anti-répétition."""
+    conditions = _parse_conditions(weather_summary)
+
+    candidates = [
+        e for e in FLORA_SIGNES
+        if edition in e["editions"]
+        and e["nom_creole"] not in exclude
+        and (not e["conditions"] or any(c in conditions for c in e["conditions"]))
+    ]
+
+    if not candidates:
+        # Fallback : ignorer les conditions météo, garder seulement edition + anti-répétition
+        candidates = [
+            e for e in FLORA_SIGNES
+            if edition in e["editions"] and e["nom_creole"] not in exclude
+        ]
+
+    if not candidates:
+        return None
+
+    return random.choice(candidates)
 
 FLORA_SIGNES: list[dict] = [
 
