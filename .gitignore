@@ -1,6 +1,27 @@
+# Secrets & tokens
 .env
-__pycache__/
-curl_headers.txt
 browser.json
-client_secret.json
-youtube_token.json
+client_secret*.json
+*_token*.json
+*_secret*.json
+oauth*.json
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Fichiers temporaires
+.cache
+curl_headers.txt
+erase.me
+
+# Exports de playlists locaux (generés a la demande, non versionnés)
+playlists/spotify_*.json
+playlists/spotify_*.txt
+playlists/radio_playlist_*.json
+playlists/radio_playlist_*.m3u
+playlists/radio_playlist_*.txt
