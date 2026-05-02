@@ -73,6 +73,7 @@ ARCHIVES_DIR = Path(__file__).parent / "archives" / "horoscope"
 DOCS_DIR     = Path(__file__).parent / "docs"
 HOROSCOPE_RSS_PATH = DOCS_DIR / "podcast.xml"
 USED_FLORA_PATH = DATA_DIR / "used_flora.json"
+USED_FAUNE_PATH = DATA_DIR / "used_faune.json"
 FLORA_MEMORY_DAYS = 7  # fenêtre glissante d'anti-répétition
 MEDIA_DIR    = Path(__file__).parent / "Media"
 
@@ -163,7 +164,8 @@ EDITION_CONFIGS = {
 
 from data.marroniers import get_marroniers_du_jour as _get_marroniers_du_jour
 from data.weather_codes import WMO_CODES as _WMO
-from data.flora_signes import pick_flora_signe
+from data.flora_signes import pick_flora_signe, FLORA_SIGNES
+from data.faune_signes import pick_faune_signe, FAUNE_SIGNES
 
 # ── Date & heure Paris ────────────────────────────────────────────────────────
 
@@ -533,6 +535,42 @@ def _save_used_flora(target_date: Date, flora: list[str]) -> None:
     data = {k: v for k, v in data.items() if Date.fromisoformat(k).toordinal() >= cutoff}
     USED_FLORA_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"💾  Anti-répétition flore : {len(flora)} éléments sauvegardés ({USED_FLORA_PATH.name})")
+
+
+def _load_recent_faune(window_days: int = FLORA_MEMORY_DAYS, exclude_date: "Date | None" = None) -> list[str]:
+    if not USED_FAUNE_PATH.exists():
+        return []
+    try:
+        data: dict = json.loads(USED_FAUNE_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    cutoff = Date.today().toordinal() - window_days
+    recent: list[str] = []
+    for date_str, faune in data.items():
+        try:
+            d = Date.fromisoformat(date_str)
+        except ValueError:
+            continue
+        if d.toordinal() >= cutoff and d != exclude_date:
+            recent.extend(faune)
+    return list(dict.fromkeys(recent))
+
+
+def _save_used_faune(target_date: Date, faune: list[str]) -> None:
+    data: dict = {}
+    if USED_FAUNE_PATH.exists():
+        try:
+            data = json.loads(USED_FAUNE_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    existing = data.get(target_date.isoformat(), [])
+    data[target_date.isoformat()] = list(dict.fromkeys(existing + faune))
+    cutoff = Date.today().toordinal() - FLORA_MEMORY_DAYS * 2
+    data = {k: v for k, v in data.items() if Date.fromisoformat(k).toordinal() >= cutoff}
+    USED_FAUNE_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"💾  Anti-répétition faune : {len(faune)} éléments sauvegardés ({USED_FAUNE_PATH.name})")
+
+
 LIEUX_SPIRITUELS   = (
     "\n\n" + _load_prompt("lieux_spirituels.md") +
     "\n\n" + _load_prompt("flore_guadeloupe.md") +
@@ -546,6 +584,86 @@ def _strip_markdown(text: str) -> str:
     text = _re.sub(r"\s*[–—]\s*", ", ", text)
     text = _re.sub(r"\n{3,}", "\n\n", text)
     return text.strip()
+
+
+def _generate_flora_text(maryse_base: str, flora_entry: dict, weather_summary: "str | None", moment_label: str) -> str:
+    flora_system = (
+        maryse_base +
+        "Tu rédiges UNIQUEMENT le signe du jour — une plante ou un arbre, "
+        "Tu introduis en disant une variation sur 'Si tu croises' la plante ou l'arbre du jour"
+        "Ensuite tu expliques avec un seul exemple comment les anciens, que tu nommes avec énornement de respect, l'utilisaient"
+        "Pas de titre, pas de formule introductive du type 'Signe du jour :'. Pas de formulation familière comme 'les vieux' pour désigner les anciens."
+        "Tu peux utiliser des formules comme 'nos anciens', 'nos prédécesseurs sur notre île', 'nos grands mères', 'nos grands pères', 'an tan lontan', 'lè dyab té ti piti', 'du temps de l'esclavage'"
+        "L'ensemble est rédigié pour être lu et fait une phrase maximum"
+    )
+    flora_user = (
+        f"PLANTE : {flora_entry['nom_commun']} ({flora_entry['nom_creole']})\n"
+        f"MÉTÉO DU JOUR : {weather_summary or 'Temps variable'}\n"
+        f"MOMENT : {moment_label}\n"
+        f"SAVOIR : {flora_entry['savoir']}"
+    )
+    return _strip_markdown(
+        call_mistral(flora_system, flora_user, temperature=0.75, max_tokens=120)
+    )
+
+
+def _generate_faune_text(maryse_base: str, faune_entry: dict, weather_summary: "str | None", moment_label: str) -> str:
+    faune_system = (
+        maryse_base +
+        "Tu rédiges UNIQUEMENT le signe du jour — un animal de la Caraïbe. "
+        "Tu introduis en disant une variation sur 'Si tu croises' l'animal du jour. "
+        "Ensuite tu expliques avec un seul exemple ce que les anciens savaient de cet animal — son rapport au monde spirituel ou au quotidien créole. "
+        "Pas de titre, pas de formule introductive du type 'Signe du jour :'. Pas de formulation familière comme 'les vieux' pour désigner les anciens. "
+        "Tu peux utiliser des formules comme 'nos anciens', 'nos prédécesseurs sur notre île', 'nos grands mères', 'nos grands pères', 'an tan lontan', 'lè dyab té ti piti', 'du temps des Kalinagos'. "
+        "L'ensemble est rédigé pour être lu et fait une phrase maximum."
+    )
+    faune_user = (
+        f"ANIMAL : {faune_entry['nom_commun']} ({faune_entry['nom_creole']})\n"
+        f"MÉTÉO DU JOUR : {weather_summary or 'Temps variable'}\n"
+        f"MOMENT : {moment_label}\n"
+        f"SAVOIR : {faune_entry['savoir']}"
+    )
+    return _strip_markdown(
+        call_mistral(faune_system, faune_user, temperature=0.75, max_tokens=120)
+    )
+
+
+def _pick_signe_du_jour(
+    weather_summary: "str | None",
+    edition: str,
+    exclude: list[str],
+) -> "tuple[dict, str] | tuple[None, None]":
+    """Retourne (entry, 'flore'|'faune') depuis le pool combiné, filtré par météo/édition/anti-répétition."""
+    _WK = [
+        ("orage",   ["orage", "orageux", "tempête", "foudre"]),
+        ("pluie",   ["pluie", "averse", "pluvieux", "bruine", "précipitation", "mouillé"]),
+        ("vent",    ["vent", "venteux", "brise", "rafale", "souffle"]),
+        ("nuageux", ["nuageux", "nuages", "couvert", "voilé", "brumeux", "gris"]),
+        ("chaleur", ["chaleur", "chaud", "tropical", "caniculaire"]),
+        ("soleil",  ["soleil", "ensoleillé", "dégagé", "beau temps", "clair"]),
+    ]
+    text = (weather_summary or "").lower()
+    conditions = [c for c, kws in _WK if any(kw in text for kw in kws)]
+
+    pool: list[tuple[dict, str]] = (
+        [(e, "flore") for e in FLORA_SIGNES]
+        + [(e, "faune") for e in FAUNE_SIGNES]
+    )
+    candidates = [
+        (e, t) for e, t in pool
+        if edition in e["editions"]
+        and e["nom_creole"] not in exclude
+        and (not e["conditions"] or any(c in conditions for c in e["conditions"]))
+    ]
+    if not candidates:
+        candidates = [
+            (e, t) for e, t in pool
+            if edition in e["editions"] and e["nom_creole"] not in exclude
+        ]
+    if not candidates:
+        return None, None
+    return random.choice(candidates)
+
 
 # ── Vidéo TikTok ──────────────────────────────────────────────────────────────
 
@@ -1512,11 +1630,15 @@ def main():
     )
     parser.add_argument(
         "--test-flora", action="store_true",
-        help="Teste uniquement le signe du jour : sélection, Mistral, TTS → MP3 dans /tmp.",
+        help="Teste uniquement le signe flore du jour : sélection, Mistral, TTS → MP3 dans /tmp.",
+    )
+    parser.add_argument(
+        "--test-faune", action="store_true",
+        help="Teste uniquement le signe faune du jour : sélection, Mistral, TTS → MP3 dans /tmp.",
     )
     parser.add_argument(
         "--weather", metavar="TEXTE",
-        help="Météo simulée pour --test-flora (ex: 'Soleil voilé, 28°C'). Défaut : fetch réel.",
+        help="Météo simulée pour --test-flora / --test-faune (ex: 'Soleil voilé, 28°C'). Défaut : fetch réel.",
     )
     parser.add_argument(
         "--verbose", action="store_true",
@@ -1559,24 +1681,8 @@ def main():
             + "Tu rédiges UNIQUEMENT le segment horoscope — pas de météo, pas d'actualités. "
             "Juste la lecture de l'horoscope dans ta voix.\n"
         )
-        flora_system = (
-            maryse_base +
-            "Tu rédiges UNIQUEMENT le signe du jour — une plante ou un arbre, "
-            "son savoir, son invitation. Deux phrases dans ta voix. "
-            "Commence par une phrase qui ancre dans le temps du jour (la météo, la lumière), "
-            "puis enchaîne avec la plante, son savoir concret, et une invitation courte. "
-            "Pas de titre, pas de formule introductive du type 'Signe du jour :'."
-        )
-        flora_user = (
-            f"PLANTE : {entry['nom_commun']} ({entry['nom_creole']})\n"
-            f"MÉTÉO DU JOUR : {weather_test or 'Temps variable'}\n"
-            f"MOMENT : {moment_label}\n"
-            f"SAVOIR : {entry['savoir']}"
-        )
         print("\n✍️  Génération Mistral…")
-        flora_text = _strip_markdown(
-            call_mistral(flora_system, flora_user, temperature=0.75, max_tokens=120)
-        )
+        flora_text = _generate_flora_text(maryse_base, entry, weather_test, moment_label)
         print(f"\n── TEXTE GÉNÉRÉ ─────────────────────────────────────────")
         print(flora_text)
         print("─────────────────────────────────────────────────────────")
@@ -1584,6 +1690,46 @@ def main():
         out_mp3 = OUTPUT_DIR / f"flora-test-{args.edition}-{DateTime.now().strftime('%H%M%S')}.mp3"
         print(f"\n🔊 TTS → {out_mp3}")
         _tts_call(_normalize_for_tts(flora_text), out_mp3, TTS_VOICES["curious"])
+        print(f"✅ {out_mp3} ({out_mp3.stat().st_size:,} bytes)")
+        return
+
+    # ── --test-faune : test isolé du signe faune du jour ─────────────────────
+    if args.test_faune:
+        weather_test = args.weather
+        if not weather_test:
+            try:
+                weather_test = fetch_weather(gen_date)
+                print(f"🌤  Météo fetchée : {weather_test}")
+            except Exception:
+                weather_test = None
+                print("🌤  Météo indisponible — utilisation du fallback")
+
+        recent_faune = _load_recent_faune()
+        entry = pick_faune_signe(weather_test, args.edition, recent_faune)
+        if not entry:
+            print("❌ Aucun animal disponible pour ces paramètres.", file=sys.stderr)
+            sys.exit(1)
+
+        print(f"\n🦜 Animal sélectionné : {entry['nom_commun']} ({entry['nom_creole']})")
+        print(f"   Famille    : {entry['famille']}")
+        print(f"   Conditions : {', '.join(entry['conditions']) or 'toutes'}")
+
+        moment_label = edition_cfg["moment"]
+        maryse_base = (
+            _load_prompt("maryse_ame.md") + "\n\n"
+            + _load_prompt("kreyol_resistance_symbol.md") + "\n\n"
+            + "Tu rédiges UNIQUEMENT le segment horoscope — pas de météo, pas d'actualités. "
+            "Juste la lecture de l'horoscope dans ta voix.\n"
+        )
+        print("\n✍️  Génération Mistral…")
+        faune_text = _generate_faune_text(maryse_base, entry, weather_test, moment_label)
+        print(f"\n── TEXTE GÉNÉRÉ ─────────────────────────────────────────")
+        print(faune_text)
+        print("─────────────────────────────────────────────────────────")
+
+        out_mp3 = OUTPUT_DIR / f"faune-test-{args.edition}-{DateTime.now().strftime('%H%M%S')}.mp3"
+        print(f"\n🔊 TTS → {out_mp3}")
+        _tts_call(_normalize_for_tts(faune_text), out_mp3, TTS_VOICES["curious"])
         print(f"✅ {out_mp3} ({out_mp3.stat().st_size:,} bytes)")
         return
 
@@ -1683,55 +1829,44 @@ def main():
         print(f"🔊 TTS intro → {intro_path.name}")
         _tts_call(_normalize_for_tts(intro_text), intro_path, TTS_VOICES["curious"])
 
-    # ── Signe du jour : flore caribéenne ─────────────────────────────────────
-    # Anti-répétition inter-jours (chargé tôt pour le filtrage flora aussi)
+    # ── Signe du jour : flore ou faune caribéenne ────────────────────────────
     recent_flora = _load_recent_flora()
-    if recent_flora:
-        print(f"🌿 Flore récente ({FLORA_MEMORY_DAYS}j) exclue : {', '.join(recent_flora)}")
+    recent_faune = _load_recent_faune()
+    exclude_signe = list(dict.fromkeys(list(recent_flora) + list(recent_faune)))
+    if exclude_signe:
+        print(f"🌿🦜 Signes récents ({FLORA_MEMORY_DAYS}j) exclus : {', '.join(exclude_signe)}")
     used_flora: list[str] = list(recent_flora)
 
-    flora_entry   = pick_flora_signe(weather_summary, args.edition, used_flora)
-    flora_text    = None
-    flora_path    = seg_dir / "seg_flora.mp3"
+    signe_entry, signe_type = _pick_signe_du_jour(weather_summary, args.edition, exclude_signe)
+    signe_text = None
+    signe_path = seg_dir / "seg_signe.mp3"
 
-    if flora_entry:
-        print(f"🌿 Signe du jour : {flora_entry['nom_commun']} ({flora_entry['nom_creole']})")
-        flora_system = (
-            maryse_base +
-            "Tu rédiges UNIQUEMENT le signe du jour — une plante ou un arbre, "
-            "son savoir, son invitation. Deux phrases dans ta voix. "
-            "Commence par une phrase qui ancre dans le temps du jour (la météo, la lumière), "
-            "puis enchaîne avec la plante, son savoir concret, et une invitation courte. "
-            "Pas de titre, pas de formule introductive du type 'Signe du jour :'."
-        )
-        flora_user = (
-            f"PLANTE : {flora_entry['nom_commun']} ({flora_entry['nom_creole']})\n"
-            f"MÉTÉO DU JOUR : {weather_summary or 'Temps variable'}\n"
-            f"MOMENT : {moment_label}\n"
-            f"SAVOIR : {flora_entry['savoir']}"
-        )
+    if signe_entry:
+        signe_emoji = "🌿" if signe_type == "flore" else "🦜"
+        print(f"{signe_emoji} Signe du jour ({signe_type}) : {signe_entry['nom_commun']} ({signe_entry['nom_creole']})")
         print(f"✍️  Rédaction signe du jour (Mistral Large)…")
-        flora_text = _strip_markdown(
-            call_mistral(flora_system, flora_user, temperature=0.75, max_tokens=120)
-        )
+        if signe_type == "flore":
+            signe_text = _generate_flora_text(maryse_base, signe_entry, weather_summary, moment_label)
+        else:
+            signe_text = _generate_faune_text(maryse_base, signe_entry, weather_summary, moment_label)
         if args.verbose:
-            print(f"\n── SIGNE DU JOUR ────────────────────────────────────────")
-            print(flora_text)
+            print(f"\n── SIGNE DU JOUR ({signe_type.upper()}) ──────────────────────────────────")
+            print(signe_text)
             print("─────────────────────────────────────────────────────────\n")
-        used_flora = list(dict.fromkeys(used_flora + [flora_entry["nom_creole"]]))
+        used_flora = list(dict.fromkeys(used_flora + [signe_entry["nom_creole"]]))
         if not args.text_only:
-            print(f"🔊 TTS signe du jour → {flora_path.name}")
-            _tts_call(_normalize_for_tts(flora_text), flora_path, TTS_VOICES["curious"])
+            print(f"🔊 TTS signe du jour → {signe_path.name}")
+            _tts_call(_normalize_for_tts(signe_text), signe_path, TTS_VOICES["curious"])
     else:
-        print("🌿 Signe du jour ignoré (aucune plante disponible)")
+        print("Signe du jour ignoré (aucun candidat disponible)")
 
     # ── Boucle par signe : Mistral + TTS ─────────────────────────────────────
     seg_paths:      list[Path]       = []
     signs_hashtags: list[list[str]] = []
     sign_texts:     list[str]        = []
     archive_texts:  list[str]        = [f"=== INTRO ===\n{intro_text}"]
-    if flora_text:
-        archive_texts.append(f"=== SIGNE DU JOUR ===\n{flora_text}")
+    if signe_text:
+        archive_texts.append(f"=== SIGNE DU JOUR ===\n{signe_text}")
 
     sign_system = (
         maryse_base +
@@ -1836,15 +1971,21 @@ def main():
             print("\n" + chunk)
         return
 
-    # Sauvegarde anti-répétition flore (uniquement les nouveaux éléments de ce run)
+    # Sauvegarde anti-répétition : mots flore/faune détectés dans les segments
     new_flora = [kw for kw in used_flora if kw not in recent_flora]
     if new_flora:
         _save_used_flora(gen_date, new_flora)
 
-    # ── Assemblage audio final : intro + signes + outro ───────────────────────
+    # Sauvegarde anti-répétition : signe du jour faune
+    if signe_entry and signe_type == "faune":
+        new_faune = [signe_entry["nom_creole"]] if signe_entry["nom_creole"] not in recent_faune else []
+        if new_faune:
+            _save_used_faune(gen_date, new_faune)
+
+    # ── Assemblage audio final : intro + signe du jour + signes + outro ───────
     stinger = resolve_stinger(args.stinger)
-    flora_audio = [flora_path] if (flora_text and flora_path.exists()) else []
-    all_audio = [intro_path] + flora_audio + seg_paths + [outro_path]
+    signe_audio = [signe_path] if (signe_text and signe_path.exists()) else []
+    all_audio = [intro_path] + signe_audio + seg_paths + [outro_path]
     print(f"🔗 Assemblage intro + signe du jour + {n_signs} signes + outro → {output_path}")
     _assemble_audio(all_audio, stinger, output_path)
     print(f"✅ Horoscope sauvegardé : {output_path}")

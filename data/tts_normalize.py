@@ -5,9 +5,13 @@ PRONONCIATIONS_LOCALES = {
 
     # Bonnes prononciations
     "Charles III" : "Charles Trois",
+    "UGTG": "Union Générale des tarvailleurs Guadeloupéens",
 
 
     # Prononciations créoles
+    "Karet-la": "karette la",
+    "wasou": "ouassou",
+    "manman dlo": "maman dlo",
     "soukouyan": "soukougnan",
     "Piman Bouk" : "piment bouc",
     "bondamanjak" : "bonda ment jacques",
