@@ -139,11 +139,15 @@ def get_latest_horoscope(mode: str) -> dict | None:
 # ── Conversion + Upload ───────────────────────────────────────────────────────
 
 def _mp3_to_mp4(mp3: Path, artwork: Path, output: Path):
-    """Combine MP3 + image fixe en MP4 via ffmpeg."""
+    """Combine MP3 + image fixe en MP4 16:9 via ffmpeg.
+    Le padding 16:9 évite la classification YouTube Shorts (vidéos carrées/verticales courtes).
+    """
     subprocess.run([
         "ffmpeg", "-y",
         "-loop", "1", "-i", str(artwork),
         "-i", str(mp3),
+        "-vf", "scale=1280:720:force_original_aspect_ratio=decrease,"
+               "pad=1280:720:(ow-iw)/2:(oh-ih)/2:black",
         "-c:v", "libx264", "-tune", "stillimage",
         "-c:a", "aac", "-b:a", "192k",
         "-pix_fmt", "yuv420p",
