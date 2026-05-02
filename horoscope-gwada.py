@@ -542,6 +542,7 @@ def _strip_markdown(text: str) -> str:
     text = _re.sub(r"\*+([^*]+)\*+", r"\1", text)
     text = _re.sub(r"\[.*?\]", "", text)
     text = _re.sub(r"^\s*[-#>]+\s*", "", text, flags=_re.MULTILINE)
+    text = _re.sub(r"\s*[–—]\s*", ", ", text)
     text = _re.sub(r"\n{3,}", "\n\n", text)
     return text.strip()
 
