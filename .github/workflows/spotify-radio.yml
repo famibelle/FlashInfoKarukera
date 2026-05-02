@@ -35,10 +35,10 @@ jobs:
       - name: 🎬 Install ffmpeg
         run: sudo apt-get install -y ffmpeg
 
-      - name: 🔑 Write YouTube Music auth file
+      - name: 🔑 Write YouTube Music OAuth token
         env:
-          YTMUSIC_BROWSER_JSON: ${{ secrets.YTMUSIC_BROWSER_JSON }}
-        run: echo "$YTMUSIC_BROWSER_JSON" > browser.json
+          YTMUSIC_OAUTH_JSON: ${{ secrets.YTMUSIC_OAUTH_JSON }}
+        run: echo "$YTMUSIC_OAUTH_JSON" > oauth.json
 
       - name: 🔑 Write YouTube Data API token
         run: echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > youtube_token.json
