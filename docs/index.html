@@ -123,6 +123,24 @@
       flex-shrink: 0;
     }
 
+    .yt-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      margin-bottom: 0.75rem;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .yt-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+    }
+
     .badge {
       display: inline-block;
       background: #1e3a2f;
@@ -151,14 +169,15 @@
       <span class="btn-arrow">›</span>
     </a>
 
-    <a href="https://www.youtube.com/playlist?list=PLwzi3ZXU6pu-M_41dNvTNOXTtz14uv8Rn" class="btn" target="_blank" rel="noopener">
-      <span class="btn-icon">📻</span>
-      <span class="btn-text">
-        <span class="btn-label">Radio Karukera</span>
-        <span class="btn-sub">Playlist musicale mise à jour chaque jour</span>
-      </span>
-      <span class="btn-arrow">›</span>
-    </a>
+    <div class="yt-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/videoseries?list=PLwzi3ZXU6pu-M_41dNvTNOXTtz14uv8Rn&autoplay=0"
+        title="Radio Karukera"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
 
     <a href="https://t.me/botiran_news_971" class="btn" target="_blank" rel="noopener">
       <span class="btn-icon">✈️</span>
