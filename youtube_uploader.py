@@ -348,8 +348,8 @@ def get_or_upload_announcement(bloc: str, artists: list[str]) -> str | None:
         logger.warning(f"Annonce {bloc} ignorée : aucun artiste disponible")
         return None
 
-    today     = datetime.now().strftime("%Y-%m-%d")
-    cache_key = f"announce_{today}_{bloc}_{'--'.join(sorted(artists[:3]))}"
+    week      = datetime.now().strftime("%Y-W%W")
+    cache_key = f"announce_{week}_{bloc}_{'--'.join(sorted(artists[:3]))}"
     cache     = load_cache()
 
     if cache_key in cache:
