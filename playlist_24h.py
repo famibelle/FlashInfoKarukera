@@ -334,7 +334,7 @@ def test_announce_pipeline(yt: YTMusic):
     Pour chaque bloc (morning/midday/evening) :
       1. Tire les artistes depuis le pool musical (cache du jour si disponible)
       2. Génère le texte via Mistral
-      3. Synthèse TTS fr_marie_happy → MP3 local announce_test_<bloc>.mp3
+      3. Synthèse TTS fr_marie_happy → MP3 dans announce_tests/YYYY-MM-DD_HHMMSS/
     """
     from youtube_uploader import _mistral_chat, _load_prompt, ANNOUNCE_BLOC_LABEL
     from tts_utils import tts_call
@@ -343,6 +343,10 @@ def test_announce_pipeline(yt: YTMusic):
     if not pool:
         logger.error("Pool vide — abandon")
         sys.exit(1)
+
+    out_dir = Path("announce_tests") / datetime.now().strftime("%Y-%m-%d_%H%M%S")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    logger.info(f"Répertoire de sortie : {out_dir}")
 
     ok, ko = 0, 0
     for bloc in ["morning", "midday", "evening"]:
@@ -374,7 +378,7 @@ def test_announce_pipeline(yt: YTMusic):
             ko += 1
             continue
 
-        out_mp3 = Path(f"announce_test_{bloc}.mp3")
+        out_mp3 = out_dir / f"{bloc}.mp3"
         try:
             tts_call(text, out_mp3, voice_id="fr_marie_happy")
             logger.info(f"  TTS OK → {out_mp3} ({out_mp3.stat().st_size:,} bytes)")
@@ -383,7 +387,7 @@ def test_announce_pipeline(yt: YTMusic):
             logger.error(f"  TTS KO : {e}")
             ko += 1
 
-    logger.info(f"\n{'✅' if ko == 0 else '⚠️'} Test annonces : {ok}/3 OK, {ko} KO")
+    logger.info(f"\n{'✅' if ko == 0 else '⚠️'} Test annonces : {ok}/3 OK, {ko} KO — {out_dir}")
 
 
 # ── Affichage ─────────────────────────────────────────────────────────────────
