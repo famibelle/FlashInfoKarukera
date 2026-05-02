@@ -18,7 +18,7 @@ from typing import List
 from dotenv import load_dotenv
 from ytmusicapi import YTMusic
 from caribbean_db import CARIBBEAN_TRACKS
-from youtube_uploader import get_or_upload_episode, get_or_upload_horoscope
+from youtube_uploader import get_or_upload_episode, get_or_upload_horoscope, get_or_upload_announcement
 
 load_dotenv()
 
@@ -33,9 +33,9 @@ AVG_DURATION = 210  # secondes — fallback si duration_seconds absent
 
 # 100 pistes max (limite YouTube Music API)
 # 5 slots spéciaux (flash ×3 + horoscope ×2) → 95 pistes musicales
-TRACKS_MORNING  = 32   # [3–34]  après flash matin + horoscope matin
-TRACKS_MIDDAY   = 32   # [36–67] après flash midi
-TRACKS_EVENING  = 31   # [70–100] après flash soir + horoscope soir
+TRACKS_MORNING  = 31   # [4–34]  après flash matin + horoscope matin + annonce
+TRACKS_MIDDAY   = 31   # [37–67] après flash midi + annonce
+TRACKS_EVENING  = 30   # [71–100] après flash soir + horoscope soir + annonce
 
 # Genres par bloc pour varier l'ambiance
 BLOCK_GENRES = {
@@ -77,16 +77,20 @@ def _search(yt: YTMusic, name: str, artist: str):
 def resolve_music_pool(yt: YTMusic) -> list:
     """
     Résout tous les titres de la DB en videoIds.
-    Résultat : [{"videoId": ..., "duration": ..., "genre": ...}]
+    Résultat : [{"videoId": ..., "duration": ..., "genre": ..., "name": ..., "artist": ...}]
     Cache valide pour la journée (clé = date du jour).
     """
     today = datetime.now().strftime("%Y-%m-%d")
 
     if POOL_CACHE_FILE.exists():
         cached = json.loads(POOL_CACHE_FILE.read_text(encoding="utf-8"))
-        if cached.get("date") == today:
-            logger.info(f"Pool musical depuis cache ({len(cached['tracks'])} pistes, {today})")
-            return cached["tracks"]
+        tracks = cached.get("tracks", [])
+        cache_has_metadata = tracks and "name" in tracks[0]
+        if cached.get("date") == today and cache_has_metadata:
+            logger.info(f"Pool musical depuis cache ({len(tracks)} pistes, {today})")
+            return tracks
+        elif cached.get("date") == today:
+            logger.info("Cache du jour présent mais sans métadonnées — résolution complète")
 
     logger.info("Résolution du pool musical (200+ recherches YTMusic)...")
     pool = []
@@ -98,7 +102,7 @@ def resolve_music_pool(yt: YTMusic) -> list:
             artist = track["artists"][0] if track["artists"] else ""
             vid, dur = _search(yt, name, artist)
             if vid and vid not in seen:
-                pool.append({"videoId": vid, "duration": dur, "genre": genre})
+                pool.append({"videoId": vid, "duration": dur, "genre": genre, "name": name, "artist": artist})
                 seen.add(vid)
                 logger.info(f"  ✓ [{genre}] {name} — {artist}")
             else:
@@ -115,9 +119,9 @@ def resolve_music_pool(yt: YTMusic) -> list:
 
 # ── Construction des blocs ────────────────────────────────────────────────────
 
-def fill_block(pool: list, genres: list, n: int) -> List[str]:
+def fill_block(pool: list, genres: list, n: int) -> list:
     """
-    Retourne exactement n videoIds du pool filtrés par genre.
+    Retourne exactement n entrées {videoId, artist} du pool filtrées par genre.
     Répète le sous-pool (shufflé) si nécessaire.
     """
     sub = [t for t in pool if t["genre"] in genres]
@@ -130,7 +134,7 @@ def fill_block(pool: list, genres: list, n: int) -> List[str]:
         for track in sub:
             if len(result) >= n:
                 break
-            result.append(track["videoId"])
+            result.append({"videoId": track["videoId"], "artist": track.get("artist", "")})
 
     return result
 
@@ -148,17 +152,32 @@ def _add_special(playlist: list, label: str, fn):
 
 # ── Playlist 24h ──────────────────────────────────────────────────────────────
 
+def _block_artists(block: list, n: int = 3) -> list[str]:
+    """Extrait les n premiers artistes uniques d'un bloc fill_block."""
+    seen = []
+    for t in block:
+        a = t.get("artist", "").strip()
+        if a and a not in seen:
+            seen.append(a)
+        if len(seen) >= n:
+            break
+    return seen
+
+
 def build_24h_playlist(yt: YTMusic) -> List[str]:
     """
     Structure (100 pistes max — limite YouTube Music API) :
       [1]      Flash Info matin
       [2]      Horoscope matin
-      [3–34]   32 pistes  zouk + zouk_retro + gwoka + chatta
+      [3]      Annonce matin (Solitude)
+      [4–34]   31 pistes  zouk + zouk_retro + gwoka + chatta
       [35]     Flash Info midi
-      [36–67]  32 pistes  kompa + zouk + chatta
+      [36]     Annonce midi (Solitude)
+      [37–67]  31 pistes  kompa + zouk + chatta
       [68]     Flash Info soir
       [69]     Horoscope soir
-      [70–100] 31 pistes  gwoka + bouillon + zouk_retro + kompa
+      [70]     Annonce soirée (Solitude)
+      [71–100] 30 pistes  gwoka + bouillon + zouk_retro + kompa
     """
     pool = resolve_music_pool(yt)
     if not pool:
@@ -167,34 +186,47 @@ def build_24h_playlist(yt: YTMusic) -> List[str]:
 
     playlist = []
 
-    # Flash Info matin + Horoscope matin
+    # Slots 1-2 — Flash Info matin + Horoscope matin
     logger.info("Slots 1-2 — Flash Info matin + Horoscope matin")
     _add_special(playlist, "Flash Info matin", lambda: get_or_upload_episode("morning"))
     _add_special(playlist, "Horoscope matin",  lambda: get_or_upload_horoscope("morning"))
 
-    # Bloc matin [3-34]
+    # Bloc matin [4-34]
     logger.info(f"Bloc matin ({TRACKS_MORNING} pistes)...")
-    playlist += fill_block(pool, BLOCK_GENRES["morning"], TRACKS_MORNING)
+    block_morning = fill_block(pool, BLOCK_GENRES["morning"], TRACKS_MORNING)
+    artists_morning = _block_artists(block_morning)
+    _add_special(playlist, "Annonce matin",
+                 lambda: get_or_upload_announcement("morning", artists_morning))
+    playlist += [t["videoId"] for t in block_morning]
 
-    # Flash Info midi
+    # Slot 35 — Flash Info midi
     logger.info("Slot 35 — Flash Info midi")
-    _add_special(playlist, "Flash Info midi",  lambda: get_or_upload_episode("midday"))
+    _add_special(playlist, "Flash Info midi", lambda: get_or_upload_episode("midday"))
 
-    # Bloc après-midi [36-67]
+    # Bloc après-midi [37-67]
     logger.info(f"Bloc après-midi ({TRACKS_MIDDAY} pistes)...")
-    playlist += fill_block(pool, BLOCK_GENRES["midday"], TRACKS_MIDDAY)
+    block_midday = fill_block(pool, BLOCK_GENRES["midday"], TRACKS_MIDDAY)
+    artists_midday = _block_artists(block_midday)
+    _add_special(playlist, "Annonce midi",
+                 lambda: get_or_upload_announcement("midday", artists_midday))
+    playlist += [t["videoId"] for t in block_midday]
 
-    # Flash Info soir + Horoscope soir
+    # Slots 68-69 — Flash Info soir + Horoscope soir
     logger.info("Slots 68-69 — Flash Info soir + Horoscope soir")
     _add_special(playlist, "Flash Info soir",  lambda: get_or_upload_episode("evening"))
     _add_special(playlist, "Horoscope soir",   lambda: get_or_upload_horoscope("evening"))
 
-    # Bloc soirée [70-100]
+    # Bloc soirée [71-100]
     logger.info(f"Bloc soirée ({TRACKS_EVENING} pistes)...")
-    playlist += fill_block(pool, BLOCK_GENRES["evening"], TRACKS_EVENING)
+    block_evening = fill_block(pool, BLOCK_GENRES["evening"], TRACKS_EVENING)
+    artists_evening = _block_artists(block_evening)
+    _add_special(playlist, "Annonce soirée",
+                 lambda: get_or_upload_announcement("evening", artists_evening))
+    playlist += [t["videoId"] for t in block_evening]
 
-    music_count = len(playlist) - 5
-    logger.info(f"Playlist : {len(playlist)} items ({music_count} pistes musicales)")
+    special_count = 8  # flash×3 + horoscope×2 + annonce×3
+    music_count   = len(playlist) - special_count
+    logger.info(f"Playlist : {len(playlist)} items ({music_count} pistes musicales, {special_count} slots spéciaux)")
     return playlist
 
 

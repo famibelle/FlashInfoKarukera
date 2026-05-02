@@ -12,13 +12,17 @@ import json
 import logging
 import subprocess
 import tempfile
+import urllib.request
+import urllib.error
 import requests
+from datetime import datetime
 from pathlib import Path
 from xml.etree import ElementTree as ET
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
+from tts_utils import tts_call
 
 logger = logging.getLogger(__name__)
 
@@ -282,6 +286,144 @@ def update_youtube_playlist(playlist_id: str, video_ids: list):
             }}
         ).execute()
     logger.info(f"  Ajouté {len(video_ids)} items")
+
+
+# ── Annonces musicales (Solitude) ────────────────────────────────────────────
+
+PROMPTS_DIR       = Path(__file__).parent / "private" / "prompts"
+MISTRAL_CHAT_URL  = "https://api.mistral.ai/v1/chat/completions"
+MISTRAL_CHAT_MODEL = "mistral-large-latest"
+
+ANNOUNCE_BLOC_LABEL = {
+    "morning": "matin",
+    "midday":  "midi",
+    "evening": "soir",
+}
+
+
+def _load_prompt(filename: str) -> str:
+    path = PROMPTS_DIR / filename
+    if not path.exists():
+        raise FileNotFoundError(f"Prompt introuvable : {path}")
+    return path.read_text(encoding="utf-8").strip()
+
+
+def _mistral_chat(system: str, user: str) -> str:
+    """Appelle l'API Mistral chat et retourne le texte généré."""
+    api_key = os.environ.get("MISTRAL_API_KEY", "")
+    if not api_key:
+        raise RuntimeError("MISTRAL_API_KEY non défini")
+    payload = json.dumps({
+        "model": MISTRAL_CHAT_MODEL,
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user",   "content": user},
+        ],
+        "max_tokens": 120,
+        "temperature": 0.85,
+    }).encode()
+    req = urllib.request.Request(
+        MISTRAL_CHAT_URL,
+        data=payload,
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=30) as r:
+        data = json.loads(r.read())
+    return data["choices"][0]["message"]["content"].strip()
+
+
+def get_or_upload_announcement(bloc: str, artists: list[str]) -> str | None:
+    """
+    Génère et uploade une annonce musicale lue par la Mulatresse Solitude.
+    Cache par date + bloc + artistes — une seule génération par combinaison par jour.
+    """
+    if not artists:
+        logger.warning(f"Annonce {bloc} ignorée : aucun artiste disponible")
+        return None
+
+    today     = datetime.now().strftime("%Y-%m-%d")
+    cache_key = f"announce_{today}_{bloc}_{'--'.join(sorted(artists[:3]))}"
+    cache     = load_cache()
+
+    if cache_key in cache:
+        logger.info(f"Annonce {bloc} depuis cache → {cache[cache_key]}")
+        return cache[cache_key]
+
+    logger.info(f"Génération annonce {bloc} — artistes : {', '.join(artists)}")
+
+    # Construire le prompt système (âme + savoir symbolique)
+    try:
+        system_prompt = (
+            _load_prompt("solitude_ame.md")
+            + "\n\n"
+            + _load_prompt("kreyol_resistance_symbol.md")
+        )
+        brief = _load_prompt("solitude.md")
+    except FileNotFoundError as e:
+        logger.warning(f"Annonce {bloc} ignorée : {e}")
+        return None
+
+    # Construire le prompt utilisateur
+    label    = ANNOUNCE_BLOC_LABEL.get(bloc, bloc)
+    artists_str = ", ".join(artists)
+    user_prompt = (
+        f"{brief}\n\n"
+        f"Moment : {label}\n"
+        f"Artistes : {artists_str}"
+    )
+
+    # Générer le texte via Mistral
+    try:
+        text = _mistral_chat(system_prompt, user_prompt)
+        logger.info(f"  Texte généré : {text!r}")
+    except Exception as e:
+        logger.warning(f"Annonce {bloc} ignorée — Mistral : {e}")
+        return None
+
+    yt = get_youtube_client()
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        tmp = Path(tmp_dir)
+
+        # TTS → MP3
+        mp3 = tmp / "announcement.mp3"
+        try:
+            tts_call(text, mp3, voice_id="fr_marie_happy")
+        except Exception as e:
+            logger.warning(f"Annonce {bloc} ignorée — TTS : {e}")
+            return None
+
+        # Artwork
+        artwork = tmp / "artwork.jpg"
+        try:
+            r = requests.get(ARTWORK_URL, timeout=30)
+            r.raise_for_status()
+            artwork.write_bytes(r.content)
+        except Exception as e:
+            logger.warning(f"Annonce {bloc} ignorée — artwork : {e}")
+            return None
+
+        # MP3 → MP4
+        mp4 = tmp / "announcement.mp4"
+        try:
+            _mp3_to_mp4(mp3, artwork, mp4)
+        except Exception as e:
+            logger.warning(f"Annonce {bloc} ignorée — ffmpeg : {e}")
+            return None
+
+        title = f"Botiran Radio — Annonce {label} du {today}"
+        video_id = _upload(
+            yt, mp4, title,
+            tags=["guadeloupe", "karukera", "botiran", "radio", "annonce"],
+        )
+
+    cache[cache_key] = video_id
+    save_cache(cache)
+    logger.info(f"  Annonce {bloc} uploadée → {video_id}")
+    return video_id
 
 
 # ── Points d'entrée publics ───────────────────────────────────────────────────

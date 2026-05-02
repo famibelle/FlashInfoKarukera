@@ -51,6 +51,7 @@ jobs:
         env:
           YTMUSIC_PLAYLIST_24H_ID: ${{ secrets.YTMUSIC_PLAYLIST_24H_ID }}
           YOUTUBE_TOKEN_PATH: youtube_token.json
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: python playlist_24h.py
 
       - name: 💾 Commit caches
