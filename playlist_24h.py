@@ -25,7 +25,7 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-OAUTH_JSON     = os.getenv("YTMUSIC_OAUTH_JSON_PATH", "oauth.json")
+BROWSER_JSON     = os.getenv("YTMUSIC_BROWSER_JSON_PATH", "browser.json")
 POOL_CACHE_FILE  = Path("playlists/music_pool_cache.json")
 PLAYLIST_ID_FILE = Path("playlists/playlist_24h_id.txt")
 
@@ -48,10 +48,10 @@ BLOCK_GENRES = {
 # ── Auth ──────────────────────────────────────────────────────────────────────
 
 def init_ytmusic() -> YTMusic:
-    if not os.path.exists(OAUTH_JSON):
-        logger.error(f"Auth file not found: {OAUTH_JSON}")
+    if not os.path.exists(BROWSER_JSON):
+        logger.error(f"Auth file not found: {BROWSER_JSON}")
         sys.exit(1)
-    return YTMusic(OAUTH_JSON)
+    return YTMusic(BROWSER_JSON)
 
 
 # ── Pool musical ──────────────────────────────────────────────────────────────

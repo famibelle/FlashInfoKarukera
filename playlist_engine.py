@@ -28,7 +28,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-OAUTH_JSON = os.getenv("YTMUSIC_OAUTH_JSON_PATH", "oauth.json")
+BROWSER_JSON = os.getenv("YTMUSIC_BROWSER_JSON_PATH", "browser.json")
 
 
 # ============================================================================
@@ -92,16 +92,12 @@ def get_radio_mode(hour: int = None) -> str:
 # ============================================================================
 
 def init_ytmusic() -> YTMusic:
-    """
-    Initialize YTMusic client from browser.json.
-    The file can be generated with: ytmusicapi browser
-    For GitHub Actions, write the YTMUSIC_OAUTH_JSON secret to browser.json first.
-    """
-    if not os.path.exists(OAUTH_JSON):
-        logger.error(f"Auth file not found: {OAUTH_JSON}")
-        logger.error("Run: ytmusicapi browser  (then paste your browser headers)")
+    """Initialize YTMusic via browser.json (cookie-based auth)."""
+    if not os.path.exists(BROWSER_JSON):
+        logger.error(f"Auth file not found: {BROWSER_JSON}")
+        logger.error("Run: python3 ytmusic_setup.py")
         sys.exit(1)
-    return YTMusic(OAUTH_JSON)
+    return YTMusic(BROWSER_JSON)
 
 
 # ============================================================================
