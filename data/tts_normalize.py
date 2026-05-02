@@ -2,8 +2,12 @@
 
 # Prononciations locales guadeloupéennes (forme écrite → forme orale pour le TTS)
 PRONONCIATIONS_LOCALES = {
+
+    # Bonnes prononciations
+    "Charles III" : "Charles Trois",
+
+
     # Prononciations créoles
-    
     "soukouyan": "soukougnan",
     "Piman Bouk" : "piment bouc",
     "bondamanjak" : "bonda ment jacques",
@@ -28,9 +32,11 @@ PRONONCIATIONS_LOCALES = {
     "cité Henri IV":    "cité Henri Quatre",
     "cité Henri 4":     "cité Henri Quatre",
     "FEADER" : "Fonds européen agricole pour le développement rural",
+
     # Code départemental (filet de sécurité si le LLM l'a quand même converti)
     "neuf cent soixante et onze": "quatre-vingt-dix-sept-un",
     "971": "quatre-vingt-dix-sept-un",
+
     # Sigles locaux développés (avant l'épellation automatique)
     "UNAR": "Union Athlétique de Rivière-des-Pères",
     "SEM Patrimoniale": "S.E.M Patrimoniale",
@@ -44,6 +50,7 @@ PRONONCIATIONS_LOCALES = {
     "MGEN":    "Mutuelle Générale de l'éducation Nationale",
     "M.G.E.N": "mutuelle générale éducation nationale",
     "M.G.E.N.": "mutuelle générale éducation nationale",
+
     # Clubs sportifs guadeloupéens – athlétisme
     "ACBM":    "Athlétic Club de Baie-Mahault",
     "ACCBE":   "Athlétic Club de Capesterre-Belle-Eau",
@@ -69,6 +76,7 @@ PRONONCIATIONS_LOCALES = {
     "USBM":    "Union Sportive de Baie-Mahault",
     "USGB":    "Union Sportive de Grand-Bourg de Marie-Galante",
     "USR Athlé": "Unité Sainte-Rosienne Athlétisme de Sainte-Rose",
+
     # Clubs sportifs guadeloupéens – cyclisme
     "ACVPB":   "Association Cycliste de Petit-Bourg",
     "APCR":    "Amicale du Personnel du Conseil Régional Cyclotourisme",
@@ -81,10 +89,12 @@ PRONONCIATIONS_LOCALES = {
     "VCN":     "Vélo Club du Nord d'Anse-Bertrand",
     "VCTR":    "Vélo Club de Trois-Rivières",
     "VO2C":    "Vélo d'Or du Centre et de la Caraïbe",
+
     # Clubs sportifs guadeloupéens – multi-sports
     "AOG":     "Association Omnisports Gourbeyrienne de Gourbeyre",
     "CERAL":   "Cercle d'Études, de Recherche et d'Animation du Lamentin",
     "MTC":     "Moule Triathlon Club du Moule",
+
     # Instances fédérales
     "LGA":     "Ligue Guadeloupéenne d'Athlétisme",
     "LRAG":    "Ligue Régionale d'Athlétisme de la Guadeloupe",

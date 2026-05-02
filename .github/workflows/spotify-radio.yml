@@ -38,12 +38,6 @@ jobs:
       - name: 🔑 Write YouTube Music auth file
         run: echo '${{ secrets.YTMUSIC_BROWSER_JSON_B64 }}' | base64 -d > browser.json
 
-      - name: 🔍 Validate browser.json
-        run: |
-          echo "Taille: $(wc -c < browser.json) bytes"
-          echo "Lignes: $(wc -l < browser.json)"
-          python3 -c "import json; json.load(open('browser.json')); print('JSON valide ✅')"
-
       - name: 🔑 Write YouTube Data API token
         run: echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > youtube_token.json
 
