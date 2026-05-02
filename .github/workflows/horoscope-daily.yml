@@ -9,13 +9,9 @@ on:
   workflow_dispatch:
     inputs:
       edition:
-        description: "Édition : matin ou soir"
-        type: choice
-        options:
-          - matin
-          - soir
+        description: "Édition : matin ou soir (laisser vide pour auto selon l'heure)"
         required: false
-        default: matin
+        default: ""
       date:
         description: "Date (YYYY-MM-DD) — laisser vide pour aujourd'hui"
         required: false
@@ -72,16 +68,14 @@ jobs:
       - name: Détecter l'édition
         id: edition
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ]; then
+          EDITION="${{ github.event.inputs.edition }}"
+          if [ -z "$EDITION" ]; then
             HOUR=$(date -u +%H)
             if [ "$HOUR" -lt 12 ]; then
               EDITION="matin"
             else
               EDITION="soir"
             fi
-          else
-            EDITION="${{ github.event.inputs.edition }}"
-            EDITION="${EDITION:-matin}"
           fi
           echo "EDITION=$EDITION" >> $GITHUB_ENV
           echo "Édition détectée : $EDITION"
@@ -136,4 +130,5 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: horoscope $(date +%Y-%m-%d) — archive + flore [skip ci]"
           git add docs/
           git diff --cached --quiet || git commit -m "chore: horoscope $(date +%Y-%m-%d) — RSS"
-          git push || true
+          git pull --rebase origin main
+          git push
