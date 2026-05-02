@@ -374,7 +374,7 @@ def test_announce_pipeline(yt: YTMusic):
       3. Synthèse TTS fr_marie_happy → MP3 dans announce_tests/YYYY-MM-DD_HHMMSS/
     """
     from youtube_uploader import _mistral_chat, _load_prompt, ANNOUNCE_BLOC_LABEL
-    from tts_utils import tts_call
+    from tts_utils import tts_call, normalize_for_tts
 
     pool = resolve_music_pool(yt)
     if not pool:
@@ -418,7 +418,7 @@ def test_announce_pipeline(yt: YTMusic):
 
         out_mp3 = out_dir / f"{bloc}.mp3"
         try:
-            tts_call(text, out_mp3, voice_id="fr_marie_happy")
+            tts_call(normalize_for_tts(text), out_mp3, voice_id="fr_marie_happy")
             logger.info(f"  TTS OK → {out_mp3} ({out_mp3.stat().st_size:,} bytes)")
             ok += 1
         except Exception as e:

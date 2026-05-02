@@ -22,7 +22,7 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-from tts_utils import tts_call
+from tts_utils import tts_call, normalize_for_tts
 
 logger = logging.getLogger(__name__)
 
@@ -392,7 +392,7 @@ def get_or_upload_announcement(bloc: str, artists: list[str]) -> str | None:
         # TTS → MP3
         mp3 = tmp / "announcement.mp3"
         try:
-            tts_call(text, mp3, voice_id="fr_marie_happy")
+            tts_call(normalize_for_tts(text), mp3, voice_id="fr_marie_happy")
         except Exception as e:
             logger.warning(f"Annonce {bloc} ignorée — TTS : {e}")
             return None
