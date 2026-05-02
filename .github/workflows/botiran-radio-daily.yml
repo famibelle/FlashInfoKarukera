@@ -2,10 +2,9 @@ name: 🎶 YouTube Music Radio Playlist Update
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # 00:00 UTC - Night mode
-    - cron: '0 6 * * *'   # 06:00 UTC - Morning mode
-    - cron: '0 12 * * *'  # 12:00 UTC - Midday mode
-    - cron: '0 18 * * *'  # 18:00 UTC - Evening mode
+    - cron: '0 4 * * *'   # 04:00 UTC — début matin (6h Paris été / 5h hiver)
+    - cron: '0 12 * * *'  # 12:00 UTC — début après-midi
+    - cron: '0 20 * * *'  # 20:00 UTC — début soirée
 
   workflow_dispatch:
 

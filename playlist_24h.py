@@ -32,10 +32,10 @@ PLAYLIST_ID_FILE = Path("playlists/playlist_24h_id.txt")
 AVG_DURATION = 210  # secondes — fallback si duration_seconds absent
 
 # 100 pistes max (limite YouTube Music API)
-# 5 slots spéciaux (flash ×3 + horoscope ×2) → 95 pistes musicales
-TRACKS_MORNING  = 31   # [4–34]  après flash matin + horoscope matin + annonce
-TRACKS_MIDDAY   = 31   # [37–67] après flash midi + annonce
-TRACKS_EVENING  = 30   # [71–100] après flash soir + horoscope soir + annonce
+# 8 slots spéciaux (flash ×3 + horoscope ×2 + annonces ×3) → 80 pistes musicales ≈ 8h (à ~6min/titre)
+TRACKS_MORNING  = 27   # bloc matin
+TRACKS_MIDDAY   = 27   # bloc après-midi
+TRACKS_EVENING  = 26   # bloc soirée
 
 # Genres par bloc pour varier l'ambiance
 BLOCK_GENRES = {
