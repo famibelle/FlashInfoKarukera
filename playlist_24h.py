@@ -119,11 +119,15 @@ def resolve_music_pool(yt: YTMusic) -> list:
 
 # ── Construction des blocs ────────────────────────────────────────────────────
 
-def fill_block(pool: list, genres: list, n: int) -> list:
+def fill_block(pool: list, genres: list, n: int, used: set | None = None) -> list:
     """
     Retourne exactement n entrées {videoId, artist} du pool filtrées par genre.
     Répète le sous-pool (shufflé) si nécessaire.
+    `used` est un set partagé entre blocs pour éviter les doublons inter-blocs.
     """
+    if used is None:
+        used = set()
+
     sub = [t for t in pool if t["genre"] in genres]
     if not sub:
         sub = pool
@@ -134,7 +138,10 @@ def fill_block(pool: list, genres: list, n: int) -> list:
         for track in sub:
             if len(result) >= n:
                 break
-            result.append({"videoId": track["videoId"], "artist": track.get("artist", "")})
+            vid = track["videoId"]
+            if vid not in used:
+                result.append({"videoId": vid, "artist": track.get("artist", "")})
+                used.add(vid)
 
     return result
 
@@ -199,9 +206,12 @@ def build_24h_playlist(
     if not no_horoscope:
         _add_special(playlist, "Horoscope matin",  lambda: get_or_upload_horoscope("morning"))
 
+    # Set partagé entre blocs pour éviter les doublons inter-blocs
+    used_ids: set = set()
+
     # Bloc matin [4-34]
     logger.info(f"Bloc matin ({TRACKS_MORNING} pistes)...")
-    block_morning = fill_block(pool, BLOCK_GENRES["morning"], TRACKS_MORNING)
+    block_morning = fill_block(pool, BLOCK_GENRES["morning"], TRACKS_MORNING, used_ids)
     artists_morning = _block_artists(block_morning)
     if not no_announce:
         _add_special(playlist, "Annonce matin",
@@ -215,7 +225,7 @@ def build_24h_playlist(
 
     # Bloc après-midi [37-67]
     logger.info(f"Bloc après-midi ({TRACKS_MIDDAY} pistes)...")
-    block_midday = fill_block(pool, BLOCK_GENRES["midday"], TRACKS_MIDDAY)
+    block_midday = fill_block(pool, BLOCK_GENRES["midday"], TRACKS_MIDDAY, used_ids)
     artists_midday = _block_artists(block_midday)
     if not no_announce:
         _add_special(playlist, "Annonce midi",
@@ -231,7 +241,7 @@ def build_24h_playlist(
 
     # Bloc soirée [71-100]
     logger.info(f"Bloc soirée ({TRACKS_EVENING} pistes)...")
-    block_evening = fill_block(pool, BLOCK_GENRES["evening"], TRACKS_EVENING)
+    block_evening = fill_block(pool, BLOCK_GENRES["evening"], TRACKS_EVENING, used_ids)
     artists_evening = _block_artists(block_evening)
     if not no_announce:
         _add_special(playlist, "Annonce soirée",
@@ -292,12 +302,13 @@ def _remove_all(yt: YTMusic, playlist_id: str, removable: list):
 
 
 def _add_items(yt: YTMusic, playlist_id: str, video_ids: list, label: str = ""):
-    """Appelle add_playlist_items et logue le statut retourné."""
-    status = yt.add_playlist_items(playlist_id, video_ids)
+    """Appelle add_playlist_items avec duplicates=True et logue le statut retourné."""
+    status = yt.add_playlist_items(playlist_id, video_ids, duplicates=True)
     tag = f" [{label}]" if label else ""
-    logger.info(f"  add{tag} {len(video_ids)} items → status: {status}")
-    if isinstance(status, dict) and status.get("status") not in (None, "STATUS_SUCCEEDED"):
-        logger.warning(f"  Statut inattendu : {status}")
+    s = status.get("status") if isinstance(status, dict) else status
+    logger.info(f"  add{tag} {len(video_ids)} items → {s}")
+    if s not in (None, "STATUS_SUCCEEDED"):
+        logger.warning(f"  Statut inattendu : {s}")
     return status
 
 
