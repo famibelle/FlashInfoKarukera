@@ -1505,6 +1505,10 @@ def main():
         help="Édition du jour : 'matin' (intention, éveil) ou 'soir' (bilan, nuit). Défaut : matin.",
     )
     parser.add_argument(
+        "--text-only", action="store_true",
+        help="Génère et affiche uniquement les textes (Mistral) sans TTS ni publication.",
+    )
+    parser.add_argument(
         "--verbose", action="store_true",
         help="Affiche le texte brut de l'API et le texte rédigé par Maryse.",
     )
@@ -1609,8 +1613,9 @@ def main():
         print(intro_text)
         print("─────────────────────────────────────────────────────────\n")
     intro_path = seg_dir / "seg_intro.mp3"
-    print(f"🔊 TTS intro → {intro_path.name}")
-    _tts_call(_normalize_for_tts(intro_text), intro_path, TTS_VOICES["curious"])
+    if not args.text_only:
+        print(f"🔊 TTS intro → {intro_path.name}")
+        _tts_call(_normalize_for_tts(intro_text), intro_path, TTS_VOICES["curious"])
 
     # ── Boucle par signe : Mistral + TTS ─────────────────────────────────────
     seg_paths:      list[Path]       = []
@@ -1685,9 +1690,10 @@ def main():
 
         archive_texts.append(f"=== {sign_fr.upper()} ===\n{segment}")
         seg_path = seg_dir / f"seg_{i:02d}.mp3"
-        print(f"🔊 [{i + 1}/{n_signs}] TTS {sign_fr} → {seg_path.name}")
-        _tts_call(_normalize_for_tts(segment), seg_path, TTS_VOICES["curious"])
-        seg_paths.append(seg_path)
+        if not args.text_only:
+            print(f"🔊 [{i + 1}/{n_signs}] TTS {sign_fr} → {seg_path.name}")
+            _tts_call(_normalize_for_tts(segment), seg_path, TTS_VOICES["curious"])
+            seg_paths.append(seg_path)
 
     # ── Outro dédiée ──────────────────────────────────────────────────────────
     print(f"✍️  Rédaction outro {args.edition} (Mistral Large)…")
@@ -1701,8 +1707,9 @@ def main():
         print(outro_text)
         print("─────────────────────────────────────────────────────────\n")
     outro_path = seg_dir / "seg_outro.mp3"
-    print(f"🔊 TTS outro → {outro_path.name}")
-    _tts_call(_normalize_for_tts(outro_text), outro_path, TTS_VOICES["curious"])
+    if not args.text_only:
+        print(f"🔊 TTS outro → {outro_path.name}")
+        _tts_call(_normalize_for_tts(outro_text), outro_path, TTS_VOICES["curious"])
 
     archive_texts.append(f"=== OUTRO ===\n{outro_text}")
 
@@ -1716,6 +1723,14 @@ def main():
     )
     archive_path.write_text(header + "\n\n".join(archive_texts), encoding="utf-8")
     print(f"📁 Archive texte → {archive_path}")
+
+    if args.text_only:
+        print("\n" + "=" * 60)
+        print(header.strip())
+        print("=" * 60)
+        for chunk in archive_texts:
+            print("\n" + chunk)
+        return
 
     # Sauvegarde anti-répétition flore (uniquement les nouveaux éléments de ce run)
     new_flora = [kw for kw in used_flora if kw not in recent_flora]
