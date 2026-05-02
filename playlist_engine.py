@@ -212,7 +212,7 @@ PLAYLIST_TITLE = "Botiran News: La radio de la diaspora Guadeloupéenne au Luxem
 # MAIN ORCHESTRATION
 # ============================================================================
 
-def run_playlist_engine():
+def run_playlist_engine(mode: str = None, target_size: int = 20, dry_run: bool = False):
     """
     Détecte le mode horaire → recherche YouTube Music → met à jour la playlist YouTube.
     Recherche : ytmusicapi (browser.json)
@@ -220,14 +220,15 @@ def run_playlist_engine():
     """
     yt = init_ytmusic()
 
-    now    = datetime.now()
-    mode   = get_radio_mode(now.hour)
+    now = datetime.now()
+    if mode is None:
+        mode = get_radio_mode(now.hour)
     config = RADIO_CONFIG[mode]
 
     logger.info(f"Current time: {now.strftime('%H:%M:%S')}")
     logger.info(f"Radio mode: {mode} ({config['description']})")
 
-    video_ids = build_playlist(yt, mode, target_size=20)
+    video_ids = build_playlist(yt, mode, target_size=target_size)
 
     if not video_ids:
         logger.error("No tracks found")
@@ -246,6 +247,12 @@ def run_playlist_engine():
                 logger.warning(f"{label} upload skipped: {e}")
 
     video_ids = prepend + video_ids
+
+    if dry_run:
+        logger.info(f"[dry-run] {len(video_ids)} items — playlist non mise à jour")
+        for i, vid in enumerate(video_ids, 1):
+            logger.info(f"  {i:2d}. https://youtu.be/{vid}")
+        return
 
     playlist_id = get_or_create_youtube_playlist(PLAYLIST_TITLE)
     logger.info(f"Mise à jour playlist {playlist_id} ({len(video_ids)} items)...")
@@ -294,10 +301,22 @@ def show_playlist(playlist_id: str = None):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Botiran News — moteur de playlist")
-    parser.add_argument("--show", action="store_true", help="Affiche la playlist sans la mettre à jour")
+    parser.add_argument("--show", action="store_true",
+                        help="Affiche la playlist YouTube sans la mettre à jour")
+    parser.add_argument("--mode", choices=["night", "morning", "midday", "evening"],
+                        help="Forcer un mode radio (défaut : auto selon l'heure)")
+    parser.add_argument("--size", type=int, default=20, metavar="N",
+                        help="Nombre de pistes musicales cibles (défaut : 20)")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="Construit la playlist sans la mettre à jour")
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help="Logging DEBUG (ytmusicapi, requêtes, détails internes)")
     args = parser.parse_args()
+
+    if args.verbose:
+        logging.getLogger().setLevel(logging.DEBUG)
 
     if args.show:
         show_playlist()
     else:
-        run_playlist_engine()
+        run_playlist_engine(mode=args.mode, target_size=args.size, dry_run=args.dry_run)

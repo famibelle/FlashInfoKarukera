@@ -164,7 +164,13 @@ def _block_artists(block: list, n: int = 3) -> list[str]:
     return seen
 
 
-def build_24h_playlist(yt: YTMusic) -> List[str]:
+def build_24h_playlist(
+    yt: YTMusic,
+    *,
+    no_flash: bool = False,
+    no_horoscope: bool = False,
+    no_announce: bool = False,
+) -> List[str]:
     """
     Structure (100 pistes max — limite YouTube Music API) :
       [1]      Flash Info matin
@@ -188,44 +194,56 @@ def build_24h_playlist(yt: YTMusic) -> List[str]:
 
     # Slots 1-2 — Flash Info matin + Horoscope matin
     logger.info("Slots 1-2 — Flash Info matin + Horoscope matin")
-    _add_special(playlist, "Flash Info matin", lambda: get_or_upload_episode("morning"))
-    _add_special(playlist, "Horoscope matin",  lambda: get_or_upload_horoscope("morning"))
+    if not no_flash:
+        _add_special(playlist, "Flash Info matin", lambda: get_or_upload_episode("morning"))
+    if not no_horoscope:
+        _add_special(playlist, "Horoscope matin",  lambda: get_or_upload_horoscope("morning"))
 
     # Bloc matin [4-34]
     logger.info(f"Bloc matin ({TRACKS_MORNING} pistes)...")
     block_morning = fill_block(pool, BLOCK_GENRES["morning"], TRACKS_MORNING)
     artists_morning = _block_artists(block_morning)
-    _add_special(playlist, "Annonce matin",
-                 lambda: get_or_upload_announcement("morning", artists_morning))
+    if not no_announce:
+        _add_special(playlist, "Annonce matin",
+                     lambda: get_or_upload_announcement("morning", artists_morning))
     playlist += [t["videoId"] for t in block_morning]
 
     # Slot 35 — Flash Info midi
     logger.info("Slot 35 — Flash Info midi")
-    _add_special(playlist, "Flash Info midi", lambda: get_or_upload_episode("midday"))
+    if not no_flash:
+        _add_special(playlist, "Flash Info midi", lambda: get_or_upload_episode("midday"))
 
     # Bloc après-midi [37-67]
     logger.info(f"Bloc après-midi ({TRACKS_MIDDAY} pistes)...")
     block_midday = fill_block(pool, BLOCK_GENRES["midday"], TRACKS_MIDDAY)
     artists_midday = _block_artists(block_midday)
-    _add_special(playlist, "Annonce midi",
-                 lambda: get_or_upload_announcement("midday", artists_midday))
+    if not no_announce:
+        _add_special(playlist, "Annonce midi",
+                     lambda: get_or_upload_announcement("midday", artists_midday))
     playlist += [t["videoId"] for t in block_midday]
 
     # Slots 68-69 — Flash Info soir + Horoscope soir
     logger.info("Slots 68-69 — Flash Info soir + Horoscope soir")
-    _add_special(playlist, "Flash Info soir",  lambda: get_or_upload_episode("evening"))
-    _add_special(playlist, "Horoscope soir",   lambda: get_or_upload_horoscope("evening"))
+    if not no_flash:
+        _add_special(playlist, "Flash Info soir",  lambda: get_or_upload_episode("evening"))
+    if not no_horoscope:
+        _add_special(playlist, "Horoscope soir",   lambda: get_or_upload_horoscope("evening"))
 
     # Bloc soirée [71-100]
     logger.info(f"Bloc soirée ({TRACKS_EVENING} pistes)...")
     block_evening = fill_block(pool, BLOCK_GENRES["evening"], TRACKS_EVENING)
     artists_evening = _block_artists(block_evening)
-    _add_special(playlist, "Annonce soirée",
-                 lambda: get_or_upload_announcement("evening", artists_evening))
+    if not no_announce:
+        _add_special(playlist, "Annonce soirée",
+                     lambda: get_or_upload_announcement("evening", artists_evening))
     playlist += [t["videoId"] for t in block_evening]
 
-    special_count = 8  # flash×3 + horoscope×2 + annonce×3
-    music_count   = len(playlist) - special_count
+    special_count = sum([
+        (0 if no_flash else 3),
+        (0 if no_horoscope else 2),
+        (0 if no_announce else 3),
+    ])
+    music_count = len(playlist) - special_count
     logger.info(f"Playlist : {len(playlist)} items ({music_count} pistes musicales, {special_count} slots spéciaux)")
     return playlist
 
@@ -308,6 +326,66 @@ def update_playlist(yt: YTMusic, playlist_id: str, video_ids: List[str]):
         logger.info(f"  Bootstrap terminé → {target} pistes")
 
 
+# ── Test pipeline annonces ───────────────────────────────────────────────────
+
+def test_announce_pipeline(yt: YTMusic):
+    """
+    Teste la pipeline d'annonces Solitude sans upload YouTube.
+    Pour chaque bloc (morning/midday/evening) :
+      1. Tire les artistes depuis le pool musical (cache du jour si disponible)
+      2. Génère le texte via Mistral
+      3. Synthèse TTS fr_marie_happy → MP3 local announce_test_<bloc>.mp3
+    """
+    from youtube_uploader import _mistral_chat, _load_prompt, ANNOUNCE_BLOC_LABEL
+    from tts_utils import tts_call
+
+    pool = resolve_music_pool(yt)
+    if not pool:
+        logger.error("Pool vide — abandon")
+        sys.exit(1)
+
+    ok, ko = 0, 0
+    for bloc in ["morning", "midday", "evening"]:
+        block   = fill_block(pool, BLOCK_GENRES[bloc], 10)
+        artists = _block_artists(block)
+        label   = ANNOUNCE_BLOC_LABEL.get(bloc, bloc)
+
+        logger.info(f"\n── Annonce {bloc} ({label}) ──")
+        logger.info(f"  Artistes retenus : {', '.join(artists)}")
+
+        try:
+            system_prompt = (
+                _load_prompt("solitude_ame.md")
+                + "\n\n"
+                + _load_prompt("kreyol_resistance_symbol.md")
+            )
+            brief = _load_prompt("solitude.md")
+        except FileNotFoundError as e:
+            logger.error(f"  Prompt manquant : {e}")
+            ko += 1
+            continue
+
+        user_prompt = f"{brief}\n\nMoment : {label}\nArtistes : {', '.join(artists)}"
+        try:
+            text = _mistral_chat(system_prompt, user_prompt)
+            logger.info(f"  Texte : {text!r}")
+        except Exception as e:
+            logger.error(f"  Mistral KO : {e}")
+            ko += 1
+            continue
+
+        out_mp3 = Path(f"announce_test_{bloc}.mp3")
+        try:
+            tts_call(text, out_mp3, voice_id="fr_marie_happy")
+            logger.info(f"  TTS OK → {out_mp3} ({out_mp3.stat().st_size:,} bytes)")
+            ok += 1
+        except Exception as e:
+            logger.error(f"  TTS KO : {e}")
+            ko += 1
+
+    logger.info(f"\n{'✅' if ko == 0 else '⚠️'} Test annonces : {ok}/3 OK, {ko} KO")
+
+
 # ── Affichage ─────────────────────────────────────────────────────────────────
 
 def show_playlist(yt: YTMusic, playlist_id: str):
@@ -324,7 +402,13 @@ def show_playlist(yt: YTMusic, playlist_id: str):
 
 # ── Point d'entrée ────────────────────────────────────────────────────────────
 
-def run(show: bool = False):
+def run(
+    show: bool = False,
+    dry_run: bool = False,
+    no_flash: bool = False,
+    no_horoscope: bool = False,
+    no_announce: bool = False,
+):
     yt          = init_ytmusic()
     playlist_id = get_playlist_id(yt)
 
@@ -332,7 +416,19 @@ def run(show: bool = False):
         show_playlist(yt, playlist_id)
         return
 
-    video_ids = build_24h_playlist(yt)
+    video_ids = build_24h_playlist(
+        yt,
+        no_flash=no_flash,
+        no_horoscope=no_horoscope,
+        no_announce=no_announce,
+    )
+
+    if dry_run:
+        logger.info(f"[dry-run] {len(video_ids)} items — playlist non mise à jour")
+        for i, vid in enumerate(video_ids, 1):
+            logger.info(f"  {i:3d}. https://youtu.be/{vid}")
+        return
+
     update_playlist(yt, playlist_id, video_ids)
 
     logger.info("✅ Playlist 24h mise à jour !")
@@ -341,6 +437,33 @@ def run(show: bool = False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Botiran News — playlist 24h")
-    parser.add_argument("--show", action="store_true", help="Affiche la playlist sans la mettre à jour")
+    parser.add_argument("--show", action="store_true",
+                        help="Affiche la playlist YouTube Music sans la mettre à jour")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="Construit la playlist sans la mettre à jour")
+    parser.add_argument("--no-flash", action="store_true",
+                        help="Ignore les épisodes Flash Info")
+    parser.add_argument("--no-horoscope", action="store_true",
+                        help="Ignore les épisodes Horoscope")
+    parser.add_argument("--no-announce", action="store_true",
+                        help="Ignore les annonces Solitude (TTS Mistral)")
+    parser.add_argument("--test-announce", action="store_true",
+                        help="Teste la pipeline Mistral+TTS des annonces Solitude (MP3 locaux, pas d'upload)")
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help="Logging DEBUG (ytmusicapi, requêtes, détails internes)")
     args = parser.parse_args()
-    run(show=args.show)
+
+    if args.verbose:
+        logging.getLogger().setLevel(logging.DEBUG)
+
+    if args.test_announce:
+        yt = init_ytmusic()
+        test_announce_pipeline(yt)
+    else:
+        run(
+            show=args.show,
+            dry_run=args.dry_run,
+            no_flash=args.no_flash,
+            no_horoscope=args.no_horoscope,
+            no_announce=args.no_announce,
+        )
