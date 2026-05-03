@@ -1,0 +1,54 @@
+name: 🚀 Génération complète — Flash + Horoscope + Playlist
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  flash-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher et attendre Flash Info Guadeloupe
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh workflow run flash-info.yml --repo "$REPO"
+          sleep 8
+          RUN_ID=$(gh run list --workflow=flash-info.yml --repo "$REPO" \
+            --limit 1 --json databaseId --jq '.[0].databaseId')
+          echo "▶️  Flash Info run #$RUN_ID"
+          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
+
+  horoscope:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher et attendre Horoscope Quotidien
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh workflow run horoscope-daily.yml --repo "$REPO"
+          sleep 8
+          RUN_ID=$(gh run list --workflow=horoscope-daily.yml --repo "$REPO" \
+            --limit 1 --json databaseId --jq '.[0].databaseId')
+          echo "▶️  Horoscope run #$RUN_ID"
+          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
+
+  playlist:
+    needs: [flash-info, horoscope]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher et attendre mise à jour playlist radio
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh workflow run botiran-radio-daily.yml --repo "$REPO"
+          sleep 8
+          RUN_ID=$(gh run list --workflow=botiran-radio-daily.yml --repo "$REPO" \
+            --limit 1 --json databaseId --jq '.[0].databaseId')
+          echo "▶️  Playlist run #$RUN_ID"
+          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
