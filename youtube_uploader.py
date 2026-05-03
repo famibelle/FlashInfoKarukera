@@ -575,6 +575,8 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
             + _load_prompt("flore_guadeloupe_ref.md")
             + "\n\n"
             + _load_prompt("faune_guadeloupe.md")
+            + "\n\n"
+            + _load_prompt("histoire_guadeloupe.md")
         )
     except FileNotFoundError as e:
         logger.warning(f"Capsule {slot_id} ignorée : {e}")
@@ -583,7 +585,7 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
     base_user_prompt = (
         "Génère une courte capsule audio pour une radio culturelle guadeloupéenne. "
         "Durée : environ 30 secondes (75 à 85 mots). "
-        "Sujet : un élément de la flore, de la faune ou de la culture de la Guadeloupe. "
+        "Sujet : un élément de la flore, de la faune, de l'histoire ou de la culture de la Guadeloupe. "
         "Style : chaleureux, évocateur, comme une confidence à l'auditeur. "
         "Commence directement sans formule d'introduction. "
         "Texte brut, sans mise en forme ni titre."
