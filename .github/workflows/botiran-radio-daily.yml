@@ -107,6 +107,28 @@ jobs:
           PYTHONUNBUFFERED: "1"
         run: python generate_radio_sequence.py
 
+      - name: 🧹 Nettoyage mensuel docs/audio/ (> 60 jours)
+        run: |
+          python3 - <<'EOF'
+          import re
+          from datetime import date, timedelta
+          from pathlib import Path
+
+          cutoff = date.today() - timedelta(days=60)
+          total = 0
+          for ym_dir in sorted(Path("docs/audio").glob("*/????-??")):
+              m = re.fullmatch(r"(\d{4})-(\d{2})", ym_dir.name)
+              if not m:
+                  continue
+              dir_date = date(int(m.group(1)), int(m.group(2)), 1)
+              if dir_date < cutoff:
+                  n = sum(1 for f in ym_dir.glob("*") if f.unlink() is None)
+                  ym_dir.rmdir()
+                  total += n
+                  print(f"🗑️  Supprimé : {ym_dir} ({n} fichiers)")
+          print(f"ℹ️  {total} fichiers audio supprimés" if total else "ℹ️  Aucun fichier audio à supprimer")
+          EOF
+
       - name: 💾 Commit caches
         run: |
           git config user.name "github-actions[bot]"
@@ -114,6 +136,7 @@ jobs:
           git add playlists/youtube_cache.json playlists/music_pool_cache.json playlists/playlist_24h_id.txt playlists/youtube_playlist_id.txt docs/radio_sequence.json
           [ -d docs/liners ]   && git add docs/liners/   || true
           [ -d docs/capsules ] && git add docs/capsules/ || true
+          [ -d docs/audio ]    && { git add docs/audio/; git add -u docs/audio/; } || true
           git diff --cached --quiet || git commit -m "chore: update radio sequence & caches"
           git pull --rebase -X theirs origin main
           git push

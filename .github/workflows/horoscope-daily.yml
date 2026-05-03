@@ -122,6 +122,9 @@ jobs:
           GITHUB_TOKEN:               ${{ secrets.GITHUB_TOKEN }}
         run: python -u horoscope-gwada.py ${{ env.HORO_ARGS }}
 
+      - name: 📁 Héberger les MP3 horoscope dans docs/audio/
+        run: python patch_podcast_audio.py horoscope
+
       - name: Sauvegarder l'anti-répétition flore et les archives
         run: |
           git config user.email "github-actions@github.com"
