@@ -351,13 +351,22 @@ def main() -> None:
         slot_id = args.slot
         print(f"Test capsule — slot : {slot_id}")
         print("  Appel get_capsule_mp3_url…")
-        from youtube_uploader import get_capsule_mp3_url
+        from datetime import date
+        from youtube_uploader import get_capsule_mp3_url, load_cache
         url = get_capsule_mp3_url(slot_id)
         if not url:
             print("⚠️  Capsule non générée (voir les erreurs ci-dessus)")
             return
+        cache     = load_cache()
+        cache_key = f"capsule_{date.today().isoformat()}_{slot_id}"
+        text      = cache.get(cache_key + "_text", "")
         print(f"✅ Capsule générée")
         print(f"   URL     : {url}")
+        if text:
+            print(f"\n   Texte généré :\n")
+            for line in text.strip().splitlines():
+                print(f"     {line}")
+            print()
         local = Path("docs/capsules") / url.rsplit("/", 1)[-1]
         if local.exists():
             size_kb = local.stat().st_size // 1024

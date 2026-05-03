@@ -555,8 +555,9 @@ def get_capsule_mp3_url(slot_id: str) -> str | None:
         logger.warning(f"Capsule {slot_id} ignorée — TTS : {e}")
         return None
 
-    public_url       = f"https://famibelle.github.io/FlashInfoKarukera/capsules/{filename}"
-    cache[cache_key] = public_url
+    public_url                    = f"https://famibelle.github.io/FlashInfoKarukera/capsules/{filename}"
+    cache[cache_key]              = public_url
+    cache[cache_key + "_text"]    = text
     save_cache(cache)
     logger.info(f"  Capsule {slot_id} MP3 → {public_url}")
     return public_url
