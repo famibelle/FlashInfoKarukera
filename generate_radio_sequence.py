@@ -297,6 +297,8 @@ def main() -> None:
                         help="Teste la génération et la lecture d'une capsule culturelle")
     parser.add_argument("--slot",         default="test-0",
                         help="Identifiant de slot pour --test-capsule (défaut : test-0)")
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help="Affiche le prompt envoyé au LLM et le texte généré")
     parser.add_argument("--bloc",         choices=["matin", "midi", "soir"], default="matin",
                         help="Bloc pour --test-liner (défaut : matin)")
     parser.add_argument("--skip-liners", action="store_true",
@@ -353,7 +355,7 @@ def main() -> None:
         print("  Appel get_capsule_mp3_url…")
         from datetime import date
         from youtube_uploader import get_capsule_mp3_url, load_cache
-        url = get_capsule_mp3_url(slot_id)
+        url = get_capsule_mp3_url(slot_id, verbose=args.verbose)
         if not url:
             print("⚠️  Capsule non générée (voir les erreurs ci-dessus)")
             return

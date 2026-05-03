@@ -500,7 +500,7 @@ def get_announcement_mp3_url(bloc: str, artists: list[str]) -> str | None:
 CAPSULES_DIR = Path("docs/capsules")
 
 
-def get_capsule_mp3_url(slot_id: str) -> str | None:
+def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
     """
     Génère une capsule culturelle Guadeloupe ~30s, la sauvegarde dans docs/capsules/
     et retourne son URL publique GitHub Pages. N'uploade PAS sur YouTube.
@@ -529,7 +529,7 @@ def get_capsule_mp3_url(slot_id: str) -> str | None:
         logger.warning(f"Capsule {slot_id} ignorée : {e}")
         return None
 
-    user_prompt = (
+    base_user_prompt = (
         "Génère une courte capsule audio pour une radio culturelle guadeloupéenne. "
         "Durée : environ 30 secondes (75 à 85 mots). "
         "Sujet : un élément de la flore, de la faune ou de la culture de la Guadeloupe. "
@@ -538,12 +538,47 @@ def get_capsule_mp3_url(slot_id: str) -> str | None:
         "Texte brut, sans mise en forme ni titre."
     )
 
+    # Injecter les capsules déjà générées aujourd'hui pour éviter les répétitions
+    today_prefix   = f"capsule_{today}_"
+    previous_texts = [
+        v for k, v in cache.items()
+        if k.startswith(today_prefix) and k.endswith("_text") and k != cache_key + "_text"
+    ]
+    if previous_texts:
+        context = "\n".join(f"- {t[:200]}" for t in previous_texts)
+        user_prompt = (
+            f"Capsules déjà diffusées aujourd'hui (choisis un sujet différent) :\n{context}\n\n"
+            + base_user_prompt
+        )
+    else:
+        user_prompt = base_user_prompt
+
+    if verbose:
+        sep = "─" * 60
+        print(f"\n{sep}")
+        print("SYSTEM PROMPT :")
+        print(sep)
+        print(system_prompt)
+        print(f"\n{sep}")
+        print("USER PROMPT :")
+        print(sep)
+        print(user_prompt)
+        print(sep)
+
     try:
         text = _mistral_chat(system_prompt, user_prompt)
         logger.info(f"  Capsule {slot_id} texte : {text!r}")
     except Exception as e:
         logger.warning(f"Capsule {slot_id} ignorée — Mistral : {e}")
         return None
+
+    if verbose:
+        sep = "─" * 60
+        print(f"\n{sep}")
+        print("RÉPONSE LLM :")
+        print(sep)
+        print(text)
+        print(sep)
 
     filename = f"capsule-{today}-{slot_id.replace('_', '-')}.mp3"
     CAPSULES_DIR.mkdir(parents=True, exist_ok=True)
