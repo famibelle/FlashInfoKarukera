@@ -313,8 +313,11 @@ def _load_prompt(filename: str) -> str:
     return path.read_text(encoding="utf-8").strip()
 
 
-def _mistral_chat(system: str, user: str) -> str:
-    """Appelle l'API Mistral chat et retourne le texte généré."""
+def _mistral_chat(system: str, user: str, max_retries: int = 3) -> str:
+    """Appelle l'API Mistral chat et retourne le texte généré.
+    Retry avec backoff exponentiel sur HTTP 429 (rate limit)."""
+    import time
+    import urllib.error
     api_key = os.environ.get("MISTRAL_API_KEY", "")
     if not api_key:
         raise RuntimeError("MISTRAL_API_KEY non défini")
@@ -335,9 +338,19 @@ def _mistral_chat(system: str, user: str) -> str:
             "Content-Type": "application/json",
         },
     )
-    with urllib.request.urlopen(req, timeout=30) as r:
-        data = json.loads(r.read())
-    return data["choices"][0]["message"]["content"].strip()
+    wait = 2
+    for attempt in range(1, max_retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = json.loads(r.read())
+            return data["choices"][0]["message"]["content"].strip()
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < max_retries:
+                logger.warning(f"Mistral 429 — attente {wait}s (tentative {attempt}/{max_retries})")
+                time.sleep(wait)
+                wait *= 2
+            else:
+                raise
 
 
 def get_or_upload_announcement(bloc: str, artists: list[str]) -> str | None:
