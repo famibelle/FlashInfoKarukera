@@ -180,21 +180,93 @@ def build_sequence(pool: list[dict], slots: dict[str, dict]) -> list[dict]:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
+    import argparse
+    parser = argparse.ArgumentParser(description="Génère la séquence radio 24h")
+    parser.add_argument("--pool",        action="store_true",
+                        help="Affiche le pool musical et quitte")
+    parser.add_argument("--transitions", action="store_true",
+                        help="Affiche les transitions du podcast RSS et quitte")
+    parser.add_argument("--test-liner",  metavar="ARTISTES",
+                        help="Teste la génération d'un liner (artistes séparés par des virgules)")
+    parser.add_argument("--bloc",        choices=["matin", "midi", "soir"], default="matin",
+                        help="Bloc pour --test-liner (défaut : matin)")
+    parser.add_argument("--skip-liners", action="store_true",
+                        help="Construit la séquence sans générer de liners (rapide)")
+    parser.add_argument("--dry-run",     action="store_true",
+                        help="Affiche la séquence sans écrire radio_sequence.json")
+    args = parser.parse_args()
+
+    # ── --pool ────────────────────────────────────────────────────────────────
+    if args.pool:
+        pool = load_pool()
+        print(f"Pool musical : {len(pool)} pistes")
+        genres: dict[str, int] = {}
+        for t in pool:
+            genres[t.get("genre", "?")] = genres.get(t.get("genre", "?"), 0) + 1
+        for g, n in sorted(genres.items(), key=lambda x: -x[1]):
+            print(f"  {g:<20} {n} pistes")
+        return
+
+    # ── --transitions ─────────────────────────────────────────────────────────
+    if args.transitions:
+        slots = load_transitions()
+        if not slots:
+            print("Aucune transition trouvée dans podcast.xml")
+            return
+        print(f"{len(slots)} transitions chargées :")
+        for key, item in slots.items():
+            print(f"  [{key}]  {item['icon']} {item['label'][:60]}")
+            print(f"          {item['url']}")
+        return
+
+    # ── --test-liner ──────────────────────────────────────────────────────────
+    if args.test_liner:
+        artists = [a.strip() for a in args.test_liner.split(",") if a.strip()]
+        print(f"Test liner — bloc: {args.bloc} — artistes: {artists}")
+        liner = get_liner(artists, args.bloc)
+        if liner:
+            print(f"✅ Liner généré : {liner['label']}")
+            print(f"   URL : {liner['url']}")
+            local = Path("docs/liners") / liner["url"].rsplit("/", 1)[-1]
+            if local.exists():
+                print(f"   Fichier : {local} ({local.stat().st_size // 1024} Ko)")
+        else:
+            print("⚠️  Liner non généré (voir les erreurs ci-dessus)")
+        return
+
+    # ── Génération complète ───────────────────────────────────────────────────
     pool  = load_pool()
     slots = load_transitions()
 
     if not pool:
         print("⚠️  Pool musical vide — radio_sequence.json non mis à jour.", file=sys.stderr)
         sys.exit(1)
-
     if not slots:
         print("⚠️  Aucune transition trouvée dans podcast.xml", file=sys.stderr)
+
+    # Neutraliser get_liner si --skip-liners
+    if args.skip_liners:
+        import generate_radio_sequence as _self
+        _self.get_liner = lambda artists, bloc: None
 
     seq = build_sequence(pool, slots)
 
     n_music   = sum(1 for s in seq if s["type"] == "music")
     n_liners  = sum(1 for s in seq if s["type"] == "liner")
     n_transit = sum(1 for s in seq if s["type"] == "transition")
+
+    print(f"Séquence : {len(seq)} éléments "
+          f"({n_music} pistes · {n_liners} liners · {n_transit} transitions)")
+
+    if args.dry_run:
+        for item in seq:
+            if item["type"] == "music":
+                print(f"  🎵 {item['title']} — {item['artist']}")
+            elif item["type"] == "liner":
+                print(f"  🎙️  [liner] {item['label']}")
+            else:
+                print(f"  {item['icon']} [{item['subtype']}] {item['label'][:60]}")
+        return
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(
