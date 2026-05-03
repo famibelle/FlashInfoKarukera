@@ -311,6 +311,52 @@
     .qi-info { min-width: 0; }
     .qi-title { color: #b8b8c8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .qi-artist { font-size: 0.76rem; color: #555; }
+
+    .btn-toggle-playlist {
+      display: block;
+      width: 100%;
+      margin-top: 0.9rem;
+      background: none;
+      border: none;
+      color: #6366f1;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.3rem 0;
+      text-align: center;
+      transition: opacity 0.15s;
+    }
+    .btn-toggle-playlist:hover { opacity: 0.75; }
+
+    #full-playlist {
+      max-height: 360px;
+      overflow-y: auto;
+      margin-top: 0.75rem;
+      border-top: 1px solid #2a2d3a;
+      padding-top: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: #333646 transparent;
+    }
+
+    .pl-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.4rem 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.83rem;
+      transition: background 0.1s;
+    }
+    .pl-item:hover { background: #252836; }
+    .pl-item.pl-current { background: #1e1b4b; }
+    .pl-num { font-size: 0.7rem; color: #444; width: 22px; text-align: right; flex-shrink: 0; }
+    .pl-icon { font-size: 0.85rem; color: #444; flex-shrink: 0; }
+    .pl-item.pl-current .pl-icon { color: #6366f1; }
+    .pl-info { min-width: 0; }
+    .pl-title { color: #b8b8c8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pl-item.pl-current .pl-title { color: #fff; font-weight: 600; }
+    .pl-artist { font-size: 0.75rem; color: #555; }
   </style>
 </head>
 <body>
@@ -366,6 +412,8 @@
       <div class="queue-section">
         <div class="queue-label">À suivre</div>
         <div id="queue-list"></div>
+        <button class="btn-toggle-playlist" id="btn-toggle-playlist">▼ Voir toute la playlist</button>
+        <div id="full-playlist" style="display:none;"></div>
       </div>
     </div>
     <!-- ── /Radio Karukera ─────────────────────────── -->
@@ -562,6 +610,40 @@
           </div>
         </div>`;
       }).join('');
+      if (this._playlistOpen) this._renderFullPlaylist();
+    }
+
+    _renderFullPlaylist() {
+      const subtypeIcons = { flash_info: '📰', horoscope: '✨' };
+      const btn = document.getElementById('btn-toggle-playlist');
+      btn.textContent = `▲ Masquer la playlist (${this.seq.length} éléments)`;
+
+      document.getElementById('full-playlist').innerHTML = this.seq.map((it, i) => {
+        const cur = i === this.pos;
+        let icon, title, artist = '';
+        if (it.type === 'music') {
+          icon = '🎵'; title = it.title || '—'; artist = it.artist || '';
+        } else if (it.type === 'liner') {
+          icon = '🎙️'; title = it.label || 'Dans un moment…';
+        } else {
+          icon = subtypeIcons[it.subtype] || '🎙️'; title = it.label || 'Transition';
+        }
+        return `<div class="pl-item${cur ? ' pl-current' : ''}" data-i="${i}">
+          <span class="pl-num">${i + 1}</span>
+          <span class="pl-icon">${icon}</span>
+          <div class="pl-info">
+            <div class="pl-title">${title}</div>
+            ${artist ? `<div class="pl-artist">${artist}</div>` : ''}
+          </div>
+        </div>`;
+      }).join('');
+
+      document.querySelectorAll('.pl-item').forEach(el =>
+        el.addEventListener('click', () => this._playAt(+el.dataset.i))
+      );
+
+      const cur = document.querySelector('.pl-item.pl-current');
+      if (cur) cur.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     }
   }
 
@@ -574,6 +656,19 @@
   btnPlay.addEventListener('click', () => radio.togglePlay());
   document.getElementById('btn-skip').addEventListener('click', () => radio._next());
   document.getElementById('volume').addEventListener('input', e => radio.setVolume(parseInt(e.target.value)));
+
+  document.getElementById('btn-toggle-playlist').addEventListener('click', () => {
+    radio._playlistOpen = !radio._playlistOpen;
+    const fp  = document.getElementById('full-playlist');
+    const btn = document.getElementById('btn-toggle-playlist');
+    if (radio._playlistOpen) {
+      fp.style.display = '';
+      radio._renderFullPlaylist();
+    } else {
+      fp.style.display = 'none';
+      btn.textContent  = `▼ Voir toute la playlist (${radio.seq.length} éléments)`;
+    }
+  });
   </script>
 </body>
 </html>
