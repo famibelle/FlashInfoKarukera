@@ -1,23 +1,49 @@
 #!/usr/bin/env python3
 """
-Génère docs/radio_sequence.json à partir du pool musical et du podcast RSS.
-Appelé par botiran-radio-daily.yml après la mise à jour de la playlist.
+Génère docs/radio_sequence.json.
+
+Structure 24h :
+  [Flash Info matin] [Horoscope matin]
+  [Liner] [×15 pistes] [Liner] [×12 pistes]
+  [Flash Info midi]
+  [Liner] [×15 pistes] [Liner] [×12 pistes]
+  [Flash Info soir] [Horoscope soir]
+  [Liner] [×15 pistes] [Liner] [×11 pistes]
+
+Les liners annoncent les artistes du bloc suivant.
+Ils sont des vidéos YouTube (cache youtube_cache.json) ou générés à la volée.
 """
 
 import json
+import os
 import random
 import re
 import sys
-import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-POOL_CACHE   = Path("playlists/music_pool_cache.json")
-PODCAST_XML  = Path("docs/podcast.xml")
-OUTPUT       = Path("docs/radio_sequence.json")
+POOL_CACHE       = Path("playlists/music_pool_cache.json")
+PODCAST_XML      = Path("docs/podcast.xml")
+YT_CACHE         = Path("playlists/youtube_cache.json")
+OUTPUT           = Path("docs/radio_sequence.json")
 
-TRACKS_PER_BLOCK = 6   # pistes musicales entre deux transitions
+TRACKS_PER_LINER = 15   # pistes entre deux liners
 
+# Répartition des blocs (doit correspondre à playlist_24h.py)
+BLOCK_SIZES = {
+    "matin": 27,
+    "midi":  27,
+    "soir":  26,
+}
+
+BLOCK_LABELS = {
+    "matin": "ce matin",
+    "midi":  "cet après-midi",
+    "soir":  "ce soir",
+}
+
+
+# ── Pool musical ──────────────────────────────────────────────────────────────
 
 def load_pool() -> list[dict]:
     if not POOL_CACHE.exists():
@@ -28,112 +54,197 @@ def load_pool() -> list[dict]:
     return tracks
 
 
-def load_transitions() -> list[dict]:
-    """Extrait les transitions depuis le podcast RSS (flash info + horoscope)."""
+# ── Transitions depuis le podcast RSS ────────────────────────────────────────
+
+def load_transitions() -> dict[str, list[dict]]:
+    """
+    Retourne { "flash_matin": {...}, "horoscope_matin": {...},
+               "flash_midi": {...},
+               "flash_soir": {...}, "horoscope_soir": {...} }
+    En cas d'épisodes multiples pour un slot, garde le plus récent.
+    """
     if not PODCAST_XML.exists():
-        return []
+        return {}
 
-    xml = PODCAST_XML.read_text(encoding="utf-8")
+    xml   = PODCAST_XML.read_text(encoding="utf-8")
     items = re.findall(r"<item>(.*?)</item>", xml, re.DOTALL)
-
-    transitions = []
-    seen_guids  = set()
+    slots: dict[str, dict] = {}
 
     for item in items:
-        guid  = (re.search(r"<guid[^>]*>(.*?)</guid>", item) or ["", ""])[0]
         guid  = re.search(r"<guid[^>]*>(.*?)</guid>", item)
         guid  = guid.group(1).strip() if guid else ""
-        if guid in seen_guids:
-            continue
-        seen_guids.add(guid)
-
         title = re.search(r"<title>(.*?)</title>", item)
         title = title.group(1).strip() if title else ""
-
-        url = re.search(r'<enclosure url="([^"]+)"', item)
-        url = url.group(1).strip() if url else ""
-
-        if not url:
+        url   = re.search(r'<enclosure url="([^"]+\.mp3)"', item)
+        url   = url.group(1).strip() if url else ""
+        if not url or not guid:
             continue
 
+        title = re.sub(r"[🌅🌙✨]", "", title).strip()
+
         if "flash-info" in guid:
-            subtype = "flash_info"
-            icon    = "📰"
-            label   = _clean_title(title)
+            subtype, icon = "flash_info", "📰"
+            if "matin"  in guid: slot = "flash_matin"
+            elif "midi" in guid: slot = "flash_midi"
+            elif "soir" in guid: slot = "flash_soir"
+            else: continue
         elif "horoscope" in guid:
-            subtype = "horoscope"
-            icon    = "✨"
-            label   = _clean_title(title)
+            subtype, icon = "horoscope", "✨"
+            if "matin" in guid: slot = "horoscope_matin"
+            elif "soir" in guid: slot = "horoscope_soir"
+            else: continue
         else:
             continue
 
-        transitions.append({"type": "transition", "subtype": subtype,
-                             "url": url, "label": label, "icon": icon})
+        if slot not in slots:  # premier = plus récent (ordre RSS)
+            slots[slot] = {"type": "transition", "subtype": subtype,
+                           "url": url, "label": title, "icon": icon}
 
-    return transitions
-
-
-def _clean_title(t: str) -> str:
-    return t.replace("🌅", "").replace("🌙", "").strip()
+    return slots
 
 
-def build_sequence(pool: list[dict], transitions: list[dict]) -> list[dict]:
-    """Intercale les transitions toutes les TRACKS_PER_BLOCK pistes."""
-    seq = []
-    track_idx = 0
-    trans_idx = 0
+# ── Liners ────────────────────────────────────────────────────────────────────
 
-    # Démarrer par la première transition si disponible
-    if transitions:
-        seq.append(transitions[trans_idx % len(transitions)])
-        trans_idx += 1
+def _yt_cache() -> dict:
+    if YT_CACHE.exists():
+        return json.loads(YT_CACHE.read_text())
+    return {}
 
-    while track_idx < len(pool):
-        # Bloc de musique
-        for _ in range(TRACKS_PER_BLOCK):
-            if track_idx >= len(pool):
-                break
-            t = pool[track_idx]
-            seq.append({
+
+def _yt_cache_save(cache: dict) -> None:
+    YT_CACHE.parent.mkdir(exist_ok=True)
+    YT_CACHE.write_text(json.dumps(cache, indent=2, ensure_ascii=False))
+
+
+def _liner_cache_key(artists: list[str]) -> str:
+    from datetime import date
+    week = date.today().strftime("%Y-W%W")
+    return f"liner_{week}_{'--'.join(sorted(artists[:3]))}"
+
+
+def get_liner(artists: list[str], bloc: str) -> dict | None:
+    """
+    Cherche ou génère un liner pour les artistes donnés.
+    Retourne un item { type: "liner", videoId, label } ou None.
+    """
+    if not artists:
+        return None
+
+    cache     = _yt_cache()
+    cache_key = _liner_cache_key(artists)
+
+    if cache_key in cache:
+        video_id = cache[cache_key]
+        if video_id:
+            label = f"Dans un moment : {', '.join(artists[:3])}"
+            return {"type": "liner", "videoId": video_id,
+                    "label": label, "icon": "🎙️"}
+        return None  # génération précédemment échouée
+
+    # Tentative de génération si les APIs sont disponibles
+    video_id = _generate_liner(artists, bloc)
+    cache[cache_key] = video_id or ""
+    _yt_cache_save(cache)
+
+    if video_id:
+        label = f"Dans un moment : {', '.join(artists[:3])}"
+        return {"type": "liner", "videoId": video_id,
+                "label": label, "icon": "🎙️"}
+    return None
+
+
+def _generate_liner(artists: list[str], bloc: str) -> str | None:
+    """Génère le liner via Mistral + TTS + YouTube upload. Non bloquant."""
+    try:
+        from youtube_uploader import get_or_upload_announcement
+        video_id = get_or_upload_announcement(bloc, artists)
+        return video_id
+    except Exception as e:
+        print(f"   ⚠️  Liner {bloc} ignoré : {e}", file=sys.stderr)
+        return None
+
+
+# ── Construction de la séquence ───────────────────────────────────────────────
+
+def _music_with_liners(tracks: list[dict], bloc: str) -> list[dict]:
+    """Intercale un liner toutes les TRACKS_PER_LINER pistes."""
+    result = []
+    for i in range(0, len(tracks), TRACKS_PER_LINER):
+        group   = tracks[i : i + TRACKS_PER_LINER]
+        artists = list(dict.fromkeys(t.get("artist", "") for t in group if t.get("artist")))
+        liner   = get_liner(artists[:5], bloc)
+        if liner:
+            result.append(liner)
+        for t in group:
+            result.append({
                 "type":    "music",
                 "videoId": t["videoId"],
-                "title":   t.get("name", ""),
+                "title":   t.get("name",   ""),
                 "artist":  t.get("artist", ""),
-                "genre":   t.get("genre", ""),
+                "genre":   t.get("genre",  ""),
             })
-            track_idx += 1
+    return result
 
-        # Transition suivante
-        if transitions and track_idx < len(pool):
-            seq.append(transitions[trans_idx % len(transitions)])
-            trans_idx += 1
+
+def build_sequence(pool: list[dict], slots: dict[str, dict]) -> list[dict]:
+    seq = []
+    pos = 0
+
+    for bloc, size in BLOCK_SIZES.items():
+        # Transitions éditoriales du bloc
+        if bloc == "matin":
+            for key in ("flash_matin", "horoscope_matin"):
+                if key in slots:
+                    seq.append(slots[key])
+        elif bloc == "midi":
+            if "flash_midi" in slots:
+                seq.append(slots["flash_midi"])
+        elif bloc == "soir":
+            for key in ("flash_soir", "horoscope_soir"):
+                if key in slots:
+                    seq.append(slots[key])
+
+        # Bloc musical avec liners intégrés
+        block_tracks = pool[pos : pos + size]
+        seq += _music_with_liners(block_tracks, bloc)
+        pos += size
 
     return seq
 
 
-def main():
-    pool        = load_pool()
-    transitions = load_transitions()
+# ── Main ──────────────────────────────────────────────────────────────────────
+
+def main() -> None:
+    pool  = load_pool()
+    slots = load_transitions()
 
     if not pool:
         print("⚠️  Pool musical vide — radio_sequence.json non mis à jour.", file=sys.stderr)
         sys.exit(1)
 
-    seq = build_sequence(pool, transitions)
+    if not slots:
+        print("⚠️  Aucune transition trouvée dans podcast.xml", file=sys.stderr)
+
+    seq = build_sequence(pool, slots)
+
+    n_music   = sum(1 for s in seq if s["type"] == "music")
+    n_liners  = sum(1 for s in seq if s["type"] == "liner")
+    n_transit = sum(1 for s in seq if s["type"] == "transition")
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(
         json.dumps({
-            "generated": datetime.now(timezone.utc).isoformat(),
-            "tracks":    len([s for s in seq if s["type"] == "music"]),
-            "transitions": len([s for s in seq if s["type"] == "transition"]),
-            "sequence":  seq,
+            "generated":   datetime.now(timezone.utc).isoformat(),
+            "music":       n_music,
+            "liners":      n_liners,
+            "transitions": n_transit,
+            "sequence":    seq,
         }, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
 
     print(f"✅ radio_sequence.json — {len(seq)} éléments "
-          f"({len(pool)} pistes, {len(transitions)} transitions)")
+          f"({n_music} pistes · {n_liners} liners · {n_transit} transitions)")
 
 
 if __name__ == "__main__":

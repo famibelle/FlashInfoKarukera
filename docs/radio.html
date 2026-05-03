@@ -373,21 +373,29 @@
     _playAt(index) {
       this.pos = ((index % this.seq.length) + this.seq.length) % this.seq.length;
       const item = this.seq[this.pos];
+
+      // Sauter les liners sans videoId (non encore générés)
+      if (item.type === 'liner' && !item.videoId) {
+        return this._playAt(this.pos + 1);
+      }
+
       this._updateNowPlaying(item);
       this._renderQueue();
 
-      if (item.type === 'music') {
-        this._showYT();
+      if (item.type === 'music' || item.type === 'liner') {
+        // Les deux passent par le player YouTube
+        this._showYT(item.type === 'liner');
         if (this.ytReady) {
           this.yt.loadVideoById(item.videoId);
           this.yt.setVolume(this._vol());
         }
       } else {
+        // Transitions MP3 (flash info, horoscope) → HTML5 Audio
         this._showTransition(item);
+        if (this.ytReady) this.yt.stopVideo();
         this.trAudio.src    = item.url;
         this.trAudio.volume = this._vol() / 100;
         this.trAudio.play().catch(() => {});
-        if (this.ytReady) this.yt.stopVideo();
       }
     }
 
@@ -398,7 +406,7 @@
     togglePlay() {
       const item = this.seq[this.pos];
       if (!item) return;
-      if (item.type === 'music' && this.ytReady) {
+      if ((item.type === 'music' || item.type === 'liner') && this.ytReady) {
         const s = this.yt.getPlayerState();
         s === YT.PlayerState.PLAYING ? this.yt.pauseVideo() : this.yt.playVideo();
         btnPlay.textContent = s === YT.PlayerState.PLAYING ? '▶' : '⏸';
@@ -423,9 +431,12 @@
       document.getElementById('live-dot').classList.add('on');
     }
 
-    _showYT() {
-      document.getElementById('yt-wrap').style.display          = '';
+    _showYT(isLiner = false) {
+      document.getElementById('yt-wrap').style.display = '';
       document.getElementById('transition-overlay').classList.remove('on');
+      // Teinte légère sur le cadre pendant un liner
+      document.getElementById('yt-wrap').style.outline =
+        isLiner ? '2px solid #6366f144' : 'none';
     }
 
     _showTransition(item) {
@@ -438,25 +449,42 @@
 
     _updateNowPlaying(item) {
       btnPlay.textContent = '⏸';
-      const typeIcons = { flash_info: '📰 Flash Info', horoscope: '✨ Horoscope', announcement: '🎙️ Annonce' };
+      const subtypeLabels = {
+        flash_info:   '📰 Flash Info',
+        horoscope:    '✨ Horoscope',
+        announcement: '🎙️ Annonce',
+      };
       if (item.type === 'music') {
         document.getElementById('np-type').textContent   = '🎵 Musique';
         document.getElementById('np-title').textContent  = item.title  || '—';
         document.getElementById('np-artist').textContent = item.artist || '';
+      } else if (item.type === 'liner') {
+        document.getElementById('np-type').textContent   = '🎙️ Dans un moment…';
+        document.getElementById('np-title').textContent  = item.label || 'Annonce à venir';
+        document.getElementById('np-artist').textContent = '';
       } else {
-        document.getElementById('np-type').textContent   = typeIcons[item.subtype] || '🎙️';
+        document.getElementById('np-type').textContent   = subtypeLabels[item.subtype] || '🎙️';
         document.getElementById('np-title').textContent  = item.label || 'Transition';
         document.getElementById('np-artist').textContent = '';
       }
     }
 
     _renderQueue() {
-      const icons = { music: '🎵', flash_info: '📰', horoscope: '✨', announcement: '🎙️' };
+      const subtypeIcons = { flash_info: '📰', horoscope: '✨', announcement: '🎙️' };
       const items = Array.from({ length: 5 }, (_, i) => this.seq[(this.pos + 1 + i) % this.seq.length]);
       document.getElementById('queue-list').innerHTML = items.map(it => {
-        const icon = it.type === 'music' ? '🎵' : (icons[it.subtype] || '🎙️');
-        const title  = it.type === 'music' ? (it.title || '—') : (it.label || 'Transition');
-        const artist = it.type === 'music' ? (it.artist || '') : '';
+        let icon, title, artist = '';
+        if (it.type === 'music') {
+          icon   = '🎵';
+          title  = it.title  || '—';
+          artist = it.artist || '';
+        } else if (it.type === 'liner') {
+          icon  = '🎙️';
+          title = it.label || 'Dans un moment…';
+        } else {
+          icon  = subtypeIcons[it.subtype] || '🎙️';
+          title = it.label || 'Transition';
+        }
         return `<div class="queue-item">
           <span class="qi-icon">${icon}</span>
           <div class="qi-info">
