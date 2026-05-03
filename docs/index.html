@@ -504,7 +504,7 @@
     _playAt(index) {
       this.pos = ((index % this.seq.length) + this.seq.length) % this.seq.length;
       const item = this.seq[this.pos];
-      if (item.type === 'liner' && !item.url) return this._playAt(this.pos + 1);
+      if ((item.type === 'liner' || item.type === 'capsule') && !item.url) return this._playAt(this.pos + 1);
 
       this.trAudio.pause();
       if (this.ytReady) this.yt.stopVideo();
@@ -583,6 +583,10 @@
         document.getElementById('np-type').textContent   = '🎙️ Dans un moment…';
         document.getElementById('np-title').textContent  = item.label || 'Annonce';
         document.getElementById('np-artist').textContent = '';
+      } else if (item.type === 'capsule') {
+        document.getElementById('np-type').textContent   = '🌺 Capsule culturelle';
+        document.getElementById('np-title').textContent  = item.label || 'Guadeloupe';
+        document.getElementById('np-artist').textContent = '';
       } else {
         document.getElementById('np-type').textContent   = subtypeLabels[item.subtype] || '🎙️';
         document.getElementById('np-title').textContent  = item.label || 'Transition';
@@ -599,6 +603,8 @@
           icon = '🎵'; title = it.title || '—'; artist = it.artist || '';
         } else if (it.type === 'liner') {
           icon = '🎙️'; title = it.label || 'Dans un moment…';
+        } else if (it.type === 'capsule') {
+          icon = '🌺'; title = it.label || 'Capsule culturelle';
         } else {
           icon = subtypeIcons[it.subtype] || '🎙️'; title = it.label || 'Transition';
         }
@@ -625,6 +631,8 @@
           icon = '🎵'; title = it.title || '—'; artist = it.artist || '';
         } else if (it.type === 'liner') {
           icon = '🎙️'; title = it.label || 'Dans un moment…';
+        } else if (it.type === 'capsule') {
+          icon = '🌺'; title = it.label || 'Capsule culturelle';
         } else {
           icon = subtypeIcons[it.subtype] || '🎙️'; title = it.label || 'Transition';
         }

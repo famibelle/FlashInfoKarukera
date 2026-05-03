@@ -495,6 +495,73 @@ def get_announcement_mp3_url(bloc: str, artists: list[str]) -> str | None:
     return public_url
 
 
+# ── Capsules culturelles ──────────────────────────────────────────────────────
+
+CAPSULES_DIR = Path("docs/capsules")
+
+
+def get_capsule_mp3_url(slot_id: str) -> str | None:
+    """
+    Génère une capsule culturelle Guadeloupe ~30s, la sauvegarde dans docs/capsules/
+    et retourne son URL publique GitHub Pages. N'uploade PAS sur YouTube.
+    """
+    from datetime import date
+    today     = date.today().isoformat()
+    cache_key = f"capsule_{today}_{slot_id}"
+    cache     = load_cache()
+
+    if cache_key in cache and cache[cache_key]:
+        url      = cache[cache_key]
+        filename = url.rsplit("/", 1)[-1]
+        if (CAPSULES_DIR / filename).exists():
+            logger.info(f"Capsule {slot_id} depuis cache → {url}")
+            return url
+
+    try:
+        system_prompt = (
+            _load_prompt("kreyol_resistance_symbol.md")
+            + "\n\n"
+            + _load_prompt("flore_guadeloupe_ref.md")
+            + "\n\n"
+            + _load_prompt("faune_guadeloupe.md")
+        )
+    except FileNotFoundError as e:
+        logger.warning(f"Capsule {slot_id} ignorée : {e}")
+        return None
+
+    user_prompt = (
+        "Génère une courte capsule audio pour une radio culturelle guadeloupéenne. "
+        "Durée : environ 30 secondes (75 à 85 mots). "
+        "Sujet : un élément de la flore, de la faune ou de la culture de la Guadeloupe. "
+        "Style : chaleureux, évocateur, comme une confidence à l'auditeur. "
+        "Commence directement sans formule d'introduction. "
+        "Texte brut, sans mise en forme ni titre."
+    )
+
+    try:
+        text = _mistral_chat(system_prompt, user_prompt)
+        logger.info(f"  Capsule {slot_id} texte : {text!r}")
+    except Exception as e:
+        logger.warning(f"Capsule {slot_id} ignorée — Mistral : {e}")
+        return None
+
+    filename = f"capsule-{today}-{slot_id.replace('_', '-')}.mp3"
+    CAPSULES_DIR.mkdir(parents=True, exist_ok=True)
+    mp3_path = CAPSULES_DIR / filename
+
+    try:
+        tts_call(normalize_for_tts(text), mp3_path, voice_id="fr_marie_happy")
+    except Exception as e:
+        logger.warning(f"Capsule {slot_id} ignorée — TTS : {e}")
+        return None
+
+    public_url       = f"https://famibelle.github.io/FlashInfoKarukera/capsules/{filename}"
+    cache[cache_key] = public_url
+    save_cache(cache)
+    logger.info(f"  Capsule {slot_id} MP3 → {public_url}")
+    return public_url
+
+
 # ── Points d'entrée publics ───────────────────────────────────────────────────
 
 def get_or_upload_episode(mode: str) -> str | None:

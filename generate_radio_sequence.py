@@ -33,6 +33,7 @@ PODCAST_XML = Path("docs/podcast.xml")
 OUTPUT      = Path("docs/radio_sequence.json")
 
 TRACKS_PER_LINER   = 6   # pistes entre deux liners
+TRACKS_PER_CAPSULE = 12  # pistes entre deux capsules culturelles
 HOROSCOPE_AFTER    = 6   # chansons entre flash info et horoscope
 
 # Répartition des blocs (doit correspondre à playlist_24h.py)
@@ -170,6 +171,18 @@ def _fmt_dur(seconds: int) -> str:
 # ── Liners ────────────────────────────────────────────────────────────────────
 
 
+def get_capsule(bloc: str, position: int) -> dict | None:
+    """Génère ou récupère la capsule culturelle pour ce slot."""
+    try:
+        from youtube_uploader import get_capsule_mp3_url
+        url = get_capsule_mp3_url(f"{bloc}-{position}")
+        if url:
+            return {"type": "capsule", "url": url, "label": "Capsule culturelle Guadeloupe", "icon": "🌺"}
+    except Exception as e:
+        print(f"   ⚠️  Capsule {bloc}-{position} ignorée : {e}", file=sys.stderr)
+    return None
+
+
 def get_liner(artists: list[str], bloc: str) -> dict | None:
     """
     Génère ou récupère le liner MP3 pour ce groupe d'artistes.
@@ -191,7 +204,7 @@ def get_liner(artists: list[str], bloc: str) -> dict | None:
 # ── Construction de la séquence ───────────────────────────────────────────────
 
 def _music_with_liners(tracks: list[dict], bloc: str) -> list[dict]:
-    """Intercale un liner toutes les TRACKS_PER_LINER pistes."""
+    """Intercale un liner toutes les TRACKS_PER_LINER pistes et une capsule toutes les TRACKS_PER_CAPSULE."""
     result = []
     for i in range(0, len(tracks), TRACKS_PER_LINER):
         group   = tracks[i : i + TRACKS_PER_LINER]
@@ -210,6 +223,11 @@ def _music_with_liners(tracks: list[dict], bloc: str) -> list[dict]:
             if t.get("duration"):
                 item["duration"] = t["duration"]
             result.append(item)
+        tracks_done = i + len(group)
+        if tracks_done % TRACKS_PER_CAPSULE == 0:
+            capsule = get_capsule(bloc, tracks_done)
+            if capsule:
+                result.append(capsule)
     return result
 
 
@@ -384,12 +402,13 @@ def main() -> None:
 
     seq = build_sequence(pool, slots)
 
-    n_music   = sum(1 for s in seq if s["type"] == "music")
-    n_liners  = sum(1 for s in seq if s["type"] == "liner")
-    n_transit = sum(1 for s in seq if s["type"] == "transition")
+    n_music    = sum(1 for s in seq if s["type"] == "music")
+    n_liners   = sum(1 for s in seq if s["type"] == "liner")
+    n_capsules = sum(1 for s in seq if s["type"] == "capsule")
+    n_transit  = sum(1 for s in seq if s["type"] == "transition")
 
     print(f"Séquence : {len(seq)} éléments "
-          f"({n_music} pistes · {n_liners} liners · {n_transit} transitions)")
+          f"({n_music} pistes · {n_liners} liners · {n_capsules} capsules · {n_transit} transitions)")
 
     if args.dry_run:
         for item in seq:
@@ -397,6 +416,8 @@ def main() -> None:
                 print(f"  🎵 {item['title']} — {item['artist']}")
             elif item["type"] == "liner":
                 print(f"  🎙️  [liner] {item['label']}")
+            elif item["type"] == "capsule":
+                print(f"  🌺 [capsule] {item['label']}")
             else:
                 print(f"  {item['icon']} [{item['subtype']}] {item['label'][:60]}")
         return
@@ -407,6 +428,7 @@ def main() -> None:
             "generated":   datetime.now(timezone.utc).isoformat(),
             "music":       n_music,
             "liners":      n_liners,
+            "capsules":    n_capsules,
             "transitions": n_transit,
             "sequence":    seq,
         }, ensure_ascii=False, indent=2),
@@ -414,7 +436,7 @@ def main() -> None:
     )
 
     print(f"✅ radio_sequence.json — {len(seq)} éléments "
-          f"({n_music} pistes · {n_liners} liners · {n_transit} transitions)")
+          f"({n_music} pistes · {n_liners} liners · {n_capsules} capsules · {n_transit} transitions)")
 
 
 if __name__ == "__main__":
