@@ -145,6 +145,12 @@
       text-align: center;
       padding: 0 1rem;
     }
+    .tr-timer {
+      font-size: 0.8rem;
+      font-variant-numeric: tabular-nums;
+      color: #555;
+      letter-spacing: 0.04em;
+    }
 
     /* Now playing */
     .now-playing { margin-bottom: 1.25rem; }
@@ -346,6 +352,7 @@
       <div id="transition-overlay">
         <div class="tr-icon" id="tr-icon">🎙️</div>
         <div class="tr-label" id="tr-label"></div>
+        <div class="tr-timer" id="tr-timer"></div>
       </div>
 
       <div class="now-playing">
@@ -394,6 +401,12 @@
 
       this.trAudio = document.getElementById('tr-audio');
       this.trAudio.addEventListener('ended', () => this._next());
+      this.trAudio.addEventListener('timeupdate', () => {
+        const el = document.getElementById('tr-timer');
+        if (!el) return;
+        const rem = this.trAudio.duration - this.trAudio.currentTime;
+        el.textContent = isFinite(rem) && rem > 0 ? `${Math.ceil(rem)}s` : '';
+      });
 
       // Promise résolue quand l'API YT est disponible (callback ou polling)
       this._ytApiReady = new Promise(resolve => {
@@ -541,6 +554,7 @@
     _showYT(isLiner = false) {
       document.getElementById('yt-wrap').style.display = '';
       document.getElementById('transition-overlay').classList.remove('on');
+      document.getElementById('tr-timer').textContent = '';
       // Teinte légère sur le cadre pendant un liner
       document.getElementById('yt-wrap').style.outline =
         isLiner ? '2px solid #6366f144' : 'none';

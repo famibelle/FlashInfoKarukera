@@ -206,6 +206,12 @@
     #transition-overlay.on { display: flex; }
 
     .tr-icon { font-size: 2.8rem; }
+    .tr-timer {
+      font-size: 0.8rem;
+      font-variant-numeric: tabular-nums;
+      color: #555;
+      letter-spacing: 0.04em;
+    }
     .tr-label {
       font-size: 1rem;
       font-weight: 600;
@@ -395,6 +401,7 @@
       <div id="transition-overlay">
         <div class="tr-icon" id="tr-icon">🎙️</div>
         <div class="tr-label" id="tr-label"></div>
+        <div class="tr-timer" id="tr-timer"></div>
       </div>
       <div class="now-playing">
         <div class="np-type" id="np-type">Musique</div>
@@ -456,6 +463,12 @@
 
       this.trAudio = document.getElementById('tr-audio');
       this.trAudio.addEventListener('ended', () => this._next());
+      this.trAudio.addEventListener('timeupdate', () => {
+        const el = document.getElementById('tr-timer');
+        if (!el) return;
+        const rem = this.trAudio.duration - this.trAudio.currentTime;
+        el.textContent = isFinite(rem) && rem > 0 ? `${Math.ceil(rem)}s` : '';
+      });
 
       this._ytApiReady = new Promise(resolve => {
         window.onYouTubeIframeAPIReady = () => resolve();
@@ -565,6 +578,7 @@
     _showYT() {
       document.getElementById('yt-wrap').style.display = '';
       document.getElementById('transition-overlay').classList.remove('on');
+      document.getElementById('tr-timer').textContent = '';
     }
 
     _showTransition(item) {
