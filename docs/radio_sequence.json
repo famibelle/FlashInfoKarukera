@@ -1,19 +1,104 @@
 {
-  "generated": "2026-05-03T05:13:33.402197+00:00",
-  "tracks": 146,
-  "transitions": 25,
+  "generated": "2026-05-03T05:24:26.304544+00:00",
+  "music": 80,
+  "liners": 0,
+  "transitions": 5,
   "sequence": [
     {
       "type": "transition",
       "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260502-soir.mp3",
-      "label": "Flash Info Guadeloupe — samedi 2 mai 2026, édition du soir",
+      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260502-matin.mp3",
+      "label": "Flash Info Guadeloupe — samedi 2 mai 2026, édition du matin",
       "icon": "📰"
     },
     {
+      "type": "transition",
+      "subtype": "horoscope",
+      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260502-matin.mp3",
+      "label": "Horoscope matin — samedi 2 mai 2026",
+      "icon": "✨"
+    },
+    {
       "type": "music",
-      "videoId": "3Go1CaF6USc",
-      "title": "Kè m poko lib",
+      "videoId": "Lg1YbRpSQeo",
+      "title": "Yen a marre",
+      "artist": "Ralph Thamar",
+      "genre": "zouk"
+    },
+    {
+      "type": "music",
+      "videoId": "c2BIOILttnI",
+      "title": "Kolé Séré",
+      "artist": "Kassav",
+      "genre": "zouk"
+    },
+    {
+      "type": "music",
+      "videoId": "cmhT5TQ-zOk",
+      "title": "An Ba Chenn",
+      "artist": "Jean-Philippe Marthely",
+      "genre": "zouk"
+    },
+    {
+      "type": "music",
+      "videoId": "XOGpRqpgBJE",
+      "title": "Pran swen",
+      "artist": "Zin",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "uGBIfL2eq1Y",
+      "title": "Patiemment",
+      "artist": "Gilles Floro",
+      "genre": "zouk"
+    },
+    {
+      "type": "music",
+      "videoId": "QLy8YGEDFLE",
+      "title": "Nati pa'm",
+      "artist": "Harmonik",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "q-mclC18Z-8",
+      "title": "Je ne sais plus",
+      "artist": "Patrick Saint-Eloi",
+      "genre": "zouk_retro"
+    },
+    {
+      "type": "music",
+      "videoId": "HB6c7s9S-Tg",
+      "title": "Ti zwazo",
+      "artist": "Jocelyne Labylle",
+      "genre": "zouk"
+    },
+    {
+      "type": "music",
+      "videoId": "RrLOXVhLE8w",
+      "title": "Voukoum kanaval",
+      "artist": "Voukoum",
+      "genre": "chatta"
+    },
+    {
+      "type": "music",
+      "videoId": "hzCQLO1zYdw",
+      "title": "Ou mèt ale",
+      "artist": "Zin",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "1NH-6KEQtqk",
+      "title": "Meter Dife",
+      "artist": "T-Vice",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "PiW4XAJyDTk",
+      "title": "Ayibobo",
       "artist": "Top Vice",
       "genre": "kompa"
     },
@@ -26,24 +111,24 @@
     },
     {
       "type": "music",
-      "videoId": "9KBI_p8K6Tg",
-      "title": "Sucré-salé",
-      "artist": "Patrick Saint-Eloi",
+      "videoId": "Yn7mDz-8R7c",
+      "title": "Bi Yé",
+      "artist": "Jacob Desvarieux",
       "genre": "zouk_retro"
     },
     {
       "type": "music",
-      "videoId": "yODNw3HwKBU",
-      "title": "Ban mwen yon ti bo",
-      "artist": "Sweet Micky",
-      "genre": "kompa"
+      "videoId": "UMVCWEilIBY",
+      "title": "Adieu Forain",
+      "artist": "Zouk Machine",
+      "genre": "zouk"
     },
     {
       "type": "music",
-      "videoId": "CaZZVe19Gik",
-      "title": "Mawonaj",
-      "artist": "Ti Paris",
-      "genre": "gwoka"
+      "videoId": "AYVPgaCcT7c",
+      "title": "Kanaval",
+      "artist": "Kan'nida",
+      "genre": "chatta"
     },
     {
       "type": "music",
@@ -53,66 +138,59 @@
       "genre": "zouk_retro"
     },
     {
-      "type": "transition",
-      "subtype": "horoscope",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260502-soir.mp3",
-      "label": "Horoscope soir — samedi 2 mai 2026",
-      "icon": "✨"
-    },
-    {
       "type": "music",
-      "videoId": "GdBWd1KSq_w",
-      "title": "Toujou Rèd",
-      "artist": "Edith Lefel",
+      "videoId": "xBJEb5LtcS4",
+      "title": "Ka Dansé",
+      "artist": "Gilles Floro",
       "genre": "zouk_retro"
     },
     {
       "type": "music",
-      "videoId": "TbdDqqMZTjY",
-      "title": "Soley kouché",
-      "artist": "Léona Gabriel",
-      "genre": "gwoka"
+      "videoId": "sUW8C_fTIcg",
+      "title": "Krazé la fèt",
+      "artist": "Dominique Zorobabel",
+      "genre": "zouk_retro"
     },
     {
       "type": "music",
-      "videoId": "N7CBTovZr40",
-      "title": "Tèt a tèt",
-      "artist": "Akiyo",
+      "videoId": "RiZ-vkSRHRk",
+      "title": "Pa kite'm",
+      "artist": "Harmonik",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "AYV5GosRcpM",
+      "title": "Tabou Love",
+      "artist": "Tabou Combo",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "BxWYCsj1XUQ",
+      "title": "Lotion",
+      "artist": "Exile One",
+      "genre": "bouillon"
+    },
+    {
+      "type": "music",
+      "videoId": "9MDABTS1EJA",
+      "title": "Kon yon sel",
+      "artist": "Claudette Anderson",
+      "genre": "zouk_retro"
+    },
+    {
+      "type": "music",
+      "videoId": "E-DyE0Ro6FU",
+      "title": "Mas an listwa",
+      "artist": "Kan'nida",
       "genre": "chatta"
     },
     {
       "type": "music",
-      "videoId": "JbdLX7ns0Oo",
-      "title": "Zouk Machine",
-      "artist": "Zouk Machine",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "Q5a0EZb3rCw",
-      "title": "Ou fèm pè",
-      "artist": "T-Vice",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "clKc6LvgVYQ",
-      "title": "Si m ta konnen",
-      "artist": "Nu-Look",
-      "genre": "kompa"
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260502-midi.mp3",
-      "label": "Flash Info Guadeloupe — samedi 2 mai 2026, édition du midi",
-      "icon": "📰"
-    },
-    {
-      "type": "music",
-      "videoId": "pI-izQZ1CnM",
-      "title": "Ou bèl",
-      "artist": "Top Vice",
+      "videoId": "JFF0EZBqnBk",
+      "title": "Haiti",
+      "artist": "Tabou Combo",
       "genre": "kompa"
     },
     {
@@ -124,17 +202,87 @@
     },
     {
       "type": "music",
-      "videoId": "4--ZLdEQHuM",
-      "title": "Touyéy",
-      "artist": "Gérald Thalius",
-      "genre": "gwoka"
+      "videoId": "Dfxcs28mlTc",
+      "title": "Ayiti pa pèdi",
+      "artist": "Djakout #1",
+      "genre": "kompa"
+    },
+    {
+      "type": "transition",
+      "subtype": "flash_info",
+      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260502-midi.mp3",
+      "label": "Flash Info Guadeloupe — samedi 2 mai 2026, édition du midi",
+      "icon": "📰"
     },
     {
       "type": "music",
-      "videoId": "QqwdXNCVJjk",
-      "title": "Revòlisyon",
-      "artist": "BélO",
+      "videoId": "_XyzMQeOAq8",
+      "title": "Mazouk a nou",
+      "artist": "Zouk Machine",
+      "genre": "zouk_retro"
+    },
+    {
+      "type": "music",
+      "videoId": "5Waf8EU-wz4",
+      "title": "Lévé doubout",
+      "artist": "Kan'nida",
+      "genre": "chatta"
+    },
+    {
+      "type": "music",
+      "videoId": "5h58XjMFEGI",
+      "title": "Kamoken",
+      "artist": "Tabou Combo",
       "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "Q5a0EZb3rCw",
+      "title": "Ou fèm pè",
+      "artist": "T-Vice",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "8F9r4h-9i5c",
+      "title": "Pwofesè",
+      "artist": "Carimi",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "eLRM1S3dqog",
+      "title": "La Toto",
+      "artist": "Tabou Combo",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "5aO6g5BMLfg",
+      "title": "Sans issue",
+      "artist": "Djakout #1",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "pI-izQZ1CnM",
+      "title": "Ou bèl",
+      "artist": "Top Vice",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "7E1J3j5NXj0",
+      "title": "Kè m pa sote",
+      "artist": "Zin",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "qnsck2U2Hl4",
+      "title": "Mwen Malad Aw",
+      "artist": "Kassav",
+      "genre": "zouk"
     },
     {
       "type": "music",
@@ -145,24 +293,157 @@
     },
     {
       "type": "music",
-      "videoId": "ek6w5D4BhN4",
-      "title": "Tibouchina",
-      "artist": "Gilles Floro",
+      "videoId": "ZoYcW6HTPy4",
+      "title": "Éloge de la créole",
+      "artist": "Ralph Thamar",
+      "genre": "zouk"
+    },
+    {
+      "type": "music",
+      "videoId": "kA_1CWQYAnE",
+      "title": "Chak matin",
+      "artist": "Dominique Zorobabel",
       "genre": "zouk_retro"
+    },
+    {
+      "type": "music",
+      "videoId": "F7t7p5WLT3s",
+      "title": "Jou di Bondié",
+      "artist": "Princess Caroline",
+      "genre": "zouk"
+    },
+    {
+      "type": "music",
+      "videoId": "8CoXvSR9qTo",
+      "title": "Matinik sé tan nou",
+      "artist": "Ralph Thamar",
+      "genre": "zouk_retro"
+    },
+    {
+      "type": "music",
+      "videoId": "Rsl27TfY2ak",
+      "title": "Ou la la",
+      "artist": "Sweet Micky",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "kjoalm1lQ8o",
+      "title": "Chanté pou péyi",
+      "artist": "Kan'nida",
+      "genre": "chatta"
+    },
+    {
+      "type": "music",
+      "videoId": "N7CBTovZr40",
+      "title": "Tèt a tèt",
+      "artist": "Akiyo",
+      "genre": "chatta"
+    },
+    {
+      "type": "music",
+      "videoId": "GdBWd1KSq_w",
+      "title": "Toujou Rèd",
+      "artist": "Edith Lefel",
+      "genre": "zouk_retro"
+    },
+    {
+      "type": "music",
+      "videoId": "K3Q97z_Sc3E",
+      "title": "Chez les Zoukettes",
+      "artist": "Edith Lefel",
+      "genre": "zouk_retro"
+    },
+    {
+      "type": "music",
+      "videoId": "4--ZLdEQHuM",
+      "title": "Touyéy",
+      "artist": "Gérald Thalius",
+      "genre": "gwoka"
+    },
+    {
+      "type": "music",
+      "videoId": "GGbOc73pcQc",
+      "title": "Mazurka créole",
+      "artist": "Al Lirvat",
+      "genre": "bouillon"
+    },
+    {
+      "type": "music",
+      "videoId": "W4eLP969Ca8",
+      "title": "Renmen w",
+      "artist": "Djakout #1",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "j1tfl94Q7-Y",
+      "title": "Sweet Dominica",
+      "artist": "Jeff Joe",
+      "genre": "bouillon"
+    },
+    {
+      "type": "music",
+      "videoId": "6Yats3CDhXs",
+      "title": "New York City",
+      "artist": "Tabou Combo",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "-u2NhEtYe4c",
+      "title": "Bébé",
+      "artist": "Edith Lefel",
+      "genre": "zouk_retro"
+    },
+    {
+      "type": "music",
+      "videoId": "HLFc5Jy5U98",
+      "title": "Rose",
+      "artist": "Carimi",
+      "genre": "kompa"
+    },
+    {
+      "type": "transition",
+      "subtype": "flash_info",
+      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260502-soir.mp3",
+      "label": "Flash Info Guadeloupe — samedi 2 mai 2026, édition du soir",
+      "icon": "📰"
     },
     {
       "type": "transition",
       "subtype": "horoscope",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260502-matin.mp3",
-      "label": "Horoscope matin — samedi 2 mai 2026",
+      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260502-soir.mp3",
+      "label": "Horoscope soir — samedi 2 mai 2026",
       "icon": "✨"
     },
     {
       "type": "music",
-      "videoId": "qZVAuepZKkY",
-      "title": "Léwòz",
-      "artist": "Ti Paris",
-      "genre": "gwoka"
+      "videoId": "7YSswm_0Ckw",
+      "title": "Anba Tonnel",
+      "artist": "Dédé Saint-Prix",
+      "genre": "bouillon"
+    },
+    {
+      "type": "music",
+      "videoId": "0YkB5gnFLJs",
+      "title": "Nou pé ké séparé",
+      "artist": "Jean-Philippe Marthely",
+      "genre": "zouk"
+    },
+    {
+      "type": "music",
+      "videoId": "PvPPdxiNK7M",
+      "title": "Ou Pito",
+      "artist": "Nu-Look",
+      "genre": "kompa"
+    },
+    {
+      "type": "music",
+      "videoId": "_FJ03NjJEUY",
+      "title": "Zouk La Sé Sel Medikaman Nou Ni",
+      "artist": "Kassav",
+      "genre": "zouk"
     },
     {
       "type": "music",
@@ -173,17 +454,24 @@
     },
     {
       "type": "music",
-      "videoId": "sUW8C_fTIcg",
-      "title": "Krazé la fèt",
-      "artist": "Dominique Zorobabel",
-      "genre": "zouk_retro"
+      "videoId": "TbdDqqMZTjY",
+      "title": "Soley kouché",
+      "artist": "Léona Gabriel",
+      "genre": "gwoka"
     },
     {
       "type": "music",
-      "videoId": "xKdtvsbSCzQ",
-      "title": "Té ka chanté",
-      "artist": "Léona Gabriel",
+      "videoId": "Ma9O0iVYXdc",
+      "title": "Ka Fô Nou Fè",
+      "artist": "Gérard Lockel",
       "genre": "gwoka"
+    },
+    {
+      "type": "music",
+      "videoId": "lZ-hmNWH3uE",
+      "title": "Biguine à St-Pierre",
+      "artist": "Stellio",
+      "genre": "bouillon"
     },
     {
       "type": "music",
@@ -200,661 +488,24 @@
       "genre": "chatta"
     },
     {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260502-matin.mp3",
-      "label": "Flash Info Guadeloupe — samedi 2 mai 2026, édition du matin",
-      "icon": "📰"
-    },
-    {
       "type": "music",
-      "videoId": "3NhsuTyfUFY",
-      "title": "Sonjé",
-      "artist": "Patrick Saint-Eloi",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "dCcXZ3TZHF4",
-      "title": "Je ne veux que toi",
-      "artist": "Tanya Saint-Val",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "-u2NhEtYe4c",
-      "title": "Bébé",
-      "artist": "Edith Lefel",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "ZdU6-j3Nkyw",
-      "title": "Doubout pou péyi",
-      "artist": "Voukoum",
-      "genre": "chatta"
-    },
-    {
-      "type": "music",
-      "videoId": "910Wksl2PRU",
-      "title": "Micky pa renmen sa",
-      "artist": "Sweet Micky",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "j1tfl94Q7-Y",
-      "title": "Sweet Dominica",
-      "artist": "Jeff Joe",
-      "genre": "bouillon"
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260501-soir.mp3",
-      "label": "Flash Info Guadeloupe — vendredi 1 mai 2026, édition du soir",
-      "icon": "📰"
-    },
-    {
-      "type": "music",
-      "videoId": "q-mclC18Z-8",
-      "title": "Je ne sais plus",
-      "artist": "Patrick Saint-Eloi",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "DEq9ATjQIuE",
-      "title": "Wout a mwen",
-      "artist": "Ti Paris",
-      "genre": "gwoka"
-    },
-    {
-      "type": "music",
-      "videoId": "lZ-hmNWH3uE",
-      "title": "Biguine à St-Pierre",
-      "artist": "Stellio",
-      "genre": "bouillon"
-    },
-    {
-      "type": "music",
-      "videoId": "wcTeJLC3ZnA",
-      "title": "Pump Me Up",
-      "artist": "Burning Flames",
-      "genre": "bouillon"
-    },
-    {
-      "type": "music",
-      "videoId": "RrLOXVhLE8w",
-      "title": "Voukoum kanaval",
-      "artist": "Voukoum",
-      "genre": "chatta"
-    },
-    {
-      "type": "music",
-      "videoId": "RiZ-vkSRHRk",
-      "title": "Pa kite'm",
-      "artist": "Harmonik",
-      "genre": "kompa"
-    },
-    {
-      "type": "transition",
-      "subtype": "horoscope",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260501-soir.mp3",
-      "label": "Horoscope soir — vendredi 1 mai 2026",
-      "icon": "✨"
-    },
-    {
-      "type": "music",
-      "videoId": "9jTfh20-83I",
-      "title": "Léwòz a Marcé",
-      "artist": "Marcé",
-      "genre": "gwoka"
-    },
-    {
-      "type": "music",
-      "videoId": "7E1J3j5NXj0",
-      "title": "Kè m pa sote",
-      "artist": "Zin",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "sxspsfg7fTA",
-      "title": "BélO",
-      "artist": "BélO",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "i74BjnXXz5A",
-      "title": "Hé Oh Hé",
-      "artist": "Tatiana",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "hzCQLO1zYdw",
-      "title": "Ou mèt ale",
-      "artist": "Zin",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "NCNQS4w8GEU",
-      "title": "Pa di'm adye",
-      "artist": "Zin",
-      "genre": "kompa"
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260501-midi.mp3",
-      "label": "Flash Info Guadeloupe — vendredi 1 mai 2026, édition du midi",
-      "icon": "📰"
-    },
-    {
-      "type": "music",
-      "videoId": "BxWYCsj1XUQ",
-      "title": "Lotion",
-      "artist": "Exile One",
-      "genre": "bouillon"
-    },
-    {
-      "type": "music",
-      "videoId": "1NH-6KEQtqk",
-      "title": "Meter Dife",
-      "artist": "T-Vice",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "9MDABTS1EJA",
-      "title": "Kon yon sel",
-      "artist": "Claudette Anderson",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "eLRM1S3dqog",
-      "title": "La Toto",
-      "artist": "Tabou Combo",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "JK_hBk2f01k",
-      "title": "Mas ka défilé",
-      "artist": "Mass Kanal",
-      "genre": "chatta"
-    },
-    {
-      "type": "music",
-      "videoId": "3Y-kg8Cs-9M",
-      "title": "Si Je Savais",
-      "artist": "Patrick Saint-Eloi",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "transition",
-      "subtype": "horoscope",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260501-matin.mp3",
-      "label": "Horoscope matin — vendredi 1 mai 2026",
-      "icon": "✨"
-    },
-    {
-      "type": "music",
-      "videoId": "ZoYcW6HTPy4",
-      "title": "Éloge de la créole",
-      "artist": "Ralph Thamar",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "XOGpRqpgBJE",
-      "title": "Pran swen",
-      "artist": "Zin",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "oViC7lhp4nM",
-      "title": "Pa pati",
-      "artist": "BélO",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "kRo65hy9kU8",
-      "title": "Lévé doubout",
-      "artist": "Anzala",
-      "genre": "gwoka"
-    },
-    {
-      "type": "music",
-      "videoId": "5Waf8EU-wz4",
-      "title": "Lévé doubout",
-      "artist": "Kan'nida",
-      "genre": "chatta"
-    },
-    {
-      "type": "music",
-      "videoId": "4IB6xVKhOo8",
-      "title": "Gaoulé mas",
-      "artist": "Gaoulé",
-      "genre": "chatta"
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260501-matin.mp3",
-      "label": "Flash Info Guadeloupe — vendredi 1 mai 2026, édition du matin",
-      "icon": "📰"
-    },
-    {
-      "type": "music",
-      "videoId": "VdsYD3zWbPk",
-      "title": "Biguine à Gogo",
-      "artist": "Al Lirvat",
-      "genre": "bouillon"
-    },
-    {
-      "type": "music",
-      "videoId": "j0LDvNHuYxQ",
-      "title": "A Lot of Love",
+      "videoId": "NMFMwvh9r1Y",
+      "title": "Ou Lé Sa",
       "artist": "Kassav",
       "genre": "zouk"
     },
     {
       "type": "music",
-      "videoId": "k8ZKx_aLrXU",
-      "title": "Nana",
-      "artist": "Frédéric Caracas",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "b8nTBHqf-Kw",
-      "title": "Fraternité",
-      "artist": "Akiyo",
-      "genre": "chatta"
-    },
-    {
-      "type": "music",
-      "videoId": "XT545iSOxE0",
-      "title": "Aïe",
-      "artist": "Ralph Thamar",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "K3Q97z_Sc3E",
-      "title": "Chez les Zoukettes",
-      "artist": "Edith Lefel",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "transition",
-      "subtype": "horoscope",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-04/horoscope-20260430-soir.mp3",
-      "label": "Horoscope soir — jeudi 30 avril 2026",
-      "icon": "✨"
-    },
-    {
-      "type": "music",
-      "videoId": "qz0C6sEREIo",
-      "title": "Fete",
-      "artist": "Burning Flames",
-      "genre": "bouillon"
-    },
-    {
-      "type": "music",
-      "videoId": "8F9r4h-9i5c",
-      "title": "Pwofesè",
-      "artist": "Carimi",
+      "videoId": "clKc6LvgVYQ",
+      "title": "Si m ta konnen",
+      "artist": "Nu-Look",
       "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "kA_1CWQYAnE",
-      "title": "Chak matin",
-      "artist": "Dominique Zorobabel",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "yv8dl4RkqpA",
-      "title": "Ti Larivyè",
-      "artist": "Claudette Anderson",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "W8JvBm_VpIc",
-      "title": "Kita Kita",
-      "artist": "T-Vice",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "W4eLP969Ca8",
-      "title": "Renmen w",
-      "artist": "Djakout #1",
-      "genre": "kompa"
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-04/flash-info-20260430-soir.mp3",
-      "label": "Flash Info Guadeloupe — jeudi 30 avril 2026, édition du soir",
-      "icon": "📰"
     },
     {
       "type": "music",
       "videoId": "pdYq1oBh1kg",
       "title": "Rêve ou réalité",
       "artist": "Princess Caroline",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "M7UH-QUzin0",
-      "title": "Aimer d'amour",
-      "artist": "Jocelyne Labylle",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "AYV5GosRcpM",
-      "title": "Tabou Love",
-      "artist": "Tabou Combo",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "DvK0FnDenOI",
-      "title": "Bòdaj",
-      "artist": "Gérald Thalius",
-      "genre": "gwoka"
-    },
-    {
-      "type": "music",
-      "videoId": "GGbOc73pcQc",
-      "title": "Mazurka créole",
-      "artist": "Al Lirvat",
-      "genre": "bouillon"
-    },
-    {
-      "type": "music",
-      "videoId": "F7t7p5WLT3s",
-      "title": "Jou di Bondié",
-      "artist": "Princess Caroline",
-      "genre": "zouk"
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260502-soir.mp3",
-      "label": "Flash Info Guadeloupe — samedi 2 mai 2026, édition du soir",
-      "icon": "📰"
-    },
-    {
-      "type": "music",
-      "videoId": "Lg1YbRpSQeo",
-      "title": "Yen a marre",
-      "artist": "Ralph Thamar",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "_XyzMQeOAq8",
-      "title": "Mazouk a nou",
-      "artist": "Zouk Machine",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "HB6c7s9S-Tg",
-      "title": "Ti zwazo",
-      "artist": "Jocelyne Labylle",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "cmhT5TQ-zOk",
-      "title": "An Ba Chenn",
-      "artist": "Jean-Philippe Marthely",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "MXzviP94CRA",
-      "title": "Mas a Mas",
-      "artist": "Akiyo",
-      "genre": "gwoka"
-    },
-    {
-      "type": "music",
-      "videoId": "ry7XTQPLIJc",
-      "title": "Voukoum tambou",
-      "artist": "Voukoum",
-      "genre": "gwoka"
-    },
-    {
-      "type": "transition",
-      "subtype": "horoscope",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260502-soir.mp3",
-      "label": "Horoscope soir — samedi 2 mai 2026",
-      "icon": "✨"
-    },
-    {
-      "type": "music",
-      "videoId": "fGgN9fIIDOY",
-      "title": "Ou beswen mwen",
-      "artist": "Carimi",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "6n_oH01gtHg",
-      "title": "Gwoka mas",
-      "artist": "Voukoum",
-      "genre": "chatta"
-    },
-    {
-      "type": "music",
-      "videoId": "PvPPdxiNK7M",
-      "title": "Ou Pito",
-      "artist": "Nu-Look",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "W0RZmf7aNTI",
-      "title": "Mouri pou mouri",
-      "artist": "Edith Lefel",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "Yn7mDz-8R7c",
-      "title": "Bi Yé",
-      "artist": "Jacob Desvarieux",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "5aO6g5BMLfg",
-      "title": "Sans issue",
-      "artist": "Djakout #1",
-      "genre": "kompa"
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260502-midi.mp3",
-      "label": "Flash Info Guadeloupe — samedi 2 mai 2026, édition du midi",
-      "icon": "📰"
-    },
-    {
-      "type": "music",
-      "videoId": "ohe5xrzGOhY",
-      "title": "Haiti Cherie",
-      "artist": "Nemours Jean-Baptiste",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "LnYWYlLJRFM",
-      "title": "Kan nou té jenn",
-      "artist": "Carlos Nilson",
-      "genre": "gwoka"
-    },
-    {
-      "type": "music",
-      "videoId": "gk-5LZ3ZOfA",
-      "title": "Kite yo pale",
-      "artist": "Harmonik",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "PiW4XAJyDTk",
-      "title": "Ayibobo",
-      "artist": "Top Vice",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "JFF0EZBqnBk",
-      "title": "Haiti",
-      "artist": "Tabou Combo",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "oUhf0FFE8_o",
-      "title": "La Chouval Bwa",
-      "artist": "Al Lirvat",
-      "genre": "bouillon"
-    },
-    {
-      "type": "transition",
-      "subtype": "horoscope",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260502-matin.mp3",
-      "label": "Horoscope matin — samedi 2 mai 2026",
-      "icon": "✨"
-    },
-    {
-      "type": "music",
-      "videoId": "gEBF9s2VRhM",
-      "title": "Zétwal an nou",
-      "artist": "Gérald Thalius",
-      "genre": "gwoka"
-    },
-    {
-      "type": "music",
-      "videoId": "Xlwb3HZcu1Y",
-      "title": "Jouway Morning",
-      "artist": "Jeff Joe",
-      "genre": "bouillon"
-    },
-    {
-      "type": "music",
-      "videoId": "T_vPZgkIoQU",
-      "title": "Choucoune",
-      "artist": "Nemours Jean-Baptiste",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "CClfXvh3HZg",
-      "title": "Nah Let Go",
-      "artist": "Burning Flames",
-      "genre": "bouillon"
-    },
-    {
-      "type": "music",
-      "videoId": "7YSswm_0Ckw",
-      "title": "Anba Tonnel",
-      "artist": "Dédé Saint-Prix",
-      "genre": "bouillon"
-    },
-    {
-      "type": "music",
-      "videoId": "c2BIOILttnI",
-      "title": "Kolé Séré",
-      "artist": "Kassav",
-      "genre": "zouk"
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260502-matin.mp3",
-      "label": "Flash Info Guadeloupe — samedi 2 mai 2026, édition du matin",
-      "icon": "📰"
-    },
-    {
-      "type": "music",
-      "videoId": "5h58XjMFEGI",
-      "title": "Kamoken",
-      "artist": "Tabou Combo",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "G568Jc_7ATY",
-      "title": "Lélé",
-      "artist": "Tanya Saint-Val",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "xBJEb5LtcS4",
-      "title": "Ka Dansé",
-      "artist": "Gilles Floro",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "WTUFgrs_Qas",
-      "title": "Ce Soir",
-      "artist": "Tanya Saint-Val",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "edwyJkLWqtY",
-      "title": "Alé",
-      "artist": "Kassav",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "UMVCWEilIBY",
-      "title": "Adieu Forain",
-      "artist": "Zouk Machine",
-      "genre": "zouk"
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260501-soir.mp3",
-      "label": "Flash Info Guadeloupe — vendredi 1 mai 2026, édition du soir",
-      "icon": "📰"
-    },
-    {
-      "type": "music",
-      "videoId": "Ma9O0iVYXdc",
-      "title": "Ka Fô Nou Fè",
-      "artist": "Gérard Lockel",
-      "genre": "gwoka"
-    },
-    {
-      "type": "music",
-      "videoId": "qnsck2U2Hl4",
-      "title": "Mwen Malad Aw",
-      "artist": "Kassav",
       "genre": "zouk"
     },
     {
@@ -866,38 +517,52 @@
     },
     {
       "type": "music",
-      "videoId": "Smg-zoOqZ8s",
-      "title": "Balance",
-      "artist": "Djakout #1",
+      "videoId": "mBklsJYshy8",
+      "title": "An fanm doubout",
+      "artist": "Léona Gabriel",
+      "genre": "gwoka"
+    },
+    {
+      "type": "music",
+      "videoId": "W8JvBm_VpIc",
+      "title": "Kita Kita",
+      "artist": "T-Vice",
       "genre": "kompa"
     },
     {
       "type": "music",
-      "videoId": "s8LV2eiB6Kc",
-      "title": "Aba Gouche",
-      "artist": "Tabou Combo",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "MR3ogNOjCt0",
-      "title": "Island Life",
-      "artist": "Jeff Joe",
-      "genre": "bouillon"
-    },
-    {
-      "type": "transition",
-      "subtype": "horoscope",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260501-soir.mp3",
-      "label": "Horoscope soir — vendredi 1 mai 2026",
-      "icon": "✨"
-    },
-    {
-      "type": "music",
-      "videoId": "KWYOqGeTD9c",
-      "title": "Syé Bwa",
-      "artist": "Kassav",
+      "videoId": "MRYPYut61bg",
+      "title": "Palé Ba Mwen",
+      "artist": "Jocelyne Labylle",
       "genre": "zouk"
+    },
+    {
+      "type": "music",
+      "videoId": "JbdLX7ns0Oo",
+      "title": "Zouk Machine",
+      "artist": "Zouk Machine",
+      "genre": "zouk"
+    },
+    {
+      "type": "music",
+      "videoId": "JK_hBk2f01k",
+      "title": "Mas ka défilé",
+      "artist": "Mass Kanal",
+      "genre": "chatta"
+    },
+    {
+      "type": "music",
+      "videoId": "G568Jc_7ATY",
+      "title": "Lélé",
+      "artist": "Tanya Saint-Val",
+      "genre": "zouk"
+    },
+    {
+      "type": "music",
+      "videoId": "LnYWYlLJRFM",
+      "title": "Kan nou té jenn",
+      "artist": "Carlos Nilson",
+      "genre": "gwoka"
     },
     {
       "type": "music",
@@ -908,20 +573,6 @@
     },
     {
       "type": "music",
-      "videoId": "grRBq4KiDwg",
-      "title": "Coeur blessé",
-      "artist": "Tatiana",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "DjgpXQP-Lhc",
-      "title": "Mwen pa vle",
-      "artist": "Harmonik",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
       "videoId": "AC-8Mce7NPE",
       "title": "Sonjé",
       "artist": "Carlos Nilson",
@@ -929,275 +580,23 @@
     },
     {
       "type": "music",
-      "videoId": "sDPtLBjE5Ls",
-      "title": "Konpa Kreyòl",
-      "artist": "Nemours Jean-Baptiste",
-      "genre": "kompa"
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260501-midi.mp3",
-      "label": "Flash Info Guadeloupe — vendredi 1 mai 2026, édition du midi",
-      "icon": "📰"
-    },
-    {
-      "type": "music",
-      "videoId": "YV9Mn6PRzUE",
-      "title": "Ou Pa Connaît Malheur",
-      "artist": "Kassav",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "XF2-64-DbYk",
-      "title": "Douce France",
-      "artist": "Jacob Desvarieux",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "QLy8YGEDFLE",
-      "title": "Nati pa'm",
-      "artist": "Harmonik",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "kjoalm1lQ8o",
-      "title": "Chanté pou péyi",
-      "artist": "Kan'nida",
-      "genre": "chatta"
-    },
-    {
-      "type": "music",
-      "videoId": "cR1wrLy3V7Q",
-      "title": "Manjé Sal",
-      "artist": "Jean-Philippe Marthely",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "Rsl27TfY2ak",
-      "title": "Ou la la",
-      "artist": "Sweet Micky",
-      "genre": "kompa"
-    },
-    {
-      "type": "transition",
-      "subtype": "horoscope",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260501-matin.mp3",
-      "label": "Horoscope matin — vendredi 1 mai 2026",
-      "icon": "✨"
-    },
-    {
-      "type": "music",
-      "videoId": "E-DyE0Ro6FU",
-      "title": "Mas an listwa",
-      "artist": "Kan'nida",
-      "genre": "chatta"
-    },
-    {
-      "type": "music",
-      "videoId": "NMFMwvh9r1Y",
-      "title": "Ou Lé Sa",
-      "artist": "Kassav",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "uGBIfL2eq1Y",
-      "title": "Patiemment",
-      "artist": "Gilles Floro",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "tXdKKGJDWXQ",
-      "title": "Si tu savais",
-      "artist": "Tatiana",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "Naud4H-e8HE",
-      "title": "Bèl ti manmay",
-      "artist": "Claudette Anderson",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "uga6tB3CKNA",
-      "title": "Douvanjou Ka Lévé",
-      "artist": "Kassav",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260501-matin.mp3",
-      "label": "Flash Info Guadeloupe — vendredi 1 mai 2026, édition du matin",
-      "icon": "📰"
-    },
-    {
-      "type": "music",
-      "videoId": "AYVPgaCcT7c",
-      "title": "Kanaval",
-      "artist": "Kan'nida",
-      "genre": "chatta"
-    },
-    {
-      "type": "music",
-      "videoId": "YHKShp2yhwo",
-      "title": "Mové Jou",
-      "artist": "Ralph Thamar",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "vJdeqGIcOUc",
-      "title": "Désirs d'enfants",
-      "artist": "Claudette Anderson",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "oHnA4O90jdk",
-      "title": "Tchaka",
-      "artist": "Carimi",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "mBklsJYshy8",
-      "title": "An fanm doubout",
-      "artist": "Léona Gabriel",
-      "genre": "gwoka"
-    },
-    {
-      "type": "music",
-      "videoId": "MRYPYut61bg",
-      "title": "Palé Ba Mwen",
-      "artist": "Jocelyne Labylle",
-      "genre": "zouk"
-    },
-    {
-      "type": "transition",
-      "subtype": "horoscope",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-04/horoscope-20260430-soir.mp3",
-      "label": "Horoscope soir — jeudi 30 avril 2026",
-      "icon": "✨"
-    },
-    {
-      "type": "music",
-      "videoId": "_FJ03NjJEUY",
-      "title": "Zouk La Sé Sel Medikaman Nou Ni",
-      "artist": "Kassav",
-      "genre": "zouk"
-    },
-    {
-      "type": "music",
-      "videoId": "6Yats3CDhXs",
-      "title": "New York City",
-      "artist": "Tabou Combo",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "Uu4XEsUrAwY",
-      "title": "Péyi doubout",
-      "artist": "Carlos Nilson",
-      "genre": "gwoka"
-    },
-    {
-      "type": "music",
-      "videoId": "5du37exdg_A",
-      "title": "Manman",
-      "artist": "BélO",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "GWSadRp0wok",
-      "title": "Lanmou Ké Nou",
+      "videoId": "9KBI_p8K6Tg",
+      "title": "Sucré-salé",
       "artist": "Patrick Saint-Eloi",
       "genre": "zouk_retro"
     },
     {
       "type": "music",
-      "videoId": "HLFc5Jy5U98",
-      "title": "Rose",
-      "artist": "Carimi",
-      "genre": "kompa"
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-04/flash-info-20260430-soir.mp3",
-      "label": "Flash Info Guadeloupe — jeudi 30 avril 2026, édition du soir",
-      "icon": "📰"
-    },
-    {
-      "type": "music",
-      "videoId": "nHrZLRxvbUs",
-      "title": "Tout doux",
-      "artist": "Gilles Floro",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "8CoXvSR9qTo",
-      "title": "Matinik sé tan nou",
+      "videoId": "XT545iSOxE0",
+      "title": "Aïe",
       "artist": "Ralph Thamar",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "f8q2Ha3hxKo",
-      "title": "Mal nécessaire",
-      "artist": "Frédéric Caracas",
-      "genre": "zouk_retro"
-    },
-    {
-      "type": "music",
-      "videoId": "Khw2UIps1zs",
-      "title": "Déréglé",
-      "artist": "T-Vice",
-      "genre": "kompa"
-    },
-    {
-      "type": "music",
-      "videoId": "70VToEY9tUo",
-      "title": "Bouyon Massive",
-      "artist": "WCK",
-      "genre": "bouillon"
-    },
-    {
-      "type": "music",
-      "videoId": "0YkB5gnFLJs",
-      "title": "Nou pé ké séparé",
-      "artist": "Jean-Philippe Marthely",
       "genre": "zouk"
     },
     {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260502-soir.mp3",
-      "label": "Flash Info Guadeloupe — samedi 2 mai 2026, édition du soir",
-      "icon": "📰"
-    },
-    {
       "type": "music",
-      "videoId": "I7O8k4QlKGM",
-      "title": "Ka doubout",
-      "artist": "Jacob Desvarieux",
-      "genre": "gwoka"
-    },
-    {
-      "type": "music",
-      "videoId": "Dfxcs28mlTc",
-      "title": "Ayiti pa pèdi",
-      "artist": "Djakout #1",
+      "videoId": "ohe5xrzGOhY",
+      "title": "Haiti Cherie",
+      "artist": "Nemours Jean-Baptiste",
       "genre": "kompa"
     }
   ]
