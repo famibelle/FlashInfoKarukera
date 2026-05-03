@@ -313,14 +313,25 @@ def _load_prompt(filename: str) -> str:
     return path.read_text(encoding="utf-8").strip()
 
 
-def _mistral_chat(system: str, user: str, max_retries: int = 3) -> str:
-    """Appelle l'API Mistral chat et retourne le texte généré.
-    Retry avec backoff exponentiel sur HTTP 429 (rate limit)."""
+_mistral_last_call: float = 0.0
+_MISTRAL_MIN_INTERVAL = 4.0  # secondes minimum entre deux appels Mistral
+
+
+def _mistral_chat(system: str, user: str, max_retries: int = 4) -> str:
+    """Appelle l'API Mistral chat avec throttle inter-appels et backoff exponentiel sur 429."""
     import time
     import urllib.error
+    global _mistral_last_call
+
     api_key = os.environ.get("MISTRAL_API_KEY", "")
     if not api_key:
         raise RuntimeError("MISTRAL_API_KEY non défini")
+
+    # Respecter l'intervalle minimum entre appels pour éviter le rate limit
+    elapsed = time.time() - _mistral_last_call
+    if elapsed < _MISTRAL_MIN_INTERVAL:
+        time.sleep(_MISTRAL_MIN_INTERVAL - elapsed)
+
     payload = json.dumps({
         "model": MISTRAL_CHAT_MODEL,
         "messages": [
@@ -338,9 +349,10 @@ def _mistral_chat(system: str, user: str, max_retries: int = 3) -> str:
             "Content-Type": "application/json",
         },
     )
-    wait = 2
+    wait = 15
     for attempt in range(1, max_retries + 1):
         try:
+            _mistral_last_call = time.time()
             with urllib.request.urlopen(req, timeout=30) as r:
                 data = json.loads(r.read())
             return data["choices"][0]["message"]["content"].strip()
@@ -480,11 +492,12 @@ def get_announcement_mp3_url(bloc: str, artists: list[str]) -> str | None:
     artists_str = ", ".join(artists)
     user_prompt = f"Moment : {label}\nArtistes : {artists_str}"
 
+    logger.info(f"  Liner {bloc} — 🤖 LLM ({artists_str[:40]})…")
     try:
         text = _mistral_chat(system_prompt, user_prompt)
-        logger.info(f"  Liner {bloc} texte : {text!r}")
+        logger.info(f"  Liner {bloc} — ✅ LLM OK ({len(text)} cars)")
     except Exception as e:
-        logger.warning(f"Liner {bloc} ignoré — Mistral : {e}")
+        logger.warning(f"Liner {bloc} ignoré — ❌ LLM : {e}")
         return None
 
     def _slug(s: str) -> str:
@@ -495,16 +508,18 @@ def get_announcement_mp3_url(bloc: str, artists: list[str]) -> str | None:
     LINERS_DIR.mkdir(parents=True, exist_ok=True)
     mp3_path = LINERS_DIR / filename
 
+    logger.info(f"  Liner {bloc} — 🔊 TTS → {filename}…")
     try:
         tts_call(normalize_for_tts(text), mp3_path, voice_id="fr_marie_happy")
+        logger.info(f"  Liner {bloc} — ✅ TTS OK ({mp3_path.stat().st_size // 1024} Ko)")
     except Exception as e:
-        logger.warning(f"Liner {bloc} ignoré — TTS : {e}")
+        logger.warning(f"Liner {bloc} ignoré — ❌ TTS : {e}")
         return None
 
     public_url       = f"https://famibelle.github.io/FlashInfoKarukera/liners/{filename}"
     cache[cache_key] = public_url
     save_cache(cache)
-    logger.info(f"  Liner {bloc} MP3 → {public_url}")
+    logger.info(f"  Liner {bloc} — 🎙️ {public_url}")
     return public_url
 
 
@@ -601,11 +616,12 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
     if verbose:
         _verbose_print(system_prompt, user_prompt, text=None)
 
+    logger.info(f"  Capsule {slot_id} — 🤖 LLM…")
     try:
         text = _mistral_chat(system_prompt, user_prompt)
-        logger.info(f"  Capsule {slot_id} texte : {text!r}")
+        logger.info(f"  Capsule {slot_id} — ✅ LLM OK ({len(text)} cars)")
     except Exception as e:
-        logger.warning(f"Capsule {slot_id} ignorée — Mistral : {e}")
+        logger.warning(f"Capsule {slot_id} ignorée — ❌ LLM : {e}")
         return None
 
     if verbose:
@@ -615,17 +631,19 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
     CAPSULES_DIR.mkdir(parents=True, exist_ok=True)
     mp3_path = CAPSULES_DIR / filename
 
+    logger.info(f"  Capsule {slot_id} — 🔊 TTS → {filename}…")
     try:
         tts_call(normalize_for_tts(text), mp3_path, voice_id="fr_marie_happy")
+        logger.info(f"  Capsule {slot_id} — ✅ TTS OK ({mp3_path.stat().st_size // 1024} Ko)")
     except Exception as e:
-        logger.warning(f"Capsule {slot_id} ignorée — TTS : {e}")
+        logger.warning(f"Capsule {slot_id} ignorée — ❌ TTS : {e}")
         return None
 
     public_url                    = f"https://famibelle.github.io/FlashInfoKarukera/capsules/{filename}"
     cache[cache_key]              = public_url
     cache[cache_key + "_text"]    = text
     save_cache(cache)
-    logger.info(f"  Capsule {slot_id} MP3 → {public_url}")
+    logger.info(f"  Capsule {slot_id} — 🌺 {public_url}")
     return public_url
 
 
