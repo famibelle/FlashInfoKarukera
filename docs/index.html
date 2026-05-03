@@ -402,6 +402,7 @@
         <div class="np-artist" id="np-artist"></div>
       </div>
       <div class="controls">
+        <button class="btn-skip" id="btn-prev" title="Précédent">⏮</button>
         <button class="btn-round" id="btn-play">⏸</button>
         <button class="btn-skip" id="btn-skip" title="Passer">⏭</button>
         <div class="vol-wrap">
@@ -528,6 +529,7 @@
     }
 
     _next() { this._playAt(this.pos + 1); }
+    _prev() { this._playAt(this.pos - 1); }
 
     _resolveUrl(url) {
       const base = 'https://famibelle.github.io/FlashInfoKarukera/';
@@ -662,6 +664,7 @@
 
   document.getElementById('start-btn').addEventListener('click', () => radio.start());
   btnPlay.addEventListener('click', () => radio.togglePlay());
+  document.getElementById('btn-prev').addEventListener('click', () => radio._prev());
   document.getElementById('btn-skip').addEventListener('click', () => radio._next());
   document.getElementById('volume').addEventListener('input', e => radio.setVolume(parseInt(e.target.value)));
 
