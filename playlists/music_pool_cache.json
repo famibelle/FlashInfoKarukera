@@ -1,5 +1,5 @@
 {
-  "date": "2026-05-02",
+  "date": "2026-05-03",
   "tracks": [
     {
       "videoId": "_FJ03NjJEUY",
@@ -23,8 +23,8 @@
       "artist": "Kassav"
     },
     {
-      "videoId": "j0LDvNHuYxQ",
-      "duration": 308,
+      "videoId": "Bi9JkqvdRTI",
+      "duration": 638,
       "genre": "zouk",
       "name": "A Lot of Love",
       "artist": "Kassav"
@@ -58,10 +58,17 @@
       "artist": "Zouk Machine"
     },
     {
-      "videoId": "UMVCWEilIBY",
-      "duration": 286,
+      "videoId": "8Z0pmas2R3w",
+      "duration": 430,
       "genre": "zouk",
       "name": "Adieu Forain",
+      "artist": "Zouk Machine"
+    },
+    {
+      "videoId": "_XyzMQeOAq8",
+      "duration": 285,
+      "genre": "zouk",
+      "name": "Siwo",
       "artist": "Zouk Machine"
     },
     {
@@ -72,31 +79,38 @@
       "artist": "Jocelyne Labylle"
     },
     {
-      "videoId": "MRYPYut61bg",
-      "duration": 239,
+      "videoId": "5s29dGVntJw",
+      "duration": 289,
       "genre": "zouk",
       "name": "Palé Ba Mwen",
       "artist": "Jocelyne Labylle"
     },
     {
-      "videoId": "HB6c7s9S-Tg",
-      "duration": 222,
+      "videoId": "Q8R4jSL1cRU",
+      "duration": 266,
       "genre": "zouk",
       "name": "Ti zwazo",
       "artist": "Jocelyne Labylle"
     },
     {
-      "videoId": "G568Jc_7ATY",
-      "duration": 212,
+      "videoId": "1DP6ux4KXZQ",
+      "duration": 226,
       "genre": "zouk",
       "name": "Lélé",
+      "artist": "Tanya Saint-Val"
+    },
+    {
+      "videoId": "BP5zXav-E4A",
+      "duration": 300,
+      "genre": "zouk",
+      "name": "Ce Soir",
       "artist": "Tanya Saint-Val"
     },
     {
       "videoId": "WTUFgrs_Qas",
       "duration": 261,
       "genre": "zouk",
-      "name": "Ce Soir",
+      "name": "Tou dousiw",
       "artist": "Tanya Saint-Val"
     },
     {
@@ -107,8 +121,8 @@
       "artist": "Tanya Saint-Val"
     },
     {
-      "videoId": "0YkB5gnFLJs",
-      "duration": 313,
+      "videoId": "30CD2cTs_Oo",
+      "duration": 227,
       "genre": "zouk",
       "name": "Nou pé ké séparé",
       "artist": "Jean-Philippe Marthely"
@@ -135,8 +149,8 @@
       "artist": "Tatiana"
     },
     {
-      "videoId": "grRBq4KiDwg",
-      "duration": 201,
+      "videoId": "B11Z5I5BWco",
+      "duration": 211,
       "genre": "zouk",
       "name": "Coeur blessé",
       "artist": "Tatiana"
@@ -149,15 +163,15 @@
       "artist": "Tatiana"
     },
     {
-      "videoId": "XT545iSOxE0",
-      "duration": 233,
+      "videoId": "eAY7KBdRmoE",
+      "duration": 234,
       "genre": "zouk",
       "name": "Aïe",
       "artist": "Ralph Thamar"
     },
     {
-      "videoId": "YHKShp2yhwo",
-      "duration": 241,
+      "videoId": "rDg_ENZ0rQU",
+      "duration": 230,
       "genre": "zouk",
       "name": "Mové Jou",
       "artist": "Ralph Thamar"
@@ -177,15 +191,15 @@
       "artist": "Ralph Thamar"
     },
     {
-      "videoId": "F7t7p5WLT3s",
-      "duration": 307,
+      "videoId": "bBVzT4ZBMQ0",
+      "duration": 260,
       "genre": "zouk",
       "name": "Jou di Bondié",
       "artist": "Princess Caroline"
     },
     {
-      "videoId": "pdYq1oBh1kg",
-      "duration": 236,
+      "videoId": "PwCBhnBafM4",
+      "duration": 266,
       "genre": "zouk",
       "name": "Rêve ou réalité",
       "artist": "Princess Caroline"
@@ -205,8 +219,8 @@
       "artist": "Claudette Anderson"
     },
     {
-      "videoId": "uGBIfL2eq1Y",
-      "duration": 306,
+      "videoId": "5en5qjIl8iI",
+      "duration": 294,
       "genre": "zouk",
       "name": "Patiemment",
       "artist": "Gilles Floro"
@@ -219,8 +233,8 @@
       "artist": "Edith Lefel"
     },
     {
-      "videoId": "GdBWd1KSq_w",
-      "duration": 297,
+      "videoId": "Kp-5DEn2-_o",
+      "duration": 267,
       "genre": "zouk_retro",
       "name": "Toujou Rèd",
       "artist": "Edith Lefel"
@@ -240,15 +254,15 @@
       "artist": "Edith Lefel"
     },
     {
-      "videoId": "W0RZmf7aNTI",
-      "duration": 297,
+      "videoId": "bNn2OTUEoy8",
+      "duration": 289,
       "genre": "zouk_retro",
       "name": "Mouri pou mouri",
       "artist": "Edith Lefel"
     },
     {
-      "videoId": "3Y-kg8Cs-9M",
-      "duration": 290,
+      "videoId": "ieF1GO5BlI4",
+      "duration": 334,
       "genre": "zouk_retro",
       "name": "Si Je Savais",
       "artist": "Patrick Saint-Eloi"
@@ -268,8 +282,8 @@
       "artist": "Patrick Saint-Eloi"
     },
     {
-      "videoId": "NS9kI_5hhXk",
-      "duration": 304,
+      "videoId": "uI95ouOIo6k",
+      "duration": 344,
       "genre": "zouk_retro",
       "name": "Vié ko",
       "artist": "Patrick Saint-Eloi"
@@ -282,15 +296,15 @@
       "artist": "Patrick Saint-Eloi"
     },
     {
-      "videoId": "3NhsuTyfUFY",
-      "duration": 170,
+      "videoId": "IXs7Zz_OsNU",
+      "duration": 313,
       "genre": "zouk_retro",
       "name": "Sonjé",
       "artist": "Patrick Saint-Eloi"
     },
     {
-      "videoId": "XF2-64-DbYk",
-      "duration": 138,
+      "videoId": "AooAscmvWY8",
+      "duration": 481,
       "genre": "zouk_retro",
       "name": "Douce France",
       "artist": "Jacob Desvarieux"
@@ -303,8 +317,8 @@
       "artist": "Jacob Desvarieux"
     },
     {
-      "videoId": "xBJEb5LtcS4",
-      "duration": 293,
+      "videoId": "njVoJHir-Kw",
+      "duration": 314,
       "genre": "zouk_retro",
       "name": "Ka Dansé",
       "artist": "Gilles Floro"
@@ -317,45 +331,24 @@
       "artist": "Gilles Floro"
     },
     {
-      "videoId": "nHrZLRxvbUs",
-      "duration": 255,
+      "videoId": "x-_eZHEjZ4g",
+      "duration": 280,
       "genre": "zouk_retro",
       "name": "Tout doux",
       "artist": "Gilles Floro"
     },
     {
-      "videoId": "9MDABTS1EJA",
-      "duration": 393,
+      "videoId": "Naud4H-e8HE",
+      "duration": 338,
       "genre": "zouk_retro",
       "name": "Kon yon sel",
       "artist": "Claudette Anderson"
     },
     {
-      "videoId": "Naud4H-e8HE",
-      "duration": 338,
-      "genre": "zouk_retro",
-      "name": "Bèl ti manmay",
-      "artist": "Claudette Anderson"
-    },
-    {
-      "videoId": "f8q2Ha3hxKo",
-      "duration": 361,
+      "videoId": "-MbEkNFYS_A",
+      "duration": 226,
       "genre": "zouk_retro",
       "name": "Mal nécessaire",
-      "artist": "Frédéric Caracas"
-    },
-    {
-      "videoId": "kDPFvaOwE9w",
-      "duration": 315,
-      "genre": "zouk_retro",
-      "name": "Lamour pa ka manti",
-      "artist": "Frédéric Caracas"
-    },
-    {
-      "videoId": "k8ZKx_aLrXU",
-      "duration": 69,
-      "genre": "zouk_retro",
-      "name": "Nana",
       "artist": "Frédéric Caracas"
     },
     {
@@ -380,8 +373,8 @@
       "artist": "Kassav"
     },
     {
-      "videoId": "uga6tB3CKNA",
-      "duration": 292,
+      "videoId": "ue7NuWWqOEI",
+      "duration": 90,
       "genre": "zouk_retro",
       "name": "Douvanjou Ka Lévé",
       "artist": "Kassav"
@@ -394,25 +387,11 @@
       "artist": "Kassav"
     },
     {
-      "videoId": "_XyzMQeOAq8",
-      "duration": 285,
-      "genre": "zouk_retro",
-      "name": "Mazouk a nou",
-      "artist": "Zouk Machine"
-    },
-    {
-      "videoId": "8CoXvSR9qTo",
-      "duration": 193,
+      "videoId": "zbTg7tLADsU",
+      "duration": 230,
       "genre": "zouk_retro",
       "name": "Matinik sé tan nou",
       "artist": "Ralph Thamar"
-    },
-    {
-      "videoId": "4--ZLdEQHuM",
-      "duration": 229,
-      "genre": "gwoka",
-      "name": "Touyéy",
-      "artist": "Gérald Thalius"
     },
     {
       "videoId": "gEBF9s2VRhM",
@@ -422,32 +401,25 @@
       "artist": "Gérald Thalius"
     },
     {
-      "videoId": "DvK0FnDenOI",
-      "duration": 207,
-      "genre": "gwoka",
-      "name": "Bòdaj",
-      "artist": "Gérald Thalius"
-    },
-    {
-      "videoId": "Ma9O0iVYXdc",
-      "duration": 374,
-      "genre": "gwoka",
-      "name": "Ka Fô Nou Fè",
-      "artist": "Gérard Lockel"
-    },
-    {
-      "videoId": "CaZZVe19Gik",
-      "duration": 255,
+      "videoId": "DEq9ATjQIuE",
+      "duration": 302,
       "genre": "gwoka",
       "name": "Mawonaj",
       "artist": "Ti Paris"
     },
     {
-      "videoId": "DEq9ATjQIuE",
-      "duration": 302,
+      "videoId": "6Obi3e-R6ws",
+      "duration": 304,
       "genre": "gwoka",
       "name": "Wout a mwen",
       "artist": "Ti Paris"
+    },
+    {
+      "videoId": "ZboN3i2WW64",
+      "duration": 510,
+      "genre": "gwoka",
+      "name": "Graj Kò'w",
+      "artist": "Anzala"
     },
     {
       "videoId": "kRo65hy9kU8",
@@ -471,45 +443,31 @@
       "artist": "Carlos Nilson"
     },
     {
-      "videoId": "Uu4XEsUrAwY",
-      "duration": 580,
-      "genre": "gwoka",
-      "name": "Péyi doubout",
-      "artist": "Carlos Nilson"
-    },
-    {
-      "videoId": "TbdDqqMZTjY",
-      "duration": 190,
-      "genre": "gwoka",
-      "name": "Soley kouché",
-      "artist": "Léona Gabriel"
-    },
-    {
-      "videoId": "mBklsJYshy8",
-      "duration": 204,
+      "videoId": "jB4DNq1cLlU",
+      "duration": 179,
       "genre": "gwoka",
       "name": "An fanm doubout",
       "artist": "Léona Gabriel"
     },
     {
-      "videoId": "xKdtvsbSCzQ",
-      "duration": 137,
+      "videoId": "lZnQBoxXNgQ",
+      "duration": 198,
       "genre": "gwoka",
-      "name": "Té ka chanté",
-      "artist": "Léona Gabriel"
+      "name": "Gwo Ka",
+      "artist": "Marcé"
     },
     {
-      "videoId": "9jTfh20-83I",
-      "duration": 263,
+      "videoId": "OAA-VGJBFTc",
+      "duration": 473,
       "genre": "gwoka",
       "name": "Léwòz a Marcé",
       "artist": "Marcé"
     },
     {
-      "videoId": "lZnQBoxXNgQ",
-      "duration": 198,
+      "videoId": "dWg7bajyvFs",
+      "duration": 290,
       "genre": "gwoka",
-      "name": "Sové Doubout",
+      "name": "Tambou ka sonné",
       "artist": "Marcé"
     },
     {
@@ -534,15 +492,15 @@
       "artist": "Akiyo"
     },
     {
-      "videoId": "qZVAuepZKkY",
-      "duration": 230,
+      "videoId": "CaZZVe19Gik",
+      "duration": 255,
       "genre": "gwoka",
       "name": "Léwòz",
       "artist": "Ti Paris"
     },
     {
-      "videoId": "1NH-6KEQtqk",
-      "duration": 420,
+      "videoId": "-boZoxgfvTQ",
+      "duration": 637,
       "genre": "kompa",
       "name": "Meter Dife",
       "artist": "T-Vice"
@@ -555,22 +513,22 @@
       "artist": "T-Vice"
     },
     {
-      "videoId": "Q5a0EZb3rCw",
-      "duration": 268,
+      "videoId": "iNgOyjvNW68",
+      "duration": 352,
       "genre": "kompa",
       "name": "Ou fèm pè",
       "artist": "T-Vice"
     },
     {
-      "videoId": "Khw2UIps1zs",
-      "duration": 411,
+      "videoId": "sp2ZAfLKRPA",
+      "duration": 363,
       "genre": "kompa",
       "name": "Déréglé",
       "artist": "T-Vice"
     },
     {
-      "videoId": "s6EKyjaQTdM",
-      "duration": 443,
+      "videoId": "2gh8cMFviWw",
+      "duration": 446,
       "genre": "kompa",
       "name": "Fè yon bagay",
       "artist": "T-Vice"
@@ -604,8 +562,8 @@
       "artist": "Tabou Combo"
     },
     {
-      "videoId": "5h58XjMFEGI",
-      "duration": 561,
+      "videoId": "5bB_YMzGetE",
+      "duration": 862,
       "genre": "kompa",
       "name": "Kamoken",
       "artist": "Tabou Combo"
@@ -625,31 +583,24 @@
       "artist": "Carimi"
     },
     {
-      "videoId": "HLFc5Jy5U98",
-      "duration": 293,
+      "videoId": "k7PgoQFCZCU",
+      "duration": 764,
       "genre": "kompa",
       "name": "Rose",
-      "artist": "Carimi"
-    },
-    {
-      "videoId": "fGgN9fIIDOY",
-      "duration": 558,
-      "genre": "kompa",
-      "name": "Ou beswen mwen",
-      "artist": "Carimi"
-    },
-    {
-      "videoId": "8F9r4h-9i5c",
-      "duration": 710,
-      "genre": "kompa",
-      "name": "Pwofesè",
       "artist": "Carimi"
     },
     {
       "videoId": "PUdv6vi7hOE",
       "duration": 303,
       "genre": "kompa",
-      "name": "Ou pa bon pou mwen",
+      "name": "Ou beswen mwen",
+      "artist": "Carimi"
+    },
+    {
+      "videoId": "hHlD0R1iFQ0",
+      "duration": 278,
+      "genre": "kompa",
+      "name": "Pwofesè",
       "artist": "Carimi"
     },
     {
@@ -667,6 +618,13 @@
       "artist": "Nu-Look"
     },
     {
+      "videoId": "m2Uf5OjeWBA",
+      "duration": 416,
+      "genre": "kompa",
+      "name": "Ou toujou bèl",
+      "artist": "Nu-Look"
+    },
+    {
       "videoId": "RiZ-vkSRHRk",
       "duration": 304,
       "genre": "kompa",
@@ -674,8 +632,8 @@
       "artist": "Harmonik"
     },
     {
-      "videoId": "QLy8YGEDFLE",
-      "duration": 375,
+      "videoId": "niFurzfZfsw",
+      "duration": 268,
       "genre": "kompa",
       "name": "Nati pa'm",
       "artist": "Harmonik"
@@ -688,29 +646,29 @@
       "artist": "Harmonik"
     },
     {
-      "videoId": "gk-5LZ3ZOfA",
-      "duration": 562,
+      "videoId": "PtxuhuzBHts",
+      "duration": 321,
       "genre": "kompa",
       "name": "Kite yo pale",
       "artist": "Harmonik"
     },
     {
-      "videoId": "5aO6g5BMLfg",
-      "duration": 376,
+      "videoId": "7vy0fQud3x4",
+      "duration": 358,
       "genre": "kompa",
       "name": "Sans issue",
       "artist": "Djakout #1"
     },
     {
-      "videoId": "Smg-zoOqZ8s",
-      "duration": 295,
+      "videoId": "1w2sMBzz3M4",
+      "duration": 423,
       "genre": "kompa",
       "name": "Balance",
       "artist": "Djakout #1"
     },
     {
-      "videoId": "W4eLP969Ca8",
-      "duration": 356,
+      "videoId": "ip9xWzEyCOI",
+      "duration": 388,
       "genre": "kompa",
       "name": "Renmen w",
       "artist": "Djakout #1"
@@ -730,8 +688,8 @@
       "artist": "Zin"
     },
     {
-      "videoId": "7E1J3j5NXj0",
-      "duration": 315,
+      "videoId": "2ugJOpBsRGY",
+      "duration": 309,
       "genre": "kompa",
       "name": "Kè m pa sote",
       "artist": "Zin"
@@ -751,15 +709,22 @@
       "artist": "Zin"
     },
     {
-      "videoId": "ohe5xrzGOhY",
-      "duration": 221,
+      "videoId": "75Ma-KQaNBE",
+      "duration": 256,
+      "genre": "kompa",
+      "name": "Pa janm kite'm",
+      "artist": "Bel Accord"
+    },
+    {
+      "videoId": "q1jZIENqFPU",
+      "duration": 222,
       "genre": "kompa",
       "name": "Haiti Cherie",
       "artist": "Nemours Jean-Baptiste"
     },
     {
-      "videoId": "sDPtLBjE5Ls",
-      "duration": 206,
+      "videoId": "C0SJQKpaO54",
+      "duration": 290,
       "genre": "kompa",
       "name": "Konpa Kreyòl",
       "artist": "Nemours Jean-Baptiste"
@@ -800,42 +765,42 @@
       "artist": "BélO"
     },
     {
-      "videoId": "5du37exdg_A",
+      "videoId": "01HZ3c5-HTo",
       "duration": 221,
       "genre": "kompa",
       "name": "Manman",
       "artist": "BélO"
     },
     {
-      "videoId": "oViC7lhp4nM",
-      "duration": 238,
+      "videoId": "fPOVYLRaI7k",
+      "duration": 365,
       "genre": "kompa",
       "name": "Pa pati",
       "artist": "BélO"
     },
     {
-      "videoId": "QqwdXNCVJjk",
-      "duration": 225,
+      "videoId": "6TPVVFsgT2o",
+      "duration": 198,
       "genre": "kompa",
       "name": "Revòlisyon",
       "artist": "BélO"
     },
     {
-      "videoId": "3Go1CaF6USc",
-      "duration": 718,
+      "videoId": "sc4IkcF2qYo",
+      "duration": 521,
       "genre": "kompa",
       "name": "Kè m poko lib",
       "artist": "Top Vice"
     },
     {
-      "videoId": "PiW4XAJyDTk",
-      "duration": 484,
+      "videoId": "ARuMPpZjUfk",
+      "duration": 954,
       "genre": "kompa",
       "name": "Ayibobo",
       "artist": "Top Vice"
     },
     {
-      "videoId": "pI-izQZ1CnM",
+      "videoId": "2gY2yA5-3qk",
       "duration": 385,
       "genre": "kompa",
       "name": "Ou bèl",
@@ -849,15 +814,22 @@
       "artist": "Akiyo"
     },
     {
-      "videoId": "b8nTBHqf-Kw",
-      "duration": 403,
+      "videoId": "0CrbQPyEV-U",
+      "duration": 349,
       "genre": "chatta",
       "name": "Fraternité",
       "artist": "Akiyo"
     },
     {
-      "videoId": "N7CBTovZr40",
-      "duration": 338,
+      "videoId": "RBs61eVVnoE",
+      "duration": 305,
+      "genre": "chatta",
+      "name": "Résistans",
+      "artist": "Akiyo"
+    },
+    {
+      "videoId": "5dtDLurEvpg",
+      "duration": 333,
       "genre": "chatta",
       "name": "Tèt a tèt",
       "artist": "Akiyo"
@@ -870,13 +842,6 @@
       "artist": "Voukoum"
     },
     {
-      "videoId": "6n_oH01gtHg",
-      "duration": 901,
-      "genre": "chatta",
-      "name": "Gwoka mas",
-      "artist": "Voukoum"
-    },
-    {
       "videoId": "ZdU6-j3Nkyw",
       "duration": 329,
       "genre": "chatta",
@@ -884,22 +849,22 @@
       "artist": "Voukoum"
     },
     {
-      "videoId": "JK_hBk2f01k",
-      "duration": 283,
+      "videoId": "6n_oH01gtHg",
+      "duration": 901,
       "genre": "chatta",
-      "name": "Mas ka défilé",
-      "artist": "Mass Kanal"
+      "name": "Mas doubout",
+      "artist": "Voukoum"
     },
     {
-      "videoId": "AYVPgaCcT7c",
-      "duration": 455,
+      "videoId": "QEcrmdqaozk",
+      "duration": 232,
       "genre": "chatta",
       "name": "Kanaval",
       "artist": "Kan'nida"
     },
     {
-      "videoId": "5Waf8EU-wz4",
-      "duration": 238,
+      "videoId": "I_wdc33pKhk",
+      "duration": 322,
       "genre": "chatta",
       "name": "Lévé doubout",
       "artist": "Kan'nida"
@@ -912,8 +877,8 @@
       "artist": "Kan'nida"
     },
     {
-      "videoId": "kjoalm1lQ8o",
-      "duration": 249,
+      "videoId": "LB0IDeKwHJE",
+      "duration": 198,
       "genre": "chatta",
       "name": "Chanté pou péyi",
       "artist": "Kan'nida"
@@ -926,22 +891,29 @@
       "artist": "Gaoulé"
     },
     {
-      "videoId": "70VToEY9tUo",
-      "duration": 306,
+      "videoId": "TRR_ksGzafM",
+      "duration": 189,
       "genre": "bouillon",
       "name": "Bouyon Massive",
       "artist": "WCK"
     },
     {
-      "videoId": "wcTeJLC3ZnA",
-      "duration": 336,
+      "videoId": "JrnSNfmNNUA",
+      "duration": 363,
       "genre": "bouillon",
       "name": "Pump Me Up",
       "artist": "Burning Flames"
     },
     {
-      "videoId": "qz0C6sEREIo",
-      "duration": 349,
+      "videoId": "wcTeJLC3ZnA",
+      "duration": 336,
+      "genre": "bouillon",
+      "name": "Worky Worky",
+      "artist": "Burning Flames"
+    },
+    {
+      "videoId": "t-ChxDY9x8I",
+      "duration": 262,
       "genre": "bouillon",
       "name": "Fete",
       "artist": "Burning Flames"
@@ -975,10 +947,24 @@
       "artist": "Jeff Joe"
     },
     {
+      "videoId": "rdnM5csYQGA",
+      "duration": 223,
+      "genre": "bouillon",
+      "name": "Lotion",
+      "artist": "Exile One"
+    },
+    {
+      "videoId": "nDlO4RmTZT8",
+      "duration": 217,
+      "genre": "bouillon",
+      "name": "E Lo Lo",
+      "artist": "Exile One"
+    },
+    {
       "videoId": "BxWYCsj1XUQ",
       "duration": 296,
       "genre": "bouillon",
-      "name": "Lotion",
+      "name": "Wilomele",
       "artist": "Exile One"
     },
     {
@@ -996,29 +982,29 @@
       "artist": "Al Lirvat"
     },
     {
-      "videoId": "oUhf0FFE8_o",
-      "duration": 197,
+      "videoId": "mmKmrFJ6Tbw",
+      "duration": 204,
       "genre": "bouillon",
       "name": "La Chouval Bwa",
       "artist": "Al Lirvat"
     },
     {
-      "videoId": "7YSswm_0Ckw",
-      "duration": 310,
+      "videoId": "vU5yApCoJs0",
+      "duration": 305,
       "genre": "bouillon",
       "name": "Anba Tonnel",
       "artist": "Dédé Saint-Prix"
     },
     {
-      "videoId": "rdW6difpTmk",
-      "duration": 394,
+      "videoId": "Mp1qN6TE5tc",
+      "duration": 258,
       "genre": "bouillon",
       "name": "Jou ouvè",
       "artist": "Dédé Saint-Prix"
     },
     {
-      "videoId": "lZ-hmNWH3uE",
-      "duration": 168,
+      "videoId": "ztQ-AkArb2Q",
+      "duration": 164,
       "genre": "bouillon",
       "name": "Biguine à St-Pierre",
       "artist": "Stellio"
