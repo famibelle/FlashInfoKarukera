@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-03T15:40:13.584605+00:00",
+  "generated": "2026-05-03T15:59:12.098723+00:00",
   "music": 80,
   "liners": 15,
   "capsules": 12,
@@ -14,57 +14,57 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W17-kannida_nemours-jean_princess-car.mp3",
-      "label": "Dans un moment : Kan'nida, Princess Caroline, Nemours Jean-Baptiste",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W17-claudette-an_jacob-desvar_kannida.mp3",
+      "label": "Dans un moment : Kan'nida, Claudette Anderson, Jacob Desvarieux",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "E-DyE0Ro6FU",
-      "title": "Mas an listwa",
+      "videoId": "I_wdc33pKhk",
+      "title": "Lévé doubout",
       "artist": "Kan'nida",
       "genre": "chatta",
-      "duration": 281
+      "duration": 322
     },
     {
       "type": "music",
-      "videoId": "PwCBhnBafM4",
-      "title": "Rêve ou réalité",
-      "artist": "Princess Caroline",
+      "videoId": "yv8dl4RkqpA",
+      "title": "Ti Larivyè",
+      "artist": "Claudette Anderson",
       "genre": "zouk",
-      "duration": 266
+      "duration": 1012
     },
     {
       "type": "music",
-      "videoId": "C0SJQKpaO54",
-      "title": "Konpa Kreyòl",
-      "artist": "Nemours Jean-Baptiste",
-      "genre": "kompa",
-      "duration": 290
-    },
-    {
-      "type": "music",
-      "videoId": "WTUFgrs_Qas",
-      "title": "Tou dousiw",
-      "artist": "Tanya Saint-Val",
-      "genre": "zouk",
-      "duration": 261
-    },
-    {
-      "type": "music",
-      "videoId": "2gh8cMFviWw",
-      "title": "Fè yon bagay",
-      "artist": "T-Vice",
-      "genre": "kompa",
-      "duration": 446
-    },
-    {
-      "type": "music",
-      "videoId": "Yn7mDz-8R7c",
-      "title": "Bi Yé",
+      "videoId": "I7O8k4QlKGM",
+      "title": "Ka doubout",
       "artist": "Jacob Desvarieux",
+      "genre": "gwoka",
+      "duration": 244
+    },
+    {
+      "type": "music",
+      "videoId": "MXzviP94CRA",
+      "title": "Mas a Mas",
+      "artist": "Akiyo",
+      "genre": "gwoka",
+      "duration": 356
+    },
+    {
+      "type": "music",
+      "videoId": "oHnA4O90jdk",
+      "title": "Tchaka",
+      "artist": "Carimi",
+      "genre": "kompa",
+      "duration": 284
+    },
+    {
+      "type": "music",
+      "videoId": "uI95ouOIo6k",
+      "title": "Vié ko",
+      "artist": "Patrick Saint-Eloi",
       "genre": "zouk_retro",
-      "duration": 411
+      "duration": 344
     },
     {
       "type": "capsule",
@@ -81,430 +81,9 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W17-dede-saint-p_voukoum_zin.mp3",
-      "label": "Dans un moment : Dédé Saint-Prix, Voukoum, Zin",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W17-claudette-an_gilles-floro_tanya-saint-.mp3",
+      "label": "Dans un moment : Claudette Anderson, Gilles Floro, Tanya Saint-Val",
       "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "vU5yApCoJs0",
-      "title": "Anba Tonnel",
-      "artist": "Dédé Saint-Prix",
-      "genre": "bouillon",
-      "duration": 305
-    },
-    {
-      "type": "music",
-      "videoId": "6n_oH01gtHg",
-      "title": "Mas doubout",
-      "artist": "Voukoum",
-      "genre": "chatta",
-      "duration": 901
-    },
-    {
-      "type": "music",
-      "videoId": "hzCQLO1zYdw",
-      "title": "Ou mèt ale",
-      "artist": "Zin",
-      "genre": "kompa",
-      "duration": 295
-    },
-    {
-      "type": "music",
-      "videoId": "_XyzMQeOAq8",
-      "title": "Siwo",
-      "artist": "Zouk Machine",
-      "genre": "zouk",
-      "duration": 285
-    },
-    {
-      "type": "music",
-      "videoId": "75Ma-KQaNBE",
-      "title": "Pa janm kite'm",
-      "artist": "Bel Accord",
-      "genre": "kompa",
-      "duration": 256
-    },
-    {
-      "type": "music",
-      "videoId": "PUdv6vi7hOE",
-      "title": "Ou beswen mwen",
-      "artist": "Carimi",
-      "genre": "kompa",
-      "duration": 303
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-matin-6.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W17-jocelyne-lab_kassav_patrick-sain.mp3",
-      "label": "Dans un moment : Kassav, Jocelyne Labylle, Patrick Saint-Eloi",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "KWYOqGeTD9c",
-      "title": "Syé Bwa",
-      "artist": "Kassav",
-      "genre": "zouk",
-      "duration": 279
-    },
-    {
-      "type": "music",
-      "videoId": "Q8R4jSL1cRU",
-      "title": "Ti zwazo",
-      "artist": "Jocelyne Labylle",
-      "genre": "zouk",
-      "duration": 266
-    },
-    {
-      "type": "music",
-      "videoId": "q-mclC18Z-8",
-      "title": "Je ne sais plus",
-      "artist": "Patrick Saint-Eloi",
-      "genre": "zouk_retro",
-      "duration": 362
-    },
-    {
-      "type": "music",
-      "videoId": "zbTg7tLADsU",
-      "title": "Matinik sé tan nou",
-      "artist": "Ralph Thamar",
-      "genre": "zouk_retro",
-      "duration": 230
-    },
-    {
-      "type": "music",
-      "videoId": "6Yats3CDhXs",
-      "title": "New York City",
-      "artist": "Tabou Combo",
-      "genre": "kompa",
-      "duration": 529
-    },
-    {
-      "type": "music",
-      "videoId": "JFF0EZBqnBk",
-      "title": "Haiti",
-      "artist": "Tabou Combo",
-      "genre": "kompa",
-      "duration": 384
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-matin-12.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W17-burning-flam_belo_zouk-machine.mp3",
-      "label": "Dans un moment : BélO, Burning Flames, Zouk Machine",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "01HZ3c5-HTo",
-      "title": "Manman",
-      "artist": "BélO",
-      "genre": "kompa",
-      "duration": 221
-    },
-    {
-      "type": "music",
-      "videoId": "CClfXvh3HZg",
-      "title": "Nah Let Go",
-      "artist": "Burning Flames",
-      "genre": "bouillon",
-      "duration": 340
-    },
-    {
-      "type": "music",
-      "videoId": "Bxxg6GxsvSo",
-      "title": "Maldon",
-      "artist": "Zouk Machine",
-      "genre": "zouk",
-      "duration": 246
-    },
-    {
-      "type": "music",
-      "videoId": "m2Uf5OjeWBA",
-      "title": "Ou toujou bèl",
-      "artist": "Nu-Look",
-      "genre": "kompa",
-      "duration": 416
-    },
-    {
-      "type": "music",
-      "videoId": "yv8dl4RkqpA",
-      "title": "Ti Larivyè",
-      "artist": "Claudette Anderson",
-      "genre": "zouk",
-      "duration": 1012
-    },
-    {
-      "type": "music",
-      "videoId": "7vy0fQud3x4",
-      "title": "Sans issue",
-      "artist": "Djakout #1",
-      "genre": "kompa",
-      "duration": 358
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-matin-18.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W17-carlos-nilso_exile-one_top-vice.mp3",
-      "label": "Dans un moment : Carlos Nilson, Exile One, Top Vice",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "AC-8Mce7NPE",
-      "title": "Sonjé",
-      "artist": "Carlos Nilson",
-      "genre": "gwoka",
-      "duration": 200
-    },
-    {
-      "type": "music",
-      "videoId": "rdnM5csYQGA",
-      "title": "Lotion",
-      "artist": "Exile One",
-      "genre": "bouillon",
-      "duration": 223
-    },
-    {
-      "type": "music",
-      "videoId": "sc4IkcF2qYo",
-      "title": "Kè m poko lib",
-      "artist": "Top Vice",
-      "genre": "kompa",
-      "duration": 521
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260503-midi.mp3",
-      "label": "Flash Info Guadeloupe — dimanche 3 mai 2026, édition du midi",
-      "icon": "📰"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W17-nemours-jean_patrick-sain_ti-paris.mp3",
-      "label": "Dans un moment : Ti Paris, Nemours Jean-Baptiste, Patrick Saint-Eloi",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "6Obi3e-R6ws",
-      "title": "Wout a mwen",
-      "artist": "Ti Paris",
-      "genre": "gwoka",
-      "duration": 304
-    },
-    {
-      "type": "music",
-      "videoId": "q1jZIENqFPU",
-      "title": "Haiti Cherie",
-      "artist": "Nemours Jean-Baptiste",
-      "genre": "kompa",
-      "duration": 222
-    },
-    {
-      "type": "music",
-      "videoId": "IXs7Zz_OsNU",
-      "title": "Sonjé",
-      "artist": "Patrick Saint-Eloi",
-      "genre": "zouk_retro",
-      "duration": 313
-    },
-    {
-      "type": "music",
-      "videoId": "4IB6xVKhOo8",
-      "title": "Gaoulé mas",
-      "artist": "Gaoulé",
-      "genre": "chatta",
-      "duration": 384
-    },
-    {
-      "type": "music",
-      "videoId": "JrnSNfmNNUA",
-      "title": "Pump Me Up",
-      "artist": "Burning Flames",
-      "genre": "bouillon",
-      "duration": 363
-    },
-    {
-      "type": "music",
-      "videoId": "vJdeqGIcOUc",
-      "title": "Désirs d'enfants",
-      "artist": "Claudette Anderson",
-      "genre": "zouk",
-      "duration": 183
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-midi-6.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W17-belo_jocelyne-lab_marce.mp3",
-      "label": "Dans un moment : Marcé, Jocelyne Labylle, BélO",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "OAA-VGJBFTc",
-      "title": "Léwòz a Marcé",
-      "artist": "Marcé",
-      "genre": "gwoka",
-      "duration": 473
-    },
-    {
-      "type": "music",
-      "videoId": "5s29dGVntJw",
-      "title": "Palé Ba Mwen",
-      "artist": "Jocelyne Labylle",
-      "genre": "zouk",
-      "duration": 289
-    },
-    {
-      "type": "music",
-      "videoId": "6TPVVFsgT2o",
-      "title": "Revòlisyon",
-      "artist": "BélO",
-      "genre": "kompa",
-      "duration": 198
-    },
-    {
-      "type": "music",
-      "videoId": "niFurzfZfsw",
-      "title": "Nati pa'm",
-      "artist": "Harmonik",
-      "genre": "kompa",
-      "duration": 268
-    },
-    {
-      "type": "music",
-      "videoId": "x-_eZHEjZ4g",
-      "title": "Tout doux",
-      "artist": "Gilles Floro",
-      "genre": "zouk_retro",
-      "duration": 280
-    },
-    {
-      "type": "music",
-      "videoId": "c2BIOILttnI",
-      "title": "Kolé Séré",
-      "artist": "Kassav",
-      "genre": "zouk",
-      "duration": 284
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-midi-12.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W17-carimi_exile-one_sweet-micky.mp3",
-      "label": "Dans un moment : Exile One, Carimi, Sweet Micky",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "nDlO4RmTZT8",
-      "title": "E Lo Lo",
-      "artist": "Exile One",
-      "genre": "bouillon",
-      "duration": 217
-    },
-    {
-      "type": "music",
-      "videoId": "oHnA4O90jdk",
-      "title": "Tchaka",
-      "artist": "Carimi",
-      "genre": "kompa",
-      "duration": 284
-    },
-    {
-      "type": "music",
-      "videoId": "yODNw3HwKBU",
-      "title": "Ban mwen yon ti bo",
-      "artist": "Sweet Micky",
-      "genre": "kompa",
-      "duration": 726
-    },
-    {
-      "type": "music",
-      "videoId": "5en5qjIl8iI",
-      "title": "Patiemment",
-      "artist": "Gilles Floro",
-      "genre": "zouk",
-      "duration": 294
-    },
-    {
-      "type": "music",
-      "videoId": "GGbOc73pcQc",
-      "title": "Mazurka créole",
-      "artist": "Al Lirvat",
-      "genre": "bouillon",
-      "duration": 197
-    },
-    {
-      "type": "music",
-      "videoId": "ZdU6-j3Nkyw",
-      "title": "Doubout pou péyi",
-      "artist": "Voukoum",
-      "genre": "chatta",
-      "duration": 329
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-midi-18.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W17-kassav_ralph-thamar_voukoum.mp3",
-      "label": "Dans un moment : Voukoum, Ralph Thamar, Kassav",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "RrLOXVhLE8w",
-      "title": "Voukoum kanaval",
-      "artist": "Voukoum",
-      "genre": "chatta",
-      "duration": 492
-    },
-    {
-      "type": "music",
-      "videoId": "rDg_ENZ0rQU",
-      "title": "Mové Jou",
-      "artist": "Ralph Thamar",
-      "genre": "zouk",
-      "duration": 230
-    },
-    {
-      "type": "music",
-      "videoId": "YV9Mn6PRzUE",
-      "title": "Ou Pa Connaît Malheur",
-      "artist": "Kassav",
-      "genre": "zouk_retro",
-      "duration": 322
     },
     {
       "type": "music",
@@ -516,39 +95,27 @@
     },
     {
       "type": "music",
-      "videoId": "i74BjnXXz5A",
-      "title": "Hé Oh Hé",
-      "artist": "Tatiana",
-      "genre": "zouk",
-      "duration": 225
-    },
-    {
-      "type": "music",
-      "videoId": "t-ChxDY9x8I",
-      "title": "Fete",
-      "artist": "Burning Flames",
-      "genre": "bouillon",
-      "duration": 262
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-midi-24.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W17-gerald-thali_jacob-desvar_patrick-sain.mp3",
-      "label": "Dans un moment : Jacob Desvarieux, Gérald Thalius, Patrick Saint-Eloi",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "AooAscmvWY8",
-      "title": "Douce France",
-      "artist": "Jacob Desvarieux",
+      "videoId": "ek6w5D4BhN4",
+      "title": "Tibouchina",
+      "artist": "Gilles Floro",
       "genre": "zouk_retro",
-      "duration": 481
+      "duration": 261
+    },
+    {
+      "type": "music",
+      "videoId": "dCcXZ3TZHF4",
+      "title": "Je ne veux que toi",
+      "artist": "Tanya Saint-Val",
+      "genre": "zouk",
+      "duration": 232
+    },
+    {
+      "type": "music",
+      "videoId": "clKc6LvgVYQ",
+      "title": "Si m ta konnen",
+      "artist": "Nu-Look",
+      "genre": "kompa",
+      "duration": 420
     },
     {
       "type": "music",
@@ -560,99 +127,115 @@
     },
     {
       "type": "music",
-      "videoId": "ieF1GO5BlI4",
-      "title": "Si Je Savais",
-      "artist": "Patrick Saint-Eloi",
-      "genre": "zouk_retro",
-      "duration": 334
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260502-soir.mp3",
-      "label": "Flash Info Guadeloupe — samedi 2 mai 2026, édition du soir",
-      "icon": "📰"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W17-al-lirvat_edith-lefel_tabou-combo.mp3",
-      "label": "Dans un moment : Tabou Combo, Edith Lefel, Al Lirvat",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "s8LV2eiB6Kc",
-      "title": "Aba Gouche",
-      "artist": "Tabou Combo",
-      "genre": "kompa",
-      "duration": 330
-    },
-    {
-      "type": "music",
-      "videoId": "bNn2OTUEoy8",
-      "title": "Mouri pou mouri",
-      "artist": "Edith Lefel",
-      "genre": "zouk_retro",
-      "duration": 289
-    },
-    {
-      "type": "music",
-      "videoId": "VdsYD3zWbPk",
-      "title": "Biguine à Gogo",
-      "artist": "Al Lirvat",
-      "genre": "bouillon",
-      "duration": 276
-    },
-    {
-      "type": "music",
-      "videoId": "fPOVYLRaI7k",
-      "title": "Pa pati",
-      "artist": "BélO",
-      "genre": "kompa",
-      "duration": 365
-    },
-    {
-      "type": "music",
-      "videoId": "edwyJkLWqtY",
-      "title": "Alé",
+      "videoId": "c2BIOILttnI",
+      "title": "Kolé Séré",
       "artist": "Kassav",
-      "genre": "zouk_retro",
-      "duration": 250
-    },
-    {
-      "type": "music",
-      "videoId": "AYV5GosRcpM",
-      "title": "Tabou Love",
-      "artist": "Tabou Combo",
-      "genre": "kompa",
-      "duration": 406
+      "genre": "zouk",
+      "duration": 284
     },
     {
       "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-soir-0.mp3",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-matin-6.mp3",
       "label": "Capsule culturelle Guadeloupe",
       "icon": "🌺"
     },
     {
-      "type": "transition",
-      "subtype": "horoscope",
-      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260502-soir.mp3",
-      "label": "Horoscope soir — samedi 2 mai 2026",
-      "icon": "✨"
-    },
-    {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W17-marce_patrick-sain_zouk-machine.mp3",
-      "label": "Dans un moment : Zouk Machine, Patrick Saint-Eloi, Marcé",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W17-marce_nemours-jean_zouk-machine.mp3",
+      "label": "Dans un moment : Nemours Jean-Baptiste, Marcé, Zouk Machine",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "JbdLX7ns0Oo",
-      "title": "Zouk Machine",
+      "videoId": "C0SJQKpaO54",
+      "title": "Konpa Kreyòl",
+      "artist": "Nemours Jean-Baptiste",
+      "genre": "kompa",
+      "duration": 290
+    },
+    {
+      "type": "music",
+      "videoId": "dWg7bajyvFs",
+      "title": "Tambou ka sonné",
+      "artist": "Marcé",
+      "genre": "gwoka",
+      "duration": 290
+    },
+    {
+      "type": "music",
+      "videoId": "8Z0pmas2R3w",
+      "title": "Adieu Forain",
       "artist": "Zouk Machine",
       "genre": "zouk",
-      "duration": 307
+      "duration": 430
+    },
+    {
+      "type": "music",
+      "videoId": "rDg_ENZ0rQU",
+      "title": "Mové Jou",
+      "artist": "Ralph Thamar",
+      "genre": "zouk",
+      "duration": 234
+    },
+    {
+      "type": "music",
+      "videoId": "DEq9ATjQIuE",
+      "title": "Mawonaj",
+      "artist": "Ti Paris",
+      "genre": "gwoka",
+      "duration": 302
+    },
+    {
+      "type": "music",
+      "videoId": "ARuMPpZjUfk",
+      "title": "Ayibobo",
+      "artist": "Top Vice",
+      "genre": "kompa",
+      "duration": 954
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-matin-12.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W17-harmonik_kassav_voukoum.mp3",
+      "label": "Dans un moment : Kassav, Voukoum, Harmonik",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "NMFMwvh9r1Y",
+      "title": "Ou Lé Sa",
+      "artist": "Kassav",
+      "genre": "zouk",
+      "duration": 231
+    },
+    {
+      "type": "music",
+      "videoId": "RrLOXVhLE8w",
+      "title": "Voukoum kanaval",
+      "artist": "Voukoum",
+      "genre": "chatta",
+      "duration": 492
+    },
+    {
+      "type": "music",
+      "videoId": "DjgpXQP-Lhc",
+      "title": "Mwen pa vle",
+      "artist": "Harmonik",
+      "genre": "kompa",
+      "duration": 368
+    },
+    {
+      "type": "music",
+      "videoId": "YV9Mn6PRzUE",
+      "title": "Ou Pa Connaît Malheur",
+      "artist": "Kassav",
+      "genre": "zouk_retro",
+      "duration": 322
     },
     {
       "type": "music",
@@ -664,79 +247,264 @@
     },
     {
       "type": "music",
-      "videoId": "lZnQBoxXNgQ",
-      "title": "Gwo Ka",
-      "artist": "Marcé",
-      "genre": "gwoka",
-      "duration": 198
-    },
-    {
-      "type": "music",
-      "videoId": "BP5zXav-E4A",
-      "title": "Ce Soir",
-      "artist": "Tanya Saint-Val",
+      "videoId": "PwCBhnBafM4",
+      "title": "Rêve ou réalité",
+      "artist": "Princess Caroline",
       "genre": "zouk",
-      "duration": 300
-    },
-    {
-      "type": "music",
-      "videoId": "0CrbQPyEV-U",
-      "title": "Fraternité",
-      "artist": "Akiyo",
-      "genre": "chatta",
-      "duration": 349
-    },
-    {
-      "type": "music",
-      "videoId": "ip9xWzEyCOI",
-      "title": "Renmen w",
-      "artist": "Djakout #1",
-      "genre": "kompa",
-      "duration": 388
+      "duration": 266
     },
     {
       "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-soir-6.mp3",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-matin-18.mp3",
       "label": "Capsule culturelle Guadeloupe",
       "icon": "🌺"
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W17-akiyo_tatiana_voukoum.mp3",
-      "label": "Dans un moment : Akiyo, Voukoum, Tatiana",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W17-exile-one_ralph-thamar_zouk-machine.mp3",
+      "label": "Dans un moment : Exile One, Zouk Machine, Ralph Thamar",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "CAiDOpEmgic",
-      "title": "Akiyo an ba la",
-      "artist": "Akiyo",
-      "genre": "chatta",
-      "duration": 297
+      "videoId": "rdnM5csYQGA",
+      "title": "Lotion",
+      "artist": "Exile One",
+      "genre": "bouillon",
+      "duration": 223
     },
     {
       "type": "music",
-      "videoId": "ry7XTQPLIJc",
-      "title": "Voukoum tambou",
-      "artist": "Voukoum",
-      "genre": "gwoka",
-      "duration": 238
-    },
-    {
-      "type": "music",
-      "videoId": "B11Z5I5BWco",
-      "title": "Coeur blessé",
-      "artist": "Tatiana",
+      "videoId": "JbdLX7ns0Oo",
+      "title": "Zouk Machine",
+      "artist": "Zouk Machine",
       "genre": "zouk",
-      "duration": 211
+      "duration": 307
     },
     {
       "type": "music",
-      "videoId": "910Wksl2PRU",
-      "title": "Micky pa renmen sa",
-      "artist": "Sweet Micky",
+      "videoId": "eAY7KBdRmoE",
+      "title": "Aïe",
+      "artist": "Ralph Thamar",
+      "genre": "zouk",
+      "duration": 234
+    },
+    {
+      "type": "transition",
+      "subtype": "flash_info",
+      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260503-midi.mp3",
+      "label": "Flash Info Guadeloupe — dimanche 3 mai 2026, édition du midi",
+      "icon": "📰"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W17-burning-flam_jean-philipp_nu-look.mp3",
+      "label": "Dans un moment : Nu-Look, Burning Flames, Jean-Philippe Marthely",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "PvPPdxiNK7M",
+      "title": "Ou Pito",
+      "artist": "Nu-Look",
       "genre": "kompa",
-      "duration": 617
+      "duration": 340
+    },
+    {
+      "type": "music",
+      "videoId": "CClfXvh3HZg",
+      "title": "Nah Let Go",
+      "artist": "Burning Flames",
+      "genre": "bouillon",
+      "duration": 340
+    },
+    {
+      "type": "music",
+      "videoId": "cmhT5TQ-zOk",
+      "title": "An Ba Chenn",
+      "artist": "Jean-Philippe Marthely",
+      "genre": "zouk",
+      "duration": 144
+    },
+    {
+      "type": "music",
+      "videoId": "hHlD0R1iFQ0",
+      "title": "Pwofesè",
+      "artist": "Carimi",
+      "genre": "kompa",
+      "duration": 278
+    },
+    {
+      "type": "music",
+      "videoId": "01HZ3c5-HTo",
+      "title": "Manman",
+      "artist": "BélO",
+      "genre": "kompa",
+      "duration": 221
+    },
+    {
+      "type": "music",
+      "videoId": "75Ma-KQaNBE",
+      "title": "Pa janm kite'm",
+      "artist": "Bel Accord",
+      "genre": "kompa",
+      "duration": 256
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-midi-6.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W17-kannida_ralph-thamar_t-vice.mp3",
+      "label": "Dans un moment : T-Vice, Ralph Thamar, Kan'nida",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "W8JvBm_VpIc",
+      "title": "Kita Kita",
+      "artist": "T-Vice",
+      "genre": "kompa",
+      "duration": 320
+    },
+    {
+      "type": "music",
+      "videoId": "Lg1YbRpSQeo",
+      "title": "Yen a marre",
+      "artist": "Ralph Thamar",
+      "genre": "zouk",
+      "duration": 277
+    },
+    {
+      "type": "music",
+      "videoId": "QEcrmdqaozk",
+      "title": "Kanaval",
+      "artist": "Kan'nida",
+      "genre": "chatta",
+      "duration": 232
+    },
+    {
+      "type": "music",
+      "videoId": "k7PgoQFCZCU",
+      "title": "Rose",
+      "artist": "Carimi",
+      "genre": "kompa",
+      "duration": 764
+    },
+    {
+      "type": "music",
+      "videoId": "ue7NuWWqOEI",
+      "title": "Douvanjou Ka Lévé",
+      "artist": "Kassav",
+      "genre": "zouk_retro",
+      "duration": 90
+    },
+    {
+      "type": "music",
+      "videoId": "MR3ogNOjCt0",
+      "title": "Island Life",
+      "artist": "Jeff Joe",
+      "genre": "bouillon",
+      "duration": 178
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-midi-12.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W17-edith-lefel_jocelyne-lab_wck.mp3",
+      "label": "Dans un moment : WCK, Edith Lefel, Jocelyne Labylle",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "TRR_ksGzafM",
+      "title": "Bouyon Massive",
+      "artist": "WCK",
+      "genre": "bouillon",
+      "duration": 189
+    },
+    {
+      "type": "music",
+      "videoId": "bNn2OTUEoy8",
+      "title": "Mouri pou mouri",
+      "artist": "Edith Lefel",
+      "genre": "zouk_retro",
+      "duration": 289
+    },
+    {
+      "type": "music",
+      "videoId": "5s29dGVntJw",
+      "title": "Palé Ba Mwen",
+      "artist": "Jocelyne Labylle",
+      "genre": "zouk",
+      "duration": 289
+    },
+    {
+      "type": "music",
+      "videoId": "6Obi3e-R6ws",
+      "title": "Wout a mwen",
+      "artist": "Ti Paris",
+      "genre": "gwoka",
+      "duration": 304
+    },
+    {
+      "type": "music",
+      "videoId": "ZdU6-j3Nkyw",
+      "title": "Doubout pou péyi",
+      "artist": "Voukoum",
+      "genre": "chatta",
+      "duration": 329
+    },
+    {
+      "type": "music",
+      "videoId": "-MbEkNFYS_A",
+      "title": "Mal nécessaire",
+      "artist": "Frédéric Caracas",
+      "genre": "zouk_retro",
+      "duration": 226
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-midi-18.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W17-claudette-an_exile-one_harmonik.mp3",
+      "label": "Dans un moment : Claudette Anderson, Exile One, Harmonik",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "vJdeqGIcOUc",
+      "title": "Désirs d'enfants",
+      "artist": "Claudette Anderson",
+      "genre": "zouk",
+      "duration": 183
+    },
+    {
+      "type": "music",
+      "videoId": "nDlO4RmTZT8",
+      "title": "E Lo Lo",
+      "artist": "Exile One",
+      "genre": "bouillon",
+      "duration": 217
+    },
+    {
+      "type": "music",
+      "videoId": "PtxuhuzBHts",
+      "title": "Kite yo pale",
+      "artist": "Harmonik",
+      "genre": "kompa",
+      "duration": 321
     },
     {
       "type": "music",
@@ -748,76 +516,16 @@
     },
     {
       "type": "music",
-      "videoId": "_FJ03NjJEUY",
-      "title": "Zouk La Sé Sel Medikaman Nou Ni",
-      "artist": "Kassav",
-      "genre": "zouk",
-      "duration": 324
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-soir-12.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W17-jacob-desvar_ralph-thamar_stellio.mp3",
-      "label": "Dans un moment : Stellio, Ralph Thamar, Jacob Desvarieux",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "ztQ-AkArb2Q",
-      "title": "Biguine à St-Pierre",
-      "artist": "Stellio",
+      "videoId": "GGbOc73pcQc",
+      "title": "Mazurka créole",
+      "artist": "Al Lirvat",
       "genre": "bouillon",
-      "duration": 164
+      "duration": 197
     },
     {
       "type": "music",
-      "videoId": "eAY7KBdRmoE",
-      "title": "Aïe",
-      "artist": "Ralph Thamar",
-      "genre": "zouk",
-      "duration": 234
-    },
-    {
-      "type": "music",
-      "videoId": "I7O8k4QlKGM",
-      "title": "Ka doubout",
-      "artist": "Jacob Desvarieux",
-      "genre": "gwoka",
-      "duration": 244
-    },
-    {
-      "type": "music",
-      "videoId": "RiZ-vkSRHRk",
-      "title": "Pa kite'm",
-      "artist": "Harmonik",
-      "genre": "kompa",
-      "duration": 304
-    },
-    {
-      "type": "music",
-      "videoId": "jB4DNq1cLlU",
-      "title": "An fanm doubout",
-      "artist": "Léona Gabriel",
-      "genre": "gwoka",
-      "duration": 179
-    },
-    {
-      "type": "music",
-      "videoId": "BxWYCsj1XUQ",
-      "title": "Wilomele",
-      "artist": "Exile One",
-      "genre": "bouillon",
-      "duration": 296
-    },
-    {
-      "type": "music",
-      "videoId": "ek6w5D4BhN4",
-      "title": "Tibouchina",
+      "videoId": "5en5qjIl8iI",
+      "title": "Patiemment",
       "artist": "Gilles Floro",
       "genre": "zouk_retro",
       "duration": 261
@@ -840,14 +548,118 @@
     },
     {
       "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-soir-18.mp3",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-midi-24.mp3",
       "label": "Capsule culturelle Guadeloupe",
       "icon": "🌺"
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W17-al-lirvat_kassav.mp3",
-      "label": "Dans un moment : Al Lirvat, Kassav",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W17-akiyo_exile-one_tabou-combo.mp3",
+      "label": "Dans un moment : Tabou Combo, Akiyo, Exile One",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "5bB_YMzGetE",
+      "title": "Kamoken",
+      "artist": "Tabou Combo",
+      "genre": "kompa",
+      "duration": 862
+    },
+    {
+      "type": "music",
+      "videoId": "0CrbQPyEV-U",
+      "title": "Fraternité",
+      "artist": "Akiyo",
+      "genre": "chatta",
+      "duration": 349
+    },
+    {
+      "type": "music",
+      "videoId": "BxWYCsj1XUQ",
+      "title": "Wilomele",
+      "artist": "Exile One",
+      "genre": "bouillon",
+      "duration": 296
+    },
+    {
+      "type": "transition",
+      "subtype": "flash_info",
+      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-05/flash-info-20260502-soir.mp3",
+      "label": "Flash Info Guadeloupe — samedi 2 mai 2026, édition du soir",
+      "icon": "📰"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W17-edith-lefel_jean-philipp_kassav.mp3",
+      "label": "Dans un moment : Jean-Philippe Marthely, Kassav, Edith Lefel",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "30CD2cTs_Oo",
+      "title": "Nou pé ké séparé",
+      "artist": "Jean-Philippe Marthely",
+      "genre": "zouk",
+      "duration": 227
+    },
+    {
+      "type": "music",
+      "videoId": "KWYOqGeTD9c",
+      "title": "Syé Bwa",
+      "artist": "Kassav",
+      "genre": "zouk",
+      "duration": 279
+    },
+    {
+      "type": "music",
+      "videoId": "-u2NhEtYe4c",
+      "title": "Bébé",
+      "artist": "Edith Lefel",
+      "genre": "zouk_retro",
+      "duration": 237
+    },
+    {
+      "type": "music",
+      "videoId": "OAA-VGJBFTc",
+      "title": "Léwòz a Marcé",
+      "artist": "Marcé",
+      "genre": "gwoka",
+      "duration": 473
+    },
+    {
+      "type": "music",
+      "videoId": "6TPVVFsgT2o",
+      "title": "Revòlisyon",
+      "artist": "BélO",
+      "genre": "kompa",
+      "duration": 198
+    },
+    {
+      "type": "music",
+      "videoId": "sxspsfg7fTA",
+      "title": "BélO",
+      "artist": "BélO",
+      "genre": "kompa",
+      "duration": 292
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-soir-0.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "transition",
+      "subtype": "horoscope",
+      "url": "https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260502-soir.mp3",
+      "label": "Horoscope soir — samedi 2 mai 2026",
+      "icon": "✨"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W17-al-lirvat_kassav_patrick-sain.mp3",
+      "label": "Dans un moment : Al Lirvat, Patrick Saint-Eloi, Kassav",
       "icon": "🎙️"
     },
     {
@@ -860,11 +672,191 @@
     },
     {
       "type": "music",
-      "videoId": "Bi9JkqvdRTI",
-      "title": "A Lot of Love",
+      "videoId": "ieF1GO5BlI4",
+      "title": "Si Je Savais",
+      "artist": "Patrick Saint-Eloi",
+      "genre": "zouk_retro",
+      "duration": 334
+    },
+    {
+      "type": "music",
+      "videoId": "VdsYD3zWbPk",
+      "title": "Biguine à Gogo",
+      "artist": "Al Lirvat",
+      "genre": "bouillon",
+      "duration": 204
+    },
+    {
+      "type": "music",
+      "videoId": "_FJ03NjJEUY",
+      "title": "Zouk La Sé Sel Medikaman Nou Ni",
       "artist": "Kassav",
       "genre": "zouk",
-      "duration": 638
+      "duration": 324
+    },
+    {
+      "type": "music",
+      "videoId": "j1tfl94Q7-Y",
+      "title": "Sweet Dominica",
+      "artist": "Jeff Joe",
+      "genre": "bouillon",
+      "duration": 246
+    },
+    {
+      "type": "music",
+      "videoId": "B11Z5I5BWco",
+      "title": "Coeur blessé",
+      "artist": "Tatiana",
+      "genre": "zouk",
+      "duration": 211
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-soir-6.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W17-jacob-desvar_princess-car_tanya-saint-.mp3",
+      "label": "Dans un moment : Jacob Desvarieux, Tanya Saint-Val, Princess Caroline",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "Yn7mDz-8R7c",
+      "title": "Bi Yé",
+      "artist": "Jacob Desvarieux",
+      "genre": "zouk_retro",
+      "duration": 411
+    },
+    {
+      "type": "music",
+      "videoId": "BP5zXav-E4A",
+      "title": "Ce Soir",
+      "artist": "Tanya Saint-Val",
+      "genre": "zouk",
+      "duration": 300
+    },
+    {
+      "type": "music",
+      "videoId": "bBVzT4ZBMQ0",
+      "title": "Jou di Bondié",
+      "artist": "Princess Caroline",
+      "genre": "zouk",
+      "duration": 260
+    },
+    {
+      "type": "music",
+      "videoId": "sp2ZAfLKRPA",
+      "title": "Déréglé",
+      "artist": "T-Vice",
+      "genre": "kompa",
+      "duration": 363
+    },
+    {
+      "type": "music",
+      "videoId": "Xlwb3HZcu1Y",
+      "title": "Jouway Morning",
+      "artist": "Jeff Joe",
+      "genre": "bouillon",
+      "duration": 236
+    },
+    {
+      "type": "music",
+      "videoId": "sUW8C_fTIcg",
+      "title": "Krazé la fèt",
+      "artist": "Dominique Zorobabel",
+      "genre": "zouk_retro",
+      "duration": 287
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-soir-12.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W17-djakout-1_leona-gabrie_tanya-saint-.mp3",
+      "label": "Dans un moment : Léona Gabriel, Tanya Saint-Val, Djakout #1",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "jB4DNq1cLlU",
+      "title": "An fanm doubout",
+      "artist": "Léona Gabriel",
+      "genre": "gwoka",
+      "duration": 179
+    },
+    {
+      "type": "music",
+      "videoId": "WTUFgrs_Qas",
+      "title": "Tou dousiw",
+      "artist": "Tanya Saint-Val",
+      "genre": "zouk",
+      "duration": 261
+    },
+    {
+      "type": "music",
+      "videoId": "1w2sMBzz3M4",
+      "title": "Balance",
+      "artist": "Djakout #1",
+      "genre": "kompa",
+      "duration": 423
+    },
+    {
+      "type": "music",
+      "videoId": "-boZoxgfvTQ",
+      "title": "Meter Dife",
+      "artist": "T-Vice",
+      "genre": "kompa",
+      "duration": 637
+    },
+    {
+      "type": "music",
+      "videoId": "sc4IkcF2qYo",
+      "title": "Kè m poko lib",
+      "artist": "Top Vice",
+      "genre": "kompa",
+      "duration": 521
+    },
+    {
+      "type": "music",
+      "videoId": "NCNQS4w8GEU",
+      "title": "Pa di'm adye",
+      "artist": "Zin",
+      "genre": "kompa",
+      "duration": 315
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-03-soir-18.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W17-dede-saint-p_edith-lefel.mp3",
+      "label": "Dans un moment : Dédé Saint-Prix, Edith Lefel",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "Mp1qN6TE5tc",
+      "title": "Jou ouvè",
+      "artist": "Dédé Saint-Prix",
+      "genre": "bouillon",
+      "duration": 258
+    },
+    {
+      "type": "music",
+      "videoId": "F8WNBcSVwMk",
+      "title": "Amour Plastique",
+      "artist": "Edith Lefel",
+      "genre": "zouk_retro",
+      "duration": 293
     }
   ]
 }
