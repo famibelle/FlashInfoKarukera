@@ -32,7 +32,8 @@ POOL_CACHE  = Path("playlists/music_pool_cache.json")
 PODCAST_XML = Path("docs/podcast.xml")
 OUTPUT      = Path("docs/radio_sequence.json")
 
-TRACKS_PER_LINER = 15   # pistes entre deux liners
+TRACKS_PER_LINER   = 15  # pistes entre deux liners
+HOROSCOPE_AFTER    = 6   # chansons entre flash info et horoscope
 
 # Répartition des blocs (doit correspondre à playlist_24h.py)
 BLOCK_SIZES = {
@@ -212,28 +213,53 @@ def _music_with_liners(tracks: list[dict], bloc: str) -> list[dict]:
     return result
 
 
+def _raw_music(tracks: list[dict]) -> list[dict]:
+    """Convertit des pistes du pool en items music sans liner."""
+    result = []
+    for t in tracks:
+        item: dict = {
+            "type":    "music",
+            "videoId": t["videoId"],
+            "title":   t.get("name",   ""),
+            "artist":  t.get("artist", ""),
+            "genre":   t.get("genre",  ""),
+        }
+        if t.get("duration"):
+            item["duration"] = t["duration"]
+        result.append(item)
+    return result
+
+
 def build_sequence(pool: list[dict], slots: dict[str, dict]) -> list[dict]:
     seq = []
     pos = 0
 
     for bloc, size in BLOCK_SIZES.items():
-        # Transitions éditoriales du bloc
-        if bloc == "matin":
-            for key in ("flash_matin", "horoscope_matin"):
-                if key in slots:
-                    seq.append(slots[key])
+        if bloc in ("matin", "soir"):
+            # Flash info
+            flash_key = f"flash_{bloc}"
+            if flash_key in slots:
+                seq.append(slots[flash_key])
+
+            # HOROSCOPE_AFTER chansons sans liner
+            seq += _raw_music(pool[pos : pos + HOROSCOPE_AFTER])
+            pos += HOROSCOPE_AFTER
+
+            # Horoscope
+            horo_key = f"horoscope_{bloc}"
+            if horo_key in slots:
+                seq.append(slots[horo_key])
+
+            # Reste du bloc avec liners toutes les TRACKS_PER_LINER pistes
+            remaining = size - HOROSCOPE_AFTER
+            seq += _music_with_liners(pool[pos : pos + remaining], bloc)
+            pos += remaining
+
         elif bloc == "midi":
             if "flash_midi" in slots:
                 seq.append(slots["flash_midi"])
-        elif bloc == "soir":
-            for key in ("flash_soir", "horoscope_soir"):
-                if key in slots:
-                    seq.append(slots[key])
-
-        # Bloc musical avec liners intégrés
-        block_tracks = pool[pos : pos + size]
-        seq += _music_with_liners(block_tracks, bloc)
-        pos += size
+            seq += _music_with_liners(pool[pos : pos + size], bloc)
+            pos += size
 
     return seq
 
