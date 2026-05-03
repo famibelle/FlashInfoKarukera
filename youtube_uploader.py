@@ -608,7 +608,7 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
         system_prompt = (
             _select_random_ref_lines(3)
             + "\n\n"
-            + _load_prompt("histoire_guadeloupe.md")
+            + _load_prompt("histoire_guadeloupe_ref.md")
         )
     except Exception as e:
         logger.warning(f"Capsule {slot_id} ignorée : {e}")

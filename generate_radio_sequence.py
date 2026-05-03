@@ -512,13 +512,14 @@ def main() -> None:
         print("🌺 Génération des capsules culturelles pour tous les slots...")
         # Slots typiques : matin-0, matin-6, matin-12, matin-18, midi-0, midi-6, midi-12, midi-18, midi-24, soir-0, soir-6, soir-12, soir-18
         slots = [
-            "matin-0", "matin-6", "matin-12", "matin-18",
-            "midi-0", "midi-6", "midi-12", "midi-18", "midi-24",
-            "soir-0", "soir-6", "soir-12", "soir-18"
+            ("matin", 0), ("matin", 6), ("matin", 12), ("matin", 18),
+            ("midi", 0), ("midi", 6), ("midi", 12), ("midi", 18), ("midi", 24),
+            ("soir", 0), ("soir", 6), ("soir", 12), ("soir", 18)
         ]
-        for slot_id in slots:
+        for bloc, position in slots:
+            slot_id = f"{bloc}-{position}"
             print(f"\n  Slot : {slot_id}")
-            capsule = get_capsule(slot_id, verbose=args.verbose)
+            capsule = get_capsule(bloc, position)
             if capsule:
                 print(f"  ✅ Capsule générée : {capsule['label']}")
                 print(f"     URL : {capsule['url']}")
