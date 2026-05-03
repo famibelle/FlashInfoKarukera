@@ -262,6 +262,58 @@
     .qi-info { min-width: 0; }
     .qi-title { color: #b8b8c8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .qi-artist { font-size: 0.76rem; color: #555; }
+
+    /* Toggle playlist button */
+    .btn-toggle-playlist {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: none;
+      border: 1px solid #2a2d3a;
+      border-radius: 8px;
+      color: #555;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.35rem 0.75rem;
+      cursor: pointer;
+      margin-top: 0.75rem;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .btn-toggle-playlist:hover { color: #b0b4cc; border-color: #444; }
+
+    /* Full scrollable playlist */
+    #full-playlist {
+      display: none;
+      margin-top: 0.75rem;
+      max-height: 320px;
+      overflow-y: auto;
+      border-top: 1px solid #2a2d3a;
+      padding-top: 0.5rem;
+    }
+    #full-playlist.open { display: block; }
+
+    .pl-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.4rem 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.12s;
+      font-size: 0.82rem;
+    }
+    .pl-item:hover { background: #252836; }
+    .pl-item.pl-current { background: #1e1b4b; }
+    .pl-item.pl-current .pl-title { color: #a5b4fc; font-weight: 600; }
+
+    .pl-num { font-size: 0.7rem; color: #444; width: 1.6rem; text-align: right; flex-shrink: 0; }
+    .pl-item.pl-current .pl-num { color: #6366f1; }
+    .pl-icon { font-size: 0.85rem; flex-shrink: 0; }
+    .pl-info { min-width: 0; }
+    .pl-title { color: #b8b8c8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pl-artist { font-size: 0.74rem; color: #555; }
   </style>
 </head>
 <body>
@@ -303,6 +355,7 @@
       </div>
 
       <div class="controls">
+        <button class="btn-ghost" id="btn-prev" title="Précédent">⏮</button>
         <button class="btn-round" id="btn-play">⏸</button>
         <button class="btn-ghost" id="btn-skip" title="Passer">⏭</button>
         <div class="vol-wrap">
@@ -314,6 +367,10 @@
       <div class="queue-section">
         <div class="queue-label">À suivre</div>
         <div id="queue-list"></div>
+        <button class="btn-toggle-playlist" id="btn-toggle-playlist">
+          <span id="toggle-arrow">▼</span> Toute la playlist
+        </button>
+        <div id="full-playlist"></div>
       </div>
 
     </div>
@@ -332,6 +389,8 @@
       this.yt      = null;
       this.ytReady = false;
       this.started = false;
+
+      this._playlistOpen = false;
 
       this.trAudio = document.getElementById('tr-audio');
       this.trAudio.addEventListener('ended', () => this._next());
@@ -439,6 +498,7 @@
     }
 
     _next() { this._playAt(this.pos + 1); }
+    _prev() { this._playAt(this.pos - 1); }
 
     // Les liners sont co-hébergés avec le player (docs/liners/) — on résout
     // l'URL absolue GitHub Pages en chemin relatif pour que ça marche en local
@@ -547,6 +607,44 @@
           </div>
         </div>`;
       }).join('');
+      this._renderFullPlaylist();
+    }
+
+    _renderFullPlaylist() {
+      if (!this._playlistOpen) return;
+      const subtypeIcons = { flash_info: '📰', horoscope: '✨', announcement: '🎙️' };
+      const el = document.getElementById('full-playlist');
+      el.innerHTML = this.seq.map((it, i) => {
+        let icon, title, artist = '';
+        if (it.type === 'music') {
+          icon   = '🎵';
+          title  = it.title  || '—';
+          artist = it.artist || '';
+        } else if (it.type === 'liner') {
+          icon  = '🎙️';
+          title = it.label || 'Dans un moment…';
+        } else if (it.type === 'capsule') {
+          icon  = '🌺';
+          title = it.label || 'Capsule culturelle';
+        } else {
+          icon  = subtypeIcons[it.subtype] || '🎙️';
+          title = it.label || 'Transition';
+        }
+        const cur = i === this.pos ? ' pl-current' : '';
+        return `<div class="pl-item${cur}" data-idx="${i}">
+          <span class="pl-num">${i + 1}</span>
+          <span class="pl-icon">${icon}</span>
+          <div class="pl-info">
+            <div class="pl-title">${title}</div>
+            ${artist ? `<div class="pl-artist">${artist}</div>` : ''}
+          </div>
+        </div>`;
+      }).join('');
+      const cur = el.querySelector('.pl-current');
+      if (cur) cur.scrollIntoView({ block: 'nearest' });
+      el.querySelectorAll('.pl-item').forEach(row => {
+        row.addEventListener('click', () => this._playAt(parseInt(row.dataset.idx)));
+      });
     }
   }
 
@@ -559,8 +657,15 @@
 
   document.getElementById('start-btn').addEventListener('click', () => radio.start());
   btnPlay.addEventListener('click', () => radio.togglePlay());
+  document.getElementById('btn-prev').addEventListener('click', () => radio._prev());
   document.getElementById('btn-skip').addEventListener('click', () => radio._next());
   document.getElementById('volume').addEventListener('input', e => radio.setVolume(parseInt(e.target.value)));
+  document.getElementById('btn-toggle-playlist').addEventListener('click', () => {
+    radio._playlistOpen = !radio._playlistOpen;
+    document.getElementById('full-playlist').classList.toggle('open', radio._playlistOpen);
+    document.getElementById('toggle-arrow').textContent = radio._playlistOpen ? '▲' : '▼';
+    if (radio._playlistOpen) radio._renderFullPlaylist();
+  });
   </script>
 </body>
 </html>
