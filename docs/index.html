@@ -676,7 +676,14 @@
 
   radio.load();
 
-  document.getElementById('start-btn').addEventListener('click', () => radio.start());
+  document.getElementById('start-btn').addEventListener('click', () => {
+    // iOS Safari : déverrouiller l'audio HTML5 de façon synchrone avant tout await
+    radio.trAudio.muted = true;
+    radio.trAudio.src   = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
+    const unlock = radio.trAudio.play();
+    if (unlock) unlock.then(() => { radio.trAudio.pause(); radio.trAudio.muted = false; }).catch(() => {});
+    radio.start();
+  });
   btnPlay.addEventListener('click', () => radio.togglePlay());
   document.getElementById('btn-prev').addEventListener('click', () => radio._prev());
   document.getElementById('btn-skip').addEventListener('click', () => radio._next());
