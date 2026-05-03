@@ -398,6 +398,7 @@
       this.started = false;
 
       this._playlistOpen = false;
+      this._pendingVideo = null;
 
       this.trAudio = document.getElementById('tr-audio');
       this.trAudio.addEventListener('ended', () => this._next());
@@ -450,6 +451,11 @@
           events: {
             onReady: () => {
               this.ytReady = true;
+              if (this._pendingVideo) {
+                this.yt.loadVideoById(this._pendingVideo.videoId);
+                this.yt.setVolume(this._pendingVideo.vol);
+                this._pendingVideo = null;
+              }
               resolve();
             },
             onStateChange: (e) => {
@@ -465,14 +471,13 @@
     async start() {
       if (this.seq.length === 0) await this.load();
       this.started = true;
-      this._show();                   // rend #yt-player visible avant tout
-
-      await this._ytApiReady;         // attend l'API YouTube
-      if (window.YT && window.YT.Player && !this.yt) {
-        await this._initYT();         // attend onReady du player
-      }
-
+      this._show();
+      // iOS : _playAt(0) avant tout await pour rester dans le contexte du geste utilisateur.
+      // Si le premier item est de la musique et YT pas encore prêt, _pendingVideo prend le relais.
       this._playAt(0);
+
+      await this._ytApiReady;
+      if (window.YT && window.YT.Player && !this.yt) await this._initYT();
     }
 
     // ── Séquencement ─────────────────────────────────────────
@@ -499,6 +504,9 @@
         if (this.ytReady) {
           this.yt.loadVideoById(item.videoId);
           this.yt.setVolume(this._vol());
+        } else {
+          // YT pas encore prêt (démarrage rapide) — mémorise pour onReady
+          this._pendingVideo = { videoId: item.videoId, vol: this._vol() };
         }
       } else {
         // Liner MP3 + transitions (flash info, horoscope) → HTML5 Audio
@@ -670,13 +678,11 @@
   radio.load();   // préchargement séquence en arrière-plan
 
   document.getElementById('start-btn').addEventListener('click', () => {
-    // iOS Safari : déverrouiller l'audio HTML5 de façon synchrone avant tout await.
-    // Une fois play() appelé pendant un geste utilisateur, les play() ultérieurs
-    // (même après des await) fonctionnent sur le même élément audio.
-    radio.trAudio.muted = true;
-    radio.trAudio.src   = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
-    const unlock = radio.trAudio.play();
-    if (unlock) unlock.then(() => { radio.trAudio.pause(); radio.trAudio.muted = false; }).catch(() => {});
+    // iOS Safari : appel synchrone de play() dans le geste pour enregistrer l'élément
+    // comme "user-activated". Sans ça, le play() après un await est bloqué.
+    radio.trAudio.volume = 0;
+    radio.trAudio.src    = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
+    radio.trAudio.play().catch(() => {});
     radio.start();
   });
   btnPlay.addEventListener('click', () => radio.togglePlay());

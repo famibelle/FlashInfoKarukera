@@ -461,6 +461,8 @@
       this.ytReady = false;
       this.started = false;
 
+      this._pendingVideo = null;
+
       this.trAudio = document.getElementById('tr-audio');
       this.trAudio.addEventListener('ended', () => this._next());
       this.trAudio.addEventListener('timeupdate', () => {
@@ -497,7 +499,15 @@
           width: '100%', height: '100%',
           playerVars: { autoplay: 0, controls: 1, rel: 0, modestbranding: 1 },
           events: {
-            onReady: () => { this.ytReady = true; resolve(); },
+            onReady: () => {
+              this.ytReady = true;
+              if (this._pendingVideo) {
+                this.yt.loadVideoById(this._pendingVideo.videoId);
+                this.yt.setVolume(this._pendingVideo.vol);
+                this._pendingVideo = null;
+              }
+              resolve();
+            },
             onStateChange: (e) => {
               if (e.data === YT.PlayerState.ENDED) this._next();
             },
@@ -510,9 +520,11 @@
       if (this.seq.length === 0) await this.load();
       this.started = true;
       this._show();
+      // iOS : _playAt(0) avant tout await — reste dans le contexte du geste utilisateur
+      this._playAt(0);
+
       await this._ytApiReady;
       if (window.YT && window.YT.Player && !this.yt) await this._initYT();
-      this._playAt(0);
     }
 
     _playAt(index) {
@@ -531,6 +543,8 @@
         if (this.ytReady) {
           this.yt.loadVideoById(item.videoId);
           this.yt.setVolume(this._vol());
+        } else {
+          this._pendingVideo = { videoId: item.videoId, vol: this._vol() };
         }
       } else {
         this._showTransition(item);
@@ -677,11 +691,11 @@
   radio.load();
 
   document.getElementById('start-btn').addEventListener('click', () => {
-    // iOS Safari : déverrouiller l'audio HTML5 de façon synchrone avant tout await
-    radio.trAudio.muted = true;
-    radio.trAudio.src   = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
-    const unlock = radio.trAudio.play();
-    if (unlock) unlock.then(() => { radio.trAudio.pause(); radio.trAudio.muted = false; }).catch(() => {});
+    // iOS Safari : play() synchrone dans le geste pour activer l'élément audio.
+    // volume=0 (pas muted) pour que iOS le compte comme user-activated.
+    radio.trAudio.volume = 0;
+    radio.trAudio.src    = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
+    radio.trAudio.play().catch(() => {});
     radio.start();
   });
   btnPlay.addEventListener('click', () => radio.togglePlay());
