@@ -427,6 +427,70 @@ def get_or_upload_announcement(bloc: str, artists: list[str]) -> str | None:
     return video_id
 
 
+LINERS_DIR = Path("docs/liners")
+
+
+def get_announcement_mp3_url(bloc: str, artists: list[str]) -> str | None:
+    """
+    Génère le liner MP3, le sauvegarde dans docs/liners/ et retourne son URL
+    publique GitHub Pages. N'uploade PAS sur YouTube.
+    """
+    if not artists:
+        return None
+
+    from datetime import date
+    week      = date.today().strftime("%Y-W%W")
+    cache_key = f"liner_mp3_{week}_{bloc}_{'--'.join(sorted(artists[:3]))}"
+    cache     = load_cache()
+
+    if cache_key in cache and cache[cache_key]:
+        url      = cache[cache_key]
+        filename = url.rsplit("/", 1)[-1]
+        if (LINERS_DIR / filename).exists():
+            logger.info(f"Liner MP3 {bloc} depuis cache → {url}")
+            return url
+
+    try:
+        system_prompt = (
+            _load_prompt("solitude_ame.md")
+            + "\n\n"
+            + _load_prompt("kreyol_resistance_symbol.md")
+            + "\n\n"
+            + _load_prompt("solitude.md")
+        )
+    except FileNotFoundError as e:
+        logger.warning(f"Liner {bloc} ignoré : {e}")
+        return None
+
+    label       = ANNOUNCE_BLOC_LABEL.get(bloc, bloc)
+    artists_str = ", ".join(artists)
+    user_prompt = f"Moment : {label}\nArtistes : {artists_str}"
+
+    try:
+        text = _mistral_chat(system_prompt, user_prompt)
+        logger.info(f"  Liner {bloc} texte : {text!r}")
+    except Exception as e:
+        logger.warning(f"Liner {bloc} ignoré — Mistral : {e}")
+        return None
+
+    artists_slug = "_".join(a[:12].replace(" ", "-").lower() for a in sorted(artists[:3]))
+    filename     = f"liner-{bloc}-{week}-{artists_slug}.mp3"
+    LINERS_DIR.mkdir(parents=True, exist_ok=True)
+    mp3_path = LINERS_DIR / filename
+
+    try:
+        tts_call(normalize_for_tts(text), mp3_path, voice_id="fr_marie_happy")
+    except Exception as e:
+        logger.warning(f"Liner {bloc} ignoré — TTS : {e}")
+        return None
+
+    public_url       = f"https://famibelle.github.io/FlashInfoKarukera/liners/{filename}"
+    cache[cache_key] = public_url
+    save_cache(cache)
+    logger.info(f"  Liner {bloc} MP3 → {public_url}")
+    return public_url
+
+
 # ── Points d'entrée publics ───────────────────────────────────────────────────
 
 def get_or_upload_episode(mode: str) -> str | None:

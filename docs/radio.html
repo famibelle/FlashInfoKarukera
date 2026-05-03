@@ -382,15 +382,16 @@
       this._updateNowPlaying(item);
       this._renderQueue();
 
-      if (item.type === 'music' || item.type === 'liner') {
-        // Les deux passent par le player YouTube
-        this._showYT(item.type === 'liner');
+      if (item.type === 'music') {
+        // Musique → YouTube
+        this._showYT();
         if (this.ytReady) {
           this.yt.loadVideoById(item.videoId);
           this.yt.setVolume(this._vol());
         }
       } else {
-        // Transitions MP3 (flash info, horoscope) → HTML5 Audio
+        // Liner MP3 + transitions (flash info, horoscope) → HTML5 Audio
+        // YouTube s'arrête, reprendra automatiquement au prochain titre
         this._showTransition(item);
         if (this.ytReady) this.yt.stopVideo();
         this.trAudio.src    = item.url;
@@ -406,7 +407,7 @@
     togglePlay() {
       const item = this.seq[this.pos];
       if (!item) return;
-      if ((item.type === 'music' || item.type === 'liner') && this.ytReady) {
+      if (item.type === 'music' && this.ytReady) {
         const s = this.yt.getPlayerState();
         s === YT.PlayerState.PLAYING ? this.yt.pauseVideo() : this.yt.playVideo();
         btnPlay.textContent = s === YT.PlayerState.PLAYING ? '▶' : '⏸';

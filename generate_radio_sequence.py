@@ -22,10 +22,9 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-POOL_CACHE       = Path("playlists/music_pool_cache.json")
-PODCAST_XML      = Path("docs/podcast.xml")
-YT_CACHE         = Path("playlists/youtube_cache.json")
-OUTPUT           = Path("docs/radio_sequence.json")
+POOL_CACHE  = Path("playlists/music_pool_cache.json")
+PODCAST_XML = Path("docs/podcast.xml")
+OUTPUT      = Path("docs/radio_sequence.json")
 
 TRACKS_PER_LINER = 15   # pistes entre deux liners
 
@@ -105,63 +104,23 @@ def load_transitions() -> dict[str, list[dict]]:
 
 # ── Liners ────────────────────────────────────────────────────────────────────
 
-def _yt_cache() -> dict:
-    if YT_CACHE.exists():
-        return json.loads(YT_CACHE.read_text())
-    return {}
-
-
-def _yt_cache_save(cache: dict) -> None:
-    YT_CACHE.parent.mkdir(exist_ok=True)
-    YT_CACHE.write_text(json.dumps(cache, indent=2, ensure_ascii=False))
-
-
-def _liner_cache_key(artists: list[str]) -> str:
-    from datetime import date
-    week = date.today().strftime("%Y-W%W")
-    return f"liner_{week}_{'--'.join(sorted(artists[:3]))}"
-
 
 def get_liner(artists: list[str], bloc: str) -> dict | None:
     """
-    Cherche ou génère un liner pour les artistes donnés.
-    Retourne un item { type: "liner", videoId, label } ou None.
+    Génère ou récupère le liner MP3 pour ce groupe d'artistes.
+    Retourne { type:"liner", url, label } ou None si non disponible.
     """
     if not artists:
         return None
-
-    cache     = _yt_cache()
-    cache_key = _liner_cache_key(artists)
-
-    if cache_key in cache:
-        video_id = cache[cache_key]
-        if video_id:
-            label = f"Dans un moment : {', '.join(artists[:3])}"
-            return {"type": "liner", "videoId": video_id,
-                    "label": label, "icon": "🎙️"}
-        return None  # génération précédemment échouée
-
-    # Tentative de génération si les APIs sont disponibles
-    video_id = _generate_liner(artists, bloc)
-    cache[cache_key] = video_id or ""
-    _yt_cache_save(cache)
-
-    if video_id:
-        label = f"Dans un moment : {', '.join(artists[:3])}"
-        return {"type": "liner", "videoId": video_id,
-                "label": label, "icon": "🎙️"}
-    return None
-
-
-def _generate_liner(artists: list[str], bloc: str) -> str | None:
-    """Génère le liner via Mistral + TTS + YouTube upload. Non bloquant."""
     try:
-        from youtube_uploader import get_or_upload_announcement
-        video_id = get_or_upload_announcement(bloc, artists)
-        return video_id
+        from youtube_uploader import get_announcement_mp3_url
+        url = get_announcement_mp3_url(bloc, artists[:5])
+        if url:
+            label = f"Dans un moment : {', '.join(artists[:3])}"
+            return {"type": "liner", "url": url, "label": label, "icon": "🎙️"}
     except Exception as e:
         print(f"   ⚠️  Liner {bloc} ignoré : {e}", file=sys.stderr)
-        return None
+    return None
 
 
 # ── Construction de la séquence ───────────────────────────────────────────────
