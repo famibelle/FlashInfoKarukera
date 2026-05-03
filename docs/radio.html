@@ -513,7 +513,6 @@
         this._showTransition(item);
         this.trAudio.src    = this._resolveUrl(item.url);
         this.trAudio.volume = this._vol() / 100;
-        this.trAudio.load();
         this.trAudio.play().catch(e => console.warn('[audio] échec play:', e.message, '\n  url:', item.url));
       }
     }
@@ -678,8 +677,11 @@
   radio.load();   // préchargement séquence en arrière-plan
 
   document.getElementById('start-btn').addEventListener('click', () => {
-    // iOS Safari : appel synchrone de play() dans le geste pour enregistrer l'élément
-    // comme "user-activated". Sans ça, le play() après un await est bloqué.
+    // iOS Safari : double unlock
+    // 1) AudioContext.resume() — persiste après async, débloque tout l'audio du contexte
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (AC) { try { (new AC()).resume(); } catch(_) {} }
+    // 2) play() synchrone sur l'élément HTML5 Audio — l'enregistre comme user-activated
     radio.trAudio.volume = 0;
     radio.trAudio.src    = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
     radio.trAudio.play().catch(() => {});

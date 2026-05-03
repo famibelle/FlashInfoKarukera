@@ -550,7 +550,6 @@
         this._showTransition(item);
         this.trAudio.src    = this._resolveUrl(item.url);
         this.trAudio.volume = this._vol() / 100;
-        this.trAudio.load();
         this.trAudio.play().catch(e => console.warn('[audio] échec:', e.message));
       }
     }
@@ -691,8 +690,9 @@
   radio.load();
 
   document.getElementById('start-btn').addEventListener('click', () => {
-    // iOS Safari : play() synchrone dans le geste pour activer l'élément audio.
-    // volume=0 (pas muted) pour que iOS le compte comme user-activated.
+    // iOS Safari : double unlock
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (AC) { try { (new AC()).resume(); } catch(_) {} }
     radio.trAudio.volume = 0;
     radio.trAudio.src    = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
     radio.trAudio.play().catch(() => {});
