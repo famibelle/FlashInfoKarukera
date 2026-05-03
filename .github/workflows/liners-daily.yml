@@ -2,8 +2,6 @@ name: Liners Quotidiens
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "30 4 * * *"  # Après horoscope (4h30 UTC), avant capsules
 
 permissions:
   contents: write

@@ -2,8 +2,6 @@ name: Interview Radio Quotidienne
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "30 5 * * *"  # Après capsules (5h30 UTC), avant playlist
 
 permissions:
   contents: write

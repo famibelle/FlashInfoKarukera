@@ -2,8 +2,6 @@ name: Capsules Culturelles Quotidiennes
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 5 * * *"  # Après liners (5h UTC), avant interview
 
 permissions:
   contents: write

@@ -1,11 +1,6 @@
 name: Horoscope Quotidien
 
 on:
-  schedule:
-    # Matin : 5h Paris hiver (UTC+1) = 4h UTC / 6h Paris été (UTC+2)
-    - cron: "0 4 * * *"
-    # Soir  : 18h Paris hiver (UTC+1) = 17h UTC / 19h Paris été (UTC+2)
-    - cron: "0 17 * * *"
   workflow_dispatch:
     inputs:
       edition:
