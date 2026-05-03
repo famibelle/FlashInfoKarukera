@@ -108,6 +108,64 @@ def load_transitions() -> dict[str, list[dict]]:
     return slots
 
 
+# ── Durées ────────────────────────────────────────────────────────────────────
+
+def _duration_pool() -> dict[str, int]:
+    """videoId → durée en secondes depuis le pool cache."""
+    if not POOL_CACHE.exists():
+        return {}
+    data = json.loads(POOL_CACHE.read_text())
+    return {t["videoId"]: t.get("duration", 0) for t in data.get("tracks", [])}
+
+
+def _duration_transitions() -> dict[str, int]:
+    """url → durée en secondes depuis les itunes:duration du podcast RSS."""
+    if not PODCAST_XML.exists():
+        return {}
+    xml   = PODCAST_XML.read_text(encoding="utf-8")
+    items = re.findall(r"<item>(.*?)</item>", xml, re.DOTALL)
+    result: dict[str, int] = {}
+    for item in items:
+        url = re.search(r'<enclosure url="([^"]+\.mp3)"', item)
+        dur = re.search(r"<itunes:duration>(\d+:\d+(?::\d+)?)</itunes:duration>", item)
+        if url and dur:
+            result[url.group(1)] = _parse_hms(dur.group(1))
+    return result
+
+
+def _parse_hms(s: str) -> int:
+    """'MM:SS' ou 'HH:MM:SS' → secondes."""
+    parts = [int(x) for x in s.split(":")]
+    if len(parts) == 2:
+        return parts[0] * 60 + parts[1]
+    if len(parts) == 3:
+        return parts[0] * 3600 + parts[1] * 60 + parts[2]
+    return 0
+
+
+def _liner_duration(url: str) -> int:
+    """Estime la durée d'un liner depuis la taille du fichier local (128 kbps)."""
+    filename = url.rsplit("/", 1)[-1]
+    local    = Path("docs/liners") / filename
+    if local.exists():
+        return max(5, int(local.stat().st_size * 8 // 128_000))
+    return 25
+
+
+def _fmt_clock(seconds: int) -> str:
+    h = seconds // 3600
+    m = (seconds % 3600) // 60
+    return f"{h:02d}:{m:02d}"
+
+
+def _fmt_dur(seconds: int) -> str:
+    if seconds <= 0:
+        return "?:??"
+    if seconds < 3600:
+        return f"{seconds // 60}:{seconds % 60:02d}"
+    return f"{seconds // 3600}:{(seconds % 3600) // 60:02d}:{seconds % 60:02d}"
+
+
 # ── Liners ────────────────────────────────────────────────────────────────────
 
 
@@ -141,13 +199,16 @@ def _music_with_liners(tracks: list[dict], bloc: str) -> list[dict]:
         if liner:
             result.append(liner)
         for t in group:
-            result.append({
+            item: dict = {
                 "type":    "music",
                 "videoId": t["videoId"],
                 "title":   t.get("name",   ""),
                 "artist":  t.get("artist", ""),
                 "genre":   t.get("genre",  ""),
-            })
+            }
+            if t.get("duration"):
+                item["duration"] = t["duration"]
+            result.append(item)
     return result
 
 
@@ -194,6 +255,8 @@ def main() -> None:
                         help="Construit la séquence sans générer de liners (rapide)")
     parser.add_argument("--dry-run",     action="store_true",
                         help="Affiche la séquence sans écrire radio_sequence.json")
+    parser.add_argument("--programme",   action="store_true",
+                        help="Affiche le programme détaillé de la journée avec horaires estimés")
     args = parser.parse_args()
 
     # ── --pool ────────────────────────────────────────────────────────────────
@@ -232,6 +295,50 @@ def main() -> None:
                 print(f"   Fichier : {local} ({local.stat().st_size // 1024} Ko)")
         else:
             print("⚠️  Liner non généré (voir les erreurs ci-dessus)")
+        return
+
+    # ── --programme ───────────────────────────────────────────────────────────
+    if args.programme:
+        if not OUTPUT.exists():
+            print("⚠️  radio_sequence.json introuvable — génère-la d'abord.", file=sys.stderr)
+            sys.exit(1)
+        data       = json.loads(OUTPUT.read_text())
+        seq        = data["sequence"]
+        dur_pool   = _duration_pool()
+        dur_trans  = _duration_transitions()
+
+        cursor      = 0
+        total_music = 0
+        n_music     = 0
+
+        print(f"Programme du {data['generated'][:10]} "
+              f"({data['music']} pistes · {data['liners']} liners · {data['transitions']} transitions)\n")
+
+        for item in seq:
+            t = item["type"]
+            if t == "music":
+                dur  = item.get("duration") or dur_pool.get(item.get("videoId", ""), 0)
+                icon = "🎵"
+                desc = f"{item['title']} — {item['artist']}"
+                if item.get("genre"):
+                    desc += f"  [{item['genre']}]"
+                total_music += dur
+                n_music     += 1
+            elif t == "transition":
+                dur  = dur_trans.get(item["url"], 0)
+                icon = item.get("icon", "📻")
+                desc = item["label"][:72]
+            else:  # liner
+                dur  = _liner_duration(item["url"])
+                icon = "🎙️"
+                desc = item["label"][:72]
+
+            dur_str = f"  ({_fmt_dur(dur)})" if dur else ""
+            print(f"  {_fmt_clock(cursor)}  {icon}  {desc}{dur_str}")
+            cursor += dur
+
+        print(f"\n  Durée totale estimée : {_fmt_dur(cursor)}")
+        print(f"  Musique             : {_fmt_dur(total_music)}  ({n_music} pistes)")
         return
 
     # ── Génération complète ───────────────────────────────────────────────────

@@ -194,15 +194,21 @@
     .btn-round:active { transform: scale(0.94); }
 
     .btn-ghost {
-      background: none;
-      border: none;
-      color: #8b8fa8;
+      background: #252836;
+      border: 1px solid #333646;
+      border-radius: 50%;
+      width: 46px;
+      height: 46px;
+      color: #b0b4cc;
       font-size: 1.2rem;
       cursor: pointer;
-      padding: 0.5rem;
-      transition: color 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
     }
-    .btn-ghost:hover { color: #e8e8e8; }
+    .btn-ghost:hover { background: #2e3245; color: #e8e8e8; }
 
     .vol-wrap {
       display: flex;
@@ -321,14 +327,31 @@
 
   class RadioOrchestrator {
     constructor() {
-      this.seq       = [];   // séquence complète
-      this.pos       = 0;    // position courante
-      this.yt        = null; // YT.Player
-      this.ytReady   = false;
-      this.started   = false;
+      this.seq     = [];
+      this.pos     = 0;
+      this.yt      = null;
+      this.ytReady = false;
+      this.started = false;
 
-      this.trAudio   = document.getElementById('tr-audio');
+      this.trAudio = document.getElementById('tr-audio');
       this.trAudio.addEventListener('ended', () => this._next());
+
+      // Promise résolue quand l'API YT est disponible (callback ou polling)
+      this._ytApiReady = new Promise(resolve => {
+        window.onYouTubeIframeAPIReady = () => resolve();
+        // Polling de secours toutes les 200ms (max 15s)
+        let waited = 0;
+        const poll = setInterval(() => {
+          if (window.YT && window.YT.Player) {
+            clearInterval(poll);
+            resolve();
+          }
+          if ((waited += 200) >= 15000) {
+            clearInterval(poll);
+            resolve();
+          }
+        }, 200);
+      });
     }
 
     // ── Chargement ──────────────────────────────────────────
@@ -346,16 +369,22 @@
 
     // ── YouTube IFrame ───────────────────────────────────────
 
-    initYT() {
-      this.yt = new YT.Player('yt-player', {
-        width: '100%', height: '100%',
-        playerVars: { autoplay: 0, controls: 1, rel: 0, modestbranding: 1 },
-        events: {
-          onReady:       ()  => { this.ytReady = true; },
-          onStateChange: (e) => {
-            if (e.data === YT.PlayerState.ENDED) this._next();
+    _initYT() {
+      // Retourne une Promise résolue quand le player est prêt (onReady)
+      return new Promise(resolve => {
+        this.yt = new YT.Player('yt-player', {
+          width: '100%', height: '100%',
+          playerVars: { autoplay: 0, controls: 1, rel: 0, modestbranding: 1 },
+          events: {
+            onReady: () => {
+              this.ytReady = true;
+              resolve();
+            },
+            onStateChange: (e) => {
+              if (e.data === YT.PlayerState.ENDED) this._next();
+            },
           },
-        },
+        });
       });
     }
 
@@ -364,7 +393,13 @@
     async start() {
       if (this.seq.length === 0) await this.load();
       this.started = true;
-      this._show();
+      this._show();                   // rend #yt-player visible avant tout
+
+      await this._ytApiReady;         // attend l'API YouTube
+      if (window.YT && window.YT.Player && !this.yt) {
+        await this._initYT();         // attend onReady du player
+      }
+
       this._playAt(0);
     }
 
@@ -374,10 +409,14 @@
       this.pos = ((index % this.seq.length) + this.seq.length) % this.seq.length;
       const item = this.seq[this.pos];
 
-      // Sauter les liners sans videoId (non encore générés)
-      if (item.type === 'liner' && !item.videoId) {
+      // Sauter les liners sans URL (non encore générés)
+      if (item.type === 'liner' && !item.url) {
         return this._playAt(this.pos + 1);
       }
+
+      // Arrêter tout ce qui joue avant de passer à l'élément suivant
+      this.trAudio.pause();
+      if (this.ytReady) this.yt.stopVideo();
 
       this._updateNowPlaying(item);
       this._renderQueue();
@@ -391,16 +430,23 @@
         }
       } else {
         // Liner MP3 + transitions (flash info, horoscope) → HTML5 Audio
-        // YouTube s'arrête, reprendra automatiquement au prochain titre
         this._showTransition(item);
-        if (this.ytReady) this.yt.stopVideo();
-        this.trAudio.src    = item.url;
+        this.trAudio.src    = this._resolveUrl(item.url);
         this.trAudio.volume = this._vol() / 100;
-        this.trAudio.play().catch(() => {});
+        this.trAudio.load();
+        this.trAudio.play().catch(e => console.warn('[audio] échec play:', e.message, '\n  url:', item.url));
       }
     }
 
     _next() { this._playAt(this.pos + 1); }
+
+    // Les liners sont co-hébergés avec le player (docs/liners/) — on résout
+    // l'URL absolue GitHub Pages en chemin relatif pour que ça marche en local
+    // ET sur GitHub Pages sans avoir besoin de pousser d'abord.
+    _resolveUrl(url) {
+      const base = 'https://famibelle.github.io/FlashInfoKarukera/';
+      return url.startsWith(base) ? url.slice(base.length) : url;
+    }
 
     // ── Lecture / pause ──────────────────────────────────────
 
@@ -428,7 +474,7 @@
 
     _show() {
       document.getElementById('start-screen').style.display  = 'none';
-      document.getElementById('player-screen').style.display = '';
+      document.getElementById('player-screen').style.display = 'block';
       document.getElementById('live-dot').classList.add('on');
     }
 
@@ -499,14 +545,10 @@
 
   // ── Bootstrap ─────────────────────────────────────────────────────────────────
 
-  const radio   = new RadioOrchestrator();
+  const radio   = new RadioOrchestrator();   // onYouTubeIframeAPIReady posé dans le constructeur
   const btnPlay = document.getElementById('btn-play');
 
-  // Préchargement de la séquence en arrière-plan
-  radio.load();
-
-  // YouTube IFrame API callback global
-  window.onYouTubeIframeAPIReady = () => radio.initYT();
+  radio.load();   // préchargement séquence en arrière-plan
 
   document.getElementById('start-btn').addEventListener('click', () => radio.start());
   btnPlay.addEventListener('click', () => radio.togglePlay());
