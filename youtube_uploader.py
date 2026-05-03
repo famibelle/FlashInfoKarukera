@@ -317,7 +317,7 @@ _mistral_last_call: float = 0.0
 _MISTRAL_MIN_INTERVAL = 4.0  # secondes minimum entre deux appels Mistral
 
 
-def _mistral_chat(system: str, user: str, max_retries: int = 4) -> str:
+def _mistral_chat(system: str, user: str, max_retries: int = 4, label: str = "") -> str:
     """Appelle l'API Mistral chat avec throttle inter-appels et backoff exponentiel sur 429."""
     import time
     import urllib.error
@@ -330,7 +330,9 @@ def _mistral_chat(system: str, user: str, max_retries: int = 4) -> str:
     # Respecter l'intervalle minimum entre appels pour éviter le rate limit
     elapsed = time.time() - _mistral_last_call
     if elapsed < _MISTRAL_MIN_INTERVAL:
-        time.sleep(_MISTRAL_MIN_INTERVAL - elapsed)
+        wait_pre = _MISTRAL_MIN_INTERVAL - elapsed
+        logger.info(f"  Mistral throttle — attente {wait_pre:.1f}s [{label}]")
+        time.sleep(wait_pre)
 
     payload = json.dumps({
         "model": MISTRAL_CHAT_MODEL,
@@ -358,7 +360,7 @@ def _mistral_chat(system: str, user: str, max_retries: int = 4) -> str:
             return data["choices"][0]["message"]["content"].strip()
         except urllib.error.HTTPError as e:
             if e.code == 429 and attempt < max_retries:
-                logger.warning(f"Mistral 429 — attente {wait}s (tentative {attempt}/{max_retries})")
+                logger.warning(f"  Mistral 429 [{label}] — attente {wait}s (tentative {attempt}/{max_retries})")
                 time.sleep(wait)
                 wait *= 2
             else:
@@ -494,7 +496,7 @@ def get_announcement_mp3_url(bloc: str, artists: list[str]) -> str | None:
 
     logger.info(f"  Liner {bloc} — 🤖 LLM ({artists_str[:40]})…")
     try:
-        text = _mistral_chat(system_prompt, user_prompt)
+        text = _mistral_chat(system_prompt, user_prompt, label=f"liner {bloc} / {artists_str[:30]}")
         logger.info(f"  Liner {bloc} — ✅ LLM OK ({len(text)} cars)")
     except Exception as e:
         logger.warning(f"Liner {bloc} ignoré — ❌ LLM : {e}")
@@ -618,7 +620,7 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
 
     logger.info(f"  Capsule {slot_id} — 🤖 LLM…")
     try:
-        text = _mistral_chat(system_prompt, user_prompt)
+        text = _mistral_chat(system_prompt, user_prompt, label=f"capsule {slot_id}")
         logger.info(f"  Capsule {slot_id} — ✅ LLM OK ({len(text)} cars)")
     except Exception as e:
         logger.warning(f"Capsule {slot_id} ignorée — ❌ LLM : {e}")
