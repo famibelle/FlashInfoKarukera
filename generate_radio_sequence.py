@@ -33,7 +33,7 @@ PODCAST_XML = Path("docs/podcast.xml")
 OUTPUT      = Path("docs/radio_sequence.json")
 
 TRACKS_PER_LINER   = 6   # pistes entre deux liners
-TRACKS_PER_CAPSULE = 12  # pistes entre deux capsules culturelles
+TRACKS_PER_CAPSULE = 6   # pistes entre deux capsules culturelles
 HOROSCOPE_AFTER    = 6   # chansons entre flash info et horoscope
 
 # Répartition des blocs (doit correspondre à playlist_24h.py)
@@ -262,9 +262,18 @@ def build_sequence(pool: list[dict], slots: dict[str, dict]) -> list[dict]:
                 print(f"  📰 Flash info {bloc}", flush=True)
                 seq.append(slots[flash_key])
 
-            print(f"  🎵 {HOROSCOPE_AFTER} pistes brutes (avant horoscope)", flush=True)
-            seq += _raw_music(pool[pos : pos + HOROSCOPE_AFTER])
+            first_group   = pool[pos : pos + HOROSCOPE_AFTER]
+            first_artists = list(dict.fromkeys(t.get("artist", "") for t in first_group if t.get("artist")))
+            print(f"  🎙️  Liner {bloc} [1-{HOROSCOPE_AFTER}] — {', '.join(first_artists[:3])}", flush=True)
+            liner = get_liner(first_artists[:5], bloc)
+            if liner:
+                seq.append(liner)
+            seq += _raw_music(first_group)
             pos += HOROSCOPE_AFTER
+            print(f"  🌺 Capsule {bloc}-pre (après {HOROSCOPE_AFTER} pistes)", flush=True)
+            capsule = get_capsule(bloc, 0)
+            if capsule:
+                seq.append(capsule)
 
             horo_key = f"horoscope_{bloc}"
             if horo_key in slots:
