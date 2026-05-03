@@ -291,9 +291,13 @@ def main() -> None:
                         help="Affiche le pool musical et quitte")
     parser.add_argument("--transitions", action="store_true",
                         help="Affiche les transitions du podcast RSS et quitte")
-    parser.add_argument("--test-liner",  metavar="ARTISTES",
+    parser.add_argument("--test-liner",   metavar="ARTISTES",
                         help="Teste la génération d'un liner (artistes séparés par des virgules)")
-    parser.add_argument("--bloc",        choices=["matin", "midi", "soir"], default="matin",
+    parser.add_argument("--test-capsule", action="store_true",
+                        help="Teste la génération et la lecture d'une capsule culturelle")
+    parser.add_argument("--slot",         default="test-0",
+                        help="Identifiant de slot pour --test-capsule (défaut : test-0)")
+    parser.add_argument("--bloc",         choices=["matin", "midi", "soir"], default="matin",
                         help="Bloc pour --test-liner (défaut : matin)")
     parser.add_argument("--skip-liners", action="store_true",
                         help="Construit la séquence sans générer de liners (rapide)")
@@ -339,6 +343,35 @@ def main() -> None:
                 print(f"   Fichier : {local} ({local.stat().st_size // 1024} Ko)")
         else:
             print("⚠️  Liner non généré (voir les erreurs ci-dessus)")
+        return
+
+    # ── --test-capsule ────────────────────────────────────────────────────────
+    if args.test_capsule:
+        import subprocess
+        slot_id = args.slot
+        print(f"Test capsule — slot : {slot_id}")
+        print("  Appel get_capsule_mp3_url…")
+        from youtube_uploader import get_capsule_mp3_url
+        url = get_capsule_mp3_url(slot_id)
+        if not url:
+            print("⚠️  Capsule non générée (voir les erreurs ci-dessus)")
+            return
+        print(f"✅ Capsule générée")
+        print(f"   URL     : {url}")
+        local = Path("docs/capsules") / url.rsplit("/", 1)[-1]
+        if local.exists():
+            size_kb = local.stat().st_size // 1024
+            print(f"   Fichier : {local} ({size_kb} Ko)")
+        else:
+            print(f"   ⚠️  Fichier local introuvable : {local}")
+            return
+        for player in ("mpg123", "mpg321", "ffplay", "aplay"):
+            if subprocess.run(["which", player], capture_output=True).returncode == 0:
+                print(f"\n▶ Lecture avec {player} :")
+                subprocess.run([player, str(local)])
+                break
+        else:
+            print("⚠️  Aucun lecteur audio trouvé (mpg123, mpg321, ffplay, aplay)")
         return
 
     # ── --programme ───────────────────────────────────────────────────────────
