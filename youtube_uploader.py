@@ -498,6 +498,33 @@ def get_announcement_mp3_url(bloc: str, artists: list[str]) -> str | None:
 # ── Capsules culturelles ──────────────────────────────────────────────────────
 
 CAPSULES_DIR = Path("docs/capsules")
+_SEP = "─" * 64
+
+
+def _verbose_print(system_prompt: str, user_prompt: str, text: str | None = None, from_cache: bool = False):
+    print(f"\n{_SEP}")
+    print("SYSTEM PROMPT :")
+    print(_SEP)
+    print(system_prompt)
+    print(f"\n{_SEP}")
+    print("USER PROMPT :")
+    print(_SEP)
+    print(user_prompt)
+    if text is not None:
+        src = " (depuis cache)" if from_cache else ""
+        print(f"\n{_SEP}")
+        print(f"RÉPONSE LLM{src} :")
+        print(_SEP)
+        print(text)
+    print(_SEP)
+
+
+def _verbose_print_response(text: str):
+    print(f"\n{_SEP}")
+    print("RÉPONSE LLM :")
+    print(_SEP)
+    print(text)
+    print(_SEP)
 
 
 def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
@@ -510,13 +537,7 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
     cache_key = f"capsule_{today}_{slot_id}"
     cache     = load_cache()
 
-    if cache_key in cache and cache[cache_key]:
-        url      = cache[cache_key]
-        filename = url.rsplit("/", 1)[-1]
-        if (CAPSULES_DIR / filename).exists():
-            logger.info(f"Capsule {slot_id} depuis cache → {url}")
-            return url
-
+    # Construire les prompts d'abord (nécessaire pour verbose même en cas de cache)
     try:
         system_prompt = (
             _load_prompt("kreyol_resistance_symbol.md")
@@ -553,17 +574,19 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
     else:
         user_prompt = base_user_prompt
 
+    # Cache hit — retour anticipé, mais on affiche quand même en verbose
+    if cache_key in cache and cache[cache_key]:
+        url      = cache[cache_key]
+        filename = url.rsplit("/", 1)[-1]
+        if (CAPSULES_DIR / filename).exists():
+            logger.info(f"Capsule {slot_id} depuis cache → {url}")
+            if verbose:
+                cached_text = cache.get(cache_key + "_text", "")
+                _verbose_print(system_prompt, user_prompt, cached_text, from_cache=True)
+            return url
+
     if verbose:
-        sep = "─" * 60
-        print(f"\n{sep}")
-        print("SYSTEM PROMPT :")
-        print(sep)
-        print(system_prompt)
-        print(f"\n{sep}")
-        print("USER PROMPT :")
-        print(sep)
-        print(user_prompt)
-        print(sep)
+        _verbose_print(system_prompt, user_prompt, text=None)
 
     try:
         text = _mistral_chat(system_prompt, user_prompt)
@@ -573,12 +596,7 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
         return None
 
     if verbose:
-        sep = "─" * 60
-        print(f"\n{sep}")
-        print("RÉPONSE LLM :")
-        print(sep)
-        print(text)
-        print(sep)
+        _verbose_print_response(text)
 
     filename = f"capsule-{today}-{slot_id.replace('_', '-')}.mp3"
     CAPSULES_DIR.mkdir(parents=True, exist_ok=True)
