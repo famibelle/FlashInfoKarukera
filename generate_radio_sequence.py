@@ -19,7 +19,7 @@ import os
 import random
 import re
 import sys
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 try:
@@ -332,6 +332,17 @@ def build_sequence(pool: list[dict], slots: dict[str, dict]) -> list[dict]:
             if "flash_midi" in slots:
                 print(f"  📰 Flash info midi", flush=True)
                 seq.append(slots["flash_midi"])
+                # Insert interview after flash info midi
+                interview_path = Path("docs/audio/Emissions") / f"interview-resistance-creole-{date.today().isoformat()}.mp3"
+                if interview_path.exists():
+                    gh_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/{interview_path.name}"
+                    seq.append({
+                        "type": "transition", "subtype": "interview",
+                        "url": gh_url,
+                        "label": f"Interview — Creole Resistance Symbols — {date.today().isoformat()}",
+                        "icon": "🎙️"
+                    })
+                    print(f"  🎙️  Interview insérée après flash info midi", flush=True)
             print(f"  🎵 {size} pistes avec liners/capsules…", flush=True)
             seq += _music_with_liners(pool[pos : pos + size], bloc)
             pos += size

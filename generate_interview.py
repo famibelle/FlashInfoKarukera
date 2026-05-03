@@ -398,40 +398,6 @@ def main() -> None:
     size_kb = out_mp3.stat().st_size // 1024
     print(f"✅ MP3 → {out_mp3} ({size_kb} Ko)")
 
-    # ── Intégration dans radio_sequence.json ──────────────────────────────────
-    radio_sequence_path = Path("docs/radio_sequence.json")
-    if radio_sequence_path.exists():
-        radio_data = json.loads(radio_sequence_path.read_text(encoding="utf-8"))
-        
-        # Trouver l'index du flash info du midi
-        midi_flash_index = None
-        for i, item in enumerate(radio_data["sequence"]):
-            if (item.get("type") == "transition" and 
-                item.get("subtype") == "flash_info" and 
-                "midi" in item.get("label", "").lower()):
-                midi_flash_index = i
-                break
-        
-        if midi_flash_index is not None:
-            # URL GitHub Pages du MP3 généré
-            gh_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/{out_mp3.name}"
-            interview_item = {
-                "type": "transition",
-                "subtype": "interview",
-                "url": gh_url,
-                "label": f"Interview — Creole Resistance Symbols — {today}",
-                "icon": "🎙️"
-            }
-            # Insérer juste après le flash info du midi
-            radio_data["sequence"].insert(midi_flash_index + 1, interview_item)
-            radio_data["transitions"] += 1
-            radio_sequence_path.write_text(
-                json.dumps(radio_data, ensure_ascii=False, indent=2), encoding="utf-8"
-            )
-            print(f"✅ Interview insérée dans radio_sequence.json (après flash info midi)")
-        else:
-            print("⚠️  Flash info midi introuvable dans radio_sequence.json — interview non insérée")
-
     # Lecture automatique du MP3 si --dry-run n'est pas activé
     if not args.dry_run:
         print("\n🔊 Lecture du fichier audio...")

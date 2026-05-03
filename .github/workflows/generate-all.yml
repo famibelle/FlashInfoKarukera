@@ -1,6 +1,10 @@
 name: 🚀 Génération complète — Orchestrateur séquentiel
 
 on:
+  schedule:
+    - cron: '0 4 * * *'   # 4h UTC
+    - cron: '0 11 * * *'  # 11h UTC
+    - cron: '0 17 * * *'  # 17h UTC
   workflow_dispatch:
     inputs:
       verbose:
@@ -84,10 +88,11 @@ jobs:
           echo "▶️  Capsules run #$RUN_ID"
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
-  # 5️⃣ Interview (après capsules)
+  # 5️⃣ Interview (après capsules) → NON BLOQUANT
   interview:
-    needs: capsules  # ✅ SÉQUENTIEL : attend capsules
+    needs: capsules
     runs-on: ubuntu-latest
+    continue-on-error: true  # ✅ Échec toléré, ne bloque pas la suite
     steps:
       - name: Déclencher Interview Radio
         env:
@@ -98,12 +103,12 @@ jobs:
           sleep 8
           RUN_ID=$(gh run list --workflow=interview-daily.yml --repo "$REPO" \
             --limit 1 --json databaseId --jq '.[0].databaseId')
-          echo "▶️  Interview run #$RUN_ID"
-          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
+          echo "▶️  Interview run #$RUN_ID (non bloquant)"
+          gh run watch "$RUN_ID" --interval 20 --repo "$REPO" || true
 
-  # 6️⃣ Playlist (après interview) → DERNIER
+  # 6️⃣ Playlist (après capsules) → DERNIER
   playlist:
-    needs: interview  # ✅ SÉQUENTIEL : attend interview
+    needs: capsules  # ✅ Ne dépend plus de interview
     runs-on: ubuntu-latest
     steps:
       - name: Déclencher mise à jour playlist radio
