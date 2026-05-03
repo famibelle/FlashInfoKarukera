@@ -114,7 +114,7 @@ jobs:
           git add playlists/youtube_cache.json playlists/music_pool_cache.json playlists/playlist_24h_id.txt playlists/youtube_playlist_id.txt docs/radio_sequence.json
           [ -d docs/liners ]   && git add docs/liners/   || true
           [ -d docs/capsules ] && git add docs/capsules/ || true
-          git diff --cached --quiet || git commit -m "chore: update radio sequence & caches [skip ci]"
+          git diff --cached --quiet || git commit -m "chore: update radio sequence & caches"
           git pull --rebase -X theirs origin main
           git push
 
