@@ -409,8 +409,8 @@
       this.pos = ((index % this.seq.length) + this.seq.length) % this.seq.length;
       const item = this.seq[this.pos];
 
-      // Sauter les liners sans URL (non encore générés)
-      if (item.type === 'liner' && !item.url) {
+      // Sauter les liners/capsules sans URL (non encore générés)
+      if ((item.type === 'liner' || item.type === 'capsule') && !item.url) {
         return this._playAt(this.pos + 1);
       }
 
@@ -509,6 +509,10 @@
         document.getElementById('np-type').textContent   = '🎙️ Dans un moment…';
         document.getElementById('np-title').textContent  = item.label || 'Annonce à venir';
         document.getElementById('np-artist').textContent = '';
+      } else if (item.type === 'capsule') {
+        document.getElementById('np-type').textContent   = '🌺 Capsule culturelle';
+        document.getElementById('np-title').textContent  = item.label || 'Guadeloupe';
+        document.getElementById('np-artist').textContent = '';
       } else {
         document.getElementById('np-type').textContent   = subtypeLabels[item.subtype] || '🎙️';
         document.getElementById('np-title').textContent  = item.label || 'Transition';
@@ -528,6 +532,9 @@
         } else if (it.type === 'liner') {
           icon  = '🎙️';
           title = it.label || 'Dans un moment…';
+        } else if (it.type === 'capsule') {
+          icon  = '🌺';
+          title = it.label || 'Capsule culturelle';
         } else {
           icon  = subtypeIcons[it.subtype] || '🎙️';
           title = it.label || 'Transition';
