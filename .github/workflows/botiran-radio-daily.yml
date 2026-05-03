@@ -64,6 +64,9 @@ jobs:
     name: Generate & Update Radio Playlist
 
     steps:
+      - name: 🔑 Configurer les credentials git pour le submodule privé
+        run: git config --global url."https://${{ secrets.PAT_SUBMODULE }}@github.com/".insteadOf "https://github.com/"
+
       - name: 📥 Checkout code
         uses: actions/checkout@v4
         with:
