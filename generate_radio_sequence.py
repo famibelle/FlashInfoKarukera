@@ -19,7 +19,7 @@ import os
 import random
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 try:
@@ -48,6 +48,49 @@ BLOCK_LABELS = {
     "midi":  "cet après-midi",
     "soir":  "ce soir",
 }
+
+
+# ── Nettoyage des fichiers audio anciens ─────────────────────────────────────
+
+def _cleanup_old_audio(max_age_h: int = 48) -> int:
+    """Supprime liners et capsules plus vieux que max_age_h heures.
+
+    Utilise la date encodée dans le nom de fichier (pas le mtime, instable en CI).
+    Liners  : liner-{bloc}-{YYYY}-W{WW}-*.mp3
+    Capsules: capsule-{YYYY}-{MM}-{DD}-*.mp3
+    """
+    cutoff     = datetime.now(timezone.utc) - timedelta(hours=max_age_h)
+    deleted    = 0
+    liner_re   = re.compile(r'liner-\w+-(\d{4})-W(\d+)-')
+    capsule_re = re.compile(r'capsule-(\d{4})-(\d{2})-(\d{2})-')
+
+    for f in Path("docs/liners").glob("*.mp3") if Path("docs/liners").exists() else []:
+        m = liner_re.match(f.name)
+        if not m:
+            continue
+        try:
+            # Utilise le dimanche (fin de semaine) pour éviter de supprimer
+            # des liners générés en cours de semaine dont le lundi est > 48h
+            week_end = datetime.fromisocalendar(int(m.group(1)), int(m.group(2)), 7).replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        if week_end < cutoff:
+            f.unlink()
+            deleted += 1
+
+    for f in Path("docs/capsules").glob("*.mp3") if Path("docs/capsules").exists() else []:
+        m = capsule_re.match(f.name)
+        if not m:
+            continue
+        try:
+            cap_dt = datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        if cap_dt < cutoff:
+            f.unlink()
+            deleted += 1
+
+    return deleted
 
 
 # ── Pool musical ──────────────────────────────────────────────────────────────
@@ -444,6 +487,10 @@ def main() -> None:
         return
 
     # ── Génération complète ───────────────────────────────────────────────────
+    deleted = _cleanup_old_audio()
+    if deleted:
+        print(f"🧹 {deleted} fichier(s) audio supprimé(s) (> 48h)", flush=True)
+
     pool  = load_pool()
     slots = load_transitions()
 
