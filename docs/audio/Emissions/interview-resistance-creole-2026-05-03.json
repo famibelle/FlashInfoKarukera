@@ -1,0 +1,77 @@
+{
+  "date": "2026-05-03",
+  "title": "Creole Resistance Symbols — Radio Interview",
+  "duration": "~3 minutes",
+  "speakers": {
+    "journalist": {
+      "name": "Jane",
+      "voice_base": "en_jane"
+    },
+    "expert": {
+      "name": "Paul",
+      "voice_base": "en_paul"
+    }
+  },
+  "dialogue": [
+    {
+      "speaker": "journalist",
+      "text": "Good morning, everyone! Today, we're diving into a truly fascinating topic with cultural researcher Paul Laurent. Paul, you've spent years studying the living symbols of Creole resistance in Guadeloupe—animals, plants, and trees that carry deep meaning for the Arawaks, Maroons, and enslaved people. Let’s start with something simple: why are these symbols still so powerful today?",
+      "tone": "excited"
+    },
+    {
+      "speaker": "expert",
+      "text": "Good morning, Jane! These symbols aren’t just relics of the past—they’re alive in the language, music, and even the way people move. Take the *igwann péyi*, the iguana. It’s not just an animal; it’s a lesson in survival. It stays still, blends into the forest, and waits for the right moment to act. That patience? That’s resistance. When you hear the slow, deep rhythms of gwoka music, the iguana is right there in the sound.",
+      "tone": "happy"
+    },
+    {
+      "speaker": "journalist",
+      "text": "That’s incredible! So these symbols aren’t just metaphors—they’re woven into the culture itself. What about something like the *zandoli*, the anole lizard? I’ve heard it’s a symbol of resilience, but how?",
+      "tone": "curious"
+    },
+    {
+      "speaker": "expert",
+      "text": "Ah, the *zandoli*! It’s the ultimate survivor. If you try to catch it, it’ll drop its tail and escape. That’s resilience—losing a piece of yourself but still moving forward. And here’s the beautiful part: every island has its own *zandoli*, just like every community adapted to its struggles without losing its identity. It’s a message to the diaspora: you can change, but you’re still you.",
+      "tone": "excited"
+    },
+    {
+      "speaker": "journalist",
+      "text": "That’s so poetic. Now, let’s talk about plants. The *manyòk*, or manioc, is one you’ve mentioned before. How did it become a symbol of freedom?",
+      "tone": "curious"
+    },
+    {
+      "speaker": "expert",
+      "text": "Manioc was sacred to the Arawaks, and for enslaved people, it was a lifeline. They grew it in secret gardens in the hills, feeding Maroons who had escaped. It wasn’t just food—it was autonomy. The masters controlled the sugar cane fields, but manioc? That was theirs. In Creole, *manyòk* isn’t just a root; it’s the word for survival itself.",
+      "tone": "neutral"
+    },
+    {
+      "speaker": "journalist",
+      "text": "That’s powerful. And what about trees, like the *gommié blan*? I’ve heard it’s tied to freedom in a different way.",
+      "tone": "curious"
+    },
+    {
+      "speaker": "expert",
+      "text": "The *gommié blan* was the Kalinagos’ tree. They used it to carve canoes for war and escape. Its resin prepared warriors for battle, and its wood carried them across the sea. It’s the tree of mobility—of refusing to be trapped. When you hear music that feels like a journey, like a crossing, that’s the *gommié blan* carrying the sound.",
+      "tone": "happy"
+    },
+    {
+      "speaker": "journalist",
+      "text": "Paul, this is such a rich way of understanding history—not as something locked in the past, but as something alive in the world around us. Before we go, is there one symbol that really stands out to you as the heart of Creole resistance?",
+      "tone": "excited"
+    },
+    {
+      "speaker": "expert",
+      "text": "That’s a tough one, but I’d say the *foumi manyok*, the manioc ant. It’s invisible, it works in silence, and it builds something lasting. Resistance isn’t always loud—sometimes it’s the quiet, collective strength of people holding onto their culture, their language, their music. The ant doesn’t ask for permission; it just keeps going.",
+      "tone": "neutral"
+    },
+    {
+      "speaker": "journalist",
+      "text": "Paul Laurent, thank you so much for sharing these stories with us today. It’s been a joy to explore how nature and culture intertwine in Guadeloupe’s history of resistance.",
+      "tone": "happy"
+    },
+    {
+      "speaker": "expert",
+      "text": "Thank you, Jane. Remember, these symbols aren’t just in books—they’re in the land, the music, and the way we speak. Listen closely, and you’ll hear them.",
+      "tone": "happy"
+    }
+  ]
+}
