@@ -22,6 +22,12 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 POOL_CACHE  = Path("playlists/music_pool_cache.json")
 PODCAST_XML = Path("docs/podcast.xml")
 OUTPUT      = Path("docs/radio_sequence.json")
