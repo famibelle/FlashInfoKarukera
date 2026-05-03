@@ -1,10 +1,10 @@
-name: 🚀 Génération complète — Flash + Horoscope + Playlist
+name: 🚀 Génération complète — Orchestrateur séquentiel
 
 on:
   workflow_dispatch:
     inputs:
       verbose:
-        description: "Verbose — affiche le détail de chaque étape dans flash info et horoscope"
+        description: "Verbose — affiche le détail de chaque étape"
         type: boolean
         required: false
         default: false
@@ -13,27 +13,11 @@ permissions:
   contents: write
 
 jobs:
-  flash-info:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Déclencher et attendre Flash Info Guadeloupe
-        env:
-          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
-          REPO: ${{ github.repository }}
-          VERBOSE: ${{ github.event.inputs.verbose }}
-        run: |
-          FIELDS="--field verbose=${VERBOSE:-false}"
-          gh workflow run flash-info.yml --repo "$REPO" $FIELDS
-          sleep 8
-          RUN_ID=$(gh run list --workflow=flash-info.yml --repo "$REPO" \
-            --limit 1 --json databaseId --jq '.[0].databaseId')
-          echo "▶️  Flash Info run #$RUN_ID (verbose=${VERBOSE:-false})"
-          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
-
+  # 1️⃣ Horoscope (premier, car utilisé par Flash Info)
   horoscope:
     runs-on: ubuntu-latest
     steps:
-      - name: Déclencher et attendre Horoscope Quotidien
+      - name: Déclencher Horoscope Quotidien
         env:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
@@ -47,11 +31,82 @@ jobs:
           echo "▶️  Horoscope run #$RUN_ID (verbose=${VERBOSE:-false})"
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
-  playlist:
-    needs: [flash-info, horoscope]
+  # 2️⃣ Flash Info (après horoscope)
+  flash-info:
+    needs: horoscope  # ✅ SÉQUENTIEL : attend horoscope
     runs-on: ubuntu-latest
     steps:
-      - name: Déclencher et attendre mise à jour playlist radio
+      - name: Déclencher Flash Info Guadeloupe
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+          VERBOSE: ${{ github.event.inputs.verbose }}
+        run: |
+          FIELDS="--field verbose=${VERBOSE:-false}"
+          gh workflow run flash-info.yml --repo "$REPO" $FIELDS
+          sleep 8
+          RUN_ID=$(gh run list --workflow=flash-info.yml --repo "$REPO" \
+            --limit 1 --json databaseId --jq '.[0].databaseId')
+          echo "▶️  Flash Info run #$RUN_ID (verbose=${VERBOSE:-false})"
+          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
+
+  # 3️⃣ Liners (après flash info)
+  liners:
+    needs: flash-info  # ✅ SÉQUENTIEL : attend flash info
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher Liners Quotidiens
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh workflow run liners-daily.yml --repo "$REPO"
+          sleep 8
+          RUN_ID=$(gh run list --workflow=liners-daily.yml --repo "$REPO" \
+            --limit 1 --json databaseId --jq '.[0].databaseId')
+          echo "▶️  Liners run #$RUN_ID"
+          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
+
+  # 4️⃣ Capsules (après liners)
+  capsules:
+    needs: liners  # ✅ SÉQUENTIEL : attend liners
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher Capsules Culturelles
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh workflow run capsules-daily.yml --repo "$REPO"
+          sleep 8
+          RUN_ID=$(gh run list --workflow=capsules-daily.yml --repo "$REPO" \
+            --limit 1 --json databaseId --jq '.[0].databaseId')
+          echo "▶️  Capsules run #$RUN_ID"
+          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
+
+  # 5️⃣ Interview (après capsules)
+  interview:
+    needs: capsules  # ✅ SÉQUENTIEL : attend capsules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher Interview Radio
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh workflow run interview-daily.yml --repo "$REPO"
+          sleep 8
+          RUN_ID=$(gh run list --workflow=interview-daily.yml --repo "$REPO" \
+            --limit 1 --json databaseId --jq '.[0].databaseId')
+          echo "▶️  Interview run #$RUN_ID"
+          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
+
+  # 6️⃣ Playlist (après interview) → DERNIER
+  playlist:
+    needs: interview  # ✅ SÉQUENTIEL : attend interview
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher mise à jour playlist radio
         env:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
@@ -60,42 +115,5 @@ jobs:
           sleep 8
           RUN_ID=$(gh run list --workflow=botiran-radio-daily.yml --repo "$REPO" \
             --limit 1 --json databaseId --jq '.[0].databaseId')
-          echo "▶️  Playlist run #$RUN_ID"
+          echo "▶️  Playlist run #$RUN_ID (DERNIER)"
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
-
-  interview:
-    needs: playlist
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write  # Nécessaire pour commiter l'interview
-    steps:
-      - name: Configurer les credentials git pour le submodule privé
-        run: git config --global url."https://${{ secrets.PAT_SUBMODULE }}@github.com/".insteadOf "https://github.com/"
-
-      - name: Checkout code et submodules
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT_SUBMODULE }}
-          submodules: true
-
-      - name: Configurer Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Installer les dépendances
-        run: pip install -r requirements.txt
-
-      - name: Générer l'interview radio
-        env:
-          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
-        run: python generate_interview.py
-
-      - name: Commit l'interview et la séquence mise à jour
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/audio/Emissions/ docs/radio_sequence.json
-          git diff --cached --quiet || git commit -m "feat: interview radio + intégration playlist [skip ci]"
-          git pull --rebase origin main
-          git push

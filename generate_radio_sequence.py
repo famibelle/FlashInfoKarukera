@@ -364,6 +364,10 @@ def main() -> None:
                         help="Affiche la séquence sans écrire radio_sequence.json")
     parser.add_argument("--programme",   action="store_true",
                         help="Affiche le programme détaillé de la journée avec horaires estimés")
+    parser.add_argument("--generate-liners-only", action="store_true",
+                        help="Génère uniquement les liners pour la journée (matin/midi/soir)")
+    parser.add_argument("--generate-capsules-only", action="store_true",
+                        help="Génère uniquement les capsules culturelles pour la journée")
     args = parser.parse_args()
 
     # ── --pool ────────────────────────────────────────────────────────────────
@@ -484,6 +488,42 @@ def main() -> None:
 
         print(f"\n  Durée totale estimée : {_fmt_dur(cursor)}")
         print(f"  Musique             : {_fmt_dur(total_music)}  ({n_music} pistes)")
+        return
+
+    # ── --generate-liners-only ────────────────────────────────────────────
+    if args.generate_liners_only:
+        print("🎙️  Génération des liners pour tous les blocs...")
+        for bloc in ["matin", "midi", "soir"]:
+            print(f"\n  Bloc : {bloc}")
+            # Simuler une liste d'artistes pour le bloc (à adapter)
+            # Pour l'instant, on génère des liners avec des artistes fictifs
+            # En production, il faudrait récupérer les vrais artistes du bloc
+            artists = ["Artiste1", "Artiste2", "Artiste3"]  # À adapter
+            liner = get_liner(artists, bloc)
+            if liner:
+                print(f"  ✅ Liner généré : {liner['label']}")
+                print(f"     URL : {liner['url']}")
+            else:
+                print(f"  ⚠️  Liner non généré pour {bloc}")
+        return
+
+    # ── --generate-capsules-only ───────────────────────────────────────────
+    if args.generate_capsules_only:
+        print("🌺 Génération des capsules culturelles pour tous les slots...")
+        # Slots typiques : matin-0, matin-6, matin-12, matin-18, midi-0, midi-6, midi-12, midi-18, midi-24, soir-0, soir-6, soir-12, soir-18
+        slots = [
+            "matin-0", "matin-6", "matin-12", "matin-18",
+            "midi-0", "midi-6", "midi-12", "midi-18", "midi-24",
+            "soir-0", "soir-6", "soir-12", "soir-18"
+        ]
+        for slot_id in slots:
+            print(f"\n  Slot : {slot_id}")
+            capsule = get_capsule(slot_id, verbose=args.verbose)
+            if capsule:
+                print(f"  ✅ Capsule générée : {capsule['label']}")
+                print(f"     URL : {capsule['url']}")
+            else:
+                print(f"  ⚠️  Capsule non générée pour {slot_id}")
         return
 
     # ── Génération complète ───────────────────────────────────────────────────
