@@ -78,9 +78,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 🎬 Install ffmpeg
-        run: sudo apt-get install -y ffmpeg
-
       - name: 🔑 Write YouTube Music auth file
         run: echo '${{ secrets.YTMUSIC_BROWSER_JSON_B64 }}' | base64 -d > browser.json
 
@@ -101,8 +98,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add playlists/youtube_cache.json playlists/music_pool_cache.json playlists/playlist_24h_id.txt playlists/youtube_playlist_id.txt
-          git diff --cached --quiet || git commit -m "chore: update playlists cache [skip ci]"
+          git add playlists/youtube_cache.json playlists/music_pool_cache.json playlists/playlist_24h_id.txt playlists/youtube_playlist_id.txt docs/radio_sequence.json docs/liners/
+          git diff --cached --quiet || git commit -m "chore: update radio sequence & caches [skip ci]"
           git pull origin main --strategy-option theirs  # <-- Force la version distante en cas de conflit
           git push
 
