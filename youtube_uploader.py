@@ -7,6 +7,7 @@ Cache les uploads pour éviter les doublons.
 """
 
 import os
+import random
 import re
 import json
 import unicodedata
@@ -391,11 +392,11 @@ def get_or_upload_announcement(bloc: str, artists: list[str]) -> str | None:
         system_prompt = (
             _load_prompt("solitude_ame.md")
             + "\n\n"
-            + _load_prompt("kreyol_resistance_symbol.md")
+            + _select_random_ref_lines(3)
             + "\n\n"
             + _load_prompt("solitude.md")
         )
-    except FileNotFoundError as e:
+    except Exception as e:
         logger.warning(f"Annonce {bloc} ignorée : {e}")
         return None
 
@@ -458,6 +459,41 @@ def get_or_upload_announcement(bloc: str, artists: list[str]) -> str | None:
 LINERS_DIR = Path("docs/liners")
 
 
+def _select_random_ref_lines(num_per_file: int = 3) -> str:
+    """Sélectionne N lignes aléatoires dans chaque fichier _ref.md des tableaux."""
+    PROMPTS_DIR = Path(__file__).parent / "private" / "prompts"
+    SOURCE_FILES = [
+        PROMPTS_DIR / "kreyol_resistance_symbol_ref.md",
+        PROMPTS_DIR / "faune_guadeloupe_ref.md",
+        PROMPTS_DIR / "flore_guadeloupe_ref.md",
+    ]
+
+    all_data_lines = []
+    for filepath in SOURCE_FILES:
+        content = filepath.read_text(encoding="utf-8")
+        lines = content.split('\n')
+        for line in lines:
+            stripped = line.strip()
+            if not stripped or '---' in stripped:
+                continue
+            pipe_count = stripped.count('|')
+            if pipe_count >= 4:
+                clean_line = stripped[1:-1].strip()
+                cells = [c.strip() for c in clean_line.split('|')]
+                if len([c for c in cells if c]) >= 3:
+                    clean_line = clean_line.replace('|', '\t')
+                    all_data_lines.append(clean_line)
+
+    # Sélectionner 3 lignes par fichier (9 total)
+    random.shuffle(all_data_lines)
+    selected = all_data_lines[:9]  # 3 × 3 fichiers
+
+    result = "Randomly selected Creole reference material:\n\n"
+    for i, line in enumerate(selected, 1):
+        result += f"{i}. {line}\n"
+    return result
+
+
 def get_announcement_mp3_url(bloc: str, artists: list[str]) -> str | None:
     """
     Génère le liner MP3, le sauvegarde dans docs/liners/ et retourne son URL
@@ -482,11 +518,11 @@ def get_announcement_mp3_url(bloc: str, artists: list[str]) -> str | None:
         system_prompt = (
             _load_prompt("solitude_ame.md")
             + "\n\n"
-            + _load_prompt("kreyol_resistance_symbol.md")
+            + _select_random_ref_lines(3)
             + "\n\n"
             + _load_prompt("solitude.md")
         )
-    except FileNotFoundError as e:
+    except Exception as e:
         logger.warning(f"Liner {bloc} ignoré : {e}")
         return None
 
@@ -570,15 +606,11 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
     # Construire les prompts d'abord (nécessaire pour verbose même en cas de cache)
     try:
         system_prompt = (
-            _load_prompt("kreyol_resistance_symbol.md")
-            + "\n\n"
-            + _load_prompt("flore_guadeloupe_ref.md")
-            + "\n\n"
-            + _load_prompt("faune_guadeloupe.md")
+            _select_random_ref_lines(3)
             + "\n\n"
             + _load_prompt("histoire_guadeloupe.md")
         )
-    except FileNotFoundError as e:
+    except Exception as e:
         logger.warning(f"Capsule {slot_id} ignorée : {e}")
         return None
 
