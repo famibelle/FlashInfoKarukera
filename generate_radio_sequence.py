@@ -32,7 +32,7 @@ POOL_CACHE  = Path("playlists/music_pool_cache.json")
 PODCAST_XML = Path("docs/podcast.xml")
 OUTPUT      = Path("docs/radio_sequence.json")
 
-TRACKS_PER_LINER   = 15  # pistes entre deux liners
+TRACKS_PER_LINER   = 6   # pistes entre deux liners
 HOROSCOPE_AFTER    = 6   # chansons entre flash info et horoscope
 
 # Répartition des blocs (doit correspondre à playlist_24h.py)
