@@ -9,6 +9,7 @@ Cache les uploads pour éviter les doublons.
 import os
 import re
 import json
+import unicodedata
 import logging
 import subprocess
 import tempfile
@@ -473,7 +474,10 @@ def get_announcement_mp3_url(bloc: str, artists: list[str]) -> str | None:
         logger.warning(f"Liner {bloc} ignoré — Mistral : {e}")
         return None
 
-    artists_slug = "_".join(a[:12].replace(" ", "-").lower() for a in sorted(artists[:3]))
+    def _slug(s: str) -> str:
+        n = unicodedata.normalize("NFKD", s)
+        return re.sub(r"[^a-z0-9-]", "", n.encode("ascii", "ignore").decode().replace(" ", "-").lower())
+    artists_slug = "_".join(_slug(a[:12]) for a in sorted(artists[:3]))
     filename     = f"liner-{bloc}-{week}-{artists_slug}.mp3"
     LINERS_DIR.mkdir(parents=True, exist_ok=True)
     mp3_path = LINERS_DIR / filename
