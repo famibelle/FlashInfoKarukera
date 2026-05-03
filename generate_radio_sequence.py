@@ -210,7 +210,7 @@ def _music_with_liners(tracks: list[dict], bloc: str) -> list[dict]:
         group       = tracks[i : i + TRACKS_PER_LINER]
         tracks_done = i + len(group)
         artists     = list(dict.fromkeys(t.get("artist", "") for t in group if t.get("artist")))
-        print(f"    🎙️  Liner {bloc} [{i+1}-{tracks_done}] — {', '.join(artists[:3])}")
+        print(f"    🎙️  Liner {bloc} [{i+1}-{tracks_done}] — {', '.join(artists[:3])}", flush=True)
         liner   = get_liner(artists[:5], bloc)
         if liner:
             result.append(liner)
@@ -226,7 +226,7 @@ def _music_with_liners(tracks: list[dict], bloc: str) -> list[dict]:
                 item["duration"] = t["duration"]
             result.append(item)
         if tracks_done % TRACKS_PER_CAPSULE == 0:
-            print(f"    🌺 Capsule {bloc}-{tracks_done} (après {tracks_done} pistes)")
+            print(f"    🌺 Capsule {bloc}-{tracks_done} (après {tracks_done} pistes)", flush=True)
             capsule = get_capsule(bloc, tracks_done)
             if capsule:
                 result.append(capsule)
@@ -255,32 +255,32 @@ def build_sequence(pool: list[dict], slots: dict[str, dict]) -> list[dict]:
     pos = 0
 
     for bloc, size in BLOCK_SIZES.items():
-        print(f"\n── Bloc {bloc} ({size} pistes) ──────────────────────────────")
+        print(f"\n── Bloc {bloc} ({size} pistes) ──────────────────────────────", flush=True)
         if bloc in ("matin", "soir"):
             flash_key = f"flash_{bloc}"
             if flash_key in slots:
-                print(f"  📰 Flash info {bloc}")
+                print(f"  📰 Flash info {bloc}", flush=True)
                 seq.append(slots[flash_key])
 
-            print(f"  🎵 {HOROSCOPE_AFTER} pistes brutes (avant horoscope)")
+            print(f"  🎵 {HOROSCOPE_AFTER} pistes brutes (avant horoscope)", flush=True)
             seq += _raw_music(pool[pos : pos + HOROSCOPE_AFTER])
             pos += HOROSCOPE_AFTER
 
             horo_key = f"horoscope_{bloc}"
             if horo_key in slots:
-                print(f"  ✨ Horoscope {bloc}")
+                print(f"  ✨ Horoscope {bloc}", flush=True)
                 seq.append(slots[horo_key])
 
             remaining = size - HOROSCOPE_AFTER
-            print(f"  🎵 {remaining} pistes avec liners/capsules…")
+            print(f"  🎵 {remaining} pistes avec liners/capsules…", flush=True)
             seq += _music_with_liners(pool[pos : pos + remaining], bloc)
             pos += remaining
 
         elif bloc == "midi":
             if "flash_midi" in slots:
-                print(f"  📰 Flash info midi")
+                print(f"  📰 Flash info midi", flush=True)
                 seq.append(slots["flash_midi"])
-            print(f"  🎵 {size} pistes avec liners/capsules…")
+            print(f"  🎵 {size} pistes avec liners/capsules…", flush=True)
             seq += _music_with_liners(pool[pos : pos + size], bloc)
             pos += size
 
