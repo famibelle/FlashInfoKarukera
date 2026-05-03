@@ -2,6 +2,12 @@ name: 🚀 Génération complète — Flash + Horoscope + Playlist
 
 on:
   workflow_dispatch:
+    inputs:
+      verbose:
+        description: "Verbose — affiche le détail de chaque étape dans flash info et horoscope"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -14,12 +20,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
+          VERBOSE: ${{ github.event.inputs.verbose }}
         run: |
-          gh workflow run flash-info.yml --repo "$REPO"
+          FIELDS="--field verbose=${VERBOSE:-false}"
+          gh workflow run flash-info.yml --repo "$REPO" $FIELDS
           sleep 8
           RUN_ID=$(gh run list --workflow=flash-info.yml --repo "$REPO" \
             --limit 1 --json databaseId --jq '.[0].databaseId')
-          echo "▶️  Flash Info run #$RUN_ID"
+          echo "▶️  Flash Info run #$RUN_ID (verbose=${VERBOSE:-false})"
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
   horoscope:
@@ -29,12 +37,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
+          VERBOSE: ${{ github.event.inputs.verbose }}
         run: |
-          gh workflow run horoscope-daily.yml --repo "$REPO"
+          FIELDS="--field verbose=${VERBOSE:-false}"
+          gh workflow run horoscope-daily.yml --repo "$REPO" $FIELDS
           sleep 8
           RUN_ID=$(gh run list --workflow=horoscope-daily.yml --repo "$REPO" \
             --limit 1 --json databaseId --jq '.[0].databaseId')
-          echo "▶️  Horoscope run #$RUN_ID"
+          echo "▶️  Horoscope run #$RUN_ID (verbose=${VERBOSE:-false})"
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
   playlist:
