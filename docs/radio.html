@@ -150,6 +150,22 @@
     }
 
     .tr-icon { font-size: 2.8rem; display: inline-block; will-change: transform; }
+
+    /* ── Mode iframe embarqué ── */
+    body.embedded {
+      padding: 0;
+      background: transparent;
+      min-height: unset;
+      align-items: stretch;
+    }
+    body.embedded > .back { display: none; }
+    body.embedded > .card {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      max-width: none;
+    }
     .tr-label {
       font-size: 1rem;
       font-weight: 600;
@@ -900,6 +916,9 @@
     document.getElementById('toggle-arrow').textContent = radio._playlistOpen ? '▲' : '▼';
     if (radio._playlistOpen) radio._renderFullPlaylist();
   });
+
+  // Mode embarqué : retire fond et padding quand chargé dans un iframe
+  if (window.self !== window.top) document.body.classList.add('embedded');
   </script>
 </body>
 </html>
