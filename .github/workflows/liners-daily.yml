@@ -42,9 +42,6 @@ jobs:
         run: |
           git config user.name "github-actions[Liners]"
           git config user.email "github-actions@github.com"
-          git add docs/liners/ playlists/youtube_cache.json
+          git add docs/liners/
           git diff --cached --quiet || git commit -m "feat: liners quotidiens [skip ci]"
-          git stash --include-untracked || true
-          git pull --rebase -X theirs origin main
-          git stash drop 2>/dev/null || true
           git push

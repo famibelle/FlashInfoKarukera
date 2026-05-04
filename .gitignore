@@ -27,5 +27,8 @@ playlists/radio_playlist_*.json
 playlists/radio_playlist_*.m3u
 playlists/radio_playlist_*.txt
 
+# Cache files (générés automatiquement)
+playlists/youtube_cache.json
+
 # Claude related files
 .claude/
