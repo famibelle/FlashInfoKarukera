@@ -18,7 +18,11 @@ from typing import List
 from dotenv import load_dotenv
 from ytmusicapi import YTMusic
 from caribbean_db import CARIBBEAN_TRACKS
-from youtube_uploader import get_or_upload_episode, get_or_upload_horoscope, get_or_upload_announcement
+# Note: Les fonctions YouTube ont été retirées (publication YouTube désactivée)
+# Stubs pour compatibilité
+get_or_upload_episode = lambda mode: None
+get_or_upload_horoscope = lambda mode: None
+get_or_upload_announcement = lambda mode, artists: None
 
 load_dotenv()
 
@@ -373,7 +377,7 @@ def test_announce_pipeline(yt: YTMusic):
       2. Génère le texte via Mistral
       3. Synthèse TTS fr_marie_happy → MP3 dans announce_tests/YYYY-MM-DD_HHMMSS/
     """
-    from youtube_uploader import _mistral_chat, _load_prompt, ANNOUNCE_BLOC_LABEL
+    from generate_liner import _mistral_chat, _load_prompt, ANNOUNCE_BLOC_LABEL
     from tts_utils import tts_call, normalize_for_tts
 
     pool = resolve_music_pool(yt)

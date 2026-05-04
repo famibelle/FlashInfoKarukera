@@ -15,10 +15,13 @@ from typing import List, Dict, Set
 from dotenv import load_dotenv
 from ytmusicapi import YTMusic
 from caribbean_db import get_tracks_by_mode
-from youtube_uploader import (
-    get_or_upload_episode, get_or_upload_horoscope,
-    get_or_create_youtube_playlist, update_youtube_playlist, get_youtube_client,
-)
+# Note: Les fonctions YouTube ont été retirées (publication YouTube désactivée)
+# Stubs pour compatibilité
+get_or_upload_episode = lambda mode: None
+get_or_upload_horoscope = lambda mode: None
+get_or_create_youtube_playlist = lambda yt, title, description: None
+update_youtube_playlist = lambda yt, playlist_id, video_ids, title, description: None
+get_youtube_client = lambda: None
 
 load_dotenv()
 

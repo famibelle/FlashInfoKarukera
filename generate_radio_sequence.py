@@ -217,7 +217,7 @@ def _fmt_dur(seconds: int) -> str:
 def get_capsule(bloc: str, position: int) -> dict | None:
     """Génère ou récupère la capsule culturelle pour ce slot."""
     try:
-        from youtube_uploader import get_capsule_mp3_url
+        from generate_liner import get_capsule_mp3_url
         url = get_capsule_mp3_url(f"{bloc}-{position}")
         if url:
             return {"type": "capsule", "url": url, "label": "Capsule culturelle Guadeloupe", "icon": "🌺"}
@@ -226,17 +226,25 @@ def get_capsule(bloc: str, position: int) -> dict | None:
     return None
 
 
-def get_liner(artists: list[str], bloc: str) -> dict | None:
+def get_liner(artists: list[str], bloc: str, voice: str = "corinne") -> dict | None:
     """
     Génère ou récupère le liner MP3 pour ce groupe d'artistes.
     Retourne { type:"liner", url, label } ou None si non disponible.
+    
+    Args:
+        artists: Liste des artistes à annoncer
+        bloc: Moment de la journée (matin/midi/soir)
+        voice: "solitude" ou "corinne" (défaut: corinne)
     """
     if not artists:
         return None
     try:
-        from youtube_uploader import get_announcement_mp3_url
-        url = get_announcement_mp3_url(bloc, artists[:5])
-        if url:
+        from generate_liner import get_announcement_mp3_url
+        url, label = get_announcement_mp3_url(bloc, artists[:5], voice=voice)
+        if url and label:
+            return {"type": "liner", "url": url, "label": label, "icon": "🎙️"}
+        elif url:
+            # Fallback si label vide (cache ancien sans JSON)
             label = f"Dans un moment : {', '.join(artists[:3])}"
             return {"type": "liner", "url": url, "label": label, "icon": "🎙️"}
     except Exception as e:
@@ -438,7 +446,7 @@ def main() -> None:
         print(f"Test capsule — slot : {slot_id}")
         print("  Appel get_capsule_mp3_url…")
         from datetime import date
-        from youtube_uploader import get_capsule_mp3_url, load_cache
+        from generate_liner import get_capsule_mp3_url, load_cache
         url = get_capsule_mp3_url(slot_id, verbose=args.verbose)
         if not url:
             print("⚠️  Capsule non générée (voir les erreurs ci-dessus)")
