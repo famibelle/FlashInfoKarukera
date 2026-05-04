@@ -35,9 +35,13 @@ jobs:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: |
           # Générer les liners pour matin, midi, soir
-          python generate_radio_sequence.py --generate-liners-only --bloc matin
-          python generate_radio_sequence.py --generate-liners-only --bloc midi
-          python generate_radio_sequence.py --generate-liners-only --bloc soir
+          VERBOSE_ARG=""
+          if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
+            VERBOSE_ARG="--verbose"
+          fi
+          python generate_radio_sequence.py --generate-liners-only --bloc matin $VERBOSE_ARG
+          python generate_radio_sequence.py --generate-liners-only --bloc midi  $VERBOSE_ARG
+          python generate_radio_sequence.py --generate-liners-only --bloc soir  $VERBOSE_ARG
 
       - name: Commit les liners générés
         run: |

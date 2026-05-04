@@ -2,6 +2,12 @@ name: Interview Radio Quotidienne
 
 on:
   workflow_dispatch:
+    inputs:
+      verbose:
+        description: "Mode verbeux (affiche le détail de chaque étape)"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write

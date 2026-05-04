@@ -36,7 +36,11 @@ jobs:
         run: |
           # Générer les capsules pour tous les slots
           # Slots : matin-0, matin-6, matin-12, matin-18, midi-0, midi-6, midi-12, midi-18, midi-24, soir-0, etc.
-          python generate_radio_sequence.py --generate-capsules-only
+          ARGS="--generate-capsules-only"
+          if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
+            ARGS="$ARGS --verbose"
+          fi
+          python generate_radio_sequence.py $ARGS
 
       - name: Commit les capsules générées
         run: |
@@ -47,4 +51,6 @@ jobs:
           git stash --include-untracked || true
           git pull --rebase -X theirs origin main
           git stash drop 2>/dev/null || true
+          git push
+ll || true
           git push
