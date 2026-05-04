@@ -159,12 +159,12 @@ def _norm_acronyms(text: str) -> str:
         text = text.replace(dotted + ".", sm).replace(dotted, sm)
     text = _re.sub(
         r"\b([A-Z](?:\.[A-Z]){1,4})\.?\b",
-        lambda m: m.group(1).replace(".", ". ") + ".",
+        lambda m: " ".join(m.group(1).split(".")) + " ",
         text,
     )
     return _re.sub(
         r"\b([A-Z]{2,5})\b",
-        lambda m: m.group(1) if m.group(1) in _SIGLES_MOT else ". ".join(m.group(1)) + ".",
+        lambda m: m.group(1) if m.group(1) in _SIGLES_MOT else " ".join(m.group(1)),
         text,
     )
 
@@ -181,6 +181,8 @@ def _norm_abbreviations(text: str) -> str:
 
 
 def _norm_honorifics(text: str) -> str:
+    # Lookahead [A-ZÀ-Ü][a-zà-ü] : uniquement devant un nom propre, pas devant une lettre isolée d'un sigle épelé
+    text = _re.sub(r"\bM\.\s+(?=[A-ZÀ-Ü][a-zà-ü])", "Monsieur ", text)
     return _re.sub(r"\bMe\b(?=\s+[A-ZÀ-Ü])", "Maître", text)
 
 
@@ -203,8 +205,8 @@ _NORMALIZATION_PIPELINE = (
     _norm_hours,
     _norm_units,
     _norm_plain_numbers,
-    _norm_acronyms,
     _norm_abbreviations,
+    _norm_acronyms,
     _norm_honorifics,
     _norm_residual,
 )

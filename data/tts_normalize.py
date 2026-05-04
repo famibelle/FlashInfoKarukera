@@ -110,7 +110,7 @@ SIGLES_MOT = {"RCI", "UNESCO", "UNICEF", "NASA"}
 
 # Abréviations et symboles à développer pour le TTS
 ABBREVS = {
-    "M.": "Monsieur", "Mme.": "Madame", "Mme": "Madame",
+    "Mme.": "Madame", "Mme": "Madame",
     "Dr.": "Docteur", "Dr": "Docteur", "Pr.": "Professeur", "Pr": "Professeur",
     "St.": "Saint", "Ste.": "Sainte",
     "km/h": "kilomètres par heure", "km": "kilomètres",
