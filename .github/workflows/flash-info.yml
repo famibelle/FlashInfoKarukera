@@ -69,6 +69,7 @@ permissions:
 
 jobs:
   flash-info:
+    name: 📰 Générer Flash Info
     runs-on: ubuntu-latest
     timeout-minutes: 30
 

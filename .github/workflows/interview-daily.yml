@@ -8,6 +8,7 @@ permissions:
 
 jobs:
   generate-interview:
+    name: 🎤 Générer Interview
     runs-on: ubuntu-latest
     timeout-minutes: 15
 

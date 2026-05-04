@@ -8,6 +8,7 @@ permissions:
 
 jobs:
   generate-capsules:
+    name: 🌺 Générer Capsules
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
