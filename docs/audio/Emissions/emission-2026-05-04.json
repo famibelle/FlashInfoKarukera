@@ -1,0 +1,37 @@
+{
+  "date": "2026-05-04",
+  "type": "emission",
+  "title": "Émission culturelle — Découverte de la Guadeloupe",
+  "duration": "~3 minutes",
+  "word_count": 487,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Zouk La Sé Sel Medikaman Nou Ni",
+    "artist": "Kassav",
+    "genre": "zouk"
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Plante / Résistance            \t Iyam                     \t Igname                    \t Dioscorea alata           \t ⭐⭐⭐ RÉSISTANCE ALIMENTAIRE \t Tubercule africain apporté dans les cales des bateaux négriers — volontairement ou non. Sa culture dans les jardins de case représentait un lien direct avec l'Afrique et une autonomie nutritive essentielle. L'igname est un acte de mémoire autant que de nourriture."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Ritual / Quimbois     \t Kabrit nwè                   \t Cabri noir                \t Capra aegagrus hircus          \t ⭐⭐⭐ ANIMAL RITUEL  \t Animal de sacrifice dans les rituels les plus puissants du quimbois. Son sang est utilisé dans certains pactes spirituels."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Arbre fruitier         \t Sapotiyié                    \t Sapotillier             \t Manilkara zapota               \t Grand arbre lent à croître. Fruit très sucré. Latex utilisé comme gomme naturelle."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Source thermale       \t Douches de Matouba                       \t Saint-Claude                        \t ⭐⭐ Symbolique         \t Eaux soufrées à 950 m d'altitude. Purification avant ou après l'ascension de la Soufrière. Matouba est aussi le lieu où Delgrès se fit sauter plutôt que de se rendre."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**27 avril 1848** \t **Affirmation de la culture créole et africaine** \t **Victoire culturelle : reconnaissance de l’identité guadeloupéenne, mais lutte persistante contre le racisme** \t Développement du Gwoka et du *Bigi Poko*, organisation de fêtes (ex. : *Fête des Morts*) \t Toute l’île, surtout zones rurales (Les Abymes, Baie-Mahault) \t Vaudou Rada : intégration du Gwoka dans les rituels (ex. : *tambour Assotor*)"
+    }
+  },
+  "text": "Ce soir, on plonge au cœur des racines qui font vibrer la Guadeloupe bien au-delà des plages de carte postale. Entre les notes envoûtantes du zouk et les murmures des jardins de case, il y a tout un monde qui respire, résiste et danse. *\"Zouk la sé sel médikaman nou ni\"*, disait Kassav – et si on explorait ensemble ces remèdes vivants, ces symboles qui soignent l’âme d’un peuple ?\n\nParlons d’abord d’un arbre qui prend son temps, comme pour mieux nous rappeler que les bonnes choses ne se pressent jamais. Le sapotillier, ce géant tranquille, met des années à offrir ses fruits dorés, juteux à en faire pâlir les mangues ! Son latex, autrefois utilisé comme gomme à mâcher naturelle, colle aux doigts comme un souvenir d’enfance. Et quand on croque dans sa sapotille, c’est toute la douceur de la terre qui explose en bouche. Un arbre patient, généreux… presque une métaphore de la vie ici, non ?\n\nMais si on creuse un peu, la terre guadeloupéenne cache des trésors bien plus rebelles. Prenez l’igname, ce tubercule africain arrivé dans les cales des bateaux négriers. Les ancêtres l’ont planté, choyé, fait pousser en cachette dans les jardins de case. Une acte de résistance pure : se nourrir soi-même, garder un lien avec l’Afrique, défier ceux qui voulaient les affamer. Aujourd’hui encore, une assiette d’igname, c’est bien plus qu’un repas – c’est un manifeste. Et parlons du cabri noir, ce compagnon mystérieux des quimboiseurs ! Son sang, utilisé dans les rituels les plus puissants, scelle des pactes entre les mondes. Un animal sacré, presque un passeur entre les vivants et les esprits.\n\nSaviez-vous que certaines eaux ont le pouvoir de laver bien plus que la peau ? À Matouba, les douches de soufre grésillent à 950 mètres d’altitude, comme une offrande de la Soufrière elle-même. Les pèlerins s’y purifient avant ou après l’ascension du volcan, mais ce lieu porte aussi la mémoire de Louis Delgrès. C’est ici qu’il choisit de se sacrifier plutôt que de se rendre, en 1802. L’eau qui coule ici n’est pas seulement chaude – elle charrie des siècles de lutte, de foi et de résilience.\n\nAlors oui, la Guadeloupe, c’est cette alchimie unique : des racines qui s’accrochent à la terre africaine, des animaux qui dansent avec les esprits, des arbres qui murmurent des légendes, et des eaux qui emportent les peines. Le 27 avril 1848, l’abolition de l’esclavage a ouvert une nouvelle page, mais la vraie victoire, c’est cette culture qui a survécu, transformé le gwoka en tambour sacré, fait du *Bigi Poko* une fête de la liberté. *\"Zouk la sé sel médikaman nou ni\"*… Et si le vrai remède, c’était justement ça ? Cette fierté qui pulse dans chaque note de musique, chaque igname plantée, chaque cabri sacrifié sous les étoiles. Alors ce soir, laissez-vous porter par cette énergie – parce que la Guadeloupe, elle, ne s’est jamais arrêtée de danser.",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-04.mp3"
+}
