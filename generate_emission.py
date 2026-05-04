@@ -388,10 +388,11 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Texte seul, sans TTS")
     args = parser.parse_args()
     
-    # Vérifier les fichiers sources
+    # Avertir si des fichiers sources manquent (mais continuer)
     missing = [f for f in SOURCE_FILES if not f.exists()]
     if missing:
-        sys.exit(f"❌ Fichiers manquants : {missing}")
+        for f in missing:
+            print(f"⚠️  Fichier introuvable : {f}", file=sys.stderr)
     
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     today = date.today().isoformat()

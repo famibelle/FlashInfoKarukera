@@ -123,6 +123,8 @@
     /* Transition overlay */
     #transition-overlay {
       display: none;
+      position: relative;
+      overflow: hidden;
       width: 100%;
       aspect-ratio: 16/9;
       border-radius: 12px;
@@ -137,7 +139,17 @@
 
     #transition-overlay.on { display: flex; }
 
-    .tr-icon { font-size: 2.8rem; }
+    #eq-canvas {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 72px;
+      border-radius: 0 0 11px 11px;
+      pointer-events: none;
+    }
+
+    .tr-icon { font-size: 2.8rem; display: inline-block; will-change: transform; }
     .tr-label {
       font-size: 1rem;
       font-weight: 600;
@@ -374,6 +386,7 @@
         <div class="tr-icon" id="tr-icon">🎙️</div>
         <div class="tr-label" id="tr-label"></div>
         <div class="tr-timer" id="tr-timer"></div>
+        <canvas id="eq-canvas"></canvas>
       </div>
 
       <div class="now-playing">
@@ -428,8 +441,12 @@
 
       this._playlistOpen = false;
       this._pendingVideo = null;
-      this._isSeeking = false; // Flag pour éviter les boucles lors du seek
-      this._ytUpdateInterval = null; // Timer pour mise à jour du seek pendant lecture YT
+      this._isSeeking = false;
+      this._ytUpdateInterval = null;
+      this._eqRaf      = null;
+      this._audioCtx   = null;
+      this._analyser   = null;
+      this._freqData   = null;
 
       this.trAudio = document.getElementById('tr-audio');
       this.seekSlider = document.getElementById('seek-slider');
@@ -578,6 +595,7 @@
     async start() {
       if (this.seq.length === 0) await this.load();
       this.started = true;
+      this._initAudioContext();
       this._show();
       // iOS : _playAt(0) avant tout await pour rester dans le contexte du geste utilisateur.
       // Si le premier item est de la musique et YT pas encore prêt, _pendingVideo prend le relais.
@@ -671,6 +689,7 @@
     }
 
     _showYT(isLiner = false) {
+      this._stopEQ();
       document.getElementById('yt-wrap').style.display = '';
       document.getElementById('transition-overlay').classList.remove('on');
       document.getElementById('tr-timer').textContent = '';
@@ -685,6 +704,7 @@
       ovl.classList.add('on');
       document.getElementById('tr-icon').textContent  = item.icon  || '🎙️';
       document.getElementById('tr-label').textContent = item.label || '';
+      this._startEQ();
     }
 
     _updateNowPlaying(item) {
@@ -779,7 +799,77 @@
         row.addEventListener('click', () => this._playAt(parseInt(row.dataset.idx)));
       });
     }
-  }
+    // ── Égaliseur rétro pixel ─────────────────────────────────────
+    _initAudioContext() {
+      if (this._audioCtx) { this._audioCtx.resume(); return; }
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      this._audioCtx = new AC();
+      this._analyser = this._audioCtx.createAnalyser();
+      this._analyser.fftSize = 64;
+      this._analyser.smoothingTimeConstant = 0.8;
+      const src = this._audioCtx.createMediaElementSource(this.trAudio);
+      src.connect(this._analyser);
+      this._analyser.connect(this._audioCtx.destination);
+      this._freqData = new Uint8Array(this._analyser.frequencyBinCount);
+    }
+
+    _startEQ() {
+      const canvas = document.getElementById('eq-canvas');
+      if (!canvas || !this._analyser) return;
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width;
+      const H = canvas.height;
+      const BLOCK  = 4;   // hauteur d'un pixel-bloc
+      const VGAP   = 1;   // espace vertical entre blocs
+      const BAR_W  = 10;  // largeur d'une barre
+      const BAR_GAP = 3;  // espace entre barres
+      const N = 24;       // nombre fixe de barres (centré)
+      const maxBlocks = Math.floor(H / (BLOCK + VGAP));
+
+      const trIcon = document.getElementById('tr-icon');
+
+      const draw = () => {
+        this._eqRaf = requestAnimationFrame(draw);
+        this._analyser.getByteFrequencyData(this._freqData);
+
+        // Énergie basse fréquence (bins 1-6) → pulse de l'emoji
+        let bassSum = 0;
+        const bassEnd = Math.min(6, this._freqData.length);
+        for (let j = 1; j <= bassEnd; j++) bassSum += this._freqData[j];
+        const bassAvg = bassSum / bassEnd / 255;
+        if (trIcon) trIcon.style.transform = `scale(${(1 + bassAvg * 0.45).toFixed(3)})`;
+
+        // Barres EQ
+        ctx.clearRect(0, 0, W, H);
+        const totalW = N * (BAR_W + BAR_GAP) - BAR_GAP;
+        const startX = (W - totalW) / 2;
+        for (let i = 0; i < N; i++) {
+          const bin = Math.floor(1 + (i / N) * this._freqData.length * 0.75);
+          const val = this._freqData[Math.min(bin, this._freqData.length - 1)] / 255;
+          const blocks = Math.round(val * maxBlocks);
+          const x = startX + i * (BAR_W + BAR_GAP);
+          for (let b = 0; b < blocks; b++) {
+            const r = b / maxBlocks;
+            ctx.fillStyle = r < 0.55 ? '#22c55e' : r < 0.80 ? '#eab308' : '#ef4444';
+            ctx.fillRect(x, H - (b + 1) * (BLOCK + VGAP), BAR_W, BLOCK);
+          }
+        }
+      };
+      if (this._eqRaf) cancelAnimationFrame(this._eqRaf);
+      draw();
+    }
+
+    _stopEQ() {
+      if (this._eqRaf) { cancelAnimationFrame(this._eqRaf); this._eqRaf = null; }
+      const canvas = document.getElementById('eq-canvas');
+      if (canvas) canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+      const trIcon = document.getElementById('tr-icon');
+      if (trIcon) trIcon.style.transform = '';
+    }
+  }   // fin RadioOrchestrator
 
   // ── Bootstrap ─────────────────────────────────────────────────────────────────
 
