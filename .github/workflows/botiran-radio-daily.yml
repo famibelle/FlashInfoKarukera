@@ -180,6 +180,15 @@ jobs:
     name: 🧹 Nettoyage & 💾 Commit
     runs-on: ubuntu-latest
     steps:
+      - name: 🔑 Configurer les credentials git pour le submodule privé
+        run: git config --global url."https://${{ secrets.PAT_SUBMODULE }}@github.com/".insteadOf "https://github.com/"
+
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.PAT_SUBMODULE }}
+
       - name: 🔄 Vérifier sync avec main (détection précoce)
         run: |
           git config user.name "github-actions[bot]"
@@ -196,15 +205,6 @@ jobs:
             }
             git stash pop || true
           fi
-
-      - name: 🔑 Configurer les credentials git pour le submodule privé
-        run: git config --global url."https://${{ secrets.PAT_SUBMODULE }}@github.com/".insteadOf "https://github.com/"
-
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
-        with:
-          submodules: true
-          token: ${{ secrets.PAT_SUBMODULE }}
 
       - name: 📥 Download caches playlist
         uses: actions/download-artifact@v4
