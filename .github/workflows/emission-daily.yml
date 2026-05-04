@@ -14,6 +14,7 @@ permissions:
 
 jobs:
   generate-emission:
+    name: 📻 Générer Émission
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
