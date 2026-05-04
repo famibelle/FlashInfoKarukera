@@ -22,11 +22,6 @@ on:
         type: boolean
         required: false
         default: true
-      run_liners:
-        description: "✅ Exécuter Liners Quotidiens"
-        type: boolean
-        required: false
-        default: true
       run_capsules:
         description: "✅ Exécuter Capsules Culturelles"
         type: boolean
@@ -87,25 +82,7 @@ jobs:
           echo "▶️  Flash Info run #$RUN_ID (verbose=${VERBOSE:-false})"
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
-  # 3️⃣ Liners
-  liners:
-    name: 🎙️ Liners
-    if: inputs.run_liners == true || github.event_name == 'schedule'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Déclencher Liners Quotidiens
-        env:
-          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
-          REPO: ${{ github.repository }}
-        run: |
-          gh workflow run liners-daily.yml --repo "$REPO"
-          sleep 8
-          RUN_ID=$(gh run list --workflow=liners-daily.yml --repo "$REPO" \
-            --limit 1 --json databaseId --jq '.[0].databaseId')
-          echo "▶️  Liners run #$RUN_ID"
-          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
-
-  # 4️⃣ Capsules
+  # 3️⃣ Capsules
   capsules:
     name: 🌺 Capsules
     if: inputs.run_capsules == true || github.event_name == 'schedule'
@@ -123,7 +100,7 @@ jobs:
           echo "▶️  Capsules run #$RUN_ID"
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
-  # 5️⃣ Émission → NON BLOQUANT
+  # 4️⃣ Émission → NON BLOQUANT
   emission:
     name: 📻 Émission
     if: inputs.run_emission == true || github.event_name == 'schedule'
@@ -142,7 +119,7 @@ jobs:
           echo "▶️  Émission run #$RUN_ID (non bloquant)"
           gh run watch "$RUN_ID" --interval 20 --repo "$REPO" || true
 
-  # 6️⃣ Interview (après capsules) → NON BLOQUANT - DÉSACTIVÉ TEMPORAIREMENT
+  # 5️⃣ Interview (après capsules) → NON BLOQUANT - DÉSACTIVÉ TEMPORAIREMENT
   # interview:
   #   needs: capsules
   #   runs-on: ubuntu-latest
@@ -160,7 +137,7 @@ jobs:
   #         echo "▶️  Interview run #$RUN_ID (non bloquant)"
   #         gh run watch "$RUN_ID" --interval 20 --repo "$REPO" || true
 
-  # 7️⃣ Playlist → DERNIER
+  # 6️⃣ Playlist → DERNIER
   playlist:
     name: 🎶 Playlist
     if: inputs.run_playlist == true || github.event_name == 'schedule'
