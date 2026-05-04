@@ -223,11 +223,17 @@ def get_announcement_mp3_url(bloc: str, artists: list[str], voice: str = "corinn
         logger.warning(f"Liner {bloc} ({voice}) ignoré — ❌ LLM : {e}")
         return None, None
 
-    # Troncature de sécurité : max 20 mots
+    # Troncature intelligente : max 28 mots, respecte les phrases
     words = text.split()
-    if len(words) > 20:
-        logger.warning(f"  Liner {bloc} ({voice}) — ⚠️  Tronqué de {len(words)} à 20 mots")
-        text = " ".join(words[:20])
+    if len(words) > 28:
+        truncated = []
+        for word in words[:28]:
+            truncated.append(word)
+            if word.endswith(('.', '!', '?', '…')):
+                break
+        if len(truncated) < len(words):
+            logger.warning(f"  Liner {bloc} ({voice}) — ⚠️  Tronqué de {len(words)} à {len(truncated)} mots")
+            text = " ".join(truncated)
 
     if verbose:
         print(f"  🗒️  Liner {bloc} texte : «{text}»", flush=True)
