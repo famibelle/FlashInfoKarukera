@@ -97,12 +97,13 @@ def _cleanup_old_audio(max_age_h: int = 48) -> int:
 
 # ── Pool musical ──────────────────────────────────────────────────────────────
 
-def load_pool() -> list[dict]:
+def load_pool(shuffle: bool = True) -> list[dict]:
     if not POOL_CACHE.exists():
         return []
     data = json.loads(POOL_CACHE.read_text())
     tracks = data.get("tracks", [])
-    random.shuffle(tracks)
+    if shuffle:
+        random.shuffle(tracks)
     return tracks
 
 
@@ -529,18 +530,36 @@ def main() -> None:
     # ── --generate-liners-only ────────────────────────────────────────────
     if args.generate_liners_only:
         print("🎙️  Génération des liners pour tous les blocs...")
+        # Charger le pool SANS shuffle pour une répartition déterministe
+        pool = load_pool(shuffle=False)
+        if not pool:
+            print("  ⚠️  Pool vide — impossible de générer les liners")
+            return
+        
+        # Répartir les pistes par bloc selon BLOCK_SIZES (27, 27, 26)
+        # Sans shuffle, l'ordre est déterministe
+        offsets = {"matin": 0, "midi": BLOCK_SIZES["matin"], "soir": BLOCK_SIZES["matin"] + BLOCK_SIZES["midi"]}
+        
         for bloc in ["matin", "midi", "soir"]:
-            print(f"\n  Bloc : {bloc}")
-            # Simuler une liste d'artistes pour le bloc (à adapter)
-            # Pour l'instant, on génère des liners avec des artistes fictifs
-            # En production, il faudrait récupérer les vrais artistes du bloc
-            artists = ["Artiste1", "Artiste2", "Artiste3"]  # À adapter
-            liner = get_liner(artists, bloc)
-            if liner:
-                print(f"  ✅ Liner généré : {liner['label']}")
-                print(f"     URL : {liner['url']}")
+            start = offsets[bloc]
+            end = start + BLOCK_SIZES[bloc]
+            bloc_tracks = pool[start:end]
+            
+            # Extraire les artistes uniques de ce bloc
+            artists = list(dict.fromkeys(
+                t.get("artist", "") for t in bloc_tracks if t.get("artist")
+            ))[:10]  # Max 10 artistes par liner
+            
+            print(f"\n  Bloc : {bloc} ({len(bloc_tracks)} pistes, {len(artists)} artistes)")
+            if artists:
+                liner = get_liner(artists, bloc)
+                if liner:
+                    print(f"  ✅ Liner généré : {liner['label']}")
+                    print(f"     URL : {liner['url']}")
+                else:
+                    print(f"  ⚠️  Liner non généré pour {bloc}")
             else:
-                print(f"  ⚠️  Liner non généré pour {bloc}")
+                print(f"  ⚠️  Aucun artiste trouvé pour {bloc}")
         return
 
     # ── --generate-capsules-only ───────────────────────────────────────────
