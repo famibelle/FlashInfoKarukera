@@ -124,7 +124,7 @@ def _mistral_chat(system: str, user: str, max_retries: int = 4, label: str = "")
             {"role": "system", "content": system},
             {"role": "user",   "content": user},
         ],
-        "max_tokens": 60,
+        "max_tokens": 35,
         "temperature": 0.85,
     }).encode()
     req = urllib.request.Request(
