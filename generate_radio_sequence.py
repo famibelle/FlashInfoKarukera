@@ -32,6 +32,8 @@ POOL_CACHE  = Path("playlists/music_pool_cache.json")
 PODCAST_XML = Path("docs/podcast.xml")
 OUTPUT      = Path("docs/radio_sequence.json")
 
+_verbose: bool = False
+
 TRACKS_PER_LINER   = 6   # pistes entre deux liners
 TRACKS_PER_CAPSULE = 6   # pistes entre deux capsules culturelles
 HOROSCOPE_AFTER    = 6   # chansons entre flash info et horoscope
@@ -240,7 +242,7 @@ def get_liner(artists: list[str], bloc: str, voice: str = "corinne") -> dict | N
         return None
     try:
         from generate_liner import get_announcement_mp3_url
-        url, label = get_announcement_mp3_url(bloc, artists[:5], voice=voice)
+        url, label = get_announcement_mp3_url(bloc, artists[:5], voice=voice, verbose=_verbose)
         if url and label:
             return {"type": "liner", "url": url, "label": label, "icon": "🎙️"}
         elif url:
@@ -400,6 +402,9 @@ def main() -> None:
     parser.add_argument("--generate-capsules-only", action="store_true",
                         help="Génère uniquement les capsules culturelles pour la journée")
     args = parser.parse_args()
+
+    global _verbose
+    _verbose = bool(args.verbose)
 
     # ── --pool ────────────────────────────────────────────────────────────────
     if args.pool:

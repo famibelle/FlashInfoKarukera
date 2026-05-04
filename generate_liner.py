@@ -153,7 +153,7 @@ def _mistral_chat(system: str, user: str, max_retries: int = 4, label: str = "")
 
 # ── Génération des liners ─────────────────────────────────────────────────────
 
-def get_announcement_mp3_url(bloc: str, artists: list[str], voice: str = "corinne") -> tuple[str | None, str | None]:
+def get_announcement_mp3_url(bloc: str, artists: list[str], voice: str = "corinne", verbose: bool = False) -> tuple[str | None, str | None]:
     """
     Génère un liner MP3, le sauvegarde dans docs/liners/ et retourne (url, label).
     
@@ -228,6 +228,9 @@ def get_announcement_mp3_url(bloc: str, artists: list[str], voice: str = "corinn
     if len(words) > 20:
         logger.warning(f"  Liner {bloc} ({voice}) — ⚠️  Tronqué de {len(words)} à 20 mots")
         text = " ".join(words[:20])
+
+    if verbose:
+        print(f"  🗒️  Liner {bloc} texte : «{text}»", flush=True)
 
     # Générer le nom de fichier
     def _slug(s: str) -> str:
