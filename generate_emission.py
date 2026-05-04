@@ -22,7 +22,8 @@ import random
 import subprocess
 import sys
 import tempfile
-from datetime import date
+from datetime import date, datetime
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 try:
@@ -446,8 +447,11 @@ def main():
     generate_audio(text, out_mp3)
     size_kb = out_mp3.stat().st_size // 1024
     print(f"✅ MP3 → {out_mp3} ({size_kb} Ko)")
+
+    # 5. Mise à jour du podcast.xml
+    _update_podcast_xml(out_mp3)
     
-    # 5. Lecture automatique du fichier
+    # 6. Lecture automatique du fichier
     print("\n🔊 Lecture du fichier audio...")
     try:
         # Essaye mpg123 d'abord
@@ -462,6 +466,95 @@ def main():
                 subprocess.run(["ffplay", "-autoexit", "-nodisp", str(out_mp3)], check=True)
             except (subprocess.CalledProcessError, FileNotFoundError):
                 print("   ⚠️  Aucun lecteur audio disponible (mpg123/afplay/ffplay). Installez-en un pour la lecture automatique.")
+
+
+# ── Mise à jour podcast.xml ───────────────────────────────────────────────
+
+def _indent_xml(elem, level=0):
+    """Indente correctement l'XML."""
+    i = "\n" + level * "  "
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = i + "  "
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+        for elem in elem:
+            _indent_xml(elem, level + 1)
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+    else:
+        if level and (not elem.tail or not elem.tail.strip()):
+            elem.tail = i
+
+
+def _update_podcast_xml(mp3_path: Path) -> None:
+    """Ajoute l'émission au fichier podcast.xml."""
+    PODCAST_PATH = Path("docs/podcast.xml")
+    if not PODCAST_PATH.exists():
+        print("⚠️  podcast.xml introuvable")
+        return
+
+    today = date.today()
+    mp3_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/{mp3_path.name}"
+    mp3_size = mp3_path.stat().st_size
+    pub_date = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
+
+    # Parse XML
+    try:
+        tree = ET.parse(PODCAST_PATH)
+        root = tree.getroot()
+        channel = root.find('channel')
+        if channel is None:
+            print("⚠️  Balise <channel> introuvable dans podcast.xml")
+            return
+
+        # Namespace itunes
+        NS_ITUNES = 'http://www.itunes.com/dtds/podcast-1.0.dtd'
+        
+        # Créer le nouvel item
+        item = ET.Element('item')
+        ET.SubElement(item, 'title').text = f"Émission culturelle — {today.isoformat()}"
+        desc = ET.SubElement(item, 'description')
+        desc.text = "Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe."
+        ET.SubElement(item, 'pubDate').text = pub_date
+        enc = ET.SubElement(item, 'enclosure')
+        enc.set('url', mp3_url)
+        enc.set('length', str(mp3_size))
+        enc.set('type', 'audio/mpeg')
+        ET.SubElement(item, 'guid', {'isPermaLink': 'false'}).text = f'emission-{today.isoformat()}'
+        # itunes:duration
+        ET.SubElement(item, f'{{{NS_ITUNES}}}duration').text = '180'
+        
+        # Ajouter l'item au channel (à la fin, convention RSS)
+        channel.append(item)
+
+        # S'assurer que le namespace itunes est déclaré sur la racine avec le préfixe 'itunes'
+        if 'xmlns:itunes' not in root.attrib:
+            # Conserver la déclaration existante du fichier original
+            # ElementTree peut avoir ajouté xmlns:ns0, on va la remplacer
+            for attr in list(root.attrib.keys()):
+                if attr.startswith('xmlns:') and root.attrib[attr] == NS_ITUNES:
+                    del root.attrib[attr]
+            root.set('xmlns:itunes', NS_ITUNES)
+        
+        # Sauvegarder avec bonne indentation
+        _indent_xml(root)
+        
+        # Écrire dans un buffer pour corriger les préfixes
+        import io
+        xml_buffer = io.StringIO()
+        tree.write(xml_buffer, encoding='unicode', xml_declaration=True)
+        xml_content = xml_buffer.getvalue()
+        
+        # Remplacer les préfixes nsX: par itunes:
+        xml_content = xml_content.replace('ns0:', 'itunes:')
+        xml_content = xml_content.replace('ns1:', 'itunes:')
+        xml_content = xml_content.replace('ns2:', 'itunes:')
+        
+        PODCAST_PATH.write_text(xml_content, encoding='utf-8')
+        print(f"✅ podcast.xml mis à jour avec l'émission")
+    except Exception as e:
+        print(f"⚠️  Erreur mise à jour podcast.xml: {e}")
 
 
 if __name__ == "__main__":
