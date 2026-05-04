@@ -826,7 +826,7 @@
       const VGAP   = 1;   // espace vertical entre blocs
       const BAR_W  = 10;  // largeur d'une barre
       const BAR_GAP = 3;  // espace entre barres
-      const N = 24;       // nombre fixe de barres (centré)
+      const N = Math.floor((W * 0.8) / (BAR_W + BAR_GAP)); // 80 % de la largeur
       const maxBlocks = Math.floor(H / (BLOCK + VGAP));
 
       const trIcon = document.getElementById('tr-icon');
