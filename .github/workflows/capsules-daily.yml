@@ -43,5 +43,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git add docs/capsules/ playlists/youtube_cache.json
           git diff --cached --quiet || git commit -m "feat: capsules culturelles quotidiennes [skip ci]"
-          git pull --rebase --autostash origin main
+          git stash --include-untracked || true
+          git pull --rebase origin main
+          git stash drop 2>/dev/null || true
           git push

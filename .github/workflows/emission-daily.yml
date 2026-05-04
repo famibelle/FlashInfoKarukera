@@ -52,5 +52,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git add docs/audio/Emissions/emission-*.mp3 docs/audio/Emissions/emission-*.json
           git diff --cached --quiet || git commit -m "feat: émission culturelle quotidienne [skip ci]"
-          git pull --rebase --autostash origin main
+          git stash --include-untracked || true
+          git pull --rebase origin main
+          git stash drop 2>/dev/null || true
           git push
