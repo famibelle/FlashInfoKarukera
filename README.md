@@ -744,6 +744,291 @@ python show_playlist.py [OPTIONS]
 | `--json` | Export JSON | `--json` |
 | `--stats` | Statistiques seulement | `--stats` |
 
+### 🎵 Player MP3 — Écoute et contrôle
+
+#### Écouter un fichier MP3 localement
+
+**Avec mpg123 (recommandé) :**
+```bash
+# Installer mpg123
+# Sur Mac: brew install mpg123
+# Sur Linux: sudo apt install mpg123
+
+# Écouter un fichier
+mpg123 docs/audio/flash-info/flash-info-20260503-matin.mp3
+
+# Contrôles en direct pendant la lecture
+# Espace    : Pause/Reprise
+# Flèches  : Avant/Arrière (5 secondes)
+# + / -    : Augmenter/Diminuer le volume
+# Q        : Quitter
+# L        : Boucle (loop)
+# S        : Arrêter
+```
+
+**Avec ffplay (FFmpeg) :**
+```bash
+# Installer ffmpeg (inclut ffplay)
+# Sur Mac: brew install ffmpeg
+# Sur Linux: sudo apt install ffmpeg
+
+# Écouter un fichier
+ffplay -autoexit -nodisp docs/audio/Emissions/interview-resistance-creole-2026-05-03.mp3
+
+# Contrôles en direct
+# Espace    : Pause/Reprise
+# Flèches  : Avant/Arrière
+# q        : Quitter
+# ↑ / ↓    : Volume
+```
+
+**Avec afplay (macOS natif) :**
+```bash
+# Écouter un fichier
+afplay docs/liners/liner-matin-2026-W17-artistes.mp3
+
+# Contrôles : Utiliser le volume système
+```
+
+#### Script Python de contrôle avancé
+
+**Fichier : `player_control.py`**
+
+Créez un player Python avec contrôles avancés :
+
+```python
+#!/usr/bin/env python3
+"""
+Player MP3 avec contrôles - Écoutez les fichiers générés par Flash Info Karukera
+
+Usage:
+    python player_control.py [fichier.mp3]
+    python player_control.py --playlist  # Joue toute la playlist radio
+    python player_control.py --loop    # Boucle infinie
+    python player_control.py --volume 50  # Volume 0-100
+"""
+
+import subprocess
+import sys
+import os
+from pathlib import Path
+
+# Dossiers contenant les fichiers audio
+AUDIO_DIRS = [
+    Path("docs/audio/flash-info"),
+    Path("docs/audio/horoscope"),
+    Path("docs/audio/Emissions"),
+    Path("docs/liners"),
+    Path("docs/capsules"),
+]
+
+PLAYERS = {
+    "mpg123": ["mpg123", "-q"],
+    "ffplay": ["ffplay", "-autoexit", "-nodisp", "-loglevel", "quiet"],
+    "afplay": ["afplay"],
+}
+
+def find_player():
+    """Trouve un player MP3 disponible"""
+    for player, cmd in PLAYERS.items():
+        try:
+            subprocess.run([cmd[0], "-h"], capture_output=True, timeout=5)
+            return cmd
+        except (subprocess.CalledProcessError, FileNotFoundError, subprocess.TimeoutExpired):
+            continue
+    return None
+
+def get_audio_files():
+    """Récupère tous les fichiers MP3 du projet"""
+    files = []
+    for audio_dir in AUDIO_DIRS:
+        if audio_dir.exists():
+            files.extend(audio_dir.glob("*.mp3"))
+    return sorted(files, key=lambda x: x.stat().st_mtime, reverse=True)
+
+def play_file(filepath, player_cmd, volume=None, loop=False):
+    """Joue un fichier avec le player disponible"""
+    filepath = Path(filepath)
+    if not filepath.exists():
+        print(f"❌ Fichier introuvable : {filepath}")
+        return
+    
+    cmd = player_cmd + [str(filepath)]
+    
+    if player_cmd[0] == "mpg123":
+        if volume:
+            cmd.extend(["-a", f"{volume}"])
+        if loop:
+            cmd.append("-l")  # loop
+        cmd.extend(["--title", f"Flash Info Karukera: {filepath.name}"])
+    elif player_cmd[0] == "ffplay":
+        if volume:
+            cmd.extend(["-volume", str(float(volume)/100)])
+        if loop:
+            cmd.insert(1, "-loop")
+            cmd.insert(2, "-1")
+    
+    print(f"▶️  Lecture : {filepath.name}")
+    print(f"   Player : {player_cmd[0]}")
+    print(f"   Contrôles :")
+    print(f"   • {player_cmd[0]} : Espace=Pause, Flèches=Avance/Recule, Q=Quitter")
+    if player_cmd[0] == "mpg123":
+        print(f"   • Volume : +/-, Arrêt : S, Boucle : L")
+    
+    try:
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Erreur de lecture : {e}")
+    except KeyboardInterrupt:
+        print("\n⏹️  Lecture interrompue")
+
+def play_playlist(player_cmd, volume=None):
+    """Joue toute la playlist radio 24h"""
+    import json
+    from datetime import datetime
+    
+    playlist_file = Path("docs/radio_sequence.json")
+    if not playlist_file.exists():
+        print("❌ Playlist introuvable : docs/radio_sequence.json")
+        return
+    
+    with open(playlist_file, encoding="utf-8") as f:
+        data = json.load(f)
+    
+    print(f"📻 Playlist du {data['generated'][:10]}")
+    print(f"   {data['music']} musiques · {data['liners']} liners · {data['capsules']} capsules · {data['transitions']} transitions")
+    print("\n🎵 Déroulement :\n")
+    
+    for i, item in enumerate(data["sequence"], 1):
+        if item["type"] == "music":
+            print(f"  [{i:2d}] 🎵 {item['title']} — {item['artist']} ({item.get('duration', '?')}s)")
+        elif item["type"] == "liner":
+            print(f"  [{i:2d}] 🎙️  {item['label']}")
+        elif item["type"] == "capsule":
+            print(f"  [{i:2d}] 🌺 {item['label']}")
+        else:
+            print(f"  [{i:2d}] {item.get('icon', '📻')} {item['label'][:60]}")
+    
+    print(f"\n🎧 Lecture de tous les fichiers audio locaux...\n")
+    
+    audio_files = get_audio_files()
+    for filepath in audio_files:
+        play_file(filepath, player_cmd, volume, loop=False)
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Player MP3 pour Flash Info Karukera")
+    parser.add_argument("file", nargs="?", help="Fichier MP3 à jouer")
+    parser.add_argument("--playlist", action="store_true", help="Jouer toute la playlist")
+    parser.add_argument("--loop", action="store_true", help="Boucle infinie")
+    parser.add_argument("--volume", type=int, default=None, help="Volume (0-100)")
+    parser.add_argument("--list", action="store_true", help="Lister tous les fichiers audio")
+    args = parser.parse_args()
+    
+    player_cmd = find_player()
+    if not player_cmd:
+        print("❌ Aucun player MP3 trouvé. Installez mpg123 ou ffmpeg.")
+        print("   Mac: brew install mpg123")
+        print("   Linux: sudo apt install mpg123")
+        sys.exit(1)
+    
+    if args.list:
+        files = get_audio_files()
+        print(f"\n📁 {len(files)} fichiers audio trouvés:\n")
+        for i, f in enumerate(files, 1):
+            size_kb = f.stat().st_size // 1024
+            date = datetime.fromtimestamp(f.stat().st_mtime).strftime("%Y-%m-%d %H:%M")
+            print(f"  [{i:2d}] {f.relative_to('.')} ({size_kb} Ko) — {date}")
+        return
+    
+    if args.playlist:
+        play_playlist(player_cmd, args.volume)
+    elif args.file:
+        play_file(args.file, player_cmd, args.volume, args.loop)
+    else:
+        # Si aucun argument, jouer le fichier le plus récent
+        files = get_audio_files()
+        if files:
+            play_file(files[0], player_cmd, args.volume, args.loop)
+        else:
+            print("❌ Aucun fichier MP3 trouvé. Générez du contenu d'abord.")
+
+if __name__ == "__main__":
+    main()
+```
+
+**Utilisation :**
+```bash
+# Installer (une fois)
+chmod +x player_control.py
+
+# Lister tous les fichiers audio
+python player_control.py --list
+
+# Jouer le fichier le plus récent
+python player_control.py
+
+# Jouer un fichier spécifique
+python player_control.py docs/audio/Emissions/interview-resistance-creole-2026-05-03.mp3
+
+# Jouer toute la playlist
+python player_control.py --playlist
+
+# Jouer en boucle
+python player_control.py --loop
+
+# Volume à 70%
+python player_control.py --volume 70
+```
+
+#### Contrôles clavier universels
+
+| Touche | mpg123 | ffplay | afplay | Action |
+|--------|--------|--------|--------|--------|
+| Espace | ✅ | ✅ | ❌ | Pause / Reprise |
+| Flèche droite | ✅ | ✅ | ❌ | Avancer de 5s |
+| Flèche gauche | ✅ | ✅ | ❌ | Reculer de 5s |
+| Q | ✅ | ✅ | ✅ | Quitter |
+| + / - | ✅ | ❌ | ❌ | Volume ±10% |
+| S | ✅ | ❌ | ❌ | Arrêter |
+| L | ✅ | ❌ | ❌ | Boucle |
+
+#### Écouter directement depuis GitHub Pages
+
+Tous les fichiers audio sont accessibles publiquement :
+
+```bash
+# Flash Info du matin
+curl -L https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-05/flash-info-20260503-matin.mp3 -o /tmp/flash.mp3
+mpg123 /tmp/flash.mp3
+
+# Interview du jour
+curl -L https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/interview-resistance-creole-2026-05-03.mp3 -o /tmp/interview.mp3
+mpg123 /tmp/interview.mp3
+
+# Liner spécifique
+curl -L https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W17-artistes.mp3 -o /tmp/liner.mp3
+mpg123 /tmp/liner.mp3
+```
+
+#### Convertir en format compatible
+
+Si vous avez besoin de convertir les fichiers :
+
+```bash
+# MP3 → WAV (pour édition)
+ffmpeg -i input.mp3 -acodec pcm_s16le output.wav
+
+# MP3 → OGG (pour le web)
+ffmpeg -i input.mp3 -c:a libvorbis -q:a 6 output.ogg
+
+# Extraire l'audio d'une vidéo
+ffmpeg -i video.mp4 -vn -c:a copy audio.mp3
+
+# Normaliser le volume
+ffmpeg -i input.mp3 -af "loudnorm=I=-16:TP=-1.5" -y output.mp3
+```
+
 ---
 
 ## 🤖 Automatisation complète
