@@ -88,7 +88,25 @@ jobs:
           echo "▶️  Capsules run #$RUN_ID"
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
-  # 5️⃣ Interview (après capsules) → NON BLOQUANT - DÉSACTIVÉ TEMPORAIREMENT
+  # 5️⃣ Émission (après capsules) → NON BLOQUANT
+  emission:
+    needs: capsules
+    runs-on: ubuntu-latest
+    continue-on-error: true  # ✅ Échec toléré, ne bloque pas la suite
+    steps:
+      - name: Déclencher Émission Culturelle
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh workflow run emission-daily.yml --repo "$REPO"
+          sleep 8
+          RUN_ID=$(gh run list --workflow=emission-daily.yml --repo "$REPO" \
+            --limit 1 --json databaseId --jq '.[0].databaseId')
+          echo "▶️  Émission run #$RUN_ID (non bloquant)"
+          gh run watch "$RUN_ID" --interval 20 --repo "$REPO" || true
+
+  # 6️⃣ Interview (après capsules) → NON BLOQUANT - DÉSACTIVÉ TEMPORAIREMENT
   # interview:
   #   needs: capsules
   #   runs-on: ubuntu-latest
@@ -106,9 +124,9 @@ jobs:
   #         echo "▶️  Interview run #$RUN_ID (non bloquant)"
   #         gh run watch "$RUN_ID" --interval 20 --repo "$REPO" || true
 
-  # 6️⃣ Playlist (après capsules) → DERNIER
+  # 7️⃣ Playlist (après capsules + émission) → DERNIER
   playlist:
-    needs: capsules  # Interview désactivée temporairement
+    needs: [capsules, emission]  # ✅ Attend capsules + émission (non bloquant)
     runs-on: ubuntu-latest
     steps:
       - name: Déclencher mise à jour playlist radio

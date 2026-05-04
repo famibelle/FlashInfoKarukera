@@ -2,8 +2,6 @@ name: Émission Culturelle Quotidienne
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 5 * * *'  # 5h UTC (après la génération de la playlist à 4h)
 
 permissions:
   contents: write
