@@ -241,6 +241,27 @@
       border-radius: 50%;
       background: #6366f1;
     }
+    /* Seek slider - plus large pour la position audio */
+    #seek-slider {
+      width: 100%;
+      height: 4px;
+      margin: 0.5rem 0;
+    }
+    #seek-slider::-webkit-slider-thumb {
+      width: 14px;
+      height: 14px;
+      background: #ef4444;
+    }
+    /* Affichage temps écoulé/durée */
+    .time-display {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      font-variant-numeric: tabular-nums;
+      color: #555;
+      letter-spacing: 0.04em;
+      margin-top: 0.25rem;
+    }
 
     /* Queue */
     .queue-section { border-top: 1px solid #2a2d3a; padding-top: 1.25rem; }
@@ -362,12 +383,20 @@
       </div>
 
       <div class="controls">
-        <button class="btn-ghost" id="btn-prev" title="Précédent">⏮</button>
-        <button class="btn-round" id="btn-play">⏸</button>
-        <button class="btn-ghost" id="btn-skip" title="Passer">⏭</button>
-        <div class="vol-wrap">
-          <span class="vol-icon">🔊</span>
-          <input type="range" id="volume" min="0" max="100" value="80">
+        <!-- Seek slider pour position audio -->
+        <input type="range" id="seek-slider" min="0" max="100" value="0" title="Déplacer dans le morceau">
+        <div class="time-display">
+          <span id="time-current">0:00</span>
+          <span id="time-duration">0:00</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.75rem; width: 100%;">
+          <button class="btn-ghost" id="btn-prev" title="Précédent">⏮</button>
+          <button class="btn-round" id="btn-play">⏸</button>
+          <button class="btn-ghost" id="btn-skip" title="Passer">⏭</button>
+          <div class="vol-wrap">
+            <span class="vol-icon">🔊</span>
+            <input type="range" id="volume" min="0" max="100" value="80">
+          </div>
         </div>
       </div>
 
@@ -399,15 +428,23 @@
 
       this._playlistOpen = false;
       this._pendingVideo = null;
+      this._isSeeking = false; // Flag pour éviter les boucles lors du seek
+      this._ytUpdateInterval = null; // Timer pour mise à jour du seek pendant lecture YT
 
       this.trAudio = document.getElementById('tr-audio');
+      this.seekSlider = document.getElementById('seek-slider');
+      this.timeCurrentEl = document.getElementById('time-current');
+      this.timeDurationEl = document.getElementById('time-duration');
+
       this.trAudio.addEventListener('ended', () => this._next());
-      this.trAudio.addEventListener('timeupdate', () => {
-        const el = document.getElementById('tr-timer');
-        if (!el) return;
-        const rem = this.trAudio.duration - this.trAudio.currentTime;
-        el.textContent = isFinite(rem) && rem > 0 ? `${Math.ceil(rem)}s` : '';
-      });
+      this.trAudio.addEventListener('timeupdate', () => this._updateSeekPosition());
+      this.trAudio.addEventListener('loadedmetadata', () => this._updateSeekPosition());
+      this.trAudio.addEventListener('durationchange', () => this._updateSeekPosition());
+
+      // Écouteur pour le seek manuel
+      if (this.seekSlider) {
+        this.seekSlider.addEventListener('input', () => this._seek());
+      }
 
       // Promise résolue quand l'API YT est disponible (callback ou polling)
       this._ytApiReady = new Promise(resolve => {
@@ -425,6 +462,65 @@
           }
         }, 200);
       });
+    }
+
+    // ── Seek Slider Helpers ─────────────────────────────────────
+
+    _formatTime(seconds) {
+      if (!isFinite(seconds) || seconds < 0) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    _updateSeekPosition() {
+      // Ne pas mettre à jour pendant un seek manuel pour éviter les boucles
+      if (this._isSeeking) return;
+      
+      const item = this.seq[this.pos];
+      if (!item) return;
+
+      if (item.type === 'music' && this.ytReady && this.yt.getPlayerState() !== YT.PlayerState.CUED) {
+        // Lecture YouTube
+        const current = this.yt.getCurrentTime();
+        const duration = this.yt.getDuration();
+        if (duration > 0 && !isNaN(current)) {
+          const percent = (current / duration) * 100;
+          if (this.seekSlider) this.seekSlider.value = percent;
+          if (this.timeCurrentEl) this.timeCurrentEl.textContent = this._formatTime(current);
+          if (this.timeDurationEl) this.timeDurationEl.textContent = this._formatTime(duration);
+        }
+      } else {
+        // Lecture HTML5 Audio (liners, capsules, transitions)
+        if (this.trAudio.duration && !isNaN(this.trAudio.duration)) {
+          const percent = (this.trAudio.currentTime / this.trAudio.duration) * 100;
+          if (this.seekSlider) this.seekSlider.value = percent;
+          if (this.timeCurrentEl) this.timeCurrentEl.textContent = this._formatTime(this.trAudio.currentTime);
+          if (this.timeDurationEl) this.timeDurationEl.textContent = this._formatTime(this.trAudio.duration);
+        }
+      }
+    }
+
+    _seek() {
+      const item = this.seq[this.pos];
+      if (!item || !this.seekSlider) return;
+
+      this._isSeeking = true;
+      const percent = parseFloat(this.seekSlider.value) / 100;
+
+      if (item.type === 'music' && this.ytReady) {
+        const duration = this.yt.getDuration();
+        if (duration > 0) {
+          this.yt.seekTo(duration * percent, true);
+        }
+      } else {
+        if (this.trAudio.duration && !isNaN(this.trAudio.duration)) {
+          this.trAudio.currentTime = this.trAudio.duration * percent;
+        }
+      }
+
+      // Réinitialiser le flag après un court délai
+      setTimeout(() => { this._isSeeking = false; }, 100);
     }
 
     // ── Chargement ──────────────────────────────────────────
@@ -459,7 +555,18 @@
               resolve();
             },
             onStateChange: (e) => {
-              if (e.data === YT.PlayerState.ENDED) this._next();
+              if (e.data === YT.PlayerState.ENDED) {
+                this._next();
+              } else if (e.data === YT.PlayerState.PLAYING) {
+                // Démarrer le timer de mise à jour du seek slider pendant la lecture YouTube
+                this._ytUpdateInterval = setInterval(() => this._updateSeekPosition(), 250);
+              } else {
+                // Arrêter le timer quand ce n'est plus en lecture
+                if (this._ytUpdateInterval) {
+                  clearInterval(this._ytUpdateInterval);
+                  this._ytUpdateInterval = null;
+                }
+              }
             },
           },
         });
@@ -497,6 +604,11 @@
 
       this._updateNowPlaying(item);
       this._renderQueue();
+      
+      // Réinitialiser le seek slider pour le nouvel élément
+      if (this.seekSlider) this.seekSlider.value = 0;
+      if (this.timeCurrentEl) this.timeCurrentEl.textContent = '0:00';
+      if (this.timeDurationEl) this.timeDurationEl.textContent = '0:00';
 
       if (item.type === 'music') {
         // Musique → YouTube
