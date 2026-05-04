@@ -133,7 +133,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add playlists/youtube_cache.json playlists/music_pool_cache.json playlists/playlist_24h_id.txt playlists/youtube_playlist_id.txt docs/radio_sequence.json
+          git add playlists/youtube_cache.json playlists/music_pool_cache.json playlists/playlist_24h_id.txt docs/radio_sequence.json
           [ -d docs/liners ]   && git add docs/liners/   || true
           [ -d docs/capsules ] && git add docs/capsules/ || true
           [ -d docs/audio ]    && { git add docs/audio/; git add -u docs/audio/; } || true
@@ -143,7 +143,18 @@ jobs:
 
       - name: ✅ Playlist Update Success
         if: success()
-        run: echo "✅ Playlists mises à jour à $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+        run: |
+          H24_ID=$(cat playlists/playlist_24h_id.txt 2>/dev/null || echo "")
+          echo ""
+          echo "╔══════════════════════════════════════════════════════╗"
+          echo "║          ✅  MISE À JOUR RADIO RÉUSSIE               ║"
+          echo "╚══════════════════════════════════════════════════════╝"
+          echo ""
+          echo "  🕐  $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo ""
+          [ -n "$H24_ID" ] && echo "  🎵  Playlist 24h  → https://music.youtube.com/playlist?list=$H24_ID"
+          echo "  📻  Séquence web  → https://famibelle.github.io/FlashInfoKarukera/radio.html"
+          echo ""
 
       - name: ❌ Playlist Update Failed
         if: failure()
