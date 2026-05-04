@@ -53,6 +53,6 @@ jobs:
           git add docs/audio/Emissions/emission-*.mp3 docs/audio/Emissions/emission-*.json docs/podcast.xml
           git diff --cached --quiet || git commit -m "feat: émission culturelle quotidienne [skip ci]"
           git stash --include-untracked || true
-          git pull --rebase origin main
+          git pull --rebase -X theirs origin main
           git stash drop 2>/dev/null || true
           git push
