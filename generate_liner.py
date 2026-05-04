@@ -124,7 +124,7 @@ def _mistral_chat(system: str, user: str, max_retries: int = 4, label: str = "")
             {"role": "system", "content": system},
             {"role": "user",   "content": user},
         ],
-        "max_tokens": 180,
+        "max_tokens": 60,
         "temperature": 0.85,
     }).encode()
     req = urllib.request.Request(
@@ -219,6 +219,12 @@ def get_announcement_mp3_url(bloc: str, artists: list[str], voice: str = "corinn
     try:
         text = _mistral_chat(system_prompt, user_prompt, label=f"liner {bloc} / {artists_str[:30]}")
         logger.info(f"  Liner {bloc} ({voice}) — ✅ LLM OK ({len(text)} cars)")
+    
+    # Troncature de sécurité : max 20 mots
+    words = text.split()
+    if len(words) > 20:
+        logger.warning(f"  Liner {bloc} ({voice}) — ⚠️  Tronqué de {len(words)} à 20 mots")
+        text = " ".join(words[:20])
     except Exception as e:
         logger.warning(f"Liner {bloc} ({voice}) ignoré — ❌ LLM : {e}")
         return None, None
