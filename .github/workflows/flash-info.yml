@@ -184,6 +184,6 @@ jobs:
           git add docs/
           git diff --cached --quiet || git commit -m "chore: flash info $(date +%Y-%m-%d) — RSS"
           git stash --include-untracked || true
-          git pull --rebase origin main
+          git pull --rebase -X theirs origin main
           git stash drop 2>/dev/null || true
           git push

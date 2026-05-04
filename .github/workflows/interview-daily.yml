@@ -41,6 +41,6 @@ jobs:
           git add docs/audio/Emissions/ docs/radio_sequence.json
           git diff --cached --quiet || git commit -m "feat: interview radio quotidienne + intégration playlist [skip ci]"
           git stash --include-untracked || true
-          git pull --rebase origin main
+          git pull --rebase -X theirs origin main
           git stash drop 2>/dev/null || true
           git push

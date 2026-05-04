@@ -45,6 +45,6 @@ jobs:
           git add docs/liners/ playlists/youtube_cache.json
           git diff --cached --quiet || git commit -m "feat: liners quotidiens [skip ci]"
           git stash --include-untracked || true
-          git pull --rebase origin main
+          git pull --rebase -X theirs origin main
           git stash drop 2>/dev/null || true
           git push
