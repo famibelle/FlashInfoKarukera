@@ -806,12 +806,12 @@
       if (!AC) return;
       this._audioCtx = new AC();
       this._analyser = this._audioCtx.createAnalyser();
-      this._analyser.fftSize = 64;
+      this._analyser.fftSize = 256;
       this._analyser.smoothingTimeConstant = 0.8;
       const src = this._audioCtx.createMediaElementSource(this.trAudio);
       src.connect(this._analyser);
       this._analyser.connect(this._audioCtx.destination);
-      this._freqData = new Uint8Array(this._analyser.frequencyBinCount);
+      this._freqData = new Uint8Array(this._analyser.fftSize);
     }
 
     _startEQ() {
@@ -822,40 +822,41 @@
       const ctx = canvas.getContext('2d');
       const W = canvas.width;
       const H = canvas.height;
-      const BLOCK  = 4;   // hauteur d'un pixel-bloc
-      const VGAP   = 1;   // espace vertical entre blocs
-      const BAR_W  = 10;  // largeur d'une barre
-      const BAR_GAP = 3;  // espace entre barres
-      const N = Math.floor((W * 0.8) / (BAR_W + BAR_GAP)); // 80 % de la largeur
-      const maxBlocks = Math.floor(H / (BLOCK + VGAP));
+      const ZONE_W  = W * 0.8;
+      const ORIG_X  = (W - ZONE_W) / 2;
+      const MID_Y   = H / 2;
+      const DOT_W   = 3;   // largeur pixel-bloc
+      const DOT_H   = 4;   // hauteur pixel-bloc
+      const samples = this._freqData.length; // 256
 
       const trIcon = document.getElementById('tr-icon');
 
       const draw = () => {
         this._eqRaf = requestAnimationFrame(draw);
-        this._analyser.getByteFrequencyData(this._freqData);
+        this._analyser.getByteTimeDomainData(this._freqData);
 
-        // Énergie basse fréquence (bins 1-6) → pulse de l'emoji
-        let bassSum = 0;
-        const bassEnd = Math.min(6, this._freqData.length);
-        for (let j = 1; j <= bassEnd; j++) bassSum += this._freqData[j];
-        const bassAvg = bassSum / bassEnd / 255;
-        if (trIcon) trIcon.style.transform = `scale(${(1 + bassAvg * 0.45).toFixed(3)})`;
+        // RMS → pulse de l'emoji
+        let rms = 0;
+        for (let j = 0; j < samples; j++) {
+          const v = (this._freqData[j] / 128) - 1;
+          rms += v * v;
+        }
+        rms = Math.sqrt(rms / samples);
+        if (trIcon) trIcon.style.transform = `scale(${(1 + rms * 0.9).toFixed(3)})`;
 
-        // Barres EQ
+        // Waveform
         ctx.clearRect(0, 0, W, H);
-        const totalW = N * (BAR_W + BAR_GAP) - BAR_GAP;
-        const startX = (W - totalW) / 2;
-        for (let i = 0; i < N; i++) {
-          const bin = Math.floor(1 + (i / N) * this._freqData.length * 0.75);
-          const val = this._freqData[Math.min(bin, this._freqData.length - 1)] / 255;
-          const blocks = Math.round(val * maxBlocks);
-          const x = startX + i * (BAR_W + BAR_GAP);
-          for (let b = 0; b < blocks; b++) {
-            const r = b / maxBlocks;
-            ctx.fillStyle = r < 0.55 ? '#22c55e' : r < 0.80 ? '#eab308' : '#ef4444';
-            ctx.fillRect(x, H - (b + 1) * (BLOCK + VGAP), BAR_W, BLOCK);
-          }
+        // ligne centrale en fond
+        ctx.fillStyle = '#2a2d3a';
+        ctx.fillRect(ORIG_X, MID_Y - 1, ZONE_W, 2);
+
+        for (let i = 0; i < samples; i++) {
+          const x  = ORIG_X + (i / (samples - 1)) * ZONE_W;
+          const v  = (this._freqData[i] / 128.0) - 1.0;  // -1 .. +1
+          const y  = MID_Y + v * (MID_Y - 6);
+          const dev = Math.abs(v);
+          ctx.fillStyle = dev < 0.3 ? '#22c55e' : dev < 0.65 ? '#eab308' : '#ef4444';
+          ctx.fillRect(Math.round(x) - 1, Math.round(y) - DOT_H / 2, DOT_W, DOT_H);
         }
       };
       if (this._eqRaf) cancelAnimationFrame(this._eqRaf);
