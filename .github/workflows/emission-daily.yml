@@ -35,6 +35,9 @@ jobs:
       - name: Installer les dépendances
         run: pip install -r requirements.txt
 
+      - name: Installer FFmpeg
+        run: sudo apt-get install -y ffmpeg
+
       - name: Générer l'émission culturelle quotidienne
         env:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
