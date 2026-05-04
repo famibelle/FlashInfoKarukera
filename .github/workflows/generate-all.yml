@@ -49,6 +49,7 @@ permissions:
 jobs:
   # 1️⃣ Horoscope (premier, car utilisé par Flash Info)
   horoscope:
+    name: 🔮 Horoscope
     if: inputs.run_horoscope == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
@@ -68,6 +69,7 @@ jobs:
 
   # 2️⃣ Flash Info
   flash-info:
+    name: 📰 Flash Info
     if: inputs.run_flash_info == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
@@ -87,6 +89,7 @@ jobs:
 
   # 3️⃣ Liners
   liners:
+    name: 🎙️ Liners
     if: inputs.run_liners == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
@@ -104,6 +107,7 @@ jobs:
 
   # 4️⃣ Capsules
   capsules:
+    name: 🌺 Capsules
     if: inputs.run_capsules == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
@@ -121,6 +125,7 @@ jobs:
 
   # 5️⃣ Émission → NON BLOQUANT
   emission:
+    name: 📻 Émission
     if: inputs.run_emission == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     continue-on-error: true  # ✅ Échec toléré, ne bloque pas la suite
@@ -157,6 +162,7 @@ jobs:
 
   # 7️⃣ Playlist → DERNIER
   playlist:
+    name: 🎶 Playlist
     if: inputs.run_playlist == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
