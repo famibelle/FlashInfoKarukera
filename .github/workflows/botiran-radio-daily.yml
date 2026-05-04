@@ -258,8 +258,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Ajouter tous les fichiers à committer
-          git add playlists/youtube_cache.json playlists/music_pool_cache.json playlists/playlist_24h_id.txt docs/radio_sequence.json
+          # Ajouter tous les fichiers à committer (youtube_cache.json est dans .gitignore)
+          git add playlists/music_pool_cache.json playlists/playlist_24h_id.txt docs/radio_sequence.json
           [ -d docs/liners ]   && git add docs/liners/   || true
           [ -d docs/capsules ] && git add docs/capsules/ || true
           [ -d docs/audio ]    && { git add docs/audio/; git add -u docs/audio/; } || true
