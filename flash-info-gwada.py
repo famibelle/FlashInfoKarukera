@@ -36,6 +36,64 @@ def _load_env(env_path: Path) -> None:
 
 _load_env(Path(__file__).parent / ".env")
 
+
+# ── Sélection aléatoire depuis les fichiers _ref.md ──────────────────────────
+
+def _select_random_lines_from_file(filepath: Path, num_lines: int = 5) -> list[str]:
+    """Sélectionne aléatoirement N lignes de tableau Markdown d'un fichier _ref.md."""
+    header_keywords = ['famille', 'nom créole', 'nom français', 'nom scientifique', 
+                       'sacré', 'dimension culturelle', 'usage', 'catégorie', 'nom du lieu',
+                       'commune', 'localisation']
+    
+    data_lines = []
+    content = filepath.read_text(encoding="utf-8")
+    
+    for line in content.split('\n'):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        pipe_count = stripped.count('|')
+        if pipe_count >= 2 and '---' not in stripped:
+            clean_line = stripped[1:-1].strip()
+            cells = [c.strip() for c in clean_line.split('|')]
+            non_empty_cells = [c for c in cells if c]
+            if len(non_empty_cells) >= 2:
+                line_lower = clean_line.lower()
+                if not any(keyword in line_lower for keyword in header_keywords):
+                    clean_line = clean_line.replace('|', '\t')
+                    data_lines.append(clean_line)
+    
+    random.shuffle(data_lines)
+    return data_lines[:min(num_lines, len(data_lines))]
+
+
+def _get_random_spiritual_elements(num_per_file: int = 5) -> str:
+    """Sélectionne aléatoirement num_per_file éléments de CHACUN des 4 fichiers _ref.md."""
+    all_lines = []
+    PROMPTS_DIR_LOCAL = Path(__file__).parent / "private" / "prompts"
+    ref_files = [
+        PROMPTS_DIR_LOCAL / "faune_guadeloupe_ref.md",
+        PROMPTS_DIR_LOCAL / "flore_guadeloupe_ref.md",
+        PROMPTS_DIR_LOCAL / "lieux_spirituels_ref.md",
+        PROMPTS_DIR_LOCAL / "kreyol_resistance_symbol_ref.md",
+    ]
+    
+    for filepath in ref_files:
+        if filepath.exists():
+            file_lines = _select_random_lines_from_file(filepath, num_per_file)
+            all_lines.extend(file_lines)
+        else:
+            print(f"⚠️  Fichier introuvable : {filepath}", file=sys.stderr)
+    
+    random.shuffle(all_lines)
+    
+    result = "Sélection aléatoire d'éléments spirituels guadeloupéens (pour inspiration unique) :\n\n"
+    for i, line in enumerate(all_lines, 1):
+        result += f"{i}. {line}\n"
+    
+    return result
+
+
 # ── Config ────────────────────────────────────────────────────────────────────
 
 from private.data.sources import RSS_FEEDS, RSS_SOURCES
@@ -627,11 +685,6 @@ def call_mistral(
 MARYSE_SYSTEM        = _load_prompt("maryse_ame.md") + "\n\n" + _load_prompt("maryse.md")
 PRENOM_TEMPLATE      = _load_prompt("prenom.md")
 HOROSCOPE_TEMPLATE   = _load_prompt("horoscope.md")
-LIEUX_SPIRITUELS     = (
-    "\n\n" + _load_prompt("lieux_spirituels.md") +
-    "\n\n" + _load_prompt("flore_guadeloupe.md") +
-    "\n\n" + _load_prompt("faune_guadeloupe.md")
-)
 
 
 def _strip_markdown(text: str) -> str:
@@ -760,6 +813,10 @@ def build_segments(
             demain_context=" de demain" if is_demain else "",
         )
 
+    # ✅ Génération aléatoire unique pour cette exécution
+    unique_run_id = random.randint(10000, 99999)
+    random_elements = _get_random_spiritual_elements(num_per_file=5)
+    
     horoscope_block = ""
     horoscope_instruction = ""
     if has_horoscope:
@@ -769,7 +826,7 @@ def build_segments(
             segment=horoscope_seg,
             n_signs=n_signs,
             s="s" if n_signs > 1 else "",
-            lieux_spirituels=LIEUX_SPIRITUELS,
+            lieux_spirituels=random_elements,  # ✅ Sélection aléatoire dynamique
             contexte_local="",
         )
 
@@ -804,6 +861,8 @@ def build_segments(
 
     heure_ctx = f" — il est {heure_paris} à Paris" if heure_paris else ""
     user_prompt = (
+        f"UNIQUE_RUN_ID: {unique_run_id}\n\n"  # ✅ Anti-répétition
+        f"RANDOM ELEMENTS:\n{random_elements}\n\n"  # ✅ Contexte unique
         f"Flash info Guadeloupe du {date_str}{heure_ctx} — {edition_instruction}\n\n"
         f"{meteo_block}"
         f"{prenoms_block}"
@@ -2722,6 +2781,10 @@ def main():
         return
 
     if args.generate_horoscope == "only":
+        # ✅ Génération aléatoire unique pour cette exécution
+        unique_run_id = random.randint(10000, 99999)
+        random_elements = _get_random_spiritual_elements(num_per_file=5)
+        
         _inc = [s for name in (n for group in args.horoscope_include for n in group) if (s := _resolve_sign(name))]
         _gen_date = Date.fromisoformat(args.date) if args.date else Date.today()
         _date_sign = _sign_for_date(_gen_date)
@@ -2774,14 +2837,18 @@ def main():
         )
         horoscope_instruction = HOROSCOPE_TEMPLATE.format(
             segment=1, n_signs=n_signs, s="s" if n_signs > 1 else "",
-            lieux_spirituels=LIEUX_SPIRITUELS,
+            lieux_spirituels=random_elements,  # ✅ Sélection aléatoire dynamique
             contexte_local=_contexte_local,
         )
         horoscope_block = (
             f"HOROSCOPE DU JOUR ({n_signs} signe{'s' if n_signs > 1 else ''} "
             f"tiré{'s' if n_signs > 1 else ''} au hasard) :\n{horoscope_text}\n\n"
         )
-        user_prompt = f"{horoscope_block}INSTRUCTIONS :\n{horoscope_instruction}"
+        user_prompt = (
+            f"UNIQUE_RUN_ID: {unique_run_id}\n\n"  # ✅ Anti-répétition
+            f"RANDOM ELEMENTS:\n{random_elements}\n\n"  # ✅ Contexte unique
+            f"{horoscope_block}INSTRUCTIONS :\n{horoscope_instruction}"
+        )
         print("✍️  Rédaction horoscope par Maryse (Mistral Large)...")
         segment = _strip_markdown(call_mistral(_horoscope_only_system, user_prompt, temperature=0.75, max_tokens=250 * n_signs + 300))
 
