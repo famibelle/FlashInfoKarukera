@@ -180,6 +180,23 @@ jobs:
     name: 🧹 Nettoyage & 💾 Commit
     runs-on: ubuntu-latest
     steps:
+      - name: 🔄 Vérifier sync avec main (détection précoce)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if ! git diff --quiet origin/main -- docs/ playlists/; then
+            echo "⚠️  Conflits détectés AVANT génération — résolution automatique"
+            git stash push --include-untracked || true
+            git pull --rebase -X theirs origin main || {
+              git rebase --abort 2>/dev/null || true
+              git stash pop 2>/dev/null || true
+              echo "❌ Impossible de résoudre automatiquement — intervention manuelle requise"
+              exit 1
+            }
+            git stash pop || true
+          fi
+
       - name: 🔑 Configurer les credentials git pour le submodule privé
         run: git config --global url."https://${{ secrets.PAT_SUBMODULE }}@github.com/".insteadOf "https://github.com/"
 
@@ -236,16 +253,42 @@ jobs:
           print(f"ℹ️  {total} fichiers audio supprimés" if total else "ℹ️  Aucun fichier audio à supprimer")
           EOF
 
-      - name: 💾 Commit & Push
+      - name: 💾 Commit & Push (avec résolution auto)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Ajouter tous les fichiers à committer
           git add playlists/youtube_cache.json playlists/music_pool_cache.json playlists/playlist_24h_id.txt docs/radio_sequence.json
           [ -d docs/liners ]   && git add docs/liners/   || true
           [ -d docs/capsules ] && git add docs/capsules/ || true
           [ -d docs/audio ]    && { git add docs/audio/; git add -u docs/audio/; } || true
-          git diff --cached --quiet || git commit -m "chore: update radio sequence & caches"
-          git pull --rebase -X theirs origin main
+          
+          # Vérifier s'il y a des changements
+          if git diff --cached --quiet; then
+            echo "ℹ️  Aucune modification à committer"
+            exit 0
+          fi
+          
+          # Stocker les changements avant pull
+          git stash push --include-untracked
+          
+          # Pull avec résolution automatique (stratégie 'theirs' = garde les changements locaux)
+          git pull --rebase -X theirs origin main || {
+            echo "⚠️  Rebase échoué — tentative de merge classique..."
+            git rebase --abort 2>/dev/null || true
+            git pull --no-rebase --strategy-option theirs origin main || {
+              echo "❌ Impossible de résoudre automatiquement"
+              git stash pop
+              exit 1
+            }
+          }
+          
+          # Réappliquer les changements
+          git stash pop
+          
+          # Commit
+          git commit -m "chore: update radio sequence & caches [skip ci]"
           git push
 
       - name: ✅ Résumé
