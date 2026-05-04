@@ -12,6 +12,36 @@ on:
         type: boolean
         required: false
         default: false
+      run_horoscope:
+        description: "✅ Exécuter Horoscope Quotidien"
+        type: boolean
+        required: false
+        default: true
+      run_flash_info:
+        description: "✅ Exécuter Flash Info Guadeloupe"
+        type: boolean
+        required: false
+        default: true
+      run_liners:
+        description: "✅ Exécuter Liners Quotidiens"
+        type: boolean
+        required: false
+        default: true
+      run_capsules:
+        description: "✅ Exécuter Capsules Culturelles"
+        type: boolean
+        required: false
+        default: true
+      run_emission:
+        description: "✅ Exécuter Émission Culturelle"
+        type: boolean
+        required: false
+        default: true
+      run_playlist:
+        description: "✅ Exécuter Mise à jour Playlist"
+        type: boolean
+        required: false
+        default: true
 
 permissions:
   contents: write
@@ -19,6 +49,7 @@ permissions:
 jobs:
   # 1️⃣ Horoscope (premier, car utilisé par Flash Info)
   horoscope:
+    if: inputs.run_horoscope == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
       - name: Déclencher Horoscope Quotidien
@@ -37,6 +68,7 @@ jobs:
 
   # 2️⃣ Flash Info (après horoscope)
   flash-info:
+    if: inputs.run_flash_info == true || github.event_name == 'schedule'
     needs: horoscope  # ✅ SÉQUENTIEL : attend horoscope
     runs-on: ubuntu-latest
     steps:
@@ -56,6 +88,7 @@ jobs:
 
   # 3️⃣ Liners (après flash info)
   liners:
+    if: inputs.run_liners == true || github.event_name == 'schedule'
     needs: flash-info  # ✅ SÉQUENTIEL : attend flash info
     runs-on: ubuntu-latest
     steps:
@@ -73,6 +106,7 @@ jobs:
 
   # 4️⃣ Capsules (après liners)
   capsules:
+    if: inputs.run_capsules == true || github.event_name == 'schedule'
     needs: liners  # ✅ SÉQUENTIEL : attend liners
     runs-on: ubuntu-latest
     steps:
@@ -90,6 +124,7 @@ jobs:
 
   # 5️⃣ Émission (après capsules) → NON BLOQUANT
   emission:
+    if: inputs.run_emission == true || github.event_name == 'schedule'
     needs: capsules
     runs-on: ubuntu-latest
     continue-on-error: true  # ✅ Échec toléré, ne bloque pas la suite
@@ -126,6 +161,7 @@ jobs:
 
   # 7️⃣ Playlist (après capsules + émission) → DERNIER
   playlist:
+    if: inputs.run_playlist == true || github.event_name == 'schedule'
     needs: [capsules, emission]  # ✅ Attend capsules + émission (non bloquant)
     runs-on: ubuntu-latest
     steps:
