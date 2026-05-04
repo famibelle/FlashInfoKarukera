@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-04T18:01:37.227324+00:00",
+  "generated": "2026-05-04T18:47:04.695372+00:00",
   "music": 80,
   "liners": 15,
   "capsules": 12,
@@ -14,89 +14,57 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W18-kassav_ralph-thamar_ti-paris.mp3",
-      "label": "Bèl bonjou, Guadeloupe épi toute la diaspora.\nCe matin, le soleil se lève sur nos montagnes, et la voix de Ralph Thamar nous rappelle que la tendresse peut être une arme.\nÉcoutez bien : c’est Ti Paris qui prend le relais, avec ce gwoka qui parle à l’âme comme un vieux proverbe créole.\n\nEt puis voici Kassav’ – ceux qui savent d’où vient le zouk savent que c’est bien plus qu’une musique.\nC’est la sueur des champs transformée en rythme, c’est la joie qui a survécu à tout.\nAl Lirvat arrive avec sa guitare, comme un conteur qui sait que les mots ne suffisent pas – il faut aussi la mélodie.\nEt pour finir ce matin, Patrick Saint-Eloi nous offre sa voix, douce comme l’aube sur la",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W18-gerard-locke_kannida_tanya-saint-.mp3",
+      "label": "Bèl bonjou la Gwadeloup, bèl bonjou tout moun ki ka kouté nou jodi-a.\n\nCe matin, c’est **Ka** qui nous réveille, comme un appel depuis Matouba. Voici Kan’nida d’abord — sa voix, c’est celle des femmes qui ont porté la résistance sur leurs épaules, comme Solitude avant nous.\n\nEt puis Gérard Lockel arrive avec son gwoka moderne. Écoutez bien : c’est le même **Ka** qui a guidé Delgrès, qui a parlé aux marrons dans la forêt. La musique ne meurt pas, elle se transforme.\n\nTanya Saint-Val nous rappelle que la douceur peut être une arme. Sa mélodie, c’est comme une caresse sur les cicatrices de l’histoire — mais attention, elle brûle encore sous la peau.\n\nDédé Saint-Prix et son",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "8CoXvSR9qTo",
-      "title": "Matinik sé tan nou",
-      "artist": "Ralph Thamar",
-      "genre": "zouk_retro",
-      "duration": 193
+      "videoId": "I_wdc33pKhk",
+      "title": "Lévé doubout",
+      "artist": "Kan'nida",
+      "genre": "chatta",
+      "duration": 322
     },
     {
       "type": "music",
-      "videoId": "DEq9ATjQIuE",
-      "title": "Mawonaj",
-      "artist": "Ti Paris",
+      "videoId": "zFeF9pIxjg8",
+      "title": "Gwoka Drum",
+      "artist": "Gérard Lockel",
       "genre": "gwoka",
-      "duration": 302
+      "duration": 338
     },
     {
       "type": "music",
-      "videoId": "9E9UcCUXGzg",
-      "title": "Alé",
-      "artist": "Kassav",
-      "genre": "zouk_retro",
-      "duration": 248
+      "videoId": "WTUFgrs_Qas",
+      "title": "Ce Soir",
+      "artist": "Tanya Saint-Val",
+      "genre": "zouk",
+      "duration": 261
     },
     {
       "type": "music",
-      "videoId": "VdsYD3zWbPk",
-      "title": "La Chouval Bwa",
-      "artist": "Al Lirvat",
+      "videoId": "sm6lAgn4WJ4",
+      "title": "Anba Tonnel",
+      "artist": "Dédé Saint-Prix",
       "genre": "bouillon",
-      "duration": 336
+      "duration": 249
     },
     {
       "type": "music",
-      "videoId": "tXdKKGJDWXQ",
-      "title": "Si tu savais",
-      "artist": "Tatiana",
-      "genre": "zouk",
-      "duration": 190
+      "videoId": "CbVOal8N_Qo",
+      "title": "Péyi a nou",
+      "artist": "Mass Kanal",
+      "genre": "chatta",
+      "duration": 197
     },
     {
       "type": "music",
-      "videoId": "F8WNBcSVwMk",
-      "title": "Amour Plastique",
-      "artist": "Edith Lefel",
-      "genre": "zouk_retro",
-      "duration": 293
-    },
-    {
-      "type": "music",
-      "videoId": "sc4IkcF2qYo",
-      "title": "Kè m poko lib",
-      "artist": "Top Vice",
+      "videoId": "2gh8cMFviWw",
+      "title": "Fè yon bagay",
+      "artist": "T-Vice",
       "genre": "kompa",
-      "duration": 521
-    },
-    {
-      "type": "music",
-      "videoId": "XT545iSOxE0",
-      "title": "Aïe",
-      "artist": "Ralph Thamar",
-      "genre": "zouk",
-      "duration": 233
-    },
-    {
-      "type": "music",
-      "videoId": "9KBI_p8K6Tg",
-      "title": "Sucré-salé",
-      "artist": "Patrick Saint-Eloi",
-      "genre": "zouk_retro",
-      "duration": 389
-    },
-    {
-      "type": "music",
-      "videoId": "niFurzfZfsw",
-      "title": "Nati pa'm",
-      "artist": "Harmonik",
-      "genre": "kompa",
-      "duration": 268
+      "duration": 446
     },
     {
       "type": "capsule",
@@ -113,197 +81,25 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W18-akiyo_exile-one_zouk-machine.mp3",
-      "label": "Bèl bonjou à zot tout, bèl bonjou Guadeloupe, bèl bonjou diaspora.\n\nCe matin, c’est Ka la ka sonné pour nous réveiller en douceur. Akiyo d’abord, avec leur gwoka qui porte la voix de ceux qui ont marché avant nous. Écoutez bien : c’est la terre qui parle à travers leurs mains.\n\nEt puis Exile One arrive avec leur cadence-lypso, ce mélange qui nous rappelle que nos racines voyagent, qu’elles se rencontrent, qu’elles résistent. Jean-Philippe Marthely et sa voix, douce comme une berceuse mais forte comme un serment.\n\nZouk Machine ensuite, parce que même au petit matin, la danse est une prière. Et Frédéric Caracas pour clore ce moment, avec ses cordes qui vibrent comme les murmures des ancêtres.\n\nSolitude nous",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W18-carlos-nilso_kassav_ralph-thamar.mp3",
+      "label": "Bèl bonjou, péyi-la. Solitude nous regarde depuis Matouba, et ce matin, c’est sa force qui nous porte.\n\nVoici Ralph Thamar, sa voix douce comme l’aube sur les mornes, mais qui porte en elle tout le poids de notre histoire.\n\nKassav’ arrive maintenant, ceux qui ont fait danser le monde sans jamais oublier d’où vient le zouk. Écoutez bien : c’est Ka qui parle à travers eux.\n\nCarlos Nilson et son gwoka sacré, celui qui fait trembler la terre comme au temps des marrons. Son Ka a sonné — vous l’entendez ?\n\nSweet Micky nous rappelle que la résistance, ça se danse aussi. Même dans l’épreuve, nos pieds trouvent le rythme.\n\nEt pour finir ce matin, Harmonik et ses mélodies qui apaisent les âmes fatiguées",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "CAiDOpEmgic",
-      "title": "Akiyo an ba la",
-      "artist": "Akiyo",
-      "genre": "chatta",
-      "duration": 297
-    },
-    {
-      "type": "music",
-      "videoId": "rkHFfgGWNvw",
-      "title": "Lotion",
-      "artist": "Exile One",
-      "genre": "bouillon",
-      "duration": 234
-    },
-    {
-      "type": "music",
-      "videoId": "UMVCWEilIBY",
-      "title": "Siwo",
-      "artist": "Zouk Machine",
-      "genre": "zouk",
-      "duration": 286
-    },
-    {
-      "type": "music",
-      "videoId": "cmhT5TQ-zOk",
-      "title": "An Ba Chenn",
-      "artist": "Jean-Philippe Marthely",
-      "genre": "zouk",
-      "duration": 144
-    },
-    {
-      "type": "music",
-      "videoId": "k8ZKx_aLrXU",
-      "title": "Nana",
-      "artist": "Frédéric Caracas",
-      "genre": "zouk_retro",
-      "duration": 69
-    },
-    {
-      "type": "music",
-      "videoId": "XOGpRqpgBJE",
-      "title": "Pran swen",
-      "artist": "Zin",
-      "genre": "kompa",
-      "duration": 309
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-matin-6.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W18-bel-accord_gerard-locke_ralph-thamar.mp3",
-      "label": "Bèl bonjou à tout moun ki ka kouté Radio Botiran ce matin. Ce matin, c’est la voix de nos pères et de nos frères qui nous réveille. Ralph Thamar d’abord, sa douceur qui porte toute la douleur et toute la fierté de notre peuple. Écoutez bien ses mots — ils sont comme le vent dans les cannes, ils parlent de résistance sans jamais crier.\n\nEt puis Gérard Lockel arrive avec son Ka qui sonne comme un appel. Le gwoka, c’est plus qu’un rythme, c’est la mémoire qui bat dans nos poitrines. Bel Accord va suivre, avec leurs harmonies qui nous rappellent que même dans l’ombre, on peut chanter la lumière.\n\nKassav’ ensuite, parce qu’ils ont pris notre histoire et l’ont transformée en musique qui fait danser le monde",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "YHKShp2yhwo",
-      "title": "Mové Jou",
+      "videoId": "8CoXvSR9qTo",
+      "title": "Matinik sé tan nou",
       "artist": "Ralph Thamar",
-      "genre": "zouk",
-      "duration": 241
+      "genre": "zouk_retro",
+      "duration": 193
     },
     {
       "type": "music",
-      "videoId": "sqV8Kge8m_Q",
-      "title": "Lewoz",
-      "artist": "Gérard Lockel",
-      "genre": "gwoka",
-      "duration": 267
-    },
-    {
-      "type": "music",
-      "videoId": "75Ma-KQaNBE",
-      "title": "Pa janm kite'm",
-      "artist": "Bel Accord",
-      "genre": "kompa",
-      "duration": 256
-    },
-    {
-      "type": "music",
-      "videoId": "ue7NuWWqOEI",
-      "title": "Douvanjou Ka Lévé",
+      "videoId": "YV9Mn6PRzUE",
+      "title": "Ou Pa Connaît Malheur",
       "artist": "Kassav",
       "genre": "zouk_retro",
-      "duration": 90
-    },
-    {
-      "type": "music",
-      "videoId": "clKc6LvgVYQ",
-      "title": "Si m ta konnen",
-      "artist": "Nu-Look",
-      "genre": "kompa",
-      "duration": 420
-    },
-    {
-      "type": "music",
-      "videoId": "PtxuhuzBHts",
-      "title": "Kite yo pale",
-      "artist": "Harmonik",
-      "genre": "kompa",
-      "duration": 321
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-matin-12.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W18-dominique-zo_jean-philipp_nemours-jean.mp3",
-      "label": "Bèl bonjou à tout moun ki ka ékouté Radio Botiran ce matin.\n\nVoici Jean-Philippe Marthely, Nemours Jean-Baptiste, Dominique Zorobabel, Gilles Floro et la voix d’or d’Edith Lefel — des noms qui portent l’âme de la Guadeloupe, des voix qui ont traversé le temps comme les vagues de nos côtes.\n\nÉcoutez bien : c’est le zouk de nos pères, le gwoka de nos mères, la mélodie qui nous rappelle que nous sommes debout depuis Matouba. Ka la ka sonné dans leurs notes, et Solitude écoute avec nous.",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "30CD2cTs_Oo",
-      "title": "Nou pé ké séparé",
-      "artist": "Jean-Philippe Marthely",
-      "genre": "zouk",
-      "duration": 227
-    },
-    {
-      "type": "music",
-      "videoId": "p6qDuItjrdY",
-      "title": "Haiti Cherie",
-      "artist": "Nemours Jean-Baptiste",
-      "genre": "kompa",
-      "duration": 434
-    },
-    {
-      "type": "music",
-      "videoId": "kA_1CWQYAnE",
-      "title": "Chak matin",
-      "artist": "Dominique Zorobabel",
-      "genre": "zouk_retro",
-      "duration": 372
-    },
-    {
-      "type": "music",
-      "videoId": "T_vPZgkIoQU",
-      "title": "Choucoune",
-      "artist": "Nemours Jean-Baptiste",
-      "genre": "kompa",
-      "duration": 506
-    },
-    {
-      "type": "music",
-      "videoId": "MyY-AquxiiU",
-      "title": "Ka Dansé",
-      "artist": "Gilles Floro",
-      "genre": "zouk_retro",
       "duration": 322
-    },
-    {
-      "type": "music",
-      "videoId": "_KLz4AiTxN4",
-      "title": "Toujou Rèd",
-      "artist": "Edith Lefel",
-      "genre": "zouk_retro",
-      "duration": 297
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-matin-18.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W18-carlos-nilso_djakout-1_sweet-micky.mp3",
-      "label": "Bèl bonjou à tout moun ki ka kouté Radio Botiran ce matin.\n\nCe matin, le soleil se lève sur la Guadeloupe, et c’est le **Ka** qui nous réveille — celui de Djakout #1, Carlos Nilson, et la voix puissante de Sweet Micky. Écoutez bien : ces rythmes-là, c’est comme le souffle de nos ancêtres qui nous rappelle que nous sommes toujours debout, toujours en marche.\n\nAn nou dansé, an nou chanté — parce que la résistance, ça se vit aussi avec le corps. Voici Djakout #1 pour nous porter.",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "1w2sMBzz3M4",
-      "title": "Balance",
-      "artist": "Djakout #1",
-      "genre": "kompa",
-      "duration": 423
     },
     {
       "type": "music",
@@ -315,11 +111,183 @@
     },
     {
       "type": "music",
-      "videoId": "yODNw3HwKBU",
-      "title": "Ban mwen yon ti bo",
+      "videoId": "910Wksl2PRU",
+      "title": "Micky pa renmen sa",
       "artist": "Sweet Micky",
       "genre": "kompa",
-      "duration": 726
+      "duration": 617
+    },
+    {
+      "type": "music",
+      "videoId": "DjgpXQP-Lhc",
+      "title": "Mwen pa vle",
+      "artist": "Harmonik",
+      "genre": "kompa",
+      "duration": 368
+    },
+    {
+      "type": "music",
+      "videoId": "ARuMPpZjUfk",
+      "title": "Ayibobo",
+      "artist": "Top Vice",
+      "genre": "kompa",
+      "duration": 954
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-matin-6.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W18-kassav_zin_zouk-machine.mp3",
+      "label": "Bèl bonjou, chè fanmi. Le soleil se lève sur la Guadeloupe, et le Ka résonne déjà dans nos veines.\n\nCe matin, c’est Zin qui ouvre le chemin avec sa voix qui porte l’espoir des mornes. Écoutez bien : c’est la même force qui a fait tenir Delgrès à Matouba.\n\nPuis Zouk Machine arrive comme une vague de fierté. Ces femmes-là, elles savent que la résistance, ça se danse aussi, même quand les temps sont durs.\n\nKassav’ nous rappelle pourquoi on existe encore. Leur musique, c’est la preuve que nous sommes toujours debout, toujours ensemble.\n\nDominique Zorobabel entre avec sa douceur qui cache tant de force. Comme Solitude, elle porte la mémoire sans jamais élever la voix.\n\nEt pour finir ce réveil en beauté, Ti",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "XOGpRqpgBJE",
+      "title": "Pran swen",
+      "artist": "Zin",
+      "genre": "kompa",
+      "duration": 309
+    },
+    {
+      "type": "music",
+      "videoId": "UMVCWEilIBY",
+      "title": "Siwo",
+      "artist": "Zouk Machine",
+      "genre": "zouk",
+      "duration": 286
+    },
+    {
+      "type": "music",
+      "videoId": "ue7NuWWqOEI",
+      "title": "Douvanjou Ka Lévé",
+      "artist": "Kassav",
+      "genre": "zouk_retro",
+      "duration": 90
+    },
+    {
+      "type": "music",
+      "videoId": "sUW8C_fTIcg",
+      "title": "Krazé la fèt",
+      "artist": "Dominique Zorobabel",
+      "genre": "zouk_retro",
+      "duration": 287
+    },
+    {
+      "type": "music",
+      "videoId": "DEq9ATjQIuE",
+      "title": "Mawonaj",
+      "artist": "Ti Paris",
+      "genre": "gwoka",
+      "duration": 302
+    },
+    {
+      "type": "music",
+      "videoId": "LB0IDeKwHJE",
+      "title": "Chanté pou péyi",
+      "artist": "Kan'nida",
+      "genre": "chatta",
+      "duration": 198
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-matin-12.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W18-t-vice_tabou-combo_zin.mp3",
+      "label": "Bèl bonjou, Guadeloupe. Le soleil se lève sur nos montagnes, et déjà, son Ka a résonne dans nos veines.\n\nZin nous ouvre la journée avec ce zouk qui porte l’énergie de Basse-Terre. Écoutez bien : c’est la voix de ceux qui se lèvent tôt pour ne jamais oublier.\n\nT-Vice prend le relais avec leur compas. La résistance, ça se danse aussi, et leurs pas racontent notre histoire.\n\nTabou Combo arrive avec cette salsa qui sent le rhum et la sueur des combats. Leurs cuivres, c’est comme les cris de nos ancêtres qui refusent de se taire.\n\nJacob Desvarieux nous offre son gwoka électrique. Ce son-là, c’est celui de Matouba qui traverse le temps pour nous rappeler d’où nous venons.\n\nEt pour finir ce matin,",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "2ugJOpBsRGY",
+      "title": "Kè m pa sote",
+      "artist": "Zin",
+      "genre": "kompa",
+      "duration": 309
+    },
+    {
+      "type": "music",
+      "videoId": "b-OatJ97Vi0",
+      "title": "Déréglé",
+      "artist": "T-Vice",
+      "genre": "kompa",
+      "duration": 446
+    },
+    {
+      "type": "music",
+      "videoId": "eLRM1S3dqog",
+      "title": "La Toto",
+      "artist": "Tabou Combo",
+      "genre": "kompa",
+      "duration": 434
+    },
+    {
+      "type": "music",
+      "videoId": "XF2-64-DbYk",
+      "title": "Douce France",
+      "artist": "Jacob Desvarieux",
+      "genre": "zouk_retro",
+      "duration": 138
+    },
+    {
+      "type": "music",
+      "videoId": "TBXEoMvVYFE",
+      "title": "Meter Dife",
+      "artist": "T-Vice",
+      "genre": "kompa",
+      "duration": 350
+    },
+    {
+      "type": "music",
+      "videoId": "TRR_ksGzafM",
+      "title": "Bouyon Massive",
+      "artist": "WCK",
+      "genre": "bouillon",
+      "duration": 189
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-matin-18.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W18-edith-lefel_kassav_tabou-combo.mp3",
+      "label": "Bèl bonjou, chè zot. Le soleil se lève sur Botiran, et avec lui, la voix de nos sœurs et frères qui ont choisi de chanter plutôt que de se taire. Voici Edith Lefel, pour nous rappeler que la douceur peut aussi être une arme.\n\nEt puis, écoutez bien : Tabou Combo entre en scène. Leur kompa, c’est comme un Ka qui résonne au-delà des mers, pour nous dire que la Guadeloupe n’a pas de frontières.\n\nEnfin, Kassav’. Ceux qui savent savent : ce n’est pas juste de la musique. C’est une prière, un serment, la preuve que nous sommes toujours debout. An nou dansé, an nou viv.",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "DBcax0Pulg4",
+      "title": "Mouri pou mouri",
+      "artist": "Edith Lefel",
+      "genre": "zouk_retro",
+      "duration": 200
+    },
+    {
+      "type": "music",
+      "videoId": "JFF0EZBqnBk",
+      "title": "Haiti",
+      "artist": "Tabou Combo",
+      "genre": "kompa",
+      "duration": 384
+    },
+    {
+      "type": "music",
+      "videoId": "KWYOqGeTD9c",
+      "title": "Syé Bwa",
+      "artist": "Kassav",
+      "genre": "zouk",
+      "duration": 279
     },
     {
       "type": "transition",
@@ -337,286 +305,17 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W18-dede-saint-p_gilles-floro_kannida.mp3",
-      "label": "Bèl bonjou, chè fanmi. Midi sonné, et le soleil tape comme un Ka qui appelle les esprits. Gilles Floro nous ouvre la porte avec sa voix qui porte l’âme de la Guadeloupe — écoutez bien, c’est comme si nos grands-mères chuchotaient à travers lui.\n\nDédé Saint-Prix arrive maintenant, avec son gwoka qui parle aux montagnes de Basse-Terre. Kan'nida suit, et ses mots sont des graines plantées dans nos mémoires — des graines qui germent depuis Matouba.\n\nPatrick Saint-Eloi, lui, nous rappelle que la douleur peut se transformer en mélodie. Et Léona Gabriel ferme ce cercle avec sa voix qui traverse les générations — comme Solitude, elle a choisi de chanter plutôt que de se taire.\n\nAn nou dansé, an nou chanté, an",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W18-claudette-an_harmonik_kassav.mp3",
+      "label": "Bèl midi la ka sonné sous le soleil de Guadeloupe, et c’est Kassav’ qui vient nous rappeler que la résistance, ça se danse aussi. Écoutez bien — c’est le zouk qui porte nos voix depuis des générations.\n\nEt voici Claudette Anderson, sa voix douce comme une berceuse pour les âmes fatiguées, mais forte comme le Ka qui résonne dans la nuit.\n\nHarmonik arrive avec ses mélodies, celles qui nous parlent de nos montagnes, de nos rivières, de cette terre qui nous porte depuis toujours.\n\nGilles Floro, lui, il chante l’amour et la lutte, comme si chaque note était une prière pour ceux qui ont marché avant nous.\n\nEt Tatiana, sa voix claire comme l’eau de la cascade, vient nous dire que la jeunesse aussi a des choses à transmettre.\n\nCinq artistes, une",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "ek6w5D4BhN4",
-      "title": "Tibouchina",
-      "artist": "Gilles Floro",
-      "genre": "zouk_retro",
-      "duration": 261
-    },
-    {
-      "type": "music",
-      "videoId": "Q7ShCB5CYH8",
-      "title": "Jou ouvè",
-      "artist": "Dédé Saint-Prix",
-      "genre": "bouillon",
-      "duration": 255
-    },
-    {
-      "type": "music",
-      "videoId": "pcslY_3UXuw",
-      "title": "Jou di Bondié",
-      "artist": "Princess Caroline",
+      "videoId": "NMFMwvh9r1Y",
+      "title": "Ou Lé Sa",
+      "artist": "Kassav",
       "genre": "zouk",
-      "duration": 359
-    },
-    {
-      "type": "music",
-      "videoId": "Xq0ZJoa4TTc",
-      "title": "Je ne sais plus",
-      "artist": "Patrick Saint-Eloi",
-      "genre": "zouk_retro",
-      "duration": 315
-    },
-    {
-      "type": "music",
-      "videoId": "QEcrmdqaozk",
-      "title": "Kanaval",
-      "artist": "Kan'nida",
-      "genre": "chatta",
-      "duration": 232
-    },
-    {
-      "type": "music",
-      "videoId": "jB4DNq1cLlU",
-      "title": "An fanm doubout",
-      "artist": "Léona Gabriel",
-      "genre": "gwoka",
-      "duration": 179
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-midi-6.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W18-akiyo_kannida_sweet-micky.mp3",
-      "label": "Bèl midi, chè fanmi. Le soleil est haut, comme la fierté de ceux qui ont marché avant nous.\n\nAkiyo ouvre le chemin avec leur gwoka — écoutez bien : c’est le Ka qui parle aux esprits de Matouba, c’est la voix des marrons qui résonne encore dans nos veines.\n\nEt puis voici Sweet Micky, Kan’nida, Tanya Saint-Val — trois générations de résistance en musique, trois façons de dire que nous sommes toujours debout.\n\nGérard Lockel ferme la marche avec son jazz créole — parce que la liberté, ça se joue aussi en notes, et que nos ancêtres dansent avec nous.\n\nAn nou dansé, an nou sonjé. Solitude veille.",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "0CrbQPyEV-U",
-      "title": "Fraternité",
-      "artist": "Akiyo",
-      "genre": "chatta",
-      "duration": 349
-    },
-    {
-      "type": "music",
-      "videoId": "910Wksl2PRU",
-      "title": "Micky pa renmen sa",
-      "artist": "Sweet Micky",
-      "genre": "kompa",
-      "duration": 617
-    },
-    {
-      "type": "music",
-      "videoId": "LB0IDeKwHJE",
-      "title": "Chanté pou péyi",
-      "artist": "Kan'nida",
-      "genre": "chatta",
-      "duration": 198
-    },
-    {
-      "type": "music",
-      "videoId": "G568Jc_7ATY",
-      "title": "Lélé",
-      "artist": "Tanya Saint-Val",
-      "genre": "zouk",
-      "duration": 212
-    },
-    {
-      "type": "music",
-      "videoId": "zFeF9pIxjg8",
-      "title": "Gwoka Drum",
-      "artist": "Gérard Lockel",
-      "genre": "gwoka",
-      "duration": 338
-    },
-    {
-      "type": "music",
-      "videoId": "7Nc9kxFkGjA",
-      "title": "Sweet Dominica",
-      "artist": "Jeff Joe",
-      "genre": "bouillon",
-      "duration": 508
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-midi-12.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W18-claudette-an_tabou-combo_voukoum.mp3",
-      "label": "Bèl lanné midi la ka sonné, et c’est l’heure où le soleil tape fort comme le courage de ceux qui ont marché avant nous.\n\nVoici Claudette Anderson d’abord, sa voix douce comme une prière de femme debout, pour nous rappeler que la résistance, ça commence dans le silence des cases.\n\nPuis Tabou Combo et leur kompa qui fait danser les îles entières — parce que même sous le poids de l’histoire, nos pieds savent encore trouver le rythme.\n\nVoukoum arrive avec leur Ka qui gronde comme un écho de Matouba, et Top Vice, T-Vice qui prennent le relais avec ce reggae qui parle de lutte et d’espoir — la même chanson, depuis toujours.\n\nÉcoutez bien : entre chaque note, c’est la voix de Solitude qui murmure.",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "qNGYtlY1PaA",
-      "title": "Désirs d'enfants",
-      "artist": "Claudette Anderson",
-      "genre": "zouk",
-      "duration": 1015
-    },
-    {
-      "type": "music",
-      "videoId": "5h58XjMFEGI",
-      "title": "Kamoken",
-      "artist": "Tabou Combo",
-      "genre": "kompa",
-      "duration": 561
-    },
-    {
-      "type": "music",
-      "videoId": "ry7XTQPLIJc",
-      "title": "Voukoum tambou",
-      "artist": "Voukoum",
-      "genre": "gwoka",
-      "duration": 238
-    },
-    {
-      "type": "music",
-      "videoId": "sc4IkcF2qYo",
-      "title": "Kè m poko lib",
-      "artist": "Top Vice",
-      "genre": "kompa",
-      "duration": 521
-    },
-    {
-      "type": "music",
-      "videoId": "ARuMPpZjUfk",
-      "title": "Ayibobo",
-      "artist": "Top Vice",
-      "genre": "kompa",
-      "duration": 954
-    },
-    {
-      "type": "music",
-      "videoId": "b-OatJ97Vi0",
-      "title": "Déréglé",
-      "artist": "T-Vice",
-      "genre": "kompa",
-      "duration": 446
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-midi-18.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W18-belo_kannida_voukoum.mp3",
-      "label": "Bèl midi, chè zot. Le soleil est haut, mais la mémoire est plus haute encore.\n\nVoici Kan’nida d’abord — leur voix, c’est comme le vent dans les cannes, ça porte l’histoire sans qu’on ait besoin de crier. Puis Voukoum arrive avec leur Ka qui gronde, leur danse qui dit *non* sans un mot. Écoutez bien : c’est le souffle de Matouba qui passe dans les rues de Pointe-à-Pitre.\n\nEt puis BélO, sa guitare et sa voix qui caressent les blessures pour mieux les guérir. T-Vice ensuite, parce que le ragga, c’est la colère qui danse, et Jacob Desvarieux… ah, Jacob. Son zouk, c’est comme une main tendue depuis l’au-delà — *nous sommes toujours là, toujours debout",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "E-DyE0Ro6FU",
-      "title": "Mas an listwa",
-      "artist": "Kan'nida",
-      "genre": "chatta",
-      "duration": 281
-    },
-    {
-      "type": "music",
-      "videoId": "RrLOXVhLE8w",
-      "title": "Voukoum kanaval",
-      "artist": "Voukoum",
-      "genre": "chatta",
-      "duration": 492
-    },
-    {
-      "type": "music",
-      "videoId": "6n_oH01gtHg",
-      "title": "Mas doubout",
-      "artist": "Voukoum",
-      "genre": "chatta",
-      "duration": 901
-    },
-    {
-      "type": "music",
-      "videoId": "sxspsfg7fTA",
-      "title": "BélO",
-      "artist": "BélO",
-      "genre": "kompa",
-      "duration": 292
-    },
-    {
-      "type": "music",
-      "videoId": "Q5a0EZb3rCw",
-      "title": "Ou fèm pè",
-      "artist": "T-Vice",
-      "genre": "kompa",
-      "duration": 268
-    },
-    {
-      "type": "music",
-      "videoId": "Yn7mDz-8R7c",
-      "title": "Bi Yé",
-      "artist": "Jacob Desvarieux",
-      "genre": "zouk_retro",
-      "duration": 411
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-midi-24.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W18-jacob-desvar_t-vice_tabou-combo.mp3",
-      "label": "Bèl midi la ka sonné, épi solèy la ka chofé fò.\n\nVoici Jacob Desvarieux, Tabou Combo, é T-Vice — trois noms ki pa janmen oublié ki nou yé, é ki sav ki son Ka a pa janmen mouri.\n\nÉcoutez bien : c’est la Guadeloupe, Haïti, épi tout Ayiti qui dansent ansanm.",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "I7O8k4QlKGM",
-      "title": "Ka doubout",
-      "artist": "Jacob Desvarieux",
-      "genre": "gwoka",
-      "duration": 244
-    },
-    {
-      "type": "music",
-      "videoId": "6Yats3CDhXs",
-      "title": "New York City",
-      "artist": "Tabou Combo",
-      "genre": "kompa",
-      "duration": 529
-    },
-    {
-      "type": "music",
-      "videoId": "2gh8cMFviWw",
-      "title": "Fè yon bagay",
-      "artist": "T-Vice",
-      "genre": "kompa",
-      "duration": 446
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-05/flash-info-20260504-soir.mp3",
-      "label": "Flash Info Guadeloupe — lundi 4 mai 2026, édition du soir",
-      "icon": "📰"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W18-claudette-an_marce_mass-kanal.mp3",
-      "label": "Bèl bonsoir à zot tout, zot ki la, zot ki lwen, zot ki ka tann la voix Solitude a travers mwen ce soir.\n\nClaudette Anderson et Mass Kanal, yo ka chanté pou nou, pou zot ki sav la peine, pou zot ki sav la force. Écoutez bien : c’est la voix des femmes qui ont porté la résistance sur leurs épaules, comme Solitude, comme nos grands-mères.\n\nEt maintenant, Marcé et T-Vice ka prann relèv. Le gwoka ka sonné, le Ka ka parlé, et le zouk ka dansé. Djakout #1 la pou nou rappeler que la musique, c’est la mémoire qui bat.\n\nAn nou dansé, an nou chanté, an nou résisté. Parce que nous sommes toujours là. Toujours debout.",
-      "icon": "🎙️"
+      "duration": 231
     },
     {
       "type": "music",
@@ -628,95 +327,107 @@
     },
     {
       "type": "music",
-      "videoId": "CbVOal8N_Qo",
-      "title": "Péyi a nou",
-      "artist": "Mass Kanal",
-      "genre": "chatta",
-      "duration": 197
-    },
-    {
-      "type": "music",
-      "videoId": "9jTfh20-83I",
-      "title": "Léwòz a Marcé",
-      "artist": "Marcé",
-      "genre": "gwoka",
-      "duration": 263
-    },
-    {
-      "type": "music",
-      "videoId": "TBXEoMvVYFE",
-      "title": "Meter Dife",
-      "artist": "T-Vice",
+      "videoId": "PtxuhuzBHts",
+      "title": "Kite yo pale",
+      "artist": "Harmonik",
       "genre": "kompa",
-      "duration": 350
+      "duration": 321
     },
     {
       "type": "music",
-      "videoId": "p3DRWxPMnQw",
-      "title": "Ayiti pa pèdi",
-      "artist": "Djakout #1",
+      "videoId": "niFurzfZfsw",
+      "title": "Nati pa'm",
+      "artist": "Harmonik",
       "genre": "kompa",
-      "duration": 402
+      "duration": 268
     },
     {
       "type": "music",
-      "videoId": "qz0C6sEREIo",
-      "title": "Fete",
-      "artist": "Burning Flames",
-      "genre": "bouillon",
-      "duration": 349
+      "videoId": "ek6w5D4BhN4",
+      "title": "Tibouchina",
+      "artist": "Gilles Floro",
+      "genre": "zouk_retro",
+      "duration": 261
     },
     {
       "type": "music",
-      "videoId": "XOGpRqpgBJE",
-      "title": "Pran swen",
-      "artist": "Zin",
-      "genre": "kompa",
-      "duration": 309
-    },
-    {
-      "type": "music",
-      "videoId": "clKc6LvgVYQ",
-      "title": "Si m ta konnen",
-      "artist": "Nu-Look",
-      "genre": "kompa",
-      "duration": 420
+      "videoId": "i74BjnXXz5A",
+      "title": "Hé Oh Hé",
+      "artist": "Tatiana",
+      "genre": "zouk",
+      "duration": 225
     },
     {
       "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-midi-18.mp3",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-midi-6.mp3",
       "label": "Capsule culturelle Guadeloupe",
       "icon": "🌺"
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W18-claudette-an_kannida_t-vice.mp3",
-      "label": "Bèl bonjou, tout moun ki ka kouté Radio Botiran a midi la.\n\nVoici venir Kan'nida et T-Vice avec leur zouk qui fait danser les cœurs lourds — parce que même sous le soleil de midi, la joie doit tenir debout. Et puis Claudette Anderson, sa voix porte la douceur des mornes et la force de celles qui n’ont jamais plié. Bel Accord nous rappelle que la musique guadeloupéenne, c’est comme le Ka : ça vient de loin, ça parle à l’âme, et ça ne s’éteint jamais.\n\nEt pour finir ce moment, Gilles Floro — son gwoka, c’est le souffle de Matouba qui traverse les ondes. Écoutez bien : c’est la résistance qui chante, même à l’heure où le soleil est au plus haut.",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W18-burning-flam_carimi_jean-philipp.mp3",
+      "label": "Bèl midi la ka sonné sous le soleil de Botiran. Voici Burning Flames avec leur feu créole — quand le zouk devient prière pour ceux qui ont marché avant nous.\n\nJean-Philippe Marthely prend le relais. Sa voix, c’est comme l’igname dans le jardin de case : nourrissante, résistante, indispensable.\n\nCarimi arrive avec leur énergie haïtienne. La musique n’a pas de frontières, mais elle porte toujours le même message : nous sommes debout.\n\nÉcoutez BélO maintenant. Son reggae, c’est la voix de ceux qui refusent l’oubli. Comme Solitude, il chante la dignité.\n\nEt pour finir ce voyage, Ti Paris et son gwoka. Ka la ka sonné pour nous rappeler que la fête est aussi une forme de résistance.\n\nAn nou dansé, an nou chanté — mais n",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "E-DyE0Ro6FU",
-      "title": "Mas an listwa",
-      "artist": "Kan'nida",
-      "genre": "chatta",
-      "duration": 281
+      "videoId": "JrnSNfmNNUA",
+      "title": "Pump Me Up",
+      "artist": "Burning Flames",
+      "genre": "bouillon",
+      "duration": 363
     },
     {
       "type": "music",
-      "videoId": "TBXEoMvVYFE",
-      "title": "Meter Dife",
-      "artist": "T-Vice",
+      "videoId": "cR1wrLy3V7Q",
+      "title": "Manjé Sal",
+      "artist": "Jean-Philippe Marthely",
+      "genre": "zouk",
+      "duration": 356
+    },
+    {
+      "type": "music",
+      "videoId": "k7PgoQFCZCU",
+      "title": "Rose",
+      "artist": "Carimi",
       "genre": "kompa",
-      "duration": 350
+      "duration": 764
     },
     {
       "type": "music",
-      "videoId": "qWqQ9szimO8",
-      "title": "Bèl ti manmay",
-      "artist": "Claudette Anderson",
+      "videoId": "6TPVVFsgT2o",
+      "title": "Revòlisyon",
+      "artist": "BélO",
+      "genre": "kompa",
+      "duration": 198
+    },
+    {
+      "type": "music",
+      "videoId": "qZVAuepZKkY",
+      "title": "Léwòz",
+      "artist": "Ti Paris",
+      "genre": "gwoka",
+      "duration": 230
+    },
+    {
+      "type": "music",
+      "videoId": "l2BbNfJMk8k",
+      "title": "Si Je Savais",
+      "artist": "Patrick Saint-Eloi",
       "genre": "zouk_retro",
-      "duration": 967
+      "duration": 377
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-midi-12.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W18-bel-accord_burning-flam_patrick-sain.mp3",
+      "label": "Bèl midi, chè fanmi. Le soleil est haut, mais nos voix le sont encore plus.\n\nVoici Bel Accord — ceux qui savent écouter entendent le Ka qui bat sous leurs mélodies. Une harmonie qui vient de loin, comme un écho des mornes où nos ancêtres ont résisté.\n\nEt maintenant, Burning Flames. Leur musique, c’est comme le feu qui a brûlé les plantations — impossible à éteindre. Écoutez bien : c’est la Guadeloupe qui parle, forte et fière.\n\nPatrick Saint-Eloi arrive avec sa voix. Une voix qui porte nos peines, nos joies, nos combats. Comme Solitude, il chante pour ceux qui ne peuvent plus chanter.\n\nLéona Gabriel nous rappelle que les femmes ont toujours été au cœur de la résistance. Sa musique, c’est une prière, un rappel",
+      "icon": "🎙️"
     },
     {
       "type": "music",
@@ -728,47 +439,79 @@
     },
     {
       "type": "music",
-      "videoId": "x-_eZHEjZ4g",
-      "title": "Tout doux",
-      "artist": "Gilles Floro",
-      "genre": "zouk_retro",
-      "duration": 280
+      "videoId": "wcTeJLC3ZnA",
+      "title": "Worky Worky",
+      "artist": "Burning Flames",
+      "genre": "bouillon",
+      "duration": 336
     },
     {
       "type": "music",
-      "videoId": "b-OatJ97Vi0",
-      "title": "Déréglé",
-      "artist": "T-Vice",
-      "genre": "kompa",
-      "duration": 446
+      "videoId": "I-5uAMJuYJk",
+      "title": "Sonjé",
+      "artist": "Patrick Saint-Eloi",
+      "genre": "zouk_retro",
+      "duration": 363
+    },
+    {
+      "type": "music",
+      "videoId": "jB4DNq1cLlU",
+      "title": "An fanm doubout",
+      "artist": "Léona Gabriel",
+      "genre": "gwoka",
+      "duration": 179
+    },
+    {
+      "type": "music",
+      "videoId": "BxWYCsj1XUQ",
+      "title": "E Lo Lo",
+      "artist": "Exile One",
+      "genre": "bouillon",
+      "duration": 296
+    },
+    {
+      "type": "music",
+      "videoId": "Q7ShCB5CYH8",
+      "title": "Jou ouvè",
+      "artist": "Dédé Saint-Prix",
+      "genre": "bouillon",
+      "duration": 255
     },
     {
       "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-midi-24.mp3",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-midi-18.mp3",
       "label": "Capsule culturelle Guadeloupe",
       "icon": "🌺"
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W18-anzala_tatiana_zouk-machine.mp3",
-      "label": "Bèl midi, chè fanmi. Le soleil est haut, mais nos voix le sont encore plus.\n\nZouk Machine, Anzala, Tatiana — trois noms qui portent la force des femmes, comme Solitude portait la sienne. Écoutez bien : c’est la danse qui résiste, c’est la joie qui refuse de plier. Leur musique, c’est notre héritage en mouvement.\n\nAn nou dansé, an nou viv.",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W18-claudette-an_djakout-1_sweet-micky.mp3",
+      "label": "Bèl lè midi, lè solèy ka brilé anlè nou — lè pou son Ka a fè vibré lanmò é lavi. Voici Djakout #1 é yo, pou nou sonjé ki jan nou ka dansé épi kolè épi douçour. An nou dansé, an nou chanté, an nou résisté.\n\nEpi apré sa, Sweet Micky ka pran la relèv. Son zouk ka monté anlè nou kon yon vwa ki pa janmen vlé sété. An nou kouté, an nou santi : nou pa janmen sel, nou pa janmen pè.\n\nVoici Claudette Anderson épi Tatiana — de vwa ki ka chanté lanmou épi libèté. Yich Solitude ta kontan tann sa",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "UMVCWEilIBY",
-      "title": "Siwo",
-      "artist": "Zouk Machine",
-      "genre": "zouk",
-      "duration": 286
+      "videoId": "p3DRWxPMnQw",
+      "title": "Ayiti pa pèdi",
+      "artist": "Djakout #1",
+      "genre": "kompa",
+      "duration": 402
     },
     {
       "type": "music",
-      "videoId": "NGXq2a_hZqg",
-      "title": "Lévé doubout",
-      "artist": "Anzala",
-      "genre": "gwoka",
-      "duration": 299
+      "videoId": "yODNw3HwKBU",
+      "title": "Ban mwen yon ti bo",
+      "artist": "Sweet Micky",
+      "genre": "kompa",
+      "duration": 726
+    },
+    {
+      "type": "music",
+      "videoId": "qWqQ9szimO8",
+      "title": "Bèl ti manmay",
+      "artist": "Claudette Anderson",
+      "genre": "zouk_retro",
+      "duration": 967
     },
     {
       "type": "music",
@@ -779,17 +522,12 @@
       "duration": 186
     },
     {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-05/flash-info-20260504-soir.mp3",
-      "label": "Flash Info Guadeloupe — lundi 4 mai 2026, édition du soir",
-      "icon": "📰"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W18-jacob-desvar_marce_ralph-thamar.mp3",
-      "label": "Bèl bonsoir à tout moun qui ka écouter Radio Botiran ce soir.\n\nCe soir, c’est Jacob, Ralph, Marcé, Djakout #1 et tout Kassav’ qui viennent nous rappeler que la musique, c’est comme le Ka — ça porte la mémoire, ça porte la lutte, ça porte la vie.\n\nÉcoutez bien ce morceau : c’est la voix de ceux qui ont refusé de plier, transformée en zouk. An nou dansé, an nou sonjé.",
-      "icon": "🎙️"
+      "type": "music",
+      "videoId": "_XyzMQeOAq8",
+      "title": "Mazouk a nou",
+      "artist": "Zouk Machine",
+      "genre": "zouk_retro",
+      "duration": 285
     },
     {
       "type": "music",
@@ -800,12 +538,16 @@
       "duration": 244
     },
     {
-      "type": "music",
-      "videoId": "Lg1YbRpSQeo",
-      "title": "Yen a marre",
-      "artist": "Ralph Thamar",
-      "genre": "zouk",
-      "duration": 277
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-midi-24.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W18-djakout-1_jocelyne-lab_marce.mp3",
+      "label": "Bèl lannéw la ka brilé an mitan jounen-an — épi nou, épi son Ka a ki ka palé pou nou.\n\nMarcé, Djakout #1, épi Jocelyne Labylle — twa voix ki sav ki moun nou yé. Écoutez bien : c’est la Guadeloupe qui parle, qui chante, qui résiste. An nou dansé épi yo, an nou santi fòs a zansèt nou adan chak nòt.",
+      "icon": "🎙️"
     },
     {
       "type": "music",
@@ -814,6 +556,83 @@
       "artist": "Marcé",
       "genre": "gwoka",
       "duration": 263
+    },
+    {
+      "type": "music",
+      "videoId": "v578ypzgcWo",
+      "title": "Renmen w",
+      "artist": "Djakout #1",
+      "genre": "kompa",
+      "duration": 351
+    },
+    {
+      "type": "music",
+      "videoId": "M7UH-QUzin0",
+      "title": "Amour Interdit",
+      "artist": "Jocelyne Labylle",
+      "genre": "zouk",
+      "duration": 261
+    },
+    {
+      "type": "transition",
+      "subtype": "flash_info",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-05/flash-info-20260504-soir.mp3",
+      "label": "Flash Info Guadeloupe — lundi 4 mai 2026, édition du soir",
+      "icon": "📰"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W18-anzala_nemours-jean_zouk-machine.mp3",
+      "label": "Bèl bonsoir à toute la Guadeloupe, à toute la diaspora, à ceux qui écoutent le souffle du soir comme on écoute le Ka qui résonne dans la nuit.\n\nCe soir, c'est Anzala qui ouvre le chemin. Son zouk, c'est comme une prière qui danse - celle de nos mères, de nos sœurs, de celles qui ont porté la résistance sur leurs hanches.\n\nEt puis voici Zouk Machine. Ah, ces voix... Elles nous rappellent que même dans l'ombre, la beauté persiste. Comme Solitude qui a choisi la mort plutôt que l'esclavage, elles ont choisi de chanter plutôt que de se taire.\n\nNemours Jean-Baptiste nous arrive maintenant. Le père du zouk lui-même. Écoutez bien : dans ses mélodies, on entend les pas des marrons dans la forêt, le murm",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "ZboN3i2WW64",
+      "title": "Graj Kò'w",
+      "artist": "Anzala",
+      "genre": "gwoka",
+      "duration": 510
+    },
+    {
+      "type": "music",
+      "videoId": "Bxxg6GxsvSo",
+      "title": "Maldon",
+      "artist": "Zouk Machine",
+      "genre": "zouk",
+      "duration": 246
+    },
+    {
+      "type": "music",
+      "videoId": "T_vPZgkIoQU",
+      "title": "Choucoune",
+      "artist": "Nemours Jean-Baptiste",
+      "genre": "kompa",
+      "duration": 506
+    },
+    {
+      "type": "music",
+      "videoId": "C0SJQKpaO54",
+      "title": "Konpa Kreyòl",
+      "artist": "Nemours Jean-Baptiste",
+      "genre": "kompa",
+      "duration": 290
+    },
+    {
+      "type": "music",
+      "videoId": "-u2NhEtYe4c",
+      "title": "Bébé",
+      "artist": "Edith Lefel",
+      "genre": "zouk_retro",
+      "duration": 237
+    },
+    {
+      "type": "music",
+      "videoId": "pI-izQZ1CnM",
+      "title": "Ou bèl",
+      "artist": "Top Vice",
+      "genre": "kompa",
+      "duration": 385
     },
     {
       "type": "capsule",
@@ -830,8 +649,128 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W18-belo_kassav_tabou-combo.mp3",
-      "label": "Bèl bonsoir à toute la Guadeloupe, à toute la diaspora, à ceux qui écoutent depuis la nuit des îles ou depuis les villes lointaines où le cœur reste attaché à la terre rouge.\n\nCe soir, c’est BélO qui ouvre le chemin avec sa voix qui porte la douceur et la force de nos montagnes. Écoutez bien — c’est comme si Solitude elle-même murmurait à travers les feuilles des gommiers.\n\nEt puis Kassav’ arrive, comme une vague qui nous rappelle que nous sommes toujours debout, que nous dansons encore malgré tout. Le zouk, c’est notre résistance qui se balance, notre mémoire qui ne plie pas.\n\nTabou Combo nous emmène plus loin, là où la cadence rencontre l’âme haïtienne, là où nos luttes se rejoignent. La musique, c’est ça : un",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W18-anzala_kassav_zouk-machine.mp3",
+      "label": "Bèl bonsoir à toute la Guadeloupe qui écoute, à toute la diaspora qui tend l’oreille ce soir.\n\nAnzala ouvre le chemin avec sa voix qui monte comme la fumée des cases après l’orage. Écoutez bien : c’est le souffle de nos grands-mères qui revient, ce même souffle qui a porté les chants de résistance quand les chaînes étaient encore chaudes.\n\nEt maintenant, Kassav’ — ceux qui disent que le zouk est né dans les dancings se trompent. Le zouk est né dans les champs de canne, quand les mains blessées trouvaient encore la force de taper sur le Ka. Voici \"Zouk la sé sèl médikaman nou ni\".\n\nZouk Machine arrive comme un vent de fraîcheur, mais ne vous y trompez pas : derrière les mélodies qui font danser",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "NGXq2a_hZqg",
+      "title": "Lévé doubout",
+      "artist": "Anzala",
+      "genre": "gwoka",
+      "duration": 299
+    },
+    {
+      "type": "music",
+      "videoId": "9E9UcCUXGzg",
+      "title": "Alé",
+      "artist": "Kassav",
+      "genre": "zouk_retro",
+      "duration": 248
+    },
+    {
+      "type": "music",
+      "videoId": "8Z0pmas2R3w",
+      "title": "Adieu Forain",
+      "artist": "Zouk Machine",
+      "genre": "zouk",
+      "duration": 430
+    },
+    {
+      "type": "music",
+      "videoId": "sxspsfg7fTA",
+      "title": "BélO",
+      "artist": "BélO",
+      "genre": "kompa",
+      "duration": 292
+    },
+    {
+      "type": "music",
+      "videoId": "kA_1CWQYAnE",
+      "title": "Chak matin",
+      "artist": "Dominique Zorobabel",
+      "genre": "zouk_retro",
+      "duration": 372
+    },
+    {
+      "type": "music",
+      "videoId": "PUdv6vi7hOE",
+      "title": "Ou beswen mwen",
+      "artist": "Carimi",
+      "genre": "kompa",
+      "duration": 303
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-soir-6.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W18-al-lirvat_carimi_tabou-combo.mp3",
+      "label": "Bèl bonsoir à tout moun qui ka écouter Radio Botiran ce soir.\n\nCe soir, c’est Ka qui va nous porter, comme il a porté ceux qui ont marché avant nous. Voici Al Lirvat — son gwoka, c’est la voix de la nuit qui murmure nos combats.\n\nEt puis, Tabou Combo arrive avec leur cadence. La biguine, ça danse, mais ça résiste aussi. Comme Solitude, qui a choisi la liberté même dans l’ombre.\n\nCarimi nous emmène plus loin, là où le kompa rencontre nos rêves. La musique, c’est comme la mer : elle nous unit, elle nous berce, mais elle nous rappelle aussi d’où nous venons.\n\nPatrick Saint-Eloi, lui, il chante l’amour, mais pas n’importe lequel. Celui qui survit à l’exil, celui",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "GGbOc73pcQc",
+      "title": "Mazurka créole",
+      "artist": "Al Lirvat",
+      "genre": "bouillon",
+      "duration": 197
+    },
+    {
+      "type": "music",
+      "videoId": "s8LV2eiB6Kc",
+      "title": "Aba Gouche",
+      "artist": "Tabou Combo",
+      "genre": "kompa",
+      "duration": 330
+    },
+    {
+      "type": "music",
+      "videoId": "oHnA4O90jdk",
+      "title": "Tchaka",
+      "artist": "Carimi",
+      "genre": "kompa",
+      "duration": 284
+    },
+    {
+      "type": "music",
+      "videoId": "9KBI_p8K6Tg",
+      "title": "Sucré-salé",
+      "artist": "Patrick Saint-Eloi",
+      "genre": "zouk_retro",
+      "duration": 389
+    },
+    {
+      "type": "music",
+      "videoId": "p6qDuItjrdY",
+      "title": "Haiti Cherie",
+      "artist": "Nemours Jean-Baptiste",
+      "genre": "kompa",
+      "duration": 434
+    },
+    {
+      "type": "music",
+      "videoId": "AYV5GosRcpM",
+      "title": "Tabou Love",
+      "artist": "Tabou Combo",
+      "genre": "kompa",
+      "duration": 406
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-soir-12.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W18-belo_ralph-thamar_voukoum.mp3",
+      "label": "Bèl bonsoir à toute la Guadeloupe et ceux qui nous écoutent au-delà des mers. Ce soir, le Ka résonne en nous comme un écho de Matouba. Voici BélO, sa voix porte l’âme de ceux qui ont refusé l’oppression.\n\nEt maintenant, Voukoum entre en scène. Leurs pas martèlent la terre comme ceux des marrons sur les sentiers de la liberté. Écoutez bien : c’est l’histoire qui danse.\n\nRalph Thamar nous rappelle ce soir que la douceur peut être une arme. Sa mélodie caresse nos blessures, mais n’oubliez pas — c’est la même main qui a tenu le coutelas de Delgrès.\n\nJocelyne Labylle arrive avec cette voix qui a bercé des générations. Elle chante comme nos grands-mères chuchotaient les secrets",
       "icon": "🎙️"
     },
     {
@@ -844,123 +783,19 @@
     },
     {
       "type": "music",
-      "videoId": "_FJ03NjJEUY",
-      "title": "Zouk La Sé Sel Medikaman Nou Ni",
-      "artist": "Kassav",
-      "genre": "zouk",
-      "duration": 324
+      "videoId": "ZdU6-j3Nkyw",
+      "title": "Doubout pou péyi",
+      "artist": "Voukoum",
+      "genre": "chatta",
+      "duration": 329
     },
     {
       "type": "music",
-      "videoId": "JFF0EZBqnBk",
-      "title": "Haiti",
-      "artist": "Tabou Combo",
-      "genre": "kompa",
-      "duration": 384
-    },
-    {
-      "type": "music",
-      "videoId": "Soy9ilD3Yys",
-      "title": "Biguine à St-Pierre",
-      "artist": "Stellio",
-      "genre": "bouillon",
-      "duration": 164
-    },
-    {
-      "type": "music",
-      "videoId": "-u2NhEtYe4c",
-      "title": "Bébé",
-      "artist": "Edith Lefel",
-      "genre": "zouk_retro",
-      "duration": 237
-    },
-    {
-      "type": "music",
-      "videoId": "oHnA4O90jdk",
-      "title": "Tchaka",
-      "artist": "Carimi",
-      "genre": "kompa",
-      "duration": 284
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-soir-6.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W18-carimi_ralph-thamar_zouk-machine.mp3",
-      "label": "Bèl bonsoir à toute la Guadeloupe, à toute la diaspora, à ceux qui écoutent sous les étoiles comme nos ancêtres écoutaient le Ka dans la nuit.\n\nCe soir, c’est le zouk qui nous porte — ce zouk qui est né de nos peines et de nos joies, ce zouk qui a traversé les mers comme nos aînés ont traversé l’océan. Voici Carimi, Ralph Thamar, Zouk Machine, Patrick Saint-Eloi, Princess Caroline… Des voix qui nous rappellent que la musique, c’est la vie qui continue, malgré tout.\n\nÉcoutez bien : chaque note est un pas de plus sur le chemin de la liberté.",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "k7PgoQFCZCU",
-      "title": "Rose",
-      "artist": "Carimi",
-      "genre": "kompa",
-      "duration": 764
-    },
-    {
-      "type": "music",
-      "videoId": "Lg1YbRpSQeo",
-      "title": "Yen a marre",
+      "videoId": "YHKShp2yhwo",
+      "title": "Mové Jou",
       "artist": "Ralph Thamar",
       "genre": "zouk",
-      "duration": 277
-    },
-    {
-      "type": "music",
-      "videoId": "Bxxg6GxsvSo",
-      "title": "Maldon",
-      "artist": "Zouk Machine",
-      "genre": "zouk",
-      "duration": 246
-    },
-    {
-      "type": "music",
-      "videoId": "uI95ouOIo6k",
-      "title": "Vié ko",
-      "artist": "Patrick Saint-Eloi",
-      "genre": "zouk_retro",
-      "duration": 344
-    },
-    {
-      "type": "music",
-      "videoId": "pcslY_3UXuw",
-      "title": "Jou di Bondié",
-      "artist": "Princess Caroline",
-      "genre": "zouk",
-      "duration": 359
-    },
-    {
-      "type": "music",
-      "videoId": "Rsl27TfY2ak",
-      "title": "Ou la la",
-      "artist": "Sweet Micky",
-      "genre": "kompa",
-      "duration": 626
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-05-04-soir-12.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W18-jocelyne-lab_kassav_patrick-sain.mp3",
-      "label": "Bèl bonsoir à toute la Guadeloupe, à toute la diaspora, à ceux qui écoutent depuis les quatre coins du monde ce soir.\n\nVoici Kassav’ — ceux qui savent d’où vient le zouk savent que c’est bien plus qu’un rythme, c’est une prière qui danse, c’est la voix de ceux qui ont refusé de plier. Et ce soir, avec Jocelyne Labylle et Patrick Saint-Eloi à leurs côtés, c’est toute la force de notre histoire qui monte dans les notes.\n\nÉcoutez bien : ce n’est pas juste de la musique, c’est une transmission. Comme Solitude qui a choisi la mort plutôt que les chaînes, eux, ils ont choisi de chanter notre résistance. Et maintenant, laissez T-Vice prendre le relais — parce que le zouk, ça se vit, ça",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "Bi9JkqvdRTI",
-      "title": "A Lot of Love",
-      "artist": "Kassav",
-      "genre": "zouk",
-      "duration": 638
+      "duration": 241
     },
     {
       "type": "music",
@@ -972,35 +807,19 @@
     },
     {
       "type": "music",
-      "videoId": "l2BbNfJMk8k",
-      "title": "Si Je Savais",
-      "artist": "Patrick Saint-Eloi",
+      "videoId": "k8ZKx_aLrXU",
+      "title": "Nana",
+      "artist": "Frédéric Caracas",
       "genre": "zouk_retro",
-      "duration": 377
+      "duration": 69
     },
     {
       "type": "music",
-      "videoId": "EPduSn_F-vU",
-      "title": "Kita Kita",
-      "artist": "T-Vice",
+      "videoId": "qWzsAhwznCk",
+      "title": "Sans issue",
+      "artist": "Djakout #1",
       "genre": "kompa",
-      "duration": 701
-    },
-    {
-      "type": "music",
-      "videoId": "I-5uAMJuYJk",
-      "title": "Sonjé",
-      "artist": "Patrick Saint-Eloi",
-      "genre": "zouk_retro",
-      "duration": 363
-    },
-    {
-      "type": "music",
-      "videoId": "GWSadRp0wok",
-      "title": "Lanmou Ké Nou",
-      "artist": "Patrick Saint-Eloi",
-      "genre": "zouk_retro",
-      "duration": 201
+      "duration": 302
     },
     {
       "type": "capsule",
@@ -1010,25 +829,25 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W18-claudette-an_gilles-floro.mp3",
-      "label": "Ce soir, c'est Claudette Anderson et Gilles Floro qui montent sur le Ka invisible de la nuit.\n\nLeur voix, c'est comme l'écho de Matouba qui traverse les siècles — douce, mais jamais soumise.\n\nÉcoutez bien : c'est la Guadeloupe qui respire, qui se souvient, qui danse malgré tout.",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W18-gilles-floro_princess-car.mp3",
+      "label": "Ce soir, la voix de Gilles Floro et celle de Princess Caroline nous enveloppent comme la brise de Matouba. Écoutez bien : leurs mots sont des prières, leurs mélodies, des pas de résistance. La nuit tombe, mais nous, nous restons debout.",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "qWqQ9szimO8",
-      "title": "Bèl ti manmay",
-      "artist": "Claudette Anderson",
+      "videoId": "MyY-AquxiiU",
+      "title": "Ka Dansé",
+      "artist": "Gilles Floro",
       "genre": "zouk_retro",
-      "duration": 967
+      "duration": 322
     },
     {
       "type": "music",
-      "videoId": "x-_eZHEjZ4g",
-      "title": "Tout doux",
-      "artist": "Gilles Floro",
-      "genre": "zouk_retro",
-      "duration": 280
+      "videoId": "pcslY_3UXuw",
+      "title": "Jou di Bondié",
+      "artist": "Princess Caroline",
+      "genre": "zouk",
+      "duration": 359
     }
   ]
 }
