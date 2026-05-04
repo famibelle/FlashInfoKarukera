@@ -4,8 +4,7 @@ generate_interview.py
 
 Génère l'interview radio "Creole Resistance Symbols" en anglais.
   - Texte produit par LLM Mistral à partir de kreyol_resistance_symbol.md
-  - TTS Voxtral (fr_marie_*) : ton "curious" pour Jane, "neutral" pour Paul
-  - Ton ajusté au contenu de chaque réplique
+  - TTS Voxtral (en_paul_*, gb_oliver_*) : ton ajusté au contenu de chaque réplique
   - Sortie : docs/audio/Emissions/interview-resistance-creole-YYYY-MM-DD.mp3 + .json
 
 Usage:
@@ -51,6 +50,8 @@ SOURCE_FILES = [
     PROMPTS_DIR / "kreyol_resistance_symbol_ref.md",
     PROMPTS_DIR / "faune_guadeloupe_ref.md",
     PROMPTS_DIR / "flore_guadeloupe_ref.md",
+    PROMPTS_DIR / "lieux_spirituels_ref.md",
+    PROMPTS_DIR / "histoire_guadeloupe_ref.md",
 ]
 OUTPUT_DIR  = Path("docs/audio/Emissions")
 
@@ -58,8 +59,8 @@ MISTRAL_MODEL = "mistral-large-latest"
 
 # Utilisation des voix Paul (journalist) et Oliver (expert)
 SPEAKER_BASE_TONE = {
-    "journalist": "neutral",   # Jane → Paul (en_paul_*)
-    "expert":     "neutral",   # Paul → Oliver (gb_oliver_*)
+    "journalist": "neutral",   # Paul (en_paul_*)
+    "expert":     "neutral",   # Oliver (gb_oliver_*)
 }
 
 # Tons autorisés par Voxtral
@@ -112,16 +113,24 @@ def _mistral_chat(system: str, user: str) -> str:
 
 SYSTEM_PROMPT = """\
 You are a scriptwriter for a Caribbean cultural radio station.
-Write a 3-minute radio interview in English between a journalist (Paul) and a cultural
-researcher (Oliver) about the living symbols of Creole resistance in Guadeloupe: animals,
-plants, and trees used by Arawaks, Maroons, and enslaved people as emblems of survival,
-freedom, and identity.
+You understand French and Kreyol, but write in english. You use french only when needed and you give the english word equivalent when saying word in french 
+Write a 3-minute radio interview STRICTLY IN ENGLISH between a journalist (Paul) and a cultural
+researcher (Oliver) about the living symbols of Creole resistance AND the rich history of Guadeloupe.
+
+IMPORTANT: Both Paul and Oliver are passionate Artifical Intelligence personalities dedicated to Guadeloupe.
+They must introduce themselves as Artificial Intelligence specialized in Guadeloupean culture at the beginning of the interview.
+
+Structure the interview in 3 parts:
+1. Introduction: Both introduce themselves as Artificial Intelligence. Paul asks Oliver about the historical depth of Guadeloupe, mentioning Arawaks, colonization, and Creole heritage and Guadeloupe history.
+2. Body: Alternate between Creole symbols (animals, plants, spiritual places) and their historical context. Connect each symbol to its historical significance in Guadeloupe's past.
+3. Conclusion: Reflect on how history and symbols together shape modern Guadeloupean identity and resistance.
 
 Rules:
 - Approximately 400-430 words total (3 minutes at radio pace)
 - At least 8 alternating turns (Paul / Oliver)
 - Natural, captivating, educational — not a lecture
-- Start with Paul's introduction, end with a warm closing exchange
+- Start with Paul's introduction where both identify themselves as AI assistants passionate about Guadeloupe
+- End with a warm closing exchange reflecting on history and symbols
 - Each turn: plain text only, no stage directions, no markdown
 - CRITICAL: Generate a DIFFERENT interview each time, exploring new angles, examples, and perspectives
 - CRITICAL: Never repeat the same narrative structure, examples, or phrasing from previous runs
@@ -129,55 +138,90 @@ Rules:
 Return a JSON object with key "dialogue": array of turns.
 Each turn must have:
   "speaker": "journalist" or "expert"
-  "text": the spoken line
+  "text": the spoken line (IN ENGLISH)
   "tone": one of neutral | happy | excited | sad | angry | curious
 """
 
 
-def _select_random_lines_from_tables():
-    """Sélectionne aléatoirement des LIGNES de tableaux Markdown des fichiers _ref.md."""
+def _select_random_lines_from_file(filepath: Path, num_lines: int = 3) -> list[str]:
+    """Sélectionne aléatoirement N lignes de tableau Markdown d'un fichier _ref.md.
+    
+    Args:
+        filepath: Chemin vers le fichier _ref.md (format table Markdown)
+        num_lines: Nombre de lignes à sélectionner
+    
+    Returns:
+        Liste de lignes nettoyées (sans |, formatées pour le LLM)
+    """
     # Mots à exclure (en-têtes de colonnes)
-    header_keywords = ['famille', 'nom créole', 'nom français', 'nom scientifique', 'sacré', 'dimension culturelle', 'usage']
+    header_keywords = ['famille', 'nom créole', 'nom français', 'nom scientifique', 
+                       'sacré', 'dimension culturelle', 'usage', 'catégorie', 'nom du lieu',
+                       'commune', 'localisation']
     
-    all_data_lines = []
+    data_lines = []
+    content = filepath.read_text(encoding="utf-8")
     
-    for filepath in SOURCE_FILES:
-        content = filepath.read_text(encoding="utf-8")
-        lines = content.split('\n')
-        
-        for line in lines:
-            # Ignorer : lignes vides, séparateurs de tableau, en-têtes
-            stripped = line.strip()
-            if not stripped:
-                continue
-            # Compter les séparateurs | pour identifier les lignes de tableau
-            pipe_count = stripped.count('|')
-            # Une ligne de données valide a au moins 4+ pipes (5+ colonnes) et n'est pas un séparateur (---)
-            if pipe_count >= 4 and '---' not in stripped:
-                # Nettoyer la ligne : enlever les | de début/fin
-                clean_line = stripped[1:-1].strip()
-                # Vérifier qu'il y a au moins 3 colonnes NON VIDES
-                cells = [c.strip() for c in clean_line.split('|')]
-                non_empty_cells = [c for c in cells if c]
-                if len(non_empty_cells) >= 3:
-                    # Exclure les lignes d'en-tête (contiennent des mots génériques)
-                    line_lower = clean_line.lower()
-                    if not any(keyword in line_lower for keyword in header_keywords):
-                        # Remplacer les | par des tabulations pour lisibilité
-                        clean_line = clean_line.replace('|', '\t')
-                        all_data_lines.append(clean_line)
+    for line in content.split('\n'):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        # Une ligne de données valide a au moins 2+ pipes (3+ colonnes) et n'est pas un séparateur
+        pipe_count = stripped.count('|')
+        if pipe_count >= 2 and '---' not in stripped:
+            # Nettoyer la ligne : enlever les | de début/fin
+            clean_line = stripped[1:-1].strip()
+            # Vérifier qu'il y a au moins 2 colonnes NON VIDES
+            cells = [c.strip() for c in clean_line.split('|')]
+            non_empty_cells = [c for c in cells if c]
+            if len(non_empty_cells) >= 2:
+                # Exclure les lignes d'en-tête
+                line_lower = clean_line.lower()
+                if not any(keyword in line_lower for keyword in header_keywords):
+                    # Remplacer les | par des tabulations pour lisibilité
+                    clean_line = clean_line.replace('|', '\t')
+                    data_lines.append(clean_line)
     
-    # Mélanger toutes les lignes
-    random.shuffle(all_data_lines)
+    # Mélanger et sélectionner
+    random.shuffle(data_lines)
+    return data_lines[:min(num_lines, len(data_lines))]
+
+
+def _get_random_spiritual_elements(num_per_file: int = 5) -> str:
+    """Sélectionne aléatoirement num_per_file éléments de CHACUN des fichiers _ref.md.
     
-    # Sélectionner 10-15 lignes aléatoires
-    num_lines = random.randint(10, 15)
-    selected_lines = all_data_lines[:min(num_lines, len(all_data_lines))]
+    Args:
+        num_per_file: Nombre d'éléments à sélectionner par fichier
     
-    # Formater pour le LLM : une ligne = un symbole complet
-    result = "Randomly selected Creole symbols (from reference tables):\n\n"
-    for i, line in enumerate(selected_lines, 1):
-        result += f"{i}. {line}\n"
+    Returns:
+        String formaté pour le LLM avec tous les éléments groupés par fichier
+    """
+    # Mapping des noms de fichiers vers des titres lisibles pour le LLM
+    file_titles = {
+        "kreyol_resistance_symbol_ref.md": "Creole Resistance Symbols",
+        "faune_guadeloupe_ref.md": "Fauna of Guadeloupe",
+        "flore_guadeloupe_ref.md": "Flora of Guadeloupe",
+        "lieux_spirituels_ref.md": "Spiritual Places of Guadeloupe",
+        "histoire_guadeloupe_ref.md": "History of Guadeloupe",
+    }
+    
+    result = "Randomly selected Creole symbols from Guadeloupe (for unique inspiration):\n\n"
+    ref_files = SOURCE_FILES
+    counter = 1
+    
+    for filepath in ref_files:
+        if filepath.exists():
+            file_lines = _select_random_lines_from_file(filepath, num_per_file)
+            if file_lines:
+                # Nom du fichier sans le chemin + mapping vers titre lisible
+                file_name = filepath.name
+                display_title = file_titles.get(file_name, file_name)
+                result += f"__ {display_title} __\n"
+                for line in file_lines:
+                    result += f"{counter}. {line}\n"
+                    counter += 1
+                result += "\n"
+        else:
+            print(f"⚠️  Fichier introuvable : {filepath}", file=sys.stderr)
     
     return result
 
@@ -212,8 +256,8 @@ def generate_dialogue(verbose: bool = False) -> list[dict]:
         print(f"   ⚠️  Horoscope indisponible: {e}")
         horoscope_text = ""
     
-    # Sélection aléatoire de LIGNES de tableaux pour varier le contenu
-    source_text = _select_random_lines_from_tables()
+    # Sélection aléatoire de 3 éléments par fichier (12 total) pour varier le contenu
+    source_text = _get_random_spiritual_elements(num_per_file=3)
     
     # Ajoute un identifiant unique par exécution (solution 3)
     unique_id = random.randint(10000, 99999)
@@ -258,8 +302,8 @@ def generate_dialogue(verbose: bool = False) -> list[dict]:
 
 def voice_id_for(turn: dict) -> str:
     """Retourne le voice_id Voxtral pour ce locuteur et ce ton.
-    - journalist (Jane) → voix Paul (en_paul_*)
-    - expert (Paul) → voix Oliver (gb_oliver_*)
+    - journalist (Paul) → voix en_paul_*
+    - expert (Oliver) → voix gb_oliver_*
     """
     speaker = turn.get("speaker", "expert")
     tone = turn.get("tone", SPEAKER_BASE_TONE[speaker])
@@ -269,7 +313,7 @@ def voice_id_for(turn: dict) -> str:
 
     # Mappage direct selon le locuteur
     if speaker == "journalist":
-        # Voix Paul pour le journaliste (Jane)
+        # Voix Paul pour le journaliste
         tone_map = {
             "neutral": "en_paul_neutral",
             "happy": "en_paul_happy",
@@ -283,7 +327,7 @@ def voice_id_for(turn: dict) -> str:
         }
         return tone_map.get(tone, "en_paul_neutral")
     else:
-        # Voix Oliver pour l'expert (Paul) - seule neutral disponible dans les logs
+        # Voix Oliver pour l'expert - seule neutral disponible dans les logs
         return "gb_oliver_neutral"
 
 

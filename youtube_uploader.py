@@ -460,37 +460,75 @@ LINERS_DIR = Path("docs/liners")
 
 
 def _select_random_ref_lines(num_per_file: int = 3) -> str:
-    """Sélectionne N lignes aléatoires dans chaque fichier _ref.md des tableaux."""
+    """Sélectionne N lignes aléatoires dans chaque fichier _ref.md des tableaux.
+    Aligné avec generate_interview.py, horoscope-gwada.py et flash-info-gwada.py.
+    """
+    # Mots à exclure (en-têtes de colonnes)
+    header_keywords = ['famille', 'nom créole', 'nom français', 'nom scientifique', 
+                       'sacré', 'dimension culturelle', 'usage', 'catégorie', 'nom du lieu',
+                       'commune', 'localisation']
+    
     PROMPTS_DIR = Path(__file__).parent / "private" / "prompts"
     SOURCE_FILES = [
         PROMPTS_DIR / "kreyol_resistance_symbol_ref.md",
         PROMPTS_DIR / "faune_guadeloupe_ref.md",
         PROMPTS_DIR / "flore_guadeloupe_ref.md",
+        PROMPTS_DIR / "lieux_spirituels_ref.md",
+        PROMPTS_DIR / "histoire_guadeloupe_ref.md",
     ]
-
-    all_data_lines = []
-    for filepath in SOURCE_FILES:
-        content = filepath.read_text(encoding="utf-8")
-        lines = content.split('\n')
-        for line in lines:
-            stripped = line.strip()
-            if not stripped or '---' in stripped:
-                continue
-            pipe_count = stripped.count('|')
-            if pipe_count >= 4:
-                clean_line = stripped[1:-1].strip()
-                cells = [c.strip() for c in clean_line.split('|')]
-                if len([c for c in cells if c]) >= 3:
-                    clean_line = clean_line.replace('|', '\t')
-                    all_data_lines.append(clean_line)
-
-    # Sélectionner 3 lignes par fichier (9 total)
-    random.shuffle(all_data_lines)
-    selected = all_data_lines[:9]  # 3 × 3 fichiers
-
+    
+    # Mapping des noms de fichiers vers des titres lisibles
+    file_titles = {
+        "kreyol_resistance_symbol_ref.md": "Creole Resistance Symbols",
+        "faune_guadeloupe_ref.md": "Fauna of Guadeloupe",
+        "flore_guadeloupe_ref.md": "Flora of Guadeloupe",
+        "lieux_spirituels_ref.md": "Spiritual Places of Guadeloupe",
+        "histoire_guadeloupe_ref.md": "History of Guadeloupe",
+    }
+    
     result = "Randomly selected Creole reference material:\n\n"
-    for i, line in enumerate(selected, 1):
-        result += f"{i}. {line}\n"
+    counter = 1
+    
+    for filepath in SOURCE_FILES:
+        if filepath.exists():
+            content = filepath.read_text(encoding="utf-8")
+            data_lines = []
+            
+            for line in content.split('\n'):
+                stripped = line.strip()
+                if not stripped:
+                    continue
+                # Une ligne de données valide a au moins 2+ pipes (3+ colonnes) et n'est pas un séparateur
+                pipe_count = stripped.count('|')
+                if pipe_count >= 2 and '---' not in stripped:
+                    # Nettoyer la ligne : enlever les | de début/fin
+                    clean_line = stripped[1:-1].strip()
+                    # Vérifier qu'il y a au moins 2 colonnes NON VIDES
+                    cells = [c.strip() for c in clean_line.split('|')]
+                    non_empty_cells = [c for c in cells if c]
+                    if len(non_empty_cells) >= 2:
+                        # Exclure les lignes d'en-tête
+                        line_lower = clean_line.lower()
+                        if not any(keyword in line_lower for keyword in header_keywords):
+                            # Remplacer les | par des tabulations pour lisibilité
+                            clean_line = clean_line.replace('|', '\t')
+                            data_lines.append(clean_line)
+            
+            # Mélanger et sélectionner
+            random.shuffle(data_lines)
+            file_lines = data_lines[:min(num_per_file, len(data_lines))]
+            
+            if file_lines:
+                file_name = filepath.name
+                display_title = file_titles.get(file_name, file_name)
+                result += f"__ {display_title} __\n"
+                for line in file_lines:
+                    result += f"{counter}. {line}\n"
+                    counter += 1
+                result += "\n"
+        else:
+            logger.warning(f"Fichier introuvable : {filepath}")
+    
     return result
 
 
@@ -605,11 +643,7 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
 
     # Construire les prompts d'abord (nécessaire pour verbose même en cas de cache)
     try:
-        system_prompt = (
-            _select_random_ref_lines(3)
-            + "\n\n"
-            + _load_prompt("histoire_guadeloupe_ref.md")
-        )
+        system_prompt = _select_random_ref_lines(3)  # Inclut maintenant histoire_guadeloupe_ref.md
     except Exception as e:
         logger.warning(f"Capsule {slot_id} ignorée : {e}")
         return None
