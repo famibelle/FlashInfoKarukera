@@ -66,10 +66,9 @@ jobs:
           echo "▶️  Horoscope run #$RUN_ID (verbose=${VERBOSE:-false})"
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
-  # 2️⃣ Flash Info (après horoscope)
+  # 2️⃣ Flash Info
   flash-info:
     if: inputs.run_flash_info == true || github.event_name == 'schedule'
-    needs: horoscope  # ✅ SÉQUENTIEL : attend horoscope
     runs-on: ubuntu-latest
     steps:
       - name: Déclencher Flash Info Guadeloupe
@@ -86,10 +85,9 @@ jobs:
           echo "▶️  Flash Info run #$RUN_ID (verbose=${VERBOSE:-false})"
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
-  # 3️⃣ Liners (après flash info)
+  # 3️⃣ Liners
   liners:
     if: inputs.run_liners == true || github.event_name == 'schedule'
-    needs: flash-info  # ✅ SÉQUENTIEL : attend flash info
     runs-on: ubuntu-latest
     steps:
       - name: Déclencher Liners Quotidiens
@@ -104,10 +102,9 @@ jobs:
           echo "▶️  Liners run #$RUN_ID"
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
-  # 4️⃣ Capsules (après liners)
+  # 4️⃣ Capsules
   capsules:
     if: inputs.run_capsules == true || github.event_name == 'schedule'
-    needs: liners  # ✅ SÉQUENTIEL : attend liners
     runs-on: ubuntu-latest
     steps:
       - name: Déclencher Capsules Culturelles
@@ -122,10 +119,9 @@ jobs:
           echo "▶️  Capsules run #$RUN_ID"
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
-  # 5️⃣ Émission (après capsules) → NON BLOQUANT
+  # 5️⃣ Émission → NON BLOQUANT
   emission:
     if: inputs.run_emission == true || github.event_name == 'schedule'
-    needs: capsules
     runs-on: ubuntu-latest
     continue-on-error: true  # ✅ Échec toléré, ne bloque pas la suite
     steps:
@@ -159,10 +155,9 @@ jobs:
   #         echo "▶️  Interview run #$RUN_ID (non bloquant)"
   #         gh run watch "$RUN_ID" --interval 20 --repo "$REPO" || true
 
-  # 7️⃣ Playlist (après capsules + émission) → DERNIER
+  # 7️⃣ Playlist → DERNIER
   playlist:
     if: inputs.run_playlist == true || github.event_name == 'schedule'
-    needs: [capsules, emission]  # ✅ Attend capsules + émission (non bloquant)
     runs-on: ubuntu-latest
     steps:
       - name: Déclencher mise à jour playlist radio
