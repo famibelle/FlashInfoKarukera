@@ -343,6 +343,18 @@ def build_sequence(pool: list[dict], slots: dict[str, dict]) -> list[dict]:
                         "icon": "🎙️"
                     })
                     print(f"  🎙️  Interview insérée après flash info midi", flush=True)
+                
+                # Insert emission after interview (or after flash info if no interview)
+                emission_path = Path("docs/audio/Emissions") / f"emission-{date.today().isoformat()}.mp3"
+                if emission_path.exists():
+                    gh_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/{emission_path.name}"
+                    seq.append({
+                        "type": "transition", "subtype": "emission",
+                        "url": gh_url,
+                        "label": f"Émission culturelle — Découverte de la Guadeloupe — {date.today().isoformat()}",
+                        "icon": "🎤"
+                    })
+                    print(f"  🎤  Émission insérée après flash info midi", flush=True)
             print(f"  🎵 {size} pistes avec liners/capsules…", flush=True)
             seq += _music_with_liners(pool[pos : pos + size], bloc)
             pos += size
