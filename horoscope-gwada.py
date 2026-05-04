@@ -33,6 +33,87 @@ def _load_env(env_path: Path) -> None:
 
 _load_env(Path(__file__).parent / ".env")
 
+
+# ── Sélection aléatoire depuis les fichiers _ref.md ──────────────────────────
+
+def _select_random_lines_from_file(filepath: Path, num_lines: int = 5) -> list[str]:
+    """Sélectionne aléatoirement N lignes de tableau Markdown d'un fichier _ref.md.
+    
+    Args:
+        filepath: Chemin vers le fichier _ref.md (format table Markdown)
+        num_lines: Nombre de lignes à sélectionner
+    
+    Returns:
+        Liste de lignes nettoyées (sans |, formatées pour le LLM)
+    """
+    # Mots à exclure (en-têtes de colonnes)
+    header_keywords = ['famille', 'nom créole', 'nom français', 'nom scientifique', 
+                       'sacré', 'dimension culturelle', 'usage', 'catégorie', 'nom du lieu',
+                       'commune', 'localisation']
+    
+    data_lines = []
+    content = filepath.read_text(encoding="utf-8")
+    
+    for line in content.split('\n'):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        # Une ligne de données valide a au moins 2+ pipes (3+ colonnes) et n'est pas un séparateur
+        pipe_count = stripped.count('|')
+        if pipe_count >= 2 and '---' not in stripped:
+            # Nettoyer la ligne : enlever les | de début/fin
+            clean_line = stripped[1:-1].strip()
+            # Vérifier qu'il y a au moins 2 colonnes NON VIDES
+            cells = [c.strip() for c in clean_line.split('|')]
+            non_empty_cells = [c for c in cells if c]
+            if len(non_empty_cells) >= 2:
+                # Exclure les lignes d'en-tête
+                line_lower = clean_line.lower()
+                if not any(keyword in line_lower for keyword in header_keywords):
+                    # Remplacer les | par des tabulations pour lisibilité
+                    clean_line = clean_line.replace('|', '\t')
+                    data_lines.append(clean_line)
+    
+    # Mélanger et sélectionner
+    random.shuffle(data_lines)
+    return data_lines[:min(num_lines, len(data_lines))]
+
+
+def _get_random_spiritual_elements(num_per_file: int = 5) -> str:
+    """Sélectionne aléatoirement num_per_file éléments de CHACUN des 4 fichiers _ref.md.
+    
+    Args:
+        num_per_file: Nombre d'éléments à sélectionner par fichier
+    
+    Returns:
+        String formaté pour le LLM avec tous les éléments mélangés
+    """
+    all_lines = []
+    ref_files = [
+        PROMPTS_DIR / "faune_guadeloupe_ref.md",
+        PROMPTS_DIR / "flore_guadeloupe_ref.md",
+        PROMPTS_DIR / "lieux_spirituels_ref.md",
+        PROMPTS_DIR / "kreyol_resistance_symbol_ref.md",
+    ]
+    
+    for filepath in ref_files:
+        if filepath.exists():
+            file_lines = _select_random_lines_from_file(filepath, num_per_file)
+            all_lines.extend(file_lines)
+        else:
+            print(f"⚠️  Fichier introuvable : {filepath}", file=sys.stderr)
+    
+    # Mélanger tous les éléments entre les fichiers
+    random.shuffle(all_lines)
+    
+    # Formater pour le LLM
+    result = "Sélection aléatoire d'éléments spirituels guadeloupéens (pour inspiration unique) :\n\n"
+    for i, line in enumerate(all_lines, 1):
+        result += f"{i}. {line}\n"
+    
+    return result
+
+
 # ── Config ────────────────────────────────────────────────────────────────────
 
 MISTRAL_API_KEY     = os.environ["MISTRAL_API_KEY"]
@@ -570,12 +651,6 @@ def _save_used_faune(target_date: Date, faune: list[str]) -> None:
     USED_FAUNE_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"💾  Anti-répétition faune : {len(faune)} éléments sauvegardés ({USED_FAUNE_PATH.name})")
 
-
-LIEUX_SPIRITUELS   = (
-    "\n\n" + _load_prompt("lieux_spirituels.md") +
-    "\n\n" + _load_prompt("flore_guadeloupe.md") +
-    "\n\n" + _load_prompt("faune_guadeloupe.md")
-)
 
 def _first_sentence(text: str) -> str:
     """Retourne la première phrase complète.
@@ -1869,6 +1944,11 @@ def main():
         print("Signe du jour ignoré (aucun candidat disponible)")
 
     # ── Boucle par signe : Mistral + TTS ─────────────────────────────────────
+    
+    # ✅ Génération aléatoire unique pour cette exécution
+    unique_run_id = random.randint(10000, 99999)
+    random_elements = _get_random_spiritual_elements(num_per_file=5)
+    
     seg_paths:      list[Path]       = []
     signs_hashtags: list[list[str]] = []
     sign_texts:     list[str]        = []
@@ -1893,11 +1973,13 @@ def main():
 
         horoscope_instruction = HOROSCOPE_TEMPLATE.format(
             segment=i + 1, n_signs=1, s="",
-            lieux_spirituels=LIEUX_SPIRITUELS,
+            lieux_spirituels=random_elements,  # ✅ Sélection aléatoire dynamique
             contexte_local=contexte_local,
         )
         kreyol_ctx = _kreyol_context_for_sign(sign_en)
         user_prompt = (
+            f"UNIQUE_RUN_ID: {unique_run_id}\n\n"  # ✅ Anti-répétition
+            f"RANDOM ELEMENTS:\n{random_elements}\n\n"  # ✅ Contexte unique
             f"HOROSCOPE DU JOUR — {sign_fr} ({sign_en.capitalize()}) :\n{raw_text}\n\n"
             f"MOMENT DE LA JOURNÉE : {moment_label}\n\n"
             f"ÉDITION : {edition_cfg['sign_instruction']}\n\n"
