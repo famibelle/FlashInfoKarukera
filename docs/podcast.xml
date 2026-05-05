@@ -487,5 +487,13 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-05</guid>
       <itunes:duration>180</itunes:duration>
     </item>
+    <item>
+      <title>Émission culturelle — 2026-05-05</title>
+      <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
+      <pubDate>Tue, 05 May 2026 15:34:04 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-05.mp3" length="1976301" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-05-05</guid>
+      <itunes:duration>180</itunes:duration>
+    </item>
   </channel>
 </rss>
