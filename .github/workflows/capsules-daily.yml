@@ -18,8 +18,16 @@ jobs:
     timeout-minutes: 20
 
     steps:
+      - name: ⏱️ Début Capsules
+        run: |
+          echo "START_TIME=$(date +%s)" >> $GITHUB_ENV
+          echo "::notice title=⏳ Capsules::Début à $(date -Iseconds)"
+
       - name: Configurer les credentials git pour le submodule privé
-        run: git config --global url."https://${{ secrets.PAT_SUBMODULE }}@github.com/".insteadOf "https://github.com/"
+        run: |
+          echo "::notice title=🌺 Capsules::[1/5] Configuration git..."
+          git config --global url."https://${{ secrets.PAT_SUBMODULE }}@github.com/".insteadOf "https://github.com/"
+          echo "::notice title=✅ Capsules::[1/5] Configuration git terminée"
 
       - name: Checkout code et submodules
         uses: actions/checkout@v4
@@ -33,16 +41,27 @@ jobs:
           python-version: "3.12"
 
       - name: Installer les dépendances
-        run: pip install -r requirements.txt
+        run: |
+          echo "::notice title=🌺 Capsules::[2/5] Installation dépendances..."
+          pip install -r requirements.txt
+          echo "::notice title=✅ Capsules::[2/5] Dépendances installées"
 
       - name: Générer toutes les capsules pour la journée
+        id: generate
         env:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: |
+          GEN_START=$(date +%s)
+          echo "::notice title=🌺 Capsules::[3/5] Génération capsules..."
           python generate_radio_sequence.py --generate-capsules-only
+          GEN_DURATION=$(( $(date +%s) - GEN_START ))
+          echo "::notice title=✅ Capsules::[3/5] Génération terminée en ${GEN_DURATION}s"
 
       - name: Commit les capsules générées
+        id: commit
         run: |
+          COMMIT_START=$(date +%s)
+          echo "::notice title=🌺 Capsules::[4/5] Commit des capsules..."
           git config user.name "github-actions[Capsules]"
           git config user.email "github-actions@github.com"
           git add docs/capsules/ playlists/youtube_cache.json
@@ -51,3 +70,11 @@ jobs:
           git pull --rebase -X theirs origin main
           git stash drop 2>/dev/null || true
           git push
+          COMMIT_DURATION=$(( $(date +%s) - COMMIT_START ))
+          echo "::notice title=✅ Capsules::[4/5] Commit terminé en ${COMMIT_DURATION}s"
+
+      - name: ⏱️ Fin Capsules
+        run: |
+          JOB_DURATION=$(( $(date +%s) - ${START_TIME} ))
+          echo "::notice title=✅ Capsules::Job terminé en ${JOB_DURATION}s"
+          echo "capsules_duration=${JOB_DURATION}" >> $GITHUB_OUTPUT
