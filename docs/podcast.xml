@@ -23,6 +23,22 @@
     <itunes:explicit>no</itunes:explicit>
     <item>
       <title>Flash Info Guadeloupe — mardi 5 mai 2026, édition du midi</title>
+      <description>On fait le point à midi avec les infos de la Guadeloupe ce mardi cinq mai deux mille vingt-six. Au programme : un procès en appel pour violences conjugales à Basse-Terre, les sapeurs-pompiers du Service Départemental d'Incendie et de Secours à l'honneur aux Abymes, une alerte sargasses qui persiste sur le littoral, et neuf nouveaux radars installés sur les routes de Petit-Bourg. C'est parti.</description>
+      <pubDate>Tue, 05 May 2026 16:04:19 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-05/flash-info-20260505-midi.mp3" length="1876557" type="audio/mpeg" />
+      <guid isPermaLink="false">flash-info-20260505-midi</guid>
+      <itunes:duration>03:01</itunes:duration>
+    </item>
+    <item>
+      <title>🌙 Horoscope soir — mardi 5 mai 2026</title>
+      <description>Nous sommes le mardi 5 mai 2026 et ce soir, la lune se lève sur trois signes qui portent en eux la patience de l’igwann et la résistance de la foumi manyok. Taureau, tu es là, solide comme le gommier qui tient debout malgré les vents. Verseau, tu danses avec l’urakan, libre et insaisissable. Vierge, tu es la terre qui nourrit en silence, comme le manyòk sous la cendre. Posez vos fardeaux, mes enfants. La nuit est à vous. Soufflez.</description>
+      <pubDate>Tue, 05 May 2026 15:50:45 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/horoscope/2026-05/horoscope-20260505-soir.mp3" length="3322461" type="audio/mpeg" />
+      <guid isPermaLink="false">horoscope-20260505-soir</guid>
+      <itunes:duration>05:16</itunes:duration>
+    </item>
+    <item>
+      <title>Flash Info Guadeloupe — mardi 5 mai 2026, édition du midi</title>
       <description>Analyse des lieux géographiques principaux (JSON_EXTRACTION vide) :
 Segment 1 (Soufrière) : Lieu = La Soufrière (mentionné explicitement, commune de Saint-Claude).
 Segment 2 (Fête des pêcheurs) : Lieu = Terre-de-Haut (mentionné explicitement).
@@ -492,6 +508,14 @@ C'est parti.</description>
       <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
       <pubDate>Tue, 05 May 2026 15:34:04 +0000</pubDate>
       <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-05.mp3" length="1976301" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-05-05</guid>
+      <itunes:duration>180</itunes:duration>
+    </item>
+    <item>
+      <title>Émission culturelle — 2026-05-05</title>
+      <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
+      <pubDate>Tue, 05 May 2026 16:14:03 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-05.mp3" length="2127909" type="audio/mpeg" />
       <guid isPermaLink="false">emission-2026-05-05</guid>
       <itunes:duration>180</itunes:duration>
     </item>
