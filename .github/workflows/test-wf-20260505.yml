@@ -1,6 +1,8 @@
 name: Test Workflow Dispatch
 
 on:
+  schedule:
+    - cron: '0 3 * * *'
   workflow_dispatch:
     inputs:
       test:
@@ -13,4 +15,4 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "workflow_dispatch test OK"
+      - run: echo "workflow_dispatch + schedule test OK"
