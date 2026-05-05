@@ -1,7 +1,7 @@
 name: Capsules Culturelles Quotidiennes
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Déclencheur manuel via API
 
 permissions:
   contents: write
