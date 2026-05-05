@@ -1,7 +1,12 @@
 name: Capsules Culturelles Quotidiennes
 
 on:
-  workflow_dispatch:  # Déclencheur manuel via API
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Forcer la régénération
+        required: false
+        default: "false"
 
 permissions:
   contents: write
