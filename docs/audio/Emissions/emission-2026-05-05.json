@@ -1,0 +1,37 @@
+{
+  "date": "2026-05-05",
+  "type": "emission",
+  "title": "Émission culturelle — Découverte de la Guadeloupe",
+  "duration": "~3 minutes",
+  "word_count": 482,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "la musique caribéenne",
+    "artist": "nos artistes",
+    "genre": "variés"
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Reptile / Résistance           \t Zandoli / Anoli          \t Anoli marbré              \t Anolis marmoratus         \t ⭐⭐⭐ TOTEM DE RÉSISTANCE \t Symbole de résilience et de liberté dans la culture créole. Présent sur chaque île avec une sous-espèce différente — il s'est adapté à chaque territoire comme les Guadeloupéens ont su s'adapter à chaque épreuve. Impossible à capturer durablement : il lâche sa queue et repart."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Insecte               \t Papillon transparent      \t Papillon aux ailes transparentes \t Greta oto (et espèces locales) \t ⭐⭐ Symbolique  \t Papillon rare aux ailes de verre. Associé dans la tradition créole à la transparence entre le monde des vivants et celui des esprits."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Arbre fruitier         \t Karanbolié                   \t Carambolier             \t Averrhoa carambola             \t Arbre de taille moyenne. Fruit étoilé désaltérant. Ombre légère."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Volcan                \t Morne Madeleine / Morne à Louis          \t Saint-Claude                        \t ⭐⭐ Emblématique       \t Flancs du massif volcanique. Lieux de marronage et de rituels discrets des esclaves en fuite. Mémoire de la résistance."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**1794** \t **Première abolition de l’esclavage par Victor Hugues** \t **Victoire arrachée par la lutte : preuve que la résistance porte ses fruits, mais liberté temporaire** \t Participation aux combats aux côtés des commissaires Sonthonax et Polverel, création de milices noires \t Basse-Terre (siège du pouvoir révolutionnaire) \t Vaudou Rada : célébrations avec des *Léwoz*, culte de *Damballa* pour la paix"
+    }
+  },
+  "text": "Alors ce soir, on se laisse porter par les rythmes qui font vibrer nos îles, ces mélodies qui racontent nos histoires, nos luttes et nos joies. La musique caribéenne, c’est bien plus qu’une succession de notes – c’est une voix, celle de la Guadeloupe qui danse, qui résiste et qui chante sa liberté. Et c’est cette même énergie que je veux vous faire ressentir ce soir, à travers les symboles qui peuplent notre terre, notre mémoire et notre imaginaire.\n\nCommençons par un petit miracle de la nature : le papillon aux ailes transparentes, ce *Greta oto* qui semble tout droit sorti d’un rêve. Imaginez un instant : des ailes si fines, si délicates, qu’on croirait voir à travers un voile de verre. Il danse entre les fleurs, léger comme une brise, et quand la lumière le traverse, c’est toute la magie de la Guadeloupe qui s’illumine. Un vrai trésor, n’est-ce pas ? Et saviez-vous que dans nos contes, on dit qu’il porte les messages des esprits ? Une façon poétique de rappeler que la beauté peut naître là où on ne l’attend pas.\n\nEt parlons maintenant du *karanbolié*, ce bel arbre qui nous offre ses fruits en forme d’étoiles. Le carambolier, c’est un peu le roi des cours créoles : il donne de l’ombre sans étouffer, ses fruits juteux désaltèrent après une longue journée, et ses branches accueillent les oiseaux comme une famille. Mais ce qui me fascine, c’est sa résilience. Il pousse là où on le plante, s’adapte aux sols, aux vents, aux pluies – un peu comme nous, finalement. Et quand on croque dans une carambole, c’est toute la douceur de notre terre qui explose en bouche. Un vrai cadeau !\n\nMaintenant, fermons les yeux et dirigeons-nous vers les flancs du *Morne Madeleine*, près de Saint-Claude. Ces collines volcaniques, couvertes d’une végétation dense, ont été les témoins silencieux d’une histoire trop souvent oubliée. C’est ici que des hommes et des femmes, fuyant l’esclavage, ont trouvé refuge. Ils y ont organisé des rituels, invoqué *Damballa* pour la paix, et dansé le *Léwoz* sous les étoiles. Ces lieux sont chargés d’une mémoire sacrée, une résistance qui a traversé les siècles. Et si vous tendez l’oreille, vous entendrez peut-être encore l’écho de leurs chants, portés par le vent.\n\nAlors, que retenir de tout cela ? Que la Guadeloupe, c’est une terre de contrastes et de résilience, où chaque symbole – qu’il soit un *anoli* qui lâche sa queue pour survivre, un papillon transparent qui relie deux mondes, ou un carambolier qui nourrit les corps et les âmes – nous rappelle une vérité simple : nous sommes faits de cette même force. Et comme la musique caribéenne par nos artistes variés, nous sommes un mélange de rythmes, de couleurs et d’histoires qui s’entrelacent pour créer quelque chose d’unique. Alors ce soir, laissez-vous emporter par cette énergie, et souvenez-vous : ici, même les pierres chantent.",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-05.mp3"
+}
