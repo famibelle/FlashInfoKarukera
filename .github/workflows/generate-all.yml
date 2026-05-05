@@ -5,7 +5,7 @@ on:
     - cron: '0 3 * * *'   # 5h Paris (3h UTC)
     - cron: '0 9 * * *'   # 11h Paris (9h UTC)
     - cron: '0 15 * * *'  # 17h Paris (15h UTC)
-  workflow_dispatch:
+  workflow_dispatch:  # Déclencheur manuel via API
     inputs:
       verbose:
         description: "Verbose — affiche le détail de chaque étape"
