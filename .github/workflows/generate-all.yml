@@ -5,10 +5,15 @@ on:
     - cron: '0 3 * * *'   # 5h Paris (3h UTC)
     - cron: '0 9 * * *'   # 11h Paris (9h UTC)
     - cron: '0 15 * * *'  # 17h Paris (15h UTC)
-  workflow_dispatch:  # Déclencheur manuel via API
+  workflow_dispatch:
     inputs:
       verbose:
-        description: "Verbose — affiche le détail de chaque étape"
+        description: "Verbose — affiche le détail de chaque étape (FORCE_REGEN_2)"
+        type: boolean
+        required: false
+        default: false
+      force_regen:
+        description: "Force regeneration workflow ID"
         type: boolean
         required: false
         default: false
