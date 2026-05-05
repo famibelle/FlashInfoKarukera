@@ -1,0 +1,72 @@
+name: 🧪 Test FFmpeg Installation Fix
+
+on:
+  workflow_dispatch:
+    inputs:
+      method:
+        description: "Méthode d'installation à tester"
+        type: choice
+        required: true
+        default: "sudo_standard"
+        options:
+          - sudo_standard
+          - sudo_lock_override
+          - no_sudo
+          - cache_action
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test FFmpeg (${{ inputs.method }})
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🎬 Install FFmpeg (sudo standard)
+        if: ${{ inputs.method == 'sudo_standard' }}
+        run: |
+          echo "=== MÉTHODE 1 : sudo apt-get update && sudo apt-get install -y ffmpeg ==="
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | head -1
+
+      - name: 🎬 Install FFmpeg (sudo + lock override)
+        if: ${{ inputs.method == 'sudo_lock_override' }}
+        run: |
+          echo "=== MÉTHODE 2 : sudo avec Dir::Cache::lock=/tmp ==="
+          sudo apt-get update -o Dir::Cache::lock=/tmp/apt-lock
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | head -1
+
+      - name: 🎬 Install FFmpeg (sans sudo)
+        if: ${{ inputs.method == 'no_sudo' }}
+        run: |
+          echo "=== MÉTHODE 3 : apt-get update && apt-get install -y ffmpeg (SANS sudo) ==="
+          apt-get update && apt-get install -y ffmpeg
+          ffmpeg -version | head -1
+
+      - name: 🎬 Install FFmpeg (cache action)
+        if: ${{ inputs.method == 'cache_action' }}
+        uses: awalsh128/cache-apt-pkgs-action@v1
+        with:
+          packages: ffmpeg
+          version: 1.0
+
+      - name: ✅ Verify FFmpeg installation
+        run: |
+          if command -v ffmpeg &> /dev/null; then
+            echo "✅ SUCCESS: ffmpeg is installed"
+            ffmpeg -version | head -1
+          else
+            echo "❌ FAILED: ffmpeg is NOT installed"
+            exit 1
+          fi
+
+      - name: ⏱️  Timing summary
+        run: |
+          echo "=== TIME SUMMARY ==="
+          echo "Method tested: ${{ inputs.method }}"
+          echo "Status: $(if command -v ffmpeg &> /dev/null; then echo 'SUCCESS'; else echo 'FAILED'; fi)"
