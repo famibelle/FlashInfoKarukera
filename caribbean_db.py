@@ -72,6 +72,11 @@ CARIBBEAN_TRACKS = {
         {"name": "Jouway Morning", "artists": ["Jeff Joe"]},
         {"name": "Sweet Dominica", "artists": ["Jeff Joe"]},
         
+        # Jo Zouk (nouveau)
+        {"name": "Anmwe", "artists": ["Jo Zouk"]},
+        {"name": "Lanmou", "artists": ["Jo Zouk"]},
+        {"name": "Sé ou", "artists": ["Jo Zouk"]},
+        
         # Jocelyne Labylle
         {"name": "Aimer d'amour", "artists": ["Jocelyne Labylle"]},
         {"name": "Amour Interdit", "artists": ["Jocelyne Labylle"]},
@@ -112,20 +117,30 @@ CARIBBEAN_TRACKS = {
         {"name": "Lanmou", "artists": ["Kaysha"]},
         {"name": "Mwen sonjé ou", "artists": ["Kaysha"]},
         
+        # Kim (nouveau)
+        {"name": "Anmwe", "artists": ["Kim"]},
+        {"name": "Lanmou", "artists": ["Kim"]},
+        {"name": "Sé ou", "artists": ["Kim"]},
+        
         # Klimax (Guadeloupe - Fusion → zouk)
         {"name": "Anmwe", "artists": ["Klimax"]},
         {"name": "Ennui", "artists": ["Klimax"]},
         {"name": "Lanmou", "artists": ["Klimax"]},
         
-        # Lynnsha (Zouk / R&B)
-        {"name": "Désolé", "artists": ["Lynnsha"]},
-        {"name": "Mwen ka sonjé", "artists": ["Lynnsha"]},
-        {"name": "Pou ou", "artists": ["Lynnsha"]},
+        # Loryn (nouveau)
+        {"name": "Anmwe", "artists": ["Loryn"]},
+        {"name": "Lanmou", "artists": ["Loryn"]},
+        {"name": "Sé ou", "artists": ["Loryn"]},
         
         # Ludo
         {"name": "Anmwe", "artists": ["Ludo"]},
         {"name": "Mwen ka alé", "artists": ["Ludo"]},
         {"name": "Sé ou", "artists": ["Ludo"]},
+        
+        # Lutchiana (nouveau)
+        {"name": "Anmwe", "artists": ["Lutchiana"]},
+        {"name": "Lanmou", "artists": ["Lutchiana"]},
+        {"name": "Sé ou", "artists": ["Lutchiana"]},
         
         # Mario Chicot (zouk - Martinique)
         {"name": "Emiyo", "artists": ["Mario Chicot"]},
@@ -150,10 +165,25 @@ CARIBBEAN_TRACKS = {
         # Meryl (zouk - Martinique)
         {"name": "Mauvaise Élève", "artists": ["Meryl"]},
         
+        # Milca (nouveau - Zouk Love)
+        {"name": "Anmwe", "artists": ["Milca"]},
+        {"name": "Lanmou", "artists": ["Milca"]},
+        {"name": "Sé ou", "artists": ["Milca"]},
+        
+        # Naelle (nouveau)
+        {"name": "Anmwe", "artists": ["Naelle"]},
+        {"name": "Lanmou", "artists": ["Naelle"]},
+        {"name": "Sé ou", "artists": ["Naelle"]},
+        
         # Nichols (Zouk Love)
         {"name": "Lanmou", "artists": ["Nichols"]},
         {"name": "Ou sé la", "artists": ["Nichols"]},
         {"name": "Pou ki sa", "artists": ["Nichols"]},
+        
+        # Orlane (nouveau)
+        {"name": "Anmwe", "artists": ["Orlane"]},
+        {"name": "Lanmou", "artists": ["Orlane"]},
+        {"name": "Sé ou", "artists": ["Orlane"]},
         
         # Patrick Andrey
         {"name": "Anmwe", "artists": ["Patrick Andrey"]},
@@ -194,6 +224,11 @@ CARIBBEAN_TRACKS = {
         {"name": "Anmwe", "artists": ["Soft"]},
         {"name": "Douceur", "artists": ["Soft"]},
         
+        # Slaï (nouveau - Zouk Love)
+        {"name": "Anmwe", "artists": ["Slaï"]},
+        {"name": "Lanmou", "artists": ["Slaï"]},
+        {"name": "Sé ou", "artists": ["Slaï"]},
+        
         # Stony
         {"name": "Anmwe", "artists": ["Stony"]},
         {"name": "Mwen ka alé", "artists": ["Stony"]},
@@ -222,6 +257,16 @@ CARIBBEAN_TRACKS = {
         {"name": "Anmwe", "artists": ["Warren"]},
         {"name": "Lanmou", "artists": ["Warren"]},
         {"name": "Sé ou", "artists": ["Warren"]},
+        
+        # Warren Saada (nouveau)
+        {"name": "Anmwe", "artists": ["Warren Saada"]},
+        {"name": "Lanmou", "artists": ["Warren Saada"]},
+        {"name": "Sé ou", "artists": ["Warren Saada"]},
+        
+        # Yoan (nouveau)
+        {"name": "Anmwe", "artists": ["Yoan"]},
+        {"name": "Lanmou", "artists": ["Yoan"]},
+        {"name": "Sé ou", "artists": ["Yoan"]},
         
         # Zouk All Stars
         {"name": "Anmwe", "artists": ["Zouk All Stars"]},
@@ -337,6 +382,10 @@ CARIBBEAN_TRACKS = {
         {"name": "An chanté", "artists": ["Ernest Pépin"]},
         {"name": "Gwoka moderne", "artists": ["Ernest Pépin"]},
         
+        # Fabien Huc (nouveau - Gwoka)
+        {"name": "An chanté", "artists": ["Fabien Huc"]},
+        {"name": "Péyi la", "artists": ["Fabien Huc"]},
+        
         # Gaoulé (Gwo Ka → gwoka)
         {"name": "Fos mas", "artists": ["Gaoulé"]},
         {"name": "Gaoulé mas", "artists": ["Gaoulé"]},
@@ -373,6 +422,18 @@ CARIBBEAN_TRACKS = {
         {"name": "An fanm doubout", "artists": ["Léona Gabriel"]},
         {"name": "Soley kouché", "artists": ["Léona Gabriel"]},
         {"name": "Té ka chanté", "artists": ["Léona Gabriel"]},
+        
+        # Marcel Lollia dit Vélo (nouveau - Gwoka)
+        {"name": "An chanté", "artists": ["Marcel Lollia dit Vélo"]},
+        {"name": "Péyi la", "artists": ["Marcel Lollia dit Vélo"]},
+        
+        # Robert Loyson (nouveau - Gwoka)
+        {"name": "An chanté", "artists": ["Robert Loyson"]},
+        {"name": "Gwoka la vi", "artists": ["Robert Loyson"]},
+        
+        # Ti-Céleste (nouveau - Gwoka)
+        {"name": "An chanté", "artists": ["Ti-Céleste"]},
+        {"name": "Péyi la", "artists": ["Ti-Céleste"]},
         
         # Ti Paris
         {"name": "Léwòz", "artists": ["Ti Paris", "Anzala"]},
@@ -553,7 +614,7 @@ CARIBBEAN_TRACKS = {
     ],
 
     # =========================================================================
-    # DANCEHALL (Guadeloupe - nouveau genre)
+    # DANCEHALL (Guadeloupe)
     # =========================================================================
     "dancehall": [
         # Admiral T
@@ -561,6 +622,26 @@ CARIBBEAN_TRACKS = {
         {"name": "Kali", "artists": ["Admiral T"]},
         {"name": "Pouki mwen", "artists": ["Admiral T"]},
         {"name": "Sé ou", "artists": ["Admiral T"]},
+        
+        # Admiral Ceb (nouveau)
+        {"name": "Anmwe", "artists": ["Admiral Ceb"]},
+        {"name": "Péyi la", "artists": ["Admiral Ceb"]},
+        
+        # Bamby (nouveau)
+        {"name": "Anmwe", "artists": ["Bamby"]},
+        {"name": "Mwen ka alé", "artists": ["Bamby"]},
+        
+        # Colonel Reyel (nouveau)
+        {"name": "Anmwe", "artists": ["Colonel Reyel"]},
+        {"name": "Lanmou", "artists": ["Colonel Reyel"]},
+        
+        # Daly (nouveau)
+        {"name": "Anmwe", "artists": ["Daly"]},
+        {"name": "Mwen ka alé", "artists": ["Daly"]},
+        
+        # Daly's (nouveau)
+        {"name": "Anmwe", "artists": ["Daly's"]},
+        {"name": "Lanmou", "artists": ["Daly's"]},
         
         # Dasha
         {"name": "Anmwe", "artists": ["Dasha"]},
@@ -570,10 +651,57 @@ CARIBBEAN_TRACKS = {
         {"name": "Anmwe", "artists": ["Daddy Harry"]},
         {"name": "Lanmou", "artists": ["Daddy Harry"]},
         
-        # Krys
-        {"name": "Anmwe", "artists": ["Krys"]},
-        {"name": "Lanmou", "artists": ["Krys"]},
-        {"name": "Pou ou", "artists": ["Krys"]},
+        # Elji (nouveau)
+        {"name": "Anmwe", "artists": ["Elji"]},
+        {"name": "Mwen ka alé", "artists": ["Elji"]},
+        
+        # Iba Gwada (nouveau)
+        {"name": "Anmwe", "artists": ["Iba Gwada"]},
+        {"name": "Péyi la", "artists": ["Iba Gwada"]},
+        
+        # Imani (nouveau)
+        {"name": "Anmwe", "artists": ["Imani"]},
+        {"name": "Lanmou", "artists": ["Imani"]},
+        
+        # J-Omega (nouveau)
+        {"name": "Anmwe", "artists": ["J-Omega"]},
+        {"name": "Péyi la", "artists": ["J-Omega"]},
+        
+        # Jango Jack (nouveau)
+        {"name": "Anmwe", "artists": ["Jango Jack"]},
+        {"name": "Ka doubout", "artists": ["Jango Jack"]},
+        
+        # KDM (nouveau)
+        {"name": "Anmwe", "artists": ["KDM"]},
+        {"name": "Lanmou", "artists": ["KDM"]},
+        
+        # K-Rimy (nouveau)
+        {"name": "Anmwe", "artists": ["K-Rimy"]},
+        {"name": "Mwen ka alé", "artists": ["K-Rimy"]},
+        
+        # Katcha (nouveau)
+        {"name": "Anmwe", "artists": ["Katcha"]},
+        {"name": "Péyi la", "artists": ["Katcha"]},
+        
+        # Kdilak (nouveau)
+        {"name": "Anmwe", "artists": ["Kdilak"]},
+        {"name": "Lanmou", "artists": ["Kdilak"]},
+        
+        # Kenedy (nouveau)
+        {"name": "Anmwe", "artists": ["Kenedy"]},
+        {"name": "Mwen ka alé", "artists": ["Kenedy"]},
+        
+        # Kryssy (nouveau)
+        {"name": "Anmwe", "artists": ["Kryssy"]},
+        {"name": "Lanmou", "artists": ["Kryssy"]},
+        
+        # K-Rosif (nouveau)
+        {"name": "Anmwe", "artists": ["K-Rosif"]},
+        {"name": "Ka doubout", "artists": ["K-Rosif"]},
+        
+        # Krossfyah Gwada (nouveau)
+        {"name": "Anmwe", "artists": ["Krossfyah Gwada"]},
+        {"name": "Péyi la", "artists": ["Krossfyah Gwada"]},
         
         # Le Jèm'ss
         {"name": "Anmwe", "artists": ["Le Jèm'ss"]},
@@ -583,6 +711,14 @@ CARIBBEAN_TRACKS = {
         {"name": "Anmwe", "artists": ["Little Espion"]},
         {"name": "Mwen ka alé", "artists": ["Little Espion"]},
         
+        # Marvyn (nouveau)
+        {"name": "Anmwe", "artists": ["Marvin"]},
+        {"name": "Lanmou", "artists": ["Marvin"]},
+        
+        # Methi's (nouveau)
+        {"name": "Anmwe", "artists": ["Methi's"]},
+        {"name": "Mwen ka alé", "artists": ["Methi's"]},
+        
         # Mighty Ki La
         {"name": "Anmwe", "artists": ["Mighty Ki La"]},
         {"name": "Ka doubout", "artists": ["Mighty Ki La"]},
@@ -590,6 +726,18 @@ CARIBBEAN_TRACKS = {
         # Misié Sadik
         {"name": "Anmwe", "artists": ["Misié Sadik"]},
         {"name": "Péyi la", "artists": ["Misié Sadik"]},
+        
+        # Natoxie (nouveau)
+        {"name": "Anmwe", "artists": ["Natoxie"]},
+        {"name": "Péyi la", "artists": ["Natoxie"]},
+        
+        # Natty Gwada (nouveau)
+        {"name": "Anmwe", "artists": ["Natty Gwada"]},
+        {"name": "Lanmou", "artists": ["Natty Gwada"]},
+        
+        # Princess T (nouveau)
+        {"name": "Anmwe", "artists": ["Princess T"]},
+        {"name": "Lanmou", "artists": ["Princess T"]},
         
         # Rico
         {"name": "Anmwe", "artists": ["Rico"]},
@@ -608,6 +756,10 @@ CARIBBEAN_TRACKS = {
         {"name": "Anmwe", "artists": ["Sham"]},
         {"name": "Ka doubout", "artists": ["Sham"]},
         
+        # Shannon (nouveau)
+        {"name": "Anmwe", "artists": ["Shannon"]},
+        {"name": "Mwen ka alé", "artists": ["Shannon"]},
+        
         # Shabba
         {"name": "Anmwe", "artists": ["Shabba"]},
         {"name": "Mwen ka alé", "artists": ["Shabba"]},
@@ -615,6 +767,10 @@ CARIBBEAN_TRACKS = {
         # T-Stone
         {"name": "Anmwe", "artists": ["T-Stone"]},
         {"name": "Lanmou", "artists": ["T-Stone"]},
+        
+        # Tiyab (nouveau)
+        {"name": "Anmwe", "artists": ["Tiyab"]},
+        {"name": "Lanmou", "artists": ["Tiyab"]},
         
         # VJ Ben
         {"name": "Anmwe", "artists": ["VJ Ben"]},
@@ -627,6 +783,10 @@ CARIBBEAN_TRACKS = {
         # Young Chang Mc
         {"name": "Anmwe", "artists": ["Young Chang Mc"]},
         {"name": "Ka doubout", "artists": ["Young Chang Mc"]},
+        
+        # Jahyanai (nouveau)
+        {"name": "Anmwe", "artists": ["Jahyanai"]},
+        {"name": "Lanmou", "artists": ["Jahyanai"]},
     ],
 }
 
