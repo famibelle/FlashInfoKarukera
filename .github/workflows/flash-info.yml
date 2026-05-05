@@ -48,6 +48,11 @@ on:
         type: integer
         required: false
         default: 3
+      transcript:
+        description: "Transcrit l'audio avec STT pour vérifier la prononciation TTS"
+        type: boolean
+        required: false
+        default: false
       horoscope_include:
         description: "Forcer un ou plusieurs signes (noms anglais séparés par des espaces, ex: gemini capricorn taurus)"
         required: false
@@ -142,6 +147,9 @@ jobs:
           fi
           if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
             ARGS="$ARGS --verbose"
+          fi
+          if [ "${{ github.event.inputs.transcript }}" = "true" ]; then
+            ARGS="$ARGS --transcript"
           fi
           echo "FLASH_ARGS=$ARGS" >> $GITHUB_ENV
           echo "Arguments : $ARGS"
