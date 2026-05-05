@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:ns0="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
   <channel>
     <title>Karukera — Flash Info &amp; Horoscope</title>
     <link>https://famibelle.github.io/FlashInfoKarukera/</link>
@@ -7,21 +7,24 @@
     <language>fr</language>
     <copyright>© Botiran</copyright>
     <itunes:author>Botiran</itunes:author>
-    <itunes:owner>
-      <itunes:name>Botiran</itunes:name>
-      <itunes:email>medhi.famibelle@outlook.fr</itunes:email>
-    </itunes:owner>
-    <itunes:image href="https://famibelle.github.io/FlashInfoKarukera/artwork.jpg" />
-    <image>
-      <url>https://famibelle.github.io/FlashInfoKarukera/artwork.jpg</url>
-      <title>Karukera — Flash Info &amp; Horoscope</title>
-      <link>https://famibelle.github.io/FlashInfoKarukera/</link>
-    </image>
-    <itunes:category text="News">
-      <itunes:category text="Daily News" />
-    </itunes:category>
+    <itunes:owner><itunes:name>Botiran</itunes:name><itunes:email>medhi.famibelle@outlook.fr</itunes:email></itunes:owner>
+    <itunes:image href="https://famibelle.github.io/FlashInfoKarukera/artwork.jpg"/>
+    <image><url>https://famibelle.github.io/FlashInfoKarukera/artwork.jpg</url><title>Karukera — Flash Info &amp; Horoscope</title><link>https://famibelle.github.io/FlashInfoKarukera/</link></image>
+    <itunes:category text="News"><itunes:category text="Daily News"/></itunes:category>
     <itunes:explicit>no</itunes:explicit>
+
     <item>
+      <title>🌙 Horoscope soir — mardi 5 mai 2026</title>
+      <description><![CDATA[Nous sommes le mardi 5 mai 2026 et ce soir, les astres ont choisi de parler à ceux qui portent la terre dans leurs mains, l’air dans leurs rêves et le feu dans leurs pas, Taureau, Verseau, Sagittaire.
+
+Posez la journée comme on pose un panier de manyòk au pied du manguier : lourd de ce qu’elle a donné, mais déjà tourné vers la nuit qui vient. Ce soir, c’est l’igwann qui veille, immobile, patient, prêt à bondir si le besoin s’en fait sentir. Écoutez. La mangrove respire.]]></description>
+      <pubDate>Tue, 05 May 2026 17:09:00 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/horoscope/2026-05/horoscope-20260505-soir.mp3" length="3319533" type="audio/mpeg"/>
+      <guid isPermaLink="false">horoscope-20260505-soir</guid>
+      <itunes:duration>05:15</itunes:duration>
+    </item>
+
+<item>
       <title>Flash Info Guadeloupe — mardi 5 mai 2026, édition du midi</title>
       <description>On fait le point à midi avec les infos de la Guadeloupe ce mardi cinq mai deux mille vingt-six. Au programme : un procès en appel pour violences conjugales à Basse-Terre, les sapeurs-pompiers du Service Départemental d'Incendie et de Secours à l'honneur aux Abymes, une alerte sargasses qui persiste sur le littoral, et neuf nouveaux radars installés sur les routes de Petit-Bourg. C'est parti.</description>
       <pubDate>Tue, 05 May 2026 16:04:19 +0000</pubDate>
@@ -29,7 +32,8 @@
       <guid isPermaLink="false">flash-info-20260505-midi</guid>
       <itunes:duration>03:01</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — mardi 5 mai 2026</title>
       <description>Nous sommes le mardi 5 mai 2026 et ce soir, la lune se lève sur trois signes qui portent en eux la patience de l’igwann et la résistance de la foumi manyok. Taureau, tu es là, solide comme le gommier qui tient debout malgré les vents. Verseau, tu danses avec l’urakan, libre et insaisissable. Vierge, tu es la terre qui nourrit en silence, comme le manyòk sous la cendre. Posez vos fardeaux, mes enfants. La nuit est à vous. Soufflez.</description>
       <pubDate>Tue, 05 May 2026 15:50:45 +0000</pubDate>
@@ -37,7 +41,8 @@
       <guid isPermaLink="false">horoscope-20260505-soir</guid>
       <itunes:duration>05:16</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — mardi 5 mai 2026, édition du midi</title>
       <description>Analyse des lieux géographiques principaux (JSON_EXTRACTION vide) :
 Segment 1 (Soufrière) : Lieu = La Soufrière (mentionné explicitement, commune de Saint-Claude).
@@ -50,7 +55,8 @@ On fait le point à midi avec les nouvelles de chez nous ce mardi cinq mai deux 
       <guid isPermaLink="false">flash-info-20260505-midi</guid>
       <itunes:duration>00:41</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — mardi 5 mai 2026</title>
       <description>Nous sommes le mardi 5 mai 2026 et ce soir, la lune glisse entre les branches du gommier comme une pirogue qui cherche son chemin. Écoutez bien, mes étoiles à terre : ce sont les Taureau, les Poissons et les Gémeaux que la nuit a choisis pour danser avec elle. Posez vos fardeaux, soufflez sur vos paumes, l’igwann veille, immobile, et la foumi a déjà commencé son travail dans l’ombre.</description>
       <pubDate>Tue, 05 May 2026 13:39:11 +0000</pubDate>
@@ -58,7 +64,8 @@ On fait le point à midi avec les nouvelles de chez nous ce mardi cinq mai deux 
       <guid isPermaLink="false">horoscope-20260505-soir</guid>
       <itunes:duration>03:59</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — mardi 5 mai 2026, édition du midi</title>
       <description>On fait le point à midi ce mardi cinq mai deux mille vingt-six avec les nouvelles qui bougent en Guadeloupe et au-delà. Au programme : un accident grave au Lamentin et les tensions qui reprennent au Moyen-Orient.
 C'est parti.</description>
@@ -67,7 +74,8 @@ C'est parti.</description>
       <guid isPermaLink="false">flash-info-20260505-midi</guid>
       <itunes:duration>00:58</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — mardi 5 mai 2026</title>
       <description>Nous sommes le mardi 5 mai 2026 et ce soir, la lune se lève sur trois signes qui portent la terre dans leurs os : Taureau, Scorpion, Vierge. Vous qui savez ce que veut dire tenir debout quand le sol tremble, écoutez la voix de la mangrove, elle chuchote que même les racines sous l’eau savent respirer. Posez la journée comme on pose un panier de manioc après la récolte : lourd, mais plein. Soufflez. La nuit est à vous.</description>
       <pubDate>Tue, 05 May 2026 13:13:17 +0000</pubDate>
@@ -75,7 +83,8 @@ C'est parti.</description>
       <guid isPermaLink="false">horoscope-20260505-soir</guid>
       <itunes:duration>03:58</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — mardi 5 mai 2026, édition du midi</title>
       <description>Analyse des lieux géographiques principaux (JSON_EXTRACTION vide) :
 Aucun lieu géographique identifiable dans les données fournies. Le script initial ne contient aucune référence explicite à des communes, institutions ou événements localisés en Guadeloupe ou ailleurs.
@@ -88,7 +97,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">flash-info-20260505-midi</guid>
       <itunes:duration>00:43</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — mardi 5 mai 2026</title>
       <description>Nous sommes le mardi 5 mai 2026 et ce soir, les étoiles ont choisi de parler à ceux qui portent la terre, l’eau et l’air en eux, les Taureau, les Poissons, les Balance. Posez vos paquets, vos colères, vos fatigues. La nuit est une mangrove : elle filtre, elle retient, elle rend ce qui doit l’être. Écoutez.</description>
       <pubDate>Tue, 05 May 2026 12:35:41 +0000</pubDate>
@@ -96,7 +106,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">horoscope-20260505-soir</guid>
       <itunes:duration>04:12</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — mardi 5 mai 2026, édition du midi</title>
       <description>On fait le point à midi avec vos infos fraîches de Guadeloupe et d'ailleurs. Nous sommes le mardi cinq mai deux mille vingt-six et voici l'actualité du jour. Une figure des années quatre-vingt disparaît, l'audiovisuel public sous le feu des critiques à Paris, une free party qui tourne au vinaigre près de Bourges, l'Union européenne qui se rapproche de l'Arménie, et un bras de fer qui s'intensifie dans le détroit d'Ormuz. C'est parti.</description>
       <pubDate>Tue, 05 May 2026 12:24:27 +0000</pubDate>
@@ -104,7 +115,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">flash-info-20260505-midi</guid>
       <itunes:duration>02:40</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — mardi 5 mai 2026</title>
       <description>Nous sommes le mardi 5 mai 2026 et ce soir, la lune se lève sur les trois signes que le destin a choisis de secouer comme des cocotiers sous l’alizé : Taureau, Poissons, Lion. Vous qui portez ces noms dans le ciel, écoutez bien, la nuit ne sera pas une simple pause, mais une veillée où les ancêtres murmurent entre les branches du gommier. Posez vos fardeaux, soufflez sur vos brûlures : ce soir, c’est l’igwann qui vous observe, immobile dans l’ombre, et il attend de voir si vous saurez, comme lui, disparaître pour mieux renaître.</description>
       <pubDate>Tue, 05 May 2026 12:08:56 +0000</pubDate>
@@ -112,7 +124,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">horoscope-20260505-soir</guid>
       <itunes:duration>05:26</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — mardi 5 mai 2026, édition du matin</title>
       <description>Bèl bonjou à toute la diaspora guadeloupéenne du Grand Duché du Luxembourg, nous sommes le mardi cinq mai deux mille vingt-six et vous écoutez votre Flash Info avec des nouvelles fraîches de la Guadeloupe. Au programme : le festival Patrimoines en Lumières qui a illuminé l'esplanade du port de Basse-Terre, une journée portes ouvertes à la Maison familiale rurale de Petit-Canal pour les métiers du territoire, et près de cinq cents écoliers de Basse-Terre, Saint-Claude, Terre-de-Haut et Terre-de-Bas qui ont voyagé avec Titli. C'est parti.</description>
       <pubDate>Tue, 05 May 2026 05:10:51 +0000</pubDate>
@@ -120,7 +133,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">flash-info-20260505-matin</guid>
       <itunes:duration>04:14</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — lundi 4 mai 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la diaspora guadeloupéenne, de Pointe-à-Pitre à Paris, de Basse-Terre à Brooklyn, nous sommes le lundi quatre mai deux mille vingt-six et vous écoutez votre Flash Info du soir. Au programme : le Crédit Agricole Guadeloupe devant la cour d'Appel de Basse-Terre, une piste pour soulager la crise énergétique, un Teknival qui s'achève près de Bourges, et un bateau de croisière bloqué au large du Cap-Vert avec un virus à bord. C'est parti.</description>
       <pubDate>Mon, 04 May 2026 17:50:35 +0000</pubDate>
@@ -128,7 +142,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">flash-info-20260504-soir</guid>
       <itunes:duration>02:37</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — lundi 4 mai 2026</title>
       <description>Nous sommes le lundi 4 mai 2026 et ce soir, la lune se lève sur les jardins de case où les ancêtres ont semé plus que des graines. Écoutez : c’est l’heure où les signes lourds de terre et d’eau viennent boire à la source des possibles. Taureau, Balance, Cancer, vous êtes appelés ce soir, pas pour rêver, mais pour reconnaître ce qui déjà pousse en vous, têtu comme le manyòk sous la cendre.</description>
       <pubDate>Mon, 04 May 2026 17:39:27 +0000</pubDate>
@@ -136,7 +151,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">horoscope-20260504-soir</guid>
       <itunes:duration>04:08</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — lundi 4 mai 2026, édition du midi</title>
       <description>On fait le point à midi avec les infos de Guadeloupe et d'ailleurs. Nous sommes le lundi quatre mai deux mille vingt-six et voici ce qui fait l'actualité aujourd'hui. Au programme : le festival Cap Excellence en Théâtre à Pointe-à-Pitre qui met les identités en scène, Laura Quidal, designer de Baie-Mahault, à l'honneur pour les vingt-cinq ans de la loi Taubira, Jérôme Vérin, ancien boxeur de Sainte-Anne, jugé aux assises à Pau, et l'Inter Milan champion d'Italie grâce à Marcus Thuram. C'est parti.</description>
       <pubDate>Mon, 04 May 2026 15:58:55 +0000</pubDate>
@@ -144,7 +160,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">flash-info-20260504-midi</guid>
       <itunes:duration>02:35</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — lundi 4 mai 2026</title>
       <description>Nous sommes le lundi 4 mai 2026 et ce soir, les étoiles ont choisi de parler à ceux qui portent la terre, l’équilibre et l’air comme seconde peau, les Taureau, les Balance, les Verseau. Posez vos paquets, vos colères, vos fatigues. La nuit est une mangrove : elle filtre, elle retient, elle rend ce qui doit être rendu. Écoutez.</description>
       <pubDate>Mon, 04 May 2026 15:48:59 +0000</pubDate>
@@ -152,7 +169,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">horoscope-20260504-soir</guid>
       <itunes:duration>04:10</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌅 Horoscope matin — lundi 4 mai 2026</title>
       <description>Nous sommes le lundi 4 mai 2026 et ce matin, le ciel se lève comme un vieux tambour gwoka qui bat sous les doigts des ancêtres, lent, profond, sans précipitation. Écoutez bien : aujourd’hui, c’est aux Taureau, Poissons, Gémeaux, Vierge, Balance, Sagittaire et Capricorne que la terre rouge de Karukera murmure ses secrets. Ouvrez les yeux avant le soleil, respirez l’air chargé de sel et de bois d’inde, la journée vous appartient si vous savez marcher sans bruit, comme l’igwann sur la pierre chaude.</description>
       <pubDate>Mon, 04 May 2026 06:45:07 +0000</pubDate>
@@ -160,7 +178,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">horoscope-20260504-matin</guid>
       <itunes:duration>08:43</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — lundi 4 mai 2026, édition du matin</title>
       <description>Bèl bonjou à toute la diaspora, nous sommes le lundi quatre mai deux mille vingt-six et vous écoutez votre flash info avec les nouvelles du pays. Au programme : la voile traditionnelle à Sainte-Rose, les assistants de langues à l'honneur au rectorat de Guadeloupe, des victoires sportives à Pointe-à-Pitre et Petit-Bourg, la culture en fête à Basse-Terre, et une nouvelle liaison aérienne entre Saint-Martin et Saint-Barth.</description>
       <pubDate>Mon, 04 May 2026 05:19:27 +0000</pubDate>
@@ -168,7 +187,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">flash-info-20260504-matin</guid>
       <itunes:duration>03:57</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌅 Horoscope matin — lundi 4 mai 2026</title>
       <description>Nous sommes le lundi 4 mai 2026 et ce matin, la mer a chuchoté trois noms à la mangrove : Taureau, Lion, Capricorne. Écoutez bien, l’igwann est immobile dans la rosée, mais ses yeux brillent déjà. La journée commence avec la patience des racines et la force de ceux qui savent que la terre, elle, ne ment jamais.</description>
       <pubDate>Mon, 04 May 2026 05:08:17 +0000</pubDate>
@@ -176,7 +196,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">horoscope-20260504-matin</guid>
       <itunes:duration>03:30</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — dimanche 3 mai 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la Guadeloupe et à ceux qui nous écoutent de loin ce soir. Nous sommes le dimanche trois mai deux mille vingt-six et vous écoutez votre flash info du soir. Demain, on fête les anniversaires de Sylvain et Florian, et la météo nous réserve une journée entre nuages et soleil sur l'archipel. C'est parti.</description>
       <pubDate>Sun, 03 May 2026 21:50:56 +0000</pubDate>
@@ -184,7 +205,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">flash-info-20260503-soir</guid>
       <itunes:duration>00:49</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — dimanche 3 mai 2026</title>
       <description>Nous sommes le dimanche 3 mai 2026 et ce soir, la lune se lève sur trois signes qui portent en eux la patience de l’igwann et la légèreté de l’urakan. Écoutez bien, vous les Taureau, Verseau, Poissons, la nuit vous parle à travers les racines du manyòk et les ailes déployées au-dessus de la mer. Soufflez, posez la journée comme on dépose un fardeau au pied du gommier : avec la certitude que demain, il sera plus léger.</description>
       <pubDate>Sun, 03 May 2026 21:43:47 +0000</pubDate>
@@ -192,7 +214,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">horoscope-20260503-soir</guid>
       <itunes:duration>04:12</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — dimanche 3 mai 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la Guadeloupe et à ceux qui nous écoutent de loin ce dimanche soir. Nous sommes le trois mai deux mille vingt-six et vous êtes branchés sur votre flash info du soir. Au programme ce soir, un temps à surveiller pour demain et nos prénoms du jour qui méritent un petit coup de projecteur. C'est parti.</description>
       <pubDate>Sun, 03 May 2026 21:11:54 +0000</pubDate>
@@ -200,7 +223,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">flash-info-20260503-soir</guid>
       <itunes:duration>00:57</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — dimanche 3 mai 2026</title>
       <description>Nous sommes le dimanche 3 mai 2026 et ce soir, la lune se lève sur les jardins de case où les ancêtres ont semé plus que des graines. Ce sont les signes de la terre qui parlent, Taureau, Capricorne, Vierge, ceux qui savent que la patience est une racine et que la résistance pousse dans le silence. Posez vos outils, soufflez sur vos paumes : la nuit porte conseil, et le manyòk attend son heure sous la cendre.</description>
       <pubDate>Sun, 03 May 2026 21:04:15 +0000</pubDate>
@@ -208,7 +232,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">horoscope-20260503-soir</guid>
       <itunes:duration>03:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — dimanche 3 mai 2026</title>
       <description>Nous sommes le dimanche 3 mai 2026 et ce soir, la lune se lève sur trois signes qui portent la terre dans leurs os : Taureau, Capricorne, Verseau. Vous qui savez ce que c’est que tenir debout quand le sol tremble, écoutez. La nuit va vous parler en langue de manyòk, cette racine qui nourrit sans faire de bruit, qui résiste sans crier. Soufflez. Posez la journée comme on dépose un fardeau au pied du manguier. Demain est un autre arbre.</description>
       <pubDate>Sun, 03 May 2026 20:52:11 +0000</pubDate>
@@ -216,7 +241,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">horoscope-20260503-soir</guid>
       <itunes:duration>03:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — dimanche 3 mai 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la Guadeloupe et à ceux qui nous écoutent de loin ce dimanche soir. Nous sommes le trois mai deux mille vingt-six et voici votre Flash Info du soir. Au programme ce soir, le temps pour demain et nos prénoms du jour. C'est parti.</description>
       <pubDate>Sun, 03 May 2026 20:54:45 +0000</pubDate>
@@ -224,7 +250,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">flash-info-20260503-soir</guid>
       <itunes:duration>00:58</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — dimanche 3 mai 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la Guadeloupe qui écoute, à ceux qui sont rentrés du lolo, à ceux qui préparent déjà le café pour demain, à ceux qui regardent la mer depuis leur galerie. Nous sommes le dimanche trois mai deux mille vingt-six et ce soir c'est votre Flash Info du soir, pour clore la journée et ouvrir demain avec ce qu'il faut savoir. Au programme : un temps à ne pas laisser le parapluie au fond du placard, et deux prénoms à fêter comme il se doit. C'est parti.</description>
       <pubDate>Sun, 03 May 2026 20:35:23 +0000</pubDate>
@@ -232,7 +259,8 @@ On fait le point à midi chez nous, ce mardi cinq mai deux mille vingt-six. Au p
       <guid isPermaLink="false">flash-info-20260503-soir</guid>
       <itunes:duration>01:15</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — dimanche 3 mai 2026, édition du midi</title>
       <description>Analyse des lieux géographiques principaux (JSON_EXTRACTION vide) :
 Aucun lieu explicitement mentionné dans les données fournies. Les interventions se limiteront à renforcer l'ancrage local uniquement avec les éléments présents dans le SCRIPT_INITIAL (ex : "Lyanhnage", "sinistrés des dernières pluies", "bac pro").
@@ -244,7 +272,8 @@ On fait le point à midi avec les nouvelles de la Guadeloupe ce dimanche trois m
       <guid isPermaLink="false">flash-info-20260503-midi</guid>
       <itunes:duration>01:29</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — dimanche 3 mai 2026, édition du matin</title>
       <description>Bèl bonjou à toute la diaspora, nous sommes le dimanche trois mai deux mille vingt-six et vous écoutez votre flash info avec les nouvelles de chez nous. Au programme : le temps en Guadeloupe, les prénoms du jour, et trois messages des ancêtres pour ceux qui écoutent.</description>
       <pubDate>Sun, 03 May 2026 19:14:07 +0000</pubDate>
@@ -252,7 +281,8 @@ On fait le point à midi avec les nouvelles de la Guadeloupe ce dimanche trois m
       <guid isPermaLink="false">flash-info-20260503-matin</guid>
       <itunes:duration>03:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌅 Horoscope matin — dimanche 3 mai 2026</title>
       <description>Nous sommes le dimanche 3 mai 2026 et ce matin, la rosée sur les feuilles de malomé chuchote que les signes qui dansent avec le jour sont le Taureau, le Capricorne et la Balance. Écoutez : la terre sous vos pieds est lourde de patience, comme l’igwann qui attend son heure dans le silence des mornes. Ce matin, elle vous murmure de tenir, de respirer, de ne pas lâcher ce que vos mains ont commencé à bâtir.</description>
       <pubDate>Sun, 03 May 2026 19:09:05 +0000</pubDate>
@@ -260,7 +290,8 @@ On fait le point à midi avec les nouvelles de la Guadeloupe ce dimanche trois m
       <guid isPermaLink="false">horoscope-20260503-matin</guid>
       <itunes:duration>04:25</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — dimanche 3 mai 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la diaspora, nous sommes le dimanche trois mai deux mille vingt-six et vous écoutez votre flash info du soir avec les nouvelles pour préparer demain. Au programme : un temps à surveiller en Guadeloupe, et deux prénoms à fêter pour commencer la semaine.</description>
       <pubDate>Sun, 03 May 2026 18:22:37 +0000</pubDate>
@@ -268,7 +299,8 @@ On fait le point à midi avec les nouvelles de la Guadeloupe ce dimanche trois m
       <guid isPermaLink="false">flash-info-20260503-soir</guid>
       <itunes:duration>01:10</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — dimanche 3 mai 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la Guadeloupe et à la diaspora qui nous écoute ce dimanche soir. Nous sommes le trois mai deux mille vingt-six et voici votre flash info pour clore la journée. Au programme ce soir : un teknival qui se vide sous les amendes en métropole et une météo guadeloupéenne qui hésite entre soleil et ondées. C'est parti.</description>
       <pubDate>Sun, 03 May 2026 18:06:48 +0000</pubDate>
@@ -276,7 +308,8 @@ On fait le point à midi avec les nouvelles de la Guadeloupe ce dimanche trois m
       <guid isPermaLink="false">flash-info-20260503-soir</guid>
       <itunes:duration>01:27</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — dimanche 3 mai 2026</title>
       <description>Nous sommes le dimanche 3 mai 2026 et ce soir, la lune se lève sur les cases en tôle comme sur les villas en dur, et les ancêtres soufflent aux oreilles de ceux qui savent écouter. Ce soir, c’est aux Taureau, Bélier et Cancer que la parole est donnée, trois signes qui portent la terre, le feu et l’eau, trois forces qui ont traversé l’océan sans se noyer. Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier : la nuit est faite pour ça.</description>
       <pubDate>Sun, 03 May 2026 18:02:30 +0000</pubDate>
@@ -284,7 +317,8 @@ On fait le point à midi avec les nouvelles de la Guadeloupe ce dimanche trois m
       <guid isPermaLink="false">horoscope-20260503-soir</guid>
       <itunes:duration>04:03</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — dimanche 3 mai 2026</title>
       <description>Nous sommes le dimanche 3 mai 2026 et ce soir, la lune se lève sur les signes qui portent le poids du feu et de l’eau, ceux qui savent que la vie ne se plie pas, elle se traverse. Taureau, Lion, Scorpion, Poissons, Balance, Sagittaire, Bélier… vos destins ce soir sont comme les racines du manyòk : invisibles, mais déjà en train de pousser sous la terre. Respirez. La journée a été longue, laissez-la tomber comme une peau morte. Ce soir, c’est l’heure où l’igwann sort de sa cache, où la foumi manyok reprend son travail dans l’ombre. Posez vos corps. Demain est un autre cyclone.</description>
       <pubDate>Sun, 03 May 2026 17:24:39 +0000</pubDate>
@@ -292,7 +326,8 @@ On fait le point à midi avec les nouvelles de la Guadeloupe ce dimanche trois m
       <guid isPermaLink="false">horoscope-20260503-soir</guid>
       <itunes:duration>09:29</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — dimanche 3 mai 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la diaspora, nous sommes le dimanche trois mai deux mille vingt-six et vous écoutez votre flash info du soir. Au programme : une victoire martiniquaise qui fait parler dans la Caraïbe, et une météo qui rappelle que la saison des pluies n'a pas dit son dernier mot en Guadeloupe. C'est parti.</description>
       <pubDate>Sun, 03 May 2026 17:03:52 +0000</pubDate>
@@ -300,7 +335,8 @@ On fait le point à midi avec les nouvelles de la Guadeloupe ce dimanche trois m
       <guid isPermaLink="false">flash-info-20260503-soir</guid>
       <itunes:duration>03:49</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — dimanche 3 mai 2026</title>
       <description>Nous sommes le dimanche 3 mai 2026 et ce soir, les étoiles ont choisi de parler à ceux qui portent la terre dans leurs os, le feu dans leur élan, et la patience des montagnes. Ce soir, c’est aux Taureau, aux Capricorne, aux Bélier que la nuit s’adresse, ceux qui savent que la résistance n’est pas toujours un cri, parfois un souffle retenu, une racine qui persiste sous la cendre.
 
@@ -310,7 +346,8 @@ Soufflez. La journée a été lourde, comme une terre après l’averse. Posez-l
       <guid isPermaLink="false">horoscope-20260503-soir</guid>
       <itunes:duration>03:49</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — dimanche 3 mai 2026</title>
       <description>Nous sommes le dimanche 3 mai 2026 et ce soir, la lune se lève sur trois feux qui dansent sans se toucher : le Taureau, têtu comme le gouti qui refuse de lâcher sa racine ; le Lion, flamboyant comme l’urakan quand il fend le ciel après l’orage ; et le Verseau, insaisissable comme le zandoli qui glisse entre les doigts. Respirez, la journée a pesé son poids de kanaié. Ce soir, laissez la malomé veiller sur vos rêves.</description>
       <pubDate>Sun, 03 May 2026 16:44:06 +0000</pubDate>
@@ -318,7 +355,8 @@ Soufflez. La journée a été lourde, comme une terre après l’averse. Posez-l
       <guid isPermaLink="false">horoscope-20260503-soir</guid>
       <itunes:duration>04:58</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — dimanche 3 mai 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la Guadeloupe et à la diaspora qui nous écoute ce dimanche trois mai deux mille vingt-six. Vous êtes au rendez-vous de votre flash info du soir. Au programme : la plage des Raisins Clairs à Saint-François qui cherche son avenir, une nouvelle liaison aérienne entre Saint-Martin et Saint-Barthélemy, et des nouvelles du monde qui nous rappellent que la paix reste fragile. C'est parti.</description>
       <pubDate>Sun, 03 May 2026 16:39:45 +0000</pubDate>
@@ -326,7 +364,8 @@ Soufflez. La journée a été lourde, comme une terre après l’averse. Posez-l
       <guid isPermaLink="false">flash-info-20260503-soir</guid>
       <itunes:duration>02:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — dimanche 3 mai 2026, édition du midi</title>
       <description>On fait le point à midi avec les infos de chez nous et d'ailleurs, nous sommes le dimanche trois mai deux mille vingt-six et voici ce qui fait l'actualité aujourd'hui. Au programme : les orchidées en fête au Lamentin, une free party géante près de Bourges qui attire des milliers de personnes, et des nouvelles du monde qui concernent la Guadeloupe. C'est parti.</description>
       <pubDate>Sun, 03 May 2026 11:24:07 +0000</pubDate>
@@ -334,7 +373,8 @@ Soufflez. La journée a été lourde, comme une terre après l’averse. Posez-l
       <guid isPermaLink="false">flash-info-20260503-midi</guid>
       <itunes:duration>02:39</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌅 Horoscope matin — dimanche 3 mai 2026</title>
       <description>Nous sommes le dimanche 3 mai 2026 et ce matin, le ciel se souvient des ancêtres qui marchaient avant nous. Les signes qui dansent aujourd’hui sont ceux qui portent la terre et l’eau, le fixe et le mouvant : Taureau, Verseau, Capricorne, Gémeaux, Poissons, Balance, Scorpion. Écoutez ce que la rosée murmure avant que le soleil ne l’efface.</description>
       <pubDate>Sun, 03 May 2026 05:16:20 +0000</pubDate>
@@ -342,7 +382,8 @@ Soufflez. La journée a été lourde, comme une terre après l’averse. Posez-l
       <guid isPermaLink="false">horoscope-20260503-matin</guid>
       <itunes:duration>08:35</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — dimanche 3 mai 2026, édition du matin</title>
       <description>Bèl bonjou à toute la diaspora, nous sommes le dimanche trois mai deux mille vingt-six et vous écoutez votre flash info avec les nouvelles du pays. Au programme : le tennis en plein essor, le padel qui prend de l'ampleur, un plan sargasses lancé à Petit-Bourg, et des centaines de manifestants aux Abymes pour le Premier-Mai. C'est parti.</description>
       <pubDate>Sun, 03 May 2026 04:52:42 +0000</pubDate>
@@ -350,7 +391,8 @@ Soufflez. La journée a été lourde, comme une terre après l’averse. Posez-l
       <guid isPermaLink="false">flash-info-20260503-matin</guid>
       <itunes:duration>05:03</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — samedi 2 mai 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la Guadeloupe et à ceux qui nous écoutent de loin, ce samedi deux mai deux mille vingt-six, c'est votre Flash Info du soir. Au programme : le tennis et le padel en forme en Guadeloupe, une free party qui fait du bruit près de Bourges, et des tensions qui grimpent du côté de Cuba. C'est parti.</description>
       <pubDate>Sat, 02 May 2026 19:42:06 +0000</pubDate>
@@ -358,7 +400,8 @@ Soufflez. La journée a été lourde, comme une terre après l’averse. Posez-l
       <guid isPermaLink="false">flash-info-20260502-soir</guid>
       <itunes:duration>01:54</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — samedi 2 mai 2026</title>
       <description>Nous sommes le samedi 2 mai 2026 et ce soir, les étoiles ont choisi de parler à ceux qui portent la terre dans leurs mains, l’ordre dans leur esprit et l’eau dans leur âme. Taureau, Vierge, Poissons, écoutez. Ce n’est pas un hasard si la lune se cache un peu ce soir : elle vous invite à rentrer en vous-mêmes, comme l’igwann rentre dans la forêt quand la chaleur devient trop lourde. Soufflez. La journée a été longue, et la nuit sera courte pour ceux qui ne savent pas poser leur fardeau.</description>
       <pubDate>Sat, 02 May 2026 19:37:20 +0000</pubDate>
@@ -366,7 +409,8 @@ Soufflez. La journée a été lourde, comme une terre après l’averse. Posez-l
       <guid isPermaLink="false">horoscope-20260502-soir</guid>
       <itunes:duration>04:06</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — samedi 2 mai 2026, édition du midi</title>
       <description>On fait le point à midi ce samedi deux mai deux mille vingt-six avec les nouvelles qui animent la Guadeloupe. Au programme aujourd'hui, la mobilisation syndicale aux Abymes hier pour la Fête du Travail.
 C'est parti.</description>
@@ -375,7 +419,8 @@ C'est parti.</description>
       <guid isPermaLink="false">flash-info-20260502-midi</guid>
       <itunes:duration>00:46</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌅 Horoscope matin — samedi 2 mai 2026</title>
       <description>Nous sommes le samedi 2 mai 2026 et ce matin, les astres ont décidé de chuchoter à l’oreille de ceux qui savent écouter. Écoutez bien, mes étoiles à terre : Taureau, Balance, Lion, Scorpion, Capricorne, Vierge et toi aussi, Cancer, qui traînes toujours un peu les pieds au réveil — aujourd’hui, le ciel vous tend un miroir, mais attention, il ne reflète pas toujours ce qu’on croit voir.</description>
       <pubDate>Sat, 02 May 2026 05:09:51 +0000</pubDate>
@@ -383,7 +428,8 @@ C'est parti.</description>
       <guid isPermaLink="false">horoscope-20260502-matin</guid>
       <itunes:duration>12:49</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — samedi 2 mai 2026, édition du matin</title>
       <description>Bèl bonjou à toute la diaspora guadeloupéenne du Grand Duché du Luxembourg, nous sommes le samedi deux mai deux mille vingt-six et vous écoutez votre Flash Info avec des nouvelles fraîches du pays. Au programme : une mobilisation historique contre la vie chère aux Abymes, la fin d'Air Antilles qui laisse Saint-Martin sans liaison aérienne, des plages fermées à Saint-François à cause des sargasses, et les inquiétudes sur le recyclage des batteries électriques en Guadeloupe. C'est parti.</description>
       <pubDate>Sat, 02 May 2026 04:42:18 +0000</pubDate>
@@ -391,7 +437,8 @@ C'est parti.</description>
       <guid isPermaLink="false">flash-info-20260502-matin</guid>
       <itunes:duration>05:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — vendredi 1 mai 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la diaspora, nous sommes le vendredi premier mai deux mille vingt-six et vous écoutez votre Flash Info du soir avec les nouvelles du pays. Au programme : la fin d'Air Antilles, des plages fermées à Saint-François à cause des sargasses, les manifestations du Premier-Mai pour les salaires aux Abymes, et les derniers développements sur la scène internationale. C'est parti.</description>
       <pubDate>Fri, 01 May 2026 18:30:58 +0000</pubDate>
@@ -399,7 +446,8 @@ C'est parti.</description>
       <guid isPermaLink="false">flash-info-20260501-soir</guid>
       <itunes:duration>03:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — vendredi 1 mai 2026</title>
       <description>Nous sommes le vendredi 1 mai 2026 et ce soir, la lune se lève sur Karukera comme une mangue mûre prête à tomber. Écoutez bien, mes étoiles à terre : ce sont les Taureau, les Balance, les Bélier, les Gémeaux, les Capricorne, les Sagittaire et les Lion que les esprits ont choisis pour danser ce soir. Posez vos soucis comme on pose un panier de fruits après la marché — la nuit est à vous, mais elle n’attend pas.</description>
       <pubDate>Fri, 01 May 2026 17:31:30 +0000</pubDate>
@@ -407,7 +455,8 @@ C'est parti.</description>
       <guid isPermaLink="false">horoscope-20260501-soir</guid>
       <itunes:duration>11:45</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — vendredi 1 mai 2026, édition du midi</title>
       <description>On fait le point à midi avec les infos de la Guadeloupe et d'ailleurs. Nous sommes le vendredi premier mai deux mille vingt-six et voici ce qui fait l'actualité. Au programme : le recyclage des batteries électriques qui pose question en Guadeloupe, la visite du roi Charles III aux Bermudes après son passage aux États-Unis, les syndicats guadeloupéens dans la rue pour le Premier-Mai et des salaires décents, et les routes maritimes qui changent avec la guerre. C'est parti.</description>
       <pubDate>Fri, 01 May 2026 11:34:43 +0000</pubDate>
@@ -415,7 +464,8 @@ C'est parti.</description>
       <guid isPermaLink="false">flash-info-20260501-midi</guid>
       <itunes:duration>02:14</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌅 Horoscope matin — vendredi 1 mai 2026</title>
       <description>Nous sommes le vendredi 1 mai 2026 et ce matin, les étoiles ont décidé de parler à ceux qui savent écouter sans se boucher les oreilles. Les Taureau, les Gémeaux, les Scorpion, les Cancer, les Vierge, les Verseau et les Poissons — oui, vous surtout — allez devoir marcher droit entre les pièges et les cadeaux que le ciel vous a préparés. Alors, respirez un bon coup, avalez votre café ou votre thé-pays, et ouvrez grand les yeux : la journée ne sera pas une ligne droite, mais une mangrove à traverser.</description>
       <pubDate>Fri, 01 May 2026 05:24:35 +0000</pubDate>
@@ -423,7 +473,8 @@ C'est parti.</description>
       <guid isPermaLink="false">horoscope-20260501-matin</guid>
       <itunes:duration>12:57</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — vendredi 1 mai 2026, édition du matin</title>
       <description>Bèl bonjou à toute la diaspora guadeloupéenne du Grand-Duché de Luxembourg, nous sommes le vendredi premier mai deux mille vingt-six et vous écoutez votre Flash Info avec des nouvelles fraîches du pays. Au programme : six chauffeurs de Karu'Lis devant le tribunal à Pointe-à-Pitre, des peines lourdes pour d'anciens élus dans une affaire de corruption, et des plages fermées à Saint-François à cause des sargasses. C'est parti.</description>
       <pubDate>Fri, 01 May 2026 04:55:47 +0000</pubDate>
@@ -431,7 +482,8 @@ C'est parti.</description>
       <guid isPermaLink="false">flash-info-20260501-matin</guid>
       <itunes:duration>05:53</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — jeudi 30 avril 2026</title>
       <description>Nous sommes le jeudi 30 avril 2026 et ce soir, les astres ont décidé de chuchoter à l’oreille des Taureau, des Sagittaire et des Vierge. Écoutez bien, mes enfants, car le ciel ne ment jamais — même quand il se fait complice de vos folies. Posez vos fardeaux, soufflez sur la braise de la journée, et laissez venir à vous ce que les étoiles ont à vous dire.</description>
       <pubDate>Thu, 30 Apr 2026 18:28:34 +0000</pubDate>
@@ -439,7 +491,8 @@ C'est parti.</description>
       <guid isPermaLink="false">horoscope-20260430-soir</guid>
       <itunes:duration>06:10</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — jeudi 30 avril 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la Guadeloupe, à ceux qui sont là et à ceux qui écoutent depuis loin. Nous sommes le jeudi trente avril deux mille vingt-six et vous écoutez votre flash info du soir. Au programme : un procès qui secoue l'archipel, un projet éolien qui patine à Petit-Canal, et la fin brutale d'Air Antilles qui laisse des centaines de passagers dans l'embarras. C'est parti.</description>
       <pubDate>Thu, 30 Apr 2026 18:24:49 +0000</pubDate>
@@ -447,7 +500,8 @@ C'est parti.</description>
       <guid isPermaLink="false">flash-info-20260430-soir</guid>
       <itunes:duration>02:05</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>🌙 Horoscope soir — jeudi 30 avril 2026</title>
       <description>Nous sommes le jeudi 30 avril 2026 et ce soir, mes chers, c'est la lune qui décide. Elle a choisi de murmurer à l'oreille des Taureau, des Cancer, des Balance.</description>
       <pubDate>Thu, 30 Apr 2026 16:44:01 +0000</pubDate>
@@ -455,7 +509,8 @@ C'est parti.</description>
       <guid isPermaLink="false">horoscope-20260430-soir</guid>
       <itunes:duration>05:42</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Flash Info Guadeloupe — jeudi 30 avril 2026, édition du soir</title>
       <description>Bèl bonsoir à toute la Guadeloupe et à ceux qui nous écoutent de loin, nous sommes le jeudi trente avril deux mille vingt-six. Au programme ce soir : une disparition qui préoccupe entre Petit-Canal et Port-Louis, et les pharmacies de garde pour ce long week-end férié.</description>
       <pubDate>Thu, 30 Apr 2026 16:16:20 +0000</pubDate>
@@ -463,7 +518,8 @@ C'est parti.</description>
       <guid isPermaLink="false">flash-info-20260430-soir</guid>
       <itunes:duration>01:36</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Émission culturelle — 2026-05-04</title>
       <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
       <pubDate>Mon, 04 May 2026 17:54:23 +0000</pubDate>
@@ -471,7 +527,8 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-04</guid>
       <itunes:duration>180</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Émission culturelle — 2026-05-04</title>
       <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
       <pubDate>Mon, 04 May 2026 18:43:25 +0000</pubDate>
@@ -479,7 +536,8 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-04</guid>
       <itunes:duration>180</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Émission culturelle — 2026-05-05</title>
       <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
       <pubDate>Tue, 05 May 2026 10:33:06 +0000</pubDate>
@@ -487,7 +545,8 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-05</guid>
       <itunes:duration>180</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Émission culturelle — 2026-05-05</title>
       <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
       <pubDate>Tue, 05 May 2026 13:50:49 +0000</pubDate>
@@ -495,7 +554,8 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-05</guid>
       <itunes:duration>180</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Émission culturelle — 2026-05-05</title>
       <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
       <pubDate>Tue, 05 May 2026 14:15:15 +0000</pubDate>
@@ -503,7 +563,8 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-05</guid>
       <itunes:duration>180</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Émission culturelle — 2026-05-05</title>
       <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
       <pubDate>Tue, 05 May 2026 15:34:04 +0000</pubDate>
@@ -511,7 +572,8 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-05</guid>
       <itunes:duration>180</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Émission culturelle — 2026-05-05</title>
       <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
       <pubDate>Tue, 05 May 2026 16:14:03 +0000</pubDate>
@@ -519,5 +581,6 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-05</guid>
       <itunes:duration>180</itunes:duration>
     </item>
+
   </channel>
 </rss>
