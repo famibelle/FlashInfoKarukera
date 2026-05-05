@@ -214,7 +214,7 @@ def get_announcement_mp3_url(bloc: str, artists: list[str], voice: str = "corinn
 
     label       = ANNOUNCE_BLOC_LABEL.get(bloc, bloc)
     artists_str = ", ".join(artists)
-    user_prompt = f"Moment : {label}\nArtistes : {artists_str}"
+    user_prompt = f"Moment : {label}\nArtistes : {artists_str}\nNote : ces artistes sont séparés dans la playlist, ils ne jouent PAS ensemble. Ne JAMAIS suggérer une collaboration."
 
     logger.info(f"  Liner {bloc} ({voice}) — 🤖 LLM ({artists_str[:40]})…")
     try:
