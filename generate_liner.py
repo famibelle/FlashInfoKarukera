@@ -13,6 +13,7 @@ Les fichiers générés sont sauvegardés dans :
 import os
 import re
 import json
+import argparse
 import unicodedata
 import logging
 import urllib.request
@@ -124,7 +125,7 @@ def _mistral_chat(system: str, user: str, max_retries: int = 4, label: str = "")
             {"role": "system", "content": system},
             {"role": "user",   "content": user},
         ],
-        "max_tokens": 35,
+        "max_tokens": 60,
         "temperature": 0.85,
     }).encode()
     req = urllib.request.Request(
@@ -223,13 +224,29 @@ def get_announcement_mp3_url(bloc: str, artists: list[str], voice: str = "corinn
         logger.warning(f"Liner {bloc} ({voice}) ignoré — ❌ LLM : {e}")
         return None, None
 
+    # Vérifier ponctuation finale et tronquer si incomplet
+    punctuation_marks = ('.', '!', '?', '…')
+    if not text.endswith(punctuation_marks):
+        # Trouver la dernière ponctuation de fin de phrase
+        last_punct = max(
+            text.rfind('.'),
+            text.rfind('!'),
+            text.rfind('?'),
+            text.rfind('…')
+        )
+        if last_punct > 10:  # Au moins 10 caractères avant la ponctuation
+            text = text[:last_punct+1].strip()
+            logger.warning(f"  Liner {bloc} ({voice}) — ⚠️  Phrase incomplète, tronquée à la dernière ponctuation")
+        else:
+            logger.warning(f"  Liner {bloc} ({voice}) — ⚠️  AUCUNE ponctuation trouvée, texte peut être incomplet")
+    
     # Troncature intelligente : max 28 mots, respecte les phrases
     words = text.split()
     if len(words) > 28:
         truncated = []
         for word in words[:28]:
             truncated.append(word)
-            if word.endswith(('.', '!', '?', '…')):
+            if word.endswith(punctuation_marks):
                 break
         if len(truncated) < len(words):
             logger.warning(f"  Liner {bloc} ({voice}) — ⚠️  Tronqué de {len(words)} à {len(truncated)} mots")
@@ -360,3 +377,67 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
     save_cache(cache)
     logger.info(f"  Capsule {slot_id} — 🎙️ {public_url}")
     return public_url
+
+
+# ── Entrée CLI ────────────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    from dotenv import load_dotenv
+    load_dotenv()
+    
+    parser = argparse.ArgumentParser(
+        description="Génère un liner vocal pour FlashInfoKarukera"
+    )
+    parser.add_argument(
+        "--bloc",
+        type=str,
+        required=True,
+        help="Type de bloc (matin/morning, midi/midday, soir/evening, etc.)"
+    )
+    parser.add_argument(
+        "--artists",
+        type=str,
+        required=True,
+        help="Liste d'artistes séparés par des virgules"
+    )
+    parser.add_argument(
+        "--voice",
+        type=str,
+        default="corinne",
+        help="Voix à utiliser (default: corinne)"
+    )
+    parser.add_argument(
+        "--verbose", "-v",
+        action="store_true",
+        help="Mode verbeux"
+    )
+    
+    args = parser.parse_args()
+    
+    # Configurer le logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(message)s",
+        handlers=[logging.StreamHandler()]
+    )
+    
+    # Parser les artistes
+    artists = [a.strip() for a in args.artists.split(",") if a.strip()]
+    
+    if not artists:
+        parser.error("Au moins un artiste est requis")
+    
+    # Générer le liner
+    url, text = get_announcement_mp3_url(
+        bloc=args.bloc,
+        artists=artists,
+        voice=args.voice,
+        verbose=args.verbose
+    )
+    
+    if url:
+        print(f"\n✅ Liner généré : {url}")
+    if text:
+        print(f"📝 Texte : «{text}»")
+    if not url:
+        print("❌ Échec de la génération du liner")
