@@ -260,7 +260,24 @@ def tts_call(
                 raise RuntimeError(f"TTS HTTP {e.code} ({e.reason}): {body}") from None
     if "audio_data" not in response:
         raise RuntimeError(f"TTS error: {response}")
+    
+    # Écrire le fichier MP3 brut
     output_path.write_bytes(base64.b64decode(response["audio_data"]))
+    
+    # Normalisation LUFS à -14 (standard YouTube/Spotify/EBU R128) pour uniformiser le volume
+    # Appliquée uniquement aux NOUVEAUX fichiers (pas de re-traitement des existants)
+    tmp_path = output_path.with_suffix('.tmp.mp3')
+    output_path.rename(tmp_path)
+    proc = subprocess.run([
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-i", str(tmp_path),
+        "-af", "loudnorm=I=-14:LRA=11:TP=-1.5",
+        "-c:a", "libmp3lame", "-q:a", "2",
+        str(output_path),
+    ], capture_output=True)
+    tmp_path.unlink(missing_ok=True)
+    if proc.returncode != 0:
+        raise RuntimeError(f"TTS normalization failed: {proc.stderr.decode()}")
 
 
 # ── STT ───────────────────────────────────────────────────────────────────────
@@ -345,7 +362,7 @@ def resolve_stinger(name: str | None = None) -> Path:
     proc = subprocess.run([
         "ffmpeg", "-y", "-loglevel", "error",
         "-f", "lavfi", "-i", f"aevalsrc={expr}:s=44100:d=0.5",
-        "-af", "afade=t=out:st=0.3:d=0.2",
+        "-af", "afade=t=out:st=0.3:d=0.2,loudnorm=I=-14:LRA=11:TP=-1.5",
         "-c:a", "libmp3lame", "-q:a", "4",
         str(synthetic),
     ], capture_output=True)
@@ -400,7 +417,7 @@ def generate_audio(
         inputs += ["-i", str(f)]
 
     n = len(all_files)
-    filter_str = "".join(f"[{i}:a]" for i in range(n)) + f"concat=n={n}:v=0:a=1[out]"
+    filter_str = "".join(f"[{i}:a]" for i in range(n)) + f"concat=n={n}:v=0:a=1[loud];[loud]loudnorm=I=-14:LRA=11:TP=-1.5[out]"
 
     print("   🔗 Assemblage FFmpeg…")
     proc = subprocess.run([
