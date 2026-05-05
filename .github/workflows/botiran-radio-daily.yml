@@ -95,7 +95,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: 🎬 Install FFmpeg
-        run: sudo apt-get install -y ffmpeg
+        run: apt-get update && apt-get install -y ffmpeg
 
       - name: 🔑 Write YouTube Music auth file
         run: |
@@ -170,7 +170,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: 🎬 Install FFmpeg
-        run: sudo apt-get install -y ffmpeg
+        run: apt-get update && apt-get install -y ffmpeg
 
       - name: 🔑 Write YouTube Music auth file
         run: |
