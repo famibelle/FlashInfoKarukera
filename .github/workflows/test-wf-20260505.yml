@@ -12,7 +12,12 @@ on:
         default: false
 
 jobs:
-  test:
+  test1:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "workflow_dispatch + schedule test OK"
+      - run: echo "Job 1 OK"
+  test2:
+    runs-on: ubuntu-latest
+    needs: test1
+    steps:
+      - run: echo "Job 2 OK (après test1)"
