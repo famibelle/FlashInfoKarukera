@@ -70,7 +70,7 @@
 │                                  ▼                                        │
 │           ┌─────────────────────────────────────────────────────┐           │
 │           │                    ORCHESTRATEUR                     │           │
-│           │              (generate-all.yml)                       │           │
+│           │              (radio-generation-orchestrator.yml)                       │           │
 │           │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌─────────┐  │           │
 │           │  │ Horoscope │→│Flash Info│→│  Liners  │→│Capsules │→│Interview│  │           │
 │           │  └──────────┘ └──────────┘ └──────────┘ └─────────┘  │           │
@@ -362,10 +362,10 @@ url = get_capsule_mp3_url(slot_id)
 
 ### 🎯 Architecture
 
-L'orchestration repose sur **6 workflows séquentiels** déclenchés par `generate-all.yml` :
+L'orchestration repose sur **6 workflows séquentiels** déclenchés par `radio-generation-orchestrator.yml` :
 
 ```yaml
-# .github/workflows/generate-all.yml
+# .github/workflows/radio-generation-orchestrator.yml
 jobs:
   1. horoscope:      # Génère l'horoscope du jour
      needs: none
@@ -389,7 +389,7 @@ jobs:
 
 ### 🕐 Planification (Cron)
 
-Le workflow principal `generate-all.yml` s'exécute **3 fois par jour** :
+Le workflow principal `radio-generation-orchestrator.yml` s'exécute **3 fois par jour** :
 
 | Heure UTC | Heure Paris (été) | Heure Guadeloupe | Blocs générés |
 |-----------|-------------------|-------------------|----------------|
@@ -409,7 +409,7 @@ Le workflow principal `generate-all.yml` s'exécute **3 fois par jour** :
 | `capsules-daily.yml` | `workflow_dispatch` | 3×/jour | Génère les capsules |
 | `interview-daily.yml` | `workflow_dispatch` | 3×/jour | Génère l'interview |
 | `botiran-radio-daily.yml` | `workflow_dispatch` / `workflow_run` | 3×/jour | Génère la playlist radio |
-| `generate-all.yml` | `schedule` + `workflow_dispatch` | 3×/jour | **Orchestrateur** |
+| `radio-generation-orchestrator.yml` | `schedule` + `workflow_dispatch` | 3×/jour | **Orchestrateur** |
 
 ### ⚡ Non-bloquant — Interview
 
@@ -417,7 +417,7 @@ Le workflow principal `generate-all.yml` s'exécute **3 fois par jour** :
 
 **Solution :**
 ```yaml
-# Dans generate-all.yml
+# Dans radio-generation-orchestrator.yml
 interview:
   needs: capsules
   continue-on-error: true  # ⭐ Ne bloque pas la suite
@@ -1033,7 +1033,7 @@ ffmpeg -i input.mp3 -af "loudnorm=I=-16:TP=-1.5" -y output.mp3
 
 ## 🤖 Automatisation complète
 
-### 🎯 Workflow principal : `generate-all.yml`
+### 🎯 Workflow principal : `radio-generation-orchestrator.yml`
 
 Ce workflow **orchestre** l'exécution séquentielle de tous les autres workflows :
 
@@ -1052,7 +1052,7 @@ Ce workflow **orchestre** l'exécution séquentielle de tous les autres workflow
 
 | Workflow | Trigger | Cron (UTC) | Heure Paris (été) | Heure Guadeloupe |
 |----------|---------|------------|-------------------|-------------------|
-| `generate-all.yml` | schedule + manual | 0 4,11,17 * * * | 6h, 13h, 19h | 2h, 9h, 15h |
+| `radio-generation-orchestrator.yml` | schedule + manual | 0 4,11,17 * * * | 6h, 13h, 19h | 2h, 9h, 15h |
 
 ### 🔧 Secrets GitHub obligatoires
 
@@ -1266,7 +1266,7 @@ FlashInfoKarukera/
 │
 └── .github/
     └── workflows/
-        ├── generate-all.yml         # ✨ ORCHESTRATEUR (cron 4h/11h/17h)
+        ├── radio-generation-orchestrator.yml         # ✨ ORCHESTRATEUR (cron 4h/11h/17h)
         ├── horoscope-daily.yml
         ├── flash-info.yml
         ├── liners-daily.yml          # ✨ Génère les liners
@@ -1421,7 +1421,7 @@ Interview (1)
 ### 🔴 Le workflow échoue avec un conflit Git
 
 **Cause :** Plusieurs workflows essaient de `git push` simultanément.
-**Solution :** Utiliser l'orchestration séquentielle via `generate-all.yml` qui garantit qu'un seul workflow push à la fois.
+**Solution :** Utiliser l'orchestration séquentielle via `radio-generation-orchestrator.yml` qui garantit qu'un seul workflow push à la fois.
 
 ### 🔴 L'interview bloque la playlist
 
@@ -1443,7 +1443,7 @@ Interview (1)
 ### 🔴 Les liners/capsules ont des artistes factices
 
 **Cause :** Le flag `--generate-liners-only` utilise des placeholders.
-**Solution :** Utiliser le workflow complet `generate-all.yml` qui récupère les vrais artistes du music pool.
+**Solution :** Utiliser le workflow complet `radio-generation-orchestrator.yml` qui récupère les vrais artistes du music pool.
 
 ### 🔴 La playlist n'a pas 86 éléments
 
@@ -1492,7 +1492,7 @@ python show_playlist.py
 rm -f playlists/youtube_cache.json playlists/music_pool_cache.json
 
 # Relancer le workflow
-gh workflow run generate-all.yml
+gh workflow run radio-generation-orchestrator.yml
 ```
 
 ### 🔴 Où sont stockés les fichiers audio ?
