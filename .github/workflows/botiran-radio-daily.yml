@@ -151,6 +151,32 @@ jobs:
           echo "✅ Pool musical : $SIZE octets, $TRACKS pistes"
           cat playlists/playlist_24h_id.txt
 
+      - name: 📥 Archiver le contenu de la playlist
+        env:
+          YTMUSIC_PLAYLIST_24H_ID: ${{ secrets.YTMUSIC_PLAYLIST_24H_ID }}
+        run: |
+          mkdir -p archives/playlists
+          TIMESTAMP=$(date -u '+%Y-%m-%d_%H-%M')
+          PL_ID=$(cat playlists/playlist_24h_id.txt)
+          
+          # 1. Sauvegarder le pool musical
+          cp playlists/music_pool_cache.json archives/playlists/playlist_pool_${TIMESTAMP}.json
+          
+          # 2. Récupérer et sauvegarder la playlist YouTube Music
+          python3 -c "
+          from ytmusicapi import YTMusic
+          import json, os
+          yt = YTMusic('browser.json')
+          pl = yt.get_playlist('$PL_ID', limit=500)
+          with open('archives/playlists/youtube_playlist_${TIMESTAMP}.json', 'w') as f:
+              json.dump(pl, f, indent=2, ensure_ascii=False)
+          print(f'✅ YouTube playlist archivée: {pl.get(\"trackCount\", \"N/A\")} pistes')
+          "
+          
+          # 3. Créer les symlinks latest
+          ln -sf playlist_pool_${TIMESTAMP}.json archives/playlists/playlist_pool-latest.json
+          ln -sf youtube_playlist_${TIMESTAMP}.json archives/playlists/youtube_playlist-latest.json
+
       - name: 📤 Upload caches playlist
         uses: actions/upload-artifact@v4
         with:
@@ -240,6 +266,13 @@ jobs:
           CAPSULES=$(jq '.capsules' docs/radio_sequence.json 2>/dev/null || echo "N/A")
           echo "✅ Séquence radio : $SIZE octets"
           echo "   $ELEMENTS éléments ($MUSIC musique, $LINERS liners, $CAPSULES capsules)"
+
+      - name: 📥 Archiver la séquence radio
+        run: |
+          mkdir -p archives/playlists
+          TIMESTAMP=$(date -u '+%Y-%m-%d_%H-%M')
+          cp docs/radio_sequence.json archives/playlists/radio_sequence_${TIMESTAMP}.json
+          ln -sf radio_sequence_${TIMESTAMP}.json archives/playlists/radio_sequence-latest.json
 
       - name: 📤 Upload séquence et contenus générés
         uses: actions/upload-artifact@v4
@@ -369,11 +402,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Ajouter tous les fichiers à committer (youtube_cache.json est dans .gitignore)
+          # Ajouter tous les fichiers à commiter (youtube_cache.json est dans .gitignore)
           git add playlists/music_pool_cache.json playlists/playlist_24h_id.txt docs/radio_sequence.json
-          [ -d docs/liners ]   && git add docs/liners/   || true
-          [ -d docs/capsules ] && git add docs/capsules/ || true
-          [ -d docs/audio ]    && { git add docs/audio/; git add -u docs/audio/; } || true
+          [ -d docs/liners ]         && git add docs/liners/         || true
+          [ -d docs/capsules ]       && git add docs/capsules/       || true
+          [ -d docs/audio ]          && { git add docs/audio/; git add -u docs/audio/; } || true
+          [ -d archives/playlists ]  && git add archives/playlists/  || true
           
           # Vérifier s'il y a des changements
           if git diff --cached --quiet; then
