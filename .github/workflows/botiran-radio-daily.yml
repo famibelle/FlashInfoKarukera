@@ -177,6 +177,13 @@ jobs:
           ln -sf playlist_pool_${TIMESTAMP}.json archives/playlists/playlist_pool-latest.json
           ln -sf youtube_playlist_${TIMESTAMP}.json archives/playlists/youtube_playlist-latest.json
 
+      - name: 📤 Upload archives playlist
+        uses: actions/upload-artifact@v4
+        with:
+          name: playlist-archives
+          path: archives/playlists/
+          retention-days: 1
+
       - name: 📤 Upload caches playlist
         uses: actions/upload-artifact@v4
         with:
@@ -274,6 +281,13 @@ jobs:
           cp docs/radio_sequence.json archives/playlists/radio_sequence_${TIMESTAMP}.json
           ln -sf radio_sequence_${TIMESTAMP}.json archives/playlists/radio_sequence-latest.json
 
+      - name: 📤 Upload archives sequence
+        uses: actions/upload-artifact@v4
+        with:
+          name: radio-archives
+          path: archives/playlists/
+          retention-days: 1
+
       - name: 📤 Upload séquence et contenus générés
         uses: actions/upload-artifact@v4
         with:
@@ -351,6 +365,18 @@ jobs:
           ELEMENTS=$(jq '.sequence | length' docs/radio_sequence.json 2>/dev/null || echo "N/A")
           echo "✅ Séquence radio téléchargée : $ELEMENTS éléments"
 
+      - name: 📥 Download archives playlists
+        uses: actions/download-artifact@v4
+        with:
+          name: playlist-archives
+          path: archives/
+
+      - name: 📥 Download archives sequence
+        uses: actions/download-artifact@v4
+        with:
+          name: radio-archives
+          path: archives/
+
       - name: 📋 Générer le rapport de playlist
         run: |
           python show_playlist.py --no-colors --stats  > playlist_report.txt
@@ -394,6 +420,7 @@ jobs:
           echo "docs/radio_sequence.json: $(test -f docs/radio_sequence.json && echo '✅' || echo '❌')"
           echo "docs/liners/: $(test -d docs/liners && echo '✅' || echo '❌')"
           echo "docs/capsules/: $(test -d docs/capsules && echo '✅' || echo '❌')"
+          echo "archives/playlists/: $(test -d archives/playlists && echo '✅' || echo '❌')"
           echo "Taille radio_sequence.json: $(test -f docs/radio_sequence.json && stat -c%s docs/radio_sequence.json || echo 'N/A') octets"
           echo "=== END VÉRIFICATION ==="
 
