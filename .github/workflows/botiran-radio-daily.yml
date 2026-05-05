@@ -223,10 +223,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: radio-content
-          path: |
-            docs/radio_sequence.json
-            docs/liners/
-            docs/capsules/
+          path: docs/  # Upload tout le dossier docs/ pour éviter les problèmes de chemin
           if-no-files-found: error
           retention-days: 1
 
@@ -282,7 +279,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: radio-content
-          path: .
+          path: docs/  # Télécharge dans docs/ pour correspondre au chemin de l'upload
 
       - name: ✅ Vérifier artefact radio-content
         run: |
