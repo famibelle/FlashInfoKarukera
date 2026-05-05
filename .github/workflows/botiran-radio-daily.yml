@@ -94,6 +94,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: 🎬 Install FFmpeg
+        run: sudo apt-get install -y ffmpeg
+
       - name: 🔑 Write YouTube Music auth file
         run: |
           echo '${{ secrets.YTMUSIC_BROWSER_JSON_B64 }}' | base64 -d > browser.json
@@ -165,6 +168,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: 🎬 Install FFmpeg
+        run: sudo apt-get install -y ffmpeg
 
       - name: 🔑 Write YouTube Music auth file
         run: |
