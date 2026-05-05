@@ -16,12 +16,12 @@ on:
         description: "✅ Exécuter Horoscope Quotidien"
         type: boolean
         required: false
-        default: false
+        default: true
       run_flash_info:
         description: "✅ Exécuter Flash Info Guadeloupe"
         type: boolean
         required: false
-        default: false
+        default: true
       run_capsules:
         description: "✅ Exécuter Capsules Culturelles"
         type: boolean
