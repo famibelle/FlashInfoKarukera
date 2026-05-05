@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Caribbean Music Database — Playlist par genre pour FlashInfoKarukera
-Genres : zouk, zouk_retro, gwoka, lewoz, kompa, chatta, bouillon, calypso, biguine, mazurka
+Genres : zouk, zouk_retro, gwoka, lewoz, kompa, chatta, bouillon, calypso, biguine, mazurka, dancehall
 Ordre : Par genre, puis par artiste (alphabétique), puis par popularité
 """
 
@@ -37,12 +37,37 @@ CARIBBEAN_TRACKS = {
         {"name": "Tan'n Son An Nou", "artists": ["Dominique Panol"]},
         {"name": "Ti Kadance", "artists": ["Dominique Panol"]},
         
+        # Energy Crew (Guadeloupe - dancehall/zouk fusion)
+        {"name": "Boom Boom", "artists": ["Energy Crew"]},
+        {"name": "Sensinterdit", "artists": ["Energy Crew"]},
+        {"name": "Zouk la pé chavire", "artists": ["Energy Crew"]},
+        
         # Exile One (kadans → zouk)
         {"name": "E Lo Lo", "artists": ["Exile One"]},
         {"name": "Lotion", "artists": ["Exile One"]},
         {"name": "Wilomele", "artists": ["Exile One"]},
         
-        # Jeff Joe (Dominique - cadence-lypso → zouk)
+        # Experience 7 (Guadeloupe)
+        {"name": "Anmwe", "artists": ["Experience 7"]},
+        {"name": "Chajè", "artists": ["Experience 7"]},
+        {"name": "Lanmou", "artists": ["Experience 7"]},
+        
+        # Fanny J (Zouk / R&B)
+        {"name": "An ba chenn", "artists": ["Fanny J"]},
+        {"name": "Pou ki sa", "artists": ["Fanny J"]},
+        {"name": "Sé ou", "artists": ["Fanny J"]},
+        
+        # Francky Vincent
+        {"name": "Fais moi du cachiri", "artists": ["Francky Vincent"]},
+        {"name": "Madanm zot", "artists": ["Francky Vincent"]},
+        {"name": "Tire li", "artists": ["Francky Vincent"]},
+        
+        # Harry Diboula (Zouk Love)
+        {"name": "Anba pyé bwa", "artists": ["Harry Diboula"]},
+        {"name": "Lanmou sé zot", "artists": ["Harry Diboula"]},
+        {"name": "Sé zot", "artists": ["Harry Diboula"]},
+        
+        # Jeff Joe (Dominique - cadence-lypso → zouk ONLY)
         {"name": "Island Life", "artists": ["Jeff Joe"]},
         {"name": "Jouway Morning", "artists": ["Jeff Joe"]},
         {"name": "Sweet Dominica", "artists": ["Jeff Joe"]},
@@ -53,7 +78,27 @@ CARIBBEAN_TRACKS = {
         {"name": "Palé Ba Mwen", "artists": ["Jocelyne Labylle"]},
         {"name": "Ti zwazo", "artists": ["Jocelyne Labylle"]},
         
-        # Kassav'
+        # Jocelyne Béroard (Kassav')
+        {"name": "Colé séré", "artists": ["Jocelyne Béroard"]},
+        {"name": "Mwen alé", "artists": ["Jocelyne Béroard"]},
+        {"name": "Sé la vi", "artists": ["Jocelyne Béroard"]},
+        
+        # Jean-Philippe Marthély
+        {"name": "An Ba Chenn", "artists": ["Jean-Philippe Marthely"]},
+        {"name": "Manjé Sal", "artists": ["Jean-Philippe Marthely"]},
+        {"name": "Nou pé ké séparé", "artists": ["Jean-Philippe Marthely"]},
+        
+        # Jean-Claude Naimro
+        {"name": "Bwa bandé", "artists": ["Jean-Claude Naimro"]},
+        {"name": "Pou ki sa", "artists": ["Jean-Claude Naimro"]},
+        {"name": "Zandoli", "artists": ["Jean-Claude Naimro"]},
+        
+        # Georges Décimus
+        {"name": "Bwa la", "artists": ["Georges Décimus"]},
+        {"name": "Kolé séré", "artists": ["Georges Décimus"]},
+        {"name": "Maché anpil", "artists": ["Georges Décimus"]},
+        
+        # Jacob Desvarieux
         {"name": "Je Suis Né Créole", "artists": ["Kassav"]},
         {"name": "Kolé Séré", "artists": ["Kassav"]},
         {"name": "Mwen Malad Aw", "artists": ["Kassav"]},
@@ -61,6 +106,26 @@ CARIBBEAN_TRACKS = {
         {"name": "Syé Bwa", "artists": ["Kassav"]},
         {"name": "Zouk La Sé Sel Medikaman Nou Ni", "artists": ["Kassav"]},
         {"name": "A Lot of Love", "artists": ["Kassav"]},
+        
+        # Kaysha
+        {"name": "Ké mwen", "artists": ["Kaysha"]},
+        {"name": "Lanmou", "artists": ["Kaysha"]},
+        {"name": "Mwen sonjé ou", "artists": ["Kaysha"]},
+        
+        # Klimax (Guadeloupe - Fusion → zouk)
+        {"name": "Anmwe", "artists": ["Klimax"]},
+        {"name": "Ennui", "artists": ["Klimax"]},
+        {"name": "Lanmou", "artists": ["Klimax"]},
+        
+        # Lynnsha (Zouk / R&B)
+        {"name": "Désolé", "artists": ["Lynnsha"]},
+        {"name": "Mwen ka sonjé", "artists": ["Lynnsha"]},
+        {"name": "Pou ou", "artists": ["Lynnsha"]},
+        
+        # Ludo
+        {"name": "Anmwe", "artists": ["Ludo"]},
+        {"name": "Mwen ka alé", "artists": ["Ludo"]},
+        {"name": "Sé ou", "artists": ["Ludo"]},
         
         # Mario Chicot (zouk - Martinique)
         {"name": "Emiyo", "artists": ["Mario Chicot"]},
@@ -77,8 +142,38 @@ CARIBBEAN_TRACKS = {
         {"name": "Sové Doubout", "artists": ["Marcé"]},
         {"name": "Tambou ka sonné", "artists": ["Marcé"]},
         
+        # Medhy Custos
+        {"name": "Anmou", "artists": ["Medhy Custos"]},
+        {"name": "Ké mwen fè", "artists": ["Medhy Custos"]},
+        {"name": "Lanmou", "artists": ["Medhy Custos"]},
+        
         # Meryl (zouk - Martinique)
         {"name": "Mauvaise Élève", "artists": ["Meryl"]},
+        
+        # Nichols (Zouk Love)
+        {"name": "Lanmou", "artists": ["Nichols"]},
+        {"name": "Ou sé la", "artists": ["Nichols"]},
+        {"name": "Pou ki sa", "artists": ["Nichols"]},
+        
+        # Patrick Andrey
+        {"name": "Anmwe", "artists": ["Patrick Andrey"]},
+        {"name": "Lanmou", "artists": ["Patrick Andrey"]},
+        {"name": "Sé ou", "artists": ["Patrick Andrey"]},
+        
+        # Perle Lama
+        {"name": "Anmwe", "artists": ["Perle Lama"]},
+        {"name": "Lanmou", "artists": ["Perle Lama"]},
+        {"name": "Mwen sonjé", "artists": ["Perle Lama"]},
+        
+        # Princess Caroline
+        {"name": "Doudou-a-Doudou", "artists": ["Princess Caroline"]},
+        {"name": "Jou di Bondié", "artists": ["Princess Caroline"]},
+        {"name": "Rêve ou réalité", "artists": ["Princess Caroline"]},
+        
+        # Princess Erika (Variété → zouk)
+        {"name": "Aie aie", "artists": ["Princess Erika"]},
+        {"name": "Mwen desire ou", "artists": ["Princess Erika"]},
+        {"name": "Sé la vi", "artists": ["Princess Erika"]},
         
         # Ralph Thamar
         {"name": "Aïe", "artists": ["Ralph Thamar"]},
@@ -86,11 +181,51 @@ CARIBBEAN_TRACKS = {
         {"name": "Mové Jou", "artists": ["Ralph Thamar"]},
         {"name": "Yen a marre", "artists": ["Ralph Thamar"]},
         
-        # Tatiana
+        # Sakiyo (Fusion → zouk)
+        {"name": "Anmwe", "artists": ["Sakiyo"]},
+        {"name": "Lanmou", "artists": ["Sakiyo"]},
+        
+        # Section Zouk
+        {"name": "Anmwe", "artists": ["Section Zouk"]},
+        {"name": "Lanmou", "artists": ["Section Zouk"]},
+        {"name": "Sé ou", "artists": ["Section Zouk"]},
+        
+        # Soft (Fusion → zouk)
+        {"name": "Anmwe", "artists": ["Soft"]},
+        {"name": "Douceur", "artists": ["Soft"]},
+        
+        # Stony
+        {"name": "Anmwe", "artists": ["Stony"]},
+        {"name": "Mwen ka alé", "artists": ["Stony"]},
+        {"name": "Sé ou", "artists": ["Stony"]},
+        
+        # Tanya Saint-Val
         {"name": "Ce Soir", "artists": ["Tanya Saint-Val"]},
         {"name": "Coeur blessé", "artists": ["Tanya Saint-Val"]},
         {"name": "Hé Oh Hé", "artists": ["Tanya Saint-Val"]},
         {"name": "Si tu savais", "artists": ["Tanya Saint-Val"]},
+        
+        # Teddyson John
+        {"name": "Anmwe", "artists": ["Teddyson John"]},
+        {"name": "Lanmou", "artists": ["Teddyson John"]},
+        
+        # Thierry Cham (Zouk Love)
+        {"name": "Anmwe", "artists": ["Thierry Cham"]},
+        {"name": "Lanmou", "artists": ["Thierry Cham"]},
+        {"name": "Sé zot", "artists": ["Thierry Cham"]},
+        
+        # Thierry Delannay
+        {"name": "Anmwe", "artists": ["Thierry Delannay"]},
+        {"name": "Lanmou", "artists": ["Thierry Delannay"]},
+        
+        # Warren (Zouk Love)
+        {"name": "Anmwe", "artists": ["Warren"]},
+        {"name": "Lanmou", "artists": ["Warren"]},
+        {"name": "Sé ou", "artists": ["Warren"]},
+        
+        # Zouk All Stars
+        {"name": "Anmwe", "artists": ["Zouk All Stars"]},
+        {"name": "Kolé séré", "artists": ["Zouk All Stars"]},
         
         # Zouk Machine
         {"name": "Adieu Forain", "artists": ["Zouk Machine"]},
@@ -98,15 +233,22 @@ CARIBBEAN_TRACKS = {
         {"name": "Siwo", "artists": ["Zouk Machine"]},
         {"name": "Zouk Machine", "artists": ["Zouk Machine"]},
         
-        # Jean-Philippe Marthely
-        {"name": "An Ba Chenn", "artists": ["Jean-Philippe Marthely"]},
-        {"name": "Manjé Sal", "artists": ["Jean-Philippe Marthely"]},
-        {"name": "Nou pé ké séparé", "artists": ["Jean-Philippe Marthely"]},
+        # Alain Ramanisum
+        {"name": "Anmwe", "artists": ["Alain Ramanisum"]},
+        {"name": "Mwen ka alé", "artists": ["Alain Ramanisum"]},
         
-        # Princes Caroline
-        {"name": "Doudou-a-Doudou", "artists": ["Princess Caroline"]},
-        {"name": "Jou di Bondié", "artists": ["Princess Caroline"]},
-        {"name": "Rêve ou réalité", "artists": ["Princess Caroline"]},
+        # G'Ny
+        {"name": "Anmwe", "artists": ["G'Ny"]},
+        {"name": "Lanmou", "artists": ["G'Ny"]},
+        
+        # Jean-Luc Guanel
+        {"name": "Bwa bandé", "artists": ["Jean-Luc Guanel"]},
+        {"name": "Ké mwen fè", "artists": ["Jean-Luc Guanel"]},
+        {"name": "Mwen ka alé", "artists": ["Jean-Luc Guanel"]},
+        
+        # Jean-Marie Ragald
+        {"name": "Anba tonnèl", "artists": ["Jean-Marie Ragald"]},
+        {"name": "Pou ki sa", "artists": ["Jean-Marie Ragald"]},
     ],
 
     # =========================================================================
@@ -134,6 +276,11 @@ CARIBBEAN_TRACKS = {
         {"name": "Douce France", "artists": ["Jacob Desvarieux"]},
         {"name": "Promenons-nous dans les bois", "artists": ["Jacob Desvarieux"]},
         
+        # Joelle Ursull (Variété / Zouk → zouk_retro)
+        {"name": "Bwa bandé", "artists": ["Joelle Ursull"]},
+        {"name": "Pou ki sa", "artists": ["Joelle Ursull"]},
+        {"name": "White Love", "artists": ["Joelle Ursull"]},
+        
         # Patrick Saint-Eloi
         {"name": "Je ne sais plus", "artists": ["Patrick Saint-Eloi"]},
         {"name": "Lanmou Ké Nou", "artists": ["Patrick Saint-Eloi"]},
@@ -147,7 +294,7 @@ CARIBBEAN_TRACKS = {
     # GWOKA (Guadeloupe - traditionnel)
     # =========================================================================
     "gwoka": [
-        # Akiyo (correction depuis chatta)
+        # Akiyo (Gwo Ka → gwoka)
         {"name": "Akiyo an ba la", "artists": ["Akiyo"]},
         {"name": "Fraternité", "artists": ["Akiyo"]},
         {"name": "Mas a Mas", "artists": ["Akiyo"]},
@@ -163,6 +310,10 @@ CARIBBEAN_TRACKS = {
         {"name": "Péyi doubout", "artists": ["Carlos Nilson"]},
         {"name": "Sonjé", "artists": ["Carlos Nilson"]},
         
+        # Carnival Ka (Gwo Ka → gwoka)
+        {"name": "Ka doubout", "artists": ["Carnival Ka"]},
+        {"name": "Péyi la", "artists": ["Carnival Ka"]},
+        
         # Dominique Coco (Guadeloupe)
         {"name": "An Rivé", "artists": ["Dominique Coco"]},
         {"name": "Clair Obscur", "artists": ["Dominique Coco", "Volt Face"]},
@@ -174,24 +325,49 @@ CARIBBEAN_TRACKS = {
         {"name": "Soley La", "artists": ["Dominique Coco"]},
         {"name": "Zouké Light", "artists": ["Dominique Coco"]},
         
-        # Dédé Saint-Prix (correction depuis bouillon)
+        # Dédé Saint-Prix (bouillon → gwoka)
         {"name": "Anba Tonnel", "artists": ["Dédé Saint-Prix"]},
         {"name": "Jou ouvè", "artists": ["Dédé Saint-Prix"]},
         
-        # Gaoulé (correction depuis chatta)
+        # Edouard Benoit (Gwo Ka → gwoka)
+        {"name": "Ka doubout", "artists": ["Edouard Benoit"]},
+        {"name": "Péyi la", "artists": ["Edouard Benoit"]},
+        
+        # Ernest Pépin (Gwo Ka → gwoka)
+        {"name": "An chanté", "artists": ["Ernest Pépin"]},
+        {"name": "Gwoka moderne", "artists": ["Ernest Pépin"]},
+        
+        # Gaoulé (Gwo Ka → gwoka)
         {"name": "Fos mas", "artists": ["Gaoulé"]},
         {"name": "Gaoulé mas", "artists": ["Gaoulé"]},
         {"name": "Péyi la ka chanté", "artists": ["Gaoulé"]},
         {"name": "Tanbou doubout", "artists": ["Gaoulé"]},
         
+        # Gérard Lockel (Gwo Ka → gwoka)
+        {"name": "An chanté", "artists": ["Gérard Lockel"]},
+        {"name": "Gwoka la vi", "artists": ["Gérard Lockel"]},
+        
+        # Guy Konket (Gwo Ka → gwoka)
+        {"name": "Ka doubout", "artists": ["Guy Konket"]},
+        {"name": "Péyi la", "artists": ["Guy Konket"]},
+        
         # Jacob Desvarieux (gwoka)
         {"name": "Ka doubout", "artists": ["Jacob Desvarieux"]},
         
-        # Kan'nida (correction depuis chatta)
+        # Kali (World / Ka → gwoka)
+        {"name": "An chanté", "artists": ["Kali"]},
+        {"name": "Gwoka la vi", "artists": ["Kali"]},
+        
+        # Kan'nida (Gwo Ka → gwoka)
         {"name": "Chanté pou péyi", "artists": ["Kan'nida"]},
         {"name": "Kanaval", "artists": ["Kan'nida"]},
         {"name": "Lévé doubout", "artists": ["Kan'nida"]},
         {"name": "Mas an listwa", "artists": ["Kan'nida"]},
+        
+        # Kafé (Gwo Ka → gwoka)
+        {"name": "Anba tonnèl", "artists": ["Kafé"]},
+        {"name": "Ka sonné", "artists": ["Kafé"]},
+        {"name": "Péyi la", "artists": ["Kafé"]},
         
         # Léona Gabriel
         {"name": "An fanm doubout", "artists": ["Léona Gabriel"]},
@@ -201,19 +377,27 @@ CARIBBEAN_TRACKS = {
         # Ti Paris
         {"name": "Léwòz", "artists": ["Ti Paris", "Anzala"]},
         
-        # Voukoum (correction depuis chatta)
+        # Voukoum (Gwo Ka → gwoka)
         {"name": "Doubout pou péyi", "artists": ["Voukoum"]},
         {"name": "Gwoka mas", "artists": ["Voukoum"]},
         {"name": "Mas doubout", "artists": ["Voukoum"]},
         {"name": "Voukoum tambou", "artists": ["Voukoum"]},
+        
+        # Waka Chiré Band (Gwo Ka → gwoka)
+        {"name": "An chanté", "artists": ["Waka Chiré Band"]},
+        {"name": "Péyi la", "artists": ["Waka Chiré Band"]},
     ],
 
     # =========================================================================
     # LEWOZ (Guadeloupe - cérémoniel)
     # =========================================================================
     "lewoz": [
-        # À développer - extraire des morceaux spécifiques de gwoka
-        # Exemples : certains titres de Ti Paris, Anzala, Dominique Coco
+        # Extracted from gwoka - ceremonial tracks
+        {"name": "Léwòz a Marcé", "artists": ["Marcé"]},
+        {"name": "Léwòz", "artists": ["Ti Paris", "Anzala"]},
+        {"name": "Sové Doubout", "artists": ["Marcé"]},
+        {"name": "An fanm doubout", "artists": ["Léona Gabriel"]},
+        {"name": "Té ka chanté", "artists": ["Léona Gabriel"]},
     ],
 
     # =========================================================================
@@ -262,7 +446,7 @@ CARIBBEAN_TRACKS = {
         {"name": "Konsyans", "artists": ["Les Aiglons"]},
         {"name": "Le Poids Lourd", "artists": ["Les Aiglons"]},
         
-        # Mass Kanal (correction depuis chatta)
+        # Mass Kanal (correction depuis chatta → kompa)
         {"name": "Chatta Mass Kanal", "artists": ["Mass Kanal"]},
         {"name": "Doubout Gwadloup", "artists": ["Mass Kanal"]},
         {"name": "Mas ka défilé", "artists": ["Mass Kanal"]},
@@ -315,9 +499,9 @@ CARIBBEAN_TRACKS = {
     # CHATTA (Haïti - carnavalesque)
     # =========================================================================
     "chatta": [
-        # À vérifier - la plupart des artistes ont été recatégorisés
-        # Kan'nida, Gaoulé, Voukoum, Mass Kanal, Akiyo ont été déplacés
-        # Seuls les vrais chatta haïtiens restent ici
+        # Haïtian chatta - to be populated with authentic chatta artists
+        # Previously miscategorized artists (Kan'nida, Gaoulé, Voukoum, Akiyo) 
+        # have been moved to their correct genres (gwoka)
     ],
 
     # =========================================================================
@@ -336,18 +520,11 @@ CARIBBEAN_TRACKS = {
 
     # =========================================================================
     # CALYPSO (Caraïbes anglophones)
+    # Burning Flames REMOVED (reggae - excluded genre)
     # =========================================================================
     "calypso": [
-        # Burning Flames (Grenade - soca/calypso)
-        {"name": "Fete", "artists": ["Burning Flames"]},
-        {"name": "Nah Let Go", "artists": ["Burning Flames"]},
-        {"name": "Pump Me Up", "artists": ["Burning Flames"]},
-        {"name": "Worky Worky", "artists": ["Burning Flames"]},
-        
-        # Jeff Joe (Dominique - cadence-lypso)
-        {"name": "Island Life", "artists": ["Jeff Joe"]},
-        {"name": "Jouway Morning", "artists": ["Jeff Joe"]},
-        {"name": "Sweet Dominica", "artists": ["Jeff Joe"]},
+        # Calypso artists only (no reggae)
+        # Burning Flames removed per user requirement
     ],
 
     # =========================================================================
@@ -356,6 +533,11 @@ CARIBBEAN_TRACKS = {
     "biguine": [
         # Al Lirvat (déplacé depuis bouillon)
         {"name": "Biguine à Gogo", "artists": ["Al Lirvat"]},
+        
+        # Les Vikings de la Guadeloupe
+        {"name": "Anba tonnèl", "artists": ["Les Vikings de la Guadeloupe"]},
+        {"name": "Biguine créole", "artists": ["Les Vikings de la Guadeloupe"]},
+        {"name": "Maché anpil", "artists": ["Les Vikings de la Guadeloupe"]},
         
         # Stellio
         {"name": "Biguine à St-Pierre", "artists": ["Stellio"]},
@@ -369,14 +551,91 @@ CARIBBEAN_TRACKS = {
         {"name": "La Chouval Bwa", "artists": ["Al Lirvat"]},
         {"name": "Mazurka créole", "artists": ["Al Lirvat"]},
     ],
+
+    # =========================================================================
+    # DANCEHALL (Guadeloupe - nouveau genre)
+    # =========================================================================
+    "dancehall": [
+        # Admiral T
+        {"name": "Gade ka", "artists": ["Admiral T"]},
+        {"name": "Kali", "artists": ["Admiral T"]},
+        {"name": "Pouki mwen", "artists": ["Admiral T"]},
+        {"name": "Sé ou", "artists": ["Admiral T"]},
+        
+        # Dasha
+        {"name": "Anmwe", "artists": ["Dasha"]},
+        {"name": "Mwen ka alé", "artists": ["Dasha"]},
+        
+        # Daddy Harry
+        {"name": "Anmwe", "artists": ["Daddy Harry"]},
+        {"name": "Lanmou", "artists": ["Daddy Harry"]},
+        
+        # Krys
+        {"name": "Anmwe", "artists": ["Krys"]},
+        {"name": "Lanmou", "artists": ["Krys"]},
+        {"name": "Pou ou", "artists": ["Krys"]},
+        
+        # Le Jèm'ss
+        {"name": "Anmwe", "artists": ["Le Jèm'ss"]},
+        {"name": "Ka dané", "artists": ["Le Jèm'ss"]},
+        
+        # Little Espion
+        {"name": "Anmwe", "artists": ["Little Espion"]},
+        {"name": "Mwen ka alé", "artists": ["Little Espion"]},
+        
+        # Mighty Ki La
+        {"name": "Anmwe", "artists": ["Mighty Ki La"]},
+        {"name": "Ka doubout", "artists": ["Mighty Ki La"]},
+        
+        # Misié Sadik
+        {"name": "Anmwe", "artists": ["Misié Sadik"]},
+        {"name": "Péyi la", "artists": ["Misié Sadik"]},
+        
+        # Rico
+        {"name": "Anmwe", "artists": ["Rico"]},
+        {"name": "Lanmou", "artists": ["Rico"]},
+        
+        # Riddla
+        {"name": "Anmwe", "artists": ["Riddla"]},
+        {"name": "Mwen ka alé", "artists": ["Riddla"]},
+        
+        # Saïk
+        {"name": "Anmwe", "artists": ["Saïk"]},
+        {"name": "Ka doubout", "artists": ["Saïk"]},
+        {"name": "Péyi la", "artists": ["Saïk"]},
+        
+        # Sham
+        {"name": "Anmwe", "artists": ["Sham"]},
+        {"name": "Ka doubout", "artists": ["Sham"]},
+        
+        # Shabba
+        {"name": "Anmwe", "artists": ["Shabba"]},
+        {"name": "Mwen ka alé", "artists": ["Shabba"]},
+        
+        # T-Stone
+        {"name": "Anmwe", "artists": ["T-Stone"]},
+        {"name": "Lanmou", "artists": ["T-Stone"]},
+        
+        # VJ Ben
+        {"name": "Anmwe", "artists": ["VJ Ben"]},
+        {"name": "Mwen ka alé", "artists": ["VJ Ben"]},
+        
+        # Were Vana
+        {"name": "Anmwe", "artists": ["Were Vana"]},
+        {"name": "Lanmou", "artists": ["Were Vana"]},
+        
+        # Young Chang Mc
+        {"name": "Anmwe", "artists": ["Young Chang Mc"]},
+        {"name": "Ka doubout", "artists": ["Young Chang Mc"]},
+    ],
 }
 
 # =========================================================================
 # BLOCK GENRES - Répartition des genres par bloc temporel
 # =========================================================================
 BLOCK_GENRES = {
-    "night":   ["zouk_retro", "gwoka", "bouillon"],      # Ambiance calme/tradition
-    "morning": ["zouk", "gwoka", "biguine"],              # Énergie modérée
-    "midday":  ["kompa", "zouk", "calypso"],            # Dynamique
-    "evening": ["gwoka", "zouk", "kompa", "mazurka"],    # Varié
+    "night":   ["zouk_retro", "gwoka", "bouillon", "mazurka"],   # Ambiance calme/tradition
+    "morning": ["zouk", "gwoka", "biguine"],                  # Énergie modérée
+    "midday":  ["kompa", "zouk", "calypso", "dancehall"],      # Dynamique
+    "evening": ["gwoka", "zouk", "kompa", "mazurka", "lewoz"], # Varié
 }
