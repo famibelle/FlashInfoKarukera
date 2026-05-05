@@ -16,12 +16,12 @@ on:
         description: "✅ Exécuter Horoscope Quotidien"
         type: boolean
         required: false
-        default: true
+        default: false
       run_flash_info:
         description: "✅ Exécuter Flash Info Guadeloupe"
         type: boolean
         required: false
-        default: true
+        default: false
       run_capsules:
         description: "✅ Exécuter Capsules Culturelles"
         type: boolean
@@ -84,9 +84,9 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
         run: |
-          gh workflow run capsules-daily-new-20260505.yml --repo "$REPO"
+          gh workflow run capsules-daily-v3-20260505.yml --repo "$REPO"
           sleep 8
-          RUN_ID=$(gh run list --workflow=capsules-daily-new-20260505.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
+          RUN_ID=$(gh run list --workflow=capsules-daily-v3-20260505.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
   emission:
