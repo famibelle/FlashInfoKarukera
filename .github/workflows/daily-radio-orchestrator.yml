@@ -47,6 +47,10 @@ jobs:
     if: inputs.run_horoscope == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
+      - name: ⏱️  Start Time Tracking
+        id: start-time
+        run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+
       - name: Déclencher Horoscope
         env:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
@@ -58,12 +62,28 @@ jobs:
           RUN_ID=$(gh run list --workflow=horoscope-daily.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
+      - name: ⏱️  Execution Time Summary
+        run: |
+          echo "=========================================="
+          echo "  ⏱️  HOROSCOPE JOB TIME SUMMARY"
+          echo "=========================================="
+          echo "  Start: ${{ env.JOB_START_TIME }}"
+          echo "  End:   $(date -u '+%Y-%m-%d %H:%M:%S')"
+          echo "  Total: ~$(($(date +%s) - $(date -d "${{ env.JOB_START_TIME }}" +%s 2>/dev/null || echo 0))) seconds"
+          echo "=========================================="
+        env:
+          JOB_START_TIME: ${{ steps.start-time.outputs.time }}
+
   flash-info:
     name: 📰 Flash Info
     needs: horoscope
     if: inputs.run_flash_info == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
+      - name: ⏱️  Start Time Tracking
+        id: start-time
+        run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+
       - name: Déclencher Flash Info
         env:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
@@ -75,12 +95,28 @@ jobs:
           RUN_ID=$(gh run list --workflow=flash-info.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
+      - name: ⏱️  Execution Time Summary
+        run: |
+          echo "=========================================="
+          echo "  ⏱️  FLASH INFO JOB TIME SUMMARY"
+          echo "=========================================="
+          echo "  Start: ${{ env.JOB_START_TIME }}"
+          echo "  End:   $(date -u '+%Y-%m-%d %H:%M:%S')"
+          echo "  Total: ~$(($(date +%s) - $(date -d "${{ env.JOB_START_TIME }}" +%s 2>/dev/null || echo 0))) seconds"
+          echo "=========================================="
+        env:
+          JOB_START_TIME: ${{ steps.start-time.outputs.time }}
+
   capsules:
     name: 🌺 Capsules
     needs: flash-info
     if: inputs.run_capsules == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
+      - name: ⏱️  Start Time Tracking
+        id: start-time
+        run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+
       - name: Déclencher Capsules
         env:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
@@ -91,6 +127,18 @@ jobs:
           RUN_ID=$(gh run list --workflow=capsules-daily.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
+      - name: ⏱️  Execution Time Summary
+        run: |
+          echo "=========================================="
+          echo "  ⏱️  CAPSULES JOB TIME SUMMARY"
+          echo "=========================================="
+          echo "  Start: ${{ env.JOB_START_TIME }}"
+          echo "  End:   $(date -u '+%Y-%m-%d %H:%M:%S')"
+          echo "  Total: ~$(($(date +%s) - $(date -d "${{ env.JOB_START_TIME }}" +%s 2>/dev/null || echo 0))) seconds"
+          echo "=========================================="
+        env:
+          JOB_START_TIME: ${{ steps.start-time.outputs.time }}
+
   emission:
     name: 📻 Émission
     needs: capsules
@@ -98,6 +146,10 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
+      - name: ⏱️  Start Time Tracking
+        id: start-time
+        run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+
       - name: Déclencher Émission
         env:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
@@ -108,12 +160,28 @@ jobs:
           RUN_ID=$(gh run list --workflow=emission-daily.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --repo "$REPO" || true
 
+      - name: ⏱️  Execution Time Summary
+        run: |
+          echo "=========================================="
+          echo "  ⏱️  ÉMISSION JOB TIME SUMMARY"
+          echo "=========================================="
+          echo "  Start: ${{ env.JOB_START_TIME }}"
+          echo "  End:   $(date -u '+%Y-%m-%d %H:%M:%S')"
+          echo "  Total: ~$(($(date +%s) - $(date -d "${{ env.JOB_START_TIME }}" +%s 2>/dev/null || echo 0))) seconds"
+          echo "=========================================="
+        env:
+          JOB_START_TIME: ${{ steps.start-time.outputs.time }}
+
   playlist:
     name: 🎶 Playlist
     needs: emission
     if: inputs.run_playlist == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
+      - name: ⏱️  Start Time Tracking
+        id: start-time
+        run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+
       - name: Déclencher Playlist
         env:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
@@ -123,3 +191,15 @@ jobs:
           sleep 8
           RUN_ID=$(gh run list --workflow=botiran-radio-daily.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
+
+      - name: ⏱️  Execution Time Summary
+        run: |
+          echo "=========================================="
+          echo "  ⏱️  PLAYLIST JOB TIME SUMMARY"
+          echo "=========================================="
+          echo "  Start: ${{ env.JOB_START_TIME }}"
+          echo "  End:   $(date -u '+%Y-%m-%d %H:%M:%S')"
+          echo "  Total: ~$(($(date +%s) - $(date -d "${{ env.JOB_START_TIME }}" +%s 2>/dev/null || echo 0))) seconds"
+          echo "=========================================="
+        env:
+          JOB_START_TIME: ${{ steps.start-time.outputs.time }}

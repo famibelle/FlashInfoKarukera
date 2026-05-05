@@ -41,6 +41,10 @@ jobs:
     timeout-minutes: 30
 
     steps:
+      - name: ⏱️  Start Time Tracking
+        id: start-time
+        run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+
       - name: Configurer les credentials git pour le submodule privé
         run: git config --global url."https://${{ secrets.PAT_SUBMODULE }}@github.com/".insteadOf "https://github.com/"
 
@@ -133,3 +137,15 @@ jobs:
           git pull --rebase -X theirs origin main
           git stash drop 2>/dev/null || true
           git push
+
+      - name: ⏱️  Execution Time Summary
+        run: |
+          echo "=========================================="
+          echo "  ⏱️  HOROSCOPE JOB TIME SUMMARY"
+          echo "=========================================="
+          echo "  Start: ${{ env.JOB_START_TIME }}"
+          echo "  End:   $(date -u '+%Y-%m-%d %H:%M:%S')"
+          echo "  Total: ~$(($(date +%s) - $(date -d "${{ env.JOB_START_TIME }}" +%s 2>/dev/null || echo 0))) seconds"
+          echo "=========================================="
+        env:
+          JOB_START_TIME: ${{ steps.start-time.outputs.time }}

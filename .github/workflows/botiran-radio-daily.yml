@@ -29,6 +29,10 @@ jobs:
     outputs:
       ok: ${{ steps.check.outputs.ok }}
     steps:
+      - name: ⏱️  Start Time Tracking
+        id: start-time
+        run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+
       - name: Vérifier que horoscope ET flash info ont réussi récemment
         id: check
         env:
@@ -66,6 +70,18 @@ jobs:
             echo "ok=false" >> $GITHUB_OUTPUT
             echo "⏭️  Les deux workflows n'ont pas encore terminé — mise à jour ignorée."
           fi
+
+      - name: ⏱️  Execution Time Summary
+        run: |
+          echo "=========================================="
+          echo "  ⏱️  GATE JOB TIME SUMMARY"
+          echo "=========================================="
+          echo "  Start: ${{ env.JOB_START_TIME }}"
+          echo "  End:   $(date -u '+%Y-%m-%d %H:%M:%S')"
+          echo "  Total: ~$(($(date +%s) - $(date -d "${{ env.JOB_START_TIME }}" +%s 2>/dev/null || echo 0))) seconds"
+          echo "=========================================="
+        env:
+          JOB_START_TIME: ${{ steps.start-time.outputs.time }}
 
   # ── Job 1 : mise à jour de la playlist YouTube Music ──────────────────────
   playlist-24h:
@@ -239,6 +255,10 @@ jobs:
     name: 🧹 Nettoyage & 💾 Commit
     runs-on: ubuntu-latest
     steps:
+      - name: ⏱️  Start Time Tracking
+        id: start-time
+        run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+
       - name: 🔑 Configurer les credentials git pour le submodule privé
         run: git config --global url."https://${{ secrets.PAT_SUBMODULE }}@github.com/".insteadOf "https://github.com/"
 
@@ -396,6 +416,18 @@ jobs:
           [ -n "$H24_ID" ] && echo "  🎵  Playlist 24h  → https://music.youtube.com/playlist?list=$H24_ID"
           echo "  📻  Séquence web  → https://famibelle.github.io/FlashInfoKarukera/radio.html"
           echo ""
+
+      - name: ⏱️  Execution Time Summary
+        run: |
+          echo "=========================================="
+          echo "  ⏱️  COMMIT JOB TIME SUMMARY"
+          echo "=========================================="
+          echo "  Start: ${{ env.JOB_START_TIME }}"
+          echo "  End:   $(date -u '+%Y-%m-%d %H:%M:%S')"
+          echo "  Total: ~$(($(date +%s) - $(date -d "${{ env.JOB_START_TIME }}" +%s 2>/dev/null || echo 0))) seconds"
+          echo "=========================================="
+        env:
+          JOB_START_TIME: ${{ steps.start-time.outputs.time }}
 
       - name: ❌ Échec — Diagnostic complet
         if: failure()
