@@ -95,10 +95,24 @@ jobs:
           pip install -r requirements.txt
 
       - name: 🔑 Write YouTube Music auth file
-        run: echo '${{ secrets.YTMUSIC_BROWSER_JSON_B64 }}' | base64 -d > browser.json
+        run: |
+          echo '${{ secrets.YTMUSIC_BROWSER_JSON_B64 }}' | base64 -d > browser.json
+          echo "🔑 browser.json écrit : $(stat -c%s browser.json) octets"
 
       - name: 🔑 Write YouTube Data API token
-        run: echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > youtube_token.json
+        run: |
+          echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > youtube_token.json
+          echo "🔑 youtube_token.json écrit : $(stat -c%s youtube_token.json) octets"
+
+      - name: 🔍 Vérifier secrets et environnement
+        run: |
+          echo "=== DIAGNOSTIC DÉBUT JOB playlist-24h ==="
+          echo "YTMUSIC_PLAYLIST_24H_ID: ${YTMUSIC_PLAYLIST_24H_ID:0:8}..."
+          echo "MISTRAL_API_KEY: ${MISTRAL_API_KEY:0:8}..."
+          echo "browser.json: $(test -f browser.json && echo '✅ EXISTS' || echo '❌ MISSING')"
+          echo "youtube_token.json: $(test -f youtube_token.json && echo '✅ EXISTS' || echo '❌ MISSING')"
+          echo "playlists/ dir: $(test -d playlists && echo '✅ EXISTS' || echo '❌ MISSING')"
+          echo "=== END DIAGNOSTIC ==="
 
       - name: 📻 Mise à jour playlist 24h
         env:
@@ -107,12 +121,24 @@ jobs:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: python playlist_24h.py --no-flash --no-horoscope --no-announce
 
+      - name: ✅ Vérifier génération du pool musical
+        run: |
+          if [ ! -f playlists/music_pool_cache.json ]; then
+            echo "❌ music_pool_cache.json NON GÉNÉRÉ"
+            exit 1
+          fi
+          SIZE=$(stat -c%s playlists/music_pool_cache.json)
+          TRACKS=$(jq '.tracks | length' playlists/music_pool_cache.json 2>/dev/null || echo "N/A")
+          echo "✅ Pool musical : $SIZE octets, $TRACKS pistes"
+          cat playlists/playlist_24h_id.txt
+
       - name: 📤 Upload caches playlist
         uses: actions/upload-artifact@v4
         with:
           name: playlist-caches
           path: playlists/
           retention-days: 1
+          if-no-files-found: error
 
   # ── Job 2 : génération de la séquence radio et des liners ─────────────────
   radio-sequence:
@@ -141,16 +167,30 @@ jobs:
           pip install -r requirements.txt
 
       - name: 🔑 Write YouTube Music auth file
-        run: echo '${{ secrets.YTMUSIC_BROWSER_JSON_B64 }}' | base64 -d > browser.json
+        run: |
+          echo '${{ secrets.YTMUSIC_BROWSER_JSON_B64 }}' | base64 -d > browser.json
+          echo "🔑 browser.json écrit : $(stat -c%s browser.json) octets"
 
       - name: 🔑 Write YouTube Data API token
-        run: echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > youtube_token.json
+        run: |
+          echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > youtube_token.json
+          echo "🔑 youtube_token.json écrit : $(stat -c%s youtube_token.json) octets"
 
       - name: 📥 Download caches playlist
         uses: actions/download-artifact@v4
         with:
           name: playlist-caches
           path: playlists/
+
+      - name: 🔍 Diagnostic job radio-sequence
+        run: |
+          echo "=== DIAGNOSTIC DÉBUT JOB radio-sequence ==="
+          echo "MISTRAL_API_KEY: ${MISTRAL_API_KEY:0:8}..."
+          echo "browser.json: $(test -f browser.json && echo '✅ EXISTS' || echo '❌ MISSING')"
+          echo "docs/podcast.xml: $(test -f docs/podcast.xml && echo '✅ EXISTS' || echo '❌ MISSING')"
+          echo "playlists/ dir: $(test -d playlists && echo '✅ EXISTS' || echo '❌ MISSING')"
+          echo "playlists/music_pool_cache.json: $(test -f playlists/music_pool_cache.json && echo '✅ EXISTS' || echo '❌ MISSING')"
+          echo "=== END DIAGNOSTIC ==="
 
       - name: 🎙️ Génération de la séquence radio
         env:
@@ -163,6 +203,22 @@ jobs:
           fi
           python generate_radio_sequence.py $ARGS
 
+      - name: ✅ Vérifier génération de la séquence
+        run: |
+          if [ ! -f docs/radio_sequence.json ]; then
+            echo "❌ radio_sequence.json NON GÉNÉRÉ"
+            echo "Contenu de docs/:"
+            ls -la docs/ || true
+            exit 1
+          fi
+          SIZE=$(stat -c%s docs/radio_sequence.json)
+          ELEMENTS=$(jq '.sequence | length' docs/radio_sequence.json 2>/dev/null || echo "N/A")
+          MUSIC=$(jq '.music' docs/radio_sequence.json 2>/dev/null || echo "N/A")
+          LINERS=$(jq '.liners' docs/radio_sequence.json 2>/dev/null || echo "N/A")
+          CAPSULES=$(jq '.capsules' docs/radio_sequence.json 2>/dev/null || echo "N/A")
+          echo "✅ Séquence radio : $SIZE octets"
+          echo "   $ELEMENTS éléments ($MUSIC musique, $LINERS liners, $CAPSULES capsules)"
+
       - name: 📤 Upload séquence et contenus générés
         uses: actions/upload-artifact@v4
         with:
@@ -171,7 +227,7 @@ jobs:
             docs/radio_sequence.json
             docs/liners/
             docs/capsules/
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 1
 
   # ── Job 3 : nettoyage audio + commit ──────────────────────────────────────
@@ -189,22 +245,21 @@ jobs:
           submodules: true
           token: ${{ secrets.PAT_SUBMODULE }}
 
-      - name: 🔄 Vérifier sync avec main (détection précoce)
+      - name: 🔄 Fetch main
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          if ! git diff --quiet origin/main -- docs/ playlists/; then
-            echo "⚠️  Conflits détectés AVANT génération — résolution automatique"
-            git stash push --include-untracked || true
-            git pull --rebase -X theirs origin main || {
-              git rebase --abort 2>/dev/null || true
-              git stash pop 2>/dev/null || true
-              echo "❌ Impossible de résoudre automatiquement — intervention manuelle requise"
-              exit 1
-            }
-            git stash pop || true
-          fi
+
+      - name: 🔍 Diagnostic début job commit
+        run: |
+          echo "=== DIAGNOSTIC DÉBUT JOB commit ==="
+          echo "Répertoire courant: $(pwd)"
+          echo "Contenu initial docs/:"
+          ls -la docs/ || true
+          echo "Contenu initial playlists/:"
+          ls -la playlists/ || true
+          echo "=== END DIAGNOSTIC ==="
 
       - name: 📥 Download caches playlist
         uses: actions/download-artifact@v4
@@ -212,11 +267,33 @@ jobs:
           name: playlist-caches
           path: playlists/
 
+      - name: ✅ Vérifier artefact playlist-caches
+        run: |
+          echo "📦 Artefact playlist-caches téléchargé :"
+          ls -la playlists/ || true
+          if [ ! -f playlists/music_pool_cache.json ]; then
+            echo "❌ music_pool_cache.json MANQUANT dans playlist-caches"
+            exit 1
+          fi
+          TRACKS=$(jq '.tracks | length' playlists/music_pool_cache.json 2>/dev/null || echo "N/A")
+          echo "✅ Pool musical téléchargé : $TRACKS pistes"
+
       - name: 📥 Download séquence radio
         uses: actions/download-artifact@v4
         with:
           name: radio-content
           path: .
+
+      - name: ✅ Vérifier artefact radio-content
+        run: |
+          echo "📦 Artefact radio-content téléchargé :"
+          ls -la docs/ || true
+          if [ ! -f docs/radio_sequence.json ]; then
+            echo "❌ radio_sequence.json MANQUANT dans radio-content"
+            exit 1
+          fi
+          ELEMENTS=$(jq '.sequence | length' docs/radio_sequence.json 2>/dev/null || echo "N/A")
+          echo "✅ Séquence radio téléchargée : $ELEMENTS éléments"
 
       - name: 📋 Générer le rapport de playlist
         run: |
@@ -253,7 +330,18 @@ jobs:
           print(f"ℹ️  {total} fichiers audio supprimés" if total else "ℹ️  Aucun fichier audio à supprimer")
           EOF
 
-      - name: 💾 Commit & Push (avec résolution auto)
+      - name: 🔍 Vérifier fichiers avant commit
+        run: |
+          echo "=== FICHIERS À COMMITTER ==="
+          echo "playlists/music_pool_cache.json: $(test -f playlists/music_pool_cache.json && echo '✅' || echo '❌')"
+          echo "playlists/playlist_24h_id.txt: $(test -f playlists/playlist_24h_id.txt && echo '✅' || echo '❌')"
+          echo "docs/radio_sequence.json: $(test -f docs/radio_sequence.json && echo '✅' || echo '❌')"
+          echo "docs/liners/: $(test -d docs/liners && echo '✅' || echo '❌')"
+          echo "docs/capsules/: $(test -d docs/capsules && echo '✅' || echo '❌')"
+          echo "Taille radio_sequence.json: $(test -f docs/radio_sequence.json && stat -c%s docs/radio_sequence.json || echo 'N/A') octets"
+          echo "=== END VÉRIFICATION ==="
+
+      - name: 💾 Commit & Push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -270,19 +358,14 @@ jobs:
             exit 0
           fi
           
+          echo "📝 Fichiers staged :"
+          git diff --cached --name-only
+          
           # Stocker les changements avant pull
           git stash push --include-untracked
           
           # Pull avec résolution automatique (stratégie 'theirs' = garde les changements locaux)
-          git pull --rebase -X theirs origin main || {
-            echo "⚠️  Rebase échoué — tentative de merge classique..."
-            git rebase --abort 2>/dev/null || true
-            git pull --no-rebase --strategy-option theirs origin main || {
-              echo "❌ Impossible de résoudre automatiquement"
-              git stash pop
-              exit 1
-            }
-          }
+          git pull --no-rebase --strategy-option theirs origin main
           
           # Réappliquer les changements
           git stash pop
@@ -291,10 +374,12 @@ jobs:
           git commit -m "chore: update radio sequence & caches [skip ci]"
           git push
 
-      - name: ✅ Résumé
+      - name: ✅ Résumé final
         if: success()
         run: |
           H24_ID=$(cat playlists/playlist_24h_id.txt 2>/dev/null || echo "")
+          POOL_TRACKS=$(jq '.tracks | length' playlists/music_pool_cache.json 2>/dev/null || echo "N/A")
+          SEQ_ELEMENTS=$(jq '.sequence | length' docs/radio_sequence.json 2>/dev/null || echo "N/A")
           echo ""
           echo "╔══════════════════════════════════════════════════════╗"
           echo "║          ✅  MISE À JOUR RADIO RÉUSSIE               ║"
@@ -302,12 +387,30 @@ jobs:
           echo ""
           echo "  🕐  $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           echo ""
+          echo "  📊 STATISTIQUES :"
+          echo "     • Pool musical : $POOL_TRACKS pistes"
+          echo "     • Séquence : $SEQ_ELEMENTS éléments"
           [ -n "$H24_ID" ] && echo "  🎵  Playlist 24h  → https://music.youtube.com/playlist?list=$H24_ID"
           echo "  📻  Séquence web  → https://famibelle.github.io/FlashInfoKarukera/radio.html"
           echo ""
 
-      - name: ❌ Playlist Update Failed
+      - name: ❌ Échec — Diagnostic complet
         if: failure()
         run: |
-          echo "❌ Mise à jour échouée — voir les logs"
+          echo ""
+          echo "╔══════════════════════════════════════════════════════╗"
+          echo "║          ❌ MISE À JOUR RADIO ÉCHOUÉE                 ║"
+          echo "╚══════════════════════════════════════════════════════╝"
+          echo ""
+          echo "  🔍 DIAGNOSTIC FINAL :"
+          echo "  playlists/music_pool_cache.json: $(test -f playlists/music_pool_cache.json && echo '✅' || echo '❌ MISSING')"
+          echo "  docs/radio_sequence.json: $(test -f docs/radio_sequence.json && echo '✅' || echo '❌ MISSING')"
+          echo "  playlists/playlist_24h_id.txt: $(test -f playlists/playlist_24h_id.txt && echo '✅' || echo '❌ MISSING')"
+          echo ""
+          echo "  Contenu playlists/ :"
+          ls -la playlists/ || true
+          echo ""
+          echo "  Contenu docs/ :"
+          ls -la docs/ || true
+          echo ""
           exit 1
