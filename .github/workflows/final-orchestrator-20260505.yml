@@ -1,0 +1,125 @@
+name: 🚀 Génération complète — Orchestrateur séquentiel
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # 5h Paris (3h UTC)
+    - cron: '0 9 * * *'   # 11h Paris (9h UTC)
+    - cron: '0 15 * * *'  # 17h Paris (15h UTC)
+  workflow_dispatch:
+    inputs:
+      verbose:
+        description: "Verbose — affiche le détail de chaque étape"
+        type: boolean
+        required: false
+        default: false
+      run_horoscope:
+        description: "✅ Exécuter Horoscope Quotidien"
+        type: boolean
+        required: false
+        default: true
+      run_flash_info:
+        description: "✅ Exécuter Flash Info Guadeloupe"
+        type: boolean
+        required: false
+        default: true
+      run_capsules:
+        description: "✅ Exécuter Capsules Culturelles"
+        type: boolean
+        required: false
+        default: true
+      run_emission:
+        description: "✅ Exécuter Émission Culturelle"
+        type: boolean
+        required: false
+        default: true
+      run_playlist:
+        description: "✅ Exécuter Mise à jour Playlist"
+        type: boolean
+        required: false
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  horoscope:
+    name: 🔮 Horoscope
+    if: inputs.run_horoscope == true || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher Horoscope
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+          VERBOSE: ${{ github.event.inputs.verbose }}
+        run: |
+          gh workflow run horoscope-daily.yml --repo "$REPO" --field verbose=${VERBOSE:-false}
+          sleep 8
+          RUN_ID=$(gh run list --workflow=horoscope-daily.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
+          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
+
+  flash-info:
+    name: 📰 Flash Info
+    needs: horoscope
+    if: inputs.run_flash_info == true || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher Flash Info
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+          VERBOSE: ${{ github.event.inputs.verbose }}
+        run: |
+          gh workflow run flash-info.yml --repo "$REPO" --field verbose=${VERBOSE:-false}
+          sleep 8
+          RUN_ID=$(gh run list --workflow=flash-info.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
+          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
+
+  capsules:
+    name: 🌺 Capsules
+    needs: flash-info
+    if: inputs.run_capsules == true || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher Capsules
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh workflow run capsules-daily.yml --repo "$REPO"
+          sleep 8
+          RUN_ID=$(gh run list --workflow=capsules-daily.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
+          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
+
+  emission:
+    name: 📻 Émission
+    needs: capsules
+    if: inputs.run_emission == true || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Déclencher Émission
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh workflow run emission-daily.yml --repo "$REPO"
+          sleep 8
+          RUN_ID=$(gh run list --workflow=emission-daily.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
+          gh run watch "$RUN_ID" --interval 20 --repo "$REPO" || true
+
+  playlist:
+    name: 🎶 Playlist
+    needs: emission
+    if: inputs.run_playlist == true || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher Playlist
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh workflow run botiran-radio-daily.yml --repo "$REPO"
+          sleep 8
+          RUN_ID=$(gh run list --workflow=botiran-radio-daily.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
+          gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
