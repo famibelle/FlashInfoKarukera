@@ -1,0 +1,37 @@
+{
+  "date": "2026-05-05",
+  "type": "emission",
+  "title": "Émission culturelle — Découverte de la Guadeloupe",
+  "duration": "~3 minutes",
+  "word_count": 354,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Haiti",
+    "artist": "Tabou Combo",
+    "genre": "kompa"
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Plante / Résistance            \t Gommié blan              \t Gommier blanc             \t Bursera simaruba          \t ⭐⭐⭐ RÉSISTANCE AMÉRINDIENNE \t Arbre des Kalinagos utilisé pour creuser les pirogues de guerre et de fuite. Sa résine-encens servait aux rituels de préparation au combat. Arbre de la mobilité, de l'insoumission et du refus de l'enfermement."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Oiseau / Résistance   \t Urakan / Frégate           \t Frégate superbe           \t Fregata magnificens            \t ⭐⭐ LIBERTÉ ABSOLUE  \t Oiseau qui ne se pose presque jamais, vole pendant des jours sans toucher terre. Symbole du marronnage aérien, de la liberté absolue et de l'insoumission. Associé aux esprits qui ne peuvent être enchaînés."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Piment               \t Piman végétarien           \t Piment végétarien          \t Capsicum frutescens           \t Petit piment très doux à la saveur légèrement sucrée à maturité. Constitue, avec l'ail, l'oignon, l'oignon-pays et le persil, la base des assaisonnements antillais. Force : 0. Croqué cru dans les salades. Variété endémique du jardin créole antillais."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Axe symbolique        \t Route de la Traversée                    \t Basse-Terre                         \t ⭐⭐ Symbolique         \t Axe traversant la forêt tropicale. Symbolique du passage, de la transformation entre les deux faces de l'île. Frontière entre le visible et l'invisible."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**1794** \t **Participation des anciens esclaves à la vie politique** \t **Affirmation de la citoyenneté : premier pas vers l’égalité, mais exclusion persistante** \t Élection de représentants noirs (ex. : Jean-Baptiste Mars), revendications pour l’égalité des droits \t Basse-Terre (centre administratif), Pointe-à-Pitre \t Vaudou Petwo : rituels pour protéger les leaders noirs (ex. : *pwen de protection*)"
+    }
+  },
+  "text": "Ce soir, on part en voyage au rythme du kompa, bercés par les vibrations de *Haiti* de Tabou Combo. Une chanson qui nous parle de racines, de fierté et de cette énergie indomptable qui pulse dans les îles. Ici, en Guadeloupe, cette même énergie se cache dans nos paysages, nos traditions et nos histoires. Prêts à la découvrir ?\n\nOh, laissez-moi vous parler d’un petit trésor du jardin créole : le piment végétarien ! Imaginez un piment si doux qu’on pourrait presque le croquer comme une pomme, avec une pointe sucrée qui danse sur la langue. C’est la base de nos assaisonnements, ce petit rien qui relève tout sans brûler. Un clin d’œil malicieux de la nature, qui nous rappelle que même les choses les plus simples peuvent être pleines de saveur et de caractère.\n\nEt puis, il y a l’Urakan, la frégate superbe ! Cet oiseau, mes amis, c’est la liberté incarnée. Il plane des jours entiers sans jamais se poser, défiant les lois de la terre. Les anciens disaient qu’il portait l’âme des marrons, ces esprits insoumis qui refusaient les chaînes. Regardez-le dans le ciel, et vous comprendrez ce que signifie vivre sans limites.\n\nMaintenant, prenons la Route de la Traversée, ce chemin qui serpente à travers la forêt de Basse-Terre. Plus qu’une simple route, c’est un passage sacré, une frontière entre le visible et l’invisible. Les Kalinagos l’empruntaient pour leurs rituels, et aujourd’hui encore, on sent cette énergie de transformation. C’est là que l’histoire et la spiritualité se rencontrent, où chaque pas nous rapproche de nos ancêtres.\n\nLa Guadeloupe, c’est tout ça à la fois : la résistance du gommier blanc, creusé en pirogues pour fuir l’oppression ; la force tranquille du piment végétarien, qui assaisonne nos vies ; et l’esprit libre de l’Urakan, qui nous rappelle que personne ne peut nous enfermer. En 1794, nos aïeux ont marché sur cette même terre pour réclamer leur place dans l’histoire, et aujourd’hui, leur combat résonne encore. Alors, comme le dit Tabou Combo, *\"Haiti, chérie, nou pa ka bliyé\"* – ici aussi, on n’oublie pas. À la semaine prochaine pour d’autres découvertes !",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-05.mp3"
+}

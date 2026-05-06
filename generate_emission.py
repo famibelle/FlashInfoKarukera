@@ -176,24 +176,7 @@ def _load_prompt(filename: str) -> str:
     return path.read_text(encoding="utf-8").strip()
 
 # Charger le prompt Monique pour les émissions
-try:
-    SYSTEM_PROMPT = _load_prompt("monique_ame.md") + "\n\n" + _load_prompt("monique.md")
-except Exception:
-    # Fallback si prompts non trouvés
-    SYSTEM_PROMPT = """\
-Tu es Monique, docteure en écologie des zones humides antillaises, spécialiste pur souche
-de la mangrove et de la biodiversité guadeloupéenne. Ton rôle est d'animer des émissions
-culturelles avec expertise et passion, en partageant tes connaissances sur la nature
-locale de manière pédagogique et captivante.
-
-Règles :
-- Écris UNIQUEMENT le texte du monologue, sans balises ni introductions techniques.
-- Utilise des paragraphes clairs et distincts (séparés par une ligne vide).
-- Adapte ton ton à chaque paragraphe : pédagogique pour expliquer, enthousiaste pour fasciné.
-- Ne dépasse pas 430 mots (3 minutes au rythme radio).
-- Équilibre entre rigueur scientifique et accessibilité.
-- Mets en avant la mangrove, la faune et la flore guadeloupéennes.
-"""
+SYSTEM_PROMPT = _load_prompt("monique_ame.md") + "\n\n" + _load_prompt("monique.md") + "\n\n" + _load_prompt("emission_instruction.md")
 
 
 def generate_monologue(elements: dict, verbose: bool = False) -> str:
@@ -215,23 +198,19 @@ def generate_monologue(elements: dict, verbose: bool = False) -> str:
         if file_key in elements:
             formatted_elements += f"- {category} : {elements[file_key]['content']}\n"
     
-    user_prompt = f"""\
-Contexte : Ton émission est inspirée par {track_desc}. Laisse-toi porter par cette ambiance musicale.
-
-Éléments à intégrer dans ton monologue (utilise-les tous) :
-{formatted_elements}
-
-Structure ton monologue en 5 paragraphes :
-1. Introduction : Présente le thème général de l'émission d'aujourd'hui.
-   Inspire-toi de {track_desc} pour créer une ambiance.
-2. Présente un élément de faune ou flore avec enthousiasme.
-3. Décris un autre élément (flore/faune) et son importance culturelle.
-4. Explore un lieu spirituel ou un symbole créole et son histoire.
-5. Conclusion : Résume et relie tous ces éléments à l'identité guadeloupéenne.
-   Termine par une phrase qui fait écho à {track_desc}.
-
-IMPORTANT : Respecte exactement les 5 paragraphes. Le texte doit être fluide et naturel, comme une conversation.
-"""
+    # Charger le template de user prompt
+    try:
+        user_template = _load_prompt("emission_user_template.md")
+    except Exception:
+        user_template = """Contexte : Ton émission est inspirée par {track_desc}.
+Éléments à intégrer :
+{elements}
+Structure ton monologue en 5 paragraphes."""
+    
+    user_prompt = user_template.format(
+        track_desc=track_desc,
+        elements=formatted_elements
+    )
     
     if verbose:
         print("\n── SYSTEM PROMPT ─────────────────────────────────────────────")
@@ -269,15 +248,17 @@ AVAILABLE_TONES = ["neutral", "happy", "excited", "curious", "sad"]
 
 def _determine_tone(paragraph: str) -> str:
     """Utilise le LLM pour déterminer le ton optimal d'un paragraphe."""
-    system_prompt = """Tu es un expert en analyse de texte pour la radio.
-Ton rôle est de déterminer le ton émotionnel le plus adapté pour lire un paragraphe à l'antenne.
-
-Règles :
-- Choisis UN SEUL ton parmi : neutral, happy, excited, curious, sad
-- Réponds UNIQUEMENT avec le nom du ton, sans explication ni texte supplémentaire
-- Sois précis et cohérent avec le contenu du paragraphe"""
-
-    user_prompt = f"Paragraphe à analyser :\n\n{paragraph}\n\nTon adapté :"
+    try:
+        system_prompt = _load_prompt("tone_classifier_system.md")
+    except Exception:
+        system_prompt = """Tu es un expert en analyse de texte. Choisis UN ton parmi : neutral, happy, excited, curious, sad. Réponds UNIQUEMENT avec le nom du ton."""
+    
+    try:
+        user_template = _load_prompt("tone_classifier_user_template.md")
+    except Exception:
+        user_template = "Paragraphe à analyser :\n\n{paragraph}\n\nTon adapté :"
+    
+    user_prompt = user_template.format(paragraph=paragraph)
     
     try:
         response = _mistral_chat_classifier(system_prompt, user_prompt)
