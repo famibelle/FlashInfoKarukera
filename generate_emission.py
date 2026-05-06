@@ -221,17 +221,16 @@ Contexte : Ton émission est inspirée par {track_desc}. Laisse-toi porter par c
 Éléments à intégrer dans ton monologue (utilise-les tous) :
 {formatted_elements}
 
-Structure ton monologue en 5 paragraphes avec des tons différents :
-1. [TON: neutral] Introduction : Présente le thème général de l'émission d'aujourd'hui.
+Structure ton monologue en 5 paragraphes :
+1. Introduction : Présente le thème général de l'émission d'aujourd'hui.
    Inspire-toi de {track_desc} pour créer une ambiance.
-2. [TON: happy] Présente un élément de faune ou flore avec enthousiasme.
-3. [TON: excited] Décris un autre élément (flore/faune) et son importance culturelle.
-4. [TON: curious] Explore un lieu spirituel ou un symbole créole et son histoire.
-5. [TON: confident] Conclusion : Résume et relie tous ces éléments à l'identité guadeloupéenne.
+2. Présente un élément de faune ou flore avec enthousiasme.
+3. Décris un autre élément (flore/faune) et son importance culturelle.
+4. Explore un lieu spirituel ou un symbole créole et son histoire.
+5. Conclusion : Résume et relie tous ces éléments à l'identité guadeloupéenne.
    Termine par une phrase qui fait écho à {track_desc}.
 
-IMPORTANT : Respecte exactement les 5 paragraphes avec leurs tons respectifs.
-Le texte doit être fluide et naturel, comme une conversation.
+IMPORTANT : Respecte exactement les 5 paragraphes. Le texte doit être fluide et naturel, comme une conversation.
 """
     
     if verbose:
