@@ -135,9 +135,21 @@
       justify-content: center;
       gap: 0.75rem;
       margin-bottom: 1.25rem;
+      cursor: pointer;
     }
 
     #transition-overlay.on { display: flex; }
+
+    .tr-artwork {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
 
     #eq-canvas {
       position: absolute;
@@ -174,10 +186,10 @@
       padding: 0 1rem;
     }
     .tr-timer {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-variant-numeric: tabular-nums;
-      color: #555;
-      letter-spacing: 0.04em;
+      color: #a5b4fc;
+      letter-spacing: 0.02em;
     }
 
     /* Now playing */
@@ -381,6 +393,7 @@
       </div>
 
       <div id="transition-overlay">
+        <img class="tr-artwork" id="tr-artwork" src="artwork.jpg" alt="">
         <div class="tr-icon" id="tr-icon">🎙️</div>
         <div class="tr-label" id="tr-label"></div>
         <div class="tr-timer" id="tr-timer"></div>
@@ -440,6 +453,8 @@
 
       this.trAudio = document.getElementById('tr-audio');
       this.trAudio.addEventListener('ended', () => this._next());
+      this.trAudio.addEventListener('timeupdate', () => this._updateTimer());
+      this.trAudio.addEventListener('loadedmetadata', () => this._updateTimer());
 
       // Promise résolue quand l'API YT est disponible (callback ou polling)
       this._ytApiReady = new Promise(resolve => {
@@ -588,6 +603,26 @@
 
     _vol() { return parseInt(document.getElementById('volume').value); }
 
+    // ── Timer display ───────────────────────────────────────
+    _formatTime(seconds) {
+      if (!seconds || !isFinite(seconds)) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    _updateTimer() {
+      const current = this.trAudio.currentTime;
+      const duration = this.trAudio.duration;
+      if (duration && isFinite(duration)) {
+        const currentStr = this._formatTime(current);
+        const durationStr = this._formatTime(duration);
+        document.getElementById('tr-timer').textContent = `${currentStr}/${durationStr}`;
+      } else {
+        document.getElementById('tr-timer').textContent = '';
+      }
+    }
+
     // ── UI ───────────────────────────────────────────────────
 
     _show() {
@@ -613,6 +648,8 @@
       document.getElementById('tr-icon').textContent  = item.icon  || '🎙️';
       document.getElementById('tr-label').textContent = item.label || '';
       this._startEQ();
+      // Initialiser le timer pour les MP3
+      this._updateTimer();
     }
 
     _updateNowPlaying(item) {
@@ -840,6 +877,14 @@
   document.getElementById('btn-prev').addEventListener('click', () => radio._prev());
   document.getElementById('btn-skip').addEventListener('click', () => radio._next());
   document.getElementById('volume').addEventListener('input', e => radio.setVolume(parseInt(e.target.value)));
+  
+  // Rendre toute la transition-overlay cliquable pour play/pause (sauf le canvas)
+  const transitionOverlay = document.getElementById('transition-overlay');
+  const eqCanvas = document.getElementById('eq-canvas');
+  transitionOverlay.addEventListener('click', (e) => {
+    if (e.target === eqCanvas) return; // Laisser le seek sur le canvas
+    radio.togglePlay();
+  });
   document.getElementById('btn-toggle-playlist').addEventListener('click', () => {
     radio._playlistOpen = !radio._playlistOpen;
     document.getElementById('full-playlist').classList.toggle('open', radio._playlistOpen);
