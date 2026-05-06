@@ -43,7 +43,18 @@ jobs:
       - name: Installer FFmpeg
         run: sudo apt-get install -y ffmpeg
 
+      - name: Vérifier si émission existe déjà
+        id: check_emission
+        run: |
+          EMMISSION_FILE="docs/audio/Emissions/emission-$(date -u +%Y-%m-%d).mp3"
+          if [ -f "$EMISSION_FILE" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Générer l'émission culturelle quotidienne
+        if: steps.check_emission.outputs.exists != 'true'
         env:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: |
@@ -52,6 +63,7 @@ jobs:
           }}
 
       - name: Commit l'émission générée
+        if: steps.check_emission.outputs.exists != 'true'
         run: |
           git config user.name "github-actions[Émission]"
           git config user.email "github-actions@github.com"

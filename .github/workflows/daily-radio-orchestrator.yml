@@ -191,7 +191,21 @@ jobs:
         id: start-time
         run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
 
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Vérifier si émission existe
+        id: check_emission
+        run: |
+          FILE="docs/audio/Emissions/emission-$(date -u +%Y-%m-%d).mp3"
+          if [ -f "$FILE" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Déclencher Playlist
+        if: steps.check_emission.outputs.exists == 'true' || inputs.run_emission == true
         env:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
