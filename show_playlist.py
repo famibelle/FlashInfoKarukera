@@ -7,13 +7,18 @@ Usage:
     python show_playlist.py --json    # Affiche le JSON brut
     python show_playlist.py --stats   # Statistiques seulement
     python show_playlist.py --url "https://music.youtube.com/playlist?list=PL..."  # YouTube playlist
+    python show_playlist.py           # Lit YTMUSIC_PLAYLIST_ID du .env si défini
 """
 
 import argparse
 import json
+import os
 import re
 from pathlib import Path
+from dotenv import load_dotenv
 from ytmusicapi import YTMusic
+
+load_dotenv()
 
 SEQUENCE_PATH = Path("docs/radio_sequence.json")
 BROWSER_JSON = Path("browser.json")
@@ -240,13 +245,20 @@ def main() -> None:
     args = parser.parse_args()
     
     # Mode YouTube playlist
+    playlist_id = None
+    
+    # 1. Priorité à --url
     if args.url:
         playlist_id = extract_playlist_id(args.url)
         if not playlist_id:
             print(f"❌ URL invalide : {args.url}")
             print("   Format attendu : https://music.youtube.com/playlist?list=PL...")
             return
-        
+    # 2. Sinon, vérifier YTMUSIC_PLAYLIST_ID dans .env ou variables d'environnement
+    elif os.getenv("YTMUSIC_PLAYLIST_ID"):
+        playlist_id = os.getenv("YTMUSIC_PLAYLIST_ID")
+    
+    if playlist_id:
         browser_path = Path(args.browser) if args.browser else BROWSER_JSON
         playlist = fetch_youtube_playlist(playlist_id, browser_path)
         
