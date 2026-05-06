@@ -110,6 +110,20 @@ La voix est **directe, chaleureuse, ancrée dans le quotidien guadeloupéen**, s
 
 ---
 
+## 👥 Équipe éditoriale
+
+L'équipe IA de Radio Botiran est composée de **5 voix distinctes**, chacune incarnant un personnage ou un style de la culture guadeloupéenne :
+
+| Personnage | Rôle | Inspiration | Prompts |
+|-----------|------|-------------|---------|
+| **Harry** | Flash info Guadeloupe | Harry, journaliste passionné par l'actualité guadeloupéenne | `harry_ame.md`, `harry.md` |
+| **Maryse** | Émissions culturelles et interviews | Maryse Condé, romancière lauréate du prix Nobel alternatif | `maryse_ame.md`, `maryse.md` |
+| **Solitude** | Capsules culturelles | Mulâtresse Solitude, héroïne de la résistance guadeloupéenne (1802) | `solitude_ame.md`, `solitude_capsule.md`, `capsule_instruction.md` |
+| **Monique** | Horoscope quotidien | Monique, spécialiste des traditions astrologiques créoles | `monique_ame.md`, `monique.md` |
+| **Corinne** | Liners (annonces musicales) | Corinne, voix douce et accueillante | `corinne_ame.md`, `corinne.md` |
+
+---
+
 ## 📅 Les cinq éditions quotidiennes
 
 Le programme publie **trois flash infos** et **deux horoscopes** par jour :
@@ -207,7 +221,7 @@ Une **playlist radio complète de 24h** est générée automatiquement, combinan
 - **Durée musique :** ~18-20 heures (80 pistes × ~13-15 min)
 - **Durée transitions :** ~30-45 minutes (6 transitions)
 - **Durée liners :** ~15-20 minutes (15 liners × ~1-1.5 min)
-- **Durée capsules :** ~12-15 minutes (12 capsules × ~1-1.25 min)
+- **Durée capsules :** ~3 minutes (12 capsules × ~15 secondes)
 - **Durée interview :** ~3 minutes
 
 ### 🔧 Génération
@@ -328,7 +342,7 @@ url = get_announcement_mp3_url(bloc, artists[:5])
 
 ### 🎯 Concept
 
-Les **capsules culturelles** sont de courtes présentations (45-90 secondes) sur des symboles de la culture guadeloupéenne :
+Les **capsules culturelles** sont de courtes présentations (~15 secondes) sur des symboles de la culture guadeloupéenne :
 - Faune locale (colibri, iguane, etc.)
 - Flore locale (hibiscus, flamboyant, etc.)
 - Résistance créole (symboles historiques)

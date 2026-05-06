@@ -293,7 +293,7 @@ def get_announcement_mp3_url(bloc: str, artists: list[str], voice: str = "corinn
 
 def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
     """
-    Génère une capsule culturelle Guadeloupe ~30s, la sauvegarde dans docs/capsules/
+    Génère une capsule culturelle Guadeloupe ~15s, la sauvegarde dans docs/capsules/
     et retourne son URL publique GitHub Pages.
     Persona : Solitude (mémoire culturelle, ton solennel)
     """
@@ -311,7 +311,7 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
 
     base_user_prompt = (
         "Génère une courte capsule audio pour une radio culturelle guadeloupéenne. "
-        "Durée : environ 30 secondes (75 à 85 mots). "
+        "Durée : environ 15 secondes (30 à 40 mots). "
         "Sujet : un élément de la flore, de la faune, de l'histoire ou de la culture de la Guadeloupe. "
         "Style : chaleureux, évocateur, comme une confidence à l'auditeur. "
         "Commence directement sans formule d'introduction. "
