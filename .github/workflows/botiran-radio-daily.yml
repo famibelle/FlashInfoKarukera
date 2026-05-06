@@ -447,7 +447,7 @@ jobs:
           
           # Commit sans stash (évite les conflits)
           git commit -m "chore: update radio sequence & caches [skip ci]" --no-edit
-          git push
+          git push origin +HEAD:main
 
       - name: ✅ Vérifier commit
         run: |
