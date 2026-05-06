@@ -440,6 +440,14 @@ def main():
     out_json.write_text(json.dumps(output_data, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"💾 JSON → {out_json}")
     
+    # Afficher le texte en mode verbose
+    if args.verbose:
+        print("\n── Monologue complet ────────────────────────────────────────")
+        paragraphs = text.split('\n\n')
+        for i, para in enumerate(paragraphs, 1):
+            print(f"   [{i}] {para.strip()}")
+        print("────────────────────────────────────────────────────────────────")
+    
     if args.dry_run:
         print("\n── Monologue complet ────────────────────────────────────────")
         paragraphs = text.split('\n\n')
