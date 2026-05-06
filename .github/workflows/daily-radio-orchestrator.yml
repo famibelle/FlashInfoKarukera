@@ -64,7 +64,7 @@ jobs:
         run: |
           gh workflow run horoscope-daily.yml --repo "$REPO" --field verbose=${VERBOSE:-false}
           sleep 15
-          RUN_ID=$(gh run list --workflow horoscope-daily.yml --limit 1 --json id --jq '.[0].id')
+          RUN_ID=$(gh run list --workflow horoscope-daily.yml --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
       - name: ⏱️  Execution Time Summary
@@ -97,7 +97,7 @@ jobs:
         run: |
           gh workflow run flash-info.yml --repo "$REPO" --field verbose=${VERBOSE:-false}
           sleep 15
-          RUN_ID=$(gh run list --workflow flash-info.yml --limit 1 --json id --jq '.[0].id')
+          RUN_ID=$(gh run list --workflow flash-info.yml --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
       - name: ⏱️  Execution Time Summary
@@ -129,7 +129,7 @@ jobs:
         run: |
           gh workflow run capsules-daily.yml --repo "$REPO"
           sleep 15
-          RUN_ID=$(gh run list --workflow capsules-daily.yml --limit 1 --json id --jq '.[0].id')
+          RUN_ID=$(gh run list --workflow capsules-daily.yml --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
       - name: ⏱️  Execution Time Summary
@@ -162,7 +162,7 @@ jobs:
         run: |
           gh workflow run emission-daily.yml --repo "$REPO"
           sleep 15
-          RUN_ID=$(gh run list --workflow emission-daily.yml --limit 1 --json id --jq '.[0].id')
+          RUN_ID=$(gh run list --workflow emission-daily.yml --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --repo "$REPO" || true
 
       - name: ⏱️  Execution Time Summary
@@ -202,7 +202,7 @@ jobs:
           fi
           gh workflow run botiran-radio-daily.yml --repo "$REPO" $INPUTS
           sleep 15
-          RUN_ID=$(gh run list --workflow botiran-radio-daily.yml --limit 1 --json id --jq '.[0].id')
+          RUN_ID=$(gh run list --workflow botiran-radio-daily.yml --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
       - name: ⏱️  Execution Time Summary
