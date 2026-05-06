@@ -91,18 +91,15 @@ def _norm_pronunciations(text: str) -> str:
 
 
 def _norm_typography(text: str) -> str:
-    # Remplacer les apostrophes typographiques (courbées) par des virgules
-    text = text.replace("’", ", ").replace("’", ", ")
+    # Normaliser TOUTES les apostrophes vers l'apostrophe simple (')
+    # NE PAS les remplacer par des virgules ! (casserait les élisions : l'eau → l, eau)
+    text = text.replace("’", "'")
     
     # Remplacer les guillemets par des virgules
     text = text.replace("«", ", ").replace("»", ", ")
     
     # Remplacer les tirets longs par des virgules
     text = _re.sub(r"\s*[–—]\s*", ", ", text)
-    
-    # ⚠️ NE PAS remplacer les apostrophes simples dans les élisions françaises (d', l', qu', etc.)
-    # La ligne suivante a été supprimée car elle cassait les élisions :
-    # OLD: text = text.replace("'", ", ")
     
     return _re.sub(r"[^\x00-\x7FÀ-ɏḀ-ỿ\n]", " ", text)
 
