@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-Affiche la playlist complète (musique, flash info, horoscope, interview, liners, capsules).
+Affiche la programmation radio complète (musique, flash info, horoscope, interview, liners, capsules).
 
 Usage:
-    python show_playlist.py
-    python show_playlist.py --json    # Affiche le JSON brut
-    python show_playlist.py --stats   # Statistiques seulement
-    python show_playlist.py --url "https://music.youtube.com/playlist?list=PL..."  # YouTube playlist
-    python show_playlist.py           # Lit YTMUSIC_PLAYLIST_24H_ID du .env si défini
+    python show_playlist.py                          # Affiche la programmation radio (docs/radio_sequence.json)
+    python show_playlist.py --json                    # Affiche le JSON brut de la programmation
+    python show_playlist.py --stats                  # Statistiques de la programmation
+    python show_playlist.py --youtube                # Affiche la playlist YouTube Music
+    python show_playlist.py --url "URL"              # Affiche une playlist YouTube spécifique
+    python show_playlist.py --sequence FICHIER      # Lit un fichier radio_sequence.json spécifique
 """
 
 import argparse
@@ -232,20 +233,49 @@ def format_duration(seconds: int | None) -> str:
 
 
 def display_playlist(data: dict, use_colors: bool = True) -> None:
-    """Affiche la playlist complète."""
+    """Affiche la programmation radio complète avec organisation par blocs."""
     sequence = data.get("sequence", [])
     
     print(f"\n{'=' * 80}")
-    print(f"📻 PLAYLIST COMPLÈTE — {data.get('generated', 'N/A')}")
+    print(f"📻 PROGRAMMATION RADIO COMPLÈTE — {data.get('generated', 'N/A')}")
     print(f"{'=' * 80}")
-    print(f"📊 Statistiques: {data.get('music', 0)} morceaux | {data.get('liners', 0)} liners | "
+    print(f"📊 Statistiques: {data.get('music', 0)} musiques | {data.get('liners', 0)} liners | "
           f"{data.get('capsules', 0)} capsules | {data.get('transitions', 0)} transitions")
     print(f"{'=' * 80}\n")
+    
+    # Détecter les blocs (matin/midi/soir) à partir des transitions flash_info
+    current_bloc = ""
+    bloc_labels = {
+        "flash_info": {
+            "matin": "🌅 Matin",
+            "midi": "🌇 Midi", 
+            "soir": "🌃 Soir"
+        }
+    }
     
     for i, item in enumerate(sequence, 1):
         color = get_color(item) if use_colors else ""
         reset = COLORS["reset"] if use_colors else ""
         icon = get_icon(item)
+        
+        # Détecter changement de bloc à partir des flash_info
+        new_bloc = ""
+        if item["type"] == "transition" and item.get("subtype") == "flash_info":
+            label = item.get("label", "")
+            if "matin" in label.lower():
+                new_bloc = "matin"
+            elif "midi" in label.lower():
+                new_bloc = "midi"
+            elif "soir" in label.lower():
+                new_bloc = "soir"
+        
+        # Afficher séparateur de bloc
+        if new_bloc and new_bloc != current_bloc:
+            current_bloc = new_bloc
+            bloc_icon = bloc_labels["flash_info"].get(current_bloc, "📻")
+            print(f"\n{'-' * 80}")
+            print(f"  {bloc_icon} BLOC {current_bloc.upper()}  ".center(80))
+            print(f"{'-' * 80}")
         
         # Formatage selon le type
         if item["type"] == "music":
@@ -275,36 +305,50 @@ def display_playlist(data: dict, use_colors: bool = True) -> None:
 
 
 def display_stats(data: dict) -> None:
-    """Affiche uniquement les statistiques."""
-    print("\n" + "=" * 60)
-    print("📊 STATISTIQUES DE LA PLAYLIST")
-    print("=" * 60)
+    """Affiche uniquement les statistiques de la programmation."""
+    print("\n" + "=" * 70)
+    print("📊 STATISTIQUES DE LA PROGRAMMATION RADIO")
+    print("=" * 70)
     print(f"Généré le : {data.get('generated', 'N/A')}")
-    print(f"Total éléments : {len(data.get('sequence', []))}")
+    seq = data.get('sequence', [])
+    print(f"Total éléments : {len(seq)}")
     print(f"  🎵 Musiques : {data.get('music', 0)}")
     print(f"  🎤 Liners : {data.get('liners', 0)}")
-    print(f"  🌺 Capsules : {data.get('capsules', 0)}")
+    print(f"  🌺 Capsules culturelles : {data.get('capsules', 0)}")
     print(f"  ➡️  Transitions : {data.get('transitions', 0)}")
     
     # Compter par subtype de transition
-    transitions = [i for i in data.get('sequence', []) if i.get('type') == 'transition']
+    transitions = [i for i in seq if i.get('type') == 'transition']
     subtype_counts = {}
     for t in transitions:
         subtype = t.get('subtype', 'unknown')
         subtype_counts[subtype] = subtype_counts.get(subtype, 0) + 1
     
-    print(f"\n  Transitions par type:")
-    for subtype, count in subtype_counts.items():
-        icon = ICONS["transition"].get(subtype, "➡️")
-        print(f"    {icon} {subtype}: {count}")
-    print("=" * 60 + "\n")
+    if subtype_counts:
+        print(f"\n  📋 Détail des transitions:")
+        for subtype, count in sorted(subtype_counts.items()):
+            icon = ICONS["transition"].get(subtype, "➡️")
+            label = subtype.replace("_", " ").title()
+            print(f"    {icon} {label}: {count}")
+    
+    # Calculer la durée totale estimée des musiques
+    music_durations = [i.get('duration') for i in seq if i.get('type') == 'music' and i.get('duration')]
+    total_duration = sum(music_durations)
+    if total_duration > 0:
+        hours = total_duration // 3600
+        minutes = (total_duration % 3600) // 60
+        print(f"\n  ⏱️  Durée totale (musiques) : {hours}h {minutes:02d}min")
+    
+    print("=" * 70 + "\n")
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Affiche la playlist complète")
+    parser = argparse.ArgumentParser(description="Affiche la programmation radio complète")
     parser.add_argument("--json", action="store_true", help="Affiche le JSON brut")
     parser.add_argument("--stats", action="store_true", help="Affiche uniquement les statistiques")
     parser.add_argument("--no-colors", action="store_true", help="Désactive les couleurs")
+    parser.add_argument("--youtube", action="store_true", 
+                        help="Affiche la playlist YouTube Music (nécessite YTMUSIC_PLAYLIST_24H_ID)")
     parser.add_argument("--sequence", metavar="FICHIER", 
                         help="Chemin vers radio_sequence.json (défaut: docs/radio_sequence.json)")
     parser.add_argument("--url", metavar="URL", 
@@ -313,7 +357,7 @@ def main() -> None:
                         help="Chemin vers browser.json (défaut: browser.json)")
     args = parser.parse_args()
     
-    # Mode YouTube playlist
+    # Mode YouTube playlist (uniquement si --youtube ou --url est spécifié)
     playlist_id = None
     
     # 1. Priorité à --url
@@ -323,8 +367,8 @@ def main() -> None:
             print(f"❌ URL invalide : {args.url}")
             print("   Format attendu : https://music.youtube.com/playlist?list=PL...")
             return
-    # 2. Sinon, vérifier YTMUSIC_PLAYLIST_24H_ID dans .env ou variables d'environnement
-    elif os.getenv("YTMUSIC_PLAYLIST_24H_ID"):
+    # 2. Sinon, vérifier --youtube + YTMUSIC_PLAYLIST_24H_ID
+    elif args.youtube and os.getenv("YTMUSIC_PLAYLIST_24H_ID"):
         playlist_id = os.getenv("YTMUSIC_PLAYLIST_24H_ID")
     
     if playlist_id:
@@ -342,7 +386,7 @@ def main() -> None:
             display_youtube_playlist(playlist, use_colors=not args.no_colors)
         return
     
-    # Mode local (radio_sequence.json)
+    # Mode local par défaut : programmation radio (radio_sequence.json)
     sequence_path = Path(args.sequence) if args.sequence else SEQUENCE_PATH
     
     if not sequence_path.exists():
