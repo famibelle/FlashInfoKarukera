@@ -7,7 +7,7 @@ Usage:
     python show_playlist.py --json    # Affiche le JSON brut
     python show_playlist.py --stats   # Statistiques seulement
     python show_playlist.py --url "https://music.youtube.com/playlist?list=PL..."  # YouTube playlist
-    python show_playlist.py           # Lit YTMUSIC_PLAYLIST_ID du .env si défini
+    python show_playlist.py           # Lit YTMUSIC_PLAYLIST_24H_ID du .env si défini
 """
 
 import argparse
@@ -254,9 +254,9 @@ def main() -> None:
             print(f"❌ URL invalide : {args.url}")
             print("   Format attendu : https://music.youtube.com/playlist?list=PL...")
             return
-    # 2. Sinon, vérifier YTMUSIC_PLAYLIST_ID dans .env ou variables d'environnement
-    elif os.getenv("YTMUSIC_PLAYLIST_ID"):
-        playlist_id = os.getenv("YTMUSIC_PLAYLIST_ID")
+    # 2. Sinon, vérifier YTMUSIC_PLAYLIST_24H_ID dans .env ou variables d'environnement
+    elif os.getenv("YTMUSIC_PLAYLIST_24H_ID"):
+        playlist_id = os.getenv("YTMUSIC_PLAYLIST_24H_ID")
     
     if playlist_id:
         browser_path = Path(args.browser) if args.browser else BROWSER_JSON

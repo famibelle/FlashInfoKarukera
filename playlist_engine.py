@@ -268,12 +268,12 @@ def run_playlist_engine(mode: str = None, target_size: int = 20, dry_run: bool =
 def show_playlist(playlist_id: str = None):
     """Affiche le contenu de la playlist YouTube et son URL."""
     from pathlib import Path as _Path
-    id_file = _Path("playlists/youtube_playlist_id.txt")
-    playlist_id = playlist_id or os.getenv("YOUTUBE_PLAYLIST_ID") or (
+    id_file = _Path("playlists/playlist_24h_id.txt")
+    playlist_id = playlist_id or os.getenv("YTMUSIC_PLAYLIST_24H_ID") or (
         id_file.read_text().strip() if id_file.exists() else None
     )
     if not playlist_id:
-        print("YOUTUBE_PLAYLIST_ID non défini")
+        print("YTMUSIC_PLAYLIST_24H_ID non défini")
         sys.exit(1)
 
     yt = get_youtube_client()
