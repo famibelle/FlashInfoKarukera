@@ -7,6 +7,14 @@ on:
         description: Forcer la régénération
         required: false
         default: "false"
+      date:
+        description: "Date (YYYY-MM-DD) — laisser vide pour aujourd'hui"
+        required: false
+        default: ""
+
+concurrency:
+  group: capsules-daily-${{ github.event.inputs.date || 'daily' }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -39,14 +47,49 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Installer les dépendances
         run: |
           echo "::notice title=🌺 Capsules::[2/5] Installation dépendances..."
           pip install -r requirements.txt
           echo "::notice title=✅ Capsules::[2/5] Dépendances installées"
 
+      - name: Déterminer la date cible
+        id: target_date
+        run: |
+          DATE="${{ github.event.inputs.date }}"
+          if [ -z "$DATE" ]; then
+            DATE=$(date -u +%Y-%m-%d)
+          fi
+          echo "TARGET_DATE=$DATE" >> $GITHUB_ENV
+          echo "::notice title=📅 Capsules::Date cible: $DATE"
+
+      - name: Vérifier si capsules existent déjà
+        id: check_capsules
+        run: |
+          # Vérifier le fichier JSON des capsules
+          FILE_JSON="docs/capsules/capsules-${{ env.TARGET_DATE }}.json"
+          FILE_DIR="docs/capsules/"
+          
+          # Vérifier si le fichier JSON existe ou si le dossier a des fichiers de la date
+          if [ -f "$FILE_JSON" ] || ls $FILE_DIR/capsules-${{ env.TARGET_DATE }}-* 1> /dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "::notice title=✅ Capsules::Fichiers existants détectés"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "::notice title=ℹ️ Capsules::Aucun fichier existant trouvé"
+          fi
+
       - name: Générer toutes les capsules pour la journée
         id: generate
+        if: steps.check_capsules.outputs.exists != 'true' || github.event.inputs.force == 'true'
         env:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: |
@@ -58,19 +101,24 @@ jobs:
 
       - name: Commit les capsules générées
         id: commit
+        if: steps.check_capsules.outputs.exists != 'true' || github.event.inputs.force == 'true'
         run: |
           COMMIT_START=$(date +%s)
           echo "::notice title=🌺 Capsules::[4/5] Commit des capsules..."
           git config user.name "github-actions[Capsules]"
           git config user.email "github-actions@github.com"
           git add docs/capsules/ playlists/youtube_cache.json
-          git diff --cached --quiet || git commit -m "feat: capsules culturelles quotidiennes [skip ci]"
-          git stash --include-untracked || true
-          git pull --rebase -X theirs origin main
-          git stash drop 2>/dev/null || true
-          git push
-          COMMIT_DURATION=$(( $(date +%s) - COMMIT_START ))
-          echo "::notice title=✅ Capsules::[4/5] Commit terminé en ${COMMIT_DURATION}s"
+          if ! git diff --cached --quiet; then
+            git commit -m "feat: capsules culturelles ${{ env.TARGET_DATE }} [skip ci]"
+            git stash --include-untracked || true
+            git pull --rebase -X theirs origin main
+            git stash drop 2>/dev/null || true
+            git push
+            COMMIT_DURATION=$(( $(date +%s) - COMMIT_START ))
+            echo "::notice title=✅ Capsules::[4/5] Commit terminé en ${COMMIT_DURATION}s"
+          else
+            echo "::notice title=ℹ️ Capsules::Aucun changement à commiter"
+          fi
 
       - name: ⏱️ Fin Capsules
         run: |

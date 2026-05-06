@@ -31,6 +31,10 @@ on:
         required: false
         default: true
 
+concurrency:
+  group: horoscope-daily-${{ github.event.inputs.date || 'daily' }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -62,6 +66,14 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Installer les dépendances Python
         run: pip install -r requirements.txt
 
@@ -79,6 +91,36 @@ jobs:
           fi
           echo "EDITION=$EDITION" >> $GITHUB_ENV
           echo "Édition détectée : $EDITION"
+
+      - name: Déterminer la date cible
+        id: target_date
+        run: |
+          DATE="${{ github.event.inputs.date }}"
+          if [ -z "$DATE" ]; then
+            DATE=$(date -u +%Y-%m-%d)
+          fi
+          echo "TARGET_DATE=$DATE" >> $GITHUB_ENV
+          echo "Date cible : $DATE"
+
+      - name: Vérifier si horoscope existe déjà
+        id: check_horoscope
+        run: |
+          # Vérifier les deux éditions possibles
+          FILE_MATIN="docs/audio/Horoscopes/horoscope-${{ env.TARGET_DATE }}-matin.mp3"
+          FILE_SOIR="docs/audio/Horoscopes/horoscope-${{ env.TARGET_DATE }}-soir.mp3"
+          FILE_GENERIC="docs/audio/Horoscopes/horoscope-${{ env.TARGET_DATE }}.mp3"
+          
+          if [ -f "$FILE_MATIN" ] || [ -f "$FILE_SOIR" ] || [ -f "$FILE_GENERIC" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "file_found=true" >> $GITHUB_OUTPUT
+            # Trouver le fichier exact
+            [ -f "$FILE_MATIN" ] && echo "file_path=$FILE_MATIN" >> $GITHUB_OUTPUT
+            [ -f "$FILE_SOIR" ] && echo "file_path=$FILE_SOIR" >> $GITHUB_OUTPUT
+            [ -f "$FILE_GENERIC" ] && echo "file_path=$FILE_GENERIC" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "file_found=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Préparer les arguments
         id: args
@@ -106,6 +148,7 @@ jobs:
           echo "Arguments : $ARGS"
 
       - name: Générer l'horoscope
+        if: steps.check_horoscope.outputs.exists != 'true'
         env:
           MISTRAL_API_KEY:       ${{ secrets.MISTRAL_API_KEY }}
           TELEGRAM_BOT_TOKEN:    ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -123,20 +166,25 @@ jobs:
         run: python -u horoscope-gwada.py ${{ env.HORO_ARGS }}
 
       - name: 📁 Héberger les MP3 horoscope dans docs/audio/
+        if: steps.check_horoscope.outputs.exists != 'true'
         run: python patch_podcast_audio.py horoscope
 
       - name: Sauvegarder l'anti-répétition flore et les archives
+        if: steps.check_horoscope.outputs.exists != 'true'
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions [Horoscope]"
           git add data/used_flora.json archives/horoscope/
-          git diff --cached --quiet || git commit -m "chore: horoscope $(date +%Y-%m-%d) — archive + flore [skip ci]"
-          git add docs/
-          git diff --cached --quiet || git commit -m "chore: horoscope $(date +%Y-%m-%d) — RSS"
-          git stash --include-untracked || true
-          git pull --rebase -X theirs origin main
-          git stash drop 2>/dev/null || true
-          git push
+          git add docs/audio/Horoscopes/
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: horoscope ${{ env.TARGET_DATE }} — archive + flore + RSS [skip ci]"
+            git stash --include-untracked || true
+            git pull --rebase -X theirs origin main
+            git stash drop 2>/dev/null || true
+            git push
+          else
+            echo "Aucun changement à commiter"
+          fi
 
       - name: ⏱️  Execution Time Summary
         run: |

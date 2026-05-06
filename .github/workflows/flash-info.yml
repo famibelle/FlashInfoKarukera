@@ -69,6 +69,10 @@ on:
         required: false
         default: true
 
+concurrency:
+  group: flash-info-${{ github.event.inputs.date || 'daily' }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -100,8 +104,41 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Installer les dépendances Python
         run: pip install -r requirements.txt
+
+      - name: Déterminer la date cible
+        id: target_date
+        run: |
+          DATE="${{ github.event.inputs.date }}"
+          if [ -z "$DATE" ]; then
+            DATE=$(date -u +%Y-%m-%d)
+          fi
+          echo "TARGET_DATE=$DATE" >> $GITHUB_ENV
+          echo "Date cible : $DATE"
+
+      - name: Vérifier si flash info existe déjà
+        id: check_flash
+        run: |
+          # Vérifier les différentes éditions possibles
+          FILE_MATIN="docs/audio/FlashInfo/flash-info-${{ env.TARGET_DATE }}-matin.mp3"
+          FILE_MIDI="docs/audio/FlashInfo/flash-info-${{ env.TARGET_DATE }}-midi.mp3"
+          FILE_SOIR="docs/audio/FlashInfo/flash-info-${{ env.TARGET_DATE }}-soir.mp3"
+          FILE_GENERIC="docs/audio/FlashInfo/flash-info-${{ env.TARGET_DATE }}.mp3"
+          
+          if [ -f "$FILE_MATIN" ] || [ -f "$FILE_MIDI" ] || [ -f "$FILE_SOIR" ] || [ -f "$FILE_GENERIC" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Préparer les arguments
         id: args
@@ -155,6 +192,7 @@ jobs:
           echo "Arguments : $ARGS"
 
       - name: Générer le flash info
+        if: steps.check_flash.outputs.exists != 'true'
         env:
           MISTRAL_API_KEY:          ${{ secrets.MISTRAL_API_KEY }}
           TELEGRAM_BOT_TOKEN:       ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -186,20 +224,25 @@ jobs:
         run: python -u flash-info-gwada.py ${{ env.FLASH_ARGS }}
 
       - name: 📁 Héberger les MP3 flash info dans docs/audio/
+        if: steps.check_flash.outputs.exists != 'true'
         run: python patch_podcast_audio.py flash-info
 
       - name: Sauvegarder l'anti-répétition et les archives
+        if: steps.check_flash.outputs.exists != 'true'
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions [Flash Info]"
           git add data/used_articles_*.json archives/flash-info/
-          git diff --cached --quiet || git commit -m "chore: flash info $(date +%Y-%m-%d) — archive + anti-répétition [skip ci]"
-          git add docs/
-          git diff --cached --quiet || git commit -m "chore: flash info $(date +%Y-%m-%d) — RSS"
-          git stash --include-untracked || true
-          git pull --rebase -X theirs origin main
-          git stash drop 2>/dev/null || true
-          git push
+          git add docs/audio/FlashInfo/
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: flash info ${{ env.TARGET_DATE }} — archive + anti-répétition + RSS [skip ci]"
+            git stash --include-untracked || true
+            git pull --rebase -X theirs origin main
+            git stash drop 2>/dev/null || true
+            git push
+          else
+            echo "Aucun changement à commiter"
+          fi
 
       - name: ⏱️  Execution Time Summary
         run: |
