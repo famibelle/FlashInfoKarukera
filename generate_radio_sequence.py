@@ -29,8 +29,10 @@ except ImportError:
     pass
 
 POOL_CACHE  = Path("playlists/music_pool_cache.json")
+PLAYLIST_ID_FILE = Path("playlists/playlist_24h_id.txt")
 PODCAST_XML = Path("docs/podcast.xml")
 OUTPUT      = Path("docs/radio_sequence.json")
+BROWSER_JSON = Path("browser.json")
 
 _verbose: bool = False
 
@@ -50,6 +52,52 @@ BLOCK_LABELS = {
     "midi":  "cet après-midi",
     "soir":  "ce soir",
 }
+
+
+# ── YouTube Music Integration ───────────────────────────────────────────────
+
+
+def _get_playlist_id() -> str | None:
+    """Récupère l'ID de la playlist 24h depuis fichier ou environnement."""
+    if PLAYLIST_ID_FILE.exists():
+        return PLAYLIST_ID_FILE.read_text().strip()
+    return os.getenv("YTMUSIC_PLAYLIST_24H_ID")
+
+
+def _fetch_youtube_playlist(playlist_id: str) -> list[dict] | None:
+    """Récupère les pistes depuis la playlist YouTube Music."""
+    if not BROWSER_JSON.exists():
+        print(f"   ⚠️  browser.json introuvable — impossible de fetch la playlist YouTube", file=sys.stderr)
+        return None
+    
+    try:
+        from ytmusicapi import YTMusic
+        yt = YTMusic(str(BROWSER_JSON))
+        playlist = yt.get_playlist(playlist_id, limit=500)
+        return playlist.get("tracks", [])
+    except Exception as e:
+        print(f"   ⚠️  Erreur fetch playlist YouTube : {e}", file=sys.stderr)
+        return None
+
+
+def _load_genre_cache() -> dict[str, dict]:
+    """Charge le cache pour le mapping videoId → genre, name, artist."""
+    if not POOL_CACHE.exists():
+        return {}
+    try:
+        data = json.loads(POOL_CACHE.read_text())
+        cache = {}
+        for t in data.get("tracks", []):
+            vid = t.get("videoId")
+            if vid:
+                cache[vid] = {
+                    "genre": t.get("genre", ""),
+                    "name": t.get("name", ""),
+                    "artist": t.get("artist", ""),
+                }
+        return cache
+    except Exception:
+        return {}
 
 
 # ── Nettoyage des fichiers audio anciens ─────────────────────────────────────
@@ -97,7 +145,67 @@ def _cleanup_old_audio(max_age_h: int = 48) -> int:
 
 # ── Pool musical ──────────────────────────────────────────────────────────────
 
-def load_pool(shuffle: bool = True) -> list[dict]:
+def load_pool(shuffle: bool = True, from_youtube: bool = True) -> list[dict]:
+    """
+    Charge le pool musical.
+    
+    Si from_youtube=True (défaut), essaie de récupérer les pistes depuis la playlist YouTube.
+    Sinon, utilise le cache local (ancien comportement).
+    
+    Les genres sont récupérés depuis le cache local pour enrichir les données YouTube.
+    """
+    # D'abord, charger le cache des genres
+    genre_cache = _load_genre_cache()
+    
+    if from_youtube:
+        # Essayer de récupérer depuis YouTube
+        playlist_id = _get_playlist_id()
+        if playlist_id:
+            yt_tracks = _fetch_youtube_playlist(playlist_id)
+            if yt_tracks:
+                pool = []
+                for track in yt_tracks:
+                    if not track:
+                        continue
+                    video_id = track.get("videoId")
+                    if not video_id:
+                        continue
+                    
+                    # Extraire les infos de YouTube
+                    title = track.get("title", "")
+                    artists = track.get("artists", [{"name": ""}])
+                    artist = ", ".join(a.get("name", "") for a in artists if a.get("name"))
+                    duration = track.get("duration_seconds") or track.get("duration", 0)
+                    
+                    # Enrichir avec le cache local (genre principalement)
+                    cached = genre_cache.get(video_id, {})
+                    genre = cached.get("genre", "")
+                    # Utiliser les infos du cache si plus complètes
+                    if cached.get("name"):
+                        title = cached["name"]
+                    if cached.get("artist"):
+                        artist = cached["artist"]
+                    if cached.get("duration"):
+                        duration = cached["duration"]
+                    
+                    pool.append({
+                        "videoId": video_id,
+                        "duration": duration,
+                        "genre": genre,
+                        "name": title,
+                        "artist": artist,
+                    })
+                
+                if pool:
+                    print(f"   ✅ Pool chargé depuis YouTube : {len(pool)} pistes")
+                    if shuffle:
+                        random.shuffle(pool)
+                    return pool
+        
+        # Fallback si YouTube échoue
+        print(f"   ⚠️  YouTube indisponible — utilisation du cache local", file=sys.stderr)
+    
+    # Ancien comportement : lecture du cache
     if not POOL_CACHE.exists():
         return []
     data = json.loads(POOL_CACHE.read_text())
@@ -402,6 +510,8 @@ def main() -> None:
                         help="Génère uniquement les liners pour la journée (matin/midi/soir)")
     parser.add_argument("--generate-capsules-only", action="store_true",
                         help="Génère uniquement les capsules culturelles pour la journée")
+    parser.add_argument("--from-cache", action="store_true",
+                        help="Utilise le cache local au lieu de fetch la playlist YouTube")
     args = parser.parse_args()
 
     global _verbose
@@ -409,7 +519,7 @@ def main() -> None:
 
     # ── --pool ────────────────────────────────────────────────────────────────
     if args.pool:
-        pool = load_pool()
+        pool = load_pool(from_youtube=not args.from_cache)
         print(f"Pool musical : {len(pool)} pistes")
         genres: dict[str, int] = {}
         for t in pool:
@@ -531,7 +641,7 @@ def main() -> None:
     if args.generate_liners_only:
         print("🎙️  Génération des liners pour tous les blocs...")
         # Charger le pool SANS shuffle pour une répartition déterministe
-        pool = load_pool(shuffle=False)
+        pool = load_pool(shuffle=False, from_youtube=not args.from_cache)
         if not pool:
             print("  ⚠️  Pool vide — impossible de générer les liners")
             return
@@ -587,7 +697,7 @@ def main() -> None:
     if deleted:
         print(f"🧹 {deleted} fichier(s) audio supprimé(s) (> 48h)", flush=True)
 
-    pool  = load_pool()
+    pool  = load_pool(from_youtube=not args.from_cache)
     slots = load_transitions()
 
     if not pool:

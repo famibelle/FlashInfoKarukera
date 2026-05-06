@@ -244,6 +244,7 @@ jobs:
           echo "browser.json: $(test -f browser.json && echo '✅ EXISTS' || echo '❌ MISSING')"
           echo "docs/podcast.xml: $(test -f docs/podcast.xml && echo '✅ EXISTS' || echo '❌ MISSING')"
           echo "playlists/ dir: $(test -d playlists && echo '✅ EXISTS' || echo '❌ MISSING')"
+          echo "playlists/playlist_24h_id.txt: $(test -f playlists/playlist_24h_id.txt && echo '✅ EXISTS' || echo '❌ MISSING')"
           echo "playlists/music_pool_cache.json: $(test -f playlists/music_pool_cache.json && echo '✅ EXISTS' || echo '❌ MISSING')"
           echo "=== END DIAGNOSTIC ==="
 
