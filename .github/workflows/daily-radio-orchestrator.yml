@@ -62,7 +62,7 @@ jobs:
           REPO: ${{ github.repository }}
           VERBOSE: ${{ github.event.inputs.verbose }}
         run: |
-          RUN_ID=$(gh workflow run horoscope-daily.yml --repo "$REPO" --field verbose=${VERBOSE:-false} | tail -1 | jq -r '.databaseId')
+          RUN_ID=$(gh workflow run horoscope-daily.yml --repo "$REPO" --field verbose=${VERBOSE:-false} 2>&1 | grep '^{' | jq -r '.databaseId')
           sleep 8
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
@@ -94,7 +94,7 @@ jobs:
           REPO: ${{ github.repository }}
           VERBOSE: ${{ github.event.inputs.verbose }}
         run: |
-          RUN_ID=$(gh workflow run flash-info.yml --repo "$REPO" --field verbose=${VERBOSE:-false} | tail -1 | jq -r '.databaseId')
+          RUN_ID=$(gh workflow run flash-info.yml --repo "$REPO" --field verbose=${VERBOSE:-false} 2>&1 | grep '^{' | jq -r '.databaseId')
           sleep 8
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
@@ -125,7 +125,7 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
         run: |
-          RUN_ID=$(gh workflow run capsules-daily.yml --repo "$REPO" | tail -1 | jq -r '.databaseId')
+          RUN_ID=$(gh workflow run capsules-daily.yml --repo "$REPO" 2>&1 | grep '^{' | jq -r '.databaseId')
           sleep 8
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
@@ -157,7 +157,7 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
         run: |
-          RUN_ID=$(gh workflow run emission-daily.yml --repo "$REPO" | tail -1 | jq -r '.databaseId')
+          RUN_ID=$(gh workflow run emission-daily.yml --repo "$REPO" 2>&1 | grep '^{' | jq -r '.databaseId')
           sleep 8
           gh run watch "$RUN_ID" --interval 20 --repo "$REPO" || true
 
@@ -196,7 +196,7 @@ jobs:
           if [ "${{ github.event.inputs.skip_liners }}" = "true" ]; then
             INPUTS="$INPUTS -f skip_liners=true"
           fi
-          RUN_ID=$(gh workflow run botiran-radio-daily.yml --repo "$REPO" $INPUTS | tail -1 | jq -r '.databaseId')
+          RUN_ID=$(gh workflow run botiran-radio-daily.yml --repo "$REPO" $INPUTS 2>&1 | grep '^{' | jq -r '.databaseId')
           sleep 8
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
