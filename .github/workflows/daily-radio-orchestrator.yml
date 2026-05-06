@@ -57,9 +57,8 @@ jobs:
           REPO: ${{ github.repository }}
           VERBOSE: ${{ github.event.inputs.verbose }}
         run: |
-          gh workflow run horoscope-daily.yml --repo "$REPO" --field verbose=${VERBOSE:-false}
+          RUN_ID=$(gh workflow run horoscope-daily.yml --repo "$REPO" --field verbose=${VERBOSE:-false} --json databaseId --jq '.databaseId')
           sleep 8
-          RUN_ID=$(gh run list --workflow=horoscope-daily.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
       - name: ⏱️  Execution Time Summary
@@ -90,9 +89,8 @@ jobs:
           REPO: ${{ github.repository }}
           VERBOSE: ${{ github.event.inputs.verbose }}
         run: |
-          gh workflow run flash-info.yml --repo "$REPO" --field verbose=${VERBOSE:-false}
+          RUN_ID=$(gh workflow run flash-info.yml --repo "$REPO" --field verbose=${VERBOSE:-false} --json databaseId --jq '.databaseId')
           sleep 8
-          RUN_ID=$(gh run list --workflow=flash-info.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
       - name: ⏱️  Execution Time Summary
@@ -122,9 +120,8 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
         run: |
-          gh workflow run capsules-daily.yml --repo "$REPO"
+          RUN_ID=$(gh workflow run capsules-daily.yml --repo "$REPO" --json databaseId --jq '.databaseId')
           sleep 8
-          RUN_ID=$(gh run list --workflow=capsules-daily.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
       - name: ⏱️  Execution Time Summary
@@ -155,9 +152,8 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
         run: |
-          gh workflow run emission-daily.yml --repo "$REPO"
+          RUN_ID=$(gh workflow run emission-daily.yml --repo "$REPO" --json databaseId --jq '.databaseId')
           sleep 8
-          RUN_ID=$(gh run list --workflow=emission-daily.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --repo "$REPO" || true
 
       - name: ⏱️  Execution Time Summary
@@ -187,9 +183,8 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
         run: |
-          gh workflow run botiran-radio-daily.yml --repo "$REPO"
+          RUN_ID=$(gh workflow run botiran-radio-daily.yml --repo "$REPO" --json databaseId --jq '.databaseId')
           sleep 8
-          RUN_ID=$(gh run list --workflow=botiran-radio-daily.yml --repo "$REPO" --limit 1 --json databaseId --jq '.[0].databaseId')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
       - name: ⏱️  Execution Time Summary
