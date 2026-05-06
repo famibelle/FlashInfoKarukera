@@ -30,9 +30,9 @@
     }
 
     .artwork {
-      width: 120px;
-      height: 120px;
-      border-radius: 16px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
       object-fit: cover;
       margin-bottom: 1.5rem;
       box-shadow: 0 8px 32px rgba(0,0,0,0.5);
@@ -168,9 +168,15 @@
 </head>
 <body>
   <div class="card">
-    <img src="artwork.jpg" alt="Botiran" class="artwork">
+    <img src="Media/banniere_lyannaj.png" alt="Botiran" class="artwork">
     <h1>Botiran</h1>
     <p class="tagline">Flash info et horoscope de la Guadeloupe<br>Matin, midi et soir — par Botiran</p>
+
+    <!-- ── Radio Karukera ──────────────────────────── -->
+    <iframe id="radio-frame" src="radio.html" scrolling="no" title="Radio Karukera"></iframe>
+    <!-- ── /Radio Karukera ─────────────────────────── -->
+
+    <hr class="divider">
 
     <iframe
       class="apple-embed"
@@ -181,12 +187,6 @@
       allow="autoplay *; encrypted-media *; clipboard-write"
       title="Apple Podcasts — L'actualité de la Guadeloupe">
     </iframe>
-
-    <hr class="divider">
-
-    <!-- ── Radio Karukera ──────────────────────────── -->
-    <iframe id="radio-frame" src="radio.html" scrolling="no" title="Radio Karukera"></iframe>
-    <!-- ── /Radio Karukera ─────────────────────────── -->
 
     <hr class="divider">
 
