@@ -14,6 +14,11 @@ on:
         type: boolean
         required: false
         default: false
+      skip_liners:
+        description: "Ne pas générer les fichiers audio des liners (TTS)"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -249,6 +254,9 @@ jobs:
           ARGS=""
           if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
             ARGS="--verbose"
+          fi
+          if [ "${{ github.event.inputs.skip_liners }}" = "true" ]; then
+            ARGS="$ARGS --skip-liners"
           fi
           python generate_radio_sequence.py $ARGS
 

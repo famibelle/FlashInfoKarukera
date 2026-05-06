@@ -37,6 +37,11 @@ on:
         type: boolean
         required: false
         default: true
+      skip_liners:
+        description: "🎙️ Skipper la génération audio des liners (TTS)"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -183,7 +188,15 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
         run: |
-          RUN_ID=$(gh workflow run botiran-radio-daily.yml --repo "$REPO" --json databaseId --jq '.databaseId')
+          # Préparer les inputs pour botiran-radio-daily.yml
+          INPUTS=""
+          if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
+            INPUTS="$INPUTS -f verbose=true"
+          fi
+          if [ "${{ github.event.inputs.skip_liners }}" = "true" ]; then
+            INPUTS="$INPUTS -f skip_liners=true"
+          fi
+          RUN_ID=$(gh workflow run botiran-radio-daily.yml --repo "$REPO" $INPUTS --json databaseId --jq '.databaseId')
           sleep 8
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
