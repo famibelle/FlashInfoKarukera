@@ -289,7 +289,10 @@
       padding: 0.45rem 0;
       border-bottom: 1px solid #1e2030;
       font-size: 0.84rem;
+      cursor: pointer;
+      transition: background 0.12s;
     }
+    .queue-item:hover { background: #252836; }
     .queue-item:last-child { border-bottom: none; }
 
     .qi-icon { font-size: 0.85rem; color: #444; flex-shrink: 0; }
@@ -641,8 +644,9 @@
     _renderQueue() {
       const subtypeIcons = { flash_info: '📰', horoscope: '✨', announcement: '🎙️' };
       const items = Array.from({ length: 5 }, (_, i) => this.seq[(this.pos + 1 + i) % this.seq.length]);
-      document.getElementById('queue-list').innerHTML = items.map(it => {
+      document.getElementById('queue-list').innerHTML = items.map((it, i) => {
         let icon, title, artist = '';
+        const targetIdx = (this.pos + 1 + i) % this.seq.length;
         if (it.type === 'music') {
           icon   = '🎵';
           title  = it.title  || '—';
@@ -657,7 +661,7 @@
           icon  = subtypeIcons[it.subtype] || '🎙️';
           title = it.label || 'Transition';
         }
-        return `<div class="queue-item">
+        return `<div class="queue-item" data-idx="${targetIdx}">
           <span class="qi-icon">${icon}</span>
           <div class="qi-info">
             <div class="qi-title">${title}</div>
@@ -665,6 +669,10 @@
           </div>
         </div>`;
       }).join('');
+      // Ajouter écouteurs clic sur les éléments de la queue
+      document.querySelectorAll('#queue-list .queue-item').forEach(row => {
+        row.addEventListener('click', () => this._playAt(parseInt(row.dataset.idx)));
+      });
       this._renderFullPlaylist();
     }
 
