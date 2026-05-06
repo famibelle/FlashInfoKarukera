@@ -140,18 +140,15 @@ jobs:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: python playlist_24h.py --no-flash --no-horoscope --no-announce
 
-      - name: ✅ Vérifier génération du pool musical
+      - name: ✅ Vérifier playlist_24h_id.txt
         run: |
-          if [ ! -f playlists/music_pool_cache.json ]; then
-            echo "❌ music_pool_cache.json NON GÉNÉRÉ"
+          if [ ! -f playlists/playlist_24h_id.txt ]; then
+            echo "❌ playlist_24h_id.txt NON GÉNÉRÉ"
             exit 1
           fi
-          SIZE=$(stat -c%s playlists/music_pool_cache.json)
-          TRACKS=$(jq '.tracks | length' playlists/music_pool_cache.json 2>/dev/null || echo "N/A")
-          echo "✅ Pool musical : $SIZE octets, $TRACKS pistes"
-          cat playlists/playlist_24h_id.txt
+          echo "✅ Playlist ID: $(cat playlists/playlist_24h_id.txt)"
 
-      - name: 📥 Archiver le contenu de la playlist
+      - name: 📥 Archiver la playlist YouTube
         env:
           YTMUSIC_PLAYLIST_24H_ID: ${{ secrets.YTMUSIC_PLAYLIST_24H_ID }}
         run: |
@@ -159,10 +156,7 @@ jobs:
           TIMESTAMP=$(date -u '+%Y-%m-%d_%H-%M')
           PL_ID=$(cat playlists/playlist_24h_id.txt)
           
-          # 1. Sauvegarder le pool musical
-          cp playlists/music_pool_cache.json archives/playlists/playlist_pool_${TIMESTAMP}.json
-          
-          # 2. Récupérer et sauvegarder la playlist YouTube Music
+          # Récupérer et sauvegarder la playlist YouTube Music
           python3 -c "
           from ytmusicapi import YTMusic
           import json, os
@@ -245,7 +239,6 @@ jobs:
           echo "docs/podcast.xml: $(test -f docs/podcast.xml && echo '✅ EXISTS' || echo '❌ MISSING')"
           echo "playlists/ dir: $(test -d playlists && echo '✅ EXISTS' || echo '❌ MISSING')"
           echo "playlists/playlist_24h_id.txt: $(test -f playlists/playlist_24h_id.txt && echo '✅ EXISTS' || echo '❌ MISSING')"
-          echo "playlists/music_pool_cache.json: $(test -f playlists/music_pool_cache.json && echo '✅ EXISTS' || echo '❌ MISSING')"
           echo "=== END DIAGNOSTIC ==="
 
       - name: 🎙️ Génération de la séquence radio
@@ -342,12 +335,11 @@ jobs:
         run: |
           echo "📦 Artefact playlist-caches téléchargé :"
           ls -la playlists/ || true
-          if [ ! -f playlists/music_pool_cache.json ]; then
-            echo "❌ music_pool_cache.json MANQUANT dans playlist-caches"
+          if [ ! -f playlists/playlist_24h_id.txt ]; then
+            echo "❌ playlist_24h_id.txt MANQUANT dans playlist-caches"
             exit 1
           fi
-          TRACKS=$(jq '.tracks | length' playlists/music_pool_cache.json 2>/dev/null || echo "N/A")
-          echo "✅ Pool musical téléchargé : $TRACKS pistes"
+          echo "✅ playlist_24h_id.txt téléchargé"
 
       - name: 📥 Download séquence radio
         uses: actions/download-artifact@v4
@@ -416,7 +408,6 @@ jobs:
       - name: 🔍 Vérifier fichiers avant commit
         run: |
           echo "=== FICHIERS À COMMITTER ==="
-          echo "playlists/music_pool_cache.json: $(test -f playlists/music_pool_cache.json && echo '✅' || echo '❌')"
           echo "playlists/playlist_24h_id.txt: $(test -f playlists/playlist_24h_id.txt && echo '✅' || echo '❌')"
           echo "docs/radio_sequence.json: $(test -f docs/radio_sequence.json && echo '✅' || echo '❌')"
           echo "docs/liners/: $(test -d docs/liners && echo '✅' || echo '❌')"
@@ -431,7 +422,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
           # Ajout de tous les fichiers nécessaires
-          git add playlists/music_pool_cache.json playlists/playlist_24h_id.txt docs/radio_sequence.json
+          git add playlists/playlist_24h_id.txt docs/radio_sequence.json
           [ -d docs/liners ]         && git add docs/liners/         || true
           [ -d docs/capsules ]       && git add docs/capsules/       || true
           [ -d docs/audio ]          && { git add docs/audio/; git add -u docs/audio/; } || true
@@ -463,7 +454,6 @@ jobs:
         if: success()
         run: |
           H24_ID=$(cat playlists/playlist_24h_id.txt 2>/dev/null || echo "")
-          POOL_TRACKS=$(jq '.tracks | length' playlists/music_pool_cache.json 2>/dev/null || echo "N/A")
           SEQ_ELEMENTS=$(jq '.sequence | length' docs/radio_sequence.json 2>/dev/null || echo "N/A")
           echo ""
           echo "╔══════════════════════════════════════════════════════╗"
@@ -473,7 +463,6 @@ jobs:
           echo "  🕐  $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           echo ""
           echo "  📊 STATISTIQUES :"
-          echo "     • Pool musical : $POOL_TRACKS pistes"
           echo "     • Séquence : $SEQ_ELEMENTS éléments"
           [ -n "$H24_ID" ] && echo "  🎵  Playlist 24h  → https://music.youtube.com/playlist?list=$H24_ID"
           echo "  📻  Séquence web  → https://famibelle.github.io/FlashInfoKarukera/radio.html"
@@ -500,7 +489,6 @@ jobs:
           echo "╚══════════════════════════════════════════════════════╝"
           echo ""
           echo "  🔍 DIAGNOSTIC FINAL :"
-          echo "  playlists/music_pool_cache.json: $(test -f playlists/music_pool_cache.json && echo '✅' || echo '❌ MISSING')"
           echo "  docs/radio_sequence.json: $(test -f docs/radio_sequence.json && echo '✅' || echo '❌ MISSING')"
           echo "  playlists/playlist_24h_id.txt: $(test -f playlists/playlist_24h_id.txt && echo '✅' || echo '❌ MISSING')"
           echo ""

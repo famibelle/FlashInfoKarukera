@@ -99,13 +99,7 @@ def resolve_music_pool(yt: YTMusic) -> list:
             else:
                 logger.warning(f"  ✗ [{genre}] {name} — {artist}")
 
-    # Sauvegarde simple sans cache temporel
-    POOL_CACHE_FILE.parent.mkdir(exist_ok=True)
-    POOL_CACHE_FILE.write_text(
-        json.dumps({"date": datetime.now().strftime("%Y-%m-%d"), "tracks": pool}, indent=2, ensure_ascii=False),
-        encoding="utf-8"
-    )
-    logger.info(f"Pool : {len(pool)} pistes résolues — sauvegardé")
+    logger.info(f"Pool : {len(pool)} pistes résolues")
     return pool
 
 
