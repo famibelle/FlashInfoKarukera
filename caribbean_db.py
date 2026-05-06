@@ -5,6 +5,8 @@ Genres : zouk, zouk_retro, gwoka, lewoz, kompa, chatta, bouillon, calypso, bigui
 Ordre : Par genre, puis par artiste (alphabétique), puis par popularité
 """
 
+from typing import Optional
+
 CARIBBEAN_TRACKS = {
     # =========================================================================
     # ZOUK (Guadeloupe/Martinique - moderne)
@@ -323,6 +325,7 @@ CARIBBEAN_TRACKS = {
         
         # Joelle Ursull (Variété / Zouk → zouk_retro)
         {"name": "Bwa bandé", "artists": ["Joelle Ursull"]},
+        {"name": "Miyel", "artists": ["Joelle Ursull"]},
         {"name": "Pou ki sa", "artists": ["Joelle Ursull"]},
         {"name": "White Love", "artists": ["Joelle Ursull"]},
         
@@ -799,3 +802,410 @@ BLOCK_GENRES = {
     "midday":  ["kompa", "zouk", "calypso", "dancehall"],      # Dynamique
     "evening": ["gwoka", "zouk", "kompa", "mazurka", "lewoz"], # Varié
 }
+
+
+# =========================================================================
+# FONCTIONS UTILITAIRES - Liste des artistes
+# =========================================================================
+
+def get_all_artists() -> set:
+    """Retourne l'ensemble de tous les artistes uniques dans la base."""
+    artists = set()
+    for genre, tracks in CARIBBEAN_TRACKS.items():
+        for track in tracks:
+            for artist in track.get("artists", []):
+                artists.add(artist)
+    return artists
+
+
+def get_artists_by_genre() -> dict:
+    """Retourne les artistes groupés par genre."""
+    artists_by_genre = {}
+    for genre, tracks in CARIBBEAN_TRACKS.items():
+        genre_artists = set()
+        for track in tracks:
+            for artist in track.get("artists", []):
+                genre_artists.add(artist)
+        artists_by_genre[genre] = sorted(genre_artists)
+    return artists_by_genre
+
+
+def print_artists(by_genre: bool = True) -> None:
+    """Affiche la liste des artistes en format lisible.
+    
+    Args:
+        by_genre: Si True, affiche groupé par genre. Sinon, liste plate.
+    """
+    if by_genre:
+        artists_by_genre = get_artists_by_genre()
+        total = 0
+        for genre, artists in sorted(artists_by_genre.items()):
+            count = len(artists)
+            total += count
+            print(f"\n{genre.upper()} ({count} artistes):")
+            for artist in artists:
+                print(f"  - {artist}")
+        print(f"\n{'='*50}")
+        print(f"Total: {total} artistes uniques")
+    else:
+        all_artists = sorted(get_all_artists())
+        print(f"\nTous les artistes ({len(all_artists)}):")
+        for i, artist in enumerate(all_artists, 1):
+            print(f"  {i:3d}. {artist}")
+
+
+def _detect_genre_from_search(artist_name: str, search_text: str) -> Optional[str]:
+    """Essaie de déduire le genre musical à partir du texte de recherche."""
+    genre_keywords = {
+        "zouk": ["zouk", "kassav", "zouk love", "zouk rétro"],
+        "zouk_retro": ["zouk", "kassav", "zouk love", "zouk rétro", "retro"],
+        "gwoka": ["gwoka", "ka", "tanbou", "lewoz"],
+        "kompa": ["kompa", "compas", "kompa direct"],
+        "biguine": ["biguine"],
+        "mazurka": ["mazurka"],
+        "calypso": ["calypso"],
+        "dancehall": ["dancehall", "ragga"],
+        "bouillon": ["bouillon"],
+        "chatta": ["chatta"],
+    }
+    
+    text_lower = search_text.lower()
+    artist_lower = artist_name.lower()
+    
+    for genre, keywords in genre_keywords.items():
+        if any(kw in text_lower for kw in keywords):
+            return genre
+        # Vérifier si l'artiste est connu dans ce genre
+        if artist_lower in text_lower and any(kw in text_lower for kw in keywords):
+            return genre
+    
+    return None
+
+
+def enrich_artist_from_web(artist_name: str, genre: Optional[str] = None, max_results: int = 10, dry_run: bool = True) -> list:
+    """Recherche les morceaux d'un artiste sur internet et propose de les ajouter.
+    
+    Args:
+        artist_name: Nom de l'artiste à enrichir
+        genre: Genre musical (None = déduction automatique via recherche web)
+        max_results: Nombre maximum de résultats à récupérer
+        dry_run: Si True, ne modifie pas la base, retourne juste les suggestions
+        
+    Returns:
+        Liste des morceaux trouvés et proposés
+    """
+    import re
+    from typing import Optional
+    
+    print(f"\n🔍 Recherche des morceaux pour: {artist_name}...")
+    
+    try:
+        import requests
+        from bs4 import BeautifulSoup
+        import json
+        
+        # Essayer MusicBrainz API en premier (gratuit, pas de clé requise)
+        def search_musicbrainz(artist):
+            from urllib.parse import quote
+            safe_artist = quote(artist)
+            
+            # Rechercher l'artiste
+            search_url = f"https://musicbrainz.org/ws/2/artist/?query=artist:{safe_artist}&fmt=json&limit=1"
+            headers = {"User-Agent": "FlashInfoKarukera/1.0 (medhi@famibelle.com)"}
+            try:
+                response = requests.get(search_url, headers=headers, timeout=10)
+                if response.status_code == 200:
+                    data = response.json()
+                    if data.get("artists"):
+                        first_artist = data["artists"][0]
+                        artist_id = first_artist.get("id")
+                        name = first_artist.get("name", artist)
+                        
+                        # Récupérer les tags de l'artiste pour déduire le genre
+                        tags_url = f"https://musicbrainz.org/ws/2/artist/{artist_id}?inc=tags&fmt=json"
+                        tags_resp = requests.get(tags_url, headers=headers, timeout=10)
+                        genre_hint = None
+                        if tags_resp.status_code == 200:
+                            tags_data = tags_resp.json()
+                            artist_tags = tags_data.get("tags", [])
+                            for tag in artist_tags:
+                                tag_name = tag.get("name", "").lower()
+                                if any(g in tag_name for g in ["zouk", "gwoka", "kompa", "biguine", "mazurka", "calypso", "dancehall", "bouillon", "chatta"]):
+                                    genre_hint = tag_name
+                                    break
+                        
+                        # Récupérer les recordings (morceaux) directement
+                        recordings_url = f"https://musicbrainz.org/ws/2/recording/?artist={artist_id}&fmt=json&limit=50"
+                        recordings_resp = requests.get(recordings_url, headers=headers, timeout=15)
+                        if recordings_resp.status_code == 200:
+                            recordings_data = recordings_resp.json()
+                            tracks = []
+                            for recording in recordings_data.get("recordings", [])[:20]:
+                                title = recording.get("title", "")
+                                if title and len(title) > 2:
+                                    # Nettoyer : supprimer le contenu entre parenthèses
+                                    title_clean = re.sub(r'\s*\([^)]*\)\s*', '', title).strip()
+                                    # Supprimer les versions/remixes
+                                    title_clean = re.sub(r'\s*[-(][^)]*remix[^)]*[)]*', '', title_clean, flags=re.IGNORECASE).strip()
+                                    if len(title_clean) > 2:
+                                        tracks.append(title_clean)
+                            if tracks:
+                                return tracks, name, genre_hint
+                        
+                        # Fallback: essayer les releases
+                        releases_url = f"https://musicbrainz.org/ws/2/release/?artist={artist_id}&fmt=json&limit=20"
+                        releases_resp = requests.get(releases_url, headers=headers, timeout=15)
+                        if releases_resp.status_code == 200:
+                            releases_data = releases_resp.json()
+                            tracks = []
+                            for release in releases_data.get("releases", [])[:10]:
+                                title = release.get("title", "")
+                                if title and len(title) > 2:
+                                    title_clean = re.sub(r'\s*\([^)]*\)\s*', '', title).strip()
+                                    if len(title_clean) > 2:
+                                        tracks.append(title_clean)
+                            if tracks:
+                                return tracks, name, genre_hint
+            except:
+                pass
+            return None, None
+        
+        # Essayer MusicBrainz
+        mb_result = search_musicbrainz(artist_name)
+        genre_hint = None
+        
+        if mb_result:
+            if isinstance(mb_result, tuple):
+                if len(mb_result) == 3:
+                    mb_tracks, mb_artist, genre_hint = mb_result
+                else:
+                    mb_tracks, mb_artist = mb_result
+                    genre_hint = None
+                if mb_tracks:
+                    # mb_tracks est une liste, pas besoin de parsing
+                    found_tracks = set(mb_tracks)
+                    artist_name = mb_artist
+                    print(f"🎵 Source: MusicBrainz")
+                    search_text = " "  # Dummy, ne sera pas utilisé
+                else:
+                    search_text = ""
+                    mb_tracks = None
+            else:
+                search_text = mb_result
+                mb_tracks = None
+        else:
+            search_text = ""
+            mb_tracks = None
+        
+        # Déduire le genre si non fourni, en utilisant le hint de MusicBrainz si disponible
+        if genre is None:
+            if genre_hint:
+                genre = genre_hint
+                print(f"🎵 Genre déduit: {genre} (via MusicBrainz)")
+            else:
+                detected_genre = _detect_genre_from_search(artist_name, search_text)
+                if detected_genre:
+                    genre = detected_genre
+                    print(f"🎵 Genre déduit: {genre}")
+                else:
+                    genre = "zouk_retro"
+                    print(f"⚠️ Genre non déduit, utilisation par défaut: {genre}")
+        
+        if mb_tracks is None:
+            # Essayer Wikipedia FR
+            def search_wikipedia(artist, lang="fr"):
+                url = f"https://{lang}.wikipedia.org/wiki/{artist.replace(' ', '_')}"
+                headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+                try:
+                    response = requests.get(url, headers=headers, timeout=10)
+                    if response.status_code == 200:
+                        soup = BeautifulSoup(response.text, 'html.parser')
+                        return soup.get_text(), soup
+                except:
+                    pass
+                return None, None
+            
+            # Essayer Wikipedia FR puis EN
+            wiki_content, wiki_soup = search_wikipedia(artist_name, "fr")
+            if not wiki_content:
+                wiki_content, wiki_soup = search_wikipedia(artist_name, "en")
+            
+            if wiki_content:
+                search_text = wiki_content
+                print("📚 Source: Wikipedia")
+            else:
+                # Recherche Google avec site:wikipedia.org
+                search_query = f"{artist_name} discography site:wikipedia.org OR site:fr.wikipedia.org"
+                url = f"https://www.google.com/search?q={search_query}"
+                headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+                response = requests.get(url, headers=headers, timeout=10)
+                soup = BeautifulSoup(response.text, 'html.parser')
+                search_text = soup.get_text()
+                print("🔍 Source: Google (recherche Wikipedia)")
+        
+        # Déduire le genre si non fourni
+        if genre is None:
+            detected_genre = _detect_genre_from_search(artist_name, search_text)
+            if detected_genre:
+                genre = detected_genre
+                print(f"🎵 Genre déduit: {genre}")
+            else:
+                genre = "zouk_retro"
+                print(f"⚠️ Genre non déduit, utilisation par défaut: {genre}")
+        
+        # Extraire les titres de chansons
+        # Si on a déjà des tracks de MusicBrainz, on ne fait pas de parsing supplémentaire
+        if 'found_tracks' not in locals() or not found_tracks:
+            found_tracks = set()
+            
+            # Utiliser des patterns plus précis pour éviter le bruit
+            artist_escaped = re.escape(artist_name)
+            track_patterns = [
+                # "Titre" - Artiste
+                rf'"([^"]+)"\s*[-\–]\s*{artist_escaped}',
+                # "Titre" par Artiste
+                rf'"([^"]+)"\s+par\s+{artist_escaped}',
+                # Titre - Artiste (sans guillemets)
+                rf'([A-Z][^\n:]+)\s*[-\–]\s*{artist_escaped}',
+                # Dans des listes : 1. "Titre"
+                rf'\d+[.)]\s*"([^"]+)"',
+                # "Titre" (sans artiste, mais ligne suivante contient artiste)
+                rf'"([^"]+)"',
+            ]
+            
+            for pattern in track_patterns:
+                matches = re.findall(pattern, search_text)
+                for match in matches:
+                    match = match.strip()
+                    # Nettoyer
+                    match = re.sub(r'\s+', ' ', match)
+                    # Filtrer les titres trop courts/trop longs
+                    if 3 <= len(match) <= 100:
+                        found_tracks.add(match)
+        
+        # Mots à exclure (pas des titres de chansons)
+        exclude_keywords = [
+            "n'est", "pas", "plus", "que", "qui", "pour", "avec", "sans", "dans",
+            "sur", "par", "est", "sont", "était", "sera",
+            "ce", "cette", "cet", "ces", "dont", "où",
+            "google", "wikipedia", "discographie", "morceau", "titre", "chanson",
+            "album", "single", "compilation", "année", "sorti", "sortie",
+            "label", "maison", "disque", "cd", "vinyle",
+            "unternehmen", "inhalte", "werden", "personalisierte", "daten", "nutzung",
+            "diese", "seite", "verwendet", "cookies",
+        ]
+        
+        filtered_tracks = []
+        for track in found_tracks:
+            track_lower = track.lower()
+            # Ne doit pas contenir de mots à exclure
+            has_exclude = any(kw in track_lower for kw in exclude_keywords)
+            # Ne doit pas être juste un nombre
+            is_number = bool(re.match(r'^\d+$', track.strip()))
+            # Doit avoir une longueur raisonnable
+            is_too_short = len(track) < 3
+            # Ne doit pas être une phrase trop longue
+            has_too_many_words = len(track.split()) > 8
+            
+            if not has_exclude and not is_number and not is_too_short and not has_too_many_words:
+                filtered_tracks.append(track)
+        
+        # Limiter aux premiers résultats
+        filtered_tracks = list(set(filtered_tracks))[:max_results]
+        
+        print(f"✅ Trouvé {len(filtered_tracks)} morceaux potentiels:")
+        for i, track in enumerate(filtered_tracks, 1):
+            print(f"  {i}. {track}")
+        
+        if not dry_run and filtered_tracks:
+            print(f"\n💾 Ajout à la base (genre: {genre}) ?")
+            print("  Tape 'y' pour tout ajouter, 'n' pour annuler, ou les numéros des morceaux à ajouter (ex: 1 3 5)")
+            choice = input("> ").strip().lower()
+            
+            if choice == 'y':
+                to_add = filtered_tracks
+            elif choice == 'n':
+                to_add = []
+            else:
+                # Parser les numéros
+                try:
+                    indices = [int(x) - 1 for x in choice.split() if x.isdigit()]
+                    to_add = [filtered_tracks[i] for i in indices if 0 <= i < len(filtered_tracks)]
+                except:
+                    to_add = []
+            
+            # Ajouter à la base
+            if to_add:
+                existing_tracks = [t["name"] for t in CARIBBEAN_TRACKS.get(genre, [])]
+                for track_name in to_add:
+                    if track_name not in existing_tracks:
+                        CARIBBEAN_TRACKS.setdefault(genre, []).append({
+                            "name": track_name,
+                            "artists": [artist_name]
+                        })
+                        print(f"  ✓ Ajouté: {track_name}")
+                    else:
+                        print(f"  ✗ Déjà présent: {track_name}")
+        
+        return filtered_tracks
+        
+    except ImportError:
+        print("⚠️  Installer les dépendances: pip install requests beautifulsoup4")
+        return []
+    except Exception as e:
+        print(f"❌ Erreur lors de la recherche: {e}")
+        return []
+
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(
+        description="Gestion de la base Caribbean DB — liste des artistes et enrichissement"
+    )
+    parser.add_argument(
+        "-f", "--flat",
+        action="store_true",
+        help="Affiche la liste plate de tous les artistes (sans regroupement par genre)"
+    )
+    parser.add_argument(
+        "-g", "--genre",
+        type=str,
+        help="Affiche uniquement les artistes d'un genre spécifique"
+    )
+    parser.add_argument(
+        "-e", "--enrich",
+        type=str,
+        metavar="ARTIST",
+        help="Recherche et ajoute les morceaux d'un artiste (ex: 'Joelle Ursull')"
+    )
+    parser.add_argument(
+        "--enrich-genre",
+        type=str,
+        default=None,
+        help="Genre pour l'enrichissement (par défaut: déduction automatique)"
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Mode test : affiche les résultats sans modifier la base"
+    )
+    args = parser.parse_args()
+    
+    # Mode enrichissement
+    if args.enrich:
+        enrich_artist_from_web(
+            artist_name=args.enrich,
+            genre=args.enrich_genre,
+            max_results=15,
+            dry_run=args.dry_run
+        )
+    elif args.genre:
+        artists_by_genre = get_artists_by_genre()
+        if args.genre in artists_by_genre:
+            print(f"\n{args.genre.upper()} ({len(artists_by_genre[args.genre])} artistes):")
+            for artist in artists_by_genre[args.genre]:
+                print(f"  - {artist}")
+        else:
+            print(f"Genre '{args.genre}' non trouvé. Genres disponibles: {', '.join(sorted(artists_by_genre.keys()))}")
+    else:
+        print_artists(by_genre=not args.flat)

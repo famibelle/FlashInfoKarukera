@@ -81,6 +81,7 @@ PRONONCIATIONS_LOCALES = {
     "Webert Sicot": "Webert Sicot",
     "Socrat": "Socrat",
     "Gilles Floro": "Gilles Floro",
+    "Joelle Ursull": "Joëlle Ursull",
     
     "Vieux-Habitants": "Vieux Zabitan",
     "Vieux Habitants":  "Vieux Zabitan",

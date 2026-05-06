@@ -497,7 +497,15 @@ def _update_podcast_xml(mp3_path: Path) -> None:
         return
 
     today = date.today()
+    guid = f'emission-{today.isoformat()}'
     mp3_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/{mp3_path.name}"
+    
+    # Vérifier si cette émission existe déjà
+    existing_content = PODCAST_PATH.read_text(encoding='utf-8')
+    if f'<guid>{guid}</guid>' in existing_content or mp3_url in existing_content:
+        print(f"⚠️  Émission {guid} déjà dans podcast.xml, ignorée")
+        return
+
     mp3_size = mp3_path.stat().st_size
     pub_date = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
 
