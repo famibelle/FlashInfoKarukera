@@ -49,82 +49,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Footer & Share buttons */
-    .footer {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
-      padding: 1rem;
-      max-width: 500px;
-      width: 100%;
-    }
-
-    .rss-link {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      color: #f26522;
-      font-size: 0.82rem;
-      font-weight: 500;
-      transition: opacity 0.15s;
-    }
-    .rss-link:hover { opacity: 0.75; }
-
-    .rss-icon { width: 16px; height: 16px; flex-shrink: 0; }
-
-    .badge {
-      display: inline-block;
-      background: #1e3a2f;
-      color: #4ade80;
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 20px;
-      margin-left: 0.5rem;
-      vertical-align: middle;
-    }
-
-    .share-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      background: #252836;
-      border: 1px solid #333646;
-      border-radius: 8px;
-      padding: 0.45rem 0.75rem;
-      color: #b0b4cc;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
-      text-decoration: none;
-    }
-
-    .share-btn:hover {
-      background: #2e3245;
-      color: #e8e8e8;
-      border-color: #444;
-    }
-
-    .share-btn:active {
-      transform: scale(0.95);
-    }
-
-    .share-icon {
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-
-    .share-text {
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
     .live-dot {
       width: 9px;
       height: 9px;
@@ -925,55 +849,6 @@
 
   // Mode embarqué : retire fond et padding quand chargé dans un iframe
   if (window.self !== window.top) document.body.classList.add('embedded');
-
-  // ── Share buttons ─────────────────────────────────────────────────
-  const shareText = encodeURIComponent('Écoutez Radio Karukera — la radio de la diaspora au Luxembourg 🎶🐚');
-  const shareUrl = encodeURIComponent(window.location.href);
-
-  document.getElementById('share-twitter').addEventListener('click', () => {
-    window.open(`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`, '_blank', 'width=550,height=420');
-  });
-
-  document.getElementById('share-facebook').addEventListener('click', () => {
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${shareText}`, '_blank', 'width=600,height=400');
-  });
-
-  document.getElementById('share-whatsapp').addEventListener('click', () => {
-    window.open(`https://wa.me/?text=${shareText} ${shareUrl}`, '_blank', 'width=600,height=400');
-  });
-
-  document.getElementById('share-linkedin').addEventListener('click', () => {
-    window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${shareText}`, '_blank', 'width=600,height=400');
-  });
   </script>
-
-  <!-- ── Footer ────────────────────────────────────────── -->
-  <div class="footer">
-    <a href="podcast.xml" class="rss-link">
-      <svg class="rss-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 3a1 1 0 0 0 0 2c8.837 0 16 7.163 16 16a1 1 0 1 0 2 0C21 11.058 12.942 3 3 3zm0 6a1 1 0 0 0 0 2c5.514 0 10 4.486 10 10a1 1 0 1 0 2 0c0-6.617-5.383-12-12-12zm1 9a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
-      </svg>
-      Flux RSS Podcast <span class="badge">LIVE</span>
-    </a>
-    <div style="display: flex; gap: 0.75rem;">
-      <a class="share-btn" id="share-twitter" target="_blank" rel="noopener">
-        <span class="share-icon">🐦</span>
-        <span class="share-text">X</span>
-      </a>
-      <a class="share-btn" id="share-facebook" target="_blank" rel="noopener">
-        <span class="share-icon">👍</span>
-        <span class="share-text">FB</span>
-      </a>
-      <a class="share-btn" id="share-whatsapp" target="_blank" rel="noopener">
-        <span class="share-icon">💬</span>
-        <span class="share-text">WA</span>
-      </a>
-      <a class="share-btn" id="share-linkedin" target="_blank" rel="noopener">
-        <span class="share-icon">💼</span>
-        <span class="share-text">IN</span>
-      </a>
-    </div>
-    <span>© Botiran — Karukera</span>
-  </div>
 </body>
 </html>
