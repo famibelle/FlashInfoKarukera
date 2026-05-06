@@ -6,13 +6,111 @@ Usage:
     python show_playlist.py
     python show_playlist.py --json    # Affiche le JSON brut
     python show_playlist.py --stats   # Statistiques seulement
+    python show_playlist.py --url "https://music.youtube.com/playlist?list=PL..."  # YouTube playlist
 """
 
 import argparse
 import json
+import re
 from pathlib import Path
+from ytmusicapi import YTMusic
 
 SEQUENCE_PATH = Path("docs/radio_sequence.json")
+BROWSER_JSON = Path("browser.json")
+
+
+def extract_playlist_id(url: str) -> str | None:
+    """Extrait l'ID de playlist d'une URL YouTube Music."""
+    # Match https://music.youtube.com/playlist?list=PLwzi3ZXU6pu-M_41dNvTNOXTtz14uv8Rn
+    match = re.search(r'(?:list=|/playlist/)([a-zA-Z0-9_-]{11,})', url)
+    return match.group(1) if match else None
+
+
+def fetch_youtube_playlist(playlist_id: str, browser_path: Path = BROWSER_JSON) -> dict | None:
+    """Récupère une playlist YouTube Music via l'API."""
+    if not browser_path.exists():
+        print(f"❌ Fichier browser.json introuvable : {browser_path}")
+        print("   Nécessaire pour l'authentification YouTube Music API")
+        return None
+    
+    try:
+        yt = YTMusic(str(browser_path))
+        playlist = yt.get_playlist(playlist_id, limit=500)
+        return playlist
+    except Exception as e:
+        print(f"❌ Erreur lors de la récupération de la playlist : {e}")
+        return None
+
+
+def display_youtube_playlist(playlist: dict, use_colors: bool = True) -> None:
+    """Affiche une playlist YouTube Music."""
+    tracks = playlist.get("tracks", [])
+    title = playlist.get("title", "Playlist YouTube")
+    author = playlist.get("author", {}).get("name", "Inconnu")
+    track_count = playlist.get("trackCount", len(tracks))
+    duration = playlist.get("duration", "")
+    
+    color = COLORS["music"] if use_colors else ""
+    reset = COLORS["reset"] if use_colors else ""
+    
+    print(f"\n{'=' * 80}")
+    print(f"{color}🎵 PLAYLIST YOUTUBE MUSIC — {title}{reset}")
+    print(f"{color}Par : {author} | {track_count} pistes | Durée : {duration}{reset}")
+    print(f"{'=' * 80}\n")
+    
+    for i, track in enumerate(tracks, 1):
+        if not track:
+            continue
+        
+        video_title = track.get("title", "Inconnu")
+        artists = track.get("artists", [{"name": "Inconnu"}])
+        artist_names = ", ".join(a.get("name", "") for a in artists if a)
+        duration_str = track.get("duration", "--:--")
+        
+        # Convertir durée ISO en mm:ss si nécessaire
+        if duration_str and ":" in duration_str and not duration_str.startswith("PT"):
+            pass  # déjà au format mm:ss ou hh:mm:ss
+        elif duration_str and duration_str.startswith("PT"):
+            # Convertir ISO 8601 duration
+            duration_str = format_iso_duration(duration_str)
+        
+        print(f"{color}{i:3d}. {video_title} — {artist_names} ({duration_str}){reset}")
+    
+    print(f"\n{'=' * 80}\n")
+
+
+def format_iso_duration(iso_duration: str) -> str:
+    """Convertit une durée ISO 8601 (PT...H...M...S) en mm:ss."""
+    import re
+    try:
+        # Parser manuellement PT#H#M#S
+        match = re.match(r'^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$', iso_duration)
+        if match:
+            hours = int(match.group(1) or 0)
+            minutes = int(match.group(2) or 0)
+            seconds = int(match.group(3) or 0)
+            total_seconds = hours * 3600 + minutes * 60 + seconds
+            return format_duration(total_seconds)
+        return "--:--"
+    except:
+        return "--:--"
+
+
+def display_youtube_stats(playlist: dict) -> None:
+    """Affiche les statistiques d'une playlist YouTube."""
+    tracks = playlist.get("tracks", [])
+    title = playlist.get("title", "Playlist YouTube")
+    author = playlist.get("author", {}).get("name", "Inconnu")
+    track_count = playlist.get("trackCount", len(tracks))
+    
+    print("\n" + "=" * 60)
+    print("📊 STATISTIQUES DE LA PLAYLIST YOUTUBE")
+    print("=" * 60)
+    print(f"Titre : {title}")
+    print(f"Auteur : {author}")
+    print(f"Nombre de pistes : {track_count}")
+    print("=" * 60 + "\n")
+
 
 # Couleurs ANSI pour un affichage plus lisible
 COLORS = {
@@ -135,8 +233,35 @@ def main() -> None:
     parser.add_argument("--no-colors", action="store_true", help="Désactive les couleurs")
     parser.add_argument("--sequence", metavar="FICHIER", 
                         help="Chemin vers radio_sequence.json (défaut: docs/radio_sequence.json)")
+    parser.add_argument("--url", metavar="URL", 
+                        help="URL d'une playlist YouTube Music (ex: https://music.youtube.com/playlist?list=PL...)")
+    parser.add_argument("--browser", metavar="FICHIER", 
+                        help="Chemin vers browser.json (défaut: browser.json)")
     args = parser.parse_args()
     
+    # Mode YouTube playlist
+    if args.url:
+        playlist_id = extract_playlist_id(args.url)
+        if not playlist_id:
+            print(f"❌ URL invalide : {args.url}")
+            print("   Format attendu : https://music.youtube.com/playlist?list=PL...")
+            return
+        
+        browser_path = Path(args.browser) if args.browser else BROWSER_JSON
+        playlist = fetch_youtube_playlist(playlist_id, browser_path)
+        
+        if not playlist:
+            return
+        
+        if args.json:
+            print(json.dumps(playlist, indent=2, ensure_ascii=False))
+        elif args.stats:
+            display_youtube_stats(playlist)
+        else:
+            display_youtube_playlist(playlist, use_colors=not args.no_colors)
+        return
+    
+    # Mode local (radio_sequence.json)
     sequence_path = Path(args.sequence) if args.sequence else SEQUENCE_PATH
     
     if not sequence_path.exists():
