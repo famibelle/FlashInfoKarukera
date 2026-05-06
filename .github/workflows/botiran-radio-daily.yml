@@ -429,14 +429,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Ajouter tous les fichiers à commiter (youtube_cache.json est dans .gitignore)
+          # Ajout de tous les fichiers nécessaires
           git add playlists/music_pool_cache.json playlists/playlist_24h_id.txt docs/radio_sequence.json
           [ -d docs/liners ]         && git add docs/liners/         || true
           [ -d docs/capsules ]       && git add docs/capsules/       || true
           [ -d docs/audio ]          && { git add docs/audio/; git add -u docs/audio/; } || true
-          [ -d archives/playlists ]  && git add archives/playlists/  || true
+          [ -d archives ]            && git add archives/           || true
           
-          # Vérifier s'il y a des changements
+          # Vérification des changements
           if git diff --cached --quiet; then
             echo "ℹ️  Aucune modification à committer"
             exit 0
@@ -445,18 +445,18 @@ jobs:
           echo "📝 Fichiers staged :"
           git diff --cached --name-only
           
-          # Stocker les changements avant pull
-          git stash push --include-untracked
-          
-          # Pull avec résolution automatique (stratégie 'theirs' = garde les changements locaux)
-          git pull --no-rebase --strategy-option theirs origin main
-          
-          # Réappliquer les changements
-          git stash pop
-          
-          # Commit
-          git commit -m "chore: update radio sequence & caches [skip ci]"
+          # Commit sans stash (évite les conflits)
+          git commit -m "chore: update radio sequence & caches [skip ci]" --no-edit
           git push
+
+      - name: ✅ Vérifier commit
+        run: |
+          git fetch origin
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+            echo "❌ Push a échoué"
+            exit 1
+          fi
+          echo "✅ Commit poussé avec succès"
 
       - name: ✅ Résumé final
         if: success()
