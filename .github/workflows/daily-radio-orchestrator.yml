@@ -62,8 +62,9 @@ jobs:
           REPO: ${{ github.repository }}
           VERBOSE: ${{ github.event.inputs.verbose }}
         run: |
-          RUN_ID=$(gh workflow run horoscope-daily.yml --repo "$REPO" --field verbose=${VERBOSE:-false} 2>&1 | grep '^{' | jq -r '.id')
-          sleep 8
+          gh workflow run horoscope-daily.yml --repo "$REPO" --field verbose=${VERBOSE:-false}
+          sleep 15
+          RUN_ID=$(gh run list --workflow horoscope-daily.yml --limit 1 --json id --jq '.[0].id')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
       - name: ⏱️  Execution Time Summary
@@ -94,8 +95,9 @@ jobs:
           REPO: ${{ github.repository }}
           VERBOSE: ${{ github.event.inputs.verbose }}
         run: |
-          RUN_ID=$(gh workflow run flash-info.yml --repo "$REPO" --field verbose=${VERBOSE:-false} 2>&1 | grep '^{' | jq -r '.id')
-          sleep 8
+          gh workflow run flash-info.yml --repo "$REPO" --field verbose=${VERBOSE:-false}
+          sleep 15
+          RUN_ID=$(gh run list --workflow flash-info.yml --limit 1 --json id --jq '.[0].id')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
       - name: ⏱️  Execution Time Summary
@@ -125,8 +127,9 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
         run: |
-          RUN_ID=$(gh workflow run capsules-daily.yml --repo "$REPO" 2>&1 | grep '^{' | jq -r '.id')
-          sleep 8
+          gh workflow run capsules-daily.yml --repo "$REPO"
+          sleep 15
+          RUN_ID=$(gh run list --workflow capsules-daily.yml --limit 1 --json id --jq '.[0].id')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
       - name: ⏱️  Execution Time Summary
@@ -157,8 +160,9 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
         run: |
-          RUN_ID=$(gh workflow run emission-daily.yml --repo "$REPO" 2>&1 | grep '^{' | jq -r '.id')
-          sleep 8
+          gh workflow run emission-daily.yml --repo "$REPO"
+          sleep 15
+          RUN_ID=$(gh run list --workflow emission-daily.yml --limit 1 --json id --jq '.[0].id')
           gh run watch "$RUN_ID" --interval 20 --repo "$REPO" || true
 
       - name: ⏱️  Execution Time Summary
@@ -196,8 +200,9 @@ jobs:
           if [ "${{ github.event.inputs.skip_liners }}" = "true" ]; then
             INPUTS="$INPUTS -f skip_liners=true"
           fi
-          RUN_ID=$(gh workflow run botiran-radio-daily.yml --repo "$REPO" $INPUTS 2>&1 | grep '^{' | jq -r '.id')
-          sleep 8
+          gh workflow run botiran-radio-daily.yml --repo "$REPO" $INPUTS
+          sleep 15
+          RUN_ID=$(gh run list --workflow botiran-radio-daily.yml --limit 1 --json id --jq '.[0].id')
           gh run watch "$RUN_ID" --interval 20 --exit-status --repo "$REPO"
 
       - name: ⏱️  Execution Time Summary
