@@ -41,9 +41,43 @@ def fetch_youtube_playlist(playlist_id: str, browser_path: Path = BROWSER_JSON) 
     try:
         yt = YTMusic(str(browser_path))
         playlist = yt.get_playlist(playlist_id, limit=500)
+        # Ajouter la date de publication depuis YouTube Data API si disponible
+        try:
+            playlist['publishedAt'] = get_playlist_published_at(playlist_id)
+        except Exception:
+            pass  # Ne pas échouer si l'API YouTube Data n'est pas disponible
         return playlist
     except Exception as e:
         print(f"❌ Erreur lors de la récupération de la playlist : {e}")
+        return None
+
+
+def get_playlist_published_at(playlist_id: str) -> str | None:
+    """Récupère la date de publication/modification de la playlist via YouTube Data API."""
+    from google.oauth2.credentials import Credentials
+    from googleapiclient.discovery import build
+    from pathlib import Path
+    
+    youtube_token_path = Path("youtube_token.json")
+    if not youtube_token_path.exists():
+        return None
+    
+    try:
+        import json
+        with open(youtube_token_path) as f:
+            token_data = json.load(f)
+        creds = Credentials.from_authorized_user_info(token_data)
+        youtube = build('youtube', 'v3', credentials=creds)
+        
+        pl_resp = youtube.playlists().list(
+            part='snippet',
+            id=playlist_id
+        ).execute()
+        
+        if pl_resp.get('items'):
+            return pl_resp['items'][0]['snippet'].get('publishedAt')
+        return None
+    except Exception:
         return None
 
 
@@ -56,19 +90,29 @@ def display_youtube_playlist(playlist: dict, use_colors: bool = True) -> None:
     track_count = playlist.get("trackCount", len(tracks))
     duration = playlist.get("duration", "")
     playlist_id = playlist.get("id", "")
+    published_at = playlist.get("publishedAt")
     
     color = COLORS["music"] if use_colors else ""
     reset = COLORS["reset"] if use_colors else ""
     
     url = f"https://music.youtube.com/playlist?list={playlist_id}"
-    retrieved_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    # Formater la date de publication
+    published_str = ""
+    if published_at:
+        try:
+            dt = datetime.fromisoformat(published_at.replace("Z", "+00:00"))
+            published_str = f"Modifiée le : {dt.strftime('%Y-%m-%d %H:%M:%S')}"
+        except:
+            published_str = f"Modifiée le : {published_at}"
     
     print(f"\n{'=' * 80}")
     print(f"{color}🎵 PLAYLIST YOUTUBE MUSIC — {title}{reset}")
     print(f"{color}Par : {author}{reset}")
     print(f"{color}Pistes : {track_count} | Durée : {duration}{reset}")
     print(f"{color}Lien : {url}{reset}")
-    print(f"{color}Récupéré le : {retrieved_at}{reset}")
+    if published_str:
+        print(f"{color}{published_str}{reset}")
     print(f"{'=' * 80}\n")
     
     for i, track in enumerate(tracks, 1):
@@ -117,9 +161,18 @@ def display_youtube_stats(playlist: dict) -> None:
     author = playlist.get("author", {}).get("name", "Inconnu")
     track_count = playlist.get("trackCount", len(tracks))
     playlist_id = playlist.get("id", "")
+    published_at = playlist.get("publishedAt")
     
     url = f"https://music.youtube.com/playlist?list={playlist_id}"
-    retrieved_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    # Formater la date de publication
+    published_str = ""
+    if published_at:
+        try:
+            dt = datetime.fromisoformat(published_at.replace("Z", "+00:00"))
+            published_str = f"Modifiée le : {dt.strftime('%Y-%m-%d %H:%M:%S')}"
+        except:
+            published_str = f"Modifiée le : {published_at}"
     
     print("\n" + "=" * 60)
     print("📊 STATISTIQUES DE LA PLAYLIST YOUTUBE")
@@ -128,7 +181,8 @@ def display_youtube_stats(playlist: dict) -> None:
     print(f"Auteur : {author}")
     print(f"Nombre de pistes : {track_count}")
     print(f"Lien : {url}")
-    print(f"Récupéré le : {retrieved_at}")
+    if published_str:
+        print(f"{published_str}")
     print("=" * 60 + "\n")
 
 
