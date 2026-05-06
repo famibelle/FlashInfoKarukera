@@ -49,18 +49,26 @@ def fetch_youtube_playlist(playlist_id: str, browser_path: Path = BROWSER_JSON) 
 
 def display_youtube_playlist(playlist: dict, use_colors: bool = True) -> None:
     """Affiche une playlist YouTube Music."""
+    from datetime import datetime
     tracks = playlist.get("tracks", [])
     title = playlist.get("title", "Playlist YouTube")
     author = playlist.get("author", {}).get("name", "Inconnu")
     track_count = playlist.get("trackCount", len(tracks))
     duration = playlist.get("duration", "")
+    playlist_id = playlist.get("id", "")
     
     color = COLORS["music"] if use_colors else ""
     reset = COLORS["reset"] if use_colors else ""
     
+    url = f"https://music.youtube.com/playlist?list={playlist_id}"
+    retrieved_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
     print(f"\n{'=' * 80}")
     print(f"{color}🎵 PLAYLIST YOUTUBE MUSIC — {title}{reset}")
-    print(f"{color}Par : {author} | {track_count} pistes | Durée : {duration}{reset}")
+    print(f"{color}Par : {author}{reset}")
+    print(f"{color}Pistes : {track_count} | Durée : {duration}{reset}")
+    print(f"{color}Lien : {url}{reset}")
+    print(f"{color}Récupéré le : {retrieved_at}{reset}")
     print(f"{'=' * 80}\n")
     
     for i, track in enumerate(tracks, 1):
@@ -103,10 +111,15 @@ def format_iso_duration(iso_duration: str) -> str:
 
 def display_youtube_stats(playlist: dict) -> None:
     """Affiche les statistiques d'une playlist YouTube."""
+    from datetime import datetime
     tracks = playlist.get("tracks", [])
     title = playlist.get("title", "Playlist YouTube")
     author = playlist.get("author", {}).get("name", "Inconnu")
     track_count = playlist.get("trackCount", len(tracks))
+    playlist_id = playlist.get("id", "")
+    
+    url = f"https://music.youtube.com/playlist?list={playlist_id}"
+    retrieved_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     print("\n" + "=" * 60)
     print("📊 STATISTIQUES DE LA PLAYLIST YOUTUBE")
@@ -114,6 +127,8 @@ def display_youtube_stats(playlist: dict) -> None:
     print(f"Titre : {title}")
     print(f"Auteur : {author}")
     print(f"Nombre de pistes : {track_count}")
+    print(f"Lien : {url}")
+    print(f"Récupéré le : {retrieved_at}")
     print("=" * 60 + "\n")
 
 
