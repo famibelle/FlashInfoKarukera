@@ -682,6 +682,8 @@ def call_mistral(
                 raise
 
 
+# Persona Harry pour Flash Info (style Harry Roselmack)
+HARRY_SYSTEM         = _load_prompt("harry_ame.md") + "\n\n" + _load_prompt("harry.md")
 MARYSE_SYSTEM        = _load_prompt("maryse_ame.md") + "\n\n" + _load_prompt("maryse.md")
 PRENOM_TEMPLATE      = _load_prompt("prenom.md")
 HOROSCOPE_TEMPLATE   = _load_prompt("horoscope.md")
@@ -745,8 +747,10 @@ def build_segments(
     tomorrow_str: "str | None" = None,
     heure_paris: "str | None" = None,
     verbose: bool = False,
+    system_prompt: str = MARYSE_SYSTEM,
 ) -> list[str]:
-    print(f"✍️  Rédaction des segments par Maryse — édition {edition.upper()} (Mistral Large)...")
+    persona = "Maryse" if "maryse" in system_prompt.lower() else "Harry"
+    print(f"✍️  Rédaction des segments par {persona} — édition {edition.upper()} (Mistral Large)...")
     articles = "\n\n".join(
         f"[{i+1}] {item['title']}\n{item['desc']}" for i, item in enumerate(items)
     )
@@ -879,15 +883,16 @@ def build_segments(
     )
     if verbose:
         print("\n══════════════════════════════════════════════════════════")
-        print("  VERBOSE — PROMPT MARYSE (system)")
+        persona_label = "HARRY" if system_prompt == HARRY_SYSTEM else "MARYSE"
+        print(f"  VERBOSE — PROMPT {persona_label} (system)")
         print("══════════════════════════════════════════════════════════")
-        print(MARYSE_SYSTEM)
+        print(system_prompt)
         print("\n  ── user_prompt ──")
         print(user_prompt)
         print("══════════════════════════════════════════════════════════\n")
     _horoscope_tokens = 150 * (len(horoscope_signs) if horoscope_signs else 2) if has_horoscope else 0
     _base_tokens = 1400 if (has_prenom or has_meteo) else 1200
-    raw = call_mistral(MARYSE_SYSTEM, user_prompt, temperature=0.75, max_tokens=_base_tokens + _horoscope_tokens)
+    raw = call_mistral(system_prompt, user_prompt, temperature=0.75, max_tokens=_base_tokens + _horoscope_tokens)
 
     import re as _re
     segments = [_strip_markdown(s) for s in raw.split(SEG_SEPARATOR) if s.strip()]
@@ -3140,7 +3145,7 @@ def main():
         print(f"  {weather}")
         print("══════════════════════════════════════════════════════════\n")
 
-    segments_maryse = build_segments(
+    segments_harry = build_segments(
         items, date_str, weather, sources,
         horoscope=horoscope,
         horoscope_signs=horoscope_signs,
@@ -3152,6 +3157,7 @@ def main():
         tomorrow_str=tomorrow_str,
         heure_paris=heure_paris,
         verbose=args.verbose,
+        system_prompt=HARRY_SYSTEM,
     )
 
     def _print_segments(segs: list[str], label: str) -> None:
@@ -3168,10 +3174,10 @@ def main():
         print("══════════════════════════════════════════════════════════\n")
 
     if args.verbose:
-        _print_segments(segments_maryse, "SORTIE MARYSE (brut)")
+        _print_segments(segments_harry, "SORTIE HARRY (brut)")
 
     # Étape 2b — Révision stylistique
-    segments = revise_style(segments_maryse, verbose=args.verbose)
+    segments = revise_style(segments_harry, verbose=args.verbose)
     segments = _ensure_sources_in_outro(segments, sources)
     segments = _enforce_prononciations(segments)
 

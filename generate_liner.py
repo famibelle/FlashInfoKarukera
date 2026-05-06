@@ -295,15 +295,16 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
     """
     Génère une capsule culturelle Guadeloupe ~30s, la sauvegarde dans docs/capsules/
     et retourne son URL publique GitHub Pages.
+    Persona : Solitude (mémoire culturelle, ton solennel)
     """
     from datetime import date
     today     = date.today().isoformat()
     cache_key = f"capsule_{today}_{slot_id}"
     cache     = load_cache()
 
-    # Construire les prompts
+    # Construire les prompts — Persona Solitude
     try:
-        system_prompt = _select_random_ref_lines(3)
+        system_prompt = _load_prompt("solitude_ame.md") + "\n\n" + _load_prompt("solitude_capsule.md")
     except Exception as e:
         logger.warning(f"Capsule {slot_id} ignorée : {e}")
         return None

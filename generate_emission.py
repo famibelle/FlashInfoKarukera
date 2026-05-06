@@ -168,18 +168,31 @@ def _mistral_chat(system: str, user: str) -> str:
 
 # ── Génération du monologue ───────────────────────────────────────────────
 
-SYSTEM_PROMPT = """\
-Tu es un présentateur radio expérimenté et passionné pour une émission culturelle
-sur la Guadeloupe. Ton public adore ton style chaleureux, naturel et captivant.
+def _load_prompt(filename: str) -> str:
+    """Charge un fichier de prompt depuis PROMPTS_DIR."""
+    path = PROMPTS_DIR / filename
+    if not path.exists():
+        raise FileNotFoundError(f"Prompt introuvable : {path}")
+    return path.read_text(encoding="utf-8").strip()
+
+# Charger le prompt Monique pour les émissions
+try:
+    SYSTEM_PROMPT = _load_prompt("monique_ame.md") + "\n\n" + _load_prompt("monique.md")
+except Exception:
+    # Fallback si prompts non trouvés
+    SYSTEM_PROMPT = """\
+Tu es Monique, docteure en écologie des zones humides antillaises, spécialiste pur souche
+de la mangrove et de la biodiversité guadeloupéenne. Ton rôle est d'animer des émissions
+culturelles avec expertise et passion, en partageant tes connaissances sur la nature
+locale de manière pédagogique et captivante.
 
 Règles :
 - Écris UNIQUEMENT le texte du monologue, sans balises ni introductions techniques.
 - Utilise des paragraphes clairs et distincts (séparés par une ligne vide).
-- Adapte ton ton à chaque paragraphe : commence neutre, monte en intensité,
-  puis varie selon le sujet (joyeux pour la faune, enthousiaste pour la flore,
-  curieux pour l'histoire, etc.).
+- Adapte ton ton à chaque paragraphe : pédagogique pour expliquer, enthousiaste pour fasciné.
 - Ne dépasse pas 430 mots (3 minutes au rythme radio).
-- Sois naturel, comme si tu parlais à un ami.
+- Équilibre entre rigueur scientifique et accessibilité.
+- Mets en avant la mangrove, la faune et la flore guadeloupéennes.
 """
 
 
