@@ -82,21 +82,8 @@ def resolve_music_pool(yt: YTMusic) -> list:
     """
     Résout tous les titres de la DB en videoIds.
     Résultat : [{"videoId": ..., "duration": ..., "genre": ..., "name": ..., "artist": ...}]
-    Cache valide pour l'heure (clé = date + heure:minute).
     """
-    cache_key = datetime.now().strftime("%Y-%m-%d_%H-%M")
-
-    if POOL_CACHE_FILE.exists():
-        cached = json.loads(POOL_CACHE_FILE.read_text(encoding="utf-8"))
-        tracks = cached.get("tracks", [])
-        cache_has_metadata = tracks and "name" in tracks[0]
-        if cached.get("date") == cache_key and cache_has_metadata:
-            logger.info(f"Pool musical depuis cache ({len(tracks)} pistes, {cache_key})")
-            return tracks
-        elif cached.get("date") == cache_key:
-            logger.info(f"Cache de l'heure présent mais sans métadonnées — résolution complète")
-
-    logger.info("Résolution du pool musical (200+ recherches YTMusic)...")
+    logger.info("Résolution du pool musical (~147 recherches YTMusic)...")
     pool = []
     seen = set()
 
@@ -112,12 +99,13 @@ def resolve_music_pool(yt: YTMusic) -> list:
             else:
                 logger.warning(f"  ✗ [{genre}] {name} — {artist}")
 
+    # Sauvegarde simple sans cache temporel
     POOL_CACHE_FILE.parent.mkdir(exist_ok=True)
     POOL_CACHE_FILE.write_text(
-        json.dumps({"date": cache_key, "tracks": pool}, indent=2, ensure_ascii=False),
+        json.dumps({"date": datetime.now().strftime("%Y-%m-%d"), "tracks": pool}, indent=2, ensure_ascii=False),
         encoding="utf-8"
     )
-    logger.info(f"Pool : {len(pool)} pistes résolues — cache sauvegardé ({cache_key})")
+    logger.info(f"Pool : {len(pool)} pistes résolues — sauvegardé")
     return pool
 
 
