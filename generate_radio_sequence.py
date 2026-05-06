@@ -657,8 +657,9 @@ def main() -> None:
 
     # Neutraliser get_liner si --skip-liners
     if args.skip_liners:
-        import generate_radio_sequence as _self
-        _self.get_liner = lambda artists, bloc: None
+        # Redéfinir la fonction pour qu'elle retourne None sans appeler Mistral/TTS
+        def get_liner(artists, bloc):
+            return None
 
     seq = build_sequence(pool, slots)
 
