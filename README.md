@@ -117,9 +117,9 @@ L'équipe IA de Radio Botiran est composée de **5 voix distinctes**, chacune in
 | Personnage | Rôle | Inspiration | Prompts |
 |-----------|------|-------------|---------|
 | **Harry** | Flash info Guadeloupe | Harry, journaliste passionné par l'actualité guadeloupéenne | `harry_ame.md`, `harry.md` |
-| **Maryse** | Émissions culturelles et interviews | Maryse Condé, romancière lauréate du prix Nobel alternatif | `maryse_ame.md`, `maryse.md` |
+| **Maryse** | Horoscope quotidien | Maryse Condé, romancière lauréate du prix Nobel alternatif | `maryse_ame.md`, `maryse.md` |
 | **Solitude** | Capsules culturelles | Mulâtresse Solitude, héroïne de la résistance guadeloupéenne (1802) | `solitude_ame.md`, `solitude_capsule.md`, `capsule_instruction.md` |
-| **Monique** | Horoscope quotidien | Monique, spécialiste des traditions astrologiques créoles | `monique_ame.md`, `monique.md` |
+| **Monique** | Émission culturelle | Monique, spécialiste du patrimoine culturel guadeloupéen | `monique_ame.md`, `monique.md` |
 | **Corinne** | Liners (annonces musicales) | Corinne, voix douce et accueillante | `corinne_ame.md`, `corinne.md` |
 
 ---
