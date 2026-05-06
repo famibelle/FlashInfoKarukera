@@ -446,7 +446,7 @@ def main():
         for i, para in enumerate(paragraphs, 1):
             print(f"   [{i}] {para.strip()}")
         print("────────────────────────────────────────────────────────────────")
-        print(f"💾 Fichier MP3 : {out_mp3.relative_to(Path.cwd())}")
+        print(f"💾 Fichier MP3 : {out_mp3}")
     
     if args.dry_run:
         print("\n── Monologue complet ────────────────────────────────────────")
