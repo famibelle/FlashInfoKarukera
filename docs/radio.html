@@ -885,6 +885,42 @@
     if (e.target === eqCanvas) return; // Laisser le seek sur le canvas
     radio.togglePlay();
   });
+
+  // ── Swipe pour changer de piste ─────────────────────────────────────
+  let touchStartX = 0;
+  let touchStartY = 0;
+  const SWIPE_THRESHOLD = 50;
+
+  transitionOverlay.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: false });
+
+  transitionOverlay.addEventListener('touchmove', (e) => {
+    const touch = e.touches[0];
+    const diffX = Math.abs(touch.clientX - touchStartX);
+    const diffY = Math.abs(touch.clientY - touchStartY);
+    // Empêcher le scroll si mouvement horizontal dominant
+    if (diffX > diffY && diffX > 10) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  transitionOverlay.addEventListener('touchend', (e) => {
+    if (!touchStartX) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diffX = touchStartX - touchEndX; // >0 = swipe gauche, <0 = swipe droite
+    if (Math.abs(diffX) > SWIPE_THRESHOLD) {
+      if (diffX > 0) {
+        radio._next(); // Swipe gauche → piste suivante
+      } else {
+        radio._prev(); // Swipe droite → piste précédente
+      }
+    }
+    touchStartX = 0;
+    touchStartY = 0;
+  });
+
   document.getElementById('btn-toggle-playlist').addEventListener('click', () => {
     radio._playlistOpen = !radio._playlistOpen;
     document.getElementById('full-playlist').classList.toggle('open', radio._playlistOpen);
