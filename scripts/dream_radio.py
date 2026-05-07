@@ -354,6 +354,96 @@ def get_workflow_runs(workflow_id, since_date=None, limit=10):
     return runs["workflow_runs"]
 
 
+def get_jobs_for_run(run_id):
+    """
+    Récupère la liste des jobs pour un run donné.
+    
+    Args:
+        run_id: ID du workflow run
+        
+    Returns:
+        list: Liste des jobs, ou [] en cas d'erreur
+    """
+    endpoint = f"/repos/{GITHUB_REPO}/actions/runs/{run_id}/jobs"
+    jobs = call_github_api(endpoint)
+    
+    if not jobs or "jobs" not in jobs:
+        return []
+    
+    return jobs["jobs"]
+
+
+def get_job_logs(run_id, job_id):
+    """
+    Récupère les logs d'un job spécifique.
+    
+    Args:
+        run_id: ID du workflow run
+        job_id: ID du job
+        
+    Returns:
+        str: Logs du job, ou None en cas d'erreur
+    """
+    endpoint = f"/repos/{GITHUB_REPO}/actions/jobs/{job_id}/logs"
+    headers = {"Accept": "application/vnd.github+json"}
+    token = get_github_token()
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    
+    url = f"https://api.github.com{endpoint}"
+    
+    try:
+        import requests
+        response = requests.get(url, headers=headers, timeout=30)
+        if response.status_code == 200:
+            return response.text
+        else:
+            log_error(f"Erreur récupération logs job {job_id}: HTTP {response.status_code}")
+            return None
+    except Exception as e:
+        log_error(f"Erreur récupération logs job {job_id}: {e}")
+        return None
+
+
+def get_run_logs(run_id, max_log_size=10000):
+    """
+    Récupère tous les logs d'un run (tous les jobs combinés).
+    
+    Args:
+        run_id: ID du workflow run
+        max_log_size: Taille maximale totale des logs à retourner (pour éviter les logs trop volumineux)
+        
+    Returns:
+        str: Tous les logs du run, tronqués si trop longs
+    """
+    jobs = get_jobs_for_run(run_id)
+    all_logs = []
+    
+    for job in jobs:
+        job_id = job.get("id")
+        job_name = job.get("name", "unknown")
+        job_status = job.get("status", "unknown")
+        job_conclusion = job.get("conclusion", "unknown")
+        
+        if job_id:
+            logs = get_job_logs(run_id, job_id)
+            if logs:
+                # Ajouter un en-tête pour identifier le job
+                header = f"\n\n{'='*60}\n[JOB: {job_name}] [STATUS: {job_status}] [CONCLUSION: {job_conclusion}]\n{'='*60}\n"
+                all_logs.append(header + logs)
+    
+    if not all_logs:
+        return None
+    
+    combined_logs = "\n".join(all_logs)
+    
+    # Tronquer si trop long
+    if len(combined_logs) > max_log_size:
+        combined_logs = combined_logs[:max_log_size] + f"\n\n... [LOGS TRONQUÉS - taille max: {max_log_size} caractères]"
+    
+    return combined_logs
+
+
 def get_all_workflows_stats(days_back=7, workflow_names=None):
     """
     Récupère les statistiques de tous les workflows pour une période donnée.
@@ -432,6 +522,34 @@ def get_all_workflows_stats(days_back=7, workflow_names=None):
                     last_error = f"Run {r.get('id', 'N/A')} échoué - {r.get('html_url', '#')}"
                 break
         
+        # Récupérer les logs des runs (optionnel, peut être désactivé pour les runs trop anciens)
+        runs_with_logs = []
+        for r in runs:
+            run_id = r.get("id")
+            run_conclusion = r.get("conclusion")
+            run_name = r.get("name", f"Run {run_id}")
+            run_started = r.get("run_started_at")
+            
+            # Récupérer les logs uniquement pour les runs récents (7 jours max) pour éviter les rate limits
+            run_date_str = run_started[:10] if run_started else None
+            if run_date_str:
+                run_date = datetime.strptime(run_date_str, "%Y-%m-%d").date()
+                days_old = (datetime.utcnow().date() - run_date).days
+                if days_old <= 7:  # Seuil pour éviter les vieux runs
+                    logs = get_run_logs(run_id, max_log_size=5000)
+                else:
+                    logs = None
+            else:
+                logs = None
+            
+            runs_with_logs.append({
+                "id": run_id,
+                "name": run_name,
+                "conclusion": run_conclusion,
+                "started_at": run_started,
+                "logs": logs
+            })
+        
         workflows_data.append({
             "name": wf_name.replace(".yml", ""),
             "runs": len(runs),
@@ -442,6 +560,7 @@ def get_all_workflows_stats(days_back=7, workflow_names=None):
             "last_status": last_status,
             "last_error": last_error,
             "last_run_time": last_run.get("run_started_at") if last_run else None,
+            "runs_details": runs_with_logs,  # ← NOUVEAU: détails des runs avec logs
         })
     
     return workflows_data
@@ -864,6 +983,28 @@ def generate_technical_dream(date_obj, llm_key=None, use_github_api=True):
         success_rate = 0
         total_avg_duration = 0
     
+    # --- Extraire les logs pour le LLM ---
+    # Préparer un résumé des logs pour enrichir le prompt LLM
+    logs_summary = ""
+    all_workflow_logs = []
+    
+    for wf in workflows_data:
+        if "runs_details" in wf:
+            for run in wf["runs_details"]:
+                run_logs = run.get("logs")
+                if run_logs:
+                    # Extraire les lignes importantes (erreurs, warnings, succès)
+                    important_lines = []
+                    for line in run_logs.split("\n"):
+                        line_lower = line.lower()
+                        if any(keyword in line_lower for keyword in ["error", "warning", "success", "✅", "❌", "⚠️", "failed", "skipped", "cached"]):
+                            important_lines.append(line.strip())
+                    if important_lines:
+                        all_workflow_logs.append(f"\n--- Workflow: {wf['name']} | Run: {run.get('name', run.get('id', 'N/A'))} | Status: {run.get('conclusion', 'unknown')} ---\n" + "\n".join(important_lines[:20]))
+    
+    if all_workflow_logs:
+        logs_summary = "\n\n".join(all_workflow_logs[:50])  # Limiter à 50 lignes de logs
+    
     # --- Générer le markdown ---
     md = f"""# {GEAR} Rêve Technique — Radio Karukera
 *Date : {date_str} | Généré à {(datetime.utcnow()).strftime("%H:%M UTC")}*
@@ -886,10 +1027,36 @@ Impossible de récupérer les statistiques des workflows. Le rêve technique ne 
     
     md += "---\n\n"
     
+    # Ajouter une section avec les logs extraits
+    if logs_summary:
+        md += f"""## {GEAR} Extraits des Logs de la Journée
+
+```
+{logs_summary}
+```
+
+---
+
+"""
+    
     # Toujours ajouter la section Rêve de la Nuit (en premier)
     if llm_key:
         log_info("Génération du résumé LLM pour le rêve technique...")
-        llm_summary = generate_llm_dream_summary(md, "technique", date_str, llm_key)
+        # Inclure les logs dans le prompt pour le LLM
+        dream_content_with_logs = f"""## Statistiques
+Total runs: {total_runs}
+Taux de succès: {success_rate:.1f}%
+Durée moyenne: {format_duration(total_avg_duration)}
+
+## Extraits des logs
+{logs_summary[:2000] if logs_summary else "Aucun log disponible"}
+
+## Détails par workflow
+"""
+        for wf in workflows_data:
+            dream_content_with_logs += f"\n- {wf['name']}: {wf['runs']} runs, {wf['success_rate']*100:.0f}% succès, dernière exécution: {wf.get('last_status', 'unknown')}\n"
+        
+        llm_summary = generate_llm_dream_summary(dream_content_with_logs, "technique", date_str, llm_key)
         if llm_summary:
             md += f"## {DREAM} Rêve de la Nuit\n\n{llm_summary}\n\n---\n\n"
         else:
@@ -901,6 +1068,8 @@ Les {total_runs} workflows ont dansé comme des vagues sur la plage, avec un tau
 Les {sum(1 for w in workflows_data if w['last_status'] != 'success')} workflows en alerte nous rappellent qu'il faut surveiller les logs 
 comme un pêcheur surveille son filet.
 
+{logs_summary[:500] if logs_summary else ''}
+
 Au réveil, l'équipe technique a compris qu'il fallait :
 - Paralléliser les workflows pour gagner du temps
 - Réduire la verbosité des logs
@@ -908,11 +1077,14 @@ Au réveil, l'équipe technique a compris qu'il fallait :
             md += f"## {DREAM} Rêve de la Nuit\n\n{default_tech_summary}\n\n---\n\n"
     else:
         # Ajouter un résumé par défaut pour le rêve technique
+        logs_preview = logs_summary[:500] if logs_summary else ""
         default_tech_summary = f"""Cette nuit, les serveurs de Radio Botiran {DREAM} ont rêvé de bits caribéens...
 
 Les {total_runs} workflows ont dansé comme des vagues sur la plage, avec un taux de succès de {success_rate:.1f}%. 
 Les {sum(1 for w in workflows_data if w['last_status'] != 'success')} workflows en alerte nous rappellent qu'il faut surveiller les logs 
 comme un pêcheur surveille son filet.
+
+{logs_preview}
 
 Au réveil, l'équipe technique a compris qu'il fallait :
 - Paralléliser les workflows pour gagner du temps
