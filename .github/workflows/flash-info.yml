@@ -129,10 +129,10 @@ jobs:
         id: check_flash
         run: |
           # Vérifier les différentes éditions possibles
-          FILE_MATIN="docs/audio/FlashInfo/flash-info-${{ env.TARGET_DATE }}-matin.mp3"
-          FILE_MIDI="docs/audio/FlashInfo/flash-info-${{ env.TARGET_DATE }}-midi.mp3"
-          FILE_SOIR="docs/audio/FlashInfo/flash-info-${{ env.TARGET_DATE }}-soir.mp3"
-          FILE_GENERIC="docs/audio/FlashInfo/flash-info-${{ env.TARGET_DATE }}.mp3"
+          FILE_MATIN="docs/audio/flash-info/flash-info-${{ env.TARGET_DATE }}-matin.mp3"
+          FILE_MIDI="docs/audio/flash-info/flash-info-${{ env.TARGET_DATE }}-midi.mp3"
+          FILE_SOIR="docs/audio/flash-info/flash-info-${{ env.TARGET_DATE }}-soir.mp3"
+          FILE_GENERIC="docs/audio/flash-info/flash-info-${{ env.TARGET_DATE }}.mp3"
           
           if [ -f "$FILE_MATIN" ] || [ -f "$FILE_MIDI" ] || [ -f "$FILE_SOIR" ] || [ -f "$FILE_GENERIC" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
@@ -233,7 +233,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions [Flash Info]"
           git add data/used_articles_*.json archives/flash-info/
-          git add docs/audio/FlashInfo/
+          git add docs/audio/flash-info/
           if ! git diff --cached --quiet; then
             git commit -m "chore: flash info ${{ env.TARGET_DATE }} — archive + anti-répétition + RSS [skip ci]"
             git stash --include-untracked || true
