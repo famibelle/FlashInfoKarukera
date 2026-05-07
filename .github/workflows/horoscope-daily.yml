@@ -110,7 +110,7 @@ jobs:
       - name: Vérifier si horoscope existe déjà
         id: check_horoscope
         run: |
-          # Vérifier les deux éditions possibles
+          # Vérifier l'édition ciblée uniquement
           FILE_MATIN="docs/audio/horoscope/horoscope-${{ env.TARGET_DATE }}-matin.mp3"
           FILE_SOIR="docs/audio/horoscope/horoscope-${{ env.TARGET_DATE }}-soir.mp3"
           FILE_GENERIC="docs/audio/horoscope/horoscope-${{ env.TARGET_DATE }}.mp3"
@@ -118,13 +118,18 @@ jobs:
           if [ "${{ github.event.inputs.overwrite }}" = "true" ]; then
             echo "exists=false" >> $GITHUB_OUTPUT
             echo "file_found=false" >> $GITHUB_OUTPUT
-          elif [ -f "$FILE_MATIN" ] || [ -f "$FILE_SOIR" ] || [ -f "$FILE_GENERIC" ]; then
+          elif [ "${{ env.EDITION }}" = "matin" ] && [ -f "$FILE_MATIN" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
             echo "file_found=true" >> $GITHUB_OUTPUT
-            # Trouver le fichier exact
-            [ -f "$FILE_MATIN" ] && echo "file_path=$FILE_MATIN" >> $GITHUB_OUTPUT
-            [ -f "$FILE_SOIR" ] && echo "file_path=$FILE_SOIR" >> $GITHUB_OUTPUT
-            [ -f "$FILE_GENERIC" ] && echo "file_path=$FILE_GENERIC" >> $GITHUB_OUTPUT
+            echo "file_path=$FILE_MATIN" >> $GITHUB_OUTPUT
+          elif [ "${{ env.EDITION }}" = "soir" ] && [ -f "$FILE_SOIR" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "file_found=true" >> $GITHUB_OUTPUT
+            echo "file_path=$FILE_SOIR" >> $GITHUB_OUTPUT
+          elif [ -f "$FILE_GENERIC" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "file_found=true" >> $GITHUB_OUTPUT
+            echo "file_path=$FILE_GENERIC" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
             echo "file_found=false" >> $GITHUB_OUTPUT
