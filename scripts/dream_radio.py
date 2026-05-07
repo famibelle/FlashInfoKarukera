@@ -1513,6 +1513,291 @@ def analyze_liner_files(liner_files):
 
 # ------ ANALYSE ANTENNE ------
 
+# ------ NOUVELLES FONCTIONS POUR ÉVALUATION INDIVIDUELLE ------
+
+def load_journalist_texts(date_str: str, repo_root: Path = REPO_ROOT) -> dict[str, list[str]]:
+    """
+    Charge les textes générés par chaque journaliste pour une date donnée.
+    
+    Args:
+        date_str: Date au format YYYY-MM-DD
+        repo_root: Racine du repository
+        
+    Returns:
+        dict: {nom_journaliste: [liste_de_textes]}
+    """
+    results = {}
+    
+    # Harry - Flash Info (archives/flash-info/)
+    flash_dir = repo_root / "archives" / "flash-info"
+    harry_texts = []
+    if flash_dir.exists():
+        for f in sorted(flash_dir.glob(f"flash-info-{date_str}-*.txt")):
+            harry_texts.append(f.read_text(encoding="utf-8", errors="ignore"))
+        # Fallback : essayer sans tirets dans la date
+        if not harry_texts:
+            for f in sorted(flash_dir.glob(f"flash-info-{date_str.replace('-', '')}-*.txt")):
+                harry_texts.append(f.read_text(encoding="utf-8", errors="ignore"))
+    results["Harry"] = harry_texts
+    
+    # Maryse Condé - Horoscope (archives/horoscope/)
+    horo_dir = repo_root / "archives" / "horoscope"
+    maryse_texts = []
+    if horo_dir.exists():
+        for f in sorted(horo_dir.glob(f"horoscope-{date_str}-*.txt")):
+            maryse_texts.append(f.read_text(encoding="utf-8", errors="ignore"))
+        if not maryse_texts:
+            for f in sorted(horo_dir.glob(f"horoscope-{date_str.replace('-', '')}-*.txt")):
+                maryse_texts.append(f.read_text(encoding="utf-8", errors="ignore"))
+    results["Maryse Condé"] = maryse_texts
+    
+    # Monique - Émissions (docs/audio/Emissions/)
+    emission_dir = repo_root / "docs" / "audio" / "Emissions"
+    monique_texts = []
+    if emission_dir.exists():
+        for f in sorted(emission_dir.glob(f"emission-{date_str}.json")):
+            try:
+                data = json.loads(f.read_text(encoding="utf-8"))
+                monique_texts.append(data.get("text", ""))
+            except (json.JSONDecodeError, FileNotFoundError):
+                continue
+    results["Monique"] = monique_texts
+    
+    # Mulatresse Solitude - Capsules (archives/capsules/ et docs/capsules/)
+    solitude_texts = []
+    processed_files = set()
+    
+    # Dossier principal pour analyse centralisée (avec Harry et Maryse)
+    archives_capsules_dir = repo_root / "archives" / "capsules"
+    if archives_capsules_dir.exists():
+        for f in sorted(archives_capsules_dir.glob(f"capsule-{date_str}-*.txt")):
+            solitude_texts.append(f.read_text(encoding="utf-8", errors="ignore"))
+            processed_files.add(f.name)
+        # Fallback : essayer sans tirets dans la date
+        if not solitude_texts:
+            for f in sorted(archives_capsules_dir.glob(f"capsule-{date_str.replace('-', '')}-*.txt")):
+                if f.name not in processed_files:
+                    solitude_texts.append(f.read_text(encoding="utf-8", errors="ignore"))
+                    processed_files.add(f.name)
+    # Dossier secondaire pour compatibilité
+    docs_capsules_dir = repo_root / "docs" / "capsules"
+    if docs_capsules_dir.exists():
+        for f in sorted(docs_capsules_dir.glob(f"capsule-{date_str}-*.txt")):
+            if f.name not in processed_files:
+                solitude_texts.append(f.read_text(encoding="utf-8", errors="ignore"))
+                processed_files.add(f.name)
+    results["Mulatresse Solitude"] = solitude_texts
+    
+    # Corinne - Liners (docs/liners/)
+    liners_dir = repo_root / "docs" / "liners"
+    corinne_texts = []
+    if liners_dir.exists():
+        for f in sorted(liners_dir.glob("liner-*.json")):
+            try:
+                data = json.loads(f.read_text(encoding="utf-8"))
+                if data.get("label"):
+                    corinne_texts.append(data["label"])
+            except (json.JSONDecodeError, FileNotFoundError):
+                continue
+    results["Corinne"] = corinne_texts
+    
+    return results
+
+
+def evaluate_journalist_llm(
+    journalist_name: str,
+    journalist_texts: list[str],
+    date_str: str,
+    api_key: str,
+    liners_issues: list[dict] = None,
+    capsule_themes: list[str] = None,
+) -> dict:
+    """
+    Évalue UN journaliste via un appel LLM dédié.
+    Retourne un dict avec : note, feedback, recommandations, scores détaillés
+    
+    Args:
+        journalist_name: Nom du journaliste
+        journalist_texts: Liste des textes générés
+        date_str: Date au format YYYY-MM-DD
+        api_key: Clé API Mistral
+        liners_issues: Liste des problèmes de liners (pour Corinne)
+        capsule_themes: Liste des thèmes de capsules (pour Solitude)
+        
+    Returns:
+        dict: Évaluation complète au format JSON
+    """
+    # Définition des personas avec leurs critères spécifiques
+    personas = {
+        "Harry": {
+            "role": "Journaliste Flash Info",
+            "style": "factuel, urgent, professionnel, neutre",
+            "criteria": [
+                "Précision des faits",
+                "Clarté de l'information", 
+                "Neutralité absolue",
+                "Respect du format journalistique",
+                "Concision (15-25 mots par flash)"
+            ]
+        },
+        "Maryse Condé": {
+            "role": "Présentatrice Horoscope",
+            "style": "mystérieux, intime, engageant, culturel",
+            "criteria": [
+                "Authenticité culturelle guadeloupéenne",
+                "Structure claire par signe",
+                "Ton adapté à l'astrologie",
+                "Respect des 12 signes",
+                "Formulations variées"
+            ]
+        },
+        "Monique": {
+            "role": "Docteure en écologie - Émissions Culturelles",
+            "style": "pédagogique, passionné, scientifique accessible",
+            "criteria": [
+                "Précision scientifique",
+                "Accessibilité pour le grand public",
+                "Riche en contenu local",
+                "Flow naturel et captivant",
+                "Équilibre science/storytelling"
+            ]
+        },
+        "Mulatresse Solitude": {
+            "role": "Voix de la Résistance - Capsules culturelles",
+            "style": "chaleureux, évocateur, solennel, poétique",
+            "criteria": [
+                "Authenticité culturelle guadeloupéenne",
+                "Originalité des sujets",
+                "Concision (15-20 secondes)",
+                "Impact émotionnel",
+                "Respect de la mémoire collective"
+            ]
+        },
+        "Corinne": {
+            "role": "Speakrine - Liners",
+            "style": "neutre, professionnel, clair, direct",
+            "criteria": [
+                "Format [Artiste] - [Titre] respecté",
+                "Cohérence avec la musique suivante",
+                "Variété des formulations",
+                "Ton radio professionnel",
+                "Absence de formules génériques"
+            ]
+        }
+    }
+    
+    persona = personas.get(journalist_name, personas["Harry"])
+    
+    # Préparer un échantillon de textes (max 5 pour éviter un prompt trop long)
+    texts_sample = journalist_texts[:5]
+    sample_text = "\n\n---\n\n".join(t[:500] for t in texts_sample)  # Limiter à 500 chars par texte
+    
+    # Construire le prompt
+    system_prompt = f"""Tu es le **Responsable de la Programmation Musicale** de Radio Botiran 🎵🐚.
+Ton expertise : 25 ans d'expérience en radio caribéenne, spécialiste de l'analyse des contenus audio et de leur cohérence avec la programmation musicale.
+
+**Journaliste à évaluer :** {journalist_name}
+**Rôle :** {persona['role']}
+**Style attendu :** {persona['style']}
+
+**Mission :** Évaluer de manière **professionnelle, précise et constructive** les textes générés par ce journaliste.
+
+**Critères de notation (0-10) :**
+- **Format/Structure** : 0-3 pts (respect des règles de format spécifiques)
+- **Contenu/Précision** : 0-3 pts (qualité et exactitude du contenu)
+- **Style/Ton** : 0-2 pts (adéquation avec le style attendu)
+- **Originalité** : 0-2 pts (créativité et unicité)
+
+**Format de sortie OBLIGATOIRE (JSON strict) :**
+{{
+    "note": <int 0-10>,
+    "feedback": "<résumé en 1 phrase en français>",
+    "recommandations": ["<recommandation 1>", "<recommandation 2>"],
+    "format_score": <int 0-3>,
+    "content_score": <int 0-3>,
+    "style_score": <int 0-2>,
+    "originality_score": <int 0-2>,
+    "strengths": ["<force 1>", "<force 2>"],
+    "weaknesses": ["<faiblesse 1>", "<faiblesse 2>"]
+}}
+
+**Règles :**
+- Réponds UNIQUEMENT en JSON valide
+- Pas de commentaire avant ou après le JSON
+- Tous les champs doivent être présents
+- Écris en français"""
+    
+    user_prompt = f"""DATE: {date_str}
+JOURNALISTE: {journalist_name}
+NOMBRE DE TEXTES: {len(journalist_texts)}
+
+### 📄 Échantillon des textes générés :
+{sample_text}
+
+### 🎯 Critères spécifiques pour {journalist_name} :
+{chr(10).join(f'- {c}' for c in persona['criteria'])}
+
+### 📊 Contexte supplémentaire :
+"""
+    
+    # Ajouter le contexte spécifique
+    if liners_issues and journalist_name == "Corinne":
+        user_prompt += f"""- **Problèmes détectés** : {len(liners_issues)} erreurs de format dans les liners
+- **Erreurs critiques** : {len([i for i in liners_issues if i.get('severity') == 'high'])} erreurs de cohérence
+- **Avertissements** : {len(liners_issues) - len([i for i in liners_issues if i.get('severity') == 'high'])} améliorations suggérées
+"""
+    
+    if capsule_themes and journalist_name == "Mulatresse Solitude":
+        user_prompt += f"""- **Thèmes abordés aujourd'hui** : {', '.join(capsule_themes[:10])}
+"""
+    
+    user_prompt += """
+### 🎯 Instructions d'évaluation :
+1. Analyse globalement la qualité des textes générés
+2. Identifie 2 points forts principaux
+3. Identifie 2 axes d'amélioration principaux  
+4. Donne 2 recommandations **concrètes et actionnables**
+5. Sois **précis, professionnel et constructif**
+6. Prends en compte le contexte radio (Guadeloupe, culture caribéenne)
+
+**Réponds UNIQUEMENT avec le JSON, sans texte avant ou après.**"""
+    
+    # Appel LLM
+    raw = call_mistral_api(
+        user_prompt,
+        api_key,
+        model="mistral-small",
+        max_tokens=500,
+        temperature=0.3,
+        json_mode=True
+    )
+    
+    if raw:
+        try:
+            result = json.loads(raw)
+            # Valider que tous les champs requis sont présents
+            required_keys = ["note", "feedback", "recommandations", "format_score", 
+                          "content_score", "style_score", "originality_score", 
+                          "strengths", "weaknesses"]
+            if all(key in result for key in required_keys):
+                return result
+        except (json.JSONDecodeError, TypeError):
+            pass
+    
+    # Fallback : évaluation par défaut
+    return {
+        "note": 7,
+        "feedback": f"Évaluation automatique - {journalist_name}",
+        "recommandations": ["Revoir manuellement les textes"],
+        "format_score": 2,
+        "content_score": 2,
+        "style_score": 1,
+        "originality_score": 2,
+        "strengths": ["Texte généré"],
+        "weaknesses": ["Évaluation LLM indisponible"]
+    }
+
+
 def generate_antenne_dream(date_obj, llm_key=None):
     """Génère le rêve de l'antenne."""
     date_str = format_date(date_obj)
@@ -1983,6 +2268,27 @@ Au réveil, le Directeur a compris qu'il fallait :
         md += f"{CHECK} Tous les liners sont cohérents avec la programmation !\n"
     
     md += f"""---
+
+## {MUSIC} 📌 RAPPEL - Responsable de la Programmation Musicale
+
+**Les liners doivent annoncer les morceaux comme le ferait un animateur radio professionnel.**
+
+- **Format obligatoire** : `"[Artiste] - [Titre]"` (ex: "Kassav' - Zouk là sé séléwé zot")
+- **Ton** : Naturel, chaleureux, engageant (comme un vrai animateur radio)
+- **Contenu** : Présenter l'artiste ET le titre de manière claire et dynamique
+- **À éviter** : Formules génériques ("la voix qui...", "écoutez bien...")
+
+**Exemples de liners corrects :**
+- ✅ *"Et maintenant, laissez-vous porter par Kassav' avec 'Zouk là sé séléwé zot' — un classique intemporel !"*
+- ✅ *"On enchaîne avec Admiral T et 'Gade zot pé fé sa' — du gwoka pur et puissant !"*
+
+**Exemples à corriger :**
+- ❌ *"La voix qui porte nos rêves..."* (trop générique)
+- ❌ *"Écoutez bien ce morceau..."* (pas d'informations sur l'artiste/titre)
+
+> ⚠️ **C'est votre responsabilité** de vérifier que tous les liners respectent ce standard.
+
+---
 
 ## {MUSIC} Programmation Musicale
 

@@ -354,14 +354,31 @@ def get_capsule_mp3_url(slot_id: str, verbose: bool = False) -> str | None:
     cache[f"{cache_key}_text"] = text
     save_cache(cache)
 
-    # Générer le nom de fichier
+    # Générer le slug pour le nom de fichier
     def _slug(s: str) -> str:
         n = unicodedata.normalize("NFKD", s)
         return re.sub(r"[^a-z0-9-]", "", n.encode("ascii", "ignore").decode().replace(" ", "-").lower())
     
     slot_slug = _slug(slot_id)
     filename  = f"capsule-{today}-{slot_slug}.mp3"
+    
+    # Créer les dossiers de sortie
     CAPSULES_DIR.mkdir(parents=True, exist_ok=True)
+    ARCHIVES_CAPSULES_DIR = Path("archives/capsules")
+    ARCHIVES_CAPSULES_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Sauvegarder le texte dans un fichier .txt pour analyse par le Responsable de la Programmation Musicale
+    # Dans docs/capsules/ (pour référence) et archives/capsules/ (pour analyse centralisée)
+    txt_filename = f"capsule-{today}-{slot_slug}.txt"
+    
+    # Sauvegarde principale dans archives/capsules/ (avec tous les autres journalistes)
+    archives_txt_path = ARCHIVES_CAPSULES_DIR / txt_filename
+    archives_txt_path.write_text(text, encoding="utf-8")
+    logger.info(f"  Capsule {slot_id} — 📝 Texte sauvegardé : archives/capsules/{txt_filename}")
+    
+    # Sauvegarde secondaire dans docs/capsules/ (pour compatibilité)
+    txt_path = CAPSULES_DIR / txt_filename
+    txt_path.write_text(text, encoding="utf-8")
     mp3_path = CAPSULES_DIR / filename
 
     # Générer le MP3 via TTS
