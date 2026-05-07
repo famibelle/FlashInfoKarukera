@@ -8,6 +8,11 @@ on:
         type: boolean
         required: false
         default: false
+      overwrite:
+        description: "Overwrite les fichiers MP3 et JSON existants"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -47,7 +52,9 @@ jobs:
         id: check_emission
         run: |
           EMMISSION_FILE="docs/audio/Emissions/emission-$(date -u +%Y-%m-%d).mp3"
-          if [ -f "$EMISSION_FILE" ]; then
+          if [ "${{ github.event.inputs.overwrite }}" = "true" ]; then
+            echo "exists=false" >> $GITHUB_OUTPUT
+          elif [ -f "$EMISSION_FILE" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
@@ -60,6 +67,8 @@ jobs:
         run: |
           python generate_emission.py ${{
             github.event.inputs.verbose == 'true' && '--verbose' || ''
+          }} ${{
+            github.event.inputs.overwrite == 'true' && '--overwrite' || ''
           }}
 
       - name: Commit l'émission générée

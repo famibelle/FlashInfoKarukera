@@ -30,6 +30,11 @@ on:
         type: boolean
         required: false
         default: true
+      overwrite:
+        description: "Overwrite les fichiers JSON et MP3 existants"
+        type: boolean
+        required: false
+        default: false
 
 concurrency:
   group: horoscope-daily-${{ github.event.inputs.date || 'daily' }}
@@ -110,7 +115,10 @@ jobs:
           FILE_SOIR="docs/audio/horoscope/horoscope-${{ env.TARGET_DATE }}-soir.mp3"
           FILE_GENERIC="docs/audio/horoscope/horoscope-${{ env.TARGET_DATE }}.mp3"
           
-          if [ -f "$FILE_MATIN" ] || [ -f "$FILE_SOIR" ] || [ -f "$FILE_GENERIC" ]; then
+          if [ "${{ github.event.inputs.overwrite }}" = "true" ]; then
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "file_found=false" >> $GITHUB_OUTPUT
+          elif [ -f "$FILE_MATIN" ] || [ -f "$FILE_SOIR" ] || [ -f "$FILE_GENERIC" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
             echo "file_found=true" >> $GITHUB_OUTPUT
             # Trouver le fichier exact
@@ -143,6 +151,9 @@ jobs:
           ARGS="$ARGS --telegram"
           if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
             ARGS="$ARGS --verbose"
+          fi
+          if [ "${{ github.event.inputs.overwrite }}" = "true" ]; then
+            ARGS="$ARGS --overwrite"
           fi
           echo "HORO_ARGS=$ARGS" >> $GITHUB_ENV
           echo "Arguments : $ARGS"
