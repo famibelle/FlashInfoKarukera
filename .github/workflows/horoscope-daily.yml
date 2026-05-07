@@ -106,9 +106,9 @@ jobs:
         id: check_horoscope
         run: |
           # Vérifier les deux éditions possibles
-          FILE_MATIN="docs/audio/Horoscopes/horoscope-${{ env.TARGET_DATE }}-matin.mp3"
-          FILE_SOIR="docs/audio/Horoscopes/horoscope-${{ env.TARGET_DATE }}-soir.mp3"
-          FILE_GENERIC="docs/audio/Horoscopes/horoscope-${{ env.TARGET_DATE }}.mp3"
+          FILE_MATIN="docs/audio/horoscope/horoscope-${{ env.TARGET_DATE }}-matin.mp3"
+          FILE_SOIR="docs/audio/horoscope/horoscope-${{ env.TARGET_DATE }}-soir.mp3"
+          FILE_GENERIC="docs/audio/horoscope/horoscope-${{ env.TARGET_DATE }}.mp3"
           
           if [ -f "$FILE_MATIN" ] || [ -f "$FILE_SOIR" ] || [ -f "$FILE_GENERIC" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
@@ -175,7 +175,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions [Horoscope]"
           git add data/used_flora.json archives/horoscope/
-          git add docs/audio/Horoscopes/
+          git add docs/audio/horoscope/
           if ! git diff --cached --quiet; then
             git commit -m "chore: horoscope ${{ env.TARGET_DATE }} — archive + flore + RSS [skip ci]"
             git stash --include-untracked || true
