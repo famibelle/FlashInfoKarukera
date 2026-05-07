@@ -1,0 +1,98 @@
+name: Rêves Nocturnes Quotidiens
+
+on:
+  schedule:
+    - cron: '0 0 * * *'    # 00:00 UTC = 01:00 Paris (heure d'hiver, UTC+1)
+    - cron: '0 23 * * *'   # 23:00 UTC = 01:00 Paris (heure d'été, UTC+2)
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Date au format YYYY-MM-DD (défaut: aujourd'hui)"
+        type: string
+        required: false
+      llm-key:
+        description: "Clé API Mistral pour les résumés narratifs"
+        type: string
+        required: false
+      no-llm:
+        description: "Désactiver le LLM (utiliser le mode standard)"
+        type: boolean
+        required: false
+        default: false
+      no-github:
+        description: "Désactiver l'API GitHub"
+        type: boolean
+        required: false
+        default: false
+      dry-run:
+        description: "Mode dry-run (affichage seulement, pas de sauvegarde)"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate-dreams:
+    name: Générer les rêves
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - name: Installer les dépendances
+        run: |
+          python -m pip install --upgrade pip
+          pip install python-dotenv requests
+
+      - name: Générer les rêves
+        env:
+          DATE: ${{ github.event.inputs.date || '' }}
+          LLM_KEY: ${{ github.event.inputs.llm-key || secrets.MISTRAL_API_KEY }}
+          NO_LLM: ${{ github.event.inputs.no-llm == 'true' && '--no-llm' || '' }}
+          NO_GITHUB: ${{ github.event.inputs.no-github == 'true' && '--no-github' || '' }}
+          DRY_RUN: ${{ github.event.inputs.dry-run == 'true' && '--dry-run' || '' }}
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE || secrets.GITHUB_TOKEN }}
+        run: |
+          # Exporter les variables pour le script
+          if [ -n "$LLM_KEY" ]; then
+            export MISTRAL_API_KEY="$LLM_KEY"
+          fi
+          if [ -n "$GH_TOKEN" ]; then
+            export GITHUB_TOKEN="$GH_TOKEN"
+          fi
+
+          # Construire la commande
+          CMD="python scripts/dream_radio.py"
+          [ -n "$DATE" ] && CMD="$CMD --date $DATE"
+          [ -n "$NO_LLM" ] && CMD="$CMD $NO_LLM"
+          [ -n "$NO_GITHUB" ] && CMD="$CMD $NO_GITHUB"
+          [ -n "$DRY_RUN" ] && CMD="$CMD $DRY_RUN"
+
+          echo "🚀 Exécution : $CMD"
+          eval $CMD
+
+      - name: Commiter les fichiers générés
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.dry-run != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE || secrets.GITHUB_TOKEN }}
+        run: |
+          # Vérifier si des fichiers rêves ont été modifiés
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Ajouter les fichiers de rêves s'ils existent
+          REVES_CHANGED=$(git status --porcelain docs/reves/ | wc -l)
+          if [ "$REVES_CHANGED" -gt 0 ]; then
+            git add docs/reves/
+            git commit -m "docs: rêve quotidien $(date -u +%Y-%m-%d) [skip ci]" || true
+            git push https://$GH_TOKEN@github.com/${{ github.repository }}.git HEAD:${{ github.ref }} || true
+          else
+            echo "✅ Aucun fichier rêve à commiter"
+          fi
