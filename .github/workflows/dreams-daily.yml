@@ -29,6 +29,11 @@ on:
         type: boolean
         required: false
         default: false
+      verbose:
+        description: "Mode verbeux (affiche le détail de chaque étape)"
+        type: boolean
+        required: false
+        default: true
 
 permissions:
   contents: write

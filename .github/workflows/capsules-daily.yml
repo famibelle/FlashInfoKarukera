@@ -11,6 +11,11 @@ on:
         description: "Date (YYYY-MM-DD) — laisser vide pour aujourd'hui"
         required: false
         default: ""
+      verbose:
+        description: "Mode verbeux (affiche le détail de chaque étape)"
+        type: boolean
+        required: false
+        default: true
 
 concurrency:
   group: capsules-daily-${{ github.event.inputs.date || 'daily' }}

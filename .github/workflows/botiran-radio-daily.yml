@@ -13,7 +13,7 @@ on:
         description: "Mode verbeux (affiche le détail de chaque étape)"
         type: boolean
         required: false
-        default: false
+        default: true
       skip_liners:
         description: "Ne pas générer les fichiers audio des liners (TTS)"
         type: boolean

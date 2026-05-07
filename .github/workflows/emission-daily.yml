@@ -7,7 +7,7 @@ on:
         description: "Mode verbeux (affiche prompts LLM)"
         type: boolean
         required: false
-        default: false
+        default: true
       overwrite:
         description: "Overwrite les fichiers MP3 et JSON existants"
         type: boolean
