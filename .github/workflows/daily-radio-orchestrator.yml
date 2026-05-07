@@ -2,9 +2,9 @@ name: 🚀 Génération complète — Orchestrateur séquentiel
 
 on:
   schedule:
-    - cron: '0 3 * * *'   # 5h Paris (3h UTC)
-    - cron: '0 9 * * *'   # 11h Paris (9h UTC)
-    - cron: '0 15 * * *'  # 17h Paris (15h UTC)
+    - cron: '0 2 * * *'   # 4h Paris (2h UTC)
+    - cron: '0 8 * * *'   # 10h Paris (8h UTC)
+    - cron: '0 14 * * *'  # 16h Paris (14h UTC)
   workflow_dispatch:
     inputs:
       verbose:
