@@ -76,37 +76,7 @@
       text-transform: uppercase;
     }
 
-    /* Start screen */
-    #start-screen {
-      text-align: center;
-      padding: 2.5rem 0 1rem;
-    }
 
-    .start-emoji { font-size: 3.5rem; margin-bottom: 1.25rem; }
-
-    .start-btn {
-      background: #6366f1;
-      border: none;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 700;
-      padding: 0.9rem 2.5rem;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: background 0.15s, transform 0.1s;
-    }
-    .start-btn:hover { background: #4f46e5; }
-    .start-btn:active { transform: scale(0.97); }
-
-    .start-hint {
-      margin-top: 0.9rem;
-      font-size: 0.82rem;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    /* Player screen */
-    #player-screen { display: none; }
 
     /* YouTube frame */
     #yt-wrap {
@@ -372,17 +342,7 @@
   <div class="card">
     <div class="radio-header">
       <div class="live-dot" id="live-dot"></div>
-      <span class="radio-name">Radio Ka-rukera 🐚, la radio de la diaspora au Luxembourg</span>
-    </div>
-
-    <!-- ── Start screen ───────────────────────────────────── -->
-    <div id="start-screen">
-      <div class="start-emoji">📻</div>
-      <button class="start-btn" id="start-btn">▶ Allume la radio</button>
-      <p class="start-hint">
-        Musique caribéenne non-stop<br>
-        Flash info · Horoscope · Zouk · Kompa · Gwoka
-      </p>
+      <span class="radio-name">Radio Botiran 🐚, la radio de la diaspora au Luxembourg</span>
     </div>
 
     <!-- ── Player screen ──────────────────────────────────── -->
@@ -496,7 +456,14 @@
       return new Promise(resolve => {
         this.yt = new YT.Player('yt-player', {
           width: '100%', height: '100%',
-          playerVars: { autoplay: 0, controls: 1, rel: 0, modestbranding: 1 },
+          playerVars: { 
+            autoplay: 0, 
+            controls: 1, 
+            rel: 0, 
+            modestbranding: 1,
+            origin: window.location.origin,
+            enablejsapi: 1  // Active l'API JavaScript
+          },
           events: {
             onReady: () => {
               this.ytReady = true;
@@ -563,6 +530,8 @@
         }
       } else {
         // Liner MP3 + transitions (flash info, horoscope) → HTML5 Audio
+        // iOS Safari : s'assurer que AudioContext est initialisé
+        this._initAudioContext();
         this._showTransition(item);
         this.trAudio.src    = this._resolveUrl(item.url);
         this.trAudio.volume = this._vol() / 100;
@@ -586,12 +555,23 @@
     togglePlay() {
       const item = this.seq[this.pos];
       if (!item) return;
+      
       if (item.type === 'music' && this.ytReady) {
         const s = this.yt.getPlayerState();
         s === YT.PlayerState.PLAYING ? this.yt.pauseVideo() : this.yt.playVideo();
         btnPlay.textContent = s === YT.PlayerState.PLAYING ? '▶' : '⏸';
       } else {
-        this.trAudio.paused ? this.trAudio.play() : this.trAudio.pause();
+        // iOS Safari : initialiser AudioContext et afficher la transition
+        this._initAudioContext();
+        if (this.trAudio.paused) {
+          // Avant de jouer, s'assurer que la transition est affichée
+          if (item.type !== 'music') {
+            this._showTransition(item);
+          }
+          this.trAudio.play().catch(e => console.warn('[audio] échec play:', e));
+        } else {
+          this.trAudio.pause();
+        }
         btnPlay.textContent = this.trAudio.paused ? '▶' : '⏸';
       }
     }
@@ -626,7 +606,6 @@
     // ── UI ───────────────────────────────────────────────────
 
     _show() {
-      document.getElementById('start-screen').style.display  = 'none';
       document.getElementById('player-screen').style.display = 'block';
       document.getElementById('live-dot').classList.add('on');
     }
@@ -860,19 +839,48 @@
   const radio   = new RadioOrchestrator();   // onYouTubeIframeAPIReady posé dans le constructeur
   const btnPlay = document.getElementById('btn-play');
 
-  radio.load();   // préchargement séquence en arrière-plan
-
-  document.getElementById('start-btn').addEventListener('click', () => {
-    // iOS Safari : double unlock
-    // 1) AudioContext.resume() — persiste après async, débloque tout l'audio du contexte
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (AC) { try { (new AC()).resume(); } catch(_) {} }
-    // 2) play() synchrone sur l'élément HTML5 Audio — l'enregistre comme user-activated
-    radio.trAudio.volume = 0;
-    radio.trAudio.src    = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
-    radio.trAudio.play().catch(() => {});
-    radio.start();
+  // Initialiser le player avec le premier track en pause
+  radio.load().then(() => {
+    // iOS Safari : AudioContext sera initialisé à la première interaction utilisateur
+    // (dans togglePlay ou _playAt pour les MP3)
+    
+    // Démarrer avec le premier track en pause
+    radio.started = true;
+    radio.pos = 0;
+    const firstItem = radio.seq[0];
+    if (firstItem) {
+      // Charger le premier track mais ne pas le jouer
+      radio._updateNowPlaying(firstItem);
+      radio._renderQueue();
+      
+      // Charger l'audio pour le premier track
+      if (firstItem.type === 'music') {
+        radio._showYT();
+        // Initialiser YT si prêt
+        radio._ytApiReady.then(() => {
+          if (window.YT && window.YT.Player && !radio.yt) {
+            return radio._initYT();
+          }
+        }).then(() => {
+          if (radio.ytReady) {
+            radio.yt.loadVideoById(firstItem.videoId);
+            radio.yt.pauseVideo();
+          }
+        });
+      } else {
+        // Ne pas afficher la transition au chargement (évite l'AudioContext sans geste)
+        // La transition s'affichera quand l'utilisateur cliquera sur play
+        radio.trAudio.src = radio._resolveUrl(firstItem.url);
+        radio.trAudio.volume = radio._vol() / 100;
+        radio.trAudio.pause();
+      }
+      
+      // Mettre en pause par défaut
+      btnPlay.textContent = '▶';
+    }
+    radio._show();
   });
+
   btnPlay.addEventListener('click', () => radio.togglePlay());
   document.getElementById('btn-prev').addEventListener('click', () => radio._prev());
   document.getElementById('btn-skip').addEventListener('click', () => radio._next());

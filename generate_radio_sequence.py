@@ -174,13 +174,77 @@ def load_transitions() -> dict[str, list[dict]]:
                "flash_midi": {...},
                "flash_soir": {...}, "horoscope_soir": {...} }
     En cas d'épisodes multiples pour un slot, garde le plus récent.
+    
+    Priorité :
+    1. Fichiers locaux dans docs/audio/ (plus fiable, indépendant du podcast.xml)
+    2. Podcast RSS (podcast.xml) comme fallback
     """
+    from datetime import datetime
+    slots: dict[str, dict] = {}
+    
+    # 1. D'abord, essayer de charger depuis les fichiers locaux (plus récent)
+    audio_dir = Path("docs/audio")
+    today = datetime.utcnow().strftime("%Y-%m-%d")
+    today_compact = today.replace("-", "")  # 2026-05-07 -> 20260507
+    
+    # Flash Info
+    for edition in ["matin", "midi", "soir"]:
+        flash_path = audio_dir / "flash-info" / today[:7]
+        if flash_path.exists():
+            # Essayer plusieurs patterns (avec/sans tirets dans la date)
+            patterns = [
+                f"flash-info-{today_compact}-{edition}.mp3",
+                f"flash-info-{today}-{edition}.mp3",
+            ]
+            for pattern in patterns:
+                files = list(flash_path.glob(pattern))
+                if files:
+                    f = files[0]
+                    url = f"https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/{today[:7]}/{f.name}"
+                    label = f"Flash Info Guadeloupe — {today}, édition du {edition}"
+                    slot_name = f"flash_{edition}"
+                    if slot_name not in slots:
+                        slots[slot_name] = {
+                            "type": "transition", 
+                            "subtype": "flash_info",
+                            "url": url, 
+                            "label": label, 
+                            "icon": "📰"
+                        }
+                    break
+    
+    # Horoscopes
+    for edition in ["matin", "soir"]:
+        horo_path = audio_dir / "horoscope" / today[:7]
+        if horo_path.exists():
+            # Essayer plusieurs patterns (avec/sans tirets dans la date)
+            patterns = [
+                f"horoscope-{today_compact}-{edition}.mp3",
+                f"horoscope-{today}-{edition}.mp3",
+            ]
+            for pattern in patterns:
+                files = list(horo_path.glob(pattern))
+                if files:
+                    f = files[0]
+                    url = f"https://famibelle.github.io/FlashInfoKarukera/audio/horoscope/{today[:7]}/{f.name}"
+                    label = f"Horoscope {edition} — {today}"
+                    slot_name = f"horoscope_{edition}"
+                    if slot_name not in slots:
+                        slots[slot_name] = {
+                            "type": "transition",
+                            "subtype": "horoscope", 
+                            "url": url,
+                            "label": label, 
+                            "icon": "✨"
+                        }
+                    break
+    
+    # 2. Fallback : charger depuis le podcast RSS si fichiers locaux non trouvés
     if not PODCAST_XML.exists():
-        return {}
+        return slots
 
     xml   = PODCAST_XML.read_text(encoding="utf-8")
     items = re.findall(r"<item>(.*?)</item>", xml, re.DOTALL)
-    slots: dict[str, dict] = {}
 
     for item in items:
         guid  = re.search(r"<guid[^>]*>(.*?)</guid>", item)

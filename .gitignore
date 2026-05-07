@@ -1,37 +1,31 @@
-# Secrets & tokens
-.env
-browser.json
-client_secret*.json
-*_token*.json
-*_secret*.json
-oauth*.json
-*.key
-*.pem
+# Fichiers audio temporaires
+*.tmp.mp3
 
-# Python
+# Fichiers de cache
+.cache/
 __pycache__/
-*.pyc
-*.pyo
-.venv/
+*.py[cod]
+*$py.class
 
-# Fichiers temporaires
-.cache
-curl_headers.txt
-erase.me
-announce_tests/
+# Dependencies
+node_modules/
+.env
+.env.local
+.env.*.local
 
-# Exports de playlists locaux (generés a la demande, non versionnés)
-playlists/spotify_*.json
-playlists/spotify_*.txt
-playlists/radio_playlist_*.json
-playlists/radio_playlist_*.m3u
-playlists/radio_playlist_*.txt
+# Logs
+*.log
+npm-debug.log*
 
-# Cache files (générés automatiquement)
+# OS files
+.DS_Store
+Thumbs.db
 
-# Claude related files
-.claude/
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
 
-# 
-caribbean_db.py.backup
-caribbean_db_20260505_114407.backup
+youtube_token.json
+*token*
