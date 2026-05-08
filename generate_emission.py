@@ -208,8 +208,23 @@ def generate_catchy_title(elements: dict, text: str = "") -> str:
                     first_line = lines[0].strip()
                     if first_line:
                         # Format: "Plante / Résistance            \t Woucou / Roucou          \t ..."
-                        subject = first_line.split(' / ')[0].split('\t')[0].strip()
-                        if subject and subject not in ["Plante", "Insecte", "Cap", "1815", "1848"]:
+                        # On veut le nom créole ou le nom scientifique, pas la catégorie
+                        # Prendre la partie après le premier tab, ou la partie après " / " dans la première colonne
+                        parts = first_line.split('\t')
+                        if len(parts) > 1:
+                            # Prendre la deuxième partie (nom créole / nom scientifique)
+                            subject_part = parts[1].strip()
+                            # Extraire le premier nom avant " / "
+                            subject = subject_part.split(' / ')[0].strip()
+                        else:
+                            # Fallback: prendre après " / " dans la première partie
+                            subject = first_line.split(' / ')[1].strip() if ' / ' in first_line else first_line
+                        
+                        # Nettoyer le sujet (enlever les ** et autres marqueurs markdown)
+                        import re
+                        subject = re.sub(r'[\*_~`]', '', subject).strip()
+                        
+                        if subject and subject not in ["Plante", "Insecte", "Cap", "1815", "1848", "Amphibien", "Légume", "Cascade"]:
                             subjects.append((subject, format_template))
     
     # Si on a des sujets, créer un titre accrocheur
