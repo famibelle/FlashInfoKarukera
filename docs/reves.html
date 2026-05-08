@@ -4,278 +4,304 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <title>Rêves Nocturnes — Botiran</title>
+  <title>Reves Nocturnes — Radio Karukera</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #0f1117;
       color: #e8e8e8;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem 1.5rem;
+      padding: 2rem 1rem;
     }
 
-    .back {
-      align-self: flex-start;
-      margin-bottom: 1.25rem;
-      text-decoration: none;
-      color: #555;
-      font-size: 0.85rem;
-      display: flex;
+    a.back {
+      display: inline-flex;
       align-items: center;
       gap: 0.4rem;
+      text-decoration: none;
+      color: #8b8fa8;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
       transition: color 0.15s;
     }
-    .back:hover { color: #e8e8e8; }
+    a.back:hover { color: #e8e8e8; }
 
-    .card {
-      background: #1a1d27;
-      border: 1px solid #2a2d3a;
-      border-radius: 16px;
-      padding: 2rem;
-      max-width: 900px;
-      width: 100%;
+    header {
+      text-align: center;
       margin-bottom: 2rem;
     }
 
-    h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 0.5rem;
-      text-align: center;
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
     }
-    
-    .tagline {
-      font-size: 1rem;
+
+    header p {
       color: #8b8fa8;
-      text-align: center;
-      margin-bottom: 2rem;
+      font-size: 0.9rem;
     }
 
-    /* Filtres par type */
+    /* Filtres */
     .filters {
       display: flex;
+      gap: 0.5rem;
       justify-content: center;
-      gap: 0.75rem;
       margin-bottom: 1.5rem;
       flex-wrap: wrap;
     }
 
     .filter-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
       background: #252836;
       border: 1px solid #333646;
       border-radius: 8px;
-      padding: 0.4rem 0.8rem;
-      color: #b0b4cc;
-      font-size: 0.82rem;
-      font-weight: 500;
+      color: #c4c8e2;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
       cursor: pointer;
-      transition: background 0.15s, border-color 0.15s, color 0.15s;
-      text-decoration: none;
+      transition: all 0.15s;
     }
-    .filter-btn:hover, .filter-btn.active {
-      background: #6366f1;
-      border-color: #5255e0;
+    .filter-btn:hover { background: #2e3245; border-color: #4a4f6a; }
+    .filter-btn.active {
+      background: #3b82f6;
+      border-color: #3b82f6;
       color: #fff;
     }
 
-    /* Liste des rêves */
-    .dreams-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
+    /* Grille des cartes */
+    .dreams-grid {
+      display: grid;
+      gap: 1.25rem;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    .dream-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem;
+    /* Carte reve */
+    .dream-card {
       background: #1a1d27;
       border: 1px solid #2a2d3a;
-      border-radius: 12px;
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: border-color 0.15s, transform 0.15s;
       cursor: pointer;
-      transition: background 0.15s, border-color 0.15s;
-      text-decoration: none;
-      color: #e8e8e8;
+    }
+    .dream-card:hover {
+      border-color: #4a4f6a;
+      transform: translateY(-2px);
     }
 
-    .dream-item:hover {
-      background: #252836;
-      border-color: #3e4150;
+    .dream-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
     }
 
     .dream-date {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #fff;
-      min-width: 100px;
+      background: #252836;
+      border-radius: 8px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+      color: #8b8fa8;
+      font-weight: 500;
+      flex-shrink: 0;
     }
 
     .dream-type {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.8rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 12px;
-      background: #1e3a2f;
-      color: #4ade80;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      background: #3b82f620;
+      color: #60a5fa;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .dream-title {
-      font-size: 0.95rem;
-      color: #b0b4cc;
-      flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
     }
 
-    .dream-arrow {
-      color: #555;
-      font-size: 1rem;
+    .dream-score {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #10b98120;
+      color: #34d399;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
     }
 
-    /* Loading */
-    .loading {
-      color: #555;
+    .dream-content {
       font-size: 0.9rem;
-      text-align: center;
-      padding: 2rem;
+      line-height: 1.6;
+      color: #c4c8e2;
+      margin-bottom: 1rem;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .dream-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-      }
-      
-      .dream-date {
-        min-width: auto;
-      }
-      
-      .card {
-        padding: 1.5rem;
-      }
+    .dream-content blockquote {
+      border-left: 3px solid #3b82f6;
+      padding-left: 1rem;
+      margin: 1rem 0;
+      color: #93c5fd;
+      font-style: italic;
+    }
+
+    .dream-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: #666;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #2a2d3a;
+    }
+
+    .dream-link {
+      color: #60a5fa;
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.15s;
+    }
+    .dream-link:hover { color: #93c5fd; }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dream-card {
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    @media (max-width: 600px) {
+      .dreams-grid { gap: 1rem; }
+      .dream-header { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-  <a class="back" href="index.html">← Botiran</a>
-  
-  <div class="card">
-    <h1>🌙 Rêves Nocturnes</h1>
-    <p class="tagline">Analyses oniriques de Radio Karukera<br>Générées quotidiennement par Botiran</p>
+  <a class="back" href="index.html">← Retour</a>
 
-    <!-- Filtres -->
-    <div class="filters">
-      <button class="filter-btn active" data-filter="all">Tous</button>
-      <button class="filter-btn" data-filter="antenne">📡 Antenne</button>
-      <button class="filter-btn" data-filter="technique">⚙️ Technique</button>
-    </div>
+  <header>
+    <h1>🌙 Journal des Reves Nocturnes</h1>
+    <p>Analyses oniriques quotidiennes de Radio Karukera</p>
+  </header>
 
-    <!-- Liste des rêves -->
-    <div class="dreams-list" id="dreams-list">
-      <div class="loading">Chargement des rêves...</div>
-    </div>
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">Tous</button>
+    <button class="filter-btn" data-filter="antenne">🎤 Antenne</button>
+    <button class="filter-btn" data-filter="technique">🎛️ Technique</button>
+  </div>
+
+  <div class="dreams-grid" id="dreams-grid">
+    <!-- Les cartes seront générées par JavaScript -->
   </div>
 
   <script>
-    // Liste des rêves (statique pour éviter les problèmes de fetch)
-    const allDreams = [
+    // Liste des reves disponibles
+    const dreamsData = [
       {
         date: "2026-05-08",
         type: "antenne",
-        title: "Rêve Antenne — 08 mai 2026",
+        title: "La Nuit où les Ondes se Réveillaient en Créole",
+        score: 42,
+        excerpt: "Les fréquences frémissent comme un gwo ka sous les mornes—les Flash Infos traversent la nuit, mais les liners s'échouent sur les récifs de l'incohérence...",
         file: "reves/antenne/2026-05-08.md"
       },
       {
         date: "2026-05-08",
-        type: "technique", 
-        title: "Rêve Technique — 08 mai 2026",
+        type: "technique",
+        title: "Le Rêve Onirique de Radio Botiran – La Nuit où les Mornes Dansaient en Silence",
+        score: 42,
+        excerpt: "Cette nuit, j'ai marché sur les ondes chaudes de la Guadeloupe, où la playlist s'est déployée comme une marée de rythmes sous un ciel étoilé...",
         file: "reves/technique/2026-05-08.md"
       },
       {
         date: "2026-05-07",
         type: "antenne",
-        title: "Rêve Antenne — 07 mai 2026",
+        title: "Les Voix Perdues de Botiran",
+        score: 38,
+        excerpt: "Dans le silence de la nuit, les voix de Radio Botiran semblent s'être égarées entre les fréquences...",
         file: "reves/antenne/2026-05-07.md"
       },
       {
         date: "2026-05-07",
         type: "technique",
-        title: "Rêve Technique — 07 mai 2026",
+        title: "Harmonie Brisée : Quand la Playlist Devient Cacophonie",
+        score: 35,
+        excerpt: "80 morceaux, 14 liners, 0% de cohérence. La playlist ressemble à un orchestre sans chef...",
         file: "reves/technique/2026-05-07.md"
       }
     ];
-    
-    let filteredDreams = [...allDreams];
-    
-    // Formater la date
+
+    // Format date pour affichage
     function formatDate(dateStr) {
-      const [year, month, day] = dateStr.split('-');
-      const date = new Date(year, month - 1, day);
-      return date.toLocaleDateString('fr-FR', { 
-        day: '2-digit', 
-        month: 'short', 
-        year: 'numeric' 
-      });
+      const date = new Date(dateStr);
+      const options = { day: '2-digit', month: 'long', year: 'numeric' };
+      return date.toLocaleDateString('fr-FR', options);
     }
-    
-    // Afficher les rêves
-    function displayDreams(dreams) {
-      const container = document.getElementById('dreams-list');
-      
-      if (dreams.length === 0) {
-        container.innerHTML = '<div class="loading">Aucun rêve trouvé.</div>';
-        return;
-      }
-      
-      container.innerHTML = dreams.map(dream => `
-        <a href="${dream.file}" class="dream-item" target="_blank">
+
+    // Genere une carte de reve
+    function createDreamCard(dream) {
+      const card = document.createElement('div');
+      card.className = `dream-card`;
+      card.dataset.type = dream.type;
+      card.dataset.date = dream.date;
+
+      card.innerHTML = `
+        <div class="dream-header">
           <span class="dream-date">${formatDate(dream.date)}</span>
-          <span class="dream-type">${dream.type === 'antenne' ? '📡 Antenne' : '⚙️ Technique'}</span>
-          <span class="dream-title">${dream.title}</span>
-          <span class="dream-arrow">›</span>
-        </a>
-      `).join('');
+          <span class="dream-type">${dream.type}</span>
+        </div>
+        <h2 class="dream-title">🌙 ${dream.title}</h2>
+        ${dream.score ? `<span class="dream-score">✨ Score: ${dream.score}/100</span>` : ''}
+        <div class="dream-content">
+          ${dream.excerpt}
+        </div>
+        <div class="dream-meta">
+          <a href="${dream.file}" class="dream-link" target="_blank">Lire l'analyse complete →</a>
+        </div>
+      `;
+
+      return card;
     }
-    
-    // Filtrer les rêves
-    function filterDreams(type) {
-      const buttons = document.querySelectorAll('.filter-btn');
-      buttons.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.filter === type);
+
+    // Affiche les reves filtres
+    function renderDreams(filter = 'all') {
+      const grid = document.getElementById('dreams-grid');
+      grid.innerHTML = '';
+
+      const filteredDreams = filter === 'all'
+        ? dreamsData
+        : dreamsData.filter(d => d.type === filter);
+
+      filteredDreams.forEach(dream => {
+        grid.appendChild(createDreamCard(dream));
       });
-      
-      filteredDreams = type === 'all' 
-        ? allDreams 
-        : allDreams.filter(d => d.type === type);
-      
-      displayDreams(filteredDreams);
     }
-    
-    // Initialisation
-    document.addEventListener('DOMContentLoaded', () => {
-      // Ajouter les écouteurs sur les boutons de filtre
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => filterDreams(btn.dataset.filter));
+
+    // Gestion des filtres
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderDreams(btn.dataset.filter);
       });
-      
-      // Afficher tous les rêves
-      displayDreams(allDreams);
     });
+
+    // affichage initial
+    renderDreams();
   </script>
 </body>
 </html>
