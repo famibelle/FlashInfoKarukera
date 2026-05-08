@@ -392,8 +392,26 @@
 
   <audio id="tr-audio"></audio>
 
-  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
+  // ── Charger YouTube IFrame API dynamiquement (pour éviter les problèmes d'ordre de chargement) ───
+  // Le callback doit être défini AVANT que le script YouTube ne se charge
+  window._ytResolve = null;
+  const ytApiPromise = new Promise(resolve => {
+    window.onYouTubeIframeAPIReady = () => {
+      if (window._ytResolve) window._ytResolve();
+      resolve();
+    };
+    window._ytResolve = resolve;
+  });
+  
+  // Charger le script YouTube dynamiquement
+  (function() {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  })();
+
   // ── RadioOrchestrator ─────────────────────────────────────────────────────────
 
   class RadioOrchestrator {
@@ -416,22 +434,8 @@
       this.trAudio.addEventListener('timeupdate', () => this._updateTimer());
       this.trAudio.addEventListener('loadedmetadata', () => this._updateTimer());
 
-      // Promise résolue quand l'API YT est disponible (callback ou polling)
-      this._ytApiReady = new Promise(resolve => {
-        window.onYouTubeIframeAPIReady = () => resolve();
-        // Polling de secours toutes les 200ms (max 15s)
-        let waited = 0;
-        const poll = setInterval(() => {
-          if (window.YT && window.YT.Player) {
-            clearInterval(poll);
-            resolve();
-          }
-          if ((waited += 200) >= 15000) {
-            clearInterval(poll);
-            resolve();
-          }
-        }, 200);
-      });
+      // Utiliser la promesse globale ytApiPromise (déjà initialisée avant ce script)
+      this._ytApiReady = ytApiPromise;
     }
 
     // ── Seek Slider Helpers ─────────────────────────────────────
