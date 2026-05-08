@@ -50,6 +50,7 @@ import argparse
 import json
 import os
 import re
+import time
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -70,77 +71,59 @@ except ImportError:
 
 # ------ CACHE SYSTEM ------
 class SimpleCache:
-    """Cache simple en mémoire avec option de persistance dans un fichier."""
-    
+    """Cache en mémoire avec persistance fichier différée (flush à la fin, pas à chaque set)."""
+
     def __init__(self, cache_file=None, ttl=300):
-        """
-        Initialise le cache.
-        
-        Args:
-            cache_file: Chemin du fichier de cache (optionnel)
-            ttl: Time-to-live en secondes (défaut: 300 = 5 minutes)
-        """
         self.memory_cache = {}
         self.cache_file = Path(cache_file) if cache_file else None
         self.ttl = ttl
+        self._dirty = False
         self._load_from_file()
-    
+
     def _load_from_file(self):
-        """Charge le cache depuis le fichier."""
         if not self.cache_file or not self.cache_file.exists():
             return
         try:
             with open(self.cache_file, "r", encoding="utf-8") as f:
-                import ast
-                self.memory_cache = ast.literal_eval(f.read())
-            log_info(f"Cache chargé depuis {self.cache_file}")
+                self.memory_cache = json.load(f)
+            log_info(f"Cache chargé depuis {self.cache_file} ({len(self.memory_cache)} entrées)")
         except Exception as e:
             log_warning(f"Impossible de charger le cache: {e}")
-    
-    def _save_to_file(self):
-        """Sauvegarde le cache dans le fichier."""
-        if not self.cache_file:
+
+    def flush(self):
+        """Écrit le cache sur disque si modifié (appeler en fin de script)."""
+        if not self._dirty or not self.cache_file:
             return
         try:
             self.cache_file.parent.mkdir(parents=True, exist_ok=True)
             with open(self.cache_file, "w", encoding="utf-8") as f:
-                f.write(str(self.memory_cache))
+                json.dump(self.memory_cache, f, ensure_ascii=False)
+            self._dirty = False
         except Exception as e:
             log_warning(f"Impossible de sauvegarder le cache: {e}")
-    
+
     def get(self, key):
-        """Récupère une valeur du cache."""
         if key not in self.memory_cache:
             return None
-        
         entry = self.memory_cache[key]
-        # Vérifier le TTL
         if "timestamp" in entry and (time.time() - entry["timestamp"]) > self.ttl:
             del self.memory_cache[key]
-            self._save_to_file()
+            self._dirty = True
             return None
-        
         return entry.get("value")
-    
+
     def set(self, key, value):
-        """Stocke une valeur dans le cache."""
-        self.memory_cache[key] = {
-            "value": value,
-            "timestamp": time.time()
-        }
-        self._save_to_file()
-    
+        self.memory_cache[key] = {"value": value, "timestamp": time.time()}
+        self._dirty = True
+
     def clear(self):
-        """Efface tout le cache."""
         self.memory_cache = {}
+        self._dirty = False
         if self.cache_file:
             try:
                 self.cache_file.unlink()
-            except:
+            except Exception:
                 pass
-
-# Importer time pour le cache
-import time
 
 # Initialiser le cache (désactivé par défaut, activer avec --cache ou CACHE_DIR)
 GITHUB_CACHE = None
@@ -151,6 +134,8 @@ REPO_ROOT = Path(__file__).parent.parent
 DREAMS_DIR = REPO_ROOT / "docs" / "reves"
 TECHNICAL_DIR = DREAMS_DIR / "technique"
 ANTENNE_DIR = DREAMS_DIR / "antenne"
+REPORTS_DIR = DREAMS_DIR / "reports"
+DREAMS_INDEX = DREAMS_DIR / "index.json"
 
 # GitHub Config
 GITHUB_REPO = os.environ.get("GITHUB_REPOSITORY", "famibelle/FlashInfoKarukera")
@@ -340,12 +325,14 @@ def get_workflow_runs(workflow_id, since_date=None, limit=10):
         list: Liste des runs, ou [] en cas d'erreur
     """
     endpoint = f"/repos/{GITHUB_REPO}/actions/workflows/{workflow_id}/runs"
-    params = {"per_page": min(limit, 100)}
-    
+    per_page = min(limit, 100)
+
     # Filtrer par date si spécifié
     if since_date:
-        endpoint += f"?created=%3E{since_date}T00:00:00Z"
-    
+        endpoint += f"?created=%3E{since_date}T00:00:00Z&per_page={per_page}"
+    else:
+        endpoint += f"?per_page={per_page}"
+
     runs = call_github_api(endpoint)
     
     if not runs or "workflow_runs" not in runs:
@@ -375,31 +362,39 @@ def get_jobs_for_run(run_id):
 
 def get_job_logs(run_id, job_id):
     """
-    Récupère les logs d'un job spécifique.
-    
-    Args:
-        run_id: ID du workflow run
-        job_id: ID du job
-        
+    Récupère les logs d'un job spécifique (avec cache).
+
     Returns:
         str: Logs du job, ou None en cas d'erreur
     """
+    cache_key = f"github:{GITHUB_REPO}:job_logs:{job_id}"
+
+    if GITHUB_CACHE:
+        cached = GITHUB_CACHE.get(cache_key)
+        if cached is not None:
+            log_info(f"Cache hit pour logs job {job_id}")
+            return cached
+
     endpoint = f"/repos/{GITHUB_REPO}/actions/jobs/{job_id}/logs"
     headers = {"Accept": "application/vnd.github+json"}
     token = get_github_token()
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    
-    url = f"https://api.github.com{endpoint}"
-    
+
     try:
-        import requests
-        response = requests.get(url, headers=headers, timeout=30)
+        response = requests.get(f"https://api.github.com{endpoint}", headers=headers, timeout=30)
         if response.status_code == 200:
-            return response.text
-        else:
-            log_error(f"Erreur récupération logs job {job_id}: HTTP {response.status_code}")
+            text = response.text
+            if GITHUB_CACHE:
+                GITHUB_CACHE.set(cache_key, text)
+            return text
+        if response.status_code == 404:
+            # Logs expirés ou non disponibles — on cache pour éviter de retenter
+            if GITHUB_CACHE:
+                GITHUB_CACHE.set(cache_key, "")
             return None
+        log_error(f"Erreur récupération logs job {job_id}: HTTP {response.status_code}")
+        return None
     except Exception as e:
         log_error(f"Erreur récupération logs job {job_id}: {e}")
         return None
@@ -522,32 +517,31 @@ def get_all_workflows_stats(days_back=7, workflow_names=None):
                     last_error = f"Run {r.get('id', 'N/A')} échoué - {r.get('html_url', '#')}"
                 break
         
-        # Récupérer les logs des runs (optionnel, peut être désactivé pour les runs trop anciens)
+        # Récupérer les logs uniquement pour les runs échoués récents (3 jours max, 3 runs max)
         runs_with_logs = []
+        failed_logs_fetched = 0
         for r in runs:
             run_id = r.get("id")
             run_conclusion = r.get("conclusion")
-            run_name = r.get("name", f"Run {run_id}")
             run_started = r.get("run_started_at")
-            
-            # Récupérer les logs uniquement pour les runs récents (7 jours max) pour éviter les rate limits
-            run_date_str = run_started[:10] if run_started else None
-            if run_date_str:
-                run_date = datetime.strptime(run_date_str, "%Y-%m-%d").date()
-                days_old = (datetime.utcnow().date() - run_date).days
-                if days_old <= 7:  # Seuil pour éviter les vieux runs
-                    logs = get_run_logs(run_id, max_log_size=5000)
-                else:
-                    logs = None
-            else:
-                logs = None
-            
+            logs = None
+
+            if run_conclusion == "failure" and failed_logs_fetched < 3:
+                run_date_str = run_started[:10] if run_started else None
+                if run_date_str:
+                    try:
+                        days_old = (datetime.utcnow().date() - datetime.strptime(run_date_str, "%Y-%m-%d").date()).days
+                        if days_old <= 3:
+                            logs = get_run_logs(run_id, max_log_size=3000)
+                            failed_logs_fetched += 1
+                    except Exception:
+                        pass
+
             runs_with_logs.append({
                 "id": run_id,
-                "name": run_name,
                 "conclusion": run_conclusion,
                 "started_at": run_started,
-                "logs": logs
+                "logs": logs,
             })
         
         workflows_data.append({
@@ -644,35 +638,41 @@ def generate_workflow_dream_summary(workflow_data, date_str, api_key):
     )
 
 
-def call_mistral_api(prompt, api_key, model=MISTRAL_MODEL, max_tokens=500, temperature=0.7):
+def call_mistral_api(prompt, api_key, model=MISTRAL_MODEL, max_tokens=500, temperature=0.7, system_prompt=None):
     """
     Appelle l'API Mistral pour générer du texte.
-    
+
     Args:
         prompt: Le prompt à envoyer au modèle
         api_key: Clé API Mistral
         model: Modèle à utiliser (mistral-tiny, mistral-small, mistral-medium)
         max_tokens: Nombre max de tokens dans la réponse
         temperature: Créativité (0.0 = déterministe, 1.0 = aléatoire)
-    
+        system_prompt: Prompt système optionnel (prepend as system message)
+
     Returns:
         str: Réponse du modèle, ou None en cas d'erreur
     """
     if not REQUESTS_AVAILABLE:
         log_error("La bibliothèque 'requests' est requise pour l'API Mistral. Installez-la avec: pip install requests")
         return None
-    
+
     if not api_key:
         log_error("Aucune clé API Mistral fournie")
         return None
-    
+
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    messages.append({"role": "user", "content": prompt})
+
     try:
         response = requests.post(
             MISTRAL_API_URL,
             headers={"Authorization": f"Bearer {api_key}"},
             json={
                 "model": model,
-                "messages": [{"role": "user", "content": prompt}],
+                "messages": messages,
                 "temperature": temperature,
                 "max_tokens": max_tokens,
             },
@@ -968,7 +968,7 @@ Génère le rêve complet du Directeur Musical:"""
 
 # ------ ANALYSE TECHNIQUE ------
 
-def generate_technical_dream(date_obj, llm_key=None, use_github_api=True):
+def _legacy_generate_technical_dream(date_obj, llm_key=None, use_github_api=True):
     """Génère le rêve technique."""
     date_str = format_date(date_obj)
     
@@ -1742,16 +1742,22 @@ def load_journalist_texts(date_str: str, repo_root: Path = REPO_ROOT) -> dict[st
                 maryse_texts.append(f.read_text(encoding="utf-8", errors="ignore"))
     results["Maryse Condé"] = maryse_texts
     
-    # Monique - Émissions (docs/audio/Emissions/)
-    emission_dir = repo_root / "docs" / "audio" / "Emissions"
+    # Monique - Émissions (archives/emissions/)
+    emission_dir = repo_root / "archives" / "emissions"
     monique_texts = []
     if emission_dir.exists():
-        for f in sorted(emission_dir.glob(f"emission-{date_str}.json")):
-            try:
-                data = json.loads(f.read_text(encoding="utf-8"))
-                monique_texts.append(data.get("text", ""))
-            except (json.JSONDecodeError, FileNotFoundError):
-                continue
+        for f in sorted(emission_dir.glob(f"emission-{date_str}.txt")):
+            monique_texts.append(f.read_text(encoding="utf-8", errors="ignore"))
+    # Fallback : JSON dans docs/audio/Emissions/
+    if not monique_texts:
+        json_dir = repo_root / "docs" / "audio" / "Emissions"
+        if json_dir.exists():
+            for f in sorted(json_dir.glob(f"emission-{date_str}.json")):
+                try:
+                    data = json.loads(f.read_text(encoding="utf-8"))
+                    monique_texts.append(data.get("text", ""))
+                except (json.JSONDecodeError, FileNotFoundError):
+                    continue
     results["Monique"] = monique_texts
     
     # Mulatresse Solitude - Capsules (archives/capsules/ et docs/capsules/)
@@ -1779,17 +1785,23 @@ def load_journalist_texts(date_str: str, repo_root: Path = REPO_ROOT) -> dict[st
                 processed_files.add(f.name)
     results["Mulatresse Solitude"] = solitude_texts
     
-    # Corinne - Liners (docs/liners/)
-    liners_dir = repo_root / "docs" / "liners"
+    # Corinne - Liners (archives/liners/)
+    liners_archive_dir = repo_root / "archives" / "liners"
     corinne_texts = []
-    if liners_dir.exists():
-        for f in sorted(liners_dir.glob("liner-*.json")):
-            try:
-                data = json.loads(f.read_text(encoding="utf-8"))
-                if data.get("label"):
-                    corinne_texts.append(data["label"])
-            except (json.JSONDecodeError, FileNotFoundError):
-                continue
+    if liners_archive_dir.exists():
+        for f in sorted(liners_archive_dir.glob(f"liner-{date_str}-*.txt")):
+            corinne_texts.append(f.read_text(encoding="utf-8", errors="ignore"))
+    # Fallback : JSON dans docs/liners/ (sans filtre de date)
+    if not corinne_texts:
+        liners_dir = repo_root / "docs" / "liners"
+        if liners_dir.exists():
+            for f in sorted(liners_dir.glob("liner-*.json")):
+                try:
+                    data = json.loads(f.read_text(encoding="utf-8"))
+                    if data.get("label"):
+                        corinne_texts.append(data["label"])
+                except (json.JSONDecodeError, FileNotFoundError):
+                    continue
     results["Corinne"] = corinne_texts
     
     return results
@@ -1959,7 +1971,8 @@ NOMBRE DE TEXTES: {len(journalist_texts)}
         api_key,
         model="mistral-small",
         max_tokens=500,
-        temperature=0.3
+        temperature=0.3,
+        system_prompt=system_prompt,
     )
     
     if raw:
@@ -2003,7 +2016,7 @@ def get_journalist_role(name):
     return roles.get(name, "Animateur/Animatrice")
 
 
-def generate_antenne_dream(date_obj, llm_key=None):
+def _legacy_generate_antenne_dream(date_obj, llm_key=None):
     """Génère le rêve de l'antenne."""
     date_str = format_date(date_obj)
     
@@ -2693,69 +2706,876 @@ Au réveil, le Directeur a compris qu'il fallait :
     return md
 
 
+# ====================================================================
+# PHASE 1 — OBSERVATION
+# ====================================================================
+
+def build_technical_data(use_github_api=True):
+    """Collecte les données techniques depuis GitHub Actions."""
+    if not use_github_api:
+        log_warning("GitHub API désactivée (--no-github)")
+        return {"workflows": [], "summary": {
+            "total_runs": 0, "global_success_rate": 0,
+            "total_errors_in_logs": 0, "total_warnings_in_logs": 0,
+            "workflows_in_alert": [],
+        }}
+
+    log_info("Récupération des stats workflows depuis GitHub API...")
+    raw = get_all_workflows_stats(days_back=7)
+    if not raw:
+        log_error("Aucune donnée workflow récupérée")
+        return {"workflows": [], "summary": {
+            "total_runs": 0, "global_success_rate": 0,
+            "total_errors_in_logs": 0, "total_warnings_in_logs": 0,
+            "workflows_in_alert": [],
+        }}
+
+    log_info(f"{len(raw)} workflows analysés")
+    workflows = [{
+        "name": wf["name"],
+        "runs": wf["runs"],
+        "success": wf["success_count"],
+        "failure": wf["failure_count"],
+        "success_rate": wf["success_rate"],
+        "avg_duration_s": wf["avg_duration"],
+        "last_status": wf["last_status"],
+        "last_failure_url": wf.get("last_failure_url"),
+    } for wf in raw]
+
+    total_runs = sum(w["runs"] for w in workflows)
+    global_success_rate = sum(w["success"] for w in workflows) / total_runs if total_runs else 0
+
+    total_errors = total_warnings = 0
+    for wf in raw:
+        for run in wf.get("runs_details", []):
+            for line in (run.get("logs") or "").split("\n"):
+                ll = line.lower()
+                if "error" in ll or "failed" in ll:
+                    total_errors += 1
+                elif "warning" in ll:
+                    total_warnings += 1
+
+    return {
+        "workflows": workflows,
+        "summary": {
+            "total_runs": total_runs,
+            "global_success_rate": global_success_rate,
+            "total_errors_in_logs": total_errors,
+            "total_warnings_in_logs": total_warnings,
+            "workflows_in_alert": [w["name"] for w in workflows if w["last_status"] != "success"],
+        },
+    }
+
+
+def build_antenne_data(date_str):
+    """Collecte les données éditorielles (séquence, fichiers audio, journalistes)."""
+    sequence_path = REPO_ROOT / "docs" / "radio_sequence.json"
+    sequence = load_json(sequence_path) or {"sequence": []}
+    seq = sequence["sequence"]
+
+    flash_infos = [s for s in seq if s.get("subtype") == "flash_info"]
+    horoscopes  = [s for s in seq if s.get("subtype") == "horoscope"]
+    emissions   = [s for s in seq if s.get("subtype") == "emission"]
+    musics      = [s for s in seq if s.get("type") == "music"]
+
+    flash_files   = load_audio_metadata(date_str, "flash-info")
+    horo_files    = load_audio_metadata(date_str, "horoscope")
+    liner_files   = load_audio_metadata(date_str, "liners")
+    capsule_files = load_audio_metadata(date_str, "capsules")
+    emission_files = load_audio_metadata(date_str, "Emissions")
+    journalist_texts = load_journalist_texts(date_str)
+    playlist_content = load_playlist(date_str)
+
+    # Liner analysis — use correct sequence index (bug fix)
+    liner_items = []
+    coherent_count = 0
+
+    for seq_idx, item in enumerate(seq):
+        if item.get("type") != "liner":
+            continue
+
+        liner_text = item.get("label", "")
+        next_item = seq[seq_idx + 1] if seq_idx + 1 < len(seq) else None
+        next_is_music = next_item and next_item.get("type") == "music"
+        issues = []
+        is_coherent = False
+
+        format_issue = analyze_liner_format(liner_text)
+        if format_issue:
+            issues.append({"type": "format_invalid", "severity": "high", "detail": format_issue})
+        elif next_is_music:
+            next_artist = next_item.get("artist", "")
+            next_title  = next_item.get("title", "")
+            extracted   = extract_artist_title(liner_text)
+
+            artist_match = (
+                compare_artist_names(extracted["artist"], next_artist)
+                or (next_artist and next_artist.lower() in liner_text.lower())
+            )
+            if artist_match:
+                is_coherent = True
+                coherent_count += 1
+                if (next_title and extracted["title"]
+                        and next_title.lower() not in extracted["title"].lower()):
+                    issues.append({
+                        "type": "title_mismatch", "severity": "low",
+                        "detail": f"Titre: '{extracted['title']}' vs attendu: '{next_title}'",
+                    })
+            else:
+                issues.append({
+                    "type": "artist_mismatch", "severity": "high",
+                    "detail": f"Attendu: '{next_artist}', trouvé: '{extracted['artist']}'",
+                })
+        else:
+            is_coherent = True
+            coherent_count += 1
+
+        liner_items.append({
+            "index": seq_idx,
+            "text": liner_text,
+            "next_music": {
+                "artist": next_item.get("artist", ""),
+                "title":  next_item.get("title", ""),
+                "genre":  next_item.get("genre", ""),
+            } if next_is_music else None,
+            "is_coherent": is_coherent,
+            "issues": issues,
+        })
+
+    total_liners   = len(liner_items)
+    coherence_rate = coherent_count / total_liners if total_liners else 0
+    all_issues     = [iss for item in liner_items for iss in item["issues"]]
+    issues_by_type = dict(Counter(iss["type"] for iss in all_issues))
+
+    # Music analysis
+    genres  = Counter(m.get("genre",  "inconnu") for m in musics)
+    artists = Counter(m.get("artist", "inconnu") for m in musics)
+
+    consecutive = []
+    i = 0
+    while i < len(musics):
+        artist = musics[i].get("artist", "")
+        count = 1
+        while i + count < len(musics) and musics[i + count].get("artist", "") == artist:
+            count += 1
+        if count >= 2:
+            consecutive.append({"artist": artist, "position": i, "count": count})
+        i += count
+
+    SMOOTH = {frozenset(["Zouk", "Kompa"]), frozenset(["Biguine", "Jazz"]), frozenset(["Gwoka", "Biguine"])}
+    abrupt = [
+        {"position": i, "from_genre": musics[i].get("genre", ""), "to_genre": musics[i+1].get("genre", "")}
+        for i in range(len(musics) - 1)
+        if musics[i].get("genre") and musics[i+1].get("genre")
+        and musics[i].get("genre") != musics[i+1].get("genre")
+        and frozenset([musics[i].get("genre", ""), musics[i+1].get("genre", "")]) not in SMOOTH
+    ]
+
+    horoscope_anomalies = [
+        "15 signes détecté" for h in horoscopes if "15 signes" in h.get("label", "")
+    ]
+
+    return {
+        "content": {
+            "flash_infos":  {"count": len(flash_infos),  "files": flash_files,    "editions": sorted({f.get("edition","inconnu") for f in flash_files}),   "texts": [f.get("content","")[:200] for f in flash_files[:3]]},
+            "horoscopes":   {"count": len(horoscopes),   "files": horo_files,     "editions": sorted({f.get("edition","inconnu") for f in horo_files}),    "anomalies": horoscope_anomalies},
+            "emissions":    {"count": len(emissions),    "files": emission_files, "themes": [f.get("title","")[:50] for f in emission_files[:5]]},
+            "capsules":     {"count": len(capsule_files),"files": capsule_files,  "themes": [f.get("title", f.get("content","")[:50]) for f in capsule_files[:10]]},
+        },
+        "liners": {
+            "total": total_liners, "coherent": coherent_count,
+            "coherence_rate": coherence_rate, "items": liner_items,
+            "issues_by_type": issues_by_type,
+        },
+        "music": {
+            "total_tracks": len(musics),
+            "genres": dict(genres), "artists": dict(artists),
+            "max_artist_repetition": max(artists.values(), default=0),
+            "top_artist": max(artists, key=artists.get, default=""),
+            "consecutive_same_artist": consecutive,
+            "abrupt_transitions": abrupt[:15],
+            "playlist_excerpt": playlist_content[:2000],
+        },
+        "journalists": {
+            name: {"passages": len(texts), "texts_sample": [t[:500] for t in texts[:3]]}
+            for name, texts in journalist_texts.items()
+        },
+    }
+
+
+# ====================================================================
+# PHASE 2 — SIGNAUX
+# ====================================================================
+
+SIGNAL_THRESHOLDS = {
+    "success_rate_critical": 0.80,
+    "success_rate_low":      0.90,
+    "liner_coherence_critical": 0.80,
+    "liner_coherence_low":      0.90,
+    "artist_overplay":          5,
+    "log_errors_high":          10,
+}
+
+
+def compute_signals(technical, antenne):
+    """Calcule les signaux (anomalies, risques) à partir des données collectées."""
+    signals = {"technical": [], "editorial": [], "music": []}
+
+    # Technical
+    rate = technical["summary"]["global_success_rate"]
+    if rate < SIGNAL_THRESHOLDS["success_rate_critical"]:
+        signals["technical"].append({"type": "global_success_rate_critical", "severity": "high",
+            "context": f"Taux succès global : {rate*100:.0f}% (objectif >90%)"})
+    elif rate < SIGNAL_THRESHOLDS["success_rate_low"]:
+        signals["technical"].append({"type": "global_success_rate_low", "severity": "medium",
+            "context": f"Taux succès global : {rate*100:.0f}% (objectif >90%)"})
+
+    for wf in technical["workflows"]:
+        if wf["last_status"] != "success":
+            signals["technical"].append({"type": "workflow_last_run_failed", "severity": "high",
+                "context": f"{wf['name']} : dernier run échoué"})
+        if wf["runs"] >= 3 and wf["success_rate"] < SIGNAL_THRESHOLDS["success_rate_critical"]:
+            signals["technical"].append({"type": "workflow_failure_rate", "severity": "high",
+                "context": f"{wf['name']} : {wf['success_rate']*100:.0f}% succès sur 7 jours"})
+
+    if technical["summary"]["total_errors_in_logs"] > SIGNAL_THRESHOLDS["log_errors_high"]:
+        signals["technical"].append({"type": "log_errors_high", "severity": "medium",
+            "context": f"{technical['summary']['total_errors_in_logs']} erreurs dans les logs"})
+
+    # Editorial
+    coherence = antenne["liners"]["coherence_rate"]
+    if coherence < SIGNAL_THRESHOLDS["liner_coherence_critical"]:
+        signals["editorial"].append({"type": "liner_coherence_critical", "severity": "high",
+            "context": f"Cohérence liners : {coherence*100:.0f}% (objectif >90%)"})
+    elif coherence < SIGNAL_THRESHOLDS["liner_coherence_low"]:
+        signals["editorial"].append({"type": "liner_coherence_low", "severity": "medium",
+            "context": f"Cohérence liners : {coherence*100:.0f}% (objectif >90%)"})
+
+    invalid = antenne["liners"]["issues_by_type"].get("format_invalid", 0)
+    if invalid > 0:
+        signals["editorial"].append({"type": "liner_format_issues", "severity": "high",
+            "context": f"{invalid} liner(s) au format invalide"})
+
+    mismatch = antenne["liners"]["issues_by_type"].get("artist_mismatch", 0)
+    if mismatch > 0:
+        signals["editorial"].append({"type": "liner_artist_mismatch", "severity": "high",
+            "context": f"{mismatch} liner(s) ne correspondent pas à l'artiste suivant"})
+
+    for anomaly in antenne["content"]["horoscopes"]["anomalies"]:
+        signals["editorial"].append({"type": "horoscope_anomaly", "severity": "high", "context": anomaly})
+
+    for name, data in antenne["journalists"].items():
+        if data["passages"] == 0:
+            signals["editorial"].append({"type": "journalist_no_content", "severity": "high",
+                "context": f"{name} : aucun contenu généré aujourd'hui"})
+
+    # Music
+    music = antenne["music"]
+    if music["max_artist_repetition"] >= SIGNAL_THRESHOLDS["artist_overplay"]:
+        signals["music"].append({"type": "artist_overplay", "severity": "medium",
+            "context": f"{music['top_artist']} joué {music['max_artist_repetition']}x (objectif <5)"})
+
+    for seq_item in music["consecutive_same_artist"]:
+        if seq_item["count"] >= 3:
+            signals["music"].append({"type": "consecutive_same_artist", "severity": "medium",
+                "context": f"{seq_item['artist']} joué {seq_item['count']}x d'affilée (position {seq_item['position']})"})
+
+    if len(music["abrupt_transitions"]) >= 3:
+        signals["music"].append({"type": "frequent_abrupt_transitions", "severity": "low",
+            "context": f"{len(music['abrupt_transitions'])} transitions de genre abruptes"})
+
+    return signals
+
+
+# ====================================================================
+# DELTA TEMPOREL
+# ====================================================================
+
+def load_day_report(date_str):
+    return load_json(REPORTS_DIR / f"{date_str}.json")
+
+
+def save_day_report(report):
+    """Persiste une version allégée du DayReport pour le delta futur."""
+    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+    slim = {
+        "date": report["date"],
+        "generated_at": report["generated_at"],
+        "technical": {
+            "summary": report["technical"]["summary"],
+            "workflows": [{k: v for k, v in wf.items()} for wf in report["technical"]["workflows"]],
+        },
+        "antenne": {
+            "liners": {k: v for k, v in report["antenne"]["liners"].items() if k != "items"},
+            "music": {k: v for k, v in report["antenne"]["music"].items() if k != "playlist_excerpt"},
+            "content": {
+                ct: {k: v for k, v in data.items() if k not in ("files", "texts")}
+                for ct, data in report["antenne"]["content"].items()
+            },
+            "journalists": {name: {"passages": d["passages"]} for name, d in report["antenne"]["journalists"].items()},
+        },
+        "signals": report["signals"],
+    }
+    try:
+        path = REPORTS_DIR / f"{report['date']}.json"
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(slim, f, ensure_ascii=False, indent=2)
+        log_success(f"DayReport sauvegardé: {path.relative_to(REPO_ROOT)}")
+    except Exception as e:
+        log_warning(f"Impossible de sauvegarder le DayReport: {e}")
+
+
+def compute_delta(date_str, report):
+    """Compare le rapport du jour avec J-1 et J-7."""
+    yesterday = (datetime.strptime(date_str, "%Y-%m-%d") - timedelta(days=1)).strftime("%Y-%m-%d")
+    week_ago  = (datetime.strptime(date_str, "%Y-%m-%d") - timedelta(days=7)).strftime("%Y-%m-%d")
+
+    current_types = {s["type"] for cat in report["signals"].values() for s in cat}
+    delta = {"vs_yesterday": {}, "vs_last_week": {}}
+
+    prev = load_day_report(yesterday)
+    if prev:
+        prev_rate = prev.get("technical", {}).get("summary", {}).get("global_success_rate", 0)
+        prev_coherence = prev.get("antenne", {}).get("liners", {}).get("coherence_rate", 0)
+        prev_types = {s["type"] for cat in prev.get("signals", {}).values() for s in cat}
+        delta["vs_yesterday"] = {
+            "success_rate_change": round(report["technical"]["summary"]["global_success_rate"] - prev_rate, 3),
+            "liner_coherence_change": round(report["antenne"]["liners"]["coherence_rate"] - prev_coherence, 3),
+            "new_signals": sorted(current_types - prev_types),
+            "resolved_signals": sorted(prev_types - current_types),
+        }
+
+    prev_w = load_day_report(week_ago)
+    if prev_w:
+        curr_r = report["technical"]["summary"]["global_success_rate"]
+        curr_c = report["antenne"]["liners"]["coherence_rate"]
+        prev_r = prev_w.get("technical", {}).get("summary", {}).get("global_success_rate", 0)
+        prev_c = prev_w.get("antenne", {}).get("liners", {}).get("coherence_rate", 0)
+        delta["vs_last_week"] = {
+            "success_rate_trend": "improving" if curr_r > prev_r else ("degrading" if curr_r < prev_r else "stable"),
+            "liner_coherence_trend": "improving" if curr_c > prev_c else ("degrading" if curr_c < prev_c else "stable"),
+        }
+
+    return delta
+
+
+def build_day_report(date_str, use_github_api=True):
+    """Pipeline complet : Observation → Signaux → Delta."""
+    log_info(f"=== Phase 1 — Observation ({date_str}) ===")
+    technical = build_technical_data(use_github_api=use_github_api)
+    antenne   = build_antenne_data(date_str)
+
+    log_info("=== Phase 2 — Analyse des signaux ===")
+    signals = compute_signals(technical, antenne)
+
+    report = {
+        "date": date_str,
+        "generated_at": datetime.utcnow().isoformat() + "Z",
+        "technical": technical,
+        "antenne": antenne,
+        "signals": signals,
+        "delta": {},
+    }
+
+    log_info("=== Phase 3 — Delta temporel ===")
+    report["delta"] = compute_delta(date_str, report)
+
+    n = sum(len(v) for v in signals.values())
+    log_info(f"{n} signaux : {len(signals['technical'])} tech / {len(signals['editorial'])} éditorial / {len(signals['music'])} musique")
+    return report
+
+
+# ====================================================================
+# NARRATIVES LLM — prompts ciblés sur les signaux
+# ====================================================================
+
+def _fmt_signals(signal_list):
+    if not signal_list:
+        return "Aucun signal détecté."
+    return "\n".join(f"- [{s['severity'].upper()}] {s['context']}" for s in signal_list)
+
+
+def _fmt_delta(delta_day):
+    if not delta_day:
+        return ""
+    lines = []
+    change_r = delta_day.get("success_rate_change", 0)
+    change_c = delta_day.get("liner_coherence_change", 0)
+    if change_r:
+        lines.append(f"Taux succès vs J-1: {'+' if change_r >= 0 else ''}{change_r*100:.1f}%")
+    if change_c:
+        lines.append(f"Cohérence liners vs J-1: {'+' if change_c >= 0 else ''}{change_c*100:.1f}%")
+    new_s = delta_day.get("new_signals", [])
+    res_s = delta_day.get("resolved_signals", [])
+    if new_s:
+        lines.append(f"Nouveaux problèmes: {', '.join(new_s)}")
+    if res_s:
+        lines.append(f"Problèmes résolus: {', '.join(res_s)}")
+    return "\n".join(lines)
+
+
+def generate_technical_narrative(report, api_key):
+    """Génère le rêve technique — prompt ciblé sur les signaux."""
+    if not api_key:
+        return None
+    summary = report["technical"]["summary"]
+    delta_text = _fmt_delta(report["delta"].get("vs_yesterday", {}))
+    week_trend = report["delta"].get("vs_last_week", {}).get("success_rate_trend", "")
+
+    system_prompt = (
+        "Tu es l'Ingénieur DevOps Principal de Radio Botiran. "
+        "Analyse les signaux techniques du jour et transforme-les en un RÊVE TECHNIQUE poétique. "
+        "Style: onirique mais technique, métaphore orchestre. 6-8 lignes + 3 recommandations concrètes."
+    )
+    user_prompt = f"""DATE: {report['date']}
+Runs total: {summary['total_runs']} | Taux succès: {summary['global_success_rate']*100:.1f}%
+Workflows en alerte: {', '.join(summary['workflows_in_alert']) or 'aucun'}
+
+SIGNAUX:
+{_fmt_signals(report['signals']['technical'])}
+
+ÉVOLUTION:
+{delta_text or 'Pas de données J-1.'}
+Tendance 7 jours: {week_trend or 'inconnue'}
+
+Génère le rêve:"""
+    return call_mistral_api(user_prompt, api_key, system_prompt=system_prompt, max_tokens=500, temperature=0.6)
+
+
+def generate_antenne_narrative(report, api_key):
+    """Génère le rêve antenne — prompt ciblé sur les signaux éditoriaux."""
+    if not api_key:
+        return None
+    antenne = report["antenne"]
+    journalists_text = "\n".join(
+        f"- {name}: {data['passages']} passages"
+        for name, data in antenne["journalists"].items()
+    )
+    delta_text = _fmt_delta(report["delta"].get("vs_yesterday", {}))
+    week_coherence = report["delta"].get("vs_last_week", {}).get("liner_coherence_trend", "")
+
+    system_prompt = (
+        "Tu es le Directeur d'Antenne de Radio Botiran 🐚, 25 ans d'expérience. "
+        "Analyse les signaux éditoriaux et produis un RÊVE ONIRIQUE professionnel. "
+        "Métaphores radio caribéenne. 8-10 lignes. Conseils personnalisés par journaliste."
+    )
+    user_prompt = f"""DATE: {report['date']}
+Cohérence liners: {antenne['liners']['coherence_rate']*100:.0f}% ({antenne['liners']['coherent']}/{antenne['liners']['total']})
+
+SIGNAUX ÉDITORIAUX:
+{_fmt_signals(report['signals']['editorial'])}
+
+SIGNAUX MUSICAUX:
+{_fmt_signals(report['signals']['music'])}
+
+JOURNALISTES:
+{journalists_text}
+
+ÉVOLUTION:
+{delta_text or 'Pas de données J-1.'}
+Tendance cohérence 7 jours: {week_coherence or 'inconnue'}
+
+Génère le rêve:"""
+    return call_mistral_api(user_prompt, api_key, system_prompt=system_prompt, max_tokens=700, temperature=0.7)
+
+
+def generate_music_narrative(report, api_key):
+    """Génère l'analyse du Directeur Musical — ciblée sur les signaux musicaux."""
+    if not api_key:
+        return None
+    music = report["antenne"]["music"]
+    top_genres = dict(sorted(music["genres"].items(), key=lambda x: x[1], reverse=True)[:6])
+    top_artists = dict(sorted(music["artists"].items(), key=lambda x: x[1], reverse=True)[:5])
+
+    system_prompt = (
+        "Tu es le Directeur Musical de Radio Botiran 🎵🐚, 25 ans d'expérience. "
+        "Analyse la programmation et les signaux musicaux. "
+        "3 parties: rêve (4 lignes), score cohérence globale avec justification, 3 recommandations concrètes. "
+        "Style poétique avec métaphores musicales. Français avec expressions caribéennes."
+    )
+    user_prompt = f"""DATE: {report['date']}
+Titres: {music['total_tracks']} | Artistes uniques: {len(music['artists'])}
+
+SIGNAUX MUSICAUX:
+{_fmt_signals(report['signals']['music'])}
+
+GENRES: {top_genres}
+TOP ARTISTES: {top_artists}
+
+COHÉRENCE LINERS:
+{_fmt_signals([s for s in report['signals']['editorial'] if 'liner' in s['type']])}
+
+PLAYLIST (extrait):
+{music['playlist_excerpt'][:800]}
+
+Génère le rêve du Directeur Musical:"""
+    return call_mistral_api(user_prompt, api_key, system_prompt=system_prompt, model="mistral-small", max_tokens=700, temperature=0.7)
+
+
+# ====================================================================
+# RENDERERS — génèrent le Markdown depuis le DayReport
+# ====================================================================
+
+def render_technical_dream(report, api_key=None):
+    """Génère le Markdown du rêve technique depuis le DayReport."""
+    date_str = report["date"]
+    summary  = report["technical"]["summary"]
+    workflows = report["technical"]["workflows"]
+    total_avg = (
+        sum(w["avg_duration_s"] * w["runs"] for w in workflows) / summary["total_runs"]
+        if summary["total_runs"] else 0
+    )
+
+    md = f"# {GEAR} Rêve Technique — Radio Karukera\n"
+    md += f"*Date : {date_str} | Généré à {datetime.utcnow().strftime('%H:%M UTC')}*\n\n---\n\n"
+
+    if not workflows:
+        md += f"{CROSS} **GitHub API Indisponible** — Impossible de générer le rêve technique sans accès à l'API GitHub.\n"
+        return md
+
+    # Section rêve narratif
+    md += f"## {DREAM} Rêve de la Nuit\n\n"
+    if api_key:
+        log_info("Génération narrative technique (LLM)...")
+        narrative = generate_technical_narrative(report, api_key)
+        md += (narrative or _default_technical_narrative(report)) + "\n\n---\n\n"
+    else:
+        md += _default_technical_narrative(report) + "\n\n---\n\n"
+
+    # Signaux
+    signals = report["signals"]["technical"]
+    if signals:
+        md += f"## {WARNING} Signaux Détectés\n\n"
+        for s in signals:
+            icon = CROSS if s["severity"] == "high" else WARNING
+            md += f"- {icon} {s['context']}\n"
+        md += "\n---\n\n"
+
+    # Delta
+    delta_day = report["delta"].get("vs_yesterday", {})
+    delta_week = report["delta"].get("vs_last_week", {})
+    if delta_day or delta_week:
+        md += f"## {MUSIC} Évolution\n\n"
+        if delta_day:
+            change_r = delta_day.get("success_rate_change", 0)
+            change_c = delta_day.get("liner_coherence_change", 0)
+            md += f"| Métrique | Variation J-1 |\n|---|---|\n"
+            md += f"| Taux succès | {'+' if change_r >= 0 else ''}{change_r*100:.1f}% |\n"
+            md += f"| Cohérence liners | {'+' if change_c >= 0 else ''}{change_c*100:.1f}% |\n"
+            if delta_day.get("resolved_signals"):
+                md += f"\n{CHECK} Résolus: {', '.join(delta_day['resolved_signals'])}\n"
+            if delta_day.get("new_signals"):
+                md += f"\n{WARNING} Nouveaux: {', '.join(delta_day['new_signals'])}\n"
+        if delta_week:
+            md += f"\nTendance 7 jours — Succès: **{delta_week.get('success_rate_trend', '?')}**\n"
+        md += "\n---\n\n"
+
+    # Tableau workflows
+    md += f"## {MUSIC} Statistiques Workflows\n\n"
+    md += "| Workflow | Runs | Durée moy. | Succès | Dernier statut |\n"
+    md += "|----------|------|------------|--------|----------------|\n"
+    for wf in workflows:
+        icon = CHECK if wf["last_status"] == "success" else CROSS
+        md += f"| {wf['name']} | {wf['runs']} | {format_duration(wf['avg_duration_s'])} | {wf['success_rate']*100:.0f}% | {icon} |\n"
+    md += f"| **Total** | **{summary['total_runs']}** | **{format_duration(total_avg)}** | **{summary['global_success_rate']*100:.1f}%** | - |\n"
+    md += "\n---\n\n"
+
+    md += f"*[Voir le rêve de l'Antenne](../antenne/{date_str}.md)*\n"
+    return md
+
+
+def _default_technical_narrative(report):
+    summary = report["technical"]["summary"]
+    signals = report["signals"]["technical"]
+    critical = [s for s in signals if s["severity"] == "high"]
+    return (
+        f"Cette nuit, les serveurs de Radio Botiran {DREAM} ont rêvé de bits caribéens... "
+        f"Les {summary['total_runs']} workflows ont dansé comme des vagues sur la plage, "
+        f"avec un taux de succès de {summary['global_success_rate']*100:.1f}%. "
+        + (f"Mais {len(critical)} signaux critiques troublaient l'harmonie — "
+           f"{', '.join(s['context'][:60] for s in critical[:2])}. "
+           if critical else f"Aucun signal critique : l'orchestre jouait en parfaite harmonie. ")
+        + f"Au réveil, l'équipe a compris qu'il fallait surveiller : "
+        f"{', '.join(summary['workflows_in_alert'][:3]) or 'aucun workflow en alerte'}."
+    )
+
+
+def render_antenne_dream(report, api_key=None):
+    """Génère le Markdown du rêve antenne depuis le DayReport."""
+    date_str = report["date"]
+    antenne  = report["antenne"]
+    liners   = antenne["liners"]
+    music    = antenne["music"]
+    content  = antenne["content"]
+
+    md = f"# {MIC} Rêve Antenne — Radio Karukera\n"
+    md += f"*Date : {date_str} | Généré à {datetime.utcnow().strftime('%H:%M UTC')}*\n\n---\n\n"
+
+    # Rêve narratif antenne
+    md += f"## {DREAM} Rêve de la Nuit\n\n"
+    if api_key:
+        log_info("Génération narrative antenne (LLM)...")
+        narrative = generate_antenne_narrative(report, api_key)
+        md += (narrative or _default_antenne_narrative(report)) + "\n\n---\n\n"
+    else:
+        md += _default_antenne_narrative(report) + "\n\n---\n\n"
+
+    # Rêve Directeur Musical
+    if api_key:
+        log_info("Génération analyse musicale (LLM)...")
+        music_narrative = generate_music_narrative(report, api_key)
+        if music_narrative:
+            md += f"## {MUSIC} Rêve du Directeur Musical\n\n{music_narrative}\n\n---\n\n"
+
+    # Signaux éditoriaux
+    all_editorial_signals = report["signals"]["editorial"] + report["signals"]["music"]
+    if all_editorial_signals:
+        md += f"## {WARNING} Signaux Détectés\n\n"
+        for s in all_editorial_signals:
+            icon = CROSS if s["severity"] == "high" else (WARNING if s["severity"] == "medium" else IDEA)
+            md += f"- {icon} **[{s['type']}]** {s['context']}\n"
+        md += "\n---\n\n"
+
+    # Évaluations journalistes
+    md += f"## {MIC} Évaluations des Journalistes\n\n"
+    evaluations = {}
+    if api_key:
+        log_info("Évaluation des journalistes (LLM)...")
+        liner_issues = [iss for item in liners["items"] for iss in item["issues"]]
+        for name, data in antenne["journalists"].items():
+            texts = data.get("texts_sample", [])
+            capsule_themes = content["capsules"]["themes"] if name in ["Mulatresse Solitude", "Solitude"] else None
+            liners_for_corinne = liner_issues if name == "Corinne" else None
+            if texts:
+                try:
+                    eval_result = evaluate_journalist_llm(
+                        journalist_name=name,
+                        journalist_texts=texts,
+                        date_str=date_str,
+                        api_key=api_key,
+                        liners_issues=liners_for_corinne,
+                        capsule_themes=capsule_themes,
+                    )
+                    eval_result["passages"] = data["passages"]
+                    evaluations[name] = eval_result
+                except Exception as e:
+                    log_error(f"Erreur évaluation {name}: {e}")
+                    evaluations[name] = _default_journalist_eval(name, data["passages"])
+            else:
+                evaluations[name] = _default_journalist_eval(name, 0)
+    else:
+        for name, data in antenne["journalists"].items():
+            evaluations[name] = _default_journalist_eval(name, data["passages"])
+
+    for name, ev in evaluations.items():
+        note = ev.get("note", 0)
+        star_str = f"{STAR}{STAR}{STAR}" if note >= 9 else (f"{STAR}{STAR}" if note >= 7 else (f"{STAR}" if note >= 5 else WARNING))
+        md += f"### {name} {star_str}\n\n"
+        md += f"**Rôle:** {get_journalist_role(name)} | **Note:** {note}/10 | **Passages:** {ev.get('passages', 0)}\n\n"
+        if all(k in ev for k in ["format_score", "content_score", "style_score", "originality_score"]):
+            md += f"**Scores:** Format: {ev['format_score']}/3 | Contenu: {ev['content_score']}/3 | Style: {ev['style_score']}/2 | Originalité: {ev['originality_score']}/2\n\n"
+        md += f"**Feedback:** {ev.get('feedback', '')}\n\n"
+        for strength in ev.get("strengths", []):
+            md += f"- {CHECK} {strength}\n"
+        for weakness in ev.get("weaknesses", []):
+            md += f"- {WARNING} {weakness}\n"
+        for reco in ev.get("recommandations", []):
+            md += f"- {IDEA} {reco}\n"
+        md += "\n---\n\n"
+
+    # Bilan journée
+    md += f"## {NEWS} Bilan de la Journée\n\n"
+    md += "| Type | Générés | Statut |\n|------|---------|--------|\n"
+    md += f"| Flash Info | {content['flash_infos']['count']} | {CHECK} |\n"
+    md += f"| Horoscopes | {content['horoscopes']['count']} | {CHECK if not content['horoscopes']['anomalies'] else WARNING} |\n"
+    md += f"| Liners     | {liners['total']} | {CHECK if liners['coherence_rate'] >= 0.90 else WARNING} |\n"
+    md += f"| Émissions  | {content['emissions']['count']} | {CHECK} |\n"
+    md += f"| Capsules   | {content['capsules']['count']} | {CHECK} |\n"
+    md += f"| Musique    | {music['total_tracks']} titres | {CHECK} |\n"
+    md += "\n---\n\n"
+
+    # Cohérence liners
+    md += f"## {MIC} Cohérence Liners\n\n"
+    md += f"**Score : {liners['coherence_rate']*100:.0f}% ({liners['coherent']}/{liners['total']} cohérents)**\n\n"
+    critical_items = [it for it in liners["items"] if any(iss["severity"] == "high" for iss in it["issues"])]
+    if critical_items:
+        md += f"### {CROSS} Liners à corriger\n\n"
+        for item in critical_items[:10]:
+            for iss in item["issues"]:
+                if iss["severity"] == "high":
+                    md += f"- **#{item['index']}** {CROSS} \"{item['text'][:50]}...\"\n"
+                    md += f"  - *{iss['detail']}*\n"
+                    if item.get("next_music"):
+                        nm = item["next_music"]
+                        md += f"  - *Musique suivante* : {nm.get('artist')} — {nm.get('title')}\n"
+    else:
+        md += f"{CHECK} Tous les liners sont cohérents avec la programmation !\n"
+    md += "\n---\n\n"
+
+    # Programmation musicale
+    top_genres = dict(sorted(music["genres"].items(), key=lambda x: x[1], reverse=True)[:6])
+    md += f"## {MUSIC} Programmation Musicale\n\n"
+    md += f"| Métrique | Valeur |\n|---|---|\n"
+    md += f"| Titres | {music['total_tracks']} |\n"
+    md += f"| Artistes uniques | {len(music['artists'])} |\n"
+    md += f"| Répétition max | {music['max_artist_repetition']}x ({music['top_artist']}) |\n"
+    md += f"| Genres | {top_genres} |\n"
+    md += "\n"
+    if music["consecutive_same_artist"]:
+        md += f"{WARNING} Séquences consécutives: "
+        md += ", ".join(f"{s['artist']} ×{s['count']} @pos.{s['position']}" for s in music["consecutive_same_artist"][:3])
+        md += "\n"
+    md += "\n---\n\n"
+
+    md += f"*[Voir le rêve Technique](../technique/{date_str}.md)*\n"
+    return md
+
+
+def _default_antenne_narrative(report):
+    antenne = report["antenne"]
+    liners  = antenne["liners"]
+    content = antenne["content"]
+    signals = report["signals"]["editorial"]
+    critical = [s for s in signals if s["severity"] == "high"]
+    return (
+        f"Cette nuit, Radio Botiran {DREAM} m'a chuchoté ses secrets à travers les ondes...\n\n"
+        f"Les {content['flash_infos']['count']} Flash Infos dansaient avec les {content['horoscopes']['count']} horoscopes "
+        f"sous la lune de Guadeloupe, avec une cohérence de {liners['coherence_rate']*100:.0f}% sur les liners."
+        + (f"\nMais {len(critical)} ombres critiques perturbaient l'harmonie : "
+           + " | ".join(s['context'][:60] for s in critical[:3]) + "."
+           if critical else "\nL'harmonie régnait sur toute la programmation.")
+    )
+
+
+def _default_journalist_eval(name, passages):
+    return {
+        "passages": passages,
+        "note": 7 if passages > 0 else 0,
+        "feedback": f"{CHECK} Contenu généré" if passages > 0 else f"{WARNING} Aucun contenu",
+        "recommandations": ["Continuer sur cette lancée"] if passages > 0 else ["Vérifier la génération"],
+        "format_score": 2, "content_score": 2, "style_score": 2, "originality_score": 1,
+        "strengths": [], "weaknesses": [] if passages > 0 else ["Aucun contenu produit"],
+    }
+
+
 # ------ MAIN ------
 
 def main():
     parser = argparse.ArgumentParser(description="Génère les rêves technique et antenne pour Radio Karukera.")
     parser.add_argument("--date", help="Date au format YYYY-MM-DD (défaut: aujourd'hui)")
     parser.add_argument("--dry-run", action="store_true", help="Affiche sans sauvegarder")
-    parser.add_argument("--llm-key", help="Clé API Mistral pour générer les résumés narratifs")
-    parser.add_argument("--no-llm", action="store_true", help="Désactive l'utilisation du LLM")
-    parser.add_argument("--no-github", action="store_true", help="Désactive l'utilisation de l'API GitHub")
-    parser.add_argument("--no-cache", action="store_true", help="Désactive le cache GitHub API")
+    parser.add_argument("--llm-key", help="Clé API Mistral")
+    parser.add_argument("--no-llm", action="store_true", help="Désactive le LLM")
+    parser.add_argument("--no-github", action="store_true", help="Désactive l'API GitHub")
+    parser.add_argument("--no-cache", action="store_true", help="Désactive le cache GitHub")
     args = parser.parse_args()
-    
-    # Initialiser le cache (sauf si --no-cache)
-    use_cache = not args.no_cache
-    init_cache(use_cache=use_cache)
-    
-    # Récupérer la clé API (CLI > Variable d'environnement > None)
+
+    init_cache(use_cache=not args.no_cache)
+    if not args.no_cache:
+        log_info("Cache GitHub API activé (TTL: 300s)")
+
     llm_key = args.llm_key
     if not llm_key and not args.no_llm:
         llm_key = get_mistral_api_key()
-    
     if llm_key:
-        log_info("Utilisation de l'API Mistral pour les résumés narratifs")
-    else:
-        if not args.no_llm:
-            log_warning("Pas de clé API Mistral trouvée. Utilisation du mode standard (sans LLM).")
-            log_warning("Pour activer les résumés narratifs :")
-            log_warning("  1. Créez un compte sur https://mistral.ai/")
-            log_warning("  2. Récupérez votre clé API")
-            log_warning("  3. Passez-la via --llm-key ou exportez MISTRAL_API_KEY")
-    
-    if use_cache:
-        log_info("Cache GitHub API activé (TTL: 300s)")
-    
+        log_info("API Mistral activée pour les narratifs")
+    elif not args.no_llm:
+        log_warning("Pas de clé API Mistral. Mode sans LLM (narratifs par défaut).")
+
     date_obj = get_today(args.date)
     date_str = format_date(date_obj)
-    
     log_info(f"Génération des rêves pour le {date_str}")
-    
-    # Générer les rêves
-    use_github_api = not args.no_github
-    technical_md = generate_technical_dream(date_obj, llm_key if not args.no_llm else None, use_github_api=use_github_api)
-    antenne_md = generate_antenne_dream(date_obj, llm_key if not args.no_llm else None)
-    
-    # Sauvegarder
+
+    # Pipeline
+    report = build_day_report(date_str, use_github_api=not args.no_github)
+
+    api_key = llm_key if not args.no_llm else None
+    technical_md = render_technical_dream(report, api_key)
+    antenne_md   = render_antenne_dream(report, api_key)
+
     technical_path = TECHNICAL_DIR / f"{date_str}.md"
-    antenne_path = ANTENNE_DIR / f"{date_str}.md"
-    
+    antenne_path   = ANTENNE_DIR   / f"{date_str}.md"
+
     if args.dry_run:
-        print("\n" + "="*60)
-        print("DRY RUN — Contenu généré mais non sauvegardé")
-        print("="*60)
-        print("\n### Rêve Technique :")
-        print(technical_md[:500] + "...\n")
-        print("\n### Rêve Antenne :")
-        print(antenne_md[:500] + "...\n")
+        print("\n" + "="*60 + "\nDRY RUN — Contenu généré mais non sauvegardé\n" + "="*60)
+        print("\n### Rêve Technique :\n" + technical_md[:500] + "...\n")
+        print("\n### Rêve Antenne :\n" + antenne_md[:500] + "...\n")
     else:
         save_md(technical_path, technical_md)
         save_md(antenne_path, antenne_md)
-        
+        save_day_report(report)
+        update_dreams_index(technical_path, antenne_path)
         log_success(f"\n{CHECK} Rêves générés avec succès :")
         log_success(f"   - {technical_path.relative_to(REPO_ROOT)}")
         log_success(f"   - {antenne_path.relative_to(REPO_ROOT)}")
+
+    # Flush du cache en fin de script (une seule écriture disque)
+    if GITHUB_CACHE:
+        GITHUB_CACHE.flush()
+
+
+def _extract_dream_meta(md_path: Path, dream_type: str) -> dict:
+    """Extrait titre et excerpt depuis un fichier rêve markdown."""
+    text = md_path.read_text(encoding="utf-8")
+    lines = text.splitlines()
+    date_str = md_path.stem
+
+    in_dream_section = False
+    title = ""
+    excerpt = ""
+
+    for line in lines:
+        if re.match(r"^##.*🌙", line) or ("Rêve de la Nuit" in line and line.startswith("##")):
+            in_dream_section = True
+            continue
+        if in_dream_section and line.startswith("##"):
+            break
+        if in_dream_section and line.strip():
+            clean = re.sub(r"\*+", "", line.strip()).strip()
+            clean = re.sub(r"`", "", clean).strip()
+            if clean and not clean.startswith("["):
+                if not excerpt:
+                    excerpt = clean[:200] + ("..." if len(clean) > 200 else "")
+                if not title:
+                    m = re.search(r"\*\*([^*]+)\*\*", line)
+                    if m:
+                        title = re.sub(r"\*+", "", m.group()).strip()
+
+    if not title:
+        label = "Technique" if dream_type == "technique" else "Antenne"
+        title = f"Rêve {label} du {date_str}"
+
+    return {
+        "date": date_str,
+        "type": dream_type,
+        "title": title,
+        "excerpt": excerpt,
+        "file": f"reves/{dream_type}/{date_str}.md",
+    }
+
+
+def update_dreams_index(technical_path: Path, antenne_path: Path):
+    """Met à jour docs/reves/index.json avec les rêves générés."""
+    index = []
+    if DREAMS_INDEX.exists():
+        try:
+            index = json.loads(DREAMS_INDEX.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, FileNotFoundError):
+            index = []
+
+    for path, dream_type in [(technical_path, "technique"), (antenne_path, "antenne")]:
+        if path and path.exists():
+            entry = _extract_dream_meta(path, dream_type)
+            key = (entry["date"], entry["type"])
+            idx = next((i for i, e in enumerate(index) if (e["date"], e["type"]) == key), None)
+            if idx is not None:
+                index[idx] = entry
+            else:
+                index.append(entry)
+
+    index.sort(key=lambda e: (e["date"], e["type"]), reverse=True)
+    DREAMS_INDEX.write_text(json.dumps(index, ensure_ascii=False, indent=2), encoding="utf-8")
+    log_info(f"Index rêves mis à jour : {len(index)} entrées → docs/reves/index.json")
 
 
 if __name__ == "__main__":

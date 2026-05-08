@@ -526,6 +526,13 @@ def main():
     }
     out_json.write_text(json.dumps(output_data, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"💾 JSON → {out_json}")
+
+    # Archive texte pour analyse par dream_radio
+    archives_dir = Path("archives/emissions")
+    archives_dir.mkdir(parents=True, exist_ok=True)
+    archive_path = archives_dir / f"emission-{today}.txt"
+    archive_path.write_text(text, encoding="utf-8")
+    print(f"📝 Archive → {archive_path}")
     
     # Afficher le texte en mode verbose
     if args.verbose:

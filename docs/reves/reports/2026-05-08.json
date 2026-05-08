@@ -1,0 +1,255 @@
+{
+  "date": "2026-05-08",
+  "generated_at": "2026-05-08T20:38:17.532851Z",
+  "technical": {
+    "summary": {
+      "total_runs": 281,
+      "global_success_rate": 0.5516014234875445,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 50,
+        "success": 24,
+        "failure": 8,
+        "success_rate": 0.48,
+        "avg_duration_s": 274.48,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 50,
+        "success": 37,
+        "failure": 7,
+        "success_rate": 0.74,
+        "avg_duration_s": 446.86,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 50,
+        "success": 16,
+        "failure": 33,
+        "success_rate": 0.32,
+        "avg_duration_s": 245.94736842105263,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 31,
+        "success": 23,
+        "failure": 6,
+        "success_rate": 0.7419354838709677,
+        "avg_duration_s": 180.32258064516128,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 50,
+        "success": 47,
+        "failure": 0,
+        "success_rate": 0.94,
+        "avg_duration_s": 574.88,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 50,
+        "success": 8,
+        "failure": 32,
+        "success_rate": 0.16,
+        "avg_duration_s": 658.48,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 15,
+      "coherent": 1,
+      "coherence_rate": 0.06666666666666667,
+      "issues_by_type": {
+        "format_invalid": 13,
+        "title_mismatch": 1,
+        "artist_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Claudette et Ti Pierre": 1,
+        "LORYN Official": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Mario Chicot": 4,
+        "Dominique Panol": 4,
+        "Tabou Combo": 4,
+        "Alex Warren": 1,
+        "Marcé, Toumpak": 1,
+        "Edith Lefel": 3,
+        "Dominik Coco": 3,
+        "Tanya St-Val": 2,
+        "Medhy Custos": 1,
+        "Yoan": 2,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "T-Vice": 2,
+        "Battery Cremil": 5,
+        "Zoukâme": 1,
+        "Milca": 1,
+        "Zin": 2,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Gérard Lenorman": 1,
+        "Princess Erika": 1,
+        "Klimax": 1,
+        "Carimi": 1,
+        "Marcé & Toumpak": 1,
+        "Dédé Saint-Prix": 1,
+        "Ludo, MARVIN": 1,
+        "BélO": 2,
+        "KASSAV'": 2,
+        "Les Aiglons": 2,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Patrick Saint-Eloi": 2,
+        "Edouard Benoit": 1,
+        "Harry Diboula": 1,
+        "Jocelyne Labylle": 2,
+        "Energy": 1,
+        "sweet micky": 1,
+        "Nu-Look": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Ralph Thamar": 1,
+        "PERLE LAMA": 1,
+        "Georges Decimus, Kassav": 1,
+        "Jean-Michel Jarre": 1,
+        "Kan'nida": 1,
+        "Experience 7": 1,
+        "KALI": 1,
+        "Harmonik": 1,
+        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
+        "Teddyson John": 1,
+        "Joëlle Ursull": 1,
+        "BEL": 1,
+        "Perle Lama, Thierry Cham": 1,
+        "Jacob Desvarieux": 1,
+        "Meryl": 1
+      },
+      "max_artist_repetition": 5,
+      "top_artist": "Battery Cremil",
+      "consecutive_same_artist": [
+        {
+          "artist": "Battery Cremil",
+          "position": 18,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 1,
+        "themes": [
+          "Émission culturelle — Découverte de la Guadeloupe"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 2
+      },
+      "Monique": {
+        "passages": 1
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 383
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "global_success_rate_critical",
+        "severity": "high",
+        "context": "Taux succès global : 55% (objectif >90%)"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "horoscope-daily : 48% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "flash-info : 74% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "capsules-daily : 32% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "emission-daily : 74% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "daily-radio-orchestrator : 16% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 7% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "13 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      }
+    ],
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Battery Cremil joué 5x (objectif <5)"
+      }
+    ]
+  }
+}

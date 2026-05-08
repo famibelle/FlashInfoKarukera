@@ -281,6 +281,13 @@ def get_announcement_mp3_url(bloc: str, artists: list[str], voice: str = "corinn
         json.dumps({"label": text, "voice": voice, "bloc": bloc, "artists": artists}, ensure_ascii=False),
         encoding="utf-8"
     )
+
+    # Archive texte pour analyse par dream_radio
+    archives_liners_dir = Path("archives/liners")
+    archives_liners_dir.mkdir(parents=True, exist_ok=True)
+    today_str = date.today().isoformat()
+    (archives_liners_dir / f"liner-{today_str}-{bloc}-{artists_slug}.txt").write_text(text, encoding="utf-8")
+    logger.info(f"  Liner {bloc} ({voice}) — 📝 Archive : archives/liners/liner-{today_str}-{bloc}-{artists_slug}.txt")
     
     public_url = f"https://famibelle.github.io/FlashInfoKarukera/liners/{filename}"
     cache[cache_key] = public_url

@@ -11,14 +11,9 @@ on:
         type: string
         required: false
       llm-key:
-        description: "Clé API Mistral pour les résumés narratifs"
+        description: "Clé API Mistral (optionnel, utilise le secret MISTRAL_API_KEY par défaut)"
         type: string
         required: false
-      no-llm:
-        description: "Désactiver le LLM (utiliser le mode standard)"
-        type: boolean
-        required: false
-        default: false
       no-github:
         description: "Désactiver l'API GitHub"
         type: boolean
@@ -58,25 +53,15 @@ jobs:
 
       - name: Générer les rêves
         env:
+          MISTRAL_API_KEY: ${{ github.event.inputs.llm-key || secrets.MISTRAL_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.PAT_SUBMODULE || secrets.GITHUB_TOKEN }}
           DATE: ${{ github.event.inputs.date || '' }}
-          LLM_KEY: ${{ github.event.inputs.llm-key || secrets.MISTRAL_API_KEY }}
-          NO_LLM: ${{ github.event.inputs.no-llm == 'true' && '--no-llm' || '' }}
           NO_GITHUB: ${{ github.event.inputs.no-github == 'true' && '--no-github' || '' }}
           DRY_RUN: ${{ github.event.inputs.dry-run == 'true' && '--dry-run' || '' }}
-          GH_TOKEN: ${{ secrets.PAT_SUBMODULE || secrets.GITHUB_TOKEN }}
         run: |
-          # Exporter les variables pour le script
-          if [ -n "$LLM_KEY" ]; then
-            export MISTRAL_API_KEY="$LLM_KEY"
-          fi
-          if [ -n "$GH_TOKEN" ]; then
-            export GITHUB_TOKEN="$GH_TOKEN"
-          fi
-
-          # Construire la commande
           CMD="python scripts/dream_radio.py"
           [ -n "$DATE" ] && CMD="$CMD --date $DATE"
-          [ -n "$NO_LLM" ] && CMD="$CMD $NO_LLM"
+          [ -n "$MISTRAL_API_KEY" ] && CMD="$CMD --llm-key $MISTRAL_API_KEY"
           [ -n "$NO_GITHUB" ] && CMD="$CMD $NO_GITHUB"
           [ -n "$DRY_RUN" ] && CMD="$CMD $DRY_RUN"
 

@@ -317,263 +317,195 @@
   </div>
 
   <script>
-    // Liste des reves disponibles
-    const dreamsData = [
-      {
-        date: "2026-05-08",
-        type: "antenne",
-        title: "La Nuit où les Ondes se Réveillaient en Créole",
-        score: 42,
-        excerpt: "Les fréquences frémissent comme un gwo ka sous les mornes—les Flash Infos traversent la nuit, mais les liners s'échouent sur les récifs de l'incohérence...",
-        file: "reves/antenne/2026-05-08.md"
-      },
-      {
-        date: "2026-05-08",
-        type: "technique",
-        title: "Le Rêve Onirique de Radio Botiran – La Nuit où les Mornes Dansaient en Silence",
-        score: 42,
-        excerpt: "Cette nuit, j'ai marché sur les ondes chaudes de la Guadeloupe, où la playlist s'est déployée comme une marée de rythmes sous un ciel étoilé...",
-        file: "reves/technique/2026-05-08.md"
-      },
-      {
-        date: "2026-05-07",
-        type: "antenne",
-        title: "Les Voix Perdues de Botiran",
-        score: 38,
-        excerpt: "Dans le silence de la nuit, les voix de Radio Botiran semblent s'être égarées entre les fréquences...",
-        file: "reves/antenne/2026-05-07.md"
-      },
-      {
-        date: "2026-05-07",
-        type: "technique",
-        title: "Harmonie Brisée : Quand la Playlist Devient Cacophonie",
-        score: 35,
-        excerpt: "80 morceaux, 14 liners, 0% de cohérence. La playlist ressemble à un orchestre sans chef...",
-        file: "reves/technique/2026-05-07.md"
-      }
-    ];
-
-    // Cache pour les contenus chargés
+    let dreamsData = [];
+    let currentFilter = 'all';
     const contentCache = new Map();
 
-    // Format date pour affichage
     function formatDate(dateStr) {
-      const date = new Date(dateStr);
-      const options = { day: '2-digit', month: 'long', year: 'numeric' };
-      return date.toLocaleDateString('fr-FR', options);
+      const [y, m, d] = dateStr.split('-').map(Number);
+      return new Date(y, m - 1, d).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' });
     }
 
-    // Convertit le markdown basique en HTML
+    function applyInline(text) {
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/`(.*?)`/g, '<code>$1</code>')
+        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
+    }
+
+    function isSeparatorRow(row) {
+      return row.split('|').slice(1, -1).every(c => /^[\s\-:]+$/.test(c));
+    }
+
+    function renderTable(rows) {
+      if (rows.length < 2) return rows.map(r => `<p>${r}</p>`).join('');
+      const headers = rows[0].split('|').slice(1, -1).map(c => c.trim());
+      const dataRows = rows.slice(2).filter(r => r.trim());
+      let t = '<table><thead><tr>' + headers.map(h => `<th>${applyInline(h)}</th>`).join('') + '</tr></thead><tbody>';
+      dataRows.forEach(row => {
+        const cells = row.split('|').slice(1, -1).map(c => c.trim());
+        if (cells.length) t += '<tr>' + cells.map(c => `<td>${applyInline(c)}</td>`).join('') + '</tr>';
+      });
+      return t + '</tbody></table>';
+    }
+
     function renderMarkdown(text) {
-      // Enleve la première ligne (titre principal # ) car on a déjà le titre dans la card
       let lines = text.split('\n');
-      
-      // Trouver l'index après le premier --- (séparateur)
+      // Sauter jusqu'après le premier séparateur ---
       let startIndex = 0;
       for (let i = 0; i < lines.length; i++) {
-        if (lines[i].trim() === '---') {
-          startIndex = i + 1;
-          break;
-        }
+        if (lines[i].trim() === '---') { startIndex = i + 1; break; }
       }
-      
       lines = lines.slice(startIndex);
-      
-      // Supprimer les lignes vides au début
-      while (lines.length > 0 && lines[0].trim() === '') {
-        lines.shift();
-      }
-      
+      while (lines.length && lines[0].trim() === '') lines.shift();
+
       let html = '';
       let inList = false;
       let inBlockquote = false;
+      let inTable = false;
+      let tableRows = [];
+
+      function flushTable() {
+        if (inTable) { html += renderTable(tableRows); tableRows = []; inTable = false; }
+      }
+      function flushList() {
+        if (inList) { html += '</ul>'; inList = false; }
+      }
+      function flushBlockquote() {
+        if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
+      }
 
       lines.forEach(line => {
-        // Ignorer les métadonnées en haut
         if (line.trim() === '---') {
-          html += '<hr>';
-          return;
+          flushTable(); flushList(); flushBlockquote();
+          html += '<hr>'; return;
         }
-
-        // Titres
         if (line.startsWith('## ')) {
-          if (inList) { html += '</ul>'; inList = false; }
-          if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
-          html += `<h2>${line.substring(3).trim()}</h2>`;
-          return;
+          flushTable(); flushList(); flushBlockquote();
+          html += `<h2>${applyInline(line.substring(3).trim())}</h2>`; return;
         }
         if (line.startsWith('### ')) {
-          if (inList) { html += '</ul>'; inList = false; }
-          if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
-          html += `<h3>${line.substring(4).trim()}</h3>`;
-          return;
+          flushTable(); flushList(); flushBlockquote();
+          html += `<h3>${applyInline(line.substring(4).trim())}</h3>`; return;
         }
         if (line.startsWith('#### ')) {
-          if (inList) { html += '</ul>'; inList = false; }
-          if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
-          html += `<h4>${line.substring(5).trim()}</h4>`;
+          flushTable(); flushList(); flushBlockquote();
+          html += `<h4>${applyInline(line.substring(5).trim())}</h4>`; return;
+        }
+        // Tableaux
+        if (line.startsWith('|')) {
+          flushList(); flushBlockquote();
+          if (!isSeparatorRow(line)) { inTable = true; tableRows.push(line); }
+          else if (inTable) tableRows.push(line);
           return;
         }
-
+        flushTable();
         // Blockquotes
         if (line.startsWith('>')) {
-          if (!inBlockquote) {
-            if (inList) { html += '</ul>'; inList = false; }
-            html += '<blockquote>';
-            inBlockquote = true;
-          }
-          html += line.substring(1).trim() + '<br>';
-          return;
+          flushList();
+          if (!inBlockquote) { html += '<blockquote>'; inBlockquote = true; }
+          html += applyInline(line.substring(1).trim()) + '<br>'; return;
         }
-        if (inBlockquote) {
-          html += '</blockquote>';
-          inBlockquote = false;
-        }
-
+        flushBlockquote();
         // Listes
         if (line.startsWith('- ') || line.startsWith('* ')) {
-          if (!inList) {
-            if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
-            html += '<ul>';
-            inList = true;
-          }
-          const content = line.substring(2).trim();
-          html += `<li>${content}</li>`;
+          if (!inList) { html += '<ul>'; inList = true; }
+          let content = line.substring(2).trim();
+          if (/^\[x\] /i.test(content))      html += `<li>✅ ${applyInline(content.substring(4))}</li>`;
+          else if (content.startsWith('[ ] ')) html += `<li>☐ ${applyInline(content.substring(4))}</li>`;
+          else                                 html += `<li>${applyInline(content)}</li>`;
           return;
         }
-        if (inList) {
-          html += '</ul>';
-          inList = false;
-        }
-
-        // Gras et italique
-        let processedLine = line
-          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-          .replace(/\*(.*?)\*/g, '<em>$1</em>')
-          .replace(/`(.*?)`/g, '<code>$1</code>');
-
-        // Liens
-        processedLine = processedLine.replace(/\\[(.*?)\\]\\((.*?)\\)/g, '<a href="$2" target="_blank">$1</a>');
-
-        // Tableaux
-        if (line.includes('|')) {
-          if (inList) { html += '</ul>'; inList = false; }
-          if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
-          // Simple table handling - just keep as is for now
-          html += `<p>${processedLine}</p>`;
-          return;
-        }
-
-        // Paragraphe normal
-        if (line.trim() !== '') {
-          html += `<p>${processedLine}</p>`;
-        }
+        flushList();
+        if (line.trim()) html += `<p>${applyInline(line)}</p>`;
       });
 
-      // Fermer les balises ouvertes
-      if (inList) html += '</ul>';
-      if (inBlockquote) html += '</blockquote>';
-
+      flushTable(); flushList(); flushBlockquote();
       return html;
     }
 
-    // Charge le contenu complet d'un rêve
     async function loadFullContent(file) {
-      if (contentCache.has(file)) {
-        return contentCache.get(file);
-      }
-
+      if (contentCache.has(file)) return contentCache.get(file);
       try {
-        const response = await fetch(file);
-        if (!response.ok) {
-          throw new Error('Fichier non trouve');
-        }
-        const text = await response.text();
+        const r = await fetch(file);
+        if (!r.ok) throw new Error();
+        const text = await r.text();
         contentCache.set(file, text);
         return text;
-      } catch (error) {
-        console.error('Erreur chargement:', error);
-        return null;
-      }
+      } catch { return null; }
     }
 
-    // Toggle l'expansion de la carte
     async function toggleDreamCard(card, dream) {
       card.classList.toggle('expanded');
       const contentDiv = card.querySelector('.dream-content');
       const link = card.querySelector('.dream-link');
-
       if (card.classList.contains('expanded')) {
         link.textContent = 'Masquer';
-        const fullContent = await loadFullContent(dream.file);
-        if (fullContent) {
-          contentDiv.innerHTML = renderMarkdown(fullContent);
-          contentDiv.classList.add('expanded');
-        }
+        const full = await loadFullContent(dream.file);
+        if (full) { contentDiv.innerHTML = renderMarkdown(full); contentDiv.classList.add('expanded'); }
       } else {
-        link.textContent = 'Lire l\'analyse complete';
+        link.textContent = "Lire l'analyse complète";
         contentDiv.innerHTML = `<p>${dream.excerpt}</p>`;
         contentDiv.classList.remove('expanded');
       }
     }
 
-    // Genere une carte de reve
     function createDreamCard(dream) {
       const card = document.createElement('div');
-      card.className = `dream-card`;
+      card.className = 'dream-card';
       card.dataset.type = dream.type;
       card.dataset.date = dream.date;
-
+      const typeLabel = dream.type === 'technique' ? '🎛️ Technique' : '🎤 Antenne';
       card.innerHTML = `
         <div class="dream-header">
           <span class="dream-date">${formatDate(dream.date)}</span>
-          <span class="dream-type">${dream.type}</span>
+          <span class="dream-type">${typeLabel}</span>
         </div>
         <h2 class="dream-title">🌙 ${dream.title}</h2>
-        ${dream.score ? `<span class="dream-score">✨ Score: ${dream.score}/100</span>` : ''}
-        <div class="dream-content">
-          <p>${dream.excerpt}</p>
-        </div>
+        <div class="dream-content"><p>${dream.excerpt}</p></div>
         <div class="dream-meta">
-          <span class="dream-link" data-file="${dream.file}">Lire l'analyse complete</span>
-        </div>
-      `;
-
-      // Gestion du clic sur le lien
-      const link = card.querySelector('.dream-link');
-      link.addEventListener('click', (e) => {
+          <span class="dream-link">Lire l'analyse complète</span>
+        </div>`;
+      card.querySelector('.dream-link').addEventListener('click', e => {
         e.preventDefault();
         toggleDreamCard(card, dream);
       });
-
       return card;
     }
 
-    // Affiche les reves filtres
     function renderDreams(filter = 'all') {
       const grid = document.getElementById('dreams-grid');
       grid.innerHTML = '';
-
-      const filteredDreams = filter === 'all'
-        ? dreamsData
-        : dreamsData.filter(d => d.type === filter);
-
-      filteredDreams.forEach(dream => {
-        grid.appendChild(createDreamCard(dream));
-      });
+      const list = filter === 'all' ? dreamsData : dreamsData.filter(d => d.type === filter);
+      if (!list.length) {
+        grid.innerHTML = '<p style="text-align:center;color:#666;padding:2rem">Aucun rêve disponible</p>';
+        return;
+      }
+      list.forEach(dream => grid.appendChild(createDreamCard(dream)));
     }
 
-    // Gestion des filtres
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        renderDreams(btn.dataset.filter);
+        currentFilter = btn.dataset.filter;
+        renderDreams(currentFilter);
       });
     });
 
-    // affichage initial
-    renderDreams();
+    async function init() {
+      try {
+        const r = await fetch('reves/index.json');
+        if (!r.ok) throw new Error();
+        dreamsData = await r.json();
+      } catch {
+        dreamsData = [];
+      }
+      renderDreams(currentFilter);
+    }
+
+    init();
   </script>
 </body>
 </html>
