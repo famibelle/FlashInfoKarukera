@@ -551,9 +551,17 @@
         if (this.ytReady) {
           this.yt.loadVideoById(item.videoId);
           this.yt.setVolume(this._vol());
-        } else {
-          // YT pas encore prêt (démarrage rapide) — mémorise pour onReady
+        } else if (this.yt) {
+          // YT existe mais onReady pas encore appelé — charger quand prêt
           this._pendingVideo = { videoId: item.videoId, vol: this._vol() };
+        } else {
+          // YT pas encore initialisé — initialiser et charger
+          this._pendingVideo = { videoId: item.videoId, vol: this._vol() };
+          this._ytApiReady.then(() => {
+            if (window.YT && window.YT.Player && !this.yt) {
+              return this._initYT();
+            }
+          });
         }
       } else {
         // Liner MP3 + transitions (flash info, horoscope) → HTML5 Audio
@@ -880,15 +888,17 @@
       radio._updateNowPlaying(firstItem);
       radio._renderQueue();
       
+      // Initialiser YouTube (toujours, quel que soit le premier item)
+      radio._ytApiReady.then(() => {
+        if (window.YT && window.YT.Player && !radio.yt) {
+          return radio._initYT();
+        }
+      });
+
       // Charger l'audio pour le premier track
       if (firstItem.type === 'music') {
         radio._showYT();
-        // Initialiser YT si prêt
         radio._ytApiReady.then(() => {
-          if (window.YT && window.YT.Player && !radio.yt) {
-            return radio._initYT();
-          }
-        }).then(() => {
           if (radio.ytReady) {
             radio.yt.loadVideoById(firstItem.videoId);
             radio.yt.pauseVideo();
