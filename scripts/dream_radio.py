@@ -1970,6 +1970,21 @@ NOMBRE DE TEXTES: {len(journalist_texts)}
     }
 
 
+def get_journalist_role(name):
+    """Retourne le rôle d'un journaliste selon son nom."""
+    roles = {
+        "Harry": "📰 Journaliste Flash Info",
+        "Harry Diboula": "📰 Journaliste Flash Info",
+        "Maryse": "✨ Présentatrice Horoscope",
+        "Maryse Condé": "✨ Présentatrice Horoscope",
+        "Monique": "🌿 Docteure en écologie - Émissions Culturelles",
+        "Mulatresse Solitude": "🎤 Voix de la Résistance - Capsules culturelles",
+        "Solitude": "🎤 Voix de la Résistance - Capsules culturelles",
+        "Corinne": "🎙️ Speakrine - Liners",
+    }
+    return roles.get(name, "👥 Animateur/Animatrice")
+
+
 def generate_antenne_dream(date_obj, llm_key=None):
     """Génère le rêve de l'antenne."""
     date_str = format_date(date_obj)
@@ -2125,59 +2140,142 @@ def generate_antenne_dream(date_obj, llm_key=None):
                 "file": h.get("url", "N/A").split("/")[-1],
             })
     
-    # --- Retours animateurs avec recommandations détaillées ---
-    animateurs = {
-        "Harry Diboula": {
-            "passages": 3, 
-            "note": 9, 
-            "feedback": f"{CHECK} Parfait, varier les adjectifs",
-            "recommandations": [
-                "Continuer à utiliser des expressions créoles pour plus d'authenticité",
-                "Varier les adjectifs pour décrire les artistes (ex: 'puissant', 'émouvant', 'rythmé')",
-                "Ajouter des anecdotes personnelles sur les artistes"
-            ]
-        },
-        "Monique": {
-            "passages": 2, 
-            "note": 8.5, 
-            "feedback": f"{CHECK} Ajouter une touche perso",
-            "recommandations": [
-                "Développer un style plus narratif pour captiver l'audience",
-                "Ajouter une signature personnelle en fin d'intervention",
-                "Travailler la transition entre les morceaux"
-            ]
-        },
-        "Corinne": {
-            "passages": 0, 
-            "note": 5, 
-            "feedback": f"{WARNING} Absente aujourd'hui",
-            "recommandations": [
-                "Reprendre les passages dès que possible - l'équipe compte sur toi!",
-                "Se former aux nouveaux outils de génération de contenu",
-                "Participer aux réunions de programmation pour mieux comprendre les attentes"
-            ]
-        },
-        "Solitude": {
-            "passages": 4, 
-            "note": 9.5, 
-            "feedback": f"{CHECK}{STAR} Reine de la nuit !",
-            "recommandations": [
-                "Partager tes techniques avec les nouveaux animateurs",
-                "Enregistrer des capsules de formation pour l'équipe",
-                "Continuer à innover avec des idées créatives"
-            ]
-        },
-        "Maryse": {
-            "passages": 3, 
-            "note": 10, 
-            "feedback": f"{CHECK}{STAR} Parfaite !",
-            "recommandations": [
-                "Servir de mentor pour les autres animateurs",
-                "Participer à la formation des nouveaux",
-                "Proposer des idées pour améliorer la cohérence des liners"
-            ]
-        },
-    }
+    # --- Charger les textes des journalistes pour évaluation ---
+    journalist_texts = load_journalist_texts(date_str)
+    
+    # --- Évaluer chaque journaliste avec LLM si clé disponible ---
+    animateurs = {}
+    if llm_key:
+        log_info("Évaluation des journalistes avec LLM...")
+        for name, texts in journalist_texts.items():
+            try:
+                # Préparer les données contextuelles spécifiques
+                liners_for_corinne = liner_issues if name in ["Corinne", "corinne"] else None
+                capsule_themes = list(elements.keys()) if name in ["Mulatresse Solitude", "Solitude", "solitude"] else None
+                
+                if texts:
+                    animateurs[name] = evaluate_journalist_llm(
+                        journalist_name=name,
+                        journalist_texts=texts,
+                        date_str=date_str,
+                        api_key=llm_key,
+                        liners_issues=liners_for_corinne,
+                        capsule_themes=capsule_themes
+                    )
+                    # Ajouter le nombre de passages
+                    animateurs[name]["passages"] = len(texts)
+                else:
+                    animateurs[name] = {
+                        "passages": 0,
+                        "note": 0,
+                        "feedback": f"{WARNING} Aucun texte généré aujourd'hui",
+                        "recommandations": ["Vérifier la génération des contenus"],
+                        "format_score": 0,
+                        "content_score": 0,
+                        "style_score": 0,
+                        "originality_score": 0,
+                        "strengths": [],
+                        "weaknesses": ["Aucun contenu produit"]
+                    }
+            except Exception as e:
+                log_error(f"Erreur évaluation {name}: {e}")
+                animateurs[name] = {
+                    "passages": 0,
+                    "note": 0,
+                    "feedback": f"{WARNING} Erreur d'évaluation LLM",
+                    "recommandations": ["Vérifier les logs"],
+                    "format_score": 0,
+                    "content_score": 0,
+                    "style_score": 0,
+                    "originality_score": 0,
+                    "strengths": [],
+                    "weaknesses": [str(e)]
+                }
+    else:
+        # Fallback sans LLM - utiliser les textes chargés mais évaluations par défaut
+        log_info("Mode sans LLM - évaluations par défaut")
+        animateurs = {
+            "Harry Diboula": {
+                "passages": len(journalist_texts.get("Harry", [])),
+                "note": 9,
+                "feedback": f"{CHECK} Parfait, varier les adjectifs",
+                "recommandations": [
+                    "Continuer à utiliser des expressions créoles pour plus d'authenticité",
+                    "Varier les adjectifs pour décrire les artistes",
+                    "Ajouter des anecdotes personnelles sur les artistes"
+                ],
+                "format_score": 3,
+                "content_score": 3,
+                "style_score": 2,
+                "originality_score": 2,
+                "strengths": ["Précision des faits", "Neutralité", "Respect du format"],
+                "weaknesses": ["Adjectifs répétitifs"]
+            },
+            "Monique": {
+                "passages": len(journalist_texts.get("Monique", [])),
+                "note": 8.5,
+                "feedback": f"{CHECK} Ajouter une touche perso",
+                "recommandations": [
+                    "Développer un style plus narratif pour captiver l'audience",
+                    "Ajouter une signature personnelle en fin d'intervention",
+                    "Travailler la transition entre les morceaux"
+                ],
+                "format_score": 2,
+                "content_score": 3,
+                "style_score": 2,
+                "originality_score": 1,
+                "strengths": ["Précision scientifique", "Accessibilité"],
+                "weaknesses": ["Manque de signature personnelle"]
+            },
+            "Corinne": {
+                "passages": len(journalist_texts.get("Corinne", [])),
+                "note": 5,
+                "feedback": f"{WARNING} Problèmes de format détectés",
+                "recommandations": [
+                    "Corriger les liners non conformes au format [Artiste] - [Titre]",
+                    "Éviter les formules génériques comme 'la voix qui porte'",
+                    "Vérifier la cohérence avec la musique suivante"
+                ],
+                "format_score": 1,
+                "content_score": 2,
+                "style_score": 1,
+                "originality_score": 1,
+                "strengths": ["Voix professionnelle"],
+                "weaknesses": ["Format non respecté", "Formules trop génériques"]
+            },
+            "Mulatresse Solitude": {
+                "passages": len(journalist_texts.get("Mulatresse Solitude", [])),
+                "note": 9.5,
+                "feedback": f"{CHECK}{STAR} Reine de la nuit !",
+                "recommandations": [
+                    "Partager tes techniques avec les nouveaux animateurs",
+                    "Enregistrer des capsules de formation pour l'équipe",
+                    "Continuer à innover avec des idées créatives"
+                ],
+                "format_score": 3,
+                "content_score": 3,
+                "style_score": 2,
+                "originality_score": 2,
+                "strengths": ["Authenticité culturelle", "Impact émotionnel", "Originalité"],
+                "weaknesses": []
+            },
+            "Maryse Condé": {
+                "passages": len(journalist_texts.get("Maryse Condé", [])),
+                "note": 10,
+                "feedback": f"{CHECK}{STAR} Parfaite !",
+                "recommandations": [
+                    "Servir de mentor pour les autres animateurs",
+                    "Participer à la formation des nouveaux",
+                    "Proposer des idées pour améliorer la cohérence des liners"
+                ],
+                "format_score": 3,
+                "content_score": 3,
+                "style_score": 2,
+                "originality_score": 2,
+                "strengths": ["Authenticité culturelle", "Structure claire", "Ton adapté"],
+                "weaknesses": []
+            },
+        }
     
     # --- Préparer les données pour le LLM ---
     # Construire un résumé complet des données
@@ -2281,6 +2379,61 @@ Au réveil, le Directeur a compris qu'il fallait :
             md += f"{music_analysis}\n\n---\n\n"
         else:
             log_warning("Impossible de générer l'analyse musicale (API non disponible)")
+    
+    # Ajouter la section Évaluations des Journalistes
+    md += f"## {MIC} Évaluations des Journalistes\n\n"
+    
+    for name, eval_data in animateurs.items():
+        note = eval_data.get("note", 0)
+        feedback = eval_data.get("feedback", "")
+        recommandations = eval_data.get("recommandations", [])
+        passages = eval_data.get("passages", 0)
+        strengths = eval_data.get("strengths", [])
+        weaknesses = eval_data.get("weaknesses", [])
+        format_score = eval_data.get("format_score", 0)
+        content_score = eval_data.get("content_score", 0)
+        style_score = eval_data.get("style_score", 0)
+        originality_score = eval_data.get("originality_score", 0)
+        
+        # Emoji selon la note
+        if note >= 9:
+            note_emoji = f"{STAR}{STAR}{STAR}"
+        elif note >= 7:
+            note_emoji = f"{STAR}{STAR}"
+        elif note >= 5:
+            note_emoji = f"{STAR}"
+        else:
+            note_emoji = f"{WARNING}"
+        
+        md += f"### {name} {note_emoji}\n\n"
+        md += f"**Rôle:** {get_journalist_role(name)}\n\n"
+        md += f"**Note:** {note}/10 | **Passages:** {passages}\n\n"
+        
+        # Scores détaillés (si disponibles)
+        if all(k in eval_data for k in ["format_score", "content_score", "style_score", "originality_score"]):
+            md += f"**Scores:** Format: {format_score}/3 | Contenu: {content_score}/3 | Style: {style_score}/2 | Originalité: {originality_score}/2\n\n"
+        
+        md += f"**Feedback:** {feedback}\n\n"
+        
+        if strengths:
+            md += f"**Points forts:**\n"
+            for strength in strengths:
+                md += f"- ✅ {strength}\n"
+            md += "\n"
+        
+        if weaknesses:
+            md += f"**Points à améliorer:**\n"
+            for weakness in weaknesses:
+                md += f"- ⚠️ {weakness}\n"
+            md += "\n"
+        
+        if recommandations:
+            md += f"**Recommandations:**\n"
+            for reco in recommandations:
+                md += f"- 💡 {reco}\n"
+            md += "\n"
+        
+        md += "---\n\n"
     
     md += f"""## {NEWS} Bilan de la Journée
 
