@@ -180,44 +180,64 @@ SYSTEM_PROMPT = _load_prompt("monique_ame.md") + "\n\n" + _load_prompt("monique.
 
 
 def generate_catchy_title(elements: dict, text: str = "") -> str:
-    """Genere un titre accrocheur pour l'emission base sur les elements et le texte."""
-    track = elements.get("inspiration", {})
-    track_title = track.get("title", "")
-    track_artist = track.get("artist", "")
+    """Genere un titre accrocheur pour l'emission base sur LE CONTENU uniquement.
     
-    # Extraire les themes principaux des elements
-    themes = []
-    category_titles = {
-        "kreyol_resistance_symbol_ref.md": "Symboles de resistance creole",
-        "faune_guadeloupe_ref.md": "Faune de Guadeloupe",
-        "flore_guadeloupe_ref.md": "Flore de Guadeloupe",
-        "lieux_spirituels_ref.md": "Lieux spirituels",
-        "histoire_guadeloupe_ref.md": "Histoire de Guadeloupe",
+    Exemples:
+    - "Le Fromager : Symbole de resistance creole — Radio Karukera"
+    - "Foumi manyok : L'intelligence collective des Antilles — Radio Karukera"
+    - "Piman bondaman jak : Le piment roi de Guadeloupe — Radio Karukera"
+    """
+    # Mapping des categories vers des formulations de titre
+    category_formats = {
+        "kreyol_resistance_symbol_ref.md": "{} : Symbole de resistance creole — Radio Karukera",
+        "faune_guadeloupe_ref.md": "{} : Trésor de la faune guadeloupéenne — Radio Karukera",
+        "flore_guadeloupe_ref.md": "{} : Plante emblématique de la Guadeloupe — Radio Karukera",
+        "lieux_spirituels_ref.md": "{} : Lieu sacré de la Guadeloupe — Radio Karukera",
+        "histoire_guadeloupe_ref.md": "{} : Page d'histoire guadeloupéenne — Radio Karukera",
     }
     
-    for file_key, category_title in category_titles.items():
+    # Extraire tous les sujets abordes
+    subjects = []
+    for file_key, format_template in category_formats.items():
         if file_key in elements:
             content = elements[file_key].get("content", "")
             if content:
-                # Extraire le premier mot ou sujet principal
-                first_word = content.split("\t")[0].split("|")[0].strip()
-                if first_word and first_word != "Plante" and first_word != "Insecte" and first_word != "Cap" and first_word != "1815":
-                    themes.append(first_word)
+                # Extraire le nom principal (premier element du tableau markdown)
+                lines = content.strip().split('\n')
+                if lines:
+                    first_line = lines[0].strip()
+                    if first_line:
+                        # Format: "Plante / Résistance            \t Woucou / Roucou          \t ..."
+                        subject = first_line.split(' / ')[0].split('\t')[0].strip()
+                        if subject and subject not in ["Plante", "Insecte", "Cap", "1815", "1848"]:
+                            subjects.append((subject, format_template))
     
-    # Si on a des themes, les utiliser
-    if themes:
-        main_theme = themes[0]
-        if track_title:
-            return f"{main_theme} : lission inspiree par {track_title} — Radio Karukera"
-        else:
-            return f"Decouverte de {main_theme} — Radio Karukera"
+    # Si on a des sujets, créer un titre accrocheur
+    if subjects:
+        # Utiliser le premier sujet avec son format
+        main_subject, format_template = subjects[0]
+        return format_template.format(main_subject)
     
-    # Fallback avec l'inspiration musicale
-    if track_title:
-        return f"Emmission culturelle inspiree par {track_title} — Radio Karukera"
+    # Fallback : analyser le texte generé pour trouver des mots-clés
+    if text:
+        # Chercher des mots en gras **mot**
+        import re
+        bold_words = re.findall(r'\*\*(.*?)\*\*', text)
+        if bold_words:
+            return f"{bold_words[0]} : Découverte culturelle de la Guadeloupe — Radio Karukera"
+        
+        # Chercher des mots-clés guadeloupéens dans le texte
+        keywords = ['fromager', 'foumi', 'piman', 'roucou', 'woucou', 'gwoka', 'biguine', 
+                   'zandoli', 'manguier', 'morne', 'ka', 'résistance', 'créole', 'antilles',
+                   'igwann', 'awokasié', 'bonda', 'manioc', 'vaniy', 'crabier']
+        for kw in keywords:
+            if kw.lower() in text.lower():
+                # Capitaliser correctement
+                kw_display = kw.capitalize() if kw.islower() else kw
+                return f"{kw_display} : Découverte culturelle de la Guadeloupe — Radio Karukera"
     
-    # Fallback generique
-    return "Emmission culturelle — Decouverte de la Guadeloupe"
+    # Fallback générique
+    return "Découverte culturelle de la Guadeloupe — Radio Karukera"
 
 
 def generate_monologue(elements: dict, verbose: bool = False) -> str:
