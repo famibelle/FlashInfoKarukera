@@ -591,18 +591,43 @@
       const item = this.seq[this.pos];
       if (!item) return;
       
-      if (item.type === 'music' && this.ytReady) {
-        const s = this.yt.getPlayerState();
-        s === YT.PlayerState.PLAYING ? this.yt.pauseVideo() : this.yt.playVideo();
-        btnPlay.textContent = s === YT.PlayerState.PLAYING ? '▶' : '⏸';
-      } else {
-        // iOS Safari : initialiser AudioContext et afficher la transition
-        this._initAudioContext();
-        if (this.trAudio.paused) {
-          // Avant de jouer, s'assurer que la transition est affichée
-          if (item.type !== 'music') {
-            this._showTransition(item);
+      if (item.type === 'music') {
+        // Musique → gérer via YouTube
+        if (this.ytReady) {
+          const s = this.yt.getPlayerState();
+          s === YT.PlayerState.PLAYING ? this.yt.pauseVideo() : this.yt.playVideo();
+          btnPlay.textContent = s === YT.PlayerState.PLAYING ? '▶' : '⏸';
+        } else {
+          // YT pas encore prêt — afficher le player et initialiser si nécessaire
+          this._showYT();
+          if (this.yt) {
+            // YT existe mais pas encore prêt (onReady pas encore appelé)
+            // La vidéo sera chargée quand onReady sera déclenché (via _pendingVideo)
+            btnPlay.textContent = '⏸';
+          } else {
+            // YT n'existe pas encore — initialiser
+            this._ytApiReady.then(() => {
+              if (window.YT && window.YT.Player && !this.yt) {
+                return this._initYT();
+              }
+            }).then(() => {
+              // Une fois YT initialisé, charger et jouer la vidéo
+              if (this.ytReady) {
+                this.yt.loadVideoById(item.videoId);
+                this.yt.setVolume(this._vol());
+                this.yt.playVideo();
+                btnPlay.textContent = '⏸';
+              }
+            });
           }
+        }
+      } else {
+        // Liner MP3 + transitions (flash info, horoscope) → HTML5 Audio
+        this._initAudioContext();
+        if (item.type !== 'music') {
+          this._showTransition(item);
+        }
+        if (this.trAudio.paused) {
           this.trAudio.play().catch(e => console.warn('[audio] échec play:', e));
         } else {
           this.trAudio.pause();
