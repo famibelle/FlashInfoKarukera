@@ -471,9 +471,9 @@
 
     async load() {
       try {
-        // radio_sequence.json est a la racine, radio.html est dans docs/
-        // Utiliser un chemin absolu depuis la racine du site
-        const r    = await fetch('/FlashInfoKarukera/radio_sequence.json?t=' + Date.now());
+        // radio_sequence.json est a la racine du repo, radio.html aussi
+        // Sur GitHub Pages, les deux sont servi depuis la racine du site
+        const r    = await fetch('/radio_sequence.json?t=' + Date.now());
         const data = await r.json();
         this.seq   = data.sequence || [];
       } catch (e) {
@@ -677,7 +677,7 @@
 
     _showYT(isLiner = false) {
       this._stopEQ();
-      document.getElementById('yt-wrap').style.display = '';
+      document.getElementById('yt-wrap').style.display = 'block';
       document.getElementById('transition-overlay').classList.remove('on');
       document.getElementById('tr-timer').textContent = '';
       // Teinte légère sur le cadre pendant un liner
