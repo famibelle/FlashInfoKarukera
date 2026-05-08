@@ -395,22 +395,45 @@
   <script>
   // ── Charger YouTube IFrame API dynamiquement (pour éviter les problèmes d'ordre de chargement) ───
   // Le callback doit être défini AVANT que le script YouTube ne se charge
+  
   window._ytResolve = null;
+  
   const ytApiPromise = new Promise(resolve => {
+    // Si déjà disponible, résoudre tout de suite
+    if (window.YT && window.YT.Player) {
+      return resolve();
+    }
+    // Sinon, attendre le callback
     window.onYouTubeIframeAPIReady = () => {
       if (window._ytResolve) window._ytResolve();
       resolve();
     };
     window._ytResolve = resolve;
+    
+    // Polling de secours toutes les 200ms (max 15s) au cas où le callback ne serait pas appelé
+    let waited = 0;
+    const poll = setInterval(() => {
+      if (window.YT && window.YT.Player) {
+        clearInterval(poll);
+        resolve();
+      }
+      if ((waited += 200) >= 15000) {
+        clearInterval(poll);
+        console.warn('[YT] API non chargée après 15s');
+        resolve();
+      }
+    }, 200);
   });
   
-  // Charger le script YouTube dynamiquement
-  (function() {
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  })();
+  // Charger le script YouTube dynamiquement (UNIQUEMENT si pas déjà chargé)
+  if (!window.YT || !window.YT.Player) {
+    (function() {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    })();
+  }
 
   // ── RadioOrchestrator ─────────────────────────────────────────────────────────
 
