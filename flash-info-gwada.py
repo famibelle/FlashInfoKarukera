@@ -149,6 +149,7 @@ ARCHIVE_SECRET_KEY = os.environ.get("ARCHIVE_SECRET_KEY", "")
 
 GITHUB_TOKEN     = os.environ.get("GITHUB_TOKEN", "")
 GITHUB_REPO      = "famibelle/FlashInfoKarukera"
+PAGES_BASE       = "https://famibelle.github.io/FlashInfoKarukera"
 
 OUTPUT_DIR      = Path("/tmp")
 STINGERS_DIR    = Path(__file__).parent / "Stingers"
@@ -3471,8 +3472,10 @@ def main():
     # Étape 5 — Buzzsprout → Spotify
     episode_url, bz_audio_url = publish_buzzsprout(output_path, title, description, tags)
 
-    # ── Podcast RSS — archive.org > Buzzsprout > B2 ──────────────────────────
-    podcast_audio_url = gh_audio_url or ia_url or bz_audio_url or b2_audio_url
+    # ── Podcast RSS — archive.org > Buzzsprout > B2 > GitHub Pages (fallback) ──
+    # Utiliser GitHub Pages comme fallback si aucune plateforme externe ne fonctionne
+    fallback_url = f"{PAGES_BASE}/audio/flash-info/{target_date.strftime('%Y-%m')}/{output_path.name}"
+    podcast_audio_url = gh_audio_url or ia_url or bz_audio_url or b2_audio_url or fallback_url
     if podcast_audio_url:
         _update_podcast_rss(
             rss_path=PODCAST_RSS_PATH,

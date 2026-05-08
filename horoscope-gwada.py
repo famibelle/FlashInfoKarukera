@@ -146,6 +146,9 @@ MISTRAL_CHAT_MODEL  = "mistral-large-latest"
 MISTRAL_SMALL_MODEL = "open-mistral-nemo"
 MISTRAL_CHAT_URL    = "https://api.mistral.ai/v1/chat/completions"
 
+GITHUB_REPO       = "famibelle/FlashInfoKarukera"
+PAGES_BASE        = "https://famibelle.github.io/FlashInfoKarukera"
+
 OUTPUT_DIR   = Path("/tmp")
 STINGERS_DIR = Path(__file__).parent / "Stingers"
 PROMPTS_DIR  = Path(__file__).parent / "private" / "prompts"
@@ -2106,7 +2109,9 @@ def main():
         subject="guadeloupe;horoscope;astrologie;karukera;antilles;botiran",
     )
 
-    podcast_audio_url = gh_audio_url or ia_url
+    # Utiliser GitHub Pages comme fallback si aucune plateforme externe ne fonctionne
+    fallback_url = f"{PAGES_BASE}/audio/horoscope/{gen_date.strftime('%Y-%m')}/{output_path.name}"
+    podcast_audio_url = gh_audio_url or ia_url or fallback_url
     if podcast_audio_url:
         _update_podcast_rss(
             rss_path=HOROSCOPE_RSS_PATH,
