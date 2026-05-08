@@ -106,6 +106,7 @@
       gap: 0.75rem;
       margin-bottom: 1.25rem;
       cursor: pointer;
+      touch-action: none;  /* Désactive le scroll natif pour permettre preventDefault */
     }
 
     #transition-overlay.on { display: flex; }
@@ -938,7 +939,7 @@
   transitionOverlay.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
-  }, { passive: false });
+  });
 
   transitionOverlay.addEventListener('touchmove', (e) => {
     const touch = e.touches[0];
@@ -948,7 +949,7 @@
     if (diffX > diffY && diffX > 10) {
       e.preventDefault();
     }
-  }, { passive: false });
+  });
 
   transitionOverlay.addEventListener('touchend', (e) => {
     if (!touchStartX) return;
