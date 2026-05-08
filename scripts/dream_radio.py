@@ -617,6 +617,33 @@ def format_date(date_obj):
 
 # ------ LLM FUNCTIONS ------
 
+def generate_workflow_dream_summary(workflow_data, date_str, api_key):
+    """Genere un reve LLM pour un workflow specifique."""
+    if not api_key:
+        return None
+    
+    name = workflow_data.get("name", "inconnu")
+    runs = workflow_data.get("runs", 0)
+    success_rate = workflow_data.get("success_rate", 0) * 100
+    avg_duration = workflow_data.get("avg_duration", 0)
+    last_status = workflow_data.get("last_status", "unknown")
+    last_error = workflow_data.get("last_error", "Aucune")
+    success_count = workflow_data.get("success_count", 0)
+    failure_count = workflow_data.get("failure_count", 0)
+    
+    system_prompt = "Tu es l'Ingenieur DevOps Principal de Radio Botiran. Analyse un workflow GitHub Actions et transforme les donnees techniques en un REVE TECHNIQUE poetique et professionnel. Style: onirique mais technique, 3 recommandations concretes, 6-10 lignes max."
+    
+    user_prompt = f"DATE: {date_str}\nWORKFLOW: {name}\n\nSTATISTIQUES:\n- Executions: {runs} runs ({success_count} succes, {failure_count} echecs)\n- Taux de succes: {success_rate:.1f}%\n- Duree moyenne: {format_duration(avg_duration)}\n- Dernier statut: {last_status}\n- Derniere erreur: {last_error[:100] if last_error else 'Aucune'}\n\nCONTEXTE:\nCe workflow fait partie de l'ecosysteme Radio Botiran. Chaque echec = contenu manquant pour les auditeurs.\n\nINSTRUCTIONS:\n1. Decris le workflow comme un element d'un orchestre\n2. Identifie la PROBLEMATIQUE principale (si taux < 90%)\n3. Explique l'IMPACT\n4. Donne 3 RECOMMANDATIONS techniques\n5. Termine par une note d'espoir"
+    
+    return call_mistral_api(
+        f"{system_prompt}\n\n{user_prompt}",
+        api_key,
+        model="mistral-tiny",
+        max_tokens=600,
+        temperature=0.5
+    )
+
+
 def call_mistral_api(prompt, api_key, model=MISTRAL_MODEL, max_tokens=500, temperature=0.7):
     """
     Appelle l'API Mistral pour générer du texte.
@@ -983,31 +1010,31 @@ def generate_technical_dream(date_obj, llm_key=None, use_github_api=True):
         success_rate = 0
         total_avg_duration = 0
     
-    # --- Extraire les logs pour le LLM ---
-    # Préparer un résumé des logs pour enrichir le prompt LLM
-    logs_summary = ""
-    all_workflow_logs = []
+    # --- Extraire les stats des logs (sans les afficher bruts) ---
+    total_errors = 0
+    total_warnings = 0
+    total_cached = 0
+    error_logs = []
     
     for wf in workflows_data:
         if "runs_details" in wf:
             for run in wf["runs_details"]:
-                run_logs = run.get("logs")
+                run_logs = run.get("logs", "")
                 if run_logs:
-                    # Extraire les lignes importantes (erreurs, warnings, succès)
-                    important_lines = []
                     for line in run_logs.split("\n"):
                         line_lower = line.lower()
-                        if any(keyword in line_lower for keyword in ["error", "warning", "success", "✅", "❌", "⚠️", "failed", "skipped", "cached"]):
-                            important_lines.append(line.strip())
-                    if important_lines:
-                        all_workflow_logs.append(f"\n--- Workflow: {wf['name']} | Run: {run.get('name', run.get('id', 'N/A'))} | Status: {run.get('conclusion', 'unknown')} ---\n" + "\n".join(important_lines[:20]))
-    
-    if all_workflow_logs:
-        logs_summary = "\n\n".join(all_workflow_logs[:50])  # Limiter à 50 lignes de logs
+                        if "error" in line_lower or "failed" in line_lower:
+                            total_errors += 1
+                            if len(error_logs) < 5:
+                                error_logs.append(line.strip()[:200])
+                        elif "warning" in line_lower:
+                            total_warnings += 1
+                        elif "cached" in line_lower:
+                            total_cached += 1
     
     # --- Générer le markdown ---
-    md = f"""# {GEAR} Rêve Technique — Radio Karukera
-*Date : {date_str} | Généré à {(datetime.utcnow()).strftime("%H:%M UTC")}*
+    md = f"""# {GEAR} Reve Technique — Radio Karukera
+*Date : {date_str} | Genere a {(datetime.utcnow()).strftime("%H:%M UTC")}*
 
 """
     
@@ -1015,82 +1042,74 @@ def generate_technical_dream(date_obj, llm_key=None, use_github_api=True):
     if not workflows_data and use_github_api:
         md += f"""{CROSS} **GitHub API Indisponible**
 
-Impossible de récupérer les statistiques des workflows. Le rêve technique ne peut pas être généré sans accès à l'API GitHub.
+Impossible de recuperer les statistiques des workflows. Le reve technique ne peut pas etre genere sans acces a l'API GitHub.
 
 **Solutions :**
-1. Vérifiez que vous avez un token GitHub valide (GH_TOKEN, GITHUB_TOKEN, ou PAT_SUBMODULE)
-2. Vérifiez votre connexion internet
-3. Essayez à nouveau plus tard
+1. Verifiez que vous avez un token GitHub valide (GH_TOKEN, GITHUB_TOKEN, ou PAT_SUBMODULE)
+2. Verifiez votre connexion internet
+3. Essayez a nouveau plus tard
 
 """
         return md
     
     md += "---\n\n"
     
-    # Ajouter une section avec les logs extraits
-    if logs_summary:
-        md += f"""## {GEAR} Extraits des Logs de la Journée
+    # Ajouter un resume des logs (statistiques, pas le contenu brut)
+    md += f"""## {GEAR} Resume des Logs de la Journee
 
-```
-{logs_summary}
-```
-
----
-
+- **Erreurs detectees:** {total_errors}
+- **Avertissements:** {total_warnings}
+- **Runs en cache:** {total_cached}
 """
+    if error_logs:
+        md += "\n**Exemples d'erreurs:**\n"
+        for err in error_logs:
+            md += f"- `{err}`\n"
+    md += "\n---\n\n"
     
     # Toujours ajouter la section Rêve de la Nuit (en premier)
     if llm_key:
-        log_info("Génération du résumé LLM pour le rêve technique...")
-        # Inclure les logs dans le prompt pour le LLM
-        dream_content_with_logs = f"""## Statistiques
-Total runs: {total_runs}
-Taux de succès: {success_rate:.1f}%
-Durée moyenne: {format_duration(total_avg_duration)}
-
-## Extraits des logs
-{logs_summary[:2000] if logs_summary else "Aucun log disponible"}
-
-## Détails par workflow
-"""
+        log_info("Generation du resume LLM pour le reve technique...")
+        # Inclure les stats dans le prompt pour le LLM
+        dream_content_with_logs = f"## Statistiques\nTotal runs: {total_runs}\nTaux de succes: {success_rate:.1f}%\nDuree moyenne: {format_duration(total_avg_duration)}\nErreurs: {total_errors} | Avertissements: {total_warnings} | Cache: {total_cached}\n\nDétails par workflow:\n"
         for wf in workflows_data:
-            dream_content_with_logs += f"\n- {wf['name']}: {wf['runs']} runs, {wf['success_rate']*100:.0f}% succès, dernière exécution: {wf.get('last_status', 'unknown')}\n"
+            dream_content_with_logs += f"- {wf['name']}: {wf['runs']} runs, {wf['success_rate']*100:.0f}% succes, duree: {format_duration(wf.get('avg_duration', 0))}, dernier statut: {wf.get('last_status', 'unknown')}\n"
         
         llm_summary = generate_llm_dream_summary(dream_content_with_logs, "technique", date_str, llm_key)
         if llm_summary:
-            md += f"## {DREAM} Rêve de la Nuit\n\n{llm_summary}\n\n---\n\n"
+            md += f"## {DREAM} Reve de la Nuit\n\n{llm_summary}\n\n---\n\n"
         else:
-            log_warning("Impossible de générer le résumé LLM (API non disponible)")
+            log_warning("Impossible de generer le resume LLM (API non disponible)")
             # Ajouter un résumé par défaut pour le rêve technique
-            default_tech_summary = f"""Cette nuit, les serveurs de Radio Botiran {DREAM} ont rêvé de bits caribéens...
-
-Les {total_runs} workflows ont dansé comme des vagues sur la plage, avec un taux de succès de {success_rate:.1f}%. 
-Les {sum(1 for w in workflows_data if w['last_status'] != 'success')} workflows en alerte nous rappellent qu'il faut surveiller les logs 
-comme un pêcheur surveille son filet.
-
-{logs_summary[:500] if logs_summary else ''}
-
-Au réveil, l'équipe technique a compris qu'il fallait :
-- Paralléliser les workflows pour gagner du temps
-- Réduire la verbosité des logs
-- Continuer à optimiser le cache"""
-            md += f"## {DREAM} Rêve de la Nuit\n\n{default_tech_summary}\n\n---\n\n"
+            default_tech_summary = f"Cette nuit, les serveurs de Radio Botiran {DREAM} ont reve de bits caribeens... Les {total_runs} workflows ont danse comme des vagues sur la plage, avec un taux de succes de {success_rate:.1f}%. Les {sum(1 for w in workflows_data if w['last_status'] != 'success')} workflows en alerte nous rappellent qu'il faut surveiller les metriques. Au reveil, l'equipe technique a compris qu'il fallait: Parallelliser les workflows, Reduire les {total_errors} erreurs detectees, Optimiser le cache ({total_cached} runs en cache)."
+            md += f"## {DREAM} Reve de la Nuit\n\n{default_tech_summary}\n\n---\n\n"
     else:
         # Ajouter un résumé par défaut pour le rêve technique
-        logs_preview = logs_summary[:500] if logs_summary else ""
-        default_tech_summary = f"""Cette nuit, les serveurs de Radio Botiran {DREAM} ont rêvé de bits caribéens...
-
-Les {total_runs} workflows ont dansé comme des vagues sur la plage, avec un taux de succès de {success_rate:.1f}%. 
-Les {sum(1 for w in workflows_data if w['last_status'] != 'success')} workflows en alerte nous rappellent qu'il faut surveiller les logs 
-comme un pêcheur surveille son filet.
-
-{logs_preview}
-
-Au réveil, l'équipe technique a compris qu'il fallait :
-- Paralléliser les workflows pour gagner du temps
-- Réduire la verbosité des logs
-- Continuer à optimiser le cache"""
-        md += f"## {DREAM} Rêve de la Nuit\n\n{default_tech_summary}\n\n---\n\n"
+        default_tech_summary = f"Cette nuit, les serveurs de Radio Botiran {DREAM} ont reve de bits caribeens... Les {total_runs} workflows ont danse comme des vagues sur la plage, avec un taux de succes de {success_rate:.1f}%. Les {sum(1 for w in workflows_data if w['last_status'] != 'success')} workflows en alerte nous rappellent qu'il faut surveiller les metriques. Au reveil, l'equipe technique a compris qu'il fallait: Parallelliser les workflows, Reduire les {total_errors} erreurs detectees, Optimiser le cache ({total_cached} runs en cache)."
+        md += f"## {DREAM} Reve de la Nuit\n\n{default_tech_summary}\n\n---\n\n"
+    
+    # Ajouter les analyses par workflow (NOUVEAU)
+    if llm_key:
+        md += f"## {GEAR} Analyses par Workflow\n\n"
+        for wf in workflows_data:
+            if wf.get("runs", 0) > 0:
+                workflow_dream = generate_workflow_dream_summary(wf, date_str, llm_key)
+                if workflow_dream:
+                    # Determiner l'emoji selon le taux de succes
+                    rate = wf.get("success_rate", 0) * 100
+                    if rate >= 90:
+                        status_emoji = "OK"
+                    elif rate >= 70:
+                        status_emoji = "WARNING"
+                    else:
+                        status_emoji = "CRITICAL"
+                    
+                    md += f"### {status_emoji} {wf['name']}\n\n"
+                    md += f"**Taux:** {rate:.1f}% | **Runs:** {wf['runs']} | **Duree moy:** {format_duration(wf.get('avg_duration', 0))}\n\n"
+                    md += f"{workflow_dream}\n\n"
+                    md += "---\n\n"
+                else:
+                    log_warning(f"Impossible de generer l'analyse LLM pour {wf['name']}")
     
     md += f"""## {MUSIC} Statistiques des Workflows
 
@@ -1971,18 +1990,18 @@ NOMBRE DE TEXTES: {len(journalist_texts)}
 
 
 def get_journalist_role(name):
-    """Retourne le rôle d'un journaliste selon son nom."""
+    """Retourne le role d'un journaliste selon son nom."""
     roles = {
-        "Harry": "📰 Journaliste Flash Info",
-        "Harry Diboula": "📰 Journaliste Flash Info",
-        "Maryse": "✨ Présentatrice Horoscope",
-        "Maryse Condé": "✨ Présentatrice Horoscope",
-        "Monique": "🌿 Docteure en écologie - Émissions Culturelles",
-        "Mulatresse Solitude": "🎤 Voix de la Résistance - Capsules culturelles",
-        "Solitude": "🎤 Voix de la Résistance - Capsules culturelles",
-        "Corinne": "🎙️ Speakrine - Liners",
+        "Harry": "Journaliste Flash Info",
+        "Harry Diboula": "Journaliste Flash Info",
+        "Maryse": "Presentatrice Horoscope",
+        "Maryse Condé": "Presentatrice Horoscope",
+        "Monique": "Docteure en ecologie - Emissions Culturelles",
+        "Mulatresse Solitude": "Voix de la Resistance - Capsules culturelles",
+        "Solitude": "Voix de la Resistance - Capsules culturelles",
+        "Corinne": "Speakrine - Liners",
     }
-    return roles.get(name, "👥 Animateur/Animatrice")
+    return roles.get(name, "Animateur/Animatrice")
 
 
 def generate_antenne_dream(date_obj, llm_key=None):
