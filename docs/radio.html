@@ -337,6 +337,69 @@
     .pl-info { min-width: 0; }
     .pl-title { color: #b8b8c8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .pl-artist { font-size: 0.74rem; color: #555; }
+
+    /* Overlay de bienvenue avec bouton Play animé */
+    #welcome-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 100;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .welcome-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      font-size: 2.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: welcomePulse 2s ease-in-out infinite;
+      transition: transform 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+
+    .welcome-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+      animation: none; /* Arrête la pulsation au survol pour un effet propre */
+    }
+
+    .welcome-btn:active {
+      transform: scale(0.95);
+    }
+
+    .welcome-text {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    @keyframes welcomePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Fix : s'assurer que l'overlay est au-dessus des autres éléments du player */
+    #player-screen {
+      position: relative;
+    }
   </style>
 </head>
 <body>
@@ -351,6 +414,12 @@
 
     <!-- ── Player screen ──────────────────────────────────── -->
     <div id="player-screen">
+
+      <!-- Overlay de bienvenue avec bouton Play animé -->
+      <div id="welcome-overlay">
+        <button class="welcome-btn" id="welcome-play-btn" aria-label="Allume la radio">⏵️</button>
+        <div class="welcome-text">Allume la radio</div>
+      </div>
 
       <div id="yt-wrap">
         <div id="yt-player"></div>
@@ -1005,6 +1074,23 @@
 
   // Mode embarqué : retire fond et padding quand chargé dans un iframe
   if (window.self !== window.top) document.body.classList.add('embedded');
+
+  // ── Overlay de bienvenue ────────────────────────────────────────────
+  const welcomeOverlay = document.getElementById('welcome-overlay');
+  const welcomePlayBtn = document.getElementById('welcome-play-btn');
+
+  welcomePlayBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Empêche le clic de remonter sur d'autres éléments
+    welcomeOverlay.style.display = 'none'; // Masque l'overlay
+    radio.togglePlay(); // Lance la lecture du premier item (MP3 ou YouTube)
+  });
+
+  // Optionnel : masquer aussi si on clique sur le texte
+  welcomeOverlay.querySelector('.welcome-text').addEventListener('click', (e) => {
+    e.stopPropagation();
+    welcomeOverlay.style.display = 'none';
+    radio.togglePlay();
+  });
   </script>
 </body>
 </html>
