@@ -189,7 +189,7 @@ def generate_catchy_title(elements: dict, text: str = "") -> str:
     """
     # Mapping des categories vers des formulations de titre
     category_formats = {
-        "kreyol_resistance_symbol_ref.md": "{} : Symbole de resistance creole — Radio Karukera",
+        "kreyol_resistance_symbol_ref.md": "{} : Symbole de résistance créole — Radio Karukera",
         "faune_guadeloupe_ref.md": "{} : Trésor de la faune guadeloupéenne — Radio Karukera",
         "flore_guadeloupe_ref.md": "{} : Plante emblématique de la Guadeloupe — Radio Karukera",
         "lieux_spirituels_ref.md": "{} : Lieu sacré de la Guadeloupe — Radio Karukera",
