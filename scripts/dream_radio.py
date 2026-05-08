@@ -2762,7 +2762,7 @@ def build_technical_data(use_github_api=True):
             "global_success_rate": global_success_rate,
             "total_errors_in_logs": total_errors,
             "total_warnings_in_logs": total_warnings,
-            "workflows_in_alert": [w["name"] for w in workflows if w["last_status"] != "success"],
+            "workflows_in_alert": [w["name"] for w in workflows if w["success_rate"] < 0.90],
         },
     }
 
@@ -3377,9 +3377,11 @@ def render_antenne_dream(report, api_key=None):
     evaluations = {}
     if api_key:
         log_info("Évaluation des journalistes (LLM)...")
+        # texts_sample est absent du DayReport slim — recharger depuis les archives
+        live_texts = load_journalist_texts(date_str)
         liner_issues = [iss for item in liners["items"] for iss in item["issues"]]
         for name, data in antenne["journalists"].items():
-            texts = data.get("texts_sample", [])
+            texts = data.get("texts_sample") or live_texts.get(name, [])
             capsule_themes = content["capsules"]["themes"] if name in ["Mulatresse Solitude", "Solitude"] else None
             liners_for_corinne = liner_issues if name == "Corinne" else None
             if texts:
@@ -3398,7 +3400,7 @@ def render_antenne_dream(report, api_key=None):
                     log_error(f"Erreur évaluation {name}: {e}")
                     evaluations[name] = _default_journalist_eval(name, data["passages"])
             else:
-                evaluations[name] = _default_journalist_eval(name, 0)
+                evaluations[name] = _default_journalist_eval(name, data["passages"])
     else:
         for name, data in antenne["journalists"].items():
             evaluations[name] = _default_journalist_eval(name, data["passages"])
@@ -3441,8 +3443,11 @@ def render_antenne_dream(report, api_key=None):
         )
         if has_format:
             md += f"> Format attendu : **Artiste - Titre** (ex : *Kassav' - Zouk la sé sèl médikaman nou ni*)\n\n"
-        md += f"### {CROSS} Liners à corriger\n\n"
-        for item in critical_items[:10]:
+        total_critical = len(critical_items)
+        shown = min(total_critical, 15)
+        suffix = f" *(sur {total_critical})*" if total_critical > shown else ""
+        md += f"### {CROSS} Liners à corriger{suffix}\n\n"
+        for item in critical_items[:shown]:
             for iss in item["issues"]:
                 if iss["severity"] == "high":
                     md += f"- **#{item['index']}** \"{item['text'][:60]}...\"\n"
@@ -3484,8 +3489,9 @@ def _default_antenne_narrative(report):
         f"Cette nuit, Radio Botiran {DREAM} m'a chuchoté ses secrets à travers les ondes...\n\n"
         f"Les {content['flash_infos']['count']} Flash Infos dansaient avec les {content['horoscopes']['count']} horoscopes "
         f"sous la lune de Guadeloupe, avec une cohérence de {liners['coherence_rate']*100:.0f}% sur les liners."
-        + (f"\nMais {len(critical)} ombres critiques perturbaient l'harmonie : "
-           + " | ".join(s['context'][:60] for s in critical[:3]) + "."
+        + (f"\nMais {len(critical)} ombre{'s' if len(critical) > 1 else ''} critique{'s' if len(critical) > 1 else ''} "
+           f"perturbai{'en' if len(critical) > 1 else ''}t l'harmonie :\n\n"
+           + "\n".join(f"- {s['context']}" for s in critical[:3])
            if critical else "\nL'harmonie régnait sur toute la programmation.")
     )
 
