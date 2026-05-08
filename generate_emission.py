@@ -180,25 +180,37 @@ SYSTEM_PROMPT = _load_prompt("monique_ame.md") + "\n\n" + _load_prompt("monique.
 
 
 def generate_catchy_title(elements: dict, text: str = "") -> str:
-    """Genere un titre accrocheur pour l'emission base sur LE CONTENU uniquement.
+    """Génère un titre accrocheur pour l'émission basé sur LE CONTENU uniquement.
     
     Exemples:
-    - "Le Fromager : Symbole de resistance creole — Radio Karukera"
-    - "Foumi manyok : L'intelligence collective des Antilles — Radio Karukera"
-    - "Piman bondaman jak : Le piment roi de Guadeloupe — Radio Karukera"
+    - "Roucou & Grenn-bwa : La terre qui murmure"
+    - "Fromager & Foumi manyok : L'intelligence des Antilles"
+    - "Piman bondaman jak : Le feu de la Guadeloupe"
     """
-    # Mapping des categories vers des formulations de titre
-    category_formats = {
-        "kreyol_resistance_symbol_ref.md": "{} : Symbole de résistance créole — Radio Karukera",
-        "faune_guadeloupe_ref.md": "{} : Trésor de la faune guadeloupéenne — Radio Karukera",
-        "flore_guadeloupe_ref.md": "{} : Plante emblématique de la Guadeloupe — Radio Karukera",
-        "lieux_spirituels_ref.md": "{} : Lieu sacré de la Guadeloupe — Radio Karukera",
-        "histoire_guadeloupe_ref.md": "{} : Page d'histoire guadeloupéenne — Radio Karukera",
+    import re
+    
+    # Emojis par catégorie
+    category_emojis = {
+        "kreyol_resistance_symbol_ref.md": "🌿",
+        "faune_guadeloupe_ref.md": "🐸",
+        "flore_guadeloupe_ref.md": "🌺",
+        "lieux_spirituels_ref.md": "💧",
+        "histoire_guadeloupe_ref.md": "🔥",
     }
     
-    # Extraire tous les sujets abordes
+    # Thèmes poétiques par catégorie
+    category_themes = {
+        "kreyol_resistance_symbol_ref.md": ["La terre qui résiste", "Le souffle créole", "L’âme antillaise", "L’héritage qui perdure"],
+        "faune_guadeloupe_ref.md": ["Le chant de la forêt", "Les gardiens de la nuit", "La vie qui murmure", "Les voix de la nature"],
+        "flore_guadeloupe_ref.md": ["Les couleurs de l’île", "La terre qui nourrit", "Les parfums du pays", "La nature généreuse"],
+        "lieux_spirituels_ref.md": ["L’eau qui purifie", "L’esprit des lieux", "Le sacré qui coule", "La mémoire des ancêtres"],
+        "histoire_guadeloupe_ref.md": ["Le combat qui continue", "La flamme de la liberté", "L’histoire qui vit", "La lutte qui inspire"],
+    }
+    
+    # Extraire tous les sujets abordés
     subjects = []
-    for file_key, format_template in category_formats.items():
+    categories = []
+    for file_key in category_emojis.keys():
         if file_key in elements:
             content = elements[file_key].get("content", "")
             if content:
@@ -208,8 +220,6 @@ def generate_catchy_title(elements: dict, text: str = "") -> str:
                     first_line = lines[0].strip()
                     if first_line:
                         # Format: "Plante / Résistance            \t Woucou / Roucou          \t ..."
-                        # On veut le nom créole ou le nom scientifique, pas la catégorie
-                        # Prendre la partie après le premier tab, ou la partie après " / " dans la première colonne
                         parts = first_line.split('\t')
                         if len(parts) > 1:
                             # Prendre la deuxième partie (nom créole / nom scientifique)
@@ -221,25 +231,43 @@ def generate_catchy_title(elements: dict, text: str = "") -> str:
                             subject = first_line.split(' / ')[1].strip() if ' / ' in first_line else first_line
                         
                         # Nettoyer le sujet (enlever les ** et autres marqueurs markdown)
-                        import re
                         subject = re.sub(r'[\*_~`]', '', subject).strip()
                         
-                        if subject and subject not in ["Plante", "Insecte", "Cap", "1815", "1848", "Amphibien", "Légume", "Cascade"]:
-                            subjects.append((subject, format_template))
+                        if subject and subject not in ["Plante", "Insecte", "Cap", "1815", "1848", "Amphibien", "Légume", "Cascade", "Histoire"]:
+                            subjects.append(subject)
+                            categories.append(file_key)
     
-    # Si on a des sujets, créer un titre accrocheur
-    if subjects:
-        # Utiliser le premier sujet avec son format
-        main_subject, format_template = subjects[0]
-        return format_template.format(main_subject)
+    # Si on a au moins 2 sujets, créer un titre combiné
+    if len(subjects) >= 2:
+        # Prendre les 2 premiers sujets
+        subject1 = subjects[0]
+        subject2 = subjects[1]
+        
+        # Choisir un thème basé sur la première catégorie
+        first_cat = categories[0]
+        themes = category_themes.get(first_cat, ["La terre qui vit"])
+        theme = themes[0]  # Prendre le premier thème
+        
+        # Choisir un emoji basé sur la première catégorie
+        emoji = category_emojis.get(first_cat, "🌟")
+        
+        return f"{emoji} **{subject1} & {subject2} : {theme}**"
     
-    # Fallback : analyser le texte generé pour trouver des mots-clés
+    # Si un seul sujet
+    if len(subjects) == 1:
+        subject = subjects[0]
+        first_cat = categories[0]
+        themes = category_themes.get(first_cat, ["La terre qui vit"])
+        theme = themes[0]
+        emoji = category_emojis.get(first_cat, "🌟")
+        return f"{emoji} **{subject} : {theme}**"
+    
+    # Fallback : analyser le texte généré pour trouver des mots-clés
     if text:
         # Chercher des mots en gras **mot**
-        import re
         bold_words = re.findall(r'\*\*(.*?)\*\*', text)
         if bold_words:
-            return f"{bold_words[0]} : Découverte culturelle de la Guadeloupe — Radio Karukera"
+            return f"🌟 **{bold_words[0]} : Découverte culturelle de la Guadeloupe**"
         
         # Chercher des mots-clés guadeloupéens dans le texte
         keywords = ['fromager', 'foumi', 'piman', 'roucou', 'woucou', 'gwoka', 'biguine', 
@@ -247,12 +275,11 @@ def generate_catchy_title(elements: dict, text: str = "") -> str:
                    'igwann', 'awokasié', 'bonda', 'manioc', 'vaniy', 'crabier']
         for kw in keywords:
             if kw.lower() in text.lower():
-                # Capitaliser correctement
                 kw_display = kw.capitalize() if kw.islower() else kw
-                return f"{kw_display} : Découverte culturelle de la Guadeloupe — Radio Karukera"
+                return f"🌟 **{kw_display} : Découverte culturelle de la Guadeloupe**"
     
     # Fallback générique
-    return "Découverte culturelle de la Guadeloupe — Radio Karukera"
+    return "🌟 Découverte culturelle de la Guadeloupe"
 
 
 def generate_monologue(elements: dict, verbose: bool = False) -> str:
