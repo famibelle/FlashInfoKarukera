@@ -16,7 +16,7 @@ import subprocess
 import urllib.request
 import urllib.parse
 import urllib.error
-from datetime import date as Date, datetime as DateTime
+from datetime import date as Date, datetime as DateTime, timezone
 from pathlib import Path
 
 # ── Chargement du .env ────────────────────────────────────────────────────────
@@ -1726,6 +1726,10 @@ def main():
     parser.add_argument(
         "--verbose", action="store_true",
         help="Affiche le texte brut de l'API et le texte rédigé par Maryse.",
+    )
+    parser.add_argument(
+        "--overwrite", action="store_true",
+        help="Écrase les fichiers JSON et MP3 existants sans vérification.",
     )
     args = parser.parse_args()
 
