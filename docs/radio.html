@@ -400,6 +400,42 @@
     #player-screen {
       position: relative;
     }
+
+    /* Section liens sociaux */
+    .social-section {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #252836;
+      border: 1px solid #333646;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      color: #e8e8e8;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .social-btn:hover {
+      background: #2e3245;
+      border-color: #4a4f6a;
+    }
+
+    .social-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .social-text { display: flex; flex-direction: column; text-align: left; }
+    .social-label { display: block; color: #fff; }
+    .social-sub { display: block; font-size: 0.8rem; color: #8b8fa8; margin-top: 2px; }
+    .social-arrow { margin-left: auto; color: #555; font-size: 0.9rem; }
   </style>
 </head>
 <body>
@@ -461,6 +497,26 @@
       </div>
 
     </div>
+  </div>
+
+  <!-- Liens sociaux -->
+  <div class="social-section">
+    <a href="https://t.me/botiran_news_971" class="social-btn" target="_blank" rel="noopener">
+      <span class="social-icon">✈️</span>
+      <span class="social-text">
+        <span class="social-label">Telegram</span>
+        <span class="social-sub">Vidéos et audios en direct</span>
+      </span>
+      <span class="social-arrow">›</span>
+    </a>
+    <a href="reves.html" class="social-btn" target="_blank" rel="noopener">
+      <span class="social-icon">🌙</span>
+      <span class="social-text">
+        <span class="social-label">Rêves</span>
+        <span class="social-sub">Analyses oniriques quotidiennes</span>
+      </span>
+      <span class="social-arrow">›</span>
+    </a>
   </div>
 
   <audio id="tr-audio"></audio>
