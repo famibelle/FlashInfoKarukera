@@ -4,22 +4,38 @@
   "privacy": "PUBLIC",
   "description": "Radio caribéenne automatique",
   "views": 3,
+<<<<<<< HEAD
   "duration": "7 hours, 13 minutes",
+=======
+  "duration": "7 hours, 3 minutes",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
   "trackCount": 80,
   "title": "Botiran News: La radio de la diaspora Guadeloupéenne au Luxembourg",
   "thumbnails": [
     {
+<<<<<<< HEAD
       "url": "https://yt3.googleusercontent.com/_WWgOdZfOoI1XAjdUgB0UjD_ujrpcaGKyY36DdUiqOR65cmwvSnzgiIUcazhD_0dQuLVKoZorq7M=s192",
+=======
+      "url": "https://yt3.googleusercontent.com/S62AFzqbRNIUcLLzLpEPqOrLG7jxtdm_STHMEpihly3LGAV9zyKsl4s2FqwnHrVST0bP4F9U3Js=s192",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       "width": 192,
       "height": 192
     },
     {
+<<<<<<< HEAD
       "url": "https://yt3.googleusercontent.com/_WWgOdZfOoI1XAjdUgB0UjD_ujrpcaGKyY36DdUiqOR65cmwvSnzgiIUcazhD_0dQuLVKoZorq7M=s576",
+=======
+      "url": "https://yt3.googleusercontent.com/S62AFzqbRNIUcLLzLpEPqOrLG7jxtdm_STHMEpihly3LGAV9zyKsl4s2FqwnHrVST0bP4F9U3Js=s576",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       "width": 576,
       "height": 576
     },
     {
+<<<<<<< HEAD
       "url": "https://yt3.googleusercontent.com/_WWgOdZfOoI1XAjdUgB0UjD_ujrpcaGKyY36DdUiqOR65cmwvSnzgiIUcazhD_0dQuLVKoZorq7M=s1200",
+=======
+      "url": "https://yt3.googleusercontent.com/S62AFzqbRNIUcLLzLpEPqOrLG7jxtdm_STHMEpihly3LGAV9zyKsl4s2FqwnHrVST0bP4F9U3Js=s1200",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       "width": 1200,
       "height": 1200
     }
@@ -32,8 +48,108 @@
   "related": [],
   "tracks": [
     {
+<<<<<<< HEAD
       "videoId": "rpnWevfbT_Q",
       "title": "Man Fortiné",
+=======
+      "videoId": "ZynW_nVFKFY",
+      "title": "You Have Lost The Battle",
+      "artists": [
+        {
+          "name": "Exile One",
+          "id": "UC9jtvI8NVWeDLjy260vK5eA"
+        }
+      ],
+      "album": {
+        "name": "Beaucoup D'Gaz A Bo (Lotsa Music Onboard)",
+        "id": "MPREb_3rjxBRtCDiV"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKsxhCP-iwVmNO59s9hBndI3CTdwbkpJuQCQeHDvExWeG1sady4xIevrfpk5ajOPLthkG8ejvoDPC1z2ki19mq5LW3g5Q",
+        "remove": "AB9zfpK4ppGubhVA3fUWXo-xjozIeEEXcZwBYKKnrawFs4AV8odeTYyMdQ_Lpoa4cMEyh_GX1egLeCq5LyAOWIgLawCaA8aLbw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLotZTC0iUR1cp_AofZ5DTQhX83a1NUXgsUIvyI9CGlBdQ1VU_cL8HKxDNveddbDMgcXvu1xPcuJDJ_LNWUp5WW3IpwlIe44XWhyTKH4Hb2WQvmNcc",
+        "unpin": "AB9zfpKOSSE6rb2xZEnqYdzX6v6DbqFWEXKREoJgFKkKOt7nNuRMC5Y-4iVR_OfMnDjRnFMffEeMbKIwYmHU3s2GbeqVsAT-XQNrJysKVjNUE134vhdobEQ"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/N1pwsFOpWF6tJxpY5s4l0J0vqp6Kax4gJrx-GUuFp6rSSem39VBk7YEkkDpeGIu3rZqiLJeVeK84ut8A=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/N1pwsFOpWF6tJxpY5s4l0J0vqp6Kax4gJrx-GUuFp6rSSem39VBk7YEkkDpeGIu3rZqiLJeVeK84ut8A=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:14",
+      "duration_seconds": 314,
+      "setVideoId": "95E2710EB41A825A"
+    },
+    {
+      "videoId": "IQZFmL3t5KI",
+      "title": "ENKONDISYONÈL",
+      "artists": [
+        {
+          "name": "Misié Sadik",
+          "id": "UCY2gG58MzsA6dpepqohuDEg"
+        },
+        {
+          "name": "Fanny J",
+          "id": "UCsYfnL5LpjJk3Yr80KHyFIA"
+        }
+      ],
+      "album": {
+        "name": "ENKONDISYONÈL",
+        "id": "MPREb_gBiNCQ7FOrB"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJxIlIpb2sezH51L1kWA4PAoCDEi1qMwrh8Hzr6asVyOdOkEN28EfuyBAPUidVcrjwl9y2Rds1L-SxL1lRUNoFpAkYbqw",
+        "remove": "AB9zfpLs4iq_W974F0hh3TEiim-wgL7w7clq7eag8vHWpNpcazwO-8pR7OmGLCkhe0x6wZQf8kuJg3oTGBl0215k8rPjhx2Xfg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLMcYx3X0stUTmd3qnLza99K0Cs-qUMWJ7fz5wSt_t8Ye1eT0g0BYR_BrMYKTsiafGhFI5I9V49b7UBhakNPAZvYMR7aLbIfVdhNyd6IcZq5szVaR4",
+        "unpin": "AB9zfpI_QEnX19C-ongh9rsT-qHWPLnIBxX-7pPL4n5UeGpFNunUY2je4Sc7_NRXiO1A2zjyirQ_ygJvN8bxaF5lHpLBQWgv3fzHRbfgKClqSc1SobLiMkU"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/1mpL6YxzytszLZzYlp-jGNVtbEUcX8vFWz9qLgrwdVIhZ5fEuuzSYawSaQJ6go-Ndvu37YwMFM-bhPqz=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/1mpL6YxzytszLZzYlp-jGNVtbEUcX8vFWz9qLgrwdVIhZ5fEuuzSYawSaQJ6go-Ndvu37YwMFM-bhPqz=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:30",
+      "duration_seconds": 210,
+      "setVideoId": "EB08AD9A9047BDCC",
+      "creditsBrowseId": "MPTCIQZFmL3t5KI"
+    },
+    {
+      "videoId": "t5wg7nXx6RM",
+      "title": "Hugo",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       "artists": [
         {
           "name": "Francky Vincent",
@@ -48,12 +164,21 @@
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpLw4LuEwt09-Zxzgm6XsvWuP3O5FI5cWpATk3ApC7ySTCVXgTurO62afDPKwU3uynwz4hxZmQuWxk8Y8pUS0phs90LC6g",
         "remove": "AB9zfpLS9JcoWO1zk9qy2vVU-Ia5WP0FCNpoFCj6hiZgQysnjol0-xa2yOmpRXJiF1sfdibI0oYct43QsyBfbOImmXxEHsVdew"
       },
       "listenAgainFeedbackTokens": {
         "pin": "AB9zfpK3o3w4q1Eh1IyGLHgpOnNWrBaaZ-AhIRt7XtVbstf_020w4tPMn91gG616YZpr7k0gS6YubXRVEh1Dfn7q6XgORde9PpJ8QAjTB6u7XoUVx5lpgcA",
         "unpin": "AB9zfpJCFnSBhLCI_MT245P8ZMaKbJ_FkpJOJxYuq3B0gmiGLtfEpW-WRToCnYIQofarY5JqsLxwMP_3TL2gqpI-NAw0Ec3BQHjXPpPfPR0Oasgp5VWkq4Q"
+=======
+        "add": "AB9zfpJSgDQTNi6h56FBN6u6J-OdFDCs3LPBxsAlbF4Zd-DMHhFq5huSkTE5iHQKrZZtbzQVNEfUo5pOjt_XYOhb3YVE-fve2Q",
+        "remove": "AB9zfpIHI569G0o2uFnvNTciy9a0R07L2YVkSuD52KVqn6mfWECLkrO27LAV15ot3wWWjSwGnpZCRrQvlBiu59OIxN0kgrXDaQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKW7oiREGb_a-FuwNBg2izTeN7xTswlXFplzqCsia82OAGiQCbeTfV4BrYDhuV2A_3e188W-WD5xvpZnbWoX9HQha2tVO35rCZoigXxBk18KQxIjko",
+        "unpin": "AB9zfpJUy_CnnzjQrBnnzOjzLL6AeqRu9ubkMyHP78_k26C6HrQNGE1NF1f4FGTG2eiL42so8238yJc6jcdQLkUQgeOTZKrrlGNpkGBwHi59ObQXy7R-5mo"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "thumbnails": [
         {
@@ -72,6 +197,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "4:32",
       "duration_seconds": 272,
       "setVideoId": "2D65F8A034BBF40C"
@@ -1006,32 +1132,58 @@
         },
         {
           "name": "Kassav'",
+=======
+      "duration": "3:31",
+      "duration_seconds": 211,
+      "setVideoId": "A5964C9F948C17C1",
+      "creditsBrowseId": "MPTCt5wg7nXx6RM"
+    },
+    {
+      "videoId": "Iyfs2An1cBw",
+      "title": "Moune La Fait Moin Di",
+      "artists": [
+        {
+          "name": "Georges Decimus",
+          "id": "UCyU1SxDaY7ittRp6jAwh6WQ"
+        },
+        {
+          "name": "Kassav",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "id": "UCNktNoGoiJvHYmCgPIobIxQ"
         }
       ],
       "album": {
-        "name": "Yen ki lanmou",
-        "id": "MPREb_muKvDJdkuEK"
+        "name": "Georges Decimus with Kassav",
+        "id": "MPREb_SM974xqrBpu"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpKadBQA2HlW6flA1SScdxJ54lpnfevVmJbGnbOn6sjPz-g_R9fC-PGCBcigXo4EUbJBW1wemKVUYRjLu5kjqmAP_LwS_w",
         "remove": "AB9zfpKQXVmPGUF3ASokEYkjF_9NQTm5ZTniT_x6ImTZVNPmPD_gwAGvLZX33_VnMfUY8XHhqU0eBmz3rCsAvv5IrPzhL9-rTA"
       },
       "listenAgainFeedbackTokens": {
         "pin": "AB9zfpLk_gudocF_LLvKKDQ9skS4VPCZJKavSiDmA8HJ3930vajFl5rEuBDyYcYTARhJ8jNAnjS9ktYt07GXQZhcI1kglJZP-ZBD6BpPAyYgSITACVyHVY0",
         "unpin": "AB9zfpJTIbGALhbmjl3MHUvHOO4oFH-oPma35OKN-J0nIpK1XmyGEp8f4RqWUGGUH4XsN_KRw4hEhPOjAcN_Bwze7j-PB9ItOP4gXEyrRXFJ12HgeQoJRAE"
+=======
+        "add": "AB9zfpI6ZbJEnz0ju0LxZW-KeHFYpembfvIQSVCbo0rKjxE9iWFdO2-LCyXmeot5VgOIfgHNhabKvFjE7ll6ZAcj4Yqxtx6QYw",
+        "remove": "AB9zfpLGb5eUzWAhT5kpgujULcCx12HNkkswTSE9HP3zx54dcOsAgEt_srXC8NThHAxn-xsMvkktxxwqXfqZ9T71EoFAonsw_w"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpITlGxsSQUGhumvxBTnp1RYTAnWCIOx0icFE_7YzRrRFm3W7RDZOXf0Ska20rPuNEGwjU3nGXppIDNqiRsTJlA-BHnyU8c_4bDedfz06Rkp0vQsZAo",
+        "unpin": "AB9zfpIxOgNJqLFpd7bsCaE962k3VFlny-LKDiw36WQqYcPoY5os97MjS58WNnf3R5EJvhmFO3euPhW_7gTQ36e-4jzEcE7P0O35_OSrZQiIhX2DRiRi2-8"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "thumbnails": [
         {
-          "url": "https://yt3.googleusercontent.com/CrzCoU_gQ1OHEH7I3dw-u4qm6VyvA76QN585oukda1_kM_QgFRvovQcQg9Jl2kkQFByw8kbwgaMy2ggB=w60-h60-l90-rj",
+          "url": "https://lh3.googleusercontent.com/ZZ4yxBRcCuo_liFwBjS29OFoO2T9Kk1o845ZdyxoK2fQcovL4D5cgtmahilulh-j_tcX5Yd2UUK_vg4-kg=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
         {
-          "url": "https://yt3.googleusercontent.com/CrzCoU_gQ1OHEH7I3dw-u4qm6VyvA76QN585oukda1_kM_QgFRvovQcQg9Jl2kkQFByw8kbwgaMy2ggB=w120-h120-l90-rj",
+          "url": "https://lh3.googleusercontent.com/ZZ4yxBRcCuo_liFwBjS29OFoO2T9Kk1o845ZdyxoK2fQcovL4D5cgtmahilulh-j_tcX5Yd2UUK_vg4-kg=w120-h120-l90-rj",
           "width": 120,
           "height": 120
         }
@@ -1041,6 +1193,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "4:10",
       "duration_seconds": 250,
       "setVideoId": "900DA4F801753E9C",
@@ -1140,35 +1293,54 @@
     {
       "videoId": "c2BIOILttnI",
       "title": "Kolé Séré",
+=======
+      "duration": "5:09",
+      "duration_seconds": 309,
+      "setVideoId": "F05D07A0CAC73E96",
+      "creditsBrowseId": "MPTCIyfs2An1cBw"
+    },
+    {
+      "videoId": "NWUy4CELgDM",
+      "title": "Ail En Galilée",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       "artists": [
         {
-          "name": "KASSAV'",
-          "id": "UCNktNoGoiJvHYmCgPIobIxQ"
+          "name": "Experience 7",
+          "id": "UCCepPtdxGebVd_b1XkqZ6CQ"
         }
       ],
       "album": {
-        "name": "SAGA",
-        "id": "MPREb_nSToOKK8pyg"
+        "name": "Experience 7",
+        "id": "MPREb_26ssMyhu4TZ"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpITLX7yra0DXTTDPfaNvKOopDD12lNmERV80RtyMZpj1CUZ6NuEeHD_htF0S03QOC65UPRvlcPCBhds1LT7gQCLS_b0wQ",
         "remove": "AB9zfpJMGYoPgGzcM0PYcwQOTPJzTS0hGJf636EGjSEwn1ums_I37Habk0vBBc554_r4tsN65U-HNLwAaOoKZ2gzlj7o489Gsg"
       },
       "listenAgainFeedbackTokens": {
         "pin": "AB9zfpKwdz1YUChzhU_CMr56ZAbA0w84Zyie5FkNvI1b7KSkhdwxroglSZURQGr3tynykV4XK-Lg07DAZQ5ZNmBDKyaUvKzVWKDda7qtZ2I0hkmQnV6S360",
         "unpin": "AB9zfpLoafeTtTjHXminGgcx_da0Obf88j5Ifnn0fm4NHsEbgkhGxI6mKjADSQWj5GQp4kZivmicuLXdv7JuU6ivfxjYY8CueMf-5orclnYH593axr5gqcE"
+=======
+        "add": "AB9zfpKC9_mgD64x0XFj7GxsQyWpcp9mDjhEpcObzaiqCzTBu5xJ4bqxszfPkX7GMBNu-6Acumhaq-078Az3G1Lt5iqHcyke9Q",
+        "remove": "AB9zfpK8qAFXyyPNPLP169z1EnlYW9HzEcZqFj6tnxA7SFh3_p5iaicVRaxgJ_bFbWKR4yiB2XNcUDaHbiu6fLohEpoln1Ju0Q"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpK0uEpdbres4kO40oQfLftVbM50lYZel1YU6-AzM5MQ7_C8MumAYuRa3OeeT0gD44qGJBC_LnpXiUDKMOW5d4THbLMPeT_Mco1eN8cQg74dez8yAeE",
+        "unpin": "AB9zfpLnXaPj33R-k7T9S_jYqlzQ-LHDWJpoHML9IYdGgXeMiU7J_fgbFapFr5RZpCnggUek06SVM6PTy62igmgCy5ipWWnEVLf6AoyFl4i5-ZbLz8NGebM"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "thumbnails": [
         {
-          "url": "https://yt3.googleusercontent.com/yhnObYD-CzcdSIKa5UsfFyp0Q1euQEzusPaaBw7MMvHBrc2RkSLAh9mIE6OuaVoSso-Oq8MlJ0QTp3Ph=w60-h60-s-l90-rj",
+          "url": "https://lh3.googleusercontent.com/4NyPHY_XSQ1dk9LWVpi7iFeOWUkCX7-XE0qgNypH2nAvuyNGu_nSqxCOM5ICoyW8ANAp8wcDLD2aGTZjSA=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
         {
-          "url": "https://yt3.googleusercontent.com/yhnObYD-CzcdSIKa5UsfFyp0Q1euQEzusPaaBw7MMvHBrc2RkSLAh9mIE6OuaVoSso-Oq8MlJ0QTp3Ph=w120-h120-s-l90-rj",
+          "url": "https://lh3.googleusercontent.com/4NyPHY_XSQ1dk9LWVpi7iFeOWUkCX7-XE0qgNypH2nAvuyNGu_nSqxCOM5ICoyW8ANAp8wcDLD2aGTZjSA=w120-h120-l90-rj",
           "width": 120,
           "height": 120
         }
@@ -1178,6 +1350,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "4:44",
       "duration_seconds": 284,
       "setVideoId": "F290AE0B223FD137"
@@ -1322,10 +1495,65 @@
     {
       "videoId": "lhdmiyBi2pY",
       "title": "An sware la",
+=======
+      "duration": "4:30",
+      "duration_seconds": 270,
+      "setVideoId": "235353E03FA3F507"
+    },
+    {
+      "videoId": "c2BIOILttnI",
+      "title": "Kolé Séré",
+      "artists": [
+        {
+          "name": "KASSAV'",
+          "id": "UCNktNoGoiJvHYmCgPIobIxQ"
+        }
+      ],
+      "album": {
+        "name": "SAGA",
+        "id": "MPREb_nSToOKK8pyg"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpLEwqHK1l9vkvn4NylC6hspX9eAMONoyUEuIIhVUG_XJMXYDezNPPZVcLwF5TzBzFwsqYaEN6Ah0cl1KnN-rb9puN9DsA",
+        "remove": "AB9zfpLnGro9vqTR_7N_6CjVbdvL6UHrmvtYhmQFDlyOgVeujznILKjMghSOFVxBB434ni-YJ0a4Qj7CJqto9-fQoD3zB3BGWw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpL1eiTupT1FOVb8gfCqJDCcWrQOl9nc60IZC19YoljRCTvjDbKSfylWXamnLbNc2Sc9xV33TSFtxvFIqP-UA9x3lIufwLg0sTeLN7vGkhCTDfZxIBk",
+        "unpin": "AB9zfpICeBx0XHXyX3AdUIuNgCQmCxol76UWUlXdXj5-Ds0zTlKW6dy0kgNG66ro37J-IbdNeCoeC_XA16KeIIZ6xRgK67u0trMs-bVLGpzTNbvX2pTIgk4"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/yhnObYD-CzcdSIKa5UsfFyp0Q1euQEzusPaaBw7MMvHBrc2RkSLAh9mIE6OuaVoSso-Oq8MlJ0QTp3Ph=w60-h60-s-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/yhnObYD-CzcdSIKa5UsfFyp0Q1euQEzusPaaBw7MMvHBrc2RkSLAh9mIE6OuaVoSso-Oq8MlJ0QTp3Ph=w120-h120-s-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:44",
+      "duration_seconds": 284,
+      "setVideoId": "0050AAFF2EB36113"
+    },
+    {
+      "videoId": "qROmaEs0Z4g",
+      "title": "Ou sikré",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       "artists": [
         {
           "name": "Ludo",
           "id": "UCxJIoFxPmoRFh-8ZABA5S2w"
+<<<<<<< HEAD
         },
         {
           "name": "J.M. Hierso",
@@ -1335,11 +1563,19 @@
       "album": {
         "name": "Pression 2001",
         "id": "MPREb_JZavXO72YEV"
+=======
+        }
+      ],
+      "album": {
+        "name": "Sweet",
+        "id": "MPREb_JIcuY0uGiok"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpIyioK4IMgR7vkDJXh7s9TlErK_wRXPGvKpAayvHQZc4A2FKbc9_btwGwN2i4US2vpM2uxyHycrimNKwzOXgSNGyu0yqw",
         "remove": "AB9zfpK6ns4au-kNrd4wbNZy6t06zcl5UFSpdfylw80r7EU1AZxz9Q2KhNE0t-7kVBFv5KoAIh9N6sneGxDg6bbQWJm_lL20bQ"
       },
@@ -1350,10 +1586,23 @@
       "thumbnails": [
         {
           "url": "https://yt3.googleusercontent.com/ori5db3aKaHZsr2okNDM1uk1Q9gs5DVYRRL88d8Yln7ggKY-qJw-ukud4x-c9SlkHYIt6_vMNoX1qLdY=w60-h60-l90-rj",
+=======
+        "add": "AB9zfpJYuzelUaefsGhpHvZ-s4gUnSrkkfuvh6UUA3A7IrK2Au2B45W-PbmE_MEHhvnU6BgyqI6hbm_tRcK1DB0mEW-s2T8KWw",
+        "remove": "AB9zfpI3VTiDaRZiYTbDWFt56mGe_UqI3qKTMCRX06Xq7eaK7-ayZ7UQHvlz1OcbWERaWi1GGca1EYCsFMm-C9RJqJ4a4UMd-A"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIs-0K_gNM3DvKZh2wzVbSZ6oIhrseCRRyX3p4B78uA6K_3JSIQsOwN8FJg_XTEvcRzBIGyccg83KlCPzrlzQJKhEOoLlVrG0IKFl7ssnzyMDwzJCQ",
+        "unpin": "AB9zfpLgSOUONqqpDxib5P8s24TeW8TMHrPW1FCAVL7L_tg99gxRdQiFi3kUyEsX6tanVIeFAEXvmvwmGXc9RbJycHIoxTvsMEu1b7_rG4kTOCB7BvSOIww"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/1c04ycOcHsW7FT1BOClOhpSZxJP6QzL2EDrmrT7NLI8d90rdSnsJ9-mDcQLsYBNleqLXqOPZOe9qIwN-=w60-h60-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 60,
           "height": 60
         },
         {
+<<<<<<< HEAD
           "url": "https://yt3.googleusercontent.com/ori5db3aKaHZsr2okNDM1uk1Q9gs5DVYRRL88d8Yln7ggKY-qJw-ukud4x-c9SlkHYIt6_vMNoX1qLdY=w120-h120-l90-rj",
           "width": 120,
           "height": 120
@@ -1540,6 +1789,9 @@
         },
         {
           "url": "https://lh3.googleusercontent.com/x-yXgJhb7NkL1Dgbh2gpEnNdETUe515-aNY37EVm7wS2LAK_MFEoL2OhldcFx4Dk0MXFYH7mvmpp_Xnj=w120-h120-l90-rj",
+=======
+          "url": "https://yt3.googleusercontent.com/1c04ycOcHsW7FT1BOClOhpSZxJP6QzL2EDrmrT7NLI8d90rdSnsJ9-mDcQLsYBNleqLXqOPZOe9qIwN-=w120-h120-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 120,
           "height": 120
         }
@@ -1551,6 +1803,7 @@
       "communityVoteStatus": null,
       "duration": "3:50",
       "duration_seconds": 230,
+<<<<<<< HEAD
       "setVideoId": "BA66C4117ACC082B",
       "creditsBrowseId": "MPTCrDg_ENZ0rQU"
     },
@@ -2122,11 +2375,29 @@
       "album": {
         "name": "Le Grand Méchant Zouk : Sonjé PSE (Live)",
         "id": "MPREb_rFHQoIMjDJ3"
+=======
+      "setVideoId": "E64A0B88600D9206",
+      "creditsBrowseId": "MPTCqROmaEs0Z4g"
+    },
+    {
+      "videoId": "M7UH-QUzin0",
+      "title": "Ma petite lumière",
+      "artists": [
+        {
+          "name": "Jocelyne Labylle",
+          "id": "UCql8h5QnQ2RtDaNx64HFRkA"
+        }
+      ],
+      "album": {
+        "name": "Ma petite Lumière",
+        "id": "MPREb_qSQiX5Oo0WF"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpJx4dfqU8c1vM-arR8oiPPMMOxKW2HqsPpUcK2gBPXRCvRCi56svDEGPqA2zqPoaD8kDc-m61UidWHydrli8p6zMiqT4w",
         "remove": "AB9zfpKV7bIB4Q2fZSoc1FffxAwraEkrM1XLNTjAfX0XkvqNqU3REtPH136SQZ1sNmwrW5-ZBjwX2U9W6bw8uUqFf5ZU3z1v1g"
       },
@@ -2137,11 +2408,27 @@
       "thumbnails": [
         {
           "url": "https://lh3.googleusercontent.com/5iDJicyBhbhsas9kgCfoeDzBwd4ocwccIKGJzXom3gaCEMnyOz7q-d6DLZDbXzx1t_OSKUC26Sw6PBzmtA=w60-h60-l90-rj",
+=======
+        "add": "AB9zfpL8WrHc0y6kZI6_e1bazvHSnYCx87eLvPhVLeDQ-MwLSzeYUxO5g9jxedObp6ZuYZGaj3zY2SyGPyyQeTQ8IshHy3qjKg",
+        "remove": "AB9zfpL7BPVoAyPBYkzFu8s2LJ_UOf627HlFw4pMxS769K3HO_QmTYJteDZdu1AjZWG_8tvaHZFxzEQEQ8k-fH7Xf4viG0cYfw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpI4f9khgmXO1A6uxCfM5sNztODxJ82Jc9LpC8o7UmT4Zsu5EmgQ7O05tXF7Jg7swy7gAeEWord4oHepZXYOBq3M7ZdB-TiLyKY1DtSwQyzltseuY2c",
+        "unpin": "AB9zfpL1ADMl1xq_0iV_0meBLwiaCZVh7tzDJsa8zTaumLzWNE7RglrGVpf0Qn8PO_p2iZGpyHWxsQKVNZdn52K5zA0QpNFrsCmNsg1NIaG2T1bnDo9bkl8"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/_xsf-OV2u3ao5N1RK4h0w03_eWI3sE4-B4elDFvnrFX3Z4qKJ-OvhVP6VzzLuB_5w9xzorV1ym1vpX4=w60-h60-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 60,
           "height": 60
         },
         {
+<<<<<<< HEAD
           "url": "https://lh3.googleusercontent.com/5iDJicyBhbhsas9kgCfoeDzBwd4ocwccIKGJzXom3gaCEMnyOz7q-d6DLZDbXzx1t_OSKUC26Sw6PBzmtA=w120-h120-l90-rj",
+=======
+          "url": "https://lh3.googleusercontent.com/_xsf-OV2u3ao5N1RK4h0w03_eWI3sE4-B4elDFvnrFX3Z4qKJ-OvhVP6VzzLuB_5w9xzorV1ym1vpX4=w120-h120-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 120,
           "height": 120
         }
@@ -2151,6 +2438,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "2:24",
       "duration_seconds": 144,
       "setVideoId": "DC04918D23738A98",
@@ -2159,6 +2447,433 @@
     {
       "videoId": "FGwYLc_ghIc",
       "title": "Lan Mou Raid",
+=======
+      "duration": "4:21",
+      "duration_seconds": 261,
+      "setVideoId": "96BC0F94305D029A",
+      "creditsBrowseId": "MPTCM7UH-QUzin0"
+    },
+    {
+      "videoId": "LQcTdHrpeKs",
+      "title": "C'est ma vie (Remix)",
+      "artists": [
+        {
+          "name": "Princess Erika",
+          "id": "UC61v4Zu5tlOfKTwtSqWo-bw"
+        }
+      ],
+      "album": {
+        "name": "D'origine (Version alternative)",
+        "id": "MPREb_rygEbOkPCRt"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKiRf8GEsyYT7yNCh-67RZbfZWfojiAkQB1HPZyiO9w4crSHH07dBbuq4o_Xf6AbK0AwolEXiLpi788m_L6vn6ReN1TXA",
+        "remove": "AB9zfpJq-NouzolEDNY66bVMrC9LYQWQ5aKUspmuzti7oTFDpww86bEC_e2nx7tHgk8BVXdBOLYdANl0WIaMcPwsWzwt4Fw_3A"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLKgNd5s3lxHtV35tos7oc7GbmmWyTnP3L8epL5eCHc5jhUvKbxudcgPpw8pOTg3mxdAfhUifdD8zBokCYBHsqpMVgcLTiVCzye9YpnoW_f_WorT-U",
+        "unpin": "AB9zfpLpcyySdd-sGAnZcGJMClPEiIF3z8G33MTuFGcyLwB19Vdzus0E2S49xNBZFBO5ZRRhn0-cWPKsKDT6mk0j6Mrl5vaFvWyixi0u-Q-0_pt8uVbsiso"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/hUwZhRaCAewYAv3bRD7ofNhOs6dfTdi6Im-nPt6e1fHDLIaDU0BD2eX_f65pYWLVhQtZqk38a9lZmGY=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/hUwZhRaCAewYAv3bRD7ofNhOs6dfTdi6Im-nPt6e1fHDLIaDU0BD2eX_f65pYWLVhQtZqk38a9lZmGY=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:03",
+      "duration_seconds": 303,
+      "setVideoId": "C5CB6B30C92896DA",
+      "creditsBrowseId": "MPTCLQcTdHrpeKs"
+    },
+    {
+      "videoId": "w-xVQnck1ls",
+      "title": "Paula fée de l'amour",
+      "artists": [
+        {
+          "name": "Lutchiana",
+          "id": "UCBUKPHHNudvVhUFp69G4s8g"
+        }
+      ],
+      "album": {
+        "name": "Acte de naissance (100 % Mobulu)",
+        "id": "MPREb_hSKeuZvG66v"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpLd8REoUH4eCGAvdGTdYP1aOvv9A5WFgx7eKXeXgKM3XQsWHqFYVw3oKz3l4xUHEntzxU1-a4TIDti-sYNzapDVhXvr5Q",
+        "remove": "AB9zfpJCk9cqG5wxf8WZy7ciC14wQjamxh165wtzO-xs8bg7OD00EA9e8R9Ktmwf2o840xMlz2ai64zmwnzMF8ZJ5UodJem42Q"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJyY3hHl1Z-BNQyQB2BQrCGVoSrA1e1_PQBTnPV7VHXTgcsEcgKP8S1W8W2DOKSMrdNAZIm_sry_6YMmIhPGZxeA2OImDTtHvMGvRrJzPzt-b7wTEM",
+        "unpin": "AB9zfpKysDgHnce2BnYZMGhFJ-RxBWh7Z4OfQsGQO4EKfIj2cuKE3uh4uIx9LTzrEd3rzToZITqISEOdbVNFp-TpzQ5gPc6_gsH-RVekezbsB7sRMMtZo8s"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/9jo5Dj_Wh2i18Iw0JgUHkAjL-0Tml9Fz51oORLiHW_waA8-gWMETQpG8xLfW0W7-2DT6vBwV1vX2p0M=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/9jo5Dj_Wh2i18Iw0JgUHkAjL-0Tml9Fz51oORLiHW_waA8-gWMETQpG8xLfW0W7-2DT6vBwV1vX2p0M=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:14",
+      "duration_seconds": 314,
+      "setVideoId": "84BB2333F821DD43",
+      "creditsBrowseId": "MPTCw-xVQnck1ls"
+    },
+    {
+      "videoId": "8VKD-IlvibI",
+      "title": "Unholy",
+      "artists": [
+        {
+          "name": "Sam Smith",
+          "id": "UCgpBsaDW2n_6ruzht3wvP0A"
+        },
+        {
+          "name": "Kim Petras",
+          "id": "UCHG91TZ3WrWbZGD5sbkXsxg"
+        }
+      ],
+      "album": {
+        "name": "Unholy",
+        "id": "MPREb_88oNrqypMv4"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpLwBLkjXbYk6F6_QzDlFWtaig1TfaCncTfKf1kbUjI8rmEMh05UhZX7FdY-iuTtHPClAOGEJZkl0pXtMKLowewAXLaapg",
+        "remove": "AB9zfpKmOtVf8PkCv8x2J81MRsvYtVu_nYpWFRpwlylz-Y9G3cHbuqQ1Qa0EEU1oNfDtOvjpdCS8rLG66o0m2g2Q0bDudFbxBA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJxcMcNMSl-dv6bIAXPR415mwASWCr2zDcPNG4OR0JeRYX044Y31sFfZXIkWk4BdxtIyYg8oP2KPcYoKgUn64_8tT2QHU0IpRoUY-2X0UWYtSnA6Mc",
+        "unpin": "AB9zfpK5QhaqcOCs2lnfBor5SC2mpn0JPfpUt3PC_kdXAXhstARofCANUjw-HFnHRYhEmo1XaIsobJCCLKL9lNYUUAlqy9kdt0n_82RIrVO6Akfkrc77uFs"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/uimtOO9FPrfJBLL3cJhqdVvkVfliVgIZuPW9-2DQjZRa8fwjiXwQP1lv7Bf83yBfZXRpr-rpc9Tfkq0=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/uimtOO9FPrfJBLL3cJhqdVvkVfliVgIZuPW9-2DQjZRa8fwjiXwQP1lv7Bf83yBfZXRpr-rpc9Tfkq0=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "2:37",
+      "duration_seconds": 157,
+      "setVideoId": "250812B8E022A5D7",
+      "creditsBrowseId": "MPTC8VKD-IlvibI"
+    },
+    {
+      "videoId": "a2puu-C5TQU",
+      "title": "Bonè séré",
+      "artists": [
+        {
+          "name": "Harry Diboula",
+          "id": "UCb_RSBOlOOuragrt-g0JVCw"
+        }
+      ],
+      "album": {
+        "name": "Entre vous et moi (32 Hits)",
+        "id": "MPREb_1uUZsYCoye7"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKZr5TSuY8y2omVz4ebB_Pvr-kH0iMHV_ISvHjNY0TMykvYMA_c4jOwbQc1IxhA4x6uAzQwub-MXh664fSZkmMJYI3j-A",
+        "remove": "AB9zfpK9Scuw9NnDmmoFueuvAGA6VWwhg6t9hFrPjTyYvx5JWXZZuWJy7Cg0XIAAAt4ZzVGQSdAh1PITzcQONBe8Kvip3hr1Xw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKdNaPD0bDgvZeWushsFuPuuhmSH4SHbb_Hv7FuN2oFtzn7_82MTc2spBkgC5fVIohM4drRF-v5k3KJCLEU-d8T21x1sN_2DwwHn5bArB0X2-8Tt68",
+        "unpin": "AB9zfpIdruSlbF6tZ84CVgq8TcJQqR9EyEl5cfDlC1mxPbp_xUpV2trrt1Zfq_sehG96J3w0TWa6XUkBldV8JUdL72EHjYmaJanTlUbijHsNs02pyyYImEc"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/vpewbHg7sVxEWOTgG90gLuzYQEPFzqsJOGpL0LacRlBgKNxdf_781Zwga7T9h9oqduymyaGm8ITubkKr=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/vpewbHg7sVxEWOTgG90gLuzYQEPFzqsJOGpL0LacRlBgKNxdf_781Zwga7T9h9oqduymyaGm8ITubkKr=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:59",
+      "duration_seconds": 299,
+      "setVideoId": "F10727364467CAB4",
+      "creditsBrowseId": "MPTCa2puu-C5TQU"
+    },
+    {
+      "videoId": "OGf1zw-uFYQ",
+      "title": "Chouwal Bwa",
+      "artists": [
+        {
+          "name": "Marcé",
+          "id": "UCoq3--oDV8qWCGy5NMjTBCg"
+        }
+      ],
+      "album": {
+        "name": "Marcé Et Son Groupe Toumpak",
+        "id": "MPREb_5HTylSgA4fd"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKdub-WIFy5ID9sAtbYfvSY6MeDeJrxtP_SoVdslLoxK53rQg9mCTe5YA__r7iWRhc8Ma00yvx3yv_r1OGXXEB4a__LzA",
+        "remove": "AB9zfpJnQdsvlfZ_itl_3VcEPQVQjjpkVGgsLCuB-pwokmxnAQrFKkAcZw9kUzraYUeuKps-35rzdN0vZIPuvagFvanv-zldwA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLal5v7lCH17tvko4G52uniOtJ5ygKy4D36uH6C_qFPaTrhVFOd2vmSGnZQOCstHK8zqnKj-K4loTMp6TS8h_hBeCthmnO4dKg6sxHgnADzt7eZx-M",
+        "unpin": "AB9zfpJ9r75Gx0Ni1H9b81VEJuBys6UIAtXvn0YJZIoln-gI0QH54jpwwTwJk2UevdYxOwhDSF-KXaNa5--g9Y3RTtqLdAalNm_ydGct4MgUB9GfVpl0PI4"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/CZTFo_V1r2CRbwV36xcqrk3aruHS-lSfKZmuuCdCneIidPhUrFQhe_lXgiXY6iN94oAm7VZVfBkLsBHmpQ=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/CZTFo_V1r2CRbwV36xcqrk3aruHS-lSfKZmuuCdCneIidPhUrFQhe_lXgiXY6iN94oAm7VZVfBkLsBHmpQ=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": true,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:52",
+      "duration_seconds": 232,
+      "setVideoId": "EF27696680DECB0A",
+      "creditsBrowseId": "MPTCOGf1zw-uFYQ"
+    },
+    {
+      "videoId": "0CrbQPyEV-U",
+      "title": "Vérité",
+      "artists": [
+        {
+          "name": "Akiyo",
+          "id": "UCgj7kgR0dRP4nqpldiNOkbw"
+        }
+      ],
+      "album": {
+        "name": "A dé men pou dèmen",
+        "id": "MPREb_dBuZYEBugkA"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKKOLy2Z4bGrEhlJCDWL-5BLs2RkqoLLoQyuQaYaKf2Pcar1qVZQkBBOYDT_dt6NWD1iv2rId-Ij4dSpxPKPF9YmnJtvg",
+        "remove": "AB9zfpIjOU9963rL3HMTnppPa7YzgPKJJtd1JLKfMHIrHo3zuFdkq0Ps-Gllc3Tv-Tn9rnpqvj2gxf8LuGOuX5KqcxiOHYUTAg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKP1dbrC8Z_AE0fHywDoZb6l1C-O4BJqJf-GGl0nhk7CvRMHLPHaaG1LpJItJFZ1qkrNOsaF9RVhTlWLix1ltpgHLk_ZSebQpP9gj-daI4jSadykns",
+        "unpin": "AB9zfpLP5jh8epn1fDKMJrirHiql3TwqCZxp2jWykiOqWFa1NmQjxsdMLcMBuKBd2xYYPGiEfczeabA0JlZ_K2TjUWQmM9h1V3UGVLdCOTu9zHuoUOVFQiI"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/699yEGKLZdxQWSjj31H5ouA3JyI4vC0t_jtpVlkc-SCv_F3blsJC0peeyh6Hy192L1uVeELLa2HwLeug=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/699yEGKLZdxQWSjj31H5ouA3JyI4vC0t_jtpVlkc-SCv_F3blsJC0peeyh6Hy192L1uVeELLa2HwLeug=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:49",
+      "duration_seconds": 349,
+      "setVideoId": "46260F2195EA2D2E",
+      "creditsBrowseId": "MPTC0CrbQPyEV-U"
+    },
+    {
+      "videoId": "CeqM2ybPJ1M",
+      "title": "Soup' A Pié",
+      "artists": [
+        {
+          "name": "Dominique Panol",
+          "id": "UC5E4qX9ZLVSHqCMjxf7Pnvw"
+        }
+      ],
+      "album": {
+        "name": "N'Limited",
+        "id": "MPREb_adzTgJuHmG1"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKIFVYl_cAs6vBmBUramFzJ5_AOghrA0kePRFnQcd1siUwkojch58hgbgdFnwOdbRIZ7os4z1yJG9KLlgPyuYz0hs8heA",
+        "remove": "AB9zfpKd4zHvvGHRT8qhU8GsHAah466R2GscjrB0MkSfyxUpicJqmgrr3qRDCSMrpCzMwPgc9MJUeEXBVrbqFn3b1C2xRmm5GQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIaUihD_AblCgz_jn4UegoErIDa_x7rLkQkOwuhBEBdcZaiCcz8Qi2m_zkpAKWMYjD0KDr5ofAVmZcyoC6jE7h-Cqcr1kxcKFxCm9pmHs-qt0nSgl0",
+        "unpin": "AB9zfpJlrNHRi769pYMxKXyVShJkCu_DLy5EnIvWvGjGjEzFI3NP7X9xawPRXbAHk0ifr9XzN9FbOcjzZy9zsXzSD81EneMqdh8ReMHItWGzOuZovBhJ09E"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/eCdYRNn6nZM9qvLuyj6VFqFXNCbgGlltUuXuU2ekggKwg595e4NM4_FVTZaKlCnJEOOR-PDiQM4xwIus=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/eCdYRNn6nZM9qvLuyj6VFqFXNCbgGlltUuXuU2ekggKwg595e4NM4_FVTZaKlCnJEOOR-PDiQM4xwIus=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "2:49",
+      "duration_seconds": 169,
+      "setVideoId": "C0C17CF01069A1D5",
+      "creditsBrowseId": "MPTCCeqM2ybPJ1M"
+    },
+    {
+      "videoId": "XQPIVDA_Km0",
+      "title": "Anmwééé !",
+      "artists": [
+        {
+          "name": "Zouk Factory",
+          "id": "UCZ6nGKzDG0nEGULlhYiH64g"
+        }
+      ],
+      "album": {
+        "name": "Anmwééé !",
+        "id": "MPREb_WqoiGdyp7Bn"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKTTRPkQe8HfGLWHBe1wgY3htABc1Wukr-pWmU58dHUfLcJgI4iJQef1ODtv7vuNgHpJ9ls6hPwlWxn6lkkgVQ29UrGXQ",
+        "remove": "AB9zfpI39lT3cHlP5X0G31zlTzUuHtYYQdt3yCa1TLP-ctfv8ERhGn-Cbg00h62uHUNjlRMIDC9whcJVPTJCPyt8MvSlPTlrVw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKGy4rQZo5U1x9drfnj6KPvlJZsXHCvOYsn69Ok5CtSflsSwdZ4qbL08C-0A2-rHXUiRfpDP-SWE-Jo0fD2HgeXxPIomdBW045rA5rTfOPMDuTSd8M",
+        "unpin": "AB9zfpI9aSTFd1iFSJvA7xIIXRU3Hqvc75_XCzEptgKmPQyZX-D3BgkVNutGasWaU2l3d3FVRbp-SkP8hOUN2GiBctbGRONz1NY5Xo1lieJzzZnqnrgIK8o"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/1fAeq5DkP8O4EXqzOxCRX7qRC-zyQGGgXjHj7jJVanMsQr62Bsa24Rf_GUQ0g0kb_rW0koq64rrlGEI=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/1fAeq5DkP8O4EXqzOxCRX7qRC-zyQGGgXjHj7jJVanMsQr62Bsa24Rf_GUQ0g0kb_rW0koq64rrlGEI=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:20",
+      "duration_seconds": 200,
+      "setVideoId": "E07D964FFF782859"
+    },
+    {
+      "videoId": "-u2NhEtYe4c",
+      "title": "Ti bébé (Chris & Mathieu)",
+      "artists": [
+        {
+          "name": "Edith Lefel",
+          "id": "UCOElhSK53fxMn9F9kASy1bw"
+        }
+      ],
+      "album": {
+        "name": "Si seulement",
+        "id": "MPREb_PytACQt7PVf"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpI6lyk9iCW6HGLX5Vq67SXi5Z9Y2qreKv2Cik0cW4OJSXNe9nCnRIbOxh7jouyQEdtbZBdEXYHjN7zQfo65ll8bdLA0kA",
+        "remove": "AB9zfpIq4apuZh5nMUOPNw0x4EM-1i4MWdS3JOnjCKWndvMCyZcinhb82rxxKC7So9eDez4BFtkFWkl25Jcd2Or9F9wNyIg3Pg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKyACARjiA62Uch9GRfLbPmoWuJC1YBZNDDIPzY-6W-U4oByYmehJ1-JIJzhUIiBbs-bVZOB5wbRqjAlZehepPazMw9k6kekF4MD2ElMbOynAfNFkE",
+        "unpin": "AB9zfpLlt2kz10ugyiHw6sGjNWIsUTAftDWJKMF2RaNV9TZ6y8qf1umfcfMj_9ZOpf-XkmlKFFZ5d54O0xym0_4eFlrsM_TU4lXfjGFyOJLgRHXcP8A0v3c"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/4EGgRssIz-EmF7HKip86IbVbRzBfLJCDIKD4UIPgqJFO75xxjLcn7LJhQvqwFsuHfP5HnalrVcOP9gY=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/4EGgRssIz-EmF7HKip86IbVbRzBfLJCDIKD4UIPgqJFO75xxjLcn7LJhQvqwFsuHfP5HnalrVcOP9gY=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:57",
+      "duration_seconds": 237,
+      "setVideoId": "3C362E5E03E8A721",
+      "creditsBrowseId": "MPTC-u2NhEtYe4c"
+    },
+    {
+      "videoId": "QE_L81n8Oa8",
+      "title": "Cé Pou Ou Manman",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       "artists": [
         {
           "name": "Battery Cremil",
@@ -2173,12 +2888,21 @@
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpLwRs5p8OMUJOWe0KGXvkfj9vxrgpYlQmPfbxT5wdvXCQgM06ZZzR252SRmkaQpF8bj-Q9SFwcHntZtnFAEgD1xL2Nt6Q",
         "remove": "AB9zfpJhCTSKYGVIb8fLApbsi98gnhn0C1yBXqqCl02M-EOwlGIdG_sb4lUSnLNO3iWsP3SUSriB4W9QUyV4kj6SAp6faNU6Sw"
       },
       "listenAgainFeedbackTokens": {
         "pin": "AB9zfpKd-N8ZH7U62ENrlsvcTCVjyBt-VRImSZogELbs-uPIVCG0UafUNA2ZugTbZX50W6bsxWZmSdAkxOQ_Dp38i4GGQ_KJiALIh3rEHWqlR-mYWX3lXaQ",
         "unpin": "AB9zfpIZ_ysjrUNlkmkxQB7r18mZV8OfNxN2Qn9YNEdYGPfp5yiYRqSU7o_sI6u3Vt26T7YzTeLz26STtHbWrCG1WTzG_rUohp4iXaoG7ye-oCWRJ0tjrKY"
+=======
+        "add": "AB9zfpLw-M7jNGHpYQ1SxJxHba2g9bjMADUwVZlYHE1yEAftLsXAlXHN81k055RPE2pEotQF7y7l3WrPn9ytzgENBUqsbOhomg",
+        "remove": "AB9zfpKiK0SFWeKAfF_NTv2Gg8VXch3YU1m7iDrmxucmBrjLhw9G3m_vd_lqBqudPEyOjw4Nt8j2lcnd4heJ6aU4ACSabtnMZA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpL6jiimCjbuIHBfMJH-8K4pQqMI4-1XpvQcyLawjdu7UKad21T9PNM5GSbn_iDtOTfE6W8AtBgmTTZvDNwghXsF-ADupypbiWBwBGpCIAqbVIOdeUc",
+        "unpin": "AB9zfpK6TQZSka53ZgSq-k-xC1S-5KjNP08r-OaMh-gxr_IAURLqsseKElQdiMcFVwTsmHRN8rXThOZ1BD-D66W4UZXxyeAXnGAQQaqK1Pbli8COw9UdjOE"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "thumbnails": [
         {
@@ -2197,9 +2921,715 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "5:37",
       "duration_seconds": 337,
       "setVideoId": "B6DCFA45BB806E9B"
+=======
+      "duration": "4:16",
+      "duration_seconds": 256,
+      "setVideoId": "067563C488501BFD"
+    },
+    {
+      "videoId": "Osj9nVixqCA",
+      "title": "Jodi ya",
+      "artists": [
+        {
+          "name": "Battery Cremil",
+          "id": "UCR8aGGG2CAvzsVrqJgoGpPQ"
+        }
+      ],
+      "album": {
+        "name": "Jodi ya (Soleil-la)",
+        "id": "MPREb_u98oLfR7MKi"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIo7AUBPSIuWPd360h9XzvuZLwUjR_jtHLkgyMc6RGgHPko8cH37hw25YwTBLm3Wn2d_gck0tCkdhVfpFBTHTl_NF-hzg",
+        "remove": "AB9zfpIEnmO4oF2psxb_qvZnXtZeKlNmvrUhpiuMa4btC8GNiPtxtIi6YpMnvd3OpUW4IvoCsKdsU721_0ZiQDiUkNP-Eyx_OQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIJUjIgTLUxJ763yfB8dNwcb5kAvn0HyDTTb1JypvM34TrtBtxcissf5JvFcW3cGM6OPLDlF_yjkNV8fEFIXf2SZk-sS84r-RhUePvSVplXEf28KLE",
+        "unpin": "AB9zfpIaiidea5eIr9UnsGfKoN8u9A0ArgokAhORlHZphFrzp-JZrK2Y2VhZH1843wd06Nond1ZojRod5P9Y6AeWXGEnKhNqIjxjwDme6HHAb0tbdUhLXxM"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/zWWZ6WuZAVd5y9A0Wcoiqn2CLlHLI7vRRxnio8wW2TXRHdcutJZvQKM3fnqIzexAW4-r8MJ5I7jAIWqd=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/zWWZ6WuZAVd5y9A0Wcoiqn2CLlHLI7vRRxnio8wW2TXRHdcutJZvQKM3fnqIzexAW4-r8MJ5I7jAIWqd=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:43",
+      "duration_seconds": 283,
+      "setVideoId": "6EAA16F0F4DD07E8",
+      "creditsBrowseId": "MPTCOsj9nVixqCA"
+    },
+    {
+      "videoId": "_WcvRyXdDnY",
+      "title": "Miyel",
+      "artists": [
+        {
+          "name": "Joëlle Ursull",
+          "id": "UC6Ty56e5zA3-gNuNxVoej8Q"
+        }
+      ],
+      "album": {
+        "name": "Miyel",
+        "id": "MPREb_ZGXMAvYkS5z"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJ6711TtDCEYxkNdaHmVCsaWntiDH4MuBeqMzyquj3_NbgUo0gQhSBPXtA89xUcwptBIv4C9id6AEO0CySwEtV2MoIeVg",
+        "remove": "AB9zfpJpu6uUlyLnhY8rD4g41oDvfm7PzgGZpZnqDAcyG3sTuIUKEtHbypTvbJWjhFAoxmeAB7tDjWkcHGRShyXny-nhytKt7w"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKZxj6L5QIrFZmvJPIbepTih5BbxO-BRUItgbfJs7O3nSmuBnPoBGtnVE6oo9snxoMkxONjfa5bZQOWBbJZ-SV299yIZmvF3Bexl9MjxycXo39acSM",
+        "unpin": "AB9zfpJA96HmuZfiU8hYFyDoJFyH0R_ccKBWbOBYERhThArncal_ZvMknOMWXmC7UjwC41joVAdp_YZQUjDVV895XWr_5GsYulWB4WEVOzdxX_xpmk_oGsI"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/8WuDh1Urkx7Vnp2clEnyGKZQVUBX3iFI-hlMBn0CWirj_Fosj8zCEFri91PDqNLCnAeMCohFT1PGtDB7=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/8WuDh1Urkx7Vnp2clEnyGKZQVUBX3iFI-hlMBn0CWirj_Fosj8zCEFri91PDqNLCnAeMCohFT1PGtDB7=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:29",
+      "duration_seconds": 269,
+      "setVideoId": "6EA52D0480F25B2A",
+      "creditsBrowseId": "MPTC_WcvRyXdDnY"
+    },
+    {
+      "videoId": "1Y52b1uGJY4",
+      "title": "Se ou ki la",
+      "artists": [
+        {
+          "name": "Fanny J",
+          "id": "UCsYfnL5LpjJk3Yr80KHyFIA"
+        }
+      ],
+      "album": {
+        "name": "Vous les hommes",
+        "id": "MPREb_apXpua3VXdq"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpLoDMBWkOiJo1YKpoEJrO77N0Emojk1sqj2QkedH_FwEnackmcUNCSGtKlrh2txLraqysUi2LIQO1TQEY8jQjwN1Dk1Yw",
+        "remove": "AB9zfpLH3yaEERDilfeOMHNHGU_68Mf3pxnY0QWz561NVY4uvTNoeBgskyhgust8UGaPKTG8qPzUPuiwVPfgrgICoMNl_Q9mHQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLgqUNCUbRd5bn91Q2ALDw7-lVwvRbb787XHqiPTs6mBtmBv8U-6nS2OsTQ9U26RZX-LjQSS84LUrx1tnfCKcY18UEQMrjrUmFWxNTDcq9Uug6XWbQ",
+        "unpin": "AB9zfpJGXV7FfsUWwwTob1Qz1VIJbsLHJdIBZJnOjbf0j0W_waA2ZaYFaPXzLU3ghGHKIbpVPmGGSKKrHdSBa7V7qli4DdmZl5OAHcJTnYWFC6q6CBu-kl8"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/V79gsE2SOWtQ05uAUU2Gj7EEGkdaP1TphfH-nek9rMKXhKb3A7Yjn6xwrZg0Hm7yTS5uA01ZXmpaF9E=w60-h60-s-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/V79gsE2SOWtQ05uAUU2Gj7EEGkdaP1TphfH-nek9rMKXhKb3A7Yjn6xwrZg0Hm7yTS5uA01ZXmpaF9E=w120-h120-s-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:25",
+      "duration_seconds": 265,
+      "setVideoId": "7F6F0540C7B4BC35"
+    },
+    {
+      "videoId": "t5SsAi6U9jo",
+      "title": "K C Sa",
+      "artists": [
+        {
+          "name": "Dominique Panol",
+          "id": "UC5E4qX9ZLVSHqCMjxf7Pnvw"
+        }
+      ],
+      "album": {
+        "name": "The Very Best Of",
+        "id": "MPREb_ro07k8PIirt"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJLE5KtWOe1B2Xd4-0QqtclroGFtsVBx9OFVpqLoByn0Bmpi06ycTpiaXNXl0dRFBVlggJboSfhFtnK_NQtca1f3PUPag",
+        "remove": "AB9zfpKCGj40NmewY7J0vzXrlVt210hwM8km_G-Ai4LjlJoannNxk8DqNyq57JUWLi1tyyOwdpiYE68kXwqp1NcKjMbSSSZA6w"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIXy3vs8rT2d2RgspdeSI7u5NG0N-fIlRa0NGRUASdgnmayea8BvJbdL8V-YQK-0XFQIKZD1SB_S89ehxcXYF09dehYHsRugikLhVNij9J71QzEZVw",
+        "unpin": "AB9zfpLl3HXjTMWUalv3sZAat_Y4KkZrd7QsqIuMN5CQoDrX-3JuOC_agHtOz04diNS_z4qwcg_a8-g8kE_UWxwUAR76QwB42aNicxf9gI34F1fy0t5BFqw"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/iTVVMl23o-0clc-eBBSGuIcWoqICeCWDM61scfmWl1DuSRdtsgopki49luTCsOX3HgebyfBv6bSk_ieZyw=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/iTVVMl23o-0clc-eBBSGuIcWoqICeCWDM61scfmWl1DuSRdtsgopki49luTCsOX3HgebyfBv6bSk_ieZyw=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:45",
+      "duration_seconds": 225,
+      "setVideoId": "DE71EE00798A5229",
+      "creditsBrowseId": "MPTCt5SsAi6U9jo"
+    },
+    {
+      "videoId": "8qXa4_Yv1wc",
+      "title": "Ou viré do",
+      "artists": [
+        {
+          "name": "Energy",
+          "id": "UC6bbdhWoE2CNlejwB2JWqAQ"
+        }
+      ],
+      "album": {
+        "name": "Chayé",
+        "id": "MPREb_Y0it2tjX3jQ"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJWmwkhewHe0n5_TZe-O1d94zlDgMUcEZro3E1-Pym38jETwTaa0vWwL2F_cSWK-tX0h8AxmgB0K11j1JtnmrJ9XlpfMQ",
+        "remove": "AB9zfpJ1iQvlFOfkitr5fbd5ZgCMcXnOMAia_IDEZBn1DZVwS8mTKZRmBL71Br6Ew9ashbzHEvd4rHnpuqVQOaXCj6SjlzEvbw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpI24d810PHtI4w5BK-KDipCza0sFuTknZ2Z_xqtWTT21bwuubt-g2BbUClcNhPCzwTF0Tg_J3ViKAWDVw1YdMsgTACAWt176PVqAIquZ0e-xMXkAVE",
+        "unpin": "AB9zfpLgFuH4Ew0eOji7ouG4PV4WIr1qloHlvojo7GN0IvBQtoQQ1ZI0jw7FP2iRqaO0LzZyIMT208lRlOPuZqG4dNPr6t6t3vc0PKoXYahKln_aWM8ifrc"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/IYCtBqG_W3CPAlU4ZMdEmZbsVdLPqCe1P26HoZuD7caImSijY_tjoyEHl3emL_W8Ktl0M2p7CFFczCcI=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/IYCtBqG_W3CPAlU4ZMdEmZbsVdLPqCe1P26HoZuD7caImSijY_tjoyEHl3emL_W8Ktl0M2p7CFFczCcI=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:13",
+      "duration_seconds": 253,
+      "setVideoId": "BF2B9C706D8AFAAD",
+      "creditsBrowseId": "MPTC8qXa4_Yv1wc"
+    },
+    {
+      "videoId": "nQxHG_V1AGo",
+      "title": "An dènyé bo",
+      "artists": [
+        {
+          "name": "Jean-Marie Ragald",
+          "id": "UC6NCa8Zj1m2gbvdZgEZsGRQ"
+        }
+      ],
+      "album": {
+        "name": "Tant qu'il y a de la vie (15 chansons)",
+        "id": "MPREb_xshpJ2YOmTb"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpK46O8cjzMNKWhTjk9LK1HvjmJAj5bvwkBxVsQLbuqiThIfr0u8U16GKddZlI58yI6nQY3s8DOb6IW2elPooZIDie3q8A",
+        "remove": "AB9zfpL1hSNGRcK2DU8aXpDtioIZWSRzv4hHluWfCoosIjUhmosWHY5WJDjnki0a3daX7CDNz8lwasYKR_WlL-ALyexTJ37kKg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJbPyb6d1cqL9w8bap7vFJ8gPVbphzdJ0o3mcc099vEFB_qNqUP_mWm8zJPVqv7P7M3se-tKcRTHcWK1nUg4FHap6yyex8zBBvqyzoUOP8PgXcaXLI",
+        "unpin": "AB9zfpKUiCHzDSKPdinkoU2HUZam5AyCqR5lyOe6qJ9l-gtd8ZpP4eTcBtb5fZBDVDlx0mfQdprqZ19i8hKGZ3LvsNNJk7VuNsN8ZqSpms0_jtgXL-3w8Ks"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/eD5Z6alDfvmzkHcCE8iScZA6DT1v7kJq7eb_EiZV_aNM0qNyZkVsx0qN59wyf30ToSjC2rOeo6ee3bSD=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/eD5Z6alDfvmzkHcCE8iScZA6DT1v7kJq7eb_EiZV_aNM0qNyZkVsx0qN59wyf30ToSjC2rOeo6ee3bSD=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:47",
+      "duration_seconds": 227,
+      "setVideoId": "F19E6A2ED24E6217",
+      "creditsBrowseId": "MPTCnQxHG_V1AGo"
+    },
+    {
+      "videoId": "VdsYD3zWbPk",
+      "title": "Chauffé biguine la (feat. Manuela Pioche & Alain Jean-Marie)",
+      "artists": [
+        {
+          "name": "Al Lirvat",
+          "id": "UCV2K7xUJF_yr8aknKIV6msA"
+        },
+        {
+          "name": "Robert Mavounzy",
+          "id": "UCFe2jVJMOyYis7oY5bv3SgQ"
+        }
+      ],
+      "album": {
+        "name": "L'album d'or de la biguine (Guadeloupe musique d'autrefois)",
+        "id": "MPREb_LyxgRhd5Pgo"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKZ_xwBhEjmDFMpdwbDbaeIadwQaeUzLXU6XqDKIT0LXf4upFtM1vZ4zVS85oCeEdLDvRLYzJaD66sy7ds245UAZtwy-Q",
+        "remove": "AB9zfpLJvhjoE8mPKVRqhguAGQukKbydYSZWUmv_qXQ-DYnBtU5I65rSbgBka_yOhV73mXEZhNC30SHjUfyNBg5gnyUl7mIvBQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJXitUYA1nPaoABObz6fhLJY5O8GwPrgYtv3s5s73qKHG0yW5wALZ5nzn2kqVw2eJ26rFQZ3tD536Bk10YJkC80COWS7s6MI3VgpEwIsJg1gAkUz_A",
+        "unpin": "AB9zfpKQYlRgs_agTr2pQUC75dsRZZrZ55FH2srThs1sMSw7c0CE4sIv2B6x9W3Ur-K2YZbpGnL1WojcNdI9URFc6szjv7X8DIPYdV21u9GrIygEclS-78E"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/I_cam3v8rVxRP6AY5yaal7WdquivCQ9nBVWSiY--ZXtSve4GLAmxPokVQnHFzKtGyI8ijM56KlpfTxA=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/I_cam3v8rVxRP6AY5yaal7WdquivCQ9nBVWSiY--ZXtSve4GLAmxPokVQnHFzKtGyI8ijM56KlpfTxA=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:36",
+      "duration_seconds": 276,
+      "setVideoId": "566371576C3E5D51",
+      "creditsBrowseId": "MPTCVdsYD3zWbPk"
+    },
+    {
+      "videoId": "u5e1wuRtJDk",
+      "title": "Mauvaise Élève",
+      "artists": [
+        {
+          "name": "Meryl",
+          "id": "UCxF_3BaeGCWLlFzwq09ecWg"
+        }
+      ],
+      "album": {
+        "name": "Mauvaise Élève",
+        "id": "MPREb_HK3HmRk75VA"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIMzEeduoZBP1z84bAUnhtoSqzip8XSR20tO80kEtd7wFA6H-GQDnFox4hpH8dAUQtBybc2JLW-eDR8T5NTtrvGIry9bg",
+        "remove": "AB9zfpIDtbyxN9wH3gr6D-LmG5kUReS04daPpYWU7sbD6dJazLDYh_KdzijZnuoyaTd3NUsr3Lc_vQvjAoj29l0zsXbuY0cUqA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKMPfDzYGddlqa9J-JTijETxk5g-j0x6oz0QFJskFIbsN6ANVJ_4uV_5IJ9FQXV9ZXTntfmX3TzIA3wcIjzlHci1Bu7Qtj5HcVkWg2CapemJT6qqtc",
+        "unpin": "AB9zfpIJdQwv7CarsBRJ0X2bfdhc9-HfXMtEv2k1zOuhxaMe2IAqSfvsCmL_wV4T-OisQHaT6mEjIe9Y53EYSHm5IioF2sZNFn_E9xjyqJd94kDdxB3Q9pA"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/OH3ec4fdoAYnmfS2uwLrYbur2eEJatY-ukzb8hoegkR1qfGA5gL2b-X7J0x2rG5qbuf1fxqvvnLNRVuv2A=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/OH3ec4fdoAYnmfS2uwLrYbur2eEJatY-ukzb8hoegkR1qfGA5gL2b-X7J0x2rG5qbuf1fxqvvnLNRVuv2A=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": true,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "2:28",
+      "duration_seconds": 148,
+      "setVideoId": "5B3BA9AC8FB7B499",
+      "creditsBrowseId": "MPTCu5e1wuRtJDk"
+    },
+    {
+      "videoId": "PxU-ROaK1bI",
+      "title": "AN RIVÉ",
+      "artists": [
+        {
+          "name": "Dominik Coco",
+          "id": "UCR28PUj2cLaJiWhPGsJFnWQ"
+        },
+        {
+          "name": "Fuckly",
+          "id": "UCg6RbK91SJ49DnLIK76_Ipg"
+        }
+      ],
+      "album": {
+        "name": "Lespri Kaskod",
+        "id": "MPREb_ruyzUPfwEiL"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIlTtG3O55emRUbpTxyLyB4tyFQ0UZS9pH01s6GsVbgJlyksBJU6MuoDbALYqVUm5c4i0shEzMxMT4pXRc5Ia9O4O-UjQ",
+        "remove": "AB9zfpIKRjjPDWUKxNj2d4kGoQ5wfK8rBI43qYxyE1APo9pl2pcFwAEXmvop3pzggcLeJfqvJS1m_nMUzgSqqaI2w6jeRB10Qw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJmLQNEZu0kAIBDpB6PW_qHn0-7GpCssBp_Gz8WpleliCwLU03kAQwYHPNWdPhfpD2scNjZpZ66w3n1yd8Th6iZ8cF8Hn4LoSBgOOcaus-brksF7Ec",
+        "unpin": "AB9zfpIlSmQqvCBX9b7wSqWquEozoXH5BbxtJkYZdzQie9xxt1ZbaD-_yEj8RgT3BdLau9VaYU-hL-GRX9dkgvD7H98i-GYWccYHJ-NIal1y3JsXXI62a9Q"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/6N5i6-I6pBSVUTGrYIgYslaqiAj00WF2TPo73UmYIb7jFWuHdz2AXkFrb6iz4ek-F_iBfd37geqkttD8=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/6N5i6-I6pBSVUTGrYIgYslaqiAj00WF2TPo73UmYIb7jFWuHdz2AXkFrb6iz4ek-F_iBfd37geqkttD8=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:22",
+      "duration_seconds": 322,
+      "setVideoId": "879FE108A140CB19",
+      "creditsBrowseId": "MPTCPxU-ROaK1bI"
+    },
+    {
+      "videoId": "pWpMHHr6GXw",
+      "title": "Komplicité (feat. Rosan Verdol, Christian Nara & Muryel N'jie Ako)",
+      "artists": [
+        {
+          "name": "Energy",
+          "id": "UC6bbdhWoE2CNlejwB2JWqAQ"
+        }
+      ],
+      "album": {
+        "name": "Bich' bich'",
+        "id": "MPREb_flTqFf3R30h"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIoyyqmlh65oh8GRjt4Ksr3stJWQP568Ri9WaybilK_GZUrEe91C_dBWN0g7NsXZBIwQJA5Ltm7PH2L289oetruHGbdRw",
+        "remove": "AB9zfpK5XbA2QaSXoWcT72APyYThGIyHS9vbEOzvEjSpLmlEkiD4SzlSkif4GaHvu4GHUMhHPK4pDMwHeDnSS1o6Pl0Dv-3Mng"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJx_nasyHTr_D0grLROwFbz0l3U3ebX8_ReUXcrmMkUFbNySbm9NETe5rATmeSuhGa-_ANBIr_3LFa8BPCRlSApW0XwPJmf-2h8vzRAU7xIXmx4LOU",
+        "unpin": "AB9zfpJowWbAJcf8INbnssxWeHJ4f81GDMu6tighDLUzi62SKUb6xrCvJdOSDSBeKQMjlzO8wTwpbC1amMyVX_2cp9v-5tv-s-1MDWStwyj5AF9krwOP2Ns"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/Zb67j6iL-20nv7dQxLVYZz62p5IdJCK7OnUx9sQ_9xgfp_WrHBSQ6gklnWqSCpS1Kl11UsqOoWZBDRWI=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/Zb67j6iL-20nv7dQxLVYZz62p5IdJCK7OnUx9sQ_9xgfp_WrHBSQ6gklnWqSCpS1Kl11UsqOoWZBDRWI=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:58",
+      "duration_seconds": 298,
+      "setVideoId": "105D60450EADE442",
+      "creditsBrowseId": "MPTCpWpMHHr6GXw"
+    },
+    {
+      "videoId": "7oA9pvLFOv8",
+      "title": "Manipilasyon",
+      "artists": [
+        {
+          "name": "Les Aiglons",
+          "id": "UCNCXL1K7hAxn4otjOZoIfqQ"
+        }
+      ],
+      "album": {
+        "name": "Vizyon la vi",
+        "id": "MPREb_HGQ3gkM2WF7"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIuPd79YXGKnP2twz-SP7BRLkKzr0DcypoTmLbszM0uOMge80bE4j8HEYpNJ1mNqYHPkHnUGi3JtsWWXzUvgKIMwgRZkw",
+        "remove": "AB9zfpIGGJsDi9rDmISu5mbOSWAnxBEWcxk4wYowu6OTjt8oFErpaSze8Un4JLW0ZOvWkh-zkFo9oAlvkfPWqIr9ZsuVknQaAw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJ6HUKJWlaHM9rcaCa-T7ippfmAFdNEbOqKBh4UaB7bzueisRCjrvxE-BP4BS0AW3NtZhRAGINW4diMDh12jHgvm8sq3ni4KJ_1-HHn2up6FEYk7Po",
+        "unpin": "AB9zfpIHHSCvQ_l1oH8TNxn60JpN6-OfD7_35PRXpd2x_E8RzWiy_CRSIFa1qHEQ3cpM7khpLlNbTl9ShAlGWAUv4_js9sEj7LPbKzLpYiW3gV6X6db8ulc"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/c5ZltzAV1Ow9Q0Iu-DnxqiJwQNBBCSC6BhMDVYBThFH_aAsGRwOtmcRT3UmelLNWDhudkP4pG_KSHV_DoA=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/c5ZltzAV1Ow9Q0Iu-DnxqiJwQNBBCSC6BhMDVYBThFH_aAsGRwOtmcRT3UmelLNWDhudkP4pG_KSHV_DoA=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:19",
+      "duration_seconds": 319,
+      "setVideoId": "C17D19BF84FD0C3A",
+      "creditsBrowseId": "MPTC7oA9pvLFOv8"
+    },
+    {
+      "videoId": "NcaYRHEPYS8",
+      "title": "Tchou pou tète",
+      "artists": [
+        {
+          "name": "Jean-Claude Naimro",
+          "id": "UCc-CGJ9pg1TB5ww5q5CINag"
+        }
+      ],
+      "album": {
+        "name": "Délikatès'",
+        "id": "MPREb_hWSeLcpaX8v"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpK7QksyZQgP_iTKub8AuFjiMJVpFHZR9S2umzzNF6fhlKAcNv8IB7PV60qtahWbwppTNVpw8pv1sP4xa1b5d5_qfpfQIw",
+        "remove": "AB9zfpIO8UDTAR2D25XucUmW_siauDaNavqwEoU1WI1wPf7ipUm1seYsOoPAXyfO2-BdnrKGX6u_Wc8lLU7PQvbWzRSXpYUkOQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLARN4pahNwa-2T7EJlwzzazk09Yg3czRbbFT6csrdl1TCdIL_k57I9s3kCIr-HhCaAdxlkoLo0TJMmtCujn5IN7RTR6BPxv7Prv2ZpNjSS_k5m7jw",
+        "unpin": "AB9zfpKC3OVVDaiYOBB9N8LCctsr6Z6731XeEBZVzV0o1Jmc6pEIBk-EBAXyHtGfeDvQabKtWBo5WtEpON_9Kq3Nd6PiF-M4py2tlWAX8wNclSuXn-ZY-Ds"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/yLHdqLNE_eTLPLUpWrhBCXuCpBOuEODqEfLWovD9Hme5okinHxnLh967Jq9vdimHJdLh1dBYBddHMiss=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/yLHdqLNE_eTLPLUpWrhBCXuCpBOuEODqEfLWovD9Hme5okinHxnLh967Jq9vdimHJdLh1dBYBddHMiss=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:59",
+      "duration_seconds": 239,
+      "setVideoId": "9C0CBE3842E633CB",
+      "creditsBrowseId": "MPTCNcaYRHEPYS8"
+    },
+    {
+      "videoId": "edwyJkLWqtY",
+      "title": "Mwen Alè",
+      "artists": [
+        {
+          "name": "Jocelyne Béroard",
+          "id": "UCgJ9zviohbS5hTnR7w9sXDA"
+        },
+        {
+          "name": "Kassav'",
+          "id": "UCNktNoGoiJvHYmCgPIobIxQ"
+        }
+      ],
+      "album": {
+        "name": "Yen ki lanmou",
+        "id": "MPREb_muKvDJdkuEK"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIM5gbhUHThkUUdhfIrMlAts3_JNNPiAoCEqy-Si53kFQ8MxAGE8qwVEWQPbs-uTDm_boKudWav7JZ7841PPWcACHS-2w",
+        "remove": "AB9zfpKN6vahHfpXOozvMWcU9Zi9y1riMEQqv-R9dURTIEmmvMBMjKE8vwc646Stg-dCg2Zo_Z8lFx8mLGURuRDah4cO1hlgLw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKwDARkNkUMUuu8t9_sPkgEayVvUgUX2mLmcF5o7BuCijPz8fyYcKyjdkRWnurUbrhEJVaW3OR51SzRplpGqdigr31QJMBNGd5uHl27mXLAR4IBgZ8",
+        "unpin": "AB9zfpJlgSb4GRFNNUSLw58x0Chdn2u4mnu4QW0hRQN487yzgbagdj1A60hDXPfbO7cpKcyvF6godY7GaKTxgS5acrUqPfmWx9d3I_bpqsvrVMhdW6bbHBM"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/CrzCoU_gQ1OHEH7I3dw-u4qm6VyvA76QN585oukda1_kM_QgFRvovQcQg9Jl2kkQFByw8kbwgaMy2ggB=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/CrzCoU_gQ1OHEH7I3dw-u4qm6VyvA76QN585oukda1_kM_QgFRvovQcQg9Jl2kkQFByw8kbwgaMy2ggB=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:10",
+      "duration_seconds": 250,
+      "setVideoId": "F8AE1E5831977FDD",
+      "creditsBrowseId": "MPTCedwyJkLWqtY"
+    },
+    {
+      "videoId": "ip9xWzEyCOI",
+      "title": "Tendresse",
+      "artists": [
+        {
+          "name": "Djakout # 1",
+          "id": "UCFQ1KDB8U24MsTJLAeTMIvw"
+        }
+      ],
+      "album": {
+        "name": "La Familia",
+        "id": "MPREb_pe87VumXfFB"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJtd3OI5V87AUUP1zAbwlHpOXWXYjgygH6ho4fg0JWK37ZOcaILvgbGsDgGnOi8qnei68ZlbWkGh9brIV_gS7p_6WaGOA",
+        "remove": "AB9zfpIP5_dGCRlyl7lnxWsdFc_zX8NGCt_Scs_3UufYrRGefrglBe-g6I_SKTbA77bmPBRAPCsZ4XxvSkYCSJZ78E16x0K5aQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLiUMHjyb4t1PnltF5aWsTzqL6DqjZLRG6T6iD2qTKeuQ1Q1-VBI2mekujNk_SvXZzDw84EXiL7QdWCC2DwbWzlyAu4QNUxj669V1m-WcPH7pTEPos",
+        "unpin": "AB9zfpKcVtkqkwX0Dg7hvZJ26HZ11mgY7CZpXc6-qeENFeIR1EKyNQJhpaF3gn-5yH8LpLiE0VbfsPNxzxRUanoxc0axhdDbiMuGYj1hM5PX6NrWXtdYDos"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/bnorYvGaU7NCpy-2YpeFTzIN8mhz1PoNLtOl4ZW0-LnV4FFtJAo6toTsXpZ3OfiR9hWQPZzKNuOF75LY=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/bnorYvGaU7NCpy-2YpeFTzIN8mhz1PoNLtOl4ZW0-LnV4FFtJAo6toTsXpZ3OfiR9hWQPZzKNuOF75LY=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "6:28",
+      "duration_seconds": 388,
+      "setVideoId": "55DF2F5F1510E5EF"
+    },
+    {
+      "videoId": "clKc6LvgVYQ",
+      "title": "Wasn't Meant to Be",
+      "artists": [
+        {
+          "name": "Nu-Look",
+          "id": "UC5AZM4irpo9KorGVb1D02fg"
+        }
+      ],
+      "album": {
+        "name": "Confirmation",
+        "id": "MPREb_5On3uX5dZsI"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJa1vFCMs01w3DFPkj04DnzJGu8z04316Zx0yJ3Lip0iRGE8WT4TwTxT-elhPQR7qCKtroBtpGMt4tvl9s4-3LeU7EJ6A",
+        "remove": "AB9zfpKNrmwdA8t7nlmUdaq-m6rl6M-GMUWP83G9v98Ph-6FuI9vu8B77Mw12g8RokCV235gO-e_FqoX8yr7WkPXDOoN6VFGtA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIy-petrMQHUm74S7s2SC5wb4EkHcEKcIofhjB8dd1dF-HjYwBeTLzqovXBH-LzKeCnT43XB8LzOFsNIrB5O5LxBfDUCJaCDwdpEAOn__67uYSEZiE",
+        "unpin": "AB9zfpI40y1NFvnQzIK_QXoZTsXXvpBZxqzXrvW6UPuU8PddJyK2VkRNUHH5RfITe7wIgdZ1p2mrJ7tdhYj_9U_hAuTYkezU4Lb193rs3hbbobJtVnxufaI"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/NeRIVTOkR78KhGwK9h87nxdAMBjz6FhN4a5zp0Zf80fWvftATfgenNcEUbMEHLLffEETERRB7V0ss86w=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/NeRIVTOkR78KhGwK9h87nxdAMBjz6FhN4a5zp0Zf80fWvftATfgenNcEUbMEHLLffEETERRB7V0ss86w=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "7:00",
+      "duration_seconds": 420,
+      "setVideoId": "48DB2ADF4557A1A6",
+      "creditsBrowseId": "MPTCclKc6LvgVYQ"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
     },
     {
       "videoId": "vDm162HPYa4",
@@ -2218,12 +3648,21 @@
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpLZi08F7fTYCOwNNoS4BJbP3IB6_k_WslVwXfw7MZh-l8HHHayDiVKl9UZ6_5r4qllQaPtd9Feerm2v18Hg4KdCborDbQ",
         "remove": "AB9zfpJeEP_JKYNXq5V4_5XvcRQaVgEPYhqAe6SCJP47kTZ74dQrj-5LhVsUN_ALpxeULDu0L0NMN5fj8GgtVGA6KGIJC4h01Q"
       },
       "listenAgainFeedbackTokens": {
         "pin": "AB9zfpIf2xDAC4clr07bVfHuv12y4bj_80-KTE4NuQxtX26iBmTFSher3zExVBkm7OrvLG-iiflQFyxNJZYNhJKnVDdmyrGHiByPAvcJ0NPUzJRRjFi6u84",
         "unpin": "AB9zfpJSg31SJw938LnNpOuBaB-yYu_2_lwt2O232B8ozhGPVaRvlGHmkLHHoQas632HKA0QnB7OYaTa5HrxmAHTu7NCHCA5I9Obz3Oq0Ss1v5z_z1eV1Hw"
+=======
+        "add": "AB9zfpI_1n79sVJ5QQd57HnTDS-6r0LSYitbBa3LXI7_tc9lkqOKRT58unsh83hPnXpAoXE_idC3DLHXDY5OEoLO99Lpey1yMQ",
+        "remove": "AB9zfpLrArYvSann4eT6UYpALELOG804F9t7HUOFTTE_DkUwDzxcfXwbazyjItfRa17QiDL7_3f7uix1mqfVnHcUkwmAp3tPGQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIA-mmytV18OBgx5trB6t8FIK-keY4HBAaptDptvLM5iyJWB37n7TgJKKWyVrvWjPtWV3Yom_dVrgLh1bmiVFlTR762WTU3lNvJWf7htYopuXI2LA8",
+        "unpin": "AB9zfpJHolLMew0gOtefn2-m8Lop9pH9qmuZoRf9V2aHTEtTnT4pAQCE7RUlh1Dj0lziCg0LcIfUUlf0pKKXPZj_JtWZs_xzyoR_2r8nemqAMVm6zQ1w9Rc"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "thumbnails": [
         {
@@ -2244,41 +3683,45 @@
       "communityVoteStatus": null,
       "duration": "4:43",
       "duration_seconds": 283,
+<<<<<<< HEAD
       "setVideoId": "854C21D40C48B326",
+      "creditsBrowseId": "MPTCvDm162HPYa4"
+=======
+      "setVideoId": "F99EDB027613F302",
       "creditsBrowseId": "MPTCvDm162HPYa4"
     },
     {
-      "videoId": "5h58XjMFEGI",
-      "title": "Banboch Paramount",
+      "videoId": "pXzIo0PSLak",
+      "title": "On Ti Moman",
       "artists": [
         {
-          "name": "Tabou Combo",
-          "id": "UCp7g2PL0RXDFfur0tvETHBA"
+          "name": "Jocelyne Labylle",
+          "id": "UCql8h5QnQ2RtDaNx64HFRkA"
         }
       ],
       "album": {
-        "name": "Unity",
-        "id": "MPREb_7CaA8FOfxC9"
+        "name": "Les Pépites du Zouk",
+        "id": "MPREb_UkvCEYXYvGG"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
-        "add": "AB9zfpIK0PcS99JQqKbLEv1lxNozCczFUBr_szhlbX5n5w8uHPf_t3Vtk4yIPvx8XqLEx6hvnDSa930e54b1M0eaM4UoODu6nA",
-        "remove": "AB9zfpIaFODn0f2l4ii5c9qQE7UffqUEfW75T4Eb8i5u4UXTEuLFsBNj2kv1J1xEVAQpSBq3jFYdYcCbS1PHBW38omeev_v4Bg"
+        "add": "AB9zfpLTigtEWqi_RccDzPahVlDnallxSVPkq-D_afOYOvHGt5WXZeVX2T2pKGiXuYsJNjMlUegCn1ia30yw3l9MduQ082qm4g",
+        "remove": "AB9zfpJXRGioV_3hEBYUo-pIeBOk5a7qX9_00kSDYF_l4WqmO4E-BVUdc8PwhwF1JU6AjQ-YZ7D_COu_3WJQvyU6w1C3sngIGA"
       },
       "listenAgainFeedbackTokens": {
-        "pin": "AB9zfpLB-9L7CKMoLhYt13cH0nvKwTzCVtFkdwGCsih2VQy821UteAuATABLBnJd9qzWl0HyWskgx9ltQ0fxeWebFwWqGtjQYsf3OifgKeV8LD0whR10C7o",
-        "unpin": "AB9zfpI3lFXBzTxC9HdnZeF9nP5eTjjNMU3bHFYF_QJSJpBPMhOEITtGpfDEfNoBzmR-77fqUCoz-8mPTHlY5j_OGVtIxBVYmTp3CCXFEm0I3efIccewo6M"
+        "pin": "AB9zfpLsgfgt36C4i_6-MHVM1cIZoOFejk9sGNPzYqE8-k6_he1PLQehuRxoIQ0rA-xnsNe-iS7Ww686Vu016GmUcaLQK0Z545uCvSz5G5gc0gwkdTIzxqc",
+        "unpin": "AB9zfpIIgEeR5KGx_gBDFDuIcGQd0jViXomp0lFcMxJkwWzfILX_GSzZo-cD_PtQFXHc8swjQ_LL-LlArxJxQcskPdUJk8qiTp27t0ot3w3vAXCHjazaCEY"
       },
       "thumbnails": [
         {
-          "url": "https://lh3.googleusercontent.com/qI8Gve-xXzv5wO-QFhgXQLN6imGchSnM6oOxUzaw76cqw5EhwvIeoPqJw9PyLFV4XTFDoDLk_aUqHas=w60-h60-l90-rj",
+          "url": "https://lh3.googleusercontent.com/o6sNKvIchrlvLj9bOrm-cU1mGiwIL43ALfx9rhQjh3ZYCOc0RF7ZXh6UibZTOOzrG3EniqrEdyEnUtk=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
         {
-          "url": "https://lh3.googleusercontent.com/qI8Gve-xXzv5wO-QFhgXQLN6imGchSnM6oOxUzaw76cqw5EhwvIeoPqJw9PyLFV4XTFDoDLk_aUqHas=w120-h120-l90-rj",
+          "url": "https://lh3.googleusercontent.com/o6sNKvIchrlvLj9bOrm-cU1mGiwIL43ALfx9rhQjh3ZYCOc0RF7ZXh6UibZTOOzrG3EniqrEdyEnUtk=w120-h120-l90-rj",
           "width": 120,
           "height": 120
         }
@@ -2288,6 +3731,568 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+      "duration": "4:08",
+      "duration_seconds": 248,
+      "setVideoId": "3548580DF5FD56AA"
+    },
+    {
+      "videoId": "Thgeh3_FvGk",
+      "title": "An nou inmé",
+      "artists": [
+        {
+          "name": "Milca",
+          "id": "UCJSyNczxDd1KIpxdePy10Og"
+        }
+      ],
+      "album": {
+        "name": "À l'abri du temps",
+        "id": "MPREb_4KG8yqfpvWw"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpL8rurWkadDDNuNatki6LPrgtyJUMstlgitAWD3prEfhO0ejTIvbdLLUg0zjg3nvjQqyF_S8sQm9Xr2EUf6Cr_psT7fWg",
+        "remove": "AB9zfpImsyukQwad28uUQbDu1eDUiNQgX7OqmYxes-ZL2wOXPNB1PUgAB1cWZiXd7Q2Sd9W9qW3UIJOSmqN8hmAMjGQ5uo7avg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIs2jMuPTHVXmN3OBRpClp5v2_0-ln3IrdedVKoJ5KQvif4R6H0lopruf38nvZRqirOETxkXpQvvncrSP6LDWNZKv2JuNYYYlsz-iEmlwPZ6fAhtLg",
+        "unpin": "AB9zfpLrP9cNxzzkmB5QhDrbCR5Hw0h-7vc3ZPuE6M2ZGOariP1OxZn3e_F__SC9x54qIYbnuuAh_zUYpfIaoEbuRZNsIi1riD7TPiHpo4Dm8HqUVODBUzc"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/aGQ3WnhC8ENTKOVK_ohcKh48z0xBDQrpjE8AfeHtMIolR_id3DyidNYmmtVxmOuvayuOJ7P9UWwjp6-Nvg=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/aGQ3WnhC8ENTKOVK_ohcKh48z0xBDQrpjE8AfeHtMIolR_id3DyidNYmmtVxmOuvayuOJ7P9UWwjp6-Nvg=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:38",
+      "duration_seconds": 338,
+      "setVideoId": "905E90A4D8B24F10",
+      "creditsBrowseId": "MPTCThgeh3_FvGk"
+    },
+    {
+      "videoId": "SIXSPf8D_II",
+      "title": "Wanrage",
+      "artists": [
+        {
+          "name": "carimi",
+          "id": "UCaRFLtg-gUqgD9twxOvH86w"
+        }
+      ],
+      "album": {
+        "name": "BANG BANG",
+        "id": "MPREb_nw5rlHyLFm2"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKTI-u2NA0A4cObZJPoIKO9CiGe_3WHb0oWI2m-fhLZXVrbUdT5SskLqEPOdzKT0qQ0ZrEO9Zn3SA27JtfaFXALL15k9A",
+        "remove": "AB9zfpIaUoLATcp0f6iNC0CgUPKlrNslfh1VclGF68GOe89z0uY1HPo6bfip9GdFPd05KS70H5VPITPm3HSjLmWNVjjl1uxYdw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKef5cxLi0yeeo-sUnLup0yXtHXTF3W4y0ko6pWjL1wfPg9-92wOEuMxOs_LZ4mj6e3kvOZsVVxeWowYvJnQNx4bQAKfN9bLTemYsHSwLrKOtdMk5M",
+        "unpin": "AB9zfpK1hkjD0Ul8nMM_p4WNvoT0WQMmrYPRe8EDg09GCYCs03M0BmlNihI3911XmNLXkKsarr0UCB-ppl7WDjP7fDSEdBQdtw4n2Xja13va0Q2zwgWaseE"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/tnQ0rNoBFCZIiTqBvMpxB1QqbQ_aHBem2ZpX8BElklp82PS6Mc8m9HDQnQenZLiEoV39pSDJj61HKKyn2Q=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/tnQ0rNoBFCZIiTqBvMpxB1QqbQ_aHBem2ZpX8BElklp82PS6Mc8m9HDQnQenZLiEoV39pSDJj61HKKyn2Q=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "6:17",
+      "duration_seconds": 377,
+      "setVideoId": "7BEE26EACF9DC755"
+    },
+    {
+      "videoId": "wIpQ3BRmDSA",
+      "title": "Love (Band Version)",
+      "artists": [
+        {
+          "name": "Warren Saada",
+          "id": "UC7vS0AZmMdFuzqi0PA_rFKg"
+        },
+        {
+          "name": "Nana Fofie",
+          "id": "UCd8KXpRHlJsxp2RZdOEKQXw"
+        }
+      ],
+      "album": {
+        "name": "Road To Olympia - 24.04",
+        "id": "MPREb_t0IoWWfhM7h"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpI_-I47FzfSvUegvIzTR3i6GmzTbkta7Fx1diGqPvIbO5QQFUR5L5ZD2J_0j1o-FqYfmVqAwCHyIUpRNmZqNWpgULELiQ",
+        "remove": "AB9zfpID3WxCYHQ8lEDS7LY61H7tkeQD18vLQS2bN7aTemMi4crJI7w71ngM4ptM06OMaNVk-hpDmL6ZQ9FHp3LS7WCUshxrEA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIUNQ1DSizVxGCibCQPWUY3jOWbecJpILqqvrGCGew6LtirPG3ucbye3jmXMe16LsQOC-OuyeCWNbBQ9UgwweDkk0iqvasHHt86aS-Wew_U5UffpsY",
+        "unpin": "AB9zfpIIt7lXcUJwSzDOSuMpbfHU06GLTONq0ZdZOzZ_dNbXxLKBQcT2x6aD0g8q03_jkGyTa414-riDf4ipJ6_PvA_r2tLNaGE3eslmZo1uBn_NL0R3IAc"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/npAYmIkx4W6CaaGDh0ezZDbCoujcRgbGbAlR5I0vo5XLAsor3xRWsVczzfdBm3ohF9rjVcsG-oCPzky_6g=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/npAYmIkx4W6CaaGDh0ezZDbCoujcRgbGbAlR5I0vo5XLAsor3xRWsVczzfdBm3ohF9rjVcsG-oCPzky_6g=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": true,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "1:51",
+      "duration_seconds": 111,
+      "setVideoId": "EAB675D4A0402761",
+      "creditsBrowseId": "MPTCwIpQ3BRmDSA"
+    },
+    {
+      "videoId": "Xlwb3HZcu1Y",
+      "title": "One Too Many Mornings (Live At The Music Hall, Houston, TX, 1977)",
+      "artists": [
+        {
+          "name": "Jerry Jeff Walker",
+          "id": "UCQBoRr29WiajIo-MhEL28RA"
+        }
+      ],
+      "album": {
+        "name": "A Man Must Carry On (Vol. 2)",
+        "id": "MPREb_bybJGGCSWDL"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpILEI3TAfJ-My1PhFTBAhMBaqhYQFRU_HtGhqHTvPbX-QQ6Y4u4Z4mCjiI7MfTveZ72ElI2MGmNPln9UkeIiLNZPtbssg",
+        "remove": "AB9zfpIRgJetZ-xgxKIWp7d5DyS4YAIO3E90w6rZt7BT9HQas6d8dDsRcj5vvZA8CFyxXwddpNJBVZ-7pAJrTmYHIriFljmKiQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJ4VVbkAabNgCP9kA4UWUQgS7dBAfo1bt34KUOJ77ZY3pBNwHxJUVvWQCcjH6191bEb1QKXdP4ThMgJTeeYQvSTm3BIrWi_GY8ebC3yskCs0hgOiC4",
+        "unpin": "AB9zfpLxGM9JdXFHhjHCcQnmhigNxkX0ATGReaiWcRQV1p4ipYd8epUP3VU7qoTLvPxTCZDtQr_rNRJqAGPPtoExr-tipOLYSs7Rya1GoaPWbD7QxU86TiI"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/Gec9YEaESVRjMULdZ39Cz7oF2dgnpCIerKboTZPCJSUJVdIJwHLDlJlprC1bMABOB0shDK9ABY8HxMP8=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/Gec9YEaESVRjMULdZ39Cz7oF2dgnpCIerKboTZPCJSUJVdIJwHLDlJlprC1bMABOB0shDK9ABY8HxMP8=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:56",
+      "duration_seconds": 236,
+      "setVideoId": "713994792869B652",
+      "creditsBrowseId": "MPTCXlwb3HZcu1Y"
+    },
+    {
+      "videoId": "L1otkvWhBK4",
+      "title": "Back To Love",
+      "artists": [
+        {
+          "name": "Teddyson John",
+          "id": "UCw-eoku6P6QQjo4qjQ40_dg"
+        }
+      ],
+      "album": {
+        "name": "Back To Love",
+        "id": "MPREb_2v0gx1PzKgp"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpLN7oNJQVYgBGeVeRfnPmkWTalz6jeTgjSgFxctCwRiqH978uLIbffNtOYiUu3uUsXvhZJYp3o_m1ormT0HQnqFsDnOqg",
+        "remove": "AB9zfpJbaCWlQgajun_QZYQ9RTmSDeUMJlt70SpbroPBG0DqrvbmqvU_rWUqupBxvgs1nqQvGPa6tgPaj4JNLLPVcxAHv8JdrQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKcVaHU5Jq_OXXBrr5A7l5BZkT09ZSptDWN_aPR32XXca3xw4tda1MqYV6n4LSk6uULT5TIlSLS-zq2aFWxjWbMtffGcjwcVBMlsxoSbVdvxNzy4d4",
+        "unpin": "AB9zfpJEk36zMB2x32i6yL139hwSM84NlinR9CLZRw-zYYraWI31_2-79dYrXkvDrBe0TyNM6ZDCKKIKwiT7fkeBbvMLkJ6gUyWMXlFRn5G3Ve65zfiLTSQ"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/EKyI_9kSJNx7oPnerf_qj4tFdZhzKSVmWhio_DxdXo4RCZ93aV5yHUK_KA0C98kQKW0oYmAk9d2HOIpE=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/EKyI_9kSJNx7oPnerf_qj4tFdZhzKSVmWhio_DxdXo4RCZ93aV5yHUK_KA0C98kQKW0oYmAk9d2HOIpE=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:33",
+      "duration_seconds": 213,
+      "setVideoId": "97A0560F21497AC2",
+      "creditsBrowseId": "MPTCL1otkvWhBK4"
+    },
+    {
+      "videoId": "n3-dC96VKK0",
+      "title": "Déception",
+      "artists": [
+        {
+          "name": "Battery Cremil",
+          "id": "UCR8aGGG2CAvzsVrqJgoGpPQ"
+        }
+      ],
+      "album": {
+        "name": "Best Off",
+        "id": "MPREb_fscIzOqsTKj"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJkFYYxtNTvauL1QkD_SKbdhhTlpBVdzEKa9DE6gE3Wf9pBH6YFfcnK-RrTi38EsjTARbFllkNTG0dtHnMxuws_j37y_g",
+        "remove": "AB9zfpKvH111ad-XD6yDGFdA4NNFaOQgNIkm-1aaC_R3ZqnI8qQqqxMEQDFkNN_hrXgCqxWH_wk3Eb8vNG7EfaOyTMaSxkTHow"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJYXhr6ZAry2WJUoq_q2oOmQ_TmGpYMuT_PtZoUAvnpXesd213IiHDxfSwYoD4SSZsXReUJ998djfzRrid4IT3huTIQWoJvCUgM62wuHBnXmFXY4rQ",
+        "unpin": "AB9zfpLFPkTrvDsYyPiEUZDNAALolwKVea0D77eCO824iMhud99dy6fNLaADQZpeC6efF8YNOGxW1MZf-hW9RLs2KAa40M-NV9ebCyk9NFSFHnqUpylLJys"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/3wHqvY_rwoZr6gcTeejmDmUG0oA2MSHxHjtb1O_avVc3jHNNH1B9rztbgT7j7Ys-_rc6aHcNatpn05tV=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/3wHqvY_rwoZr6gcTeejmDmUG0oA2MSHxHjtb1O_avVc3jHNNH1B9rztbgT7j7Ys-_rc6aHcNatpn05tV=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:52",
+      "duration_seconds": 292,
+      "setVideoId": "F53E0DB192F5A3C5"
+    },
+    {
+      "videoId": "jhQSjx2k86g",
+      "title": "Sé Kon Sa",
+      "artists": [
+        {
+          "name": "Nichols",
+          "id": "UCPFYVkusthalIY8uYS6aYTQ"
+        }
+      ],
+      "album": {
+        "name": "Ladies Night",
+        "id": "MPREb_V9c9cCDgh5e"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKlaSTUbLZN9_yga-w93zYKcAPSsOU6g-aPFByYEuAjTY9ZeqfVRA6IiT-vg98FxgnyC9v5UzVs5N9LvdKn9l53GWoFHw",
+        "remove": "AB9zfpKBH3eQEDg5oM0IAQIaKB2_Ebmuh-iQiLNuMWn0sjv7GR11IZrJFQ45pY5Zj048IVD-VsASlXTvOGyrmm347s71qtlHxg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpK8dEwwflBXAkwkEK_-xKVc1sbn_iLnN20zcaW4f-C87ClIoPJIDlCH3WOnozFwJhytEokGhRo3IbkzT-Fj59HT6KBiF3ExHchyeda2gF6H8IAXs-s",
+        "unpin": "AB9zfpJ01eVc2yN0QaisYCOlhTgI9l9DJB-vypaiKsALqlMulv1055ABOf204zTlNSnZ7oWoKAVjogbLSArEqo9Mijb3aUgDVAtSBYFt7aW2ZlTc9Unk6Wg"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/DbfDMGjqVv4w0-zHJgZdo3SFOZHvv0YeOQ3wAB3eUACH7dIZq4FXkO3OP22vPjFCBuj5aatWhW56yuFj=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/DbfDMGjqVv4w0-zHJgZdo3SFOZHvv0YeOQ3wAB3eUACH7dIZq4FXkO3OP22vPjFCBuj5aatWhW56yuFj=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:08",
+      "duration_seconds": 308,
+      "setVideoId": "3EE3CCFFC40088E1"
+    },
+    {
+      "videoId": "Z8tOBGmlQas",
+      "title": "Pouki mwen konsa",
+      "artists": [
+        {
+          "name": "Mario Chicot",
+          "id": "UCpOQgeRcmtdWKkmx-oL8sgA"
+        }
+      ],
+      "album": {
+        "name": "Mario Chicot - The Very Best Of",
+        "id": "MPREb_TBzoXVGNTLq"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJ6bk0q24-ZlN_rzLc2rr1y-3ntkcazvH8yULAMO71RiLT2aG8KxxWkFTLOm703ljhLbffPVRW00SMy5i4TiGG7zbiA8w",
+        "remove": "AB9zfpK5zN8JeOHg3YIZlziBtlU93nUlAzsVEOei6xFfGGDCdilRRndWTmLncKl9DJHH8lWt4J2L6U8jcjVV9j-jQWXYkxyEKg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJcaed20-Uwq3tRpgzlggILIwWDVZ2-PcPGLHi4fc1SWFm1U7jNGnKZwk6rfYCU_H_urs-XJcpa2CH_2W-0zK1ZbOhaQ3L8yDLC-ZG1M0Uj1X-SUck",
+        "unpin": "AB9zfpJItlbtBDCo2wjouGPgD4jmGpX_fEUAQCtkC2YoUlbctjPXcSII97ZrHNDuzte5TPrHJEXb2L08exTiMfCJDY65AWQyJJ0ygFToWAQ4FbI372sgEN0"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/-6soQLMF1NCyGAb5aglF9bc2DfIYCZYL3Va-XnAJhlJ0j4XygMYtp5g5UXgvSo4bpYznC43ba7nCJeBfJg=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/-6soQLMF1NCyGAb5aglF9bc2DfIYCZYL3Va-XnAJhlJ0j4XygMYtp5g5UXgvSo4bpYznC43ba7nCJeBfJg=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:57",
+      "duration_seconds": 297,
+      "setVideoId": "DBBD8A0E5806217B",
+      "creditsBrowseId": "MPTCZ8tOBGmlQas"
+    },
+    {
+      "videoId": "Z_OriOuWpV4",
+      "title": "Fanny J",
+      "artists": [
+        {
+          "name": "Fanny J",
+          "id": "UCsYfnL5LpjJk3Yr80KHyFIA"
+        }
+      ],
+      "album": {
+        "name": "Secrets de femme",
+        "id": "MPREb_W8yZQptK17v"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJjY71SSh1k-7LgNuER9ALItJ2RlHDm1piA62wOgM7cqVlimuU8iOwkGJai9S-PWaIntJnbp7Wew_wLUM8Food4DVLOXw",
+        "remove": "AB9zfpIR47oIG0FBTAZbtu6aMfxKpv4org7oPzRZ1oObIdwrrZ2kjEWB73l5md67GUomsJUaXVG9MfSLbV6xo37T6dY5f1F7Gw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKprXqvEJ32ZeljF_Tq7U4ln_rvKTuntql-VB2T-oCohDi88HWN2H8Px5deUjnvkc_mkm2je_VhWc_zon-99_M3o3hkj_DcvjaEUKubLdhYneusPU4",
+        "unpin": "AB9zfpIKdJXZpmrd7jjc0m13eLqhvB5-V9m6LG-S_1jQQJI2kKDj5MMc41Na3Zjaeg-GBydtWVkn55b9qS39mM51HyWhCXaFcVLZevLmnFr-fwj9vvP9ySg"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/5ZPcH9rm4gYXJ6XR2_azdEcFj-kSgatffbPwSnMbF0JgZ7hj1fUjrxq464KNSLTHSbsgJx-gLkBJMOcmCg=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/5ZPcH9rm4gYXJ6XR2_azdEcFj-kSgatffbPwSnMbF0JgZ7hj1fUjrxq464KNSLTHSbsgJx-gLkBJMOcmCg=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:53",
+      "duration_seconds": 233,
+      "setVideoId": "5F161C46EDD21636"
+    },
+    {
+      "videoId": "A1EmGAAmy34",
+      "title": "Amazônia, Pt. 1",
+      "artists": [
+        {
+          "name": "Jean-Michel Jarre",
+          "id": "UCgZdvpUfbbUiqJ6UvAdM7EQ"
+        }
+      ],
+      "album": {
+        "name": "Amazônia",
+        "id": "MPREb_35gmXRN4Q2m"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKyOORpVnC_ZUzi3PlnzmFjlgmijBSb0HFh6YymZnUV94Tya3lhA8xj0PCm0QPHcgXxpzaVbvuYYQjTRbwnF9kNcSpHLg",
+        "remove": "AB9zfpJkUjYTvJOHp7TxF4-IG_cszzw0zLRqGKkLzgxrtdpQv1_1VbI1Ql3aD0Wp8jGzBVugc1nW3fF_Uo-qW-4_OCFn8I8JGQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIzJXBQ6v97gDoQAkpasIbMZj73Rkk14sXP_1Bq7NX5nAuwNdctogceqPRez9TGOJaoXYvl8QZ4KpA93W6v6KJYf1D24Hk_tZy7cGnUiGz9Dxwmc6g",
+        "unpin": "AB9zfpLD1WRcGlSvFckSWEJl9kGTaZwTkd06s0ulQLDQByel48-QfS0KiKEK044oTQad3pnqRAoQXwcf3BFQ_ObPe9zpp49iyTOZLojApbyGMIJZMpYDjoc"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/gqiyTMNp2S8Fa6unaV_BYYv0k0gh8l3tk7FMYPb8AZETWXF7cR7L47oji0-slDVhntSvJCKYfQv6IXk=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/gqiyTMNp2S8Fa6unaV_BYYv0k0gh8l3tk7FMYPb8AZETWXF7cR7L47oji0-slDVhntSvJCKYfQv6IXk=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "7:43",
+      "duration_seconds": 463,
+      "setVideoId": "16021036DE324840",
+      "creditsBrowseId": "MPTCA1EmGAAmy34"
+    },
+    {
+      "videoId": "vbeIKHl9cHM",
+      "title": "La réunion lé la (Ambiance live)",
+      "artists": [
+        {
+          "name": "Alian Ramanisum",
+          "id": "UCwJCyYdUUyIQmUV-rp9VI_Q"
+        }
+      ],
+      "album": {
+        "name": "974 Fever, Vol. 6 (Mixed By DJ Skam)",
+        "id": "MPREb_rjIWUsjuSGn"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJOhP7YkRiyKABEsFhl_miqG6KmMxm7KTNAV0OHowkhALlCfZGPJw_iWZazgDGfju_ZCDdWxi1GL5VKrcwW2eQSetZbXQ",
+        "remove": "AB9zfpJBYbFUjN6tuo7jZNQDEhohCKNIi-mRoxe3pmGV1pmkCo7rnMXwZ5L7EAj7qs_Uu41TGd_e48kQEwjwUco_M6E8YgckOA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJWCBSbcXNQ2udppOIwSqM8tTd4DmMnYStY71F-Zm1n8MIqdLKlhwn31kuBNBVigYk16kHvgOKDrs7wkgXG-ajju5UzXiauFXk40WrVKZ-WAZwJwJE",
+        "unpin": "AB9zfpLzcm9sjrslTp741zL8XJaD6PFfcqsuABoGVxM8spSy6mtj7eVUZ3Vki7tA0nWkTlCqY3L4sMRf_5qA4n3-U-BG5uo61lCGknStJMJbExQNYn3jLkA"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/Id4c5TxTLiEWAIMMlRnJbzDgEsRYAhLzXSQ3Mji7yNkbWWxzlMgUU5PhjBdj_iA6oWdIAnBVz3wjk8J-=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/Id4c5TxTLiEWAIMMlRnJbzDgEsRYAhLzXSQ3Mji7yNkbWWxzlMgUU5PhjBdj_iA6oWdIAnBVz3wjk8J-=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:02",
+      "duration_seconds": 242,
+      "setVideoId": "5326DB97160425FA",
+      "creditsBrowseId": "MPTCvbeIKHl9cHM"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
+    },
+    {
+      "videoId": "EtcMpgavfV8",
+      "title": "Only a dream",
+      "artists": [
+        {
+          "name": "Mass",
+          "id": "UCN0B_Flk8djNERqtOkmodkw"
+        }
+      ],
+      "album": {
+        "name": "When 2 Worlds Collide",
+        "id": "MPREb_QSZmPnRbPF9"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+<<<<<<< HEAD
+        "add": "AB9zfpIK0PcS99JQqKbLEv1lxNozCczFUBr_szhlbX5n5w8uHPf_t3Vtk4yIPvx8XqLEx6hvnDSa930e54b1M0eaM4UoODu6nA",
+        "remove": "AB9zfpIaFODn0f2l4ii5c9qQE7UffqUEfW75T4Eb8i5u4UXTEuLFsBNj2kv1J1xEVAQpSBq3jFYdYcCbS1PHBW38omeev_v4Bg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLB-9L7CKMoLhYt13cH0nvKwTzCVtFkdwGCsih2VQy821UteAuATABLBnJd9qzWl0HyWskgx9ltQ0fxeWebFwWqGtjQYsf3OifgKeV8LD0whR10C7o",
+        "unpin": "AB9zfpI3lFXBzTxC9HdnZeF9nP5eTjjNMU3bHFYF_QJSJpBPMhOEITtGpfDEfNoBzmR-77fqUCoz-8mPTHlY5j_OGVtIxBVYmTp3CCXFEm0I3efIccewo6M"
+=======
+        "add": "AB9zfpJ3LfW4058E9YRs3YQb6i4_iCazFXa9_IsXCnKAaBWXWOF1qd8Hj6PSzZl3u1-gBD_NEzrlwBJMleiALEe5AddEWbj6_A",
+        "remove": "AB9zfpIHoZ8mtQXOOhveTwPt7Qvmz3tHxRujm3Wf9qgnvezUkegO3kq8RdtxtbNrMGrzZ3FbHcVsM9a3AC6pzWZLu9Y__t53DQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLNO1IVjw78TZlE6nlt8uzC-aNDi_dzawq9nPFMUzjtA6SgTXZeP-pZIJhsK-f6aBdrAr38X-jsq9jgGrYAZEmFcGgrXUJfglWYylL1dZxuZfyRWmI",
+        "unpin": "AB9zfpLZIkEcy41GrIYItI_V_uUWNMzd7SmcrANvfL97WEX6WyaQk0UcS1e0T_3qyY2AuDZV4YO_Y-6SrrF3llh_rBrqVYk8oMaxcsTImrtNBp9rlhHTR9I"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/3vFmDm5xkt97ti8xu1eF2VjO68fuOVy1gt1CYT9bF1Fek67Oyw479PSPwXZOJ5mo1rcOIpPwET-83gk=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/3vFmDm5xkt97ti8xu1eF2VjO68fuOVy1gt1CYT9bF1Fek67Oyw479PSPwXZOJ5mo1rcOIpPwET-83gk=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "9:21",
       "duration_seconds": 561,
       "setVideoId": "3056AD35219D9AB5",
@@ -2432,20 +4437,35 @@
     {
       "videoId": "m2Uf5OjeWBA",
       "title": "Lan-mou'n pa fini",
+=======
+      "duration": "4:16",
+      "duration_seconds": 256,
+      "setVideoId": "A4E10F0D4BB4FC6F"
+    },
+    {
+      "videoId": "yH8p2pUFAic",
+      "title": "Nouwo",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       "artists": [
         {
-          "name": "Nu-Look",
-          "id": "UC5AZM4irpo9KorGVb1D02fg"
+          "name": "Soft",
+          "id": "UCfvAHDBq9zu9qcawVAWLxjA"
         }
       ],
       "album": {
+<<<<<<< HEAD
         "name": "Big Mistake",
         "id": "MPREb_EdjmCvu4eUb"
+=======
+        "name": "Soft (Ritouvay)",
+        "id": "MPREb_kpeiuzTrbC1"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpIrcYHTqDJpAo7XJ9mEObutWioFysJwA0jxcpS_ffwMVovdVlZy8wKMvy5T6PXvFiDo_60Z5uxmU4UN4DU3fAdbuLXtYA",
         "remove": "AB9zfpJGvio3hyW3EzO9r8gTs6uD0oBzgN1jZZfsey4nHwdr0cyB_HIqPkw4vKh8zMOM0HWgyzrIZ78wWvsL6qPEIAh_vgmozg"
       },
@@ -2456,11 +4476,27 @@
       "thumbnails": [
         {
           "url": "https://lh3.googleusercontent.com/Rh-9d42RLrXO-O1lnNiX9NCo1hw8BGprTbun_HHBHqbdjrT23Z4Oc9MEayRBJAE1kMpNW3xbTTOmdOpU=w60-h60-l90-rj",
+=======
+        "add": "AB9zfpJL5NaM18ywsRDQkTK56tMo8rv5mwsT_08icScD5kD_sy51vlRsJ921zbqgVIcqTz3din7eDruzehxmpaGVkzaCIiNxVw",
+        "remove": "AB9zfpLf3eVuk3W58hXki4-OCV2hVW1Wk4GQ8hMjtS24R5ct__vCdlgp_kDMVWRFwrEseVk51rdDHp4OE3GBiWOEXg8AlBkl1g"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKLE9MjvWJC4O6p8QUc6u-nxDNO2whaVFOTASDaH0QDvqoilNXzLUAVnwt6CjrE7dcrLYLyZvYXiTt80shjBvb-_IBUs8FZMJbOZPPuleCejvrmbjc",
+        "unpin": "AB9zfpI9PVrohYTuFPt5ygleDdEY1iS_dnx3qdBpf6u_xHeweMXgxGLPV_kdDTkYKsH4n0joXqT8A4c56_9qpCfdHMAklqlZk0UTKw1ag7iPwaVKy1MGyVE"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/4o_Vq24KAGeYzHUBgCoq178ZN4YLW-T1GANLJz_sutG0nIwVqu5hgjN1VyVUbY1IujYg6VZqnSpLV9xp=w60-h60-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 60,
           "height": 60
         },
         {
+<<<<<<< HEAD
           "url": "https://lh3.googleusercontent.com/Rh-9d42RLrXO-O1lnNiX9NCo1hw8BGprTbun_HHBHqbdjrT23Z4Oc9MEayRBJAE1kMpNW3xbTTOmdOpU=w120-h120-l90-rj",
+=======
+          "url": "https://lh3.googleusercontent.com/4o_Vq24KAGeYzHUBgCoq178ZN4YLW-T1GANLJz_sutG0nIwVqu5hgjN1VyVUbY1IujYg6VZqnSpLV9xp=w120-h120-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 120,
           "height": 120
         }
@@ -2470,6 +4506,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "6:56",
       "duration_seconds": 416,
       "setVideoId": "C93070260131F2AD",
@@ -2487,11 +4524,31 @@
       "album": {
         "name": "An dé janm an-nou",
         "id": "MPREb_vUIFDmbBx9T"
+=======
+      "duration": "3:56",
+      "duration_seconds": 236,
+      "setVideoId": "0DAD4E579466C39A",
+      "creditsBrowseId": "MPTCyH8p2pUFAic"
+    },
+    {
+      "videoId": "MClKLccvZYk",
+      "title": "Boom Boom",
+      "artists": [
+        {
+          "name": "Justice Crew",
+          "id": "UCeXAE4qhjr2dpzlWQgZYLZw"
+        }
+      ],
+      "album": {
+        "name": "Live By The Words",
+        "id": "MPREb_QOPCf19tXmM"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpJDLxgRUq_J9WqBBY7hf6nCL7wLVqrglqSL7f_SW66dK4_rIPS9k0YDYx1QPHekPNljVysxpJCcgl0zed49HBTGmQsUPw",
         "remove": "AB9zfpIxTzoIocfr3_cofOTePoRmlW5woJiEiBEtamNQLZl6KXtKneXOLk3mmdp-AT3FnSqe1Yf_gY0Gm5iuLemBFgmWho0Mjw"
       },
@@ -2502,11 +4559,27 @@
       "thumbnails": [
         {
           "url": "https://lh3.googleusercontent.com/hx_m6996YLC_NqEEtqXPlLJ_NahZyr-ICDdMEkG01sdMsPVyU_UzgsTNOfZujWXuz6wjoSeJXX0z1NtW=w60-h60-l90-rj",
+=======
+        "add": "AB9zfpJD_p7dUXLCU24BqrceATYi_cGi4LyLMcHj3TPctOOT4ltxLdZnRbkAMcR8rZ1jD3UPStifnLZKn3Swgp5ZnrSjs27zzg",
+        "remove": "AB9zfpLTaT-81CJkmG8keNCtA6uE74Hk9ZKY_Ww9V_G0Xyj8PQNJR2MxVPMlYlBZ4x0wwwoW2ReLp_geEc_0WuJ0PStNSmJaQA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIbs8lcs0NE0W_Z-R_BPAKlPQIwn5pXIYYq99Cyzz1RhzBnoObzHUBAoliF4TY6zDCLw80e7M7PSpvhrlC5WQ0SvrR073aRMwgvaLNXbUyXg9Px4YQ",
+        "unpin": "AB9zfpJ9Ns_xjfCrK45ler4ykZudNGetfMmfZt3Bzga33_KwAd_vamTLddVuigh5qw0y9YIjPdJVW97-gEmmPrW62xb6VnYxxR5zxXpwY6c_2BdBlEKyFj4"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/kI29UyKtIeWM0oogvjOUChJuDKtdh-ZyqgHMvqYSzE9-hiaAy4UUaQSbXKTUqhjBT3R_00BWKbgRwWB7LQ=w60-h60-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 60,
           "height": 60
         },
         {
+<<<<<<< HEAD
           "url": "https://lh3.googleusercontent.com/hx_m6996YLC_NqEEtqXPlLJ_NahZyr-ICDdMEkG01sdMsPVyU_UzgsTNOfZujWXuz6wjoSeJXX0z1NtW=w120-h120-l90-rj",
+=======
+          "url": "https://lh3.googleusercontent.com/kI29UyKtIeWM0oogvjOUChJuDKtdh-ZyqgHMvqYSzE9-hiaAy4UUaQSbXKTUqhjBT3R_00BWKbgRwWB7LQ=w120-h120-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 120,
           "height": 120
         }
@@ -2516,6 +4589,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "3:54",
       "duration_seconds": 234,
       "setVideoId": "DB3A59C7AFFBE9DD"
@@ -2532,11 +4606,31 @@
       "album": {
         "name": "La Familia",
         "id": "MPREb_pe87VumXfFB"
+=======
+      "duration": "3:08",
+      "duration_seconds": 188,
+      "setVideoId": "2542BDFB40F1D6D3",
+      "creditsBrowseId": "MPTCMClKLccvZYk"
+    },
+    {
+      "videoId": "k7PgoQFCZCU",
+      "title": "Baby I Miss You (Live)",
+      "artists": [
+        {
+          "name": "Carimi",
+          "id": "UCaRFLtg-gUqgD9twxOvH86w"
+        }
+      ],
+      "album": {
+        "name": "Kite'm cho (Invasion Live)",
+        "id": "MPREb_8GTN8E6Ek8Y"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpJWal_HT7oF5N26QVj49UPYOsCcxHYyPf7mduX1Ftk2o5-7xS4iADEBhsSA7uVyIOAfWYCuRDYTVYYip0XAO6QFGa20QA",
         "remove": "AB9zfpJ43QPb7bOAzDgB7NY9O1_x0XCR0HFN05qdAx9UMOXgpjbY4J1EwALH02qrTawd6jyW2rAK6WP2DWNc8Qzxvs1ihV1mpg"
       },
@@ -2547,11 +4641,27 @@
       "thumbnails": [
         {
           "url": "https://lh3.googleusercontent.com/bnorYvGaU7NCpy-2YpeFTzIN8mhz1PoNLtOl4ZW0-LnV4FFtJAo6toTsXpZ3OfiR9hWQPZzKNuOF75LY=w60-h60-l90-rj",
+=======
+        "add": "AB9zfpKT_MdUxMnaFiglZmveLBXu_yTOP1McLuUQmnPOD7MpyaSz--0eUJIKkPcyxJLQOO0oC8c2Z6bSwBtb64Yx0MOsa45H4Q",
+        "remove": "AB9zfpLEY05dMLynS5MQSaQ7Iffi9_yCfhGmK3oinF8HpDfxs2crcLbsyKoLNmsF9o2DgeQorwNlUVZ6i5MKnRjblu8NfYPYWg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLyV6Sa4wLsPJkerAgfhIIs6M0edWFr-ckTMll2AGQr5-z8IqGBOoM9w0N95YR1iWcsr_Qb6fYh891zAwVYDGY-GzOWIzApGgDVy1IEpgKvMLwIRR8",
+        "unpin": "AB9zfpLiCsREk5DWGol4OP1TVffkaX4PWO3tBkWlWvw0NB9e_sL9sfJW4HQ9Cu2H5eEB9HUI40T0dRN6bvZNBcHuSJAAQADwviG6CTNZphho9utj9TImvwY"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/phQegJXGI2cokQzp5EMMRd9pYbfjkQexKHI4GEJ03dwdfszmRwMHB8ljfMK3_mG1-fW2frpmhDEtAw4=w60-h60-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 60,
           "height": 60
         },
         {
+<<<<<<< HEAD
           "url": "https://lh3.googleusercontent.com/bnorYvGaU7NCpy-2YpeFTzIN8mhz1PoNLtOl4ZW0-LnV4FFtJAo6toTsXpZ3OfiR9hWQPZzKNuOF75LY=w120-h120-l90-rj",
+=======
+          "url": "https://yt3.googleusercontent.com/phQegJXGI2cokQzp5EMMRd9pYbfjkQexKHI4GEJ03dwdfszmRwMHB8ljfMK3_mG1-fW2frpmhDEtAw4=w120-h120-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 120,
           "height": 120
         }
@@ -2561,6 +4671,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "6:28",
       "duration_seconds": 388,
       "setVideoId": "E95EB11090748FA1"
@@ -2577,11 +4688,31 @@
       "album": {
         "name": "Miyel",
         "id": "MPREb_ZGXMAvYkS5z"
+=======
+      "duration": "12:44",
+      "duration_seconds": 764,
+      "setVideoId": "6BCF7E9F90730902",
+      "creditsBrowseId": "MPTCk7PgoQFCZCU"
+    },
+    {
+      "videoId": "PUdv6vi7hOE",
+      "title": "Mwen sou",
+      "artists": [
+        {
+          "name": "Carimi",
+          "id": "UCaRFLtg-gUqgD9twxOvH86w"
+        }
+      ],
+      "album": {
+        "name": "Nasty Biznis",
+        "id": "MPREb_ZEENp9cyPxn"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpK7eXnqewMIOWyIxYuZUeATAYCeLmXPzjQuUYHmt1hc5u0clJsRHsG47NtwJchDINblcvFJm5Bl34vhKQ_xH1hVK05Fmw",
         "remove": "AB9zfpJIn-n-k82-FKDKBXLvZpEsoMSFYs8qf_OaJ_bujz55GjXvRaAOy3dmLMdSSIgnFb2vnJOznCCVPA8O-GjLkX5SHCTdXw"
       },
@@ -2592,11 +4723,27 @@
       "thumbnails": [
         {
           "url": "https://lh3.googleusercontent.com/8WuDh1Urkx7Vnp2clEnyGKZQVUBX3iFI-hlMBn0CWirj_Fosj8zCEFri91PDqNLCnAeMCohFT1PGtDB7=w60-h60-l90-rj",
+=======
+        "add": "AB9zfpIaOkqgsJxa1KB34fD4xY7DdUK7KZ79HyF1cshPWYGPBHVIdLwxMF4Dh_6pT9uyCT0Vtaqrb3Zl9SUHWhEFcnBaUyTcXQ",
+        "remove": "AB9zfpKi_CmYN_kJ0bdFDzb_5oLvJDTKQG1FLadeSbSVKl-BBDwscAw38J2HRxxeKeTd43mMbAzHH_SwTo78oO_DKBgp7dVFqw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJysLPjjBAATbD1AfggHR9GBzPj8eDjdTXhTmzRPZXnS3YAp2ftYY0J6aB2UCkjT4qOI3-dyPraJEZf9PY-weEOMI5EvbUz0I-ugJIZ_skqZN6rW_o",
+        "unpin": "AB9zfpJ1zyZL0ZMVYsg7xrjBKEpH8Y-gKg_o702R7kh_Csv4364xrwDUYUkcTh6Tra7Q_Cc4whgpb2esh-5SE5-EsZVhkfCAGiKzQKS0ohYQqwQ6rl4QOA0"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/GxOTwBLUFviCM66TfZz2Gw4rzIMGkcqFSP5woXisGGcH7By39acpPmwb_KIMEwlsKE4dUY5shX34ygsH=w60-h60-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 60,
           "height": 60
         },
         {
+<<<<<<< HEAD
           "url": "https://lh3.googleusercontent.com/8WuDh1Urkx7Vnp2clEnyGKZQVUBX3iFI-hlMBn0CWirj_Fosj8zCEFri91PDqNLCnAeMCohFT1PGtDB7=w120-h120-l90-rj",
+=======
+          "url": "https://yt3.googleusercontent.com/GxOTwBLUFviCM66TfZz2Gw4rzIMGkcqFSP5woXisGGcH7By39acpPmwb_KIMEwlsKE4dUY5shX34ygsH=w120-h120-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 120,
           "height": 120
         }
@@ -2606,6 +4753,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "4:29",
       "duration_seconds": 269,
       "setVideoId": "196784C7E37EE6E6",
@@ -2701,51 +4849,54 @@
       "duration": "6:24",
       "duration_seconds": 384,
       "setVideoId": "DC5F30E58E313101"
+=======
+      "duration": "5:03",
+      "duration_seconds": 303,
+      "setVideoId": "631B9502E5A4F965",
+      "creditsBrowseId": "MPTCPUdv6vi7hOE"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
     },
     {
-      "videoId": "MXzviP94CRA",
-      "title": "Bébélé mas (Pot pourri)",
+      "videoId": "_qsNxZxuIyQ",
+      "title": "An ké ba'w (feat. Ambiance 3D)",
       "artists": [
         {
-          "name": "Francois Ladrezeau",
-          "id": "UCRhx2glIKAYR_v7Mxt5oudw"
-        },
-        {
-          "name": "Jean Pierre Coquerel",
-          "id": "UCxiR-bhRtAiwT0OTbgt7HMw"
-        },
-        {
-          "name": "Patrick Coqk",
-          "id": "UCQ_eVrGUtltavcpN8jlkcqw"
-        },
-        {
-          "name": "Akiyo",
-          "id": "UCgj7kgR0dRP4nqpldiNOkbw"
+          "name": "Patrick Andrey",
+          "id": "UCsGgmlPROZvSbL2xjrgokmg"
         }
       ],
       "album": {
-        "name": "Akiyo mouvman",
-        "id": "MPREb_WMfREiMpIuu"
+        "name": "An ké ba'w",
+        "id": "MPREb_Z8N29ywNl9J"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpLaVqEKE-X-KnT-Qh3-UkWnhipyrP1yCsH-53PhNB061WFgu2QrvdhaXdA5B4VEa17VIUxXzZng2_q0n6Q7Bv9IA6JmvA",
         "remove": "AB9zfpLsvjkG8iy7-YiovgnYKTrxLxj_ukqYJzgEwsOlnYRfR5LWIGl_aotB7Ar-o0ZTHHNbLv1ttWmjt4Q_zEam_S8WUUrjKQ"
       },
       "listenAgainFeedbackTokens": {
         "pin": "AB9zfpI7mrrSl1YubXUd26ofjuzeBG4i211Cvie1KxO0UBBMZ7wbDc3P3RjOSS3XvHeQdonhl2JFq06Ze0bBXrt-fowpuMYNJvIp5F1PYkXGD3SP3_cL_xk",
         "unpin": "AB9zfpKttdTFDSXeYbAtV5v7Z5A7Umi8XIcB5V1i7wbwKkmt2nxTDu-PIAASW8dcjCKaZCn1UBqVvs1yn7rRdplIRBEcrN6j6o1CuujnVm98qb9R5BfhRTU"
+=======
+        "add": "AB9zfpJRTbSyjxAaq5j3vPmj1P-oUEU_YDNIh9bq9Z3ZTjl0F-Sx_NOrKMMqhFo7NG3kiOClvoXpxtHENhhftx3rG4pPHa9BUg",
+        "remove": "AB9zfpLaJLyW-iXpcE41yMdxX2Psz9dp04MxoKJneDpXeiaaDfXtWPwEqPGo_ioCCzpTIZ2jBSdE7b-80VQFDnR5udaFsiy5sA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIi0Dm4BEdRc6VnkmmJTCfmLQ6SNHhHObHHghPEjPY478YntE4QcjJYuEkjTW-4YgHxP8vdaCmCLqBMMPrd9JYzSM89wdLpR6AS6UIUbNj1JEx4lko",
+        "unpin": "AB9zfpLCkegXS-OiaAT7WGE5euIzwH3ect-BTxG6BhXr-00lipddyqqE6sPqaM4CanZZ6bYlHD_9o6VnZoFbGT3hB7cQi2S_x0u-wXa5HWr1UFrVi8I3nVA"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "thumbnails": [
         {
-          "url": "https://lh3.googleusercontent.com/JNv_ZYmp1oZd574hIv3VqLh_BF9aVze2CC967c1FtW2UAgVHFX4Mn-mHUz_Av7atT8DzvEsBlOGSxKM=w60-h60-l90-rj",
+          "url": "https://yt3.googleusercontent.com/RU4xpCZsB-Lfexa5LXM8RLO45fxYdDF8BWo_36_CAZXGI2L6XVNF3XDoEbm1J9dEq5M98KXXHlo36fxx=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
         {
-          "url": "https://lh3.googleusercontent.com/JNv_ZYmp1oZd574hIv3VqLh_BF9aVze2CC967c1FtW2UAgVHFX4Mn-mHUz_Av7atT8DzvEsBlOGSxKM=w120-h120-l90-rj",
+          "url": "https://yt3.googleusercontent.com/RU4xpCZsB-Lfexa5LXM8RLO45fxYdDF8BWo_36_CAZXGI2L6XVNF3XDoEbm1J9dEq5M98KXXHlo36fxx=w120-h120-l90-rj",
           "width": 120,
           "height": 120
         }
@@ -2755,6 +4906,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "5:56",
       "duration_seconds": 356,
       "setVideoId": "3FE4362C12B8CF73",
@@ -3467,11 +5619,39 @@
       "album": {
         "name": "Nou Tounen Pi Fò",
         "id": "MPREb_Zf4L23NpKYW"
+=======
+      "duration": "3:43",
+      "duration_seconds": 223,
+      "setVideoId": "87B155FD9E97B091",
+      "creditsBrowseId": "MPTC_qsNxZxuIyQ"
+    },
+    {
+      "videoId": "_tsfodolhCQ",
+      "title": "Lanmou Pa Pou Mwen",
+      "artists": [
+        {
+          "name": "Zo Konpa",
+          "id": "UCTIqtkgf4UgEzWr7l9uZ0xg"
+        },
+        {
+          "name": "Zouk Love",
+          "id": "UCGuczDRKPQptcWmn5QK8pLg"
+        },
+        {
+          "name": "Konpa Kreyol",
+          "id": "UCVbaeOCi-WluPUOcAn-TOGQ"
+        }
+      ],
+      "album": {
+        "name": "Lanmou Pa Pou Mwen",
+        "id": "MPREb_RvAYaXu0S4h"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpKawz3Nztw1UpsKxMqAFY5Kh97mxChIjmH6_iyLbGIy4Mg9yT4fFakFirwQiFd3yaXy3vlgTYxEYa16uRWIQw4jCL02TQ",
         "remove": "AB9zfpJrPEAjHpRfK2JQ1FxUVs0U5G8H8Xy-9N2CGTMZ8AqUCJdEep58UHkGDbeH7g-ntv-2jKOt05EqgORh3xq-6f1B-enbNA"
       },
@@ -3482,11 +5662,27 @@
       "thumbnails": [
         {
           "url": "https://yt3.googleusercontent.com/p9RlQaeU7tp1V6ohbEgtyU-NmA3z7AVGlMNGCc4ctzLaVCjMXuWqiWdkHi7bLivEoVd0hOFmUeIw9Bb6=w60-h60-l90-rj",
+=======
+        "add": "AB9zfpINtm1DycWiDRgK0gWJNGe-xdGSrzgB4P10Kz2W8ItEtIqSUNPo4tqDGBq2W8u73mgLcvkaCNkGmXeS2__ZJOzwd4EtGA",
+        "remove": "AB9zfpL1TPqvlmYIe7P9dwBUlR_q-vfr30v0Gd04quZw1X9MTgRn53cVAtw86KGamTH381BeUWTdoKdyhDyvG8PDIBta36TS0g"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpK_yXDqvB2Vxs5ablT_ZzA5a3j0RW9I_3mFALjv0-2Y0Bkqs10cBofuOHRK077DcXAB0AMqm4yVCZK6H4Yx0nQAG8SjH4lFPUyvCDcpwrl8Rhd0NVY",
+        "unpin": "AB9zfpICS8eB86dRizRrLnkGnEcv8P7SC91PCkrILVYPmx00FoDcyvMYrMazY4dMmlJUg0xR4C6RADRdYkU5GtV3utvQibk6iDdIfDutEi2kyGZ-SJSmk2M"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/_m5JtGI79wqzABjTpF1p3XJAeemSVvcFW9-jWODi3GG04Qy_msZN26_eUG04S0Fk7ttCZTkBvNASJ3bm=w60-h60-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 60,
           "height": 60
         },
         {
+<<<<<<< HEAD
           "url": "https://yt3.googleusercontent.com/p9RlQaeU7tp1V6ohbEgtyU-NmA3z7AVGlMNGCc4ctzLaVCjMXuWqiWdkHi7bLivEoVd0hOFmUeIw9Bb6=w120-h120-l90-rj",
+=======
+          "url": "https://yt3.googleusercontent.com/_m5JtGI79wqzABjTpF1p3XJAeemSVvcFW9-jWODi3GG04Qy_msZN26_eUG04S0Fk7ttCZTkBvNASJ3bm=w120-h120-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 120,
           "height": 120
         }
@@ -3496,6 +5692,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "4:28",
       "duration_seconds": 268,
       "setVideoId": "A9A279C3E15462B5"
@@ -3512,11 +5709,31 @@
       "album": {
         "name": "live collection",
         "id": "MPREb_FSLbIPWLC90"
+=======
+      "duration": "10:29",
+      "duration_seconds": 629,
+      "setVideoId": "56B32E091397EBBD",
+      "creditsBrowseId": "MPTC_tsfodolhCQ"
+    },
+    {
+      "videoId": "3aYQ-Fxt_vQ",
+      "title": "Sé ta'w (feat. Ambiance 3D)",
+      "artists": [
+        {
+          "name": "Patrick Andrey",
+          "id": "UCsGgmlPROZvSbL2xjrgokmg"
+        }
+      ],
+      "album": {
+        "name": "Sé ta'w",
+        "id": "MPREb_oZIn418LWk7"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpJNn0RoAyhqD7s9XkWPdOdSaTW5kCnPk1An_q2IMktYL6o-qeCQDStqQS9g8De8BzLDxBCccUiaNAhBFaChiFYqkckhqg",
         "remove": "AB9zfpIXLZc6orNNYc7fBBjOZHeGHqBvFgdYa6fDPOzQRSJtzQ7MavJJPOLKmlPS18dkPtEUjbTyPyq06vkK1FBXMypU2G_V1w"
       },
@@ -3527,11 +5744,27 @@
       "thumbnails": [
         {
           "url": "https://yt3.googleusercontent.com/azGh1mwUm_fh1Djz4Kt4qRodcF605MnZAVWJtndOuQB7qD9pkWVtyEzWi5m67avjYMF3luhSb89Z9FNP=w60-h60-l90-rj",
+=======
+        "add": "AB9zfpKq2-WVfTlsRap9qhi6Owwr9vCP_VcZA2iv72yMhFaLeWWUgCYA4djPfvAgRn3c9qwGPr84wGxKpR8SeoZCoPzjdsBNSQ",
+        "remove": "AB9zfpJAQjO5mZzcYKkxlFPU-t3_5vSJMgFxE7oGorjSvLv6b6cOs94rfN_WNCynCSkdB1V2mcw_U4z5E-BX2NTxtxgajOWhww"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLYPUamBOhcoj7Fsn6PYzWqvtzxTr8zx6RTpltIs3Ox54yQl5YYJ77dSWTHOL9bwR8XUgPc9WCrIfL3Kq6YA886ess81A7UN1mjfD-RE2XJsIkJMPU",
+        "unpin": "AB9zfpLSvvRj1TiM2vPHhtGOItC6KQOQAm8gQfDcILEX-H8qzYmTVArauTCzeW8XHycLj0cTThy-EDLQJgq3z1kuW7pZb22BnreBXbdUQlqGPnr5dkUHbsg"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/DLJTdI91h5gvGT0nWS0C4Mu-BKB1zhgMPvpvpEpVyTzEdIGke3-t7T5WF9JPP-JJDfzcV52XOvHnd5Bg=w60-h60-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 60,
           "height": 60
         },
         {
+<<<<<<< HEAD
           "url": "https://yt3.googleusercontent.com/azGh1mwUm_fh1Djz4Kt4qRodcF605MnZAVWJtndOuQB7qD9pkWVtyEzWi5m67avjYMF3luhSb89Z9FNP=w120-h120-l90-rj",
+=======
+          "url": "https://yt3.googleusercontent.com/DLJTdI91h5gvGT0nWS0C4Mu-BKB1zhgMPvpvpEpVyTzEdIGke3-t7T5WF9JPP-JJDfzcV52XOvHnd5Bg=w120-h120-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 120,
           "height": 120
         }
@@ -3541,9 +5774,207 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "10:26",
       "duration_seconds": 626,
       "setVideoId": "F38EE1C34AF47529"
+=======
+      "duration": "3:38",
+      "duration_seconds": 218,
+      "setVideoId": "616A37462D6A588F",
+      "creditsBrowseId": "MPTC3aYQ-Fxt_vQ"
+    },
+    {
+      "videoId": "Yn7mDz-8R7c",
+      "title": "Yélélé",
+      "artists": [
+        {
+          "name": "Jacob Desvarieux",
+          "id": "UC0tVN86YfaCsBKycehUFs4A"
+        },
+        {
+          "name": "Kassav'",
+          "id": "UCNktNoGoiJvHYmCgPIobIxQ"
+        },
+        {
+          "name": "Georges Décimus",
+          "id": "UCyU1SxDaY7ittRp6jAwh6WQ"
+        }
+      ],
+      "album": {
+        "name": "Yélélé",
+        "id": "MPREb_Q2tMHXncQT2"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIWmrQeDZ5A-IqbkBbFZAj17M112eWJZjrd5POBafEFZJOK9tfPc1rsD7Zc_2zAyYVB9n51YX33HJ0uAAh7oTktickQeQ",
+        "remove": "AB9zfpKqfg4X90Wnk6P_ZJvxCAOoN70wR8hh02eCKRXm6DAQv9i9wD0QcPajRj3KaxXW991FNSEiJG91bThGjQgep5YwytANmg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLT9pDHqgrgAscWQhHPf5AiWFWyW1hq9q7xL2hOW2IyVJcUEPlpV0seOCrKAEfD-OiAzbgIDQ7nTfha__TAIGBOQLR3Lusi80Wu7iFMo3hXT4nuVII",
+        "unpin": "AB9zfpKBLNzJGJceMhj0fH1LEKJr2dFJiqN0clrVYCmkY5PdJVBMylo4PMwerI_r_ge8zxajQ00hCb_TDRCz0ou7xwRBBuOKLCakMR8wRBTgkQZ2k69B43A"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/eDJpJ_WbpQfyMoSwCaDyyrKXQkuvfB_yabyXf6vNtwlSTgJMrHB9YHwqHF062vyfuCAzuYVk5qU-sKs=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/eDJpJ_WbpQfyMoSwCaDyyrKXQkuvfB_yabyXf6vNtwlSTgJMrHB9YHwqHF062vyfuCAzuYVk5qU-sKs=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "6:51",
+      "duration_seconds": 411,
+      "setVideoId": "B110C611C2063D20",
+      "creditsBrowseId": "MPTCYn7mDz-8R7c"
+    },
+    {
+      "videoId": "gLtJHJU4iGM",
+      "title": "Fan'm ka min'ne la vi san position",
+      "artists": [
+        {
+          "name": "TAGLIAMENTO F & ROBERT LOYSON",
+          "id": null
+        }
+      ],
+      "album": {
+        "name": "Le Cercle Culturel Ansois Présente: Robert Loyson, Vol. 2 (Special Folklore)",
+        "id": "MPREb_xluwyb3KjiG"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIhiKfSZo1ditO9bTX5GU4qRFjNRfhaTiRSMtMoYZs-x8U_fGShs6YFIODRl2PgsniffDM5KFn4qBAHY7PfwvF_HtS4fw",
+        "remove": "AB9zfpKu03fCBJ915jS1Sshv89iemYymvjaJxssN_67Xo0wfIhF0JOfzsiG1BKwP1Ah2walTmuqQkJyc7fCS0ir2mUpGdbjdPg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJPtKN4SHcUKmT7coTOaQwp6vEcJNhK5FFvBnr3ZNj7a0yvZ9cW8CnHc7RzzEhD6WMknrPInJZazA9DquUZwsSOxh_LIMspkY7CyayJCq13UCTtFqI",
+        "unpin": "AB9zfpKavrHaacwK0EyuxuMxQR7eKE2jyESG5U27NvZ6EF7T6StAeb5pNx51HgoUipe0B8v6Oc8MCZ0YX05Qu1Ua3c4GnG424yZ8tfgIer9F3ID9eCpkSKY"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/TYyQH0pW_sR5B71-_4JOR5_tOcwxdOV3lsOwLdlMxDeYyuFyYSShpftKPcxLZt4vKd6oh-7_trtJdYyY=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/TYyQH0pW_sR5B71-_4JOR5_tOcwxdOV3lsOwLdlMxDeYyuFyYSShpftKPcxLZt4vKd6oh-7_trtJdYyY=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:25",
+      "duration_seconds": 265,
+      "setVideoId": "5E9A36830BAD191E",
+      "creditsBrowseId": "MPTCgLtJHJU4iGM"
+    },
+    {
+      "videoId": "6n_oH01gtHg",
+      "title": "Gwo siwo (mas lari)",
+      "artists": [
+        {
+          "name": "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP",
+          "id": "UCqs-HXhxgZbmhsCb0dBKNCw"
+        }
+      ],
+      "album": {
+        "name": "On Larèl, On Lèspri",
+        "id": "MPREb_12q9RwsWXYZ"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpL-j4vTjFe4iC6xec1fbZmqtE7mistULqilKXFYurVh9FS3LMaA8NIw-lEEJ28Sz6Dq94yG7bzSndxvJJMSCNNz2lgR8g",
+        "remove": "AB9zfpIhZc1_vR-qZKsGXkjBxwXhyGpvYJPDJHM9m0s8HOw40oCf2k4cr5AnJk9qH_gSWR31_8YIOl8h15xzXYPqFSOWZo3O9g"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJ5XEFifBw-94nlIUGtQ7OkisZGjzAw1BIYSB9Q_aYmNnU1yLDkwl7MVqppYYC14B186zzbbeu-dHvzuTVsikg-SpKLJ77xLp5QlLQiKYdStSLeDMo",
+        "unpin": "AB9zfpLw1xGMcFW9ec8gxHAW_n-TuYK42g1laavpqI4GsSj7e2kmahVDsXjiVo-BXMmMgZUzfGd4omyK57Fnrcoxbes_QdwvKi5n-_cJvYozIbyEX5rEXco"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/mGRSv_YHhlAgeRm56UV0n1Zn2-dKDGdIR0arYK7bk1-bgkkMCMFNZpR3HHuDOxTLT9o2FmgKAoQutKpo=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/mGRSv_YHhlAgeRm56UV0n1Zn2-dKDGdIR0arYK7bk1-bgkkMCMFNZpR3HHuDOxTLT9o2FmgKAoQutKpo=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "15:01",
+      "duration_seconds": 901,
+      "setVideoId": "7EADB48F7D92FADD"
+    },
+    {
+      "videoId": "LB0IDeKwHJE",
+      "title": "Evariste Siyèd'Ion",
+      "artists": [
+        {
+          "name": "Kan'nida",
+          "id": "UC75QU_dt74X8i1iw_ZfEm0A"
+        }
+      ],
+      "album": {
+        "name": "Kyenzenn (Guadeloupe)",
+        "id": "MPREb_Ii0s25Ef5aq"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpK8cw7uL3_w2VRa4-JKwdNerB61A6fA6GdgImbU-o2hPyoQeMOqjiqvkpas8J-wDYa4RmpUmWXfRwS-l3Rb-q7w0H4zgA",
+        "remove": "AB9zfpIfTlnpR5WXIAsnocgOuwl3eJDYqtNR9xedqQzIC75WL5NwoSPmKKS_KtTQQDeSc3gwygpzkJ_YwWYK8zirXVZpAfRO7A"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLsxflK1XzNJBhHYz01WVmUlt-gPUQYTsC5dh7ijZqYa7vEwwR6eMpbkGJDGZJUUrs9kwot6ni7JYCX-n2Gob7Tu8JujOG7AQQaSdLDKXvd9Z8HUFc",
+        "unpin": "AB9zfpJBfVRZ1lOAmxCMjbSYorCGBoavEH7tyI8phXupTnVmzj4qxdbgqJtcGjYy64CXoU7dqL9JT_g-Dg8v4tmBnjg3rBxtDvp9QFVkUobIS6w5yfC07rQ"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/V5Yb99DWHsAMmda51B4e9p2o390-wgNlkasJp6Uon4cKEqWxEF5yNscjXeX8VoshHwks0ZqGvq146PNa=w60-h60-s-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/V5Yb99DWHsAMmda51B4e9p2o390-wgNlkasJp6Uon4cKEqWxEF5yNscjXeX8VoshHwks0ZqGvq146PNa=w120-h120-s-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:18",
+      "duration_seconds": 198,
+      "setVideoId": "9255506E5CEAABF3",
+      "creditsBrowseId": "MPTCLB0IDeKwHJE"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
     },
     {
       "videoId": "AtQErt5b6us",
@@ -3562,12 +5993,21 @@
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpJ5Zf3SNi17j81kPRwKpWKjiWzdvQ_RB5COD0yW7-qtylB1lg04PJD1UE6ieJLd6ahpZKN0jmZnhOuM893PYehnhMaqWQ",
         "remove": "AB9zfpJBIYt_57IbVgYfSWry0Q9yU3Wk_IXYJyXivgVuY5gKG10jb982mDpdEV2PUWQYCnsVbfwpUBW7oS0FC-hfYLB2WFhvAg"
       },
       "listenAgainFeedbackTokens": {
         "pin": "AB9zfpKlFJimqEUHT_3DYJt_quAeqkGGCr0-2q-_pRBdzT6pxE0H9q6RxKxpYqM6aJambBxyro6joNPZn0cfCnQeCdTyPtygmHHanFCzCc4nCZ62z3jREmg",
         "unpin": "AB9zfpJUb5o-D_FgolQvb-lPYHwbs_w5Y_uMUf-0qCXRLGsXoDINlw2hRO8Si92wKg2bj2hIpLFI1CDOXSYWyq7VLZYa8_cBN9Lm1pGs5kDv-_jnf4zhGno"
+=======
+        "add": "AB9zfpJfQWMiToVJWaQmmLv_p15woeIRqg_hIAnNoOEMbgH6nFqhR95_JSPGCG5cgC60NwO5zs978F1utG2RqIfXQyLOy-l5Vw",
+        "remove": "AB9zfpK_pBe9E7WFCd6Cxi4XUUkvUx9qo-xrH4iJnfmV1lT7BGUdQ-bC2N1lWDENJkGJIruiwG0yVTatKtY0uOwDrNvPZwCInw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLc0nojxzTv_pIAuSgs8Ps1KGbUf-lyE9wdnd6dRpmiitYq5hE061u5CekzP4Cb7TfBq9Pt2Tyx8o1Wqup6jIuQ_25tfJ41KDdoshZ8x3WhBf1w71o",
+        "unpin": "AB9zfpJUu2TdgUxbsQSNly7gDCDX8V-3Y7z3VwkmtKhZ9vtW5GBcF0gaz86YG1Nq307MkAJYdTvyAKK3AVadJQQc1JLv7NtHw3Hi9XH_9uye9FPnBBcB8FU"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "thumbnails": [
         {
@@ -3586,6 +6026,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "9:01",
       "duration_seconds": 541,
       "setVideoId": "24C5A61660782D9E",
@@ -3594,20 +6035,82 @@
     {
       "videoId": "7oA9pvLFOv8",
       "title": "Manipilasyon",
+=======
+      "duration": "4:55",
+      "duration_seconds": 295,
+      "setVideoId": "295BC3FFC1DCC348",
+      "creditsBrowseId": "MPTCSmg-zoOqZ8s"
+    },
+    {
+      "videoId": "6TPVVFsgT2o",
+      "title": "Detripay",
       "artists": [
         {
-          "name": "Les Aiglons",
-          "id": "UCNCXL1K7hAxn4otjOZoIfqQ"
+          "name": "BélO",
+          "id": "UCweFQcB2GqFYNBTvne9zwHQ"
         }
       ],
       "album": {
-        "name": "Vizyon la vi",
-        "id": "MPREb_HGQ3gkM2WF7"
+        "name": "Natif natal",
+        "id": "MPREb_AaGdCbDbmj4"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+        "add": "AB9zfpLYHGrZvWlehEf3BV8nqoJfw2GudhvIORAfvnB5F5NRUjImQO-uLYzeYR2jgMnUTxMYl-s-QG27vN-q79nwWBIr631p4g",
+        "remove": "AB9zfpKOnXzaISP29jN0X9AOpITZzZu8biElwfmtvsxcRfMWCw05gtlZeTK6_skY7nkpIV8rTCHrKeYZj80-2p83YFamh-9GTg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJrq0X7xWUN6olhxf9q9pjMwjmuEwuR-PQ8wgJVKTJq7igzi4VK-cYwfmad9a7WWBq50XJBtXCgkhe6Nl4Y8o9L9OIbgrVUQ7In9GAFA8A8Lh2IAbE",
+        "unpin": "AB9zfpIpyZetlh3hYxaJDYIuZOdY8XjYmOV6Bqd8q58qPR8F9itsM90RtPPJT-F4AWayM_s8Yij_IUWiBbran4QXiGZ2dwpflXb-VSo5bGlYfFf85TG8-kI"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/m83NT6MmNLsv8tG2WVnpuW_lqgnJwx4eX94djQFh8JZDEXFVlgHKgMS4W9B5rWN9MyG8f6yeUwipVh3F=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/m83NT6MmNLsv8tG2WVnpuW_lqgnJwx4eX94djQFh8JZDEXFVlgHKgMS4W9B5rWN9MyG8f6yeUwipVh3F=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:18",
+      "duration_seconds": 198,
+      "setVideoId": "BA375200AAEAEBE7",
+      "creditsBrowseId": "MPTC6TPVVFsgT2o"
+    },
+    {
+      "videoId": "6u7C2vKh5Qc",
+      "title": "Pouki Sa (Sina)",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
+      "artists": [
+        {
+          "name": "Joëlle Ursull",
+          "id": "UC6Ty56e5zA3-gNuNxVoej8Q"
+        }
+      ],
+      "album": {
+<<<<<<< HEAD
+        "name": "Vizyon la vi",
+        "id": "MPREb_HGQ3gkM2WF7"
+=======
+        "name": "Miyel",
+        "id": "MPREb_ZGXMAvYkS5z"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpJt7WONgn_O4pSsgoEcldkUgObI67DjyGJrE-LLWmokFkPQEjFOnKsewij6oVVZL2saZTOh12x5whfSvLW6WfqX4nwsTQ",
         "remove": "AB9zfpICksgaEAcbs9eDEVpK9Lhtpft4q8WIRJYKWqXlD0riFwqgBcJ90-9-Omd2ZAwR3TUaX7Gi-8Ir3C2JPD6B_Q_GI1vDdA"
       },
@@ -3618,11 +6121,27 @@
       "thumbnails": [
         {
           "url": "https://yt3.googleusercontent.com/c5ZltzAV1Ow9Q0Iu-DnxqiJwQNBBCSC6BhMDVYBThFH_aAsGRwOtmcRT3UmelLNWDhudkP4pG_KSHV_DoA=w60-h60-l90-rj",
+=======
+        "add": "AB9zfpLrYzTdDULpR6ICsRaxFX10DNrxO3A03uGMXghYpN3g8EzLJncZCDwoCzvstOj9EpnVO-wnMkxyhLiAasUGiu-XgUt5Gw",
+        "remove": "AB9zfpJhyAq4tW0qTa5pUjWPIfLmVbN7bpZ1Vzx-wqsPgwZS-Fq8Iw3MbhUd7xtXYpWd7XLphko5xXyZXRcRNblqvGAUHf4OqA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKSRoP-QfOF2xb6cSHpc0TZE8hmxD3R7H_SzvHzZHgWCt9BAIEsXak7hlYp-3lVmW4Oy44DFKDqGxvHjGW1AVBgJj19osq6t_74sK0WqEvvkYMeSlQ",
+        "unpin": "AB9zfpLMrbm02_DqrWzoRabnJ_-zrVYDZwrZb5tiDy-SN-1pbIIXRFvS6fpEOFJMQC5xCzec7pF6ALxrbEdDW8XFAcDiKVohu5p1Er7ADszKoSjdEnEBIUk"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/8WuDh1Urkx7Vnp2clEnyGKZQVUBX3iFI-hlMBn0CWirj_Fosj8zCEFri91PDqNLCnAeMCohFT1PGtDB7=w60-h60-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 60,
           "height": 60
         },
         {
+<<<<<<< HEAD
           "url": "https://yt3.googleusercontent.com/c5ZltzAV1Ow9Q0Iu-DnxqiJwQNBBCSC6BhMDVYBThFH_aAsGRwOtmcRT3UmelLNWDhudkP4pG_KSHV_DoA=w120-h120-l90-rj",
+=======
+          "url": "https://lh3.googleusercontent.com/8WuDh1Urkx7Vnp2clEnyGKZQVUBX3iFI-hlMBn0CWirj_Fosj8zCEFri91PDqNLCnAeMCohFT1PGtDB7=w120-h120-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 120,
           "height": 120
         }
@@ -3632,6 +6151,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "5:19",
       "duration_seconds": 319,
       "setVideoId": "787CA86BBD967ADB",
@@ -3653,11 +6173,31 @@
       "album": {
         "name": "Zoukolexion Vol. 1",
         "id": "MPREb_kJOOL8y09M3"
+=======
+      "duration": "4:40",
+      "duration_seconds": 280,
+      "setVideoId": "05E6A03993C7C011",
+      "creditsBrowseId": "MPTC6u7C2vKh5Qc"
+    },
+    {
+      "videoId": "sc4IkcF2qYo",
+      "title": "Fan'M Deyo",
+      "artists": [
+        {
+          "name": "Top Vice",
+          "id": "UCtZQncYl7qqkFoLS0lYVHkg"
+        }
+      ],
+      "album": {
+        "name": "Compas L'An 2000",
+        "id": "MPREb_SLYtRsKqIWn"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpLcDZSwjvUW2ynqYwQUsVG-D6e9R00jz3q9j_10hIpnh1lU229zY7X7UEL9L8c7zb9TmuodXTjyon7MDa5QLHtuW_MSzQ",
         "remove": "AB9zfpLtKgIMzIFUMMx7_eN6Ig-jzkcqNvnyYFqeHQUIarP_2Kwik5oSQLnR-DikFteMlj_zkgX6unQmUUP27MWUXIYSW9X7ng"
       },
@@ -3668,11 +6208,27 @@
       "thumbnails": [
         {
           "url": "https://lh3.googleusercontent.com/Je5XfBZwkhrQtaHbYaTSDuZgyPoriHnWw_rQm5SwOcA5YsazXt8VC-pR1JgbAq3EVp1CTfA5ajMvL0Gq=w60-h60-l90-rj",
+=======
+        "add": "AB9zfpKUiqwC3Un9CBE7pPvmFRPC3sIyfW68TlYjFujrg6E7HEQTxMw_bGGrpU7tHmG0N7AyvxZbWYBXJ2KHtGAfKRX86GdT-g",
+        "remove": "AB9zfpI6ju1ygLdC79Zme9_ZOEgTL4Krdk5svTU1UQ1TaHHB--V5-9fmkGRrtl_JRLRULNzueFVUANVt1knr4U1qBUGljuD8OQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIC8L0UrRIMwZRWOPf4hqfbOypfhcIdoBNDJVIKfaHV4BuGXMTSxS0_GArAkYJx0ApfIeWAwd91AnB9D4ZBUEGhr53D8RnsI8bBjyLPm1VVWKCVRQw",
+        "unpin": "AB9zfpK0iz9FQsSzW_XgElTo5WcLSk03WHfraD3tAE1oT7CGTZRflkK8pTSoc_CfN3OQY6yBb667VkSK8RqB7kyXweuhqlmvKAUTNo90QgvaiFprGXz0nzM"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/tIrV69wNI6C1UXE4-5a6Qs9LI2ofYKd0Qix0DvTHatAETVeVtaYiudix9jGLK-IWHi2geogu-tS8vSr4PQ=w60-h60-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 60,
           "height": 60
         },
         {
+<<<<<<< HEAD
           "url": "https://lh3.googleusercontent.com/Je5XfBZwkhrQtaHbYaTSDuZgyPoriHnWw_rQm5SwOcA5YsazXt8VC-pR1JgbAq3EVp1CTfA5ajMvL0Gq=w120-h120-l90-rj",
+=======
+          "url": "https://yt3.googleusercontent.com/tIrV69wNI6C1UXE4-5a6Qs9LI2ofYKd0Qix0DvTHatAETVeVtaYiudix9jGLK-IWHi2geogu-tS8vSr4PQ=w120-h120-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 120,
           "height": 120
         }
@@ -3682,6 +6238,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "3:21",
       "duration_seconds": 201,
       "setVideoId": "ACCC7558F438B42E",
@@ -3699,11 +6256,31 @@
       "album": {
         "name": "Swing Karaib",
         "id": "MPREb_R5Hi5feHac9"
+=======
+      "duration": "8:41",
+      "duration_seconds": 521,
+      "setVideoId": "B8AEC7538FE010A9",
+      "creditsBrowseId": "MPTCsc4IkcF2qYo"
+    },
+    {
+      "videoId": "Q7ShCB5CYH8",
+      "title": "Jwé épye",
+      "artists": [
+        {
+          "name": "Dédé Saint-Prix",
+          "id": "UCMz6euHYSxOP64J7f2wdSUg"
+        }
+      ],
+      "album": {
+        "name": "L'Année du Zouk, Vol. 4",
+        "id": "MPREb_R0Ie75JVvhv"
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
       "pinnedToListenAgain": false,
       "feedbackTokens": {
+<<<<<<< HEAD
         "add": "AB9zfpI_pqioOaFbvvGXWYKdR4-QA0GfB4TVnNnuBa5HCMu9Tzp_Cr_Rj7_JNXUs89bSuHcUQqBsvTsYmosywEnMwjlANnjW4g",
         "remove": "AB9zfpKSJOMWud03n3niFc5GXXg5J7XwDA0AlGX-JK2R1j9CJswZvJjFdkcYeG9MktFjCSFjGwZ4aRGZn6Z6-uxl8dCvzd1bLQ"
       },
@@ -3714,11 +6291,27 @@
       "thumbnails": [
         {
           "url": "https://lh3.googleusercontent.com/UxFOk2Tpz0lF8aJylBz7sEZq-kO6WVQEA9Gvt5lN4dd9fFFMJz4M8mbr2I_ASR8E9IEpUoNvKlZYz-0=w60-h60-l90-rj",
+=======
+        "add": "AB9zfpL947jHKy9LwkblDzPu3BGtKrYEP97UbnpPgt9I6R8oKMgZkJx9RGcvFgL8SvYi6keLsAe686cUemGWegFqMUXSc7Z6XQ",
+        "remove": "AB9zfpK9Ouq23VJCEKCrxd2yw8x_KjKiXNT7bCvDZOl18c_PmNhhxTo0utC2smZtUQLtpMc7BAmHtoJPpFfFWaMON2c2palbGA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIMVvMwSlx_XNQIBYJKvKvGh29j0v3MMhKh3iR1JcfED62lrgqEWeF5YjuiD5kOMjrAjxSU1B0YUs2TUsNMA5P2FHm73u-tLS9r1XTMfS20zT-DuSE",
+        "unpin": "AB9zfpKTqwE6MgFTPfT6Sd2kWn32UrvNp4HcjDtVqXaWk0Loxpm78nPgkH15ag6Lp_V2PGYJsololDPWLtKLhDvicRyWGxUiAgP3OccZ8162oOLlcN2NBmQ"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/2KOnptxERQEHGUuFUoO4Ml_lV7kkA519IPOGV-H_QsVmvSFslZcz9GFbB1MXB-zHnea8aT6xLOFjyto=w60-h60-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 60,
           "height": 60
         },
         {
+<<<<<<< HEAD
           "url": "https://lh3.googleusercontent.com/UxFOk2Tpz0lF8aJylBz7sEZq-kO6WVQEA9Gvt5lN4dd9fFFMJz4M8mbr2I_ASR8E9IEpUoNvKlZYz-0=w120-h120-l90-rj",
+=======
+          "url": "https://lh3.googleusercontent.com/2KOnptxERQEHGUuFUoO4Ml_lV7kkA519IPOGV-H_QsVmvSFslZcz9GFbB1MXB-zHnea8aT6xLOFjyto=w120-h120-l90-rj",
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
           "width": 120,
           "height": 120
         }
@@ -3728,6 +6321,7 @@
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
+<<<<<<< HEAD
       "duration": "5:33",
       "duration_seconds": 333,
       "setVideoId": "CBE9A103D23206F7",
@@ -3735,4 +6329,785 @@
     }
   ],
   "duration_seconds": 24199
+=======
+      "duration": "4:15",
+      "duration_seconds": 255,
+      "setVideoId": "41DF16DBA653E160"
+    },
+    {
+      "videoId": "Jwli9zeDN4g",
+      "title": "Santi'm Ta Kriye",
+      "artists": [
+        {
+          "name": "T-Vice",
+          "id": "UCneyvhQumGbPjF1W2FDMlZQ"
+        }
+      ],
+      "album": {
+        "name": "Kite'm Viv",
+        "id": "MPREb_5mwJRyd7GoH"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJ52MOWRgyDj4mh-o2fo3RDRPxpMpR4AdsXkE1wuc8KaQW0n76AJOBnuwG59d4Q8P5YoteZYaTuYFBzyXaZBW1sfOUF1A",
+        "remove": "AB9zfpLNR3yo8l7o1k71REAdG4G1zkYMkXrgbvZjbGCz9-9b6iCzdFJ1q48KgMEeHoYzyXQ-q64EVqkehZHZUfyjwA2050U6fw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIQ3OEcpXUWGit7hIbl0jDt1j3wCl9_YX8fA82IwiKgOL_OV5B0JRXeU-mIXq0yakwwASC4n_7pm9w4Utml3swXMmjh3-uqLOrKMAguKN2GD9QRvIc",
+        "unpin": "AB9zfpK_eV6hyTuc_DK0b7t_mZXhofSt4vMd-KV-Jea09Iqont_ea5dOWacA4SAnCrA5ATtmiW69MbUJZUiFlJCA2Lg5IqRWw7Q3ozNLZtMZVkwqc1oEuCo"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/F4KHPESFLfOdPvux1yN8k-gwHZfeLagYDg_uVRn19Zz0EeMLdPAqnSbyH0ONPvQGDtdD19J11cIwG_OTUg=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/F4KHPESFLfOdPvux1yN8k-gwHZfeLagYDg_uVRn19Zz0EeMLdPAqnSbyH0ONPvQGDtdD19J11cIwG_OTUg=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:56",
+      "duration_seconds": 356,
+      "setVideoId": "4FA06226666CB182"
+    },
+    {
+      "videoId": "AphCXX0TehY",
+      "title": "Sa Se Djakout La",
+      "artists": [
+        {
+          "name": "Djakout # 1",
+          "id": "UCFQ1KDB8U24MsTJLAeTMIvw"
+        }
+      ],
+      "album": {
+        "name": "La Familia",
+        "id": "MPREb_pe87VumXfFB"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKnsaZ5cX98yLGnU0-q_g-FyBCwWWJaiAaZjeJchkDegF1F75TfpTBTpeUJWhJI-XOYmP5r3dcotmlwgmH7dG4dhMW39g",
+        "remove": "AB9zfpIlrHpe-3N0tIMlGy0nvtLYJh-TpEVWpG9sDqs2pZJk6KOwBG_V97zdFe5osPlmS93zGtuM7kJeRKBg4FLPBBAsJl68BA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJGes9QDp8jHQ8CoRs6kXDPboefIsuziRtYbmd4rNl_5KefQlSHpENr4Zl5RZhHYG9JyTszdVM5_QpfytsWkd__Kmr9oMZmxaW7P9ODWipCpyHbCm0",
+        "unpin": "AB9zfpIs7XMkhQwAMgt6QTKSTDKuzAi5LMyWT_hC_ezVGSzOgERp2lZtDq-McSoLz29GcU4TS4E7VIX8aOg993DmZoQ_K_vsJxlgn14nIoG2hoqCOE2FAVA"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/bnorYvGaU7NCpy-2YpeFTzIN8mhz1PoNLtOl4ZW0-LnV4FFtJAo6toTsXpZ3OfiR9hWQPZzKNuOF75LY=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/bnorYvGaU7NCpy-2YpeFTzIN8mhz1PoNLtOl4ZW0-LnV4FFtJAo6toTsXpZ3OfiR9hWQPZzKNuOF75LY=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "6:12",
+      "duration_seconds": 372,
+      "setVideoId": "09CDDDE13AD442F9"
+    },
+    {
+      "videoId": "Soy9ilD3Yys",
+      "title": "Paris Biguine I",
+      "artists": [
+        {
+          "name": "Alexandre Stellio",
+          "id": "UCk3SQh2ZVLPOdoRKJVFW8Rw"
+        }
+      ],
+      "album": {
+        "name": "Stellio, Le Grand Clarinettiste Martiniquais (1929 - 1939), Vol. 2",
+        "id": "MPREb_YMthnEPOm9z"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpLUe54BYn8mxavIrh-BYHOAeMRXSAYYmuY0To-SneaYmDcp5pZKPRY9ekTA7LSz1aS9bt4mnFFicsidN9VIBVjwl3o4eA",
+        "remove": "AB9zfpLmFmcD2n0m_gpU2zLNG34cl_NU7bkLb_WzMKHciOy5ZsneJEMAzS-3EvmRWcDpkBzByz9VDJGfAQrt6CtLy4gF2L-SZA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLT4qg145UpuQf22viC10T84FmXCILe6uKgLUo5S19TTjt9EG47IbA4tZjI0pmWlINxoDWUIrdnexBHU3eRm5jZTBc2l7xSrvCQAksAwvoprM7KwYU",
+        "unpin": "AB9zfpKERuOrbkkQUelILOtSGKvGLr-ucoXfYsLGLwGTWtoomQO4tsLRxwtqnZmtoG7NL0ctnt-P2j5-FfqM1ZIT6xYd0-YwbUTUSY0DrwXtXoTmHQStxow"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/ADtrF1EyvFnrVbigUgFSSlYnCH3stcb5wQBF9RBRR1_Bu_ixVHAYyLpi33AAJEECaB3CPLP-joXfRIw=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/ADtrF1EyvFnrVbigUgFSSlYnCH3stcb5wQBF9RBRR1_Bu_ixVHAYyLpi33AAJEECaB3CPLP-joXfRIw=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "2:44",
+      "duration_seconds": 164,
+      "setVideoId": "EC2B155893D3C271",
+      "creditsBrowseId": "MPTCSoy9ilD3Yys"
+    },
+    {
+      "videoId": "eLRM1S3dqog",
+      "title": "Pataje",
+      "artists": [
+        {
+          "name": "Tabou Combo",
+          "id": "UCp7g2PL0RXDFfur0tvETHBA"
+        }
+      ],
+      "album": {
+        "name": "Anthology, Vol. V",
+        "id": "MPREb_Pcf4XrozRy7"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJt2Aw0b0mO-pki4K361xP7-YBHSxPdxwZrUPkEUBjpzn0uLV9j8QbfGSSQle99lkJIBu8llN0FUVZLCffmNtacUM6z-Q",
+        "remove": "AB9zfpIWBBOw2LsxkedZ-h9gZjLFMGUkfbpWrst2ZRBJn8JfeNUDQE82YvOgy7O910aVemnNQ3YZSoCeB1U0RPR989hcimjlNA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLZPqxNiB4kMlkCiocriHjucO-SUnDUMqwWG8md2wRu9AY4HL45kAbXh224jNT5kWZ-bqcpWgnEphsM6iq3fuOKip19nVeDGA9LJ6NO9ch8tzXb-Ew",
+        "unpin": "AB9zfpKzaikBzRwJtKzXUjCx55NklNytsFfi95rji8ehn7HVINL8KB9vGR5E5bGUIH4n6-uSuCgHmondoPXK9wGdNmlwtAn0aLAwr-mk9acs1hEN1XQpVXI"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/r2-Wcjjo5ONwjPnjP7F1qaxiFUIiWcR2ElDBSN3ejGq_rc50474FxJ6U8ULYbxrSDvG7IBppFbvhZk5mbA=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/r2-Wcjjo5ONwjPnjP7F1qaxiFUIiWcR2ElDBSN3ejGq_rc50474FxJ6U8ULYbxrSDvG7IBppFbvhZk5mbA=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "7:14",
+      "duration_seconds": 434,
+      "setVideoId": "63082996DC600F94"
+    },
+    {
+      "videoId": "5bB_YMzGetE",
+      "title": "Bebe Paramount",
+      "artists": [
+        {
+          "name": "Tabou Combo",
+          "id": "UCp7g2PL0RXDFfur0tvETHBA"
+        }
+      ],
+      "album": {
+        "name": "30 Years To The Zenith",
+        "id": "MPREb_UlYHNv3K1Lo"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpLNM925m7l21hXIT3PcPHlA9ugrPAZEtkp0A_YBGw-xYYD79uDuOxqjoVyHGPmYyc_knlS2J9VPP4B7i5CiZ7O_esWSOg",
+        "remove": "AB9zfpKq2FEMW5lc9sLWhNfIYS4iaKBIfrOBRBQsP831wPH2S2y_bYy8MVLJsueT6mAxJV0iSlheIoXFFrxdlN0VKinsCJ_-Tg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpK2ExzsWBgJOmEAyKeT78WEq9cucXMG3HPUmM9basShD0J4z7xke7GPwGRHm_HiKv1bepZDNI2wP3IGutHikHRE3mgHjymFRr-x45FLCJgwdoZZGrI",
+        "unpin": "AB9zfpLhaCsHraDDQRG0GDOdKk6AIZbCWYtXGkaXs3tORuJEY8Z_r71TRi1e9jj2RECUCvgKbzhedTVFViqA3RCy98fB_l7Y4fzs-SWXwGRYT_V1CjdF0w4"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/zl2iY45KFtsOjtBi3UXyxvn7e4BhGCMdKO1ku8SYTXXb72DxNSaFeQFpZ_Jiw8CQ_k4L55-ZJbpCsG33=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/zl2iY45KFtsOjtBi3UXyxvn7e4BhGCMdKO1ku8SYTXXb72DxNSaFeQFpZ_Jiw8CQ_k4L55-ZJbpCsG33=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "14:22",
+      "duration_seconds": 862,
+      "setVideoId": "E5DFABD38467D086"
+    },
+    {
+      "videoId": "TRR_ksGzafM",
+      "title": "Bouyon Land",
+      "artists": [
+        {
+          "name": "Rah WCK",
+          "id": null
+        }
+      ],
+      "album": {
+        "name": "Suntracks Sessions (Limited Edition)",
+        "id": "MPREb_PWRfVDUY5yS"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJ-gAAqdBem74Wk0vtdaT8tTD8E1qxPHVJzCElhUZojHVJZUojDW2Ih6g2SmK635IESs1UVC2WUbTiCRUhORWtf07bJBg",
+        "remove": "AB9zfpI-mKMUpwDQAqIJ4KtqhIvh07qhbs5oDCzBtKE0eyGPVJOFoEm4JpA27a2PFjXR-l0ZI-0YQLFiWBbhRL25kh1-f2Rubw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIwL2Tyj6T9Qip4EaPOgB6KyJwevKuS6Ui_NE_EiDFjc8JsSha5_59Lct7i8jag8-xVNz6em28PNl7drGRwiOvZtQw9RrNrKyaQEJ6qibqcLcW4-6A",
+        "unpin": "AB9zfpJUlgBnosYuSPPcGzRaIxUXSPzQwZY8JiQybKwl-IEesES6h9eO2HLrLbg9ko1dFzZ7xx0QSbK9GP3NU6n7m8_WBGCoimGAHJkuBj71bx-ENgqqF-g"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/QnONgHq18RNklpskcQfLv8oEe5lBF0t2v5HAq5_ewqa231NZELv9UOCoPjoc3hVWH-WmXxiIxe05vg8Y=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/QnONgHq18RNklpskcQfLv8oEe5lBF0t2v5HAq5_ewqa231NZELv9UOCoPjoc3hVWH-WmXxiIxe05vg8Y=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:09",
+      "duration_seconds": 189,
+      "setVideoId": "833853BC92AB73F7",
+      "creditsBrowseId": "MPTCTRR_ksGzafM"
+    },
+    {
+      "videoId": "K3Q97z_Sc3E",
+      "title": "Zouk Edith",
+      "artists": [
+        {
+          "name": "Edith Lefel",
+          "id": "UCOElhSK53fxMn9F9kASy1bw"
+        }
+      ],
+      "album": {
+        "name": "Le Meilleur De Edith Lefel",
+        "id": "MPREb_CLJwmrClNMJ"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpI9UA09pRQXzgfKfRvfA_kUufD03-QCAKmtwCwNesLRKCI4LGTwhubboJgB8W5tNfh8mF5PxLZGr5tMne3PA7EgevniMQ",
+        "remove": "AB9zfpLdnk3C5hcIIYTFmHGCQGSDM5k4X8FsIeyNbLeSYnb2HvgjEoWvvsInUta2iRKLboPtBYLWaWS6SnIjTq_MCMI4cS4abQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKqercQG_XxQHgNqxQ_b7IiLSk-TPtL25Yl9baqlU8Tk8vGfTPIumEX4-ZqcZdRcIFtA4V1JuE9in31XUxKYLdsAW_jCPGV3IpeoXbkEQwS2MWARHk",
+        "unpin": "AB9zfpLTUGKtWAGmaXxSFQoI3C6QPxyfLxfIO78UetQZiscwJA1kQwQooPkBlH-CQwSYHxEDL7WdTSD3ERE0vNGX1fPSUeTeMrjDWzejsuUmwiMcPAYilMs"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/cbKLsoCFd3y1thQyWuXR51D0nVNjfS95MPjiEWgBGMJwFBOr0rEEt1Ajrsl3OgJ9hlT4kW8M6KUcDNy2=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/cbKLsoCFd3y1thQyWuXR51D0nVNjfS95MPjiEWgBGMJwFBOr0rEEt1Ajrsl3OgJ9hlT4kW8M6KUcDNy2=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "10:02",
+      "duration_seconds": 602,
+      "setVideoId": "5A594382D6980762",
+      "creditsBrowseId": "MPTCK3Q97z_Sc3E"
+    },
+    {
+      "videoId": "55koGbNCCgc",
+      "title": "Yolande, ti Joceline",
+      "artists": [
+        {
+          "name": "Top Vice",
+          "id": "UCtZQncYl7qqkFoLS0lYVHkg"
+        }
+      ],
+      "album": {
+        "name": "Le chouchou de Miami",
+        "id": "MPREb_1dRya69mJKn"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIVtZeeWNzhAAlBxTsH8w0FwGJzrbOg7_oD7LQV5xfZcqlB8mNFLc0qcHWcc8TQ8jppR3ROc-Siw9WY2HRUEnnMKTa0RA",
+        "remove": "AB9zfpIDJwmgXBFwT9PkW72NoZUv8VgiRdrG1wrcbgDAXVCo0SKrtlGVCCh0lkvWuH5jWNCPKAGTv3bY2vpKpy0ncSg_OMzzgA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLsOSCFgXVd4n2DQWqF2OTjx2BkiMtYdr3oL9IbWjFjtqiRVAUW3Z19WjEbZ9KXweD5_EBO_dMZUVNmMYaZYJ2o1NFv-20X6io9GJ19-Vu1tKHK93g",
+        "unpin": "AB9zfpIMclc1EWRMEFXS7ldmsW0p0z61BBVtU39j-K1r-Ck6XR25SJwRntRiyZuEcs_13PuxLBF1hq4fZqX21rkccwLzU0FcNkWVSNRPTjzq5KOp99PIzFc"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/MVDfbyr7GJJWr2hMiHXhz7rhJfjziKrdm0fMMbrMrszQPTLNjajonSDjy-Kom5gJfMTbD-zDXJYJiec=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/MVDfbyr7GJJWr2hMiHXhz7rhJfjziKrdm0fMMbrMrszQPTLNjajonSDjy-Kom5gJfMTbD-zDXJYJiec=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "15:54",
+      "duration_seconds": 954,
+      "setVideoId": "9F02A970A1D65464",
+      "creditsBrowseId": "MPTC55koGbNCCgc"
+    },
+    {
+      "videoId": "BloWMf0gZoU",
+      "title": "Infidélité",
+      "artists": [
+        {
+          "name": "T-vice",
+          "id": "UCneyvhQumGbPjF1W2FDMlZQ"
+        }
+      ],
+      "album": {
+        "name": "VIN PRAN NOT",
+        "id": "MPREb_Dw8FYDNod24"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKICPd7JQSHdfOaewgQumEJ5upSLZtLcAJz9ZbdkpJn2JN_epH3lSTvJLjOm4_UQQg_TnGzHyOXFTwANbzOLDyRhc1w3g",
+        "remove": "AB9zfpJWQvb0WTIwsrnh1DjlHA3H3S1MoBe-XXd8R0u09pfU85Ys--IGaKkzAm84Y8x_fvsF7RpRA5lUGAsPgGviRaID3gnxcw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJru-7Q7Ozd5Nu8Rxa96KDTZ3s-4yW-m2Tfh69U4pel2yZ3LNbwa-UaBdGi6X27xFT7lp6joPUXYQ1Hxs-WleKLvxwCD7iM3QKqnhPrCyvdhQ2-u90",
+        "unpin": "AB9zfpJKxUADVXb79j19K_YUioE1xX48voDyKB1mk_fItRf9e1aYCiOdSjGqoru_Qn8K2oPupY3hCFZ1cOp-zFWqe8kG2Aajm01OhtyvZio3w6pi8yXkSL0"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/xSQiypQwNoqk1HRPIuCJ8a39_bX41unSf73t6sx6a6cEGNW4yPWuXfXzc_GAYRtvPjtTp4haYJFdSFZY=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/xSQiypQwNoqk1HRPIuCJ8a39_bX41unSf73t6sx6a6cEGNW4yPWuXfXzc_GAYRtvPjtTp4haYJFdSFZY=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "6:04",
+      "duration_seconds": 364,
+      "setVideoId": "41220750C6499C8F"
+    },
+    {
+      "videoId": "EXUn5D7g7NM",
+      "title": "La vi artis red",
+      "artists": [
+        {
+          "name": "KALI",
+          "id": "UC0weveliJs9Z4NNrz44I08g"
+        }
+      ],
+      "album": {
+        "name": "Racines, vol. 1 & 2",
+        "id": "MPREb_i3GIElG8pAn"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpITH9ks-JJ_YXUv5IZ0S4oN8qqpcKFPRGaFvyBpe6cZFApvTt-33cuk9xpNxBg3mSSDw9idLJsB1_CitkPHGdIlwO07eQ",
+        "remove": "AB9zfpLHddTBhfWR74Je-j_oLWJvgFbGcHJFUpf-VQ3bwRHAr0U62Rcj69W8f3NEQqbfH6ayyKHLPPt-zYuFE9u9EV2IXol6KQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJmMHZDBeRaVCxjq7aw6iZ61R3uOqrF8xfM8DQDUz82QT4NHYB15sEDH1DihZcWJXATkVhm_T8YdhDQ_C-kwl3zPl7GmyB6Ur1fhWlgXz4ynaKBZrI",
+        "unpin": "AB9zfpKpPa9vXISow95RsyplEBIIzlNJ_sRoiCvdT2PPgnTGrq2X-mrHjuLkkuOQdAX2-vcN1FLuP8zpuacAa4SZ-Ms443jYVKD9Sf46LojrahGyPZCVfXg"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/kAwTvCsr0trUTPBacw8ov8wTMyA-3_r4PVYC8cadl4zDb3xXQ2EcvNrl7D7W1Y875ehINjwUCjVxiZE=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/kAwTvCsr0trUTPBacw8ov8wTMyA-3_r4PVYC8cadl4zDb3xXQ2EcvNrl7D7W1Y875ehINjwUCjVxiZE=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:13",
+      "duration_seconds": 253,
+      "setVideoId": "639D3C927878ADC2",
+      "creditsBrowseId": "MPTCEXUn5D7g7NM"
+    },
+    {
+      "videoId": "RBs61eVVnoE",
+      "title": "Rimpo",
+      "artists": [
+        {
+          "name": "Akiyo",
+          "id": "UCgj7kgR0dRP4nqpldiNOkbw"
+        }
+      ],
+      "album": {
+        "name": "Mémoires",
+        "id": "MPREb_i0Z0rszAkk0"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKmZPoWI2Qb7QiEH14jZVcLviGV43X8jX9P4ykfLgxSjxxVjXZytXcMzbx33JlB4VmsNvfWtHZut1qsD11x1YhTVuAtVA",
+        "remove": "AB9zfpKz6TFFv76J_QKUk4vlBV09DvrUkxtkl3waFlsCacQI8jT80ytIAJXy-gyrl9YX1nhfSlG-laPeUA05oy4Of89Ij5N66w"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpI104euo3GUD6ZeeatyPxtk993QF-LFRr1PTbmqmyY0D2QQ42OnrUSUKunftdR-xDYyT5maj1_5AeTGvPwY91-DCEPq6AfS7btXr8XgQKUXQKYhhLM",
+        "unpin": "AB9zfpKkcxsl6_8G6Opp3PM1Nczbd9nGP4pzXN_ezzEy4rDYBeycK-B3FKuEjY6qwl4LIMyNren0bkz9uK7P4ogf24_pLJTp6_RaPFa3pTI7l3WFWgu_VIc"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/c66RqRL3qbYSp2bInWbORbquq46Hv6JkcdfM6otDopQzlbci2PM6kw8bbkUkADtB1Wc6igTv-wNuZgm-=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/c66RqRL3qbYSp2bInWbORbquq46Hv6JkcdfM6otDopQzlbci2PM6kw8bbkUkADtB1Wc6igTv-wNuZgm-=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:05",
+      "duration_seconds": 305,
+      "setVideoId": "430B760B2EE36784",
+      "creditsBrowseId": "MPTCRBs61eVVnoE"
+    },
+    {
+      "videoId": "e761_YYzheI",
+      "title": "Mwen Vle Ret Nan Pyew",
+      "artists": [
+        {
+          "name": "Fabienne Payoute Bernadin",
+          "id": "UCK537Sj1Pc9Tcrzx8ZdI9mw"
+        }
+      ],
+      "album": {
+        "name": "Remerciement",
+        "id": "MPREb_ObdsFmLN3kw"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpI8JKTiMJ7bIgxzNQDZtB1y-IEd52Q0YZZdQI0S1WAzAGK_EKWTzjpzDdgLI2P2Vynj0hN9ijee3rc_ror2zOnmtFkHOg",
+        "remove": "AB9zfpIWY-RLgTVc1KyOvIjLdFAAj2iuEDzOnYWfHafiVczO-zy2To_x-_MJitSvRJkWefi84q2nZxk7gvFYiFKVPT-IFqRx7A"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIEs8_dBhrkfqjlgKYgyCQDmiKRajv6DyNBU_XeAMh4lP9QoIJJtN9saaO6sbZbf1HMSlI62Eu7m46xfsUypj6nRz9BuGw7t50F7_j0w_HK2-0_KHY",
+        "unpin": "AB9zfpKk14QG01NQMkqQoMS_W3f4W0xZccKENFWyFup7bvRK42Gus5dwqofQ2mXi9o6p0Qliu93VpRxVhSpfO2jUHjIfsiFv8_36AbOYBnAz0uHEg6-0rZ4"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/sWhw10Z-kWh9MxGjCnK8irUtaGSAwDvS-BMwmGuH4RTAvJBK59rFMLdYX8Aenu5h9bQ4SVpHUqvscDP_=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/sWhw10Z-kWh9MxGjCnK8irUtaGSAwDvS-BMwmGuH4RTAvJBK59rFMLdYX8Aenu5h9bQ4SVpHUqvscDP_=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "6:10",
+      "duration_seconds": 370,
+      "setVideoId": "1B570A19B2A73B2B"
+    },
+    {
+      "videoId": "2zNZKjVRAJ4",
+      "title": "Sam Fe Map Peye",
+      "artists": [
+        {
+          "name": "T-Vice",
+          "id": "UCneyvhQumGbPjF1W2FDMlZQ"
+        }
+      ],
+      "album": {
+        "name": "Banm T-Vice Mwen",
+        "id": "MPREb_lASrLVu80iZ"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJZltT_doe8jqo_Glq-3aq-hKPnQsXKuEGDl0gblC0do80w5VeNX9dd-ZbsAg4cAmW2o6Siiwy-2jEmecZfdt7qhoTddg",
+        "remove": "AB9zfpLjhqREP1NUb1r995ZH4_-MkqI9CylRg1pxJL8fYYb04gJpW9aey_TH0DAkR4dAH22uOpMlatGm59eqethdx_zfzmiF0w"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJjJiCDvKyRvCM4Z7foFRTxSVpfE51RFN3iF2B1sXZxAy87lwFZY0R2CP7rGiNl0NRNXa1apyWF5DnsVPQS3LMohE3dMZDZuMbsicUatBdT_zeclYo",
+        "unpin": "AB9zfpLH9EJW85zknoP77G600ICzWNEqpynOzN_L7E_1eihHxWMIpmD83L8C5AzEaHceeurIzLTwrM6uWrdFhrUNgcjUFD0nLspyCu6Hj2pJ2OOdzpxlbdU"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/UEIvmfVDL5fgpbgTitoFWlqypXvPyx-_z5Gw3NZg_VytvSgi-Y6ASvLhM_nqLszl2gEyA4lBKyjt4C5mIA=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/UEIvmfVDL5fgpbgTitoFWlqypXvPyx-_z5Gw3NZg_VytvSgi-Y6ASvLhM_nqLszl2gEyA4lBKyjt4C5mIA=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "7:51",
+      "duration_seconds": 471,
+      "setVideoId": "E3723B5F76BC9234"
+    },
+    {
+      "videoId": "b-OatJ97Vi0",
+      "title": "Adoration'm",
+      "artists": [
+        {
+          "name": "T-vice",
+          "id": "UCneyvhQumGbPjF1W2FDMlZQ"
+        }
+      ],
+      "album": {
+        "name": "Min Medikaman",
+        "id": "MPREb_xSVHuGFgY9w"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJhyosWNNyGr5AUZF-Zx4tE75wDoJrzHj4h_b-Xg6Tzed3lkI5oLE6GIuTs3KwK_60JcrLzk7OhI_8kHF4YAHSR8u3toQ",
+        "remove": "AB9zfpKxzog3Q77qv_6now84Lv0_MDO8WM9f9oUyzkjWhaxUtz4lM01C0Q0jGWUTwVQh8hZb16SIWI2HH3nEd9IvdvttMqibWA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLmEHy7H-RtpZXF5xYcEeVxZ0jCncJE-5u49y185N-v13ucoxnSYp3LnOBonEhMQ7LMJJhcVankfMdpd2-IPFFmiObOih8EeOnMrMYe9IZnOJFM85Q",
+        "unpin": "AB9zfpLlZqwy_M0OHGSw_oyxbb1pVai8yYl0gMZYg8w3nLBALyDJGi6dN_mAGnODA8USyZkKWfprlWslM5c_C5qM-vmCXcRh2DJ7syAyoxYGqJxYS2-W0rk"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/6TtuHZnojO-r6c2lWliXLVkIy0MI8iLNH0wCuYzQYWKwGaOGE-Hfpska6cCmxbTA0eq7DdD3KvExmL2FAA=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/6TtuHZnojO-r6c2lWliXLVkIy0MI8iLNH0wCuYzQYWKwGaOGE-Hfpska6cCmxbTA0eq7DdD3KvExmL2FAA=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "7:26",
+      "duration_seconds": 446,
+      "setVideoId": "9DC529B9278DFF29"
+    },
+    {
+      "videoId": "AYV5GosRcpM",
+      "title": "Chagren lanmou",
+      "artists": [
+        {
+          "name": "Tabou Combo",
+          "id": "UCp7g2PL0RXDFfur0tvETHBA"
+        }
+      ],
+      "album": {
+        "name": "Référence",
+        "id": "MPREb_XdIZVHoTDjo"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpLdseaw0MwsEffIpVojIafBO3LX_bPVkT5pBfBPUJ8U6xDhzfe5StnqeuvyZSxRjJxEHJ1U6qAq3AjiwYXijG3BhYSBxg",
+        "remove": "AB9zfpJY-GscJ8PCMyXZGZjxnnyVbtPrKfD_lJ4DNLo0ursd068GeplfUqNk0bYK-lhRmo0NqNNb28q9lBmZv_jwHfeVfYKlzg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIMJMx28WuZ0vk7J4SK3uvJ1xKkJmzGEDeFIT2dTkxflPvMh0Hv1P6fzb7Ej8uKIYkjqaQ8dOJ8q22ZMkglyOST-8bzVQQW_t5C3tGNX2of9KbdrlQ",
+        "unpin": "AB9zfpIUTS4TWmUmfPmfTnQQyh9qv_xHpNFXxx18d07bEYHP-AW_J-NHEEBHqC09eCOwERq4vCL_JIYG3Ph6MH0T4c68exD0ZsnFNmXiOwhd7EPQ-hoNb2s"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/7Vbs-td11ex1IsfKd5_f56lfWJtsOu4om5I1-OHpAZ7_qJT1-uCV2PoqmONnHEMMO0Mnc__7ICb2d4apLQ=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/7Vbs-td11ex1IsfKd5_f56lfWJtsOu4om5I1-OHpAZ7_qJT1-uCV2PoqmONnHEMMO0Mnc__7ICb2d4apLQ=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "6:46",
+      "duration_seconds": 406,
+      "setVideoId": "A72AF2DFA4B37810",
+      "creditsBrowseId": "MPTCAYV5GosRcpM"
+    },
+    {
+      "videoId": "hzAiD3SMBXw",
+      "title": "An ti zagre",
+      "artists": [
+        {
+          "name": "Kali",
+          "id": "UC0weveliJs9Z4NNrz44I08g"
+        }
+      ],
+      "album": {
+        "name": "Racines, vol. 4",
+        "id": "MPREb_LDwlt4OVoGq"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJ1Zg_xkE7vM0OkPPsaascRDQ3BAp-IO93fvHvRNe1sClqdhsX749U0ekc05Vq93IZhhj621ReyciAWKRSXO7m7-hk06A",
+        "remove": "AB9zfpLi9wdDbF9C2gdl9Sisg3-oKgrBDh6LXWbms5fI18_K_ulFYmom1VKx_7hbqINPmbNasq7oiRLU2ZLFlhO6X61BMgFRZA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKdXzU8ZxI0gSZO4YPRNb2ftD5afotuhqDU3a7pVBoNTRtHjgioR_8mRtIY-LtRItZQXHysnmL_npE8BbtfF_9s5rntK50YY3xBdxgXQpMI-PT4wac",
+        "unpin": "AB9zfpJHfan3YTo5EdMpSiMlCv-fA5nSXp4MvECpdNLfIRmjaJvsqO8LwY21wEc6kdxcmdIVFMxPWrWfSsxjnuJdPfDWil2YsXxHGL2HeUOtyAWclRGoan0"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/EkZQi7_SMTzWqCGh7rzb-DRReXP_dNBnxy_87bJmDGVBys9RR9iCCHgk67kPVZ3xEcUZaLtawVdlA9A=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/EkZQi7_SMTzWqCGh7rzb-DRReXP_dNBnxy_87bJmDGVBys9RR9iCCHgk67kPVZ3xEcUZaLtawVdlA9A=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "4:34",
+      "duration_seconds": 274,
+      "setVideoId": "6820575042A02C33",
+      "creditsBrowseId": "MPTChzAiD3SMBXw"
+    },
+    {
+      "videoId": "MyY-AquxiiU",
+      "title": "Kanel",
+      "artists": [
+        {
+          "name": "Gilles Floro",
+          "id": "UCQjohJqrMb7NSp3mBWmn2Eg"
+        }
+      ],
+      "album": {
+        "name": "Ho! Doudou Yes",
+        "id": "MPREb_uw5RAcl1Scy"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJzetdZTRa-UyDx_IT-XWjGOWdzad57hO0i-hcwirGYOt4qFhQjAKh1ICp9wN_L1F-domxwrOzopXXK5mmKOl1XkAj2QQ",
+        "remove": "AB9zfpI_Jpz91iRzqtXbgRZH9nPX0YZpO50TyGWdyRGSam4-6PdWTXrAqk_bdALEHADmK4XDQtZ0cq7tRE4PR1HsknswTLdF4w"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIJv9Rn6f8B2eGM0bwJs-K-vCp44HyJl0V61U90Vp21TrK1YIQRW0xAtl478B6aZqov1d1NJk8zbh7BJr5wiUSJH1RmD0wkC6-9GXcqpVH5pZCQ58M",
+        "unpin": "AB9zfpIybAS-i422_196DPINtRxm-UCpNKydQmGsyt9K9Kgk4FxiBQCg3anaBLVvddTl7ZenVLe_AK77gkBzQcxOuxNWRuwwknWs9rHdB6ONsq9zbPFrPWE"
+      },
+      "thumbnails": [
+        {
+          "url": "https://lh3.googleusercontent.com/E2jhfdeco5c27QKLOdDiub0qF-ryq1Z0i9yRza04JxNqSLOuPq70uivByfJjzTdcUC2h8JIg9vvztyC_=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://lh3.googleusercontent.com/E2jhfdeco5c27QKLOdDiub0qF-ryq1Z0i9yRza04JxNqSLOuPq70uivByfJjzTdcUC2h8JIg9vvztyC_=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:22",
+      "duration_seconds": 322,
+      "setVideoId": "96E7DABA196284B6"
+    }
+  ],
+  "duration_seconds": 25713
+>>>>>>> 97d78183778eeaf58d4ff972491a075cfd9f9f13
 }
