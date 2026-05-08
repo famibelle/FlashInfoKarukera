@@ -739,6 +739,29 @@
 
     // ── UI ───────────────────────────────────────────────────
 
+    // Helper pour extraire date et moment depuis item.label
+    _extractDateAndMoment(item) {
+      let dateStr = '8 mai';
+      let moment = 'matin';
+      
+      if (item.label) {
+        // Extraire la date (format YYYY-MM-DD)
+        const dateMatch = item.label.match(/(\d{4})-(\d{2})-(\d{2})/);
+        if (dateMatch) {
+          const day = dateMatch[3];
+          const monthIndex = parseInt(dateMatch[2]) - 1;
+          const monthNames = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+          dateStr = `${day} ${monthNames[monthIndex]}`;
+        }
+        
+        // Extraire le moment (matin, midi, soir)
+        if (item.label.includes('soir')) moment = 'soir';
+        else if (item.label.includes('midi')) moment = 'midi';
+      }
+      
+      return { dateStr, moment };
+    }
+
     _show() {
       document.getElementById('player-screen').style.display = 'block';
       document.getElementById('live-dot').classList.add('on');
@@ -768,47 +791,60 @@
     _updateNowPlaying(item) {
       btnPlay.textContent = '⏸';
       const subtypeLabels = {
-        flash_info:   '📰 Flash Info',
-        horoscope:    '✨ Horoscope',
-        announcement: '🎙️ Annonce',
+        flash_info:   'Votre Flash Info',
+        horoscope:    'Votre Horoscope',
+        announcement: 'Annonce',
       };
       if (item.type === 'music') {
-        document.getElementById('np-type').textContent   = '🎵 Musique';
+        document.getElementById('np-type').textContent   = 'Musique';
         document.getElementById('np-title').textContent  = item.title  || '—';
         document.getElementById('np-artist').textContent = item.artist || '';
       } else if (item.type === 'liner') {
-        document.getElementById('np-type').textContent   = '🎙️ Dans un moment…';
+        document.getElementById('np-type').textContent   = 'Dans un moment…';
         document.getElementById('np-title').textContent  = item.label || 'Annonce à venir';
         document.getElementById('np-artist').textContent = '';
       } else if (item.type === 'capsule') {
-        document.getElementById('np-type').textContent   = '🌺 Capsule culturelle';
+        document.getElementById('np-type').textContent   = 'Capsule culturelle';
         document.getElementById('np-title').textContent  = item.label || 'Guadeloupe';
         document.getElementById('np-artist').textContent = '';
       } else {
-        document.getElementById('np-type').textContent   = subtypeLabels[item.subtype] || '🎙️';
-        document.getElementById('np-title').textContent  = item.label || 'Transition';
-        document.getElementById('np-artist').textContent = '';
+        // Formatage personnalisé pour flash_info et horoscope
+        if (item.subtype === 'flash_info') {
+          const { dateStr, moment } = this._extractDateAndMoment(item);
+          document.getElementById('np-type').textContent   = 'Votre Flash Info';
+          document.getElementById('np-title').textContent  = `du ${dateStr} ${moment} en Guadeloupe`;
+          document.getElementById('np-artist').textContent = '';
+        } else if (item.subtype === 'horoscope') {
+          const { dateStr, moment } = this._extractDateAndMoment(item);
+          document.getElementById('np-type').textContent   = 'Votre Horoscope';
+          document.getElementById('np-title').textContent  = `de ce ${moment} du ${dateStr}`;
+          document.getElementById('np-artist').textContent = '';
+        } else {
+          document.getElementById('np-type').textContent   = subtypeLabels[item.subtype] || '🎙️';
+          document.getElementById('np-title').textContent  = item.label || 'Transition';
+          document.getElementById('np-artist').textContent = '';
+        }
       }
     }
 
     _renderQueue() {
-      const subtypeIcons = { flash_info: '📰', horoscope: '✨', announcement: '🎙️' };
+      const subtypeIcons = { flash_info: 'FI', horoscope: 'HO', announcement: 'AN' };
       const items = Array.from({ length: 5 }, (_, i) => this.seq[(this.pos + 1 + i) % this.seq.length]);
       document.getElementById('queue-list').innerHTML = items.map((it, i) => {
         let icon, title, artist = '';
         const targetIdx = (this.pos + 1 + i) % this.seq.length;
         if (it.type === 'music') {
-          icon   = '🎵';
+          icon   = 'MU';
           title  = it.title  || '—';
           artist = it.artist || '';
         } else if (it.type === 'liner') {
-          icon  = '🎙️';
+          icon  = 'LR';
           title = it.label || 'Dans un moment…';
         } else if (it.type === 'capsule') {
-          icon  = '🌺';
+          icon  = 'CP';
           title = it.label || 'Capsule culturelle';
         } else {
-          icon  = subtypeIcons[it.subtype] || '🎙️';
+          icon  = subtypeIcons[it.subtype] || 'TC';
           title = it.label || 'Transition';
         }
         return `<div class="queue-item" data-idx="${targetIdx}">
@@ -828,22 +864,22 @@
 
     _renderFullPlaylist() {
       if (!this._playlistOpen) return;
-      const subtypeIcons = { flash_info: '📰', horoscope: '✨', announcement: '🎙️' };
+      const subtypeIcons = { flash_info: 'FI', horoscope: 'HO', announcement: 'AN' };
       const el = document.getElementById('full-playlist');
       el.innerHTML = this.seq.map((it, i) => {
         let icon, title, artist = '';
         if (it.type === 'music') {
-          icon   = '🎵';
+          icon   = 'MU';
           title  = it.title  || '—';
           artist = it.artist || '';
         } else if (it.type === 'liner') {
-          icon  = '🎙️';
+          icon  = 'LR';
           title = it.label || 'Dans un moment…';
         } else if (it.type === 'capsule') {
-          icon  = '🌺';
+          icon  = 'CP';
           title = it.label || 'Capsule culturelle';
         } else {
-          icon  = subtypeIcons[it.subtype] || '🎙️';
+          icon  = subtypeIcons[it.subtype] || 'TC';
           title = it.label || 'Transition';
         }
         const cur = i === this.pos ? ' pl-current' : '';
