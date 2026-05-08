@@ -76,12 +76,12 @@ jobs:
         run: |
           git config user.name "github-actions[Émission]"
           git config user.email "github-actions@github.com"
+          git pull origin main --no-rebase -X ours --no-edit 2>/dev/null || true
           git add docs/audio/Emissions/emission-*.mp3 docs/audio/Emissions/emission-*.json docs/podcast.xml
-          git diff --cached --quiet || git commit -m "feat: émission culturelle quotidienne [skip ci]"
-          git stash --include-untracked || true
-          git pull --rebase -X theirs origin main
-          git stash drop 2>/dev/null || true
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m "feat: émission culturelle quotidienne [skip ci]"
+            git push || (git pull origin main --rebase -X ours --no-edit && git push)
+          fi
 
       - name: ⏱️  Execution Time Summary
         run: |

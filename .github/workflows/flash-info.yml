@@ -242,14 +242,12 @@ jobs:
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions [Flash Info]"
+          git pull origin main --no-rebase -X ours --no-edit 2>/dev/null || true
           git add data/used_articles_*.json archives/flash-info/
           git add docs/audio/flash-info/
           if ! git diff --cached --quiet; then
             git commit -m "chore: flash info ${{ env.TARGET_DATE }} — archive + anti-répétition + RSS [skip ci]"
-            git stash --include-untracked || true
-            git pull --rebase -X theirs origin main
-            git stash drop 2>/dev/null || true
-            git push
+            git push || (git pull origin main --rebase -X ours --no-edit && git push)
           else
             echo "Aucun changement à commiter"
           fi

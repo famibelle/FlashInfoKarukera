@@ -112,13 +112,11 @@ jobs:
           echo "::notice title=🌺 Capsules::[4/5] Commit des capsules..."
           git config user.name "github-actions[Capsules]"
           git config user.email "github-actions@github.com"
+          git pull origin main --no-rebase -X ours --no-edit 2>/dev/null || true
           git add docs/capsules/ playlists/youtube_cache.json
           if ! git diff --cached --quiet; then
             git commit -m "feat: capsules culturelles ${{ env.TARGET_DATE }} [skip ci]"
-            git stash --include-untracked || true
-            git pull --rebase -X theirs origin main
-            git stash drop 2>/dev/null || true
-            git push
+            git push || (git pull origin main --rebase -X ours --no-edit && git push)
             COMMIT_DURATION=$(( $(date +%s) - COMMIT_START ))
             echo "::notice title=✅ Capsules::[4/5] Commit terminé en ${COMMIT_DURATION}s"
           else
