@@ -3053,9 +3053,11 @@ def main():
             sys.exit(1)
         return
 
+    now_utc = datetime.now(timezone.utc)
     now_gwada = datetime.now(GUADELOUPE_TZ)
     heure_paris = _now_paris_str("%Hh%M")
     print(f"🕐 Heure locale Guadeloupe : {_date_fr(now_gwada.date())} — {now_gwada.strftime('%H:%M')} (UTC{now_gwada.strftime('%z')[:3]}:{now_gwada.strftime('%z')[3:]})")
+    print(f"🕐 Heure UTC : {_date_fr(now_utc.date())} — {now_utc.strftime('%H:%M')} UTC")
 
     edition = args.edition or _detect_edition()
     print(f"📻  Édition : {edition.upper()}")
@@ -3067,7 +3069,9 @@ def main():
             print(f"❌ Format de date invalide : '{args.date}'. Attendu : YYYY-MM-DD", file=sys.stderr)
             sys.exit(1)
     else:
-        target_date = now_gwada.date()
+        # Utiliser la date UTC pour correspondre aux workflows GitHub Actions
+        # (la Guadeloupe est UTC-4, donc à 03h UTC c'est encore la veille là-bas)
+        target_date = now_utc.date()
 
     tomorrow = target_date + timedelta(days=1)
     now = datetime.combine(target_date, datetime.min.time())
