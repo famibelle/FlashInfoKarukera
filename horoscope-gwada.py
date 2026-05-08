@@ -299,9 +299,80 @@ def _format_horoscope_date_edition(d: Date, edition: str) -> str:
     return f"{date_without_year} {edition}"
 
 
-def generate_horoscope_title(signs_fr: list[str], gen_date: Date, edition: str) -> str:
-    """Génère un titre accrocheur pour l'Horoscope.
-    Format: '[Croisement de signes], dans votre Horoscope du [jour moment]'
+def _format_horoscope_date_full(d: Date, edition: str) -> str:
+    """Retourne ex: 'de ce matin du vendredi 8 mai'."""
+    date_str = _date_fr(d)
+    # Retirer l'année
+    date_without_year = date_str.replace(str(d.year), "").strip()
+    # Mettre en minuscule le jour
+    day_lower = date_without_year.split()[0].lower()
+    rest = " ".join(date_without_year.split()[1:])
+    return f"de ce {edition} du {day_lower} {rest}"
+
+
+def generate_horoscope_title_llm(horoscope_text: str, gen_date: Date, edition: str, api_key: str = None) -> str:
+    """Génère un titre accrocheur via LLM basé sur les thèmes astraux du texte.
+    Format: '[Croisement des thèmes], dans votre horoscope de ce [moment] du [jour] [date]'
+    """
+    import re
+    
+    # Emoji par édition
+    edition_emojis = {
+        "matin": "🌅",
+        "midi": "🌞",
+        "soir": "🌙",
+    }
+    emoji = edition_emojis.get(edition, "✨")
+    
+    # Si pas de texte ou pas de clé API, fallback sur l'ancienne méthode
+    if not horoscope_text or not api_key:
+        return generate_horoscope_title_fallback([], gen_date, edition)
+    
+    try:
+        # Extraire une partie du texte (premiers 1000 caractères pour éviter un prompt trop long)
+        text_sample = horoscope_text[:1000]
+        
+        # Prompt pour le LLM
+        prompt = f"""Analyse ce texte d'horoscope guadeloupéen et identifie les 2 thèmes astraux principaux des signes mentionnés.
+Crée un croisement surprenant, poétique et culturel entre ces thèmes.
+Utilise des mots créoles si possible (vaniy, zanmi, lavi, etc.).
+
+Texte :
+{text_sample}
+
+Retourne UNIQUEMENT le titre au format :
+'[Croisement poétique des thèmes]'
+Sans explication, sans guillemets, maximum 50 caractères."""
+        
+        # Appel LLM
+        raw_title = call_mistral_api(
+            prompt,
+            api_key,
+            model="mistral-small",
+            max_tokens=100,
+            temperature=0.8
+        )
+        
+        if raw_title:
+            # Nettoyer le titre
+            title = raw_title.strip()
+            title = re.sub(r'[\[\]\*\`"\'\n\r]', '', title)
+            title = re.sub(r'\s+', ' ', title).strip()
+            
+            # Formater la date
+            date_full = _format_horoscope_date_full(gen_date, edition)
+            return f"{emoji} {title}, dans votre horoscope {date_full}"
+        
+    except Exception as e:
+        print(f"⚠️  Erreur LLM pour le titre horoscope : {e}")
+    
+    # Fallback sur l'ancienne méthode
+    return generate_horoscope_title_fallback([], gen_date, edition)
+
+
+def generate_horoscope_title_fallback(signs_fr: list[str], gen_date: Date, edition: str) -> str:
+    """Génère un titre accrocheur pour l'Horoscope (méthode fallback sans LLM).
+    Format: '[Croisement de signes], dans votre horoscope de ce [moment] du [jour] [date]'
     """
     import re
     
@@ -314,8 +385,8 @@ def generate_horoscope_title(signs_fr: list[str], gen_date: Date, edition: str) 
     emoji = edition_emojis.get(edition, "✨")
     
     if not signs_fr:
-        date_edition = _format_horoscope_date_edition(gen_date, edition)
-        return f"{emoji} Horoscope, dans votre Horoscope du {date_edition}"
+        date_full = _format_horoscope_date_full(gen_date, edition)
+        return f"{emoji} Horoscope, dans votre horoscope {date_full}"
     
     # Prendre les 2-3 premiers signes
     signs = signs_fr[:3]
@@ -354,8 +425,19 @@ def generate_horoscope_title(signs_fr: list[str], gen_date: Date, edition: str) 
         # Pour plusieurs signes, utiliser une phrase générique
         title = f"{title} : l'alliance des énergies"
     
-    date_edition = _format_horoscope_date_edition(gen_date, edition)
-    return f"{emoji} {title}, dans votre Horoscope du {date_edition}"
+    date_full = _format_horoscope_date_full(gen_date, edition)
+    return f"{emoji} {title}, dans votre horoscope {date_full}"
+
+
+def generate_horoscope_title(signs_fr: list[str], gen_date: Date, edition: str, api_key: str = None, horoscope_text: str = None) -> str:
+    """Génère un titre accrocheur pour l'Horoscope.
+    Privilégie le LLM si texte et clé API disponibles, sinon fallback.
+    """
+    # Si on a le texte et la clé, utiliser LLM
+    if horoscope_text and api_key:
+        return generate_horoscope_title_llm(horoscope_text, gen_date, edition, api_key)
+    # Sinon fallback
+    return generate_horoscope_title_fallback(signs_fr, gen_date, edition)
 
 
 # ── Météo (contexte local) ────────────────────────────────────────────────────
@@ -2160,7 +2242,12 @@ def main():
     _upload_to_b2(output_path, b2_key_audio)
 
     edition_emoji = "🌅" if args.edition == "matin" else "🌙"
-    ia_episode_title = generate_horoscope_title(signs_fr, gen_date, args.edition)
+    horoscope_full_text = "\n\n".join(archive_texts)
+    ia_episode_title = generate_horoscope_title(
+        signs_fr, gen_date, args.edition,
+        api_key=MISTRAL_API_KEY if MISTRAL_API_KEY else None,
+        horoscope_text=horoscope_full_text
+    )
 
     # ── GitHub Releases — audio public ───────────────────────────────────────
     gh_tag = f"horoscope-{gen_date.strftime('%Y-%m')}"
@@ -2207,7 +2294,11 @@ def main():
             all_sign_tags   = list(dict.fromkeys(t for tags in signs_hashtags for t in tags))
             tiktok_hashtags = HOROSCOPE_HASHTAGS_BASE + all_sign_tags
             video_metadata = {
-                "title":       generate_horoscope_title(signs_fr, gen_date, args.edition),
+                "title":       generate_horoscope_title(
+                    signs_fr, gen_date, args.edition,
+                    api_key=MISTRAL_API_KEY if MISTRAL_API_KEY else None,
+                    horoscope_text=horoscope_full_text
+                ),
                 "artist":      "Botiran",
                 "album":       "Horoscope Karukera",
                 "description": intro_text[:500],
@@ -2267,7 +2358,11 @@ def main():
     # ── Buzzsprout ────────────────────────────────────────────────────────────
     if not args.dry_run and not args.no_send and BUZZSPROUT_API_TOKEN and BUZZSPROUT_PODCAST_ID:
         signs_label = ", ".join(signs_fr)
-        bz_title = generate_horoscope_title(signs_fr, gen_date, args.edition)
+        bz_title = generate_horoscope_title(
+            signs_fr, gen_date, args.edition,
+            api_key=MISTRAL_API_KEY if MISTRAL_API_KEY else None,
+            horoscope_text=horoscope_full_text
+        )
         bz_description = (
             f"Horoscope {args.edition} du {_date_fr(gen_date)} par Maryse.\n"
             f"Signes du jour : {signs_label}.\n\n"
