@@ -1959,8 +1959,7 @@ NOMBRE DE TEXTES: {len(journalist_texts)}
         api_key,
         model="mistral-small",
         max_tokens=500,
-        temperature=0.3,
-        json_mode=True
+        temperature=0.3
     )
     
     if raw:
@@ -2170,7 +2169,7 @@ def generate_antenne_dream(date_obj, llm_key=None):
             try:
                 # Préparer les données contextuelles spécifiques
                 liners_for_corinne = liner_issues if name in ["Corinne", "corinne"] else None
-                capsule_themes = list(elements.keys()) if name in ["Mulatresse Solitude", "Solitude", "solitude"] else None
+                capsule_themes = [] if name in ["Mulatresse Solitude", "Solitude", "solitude"] else None
                 
                 if texts:
                     animateurs[name] = evaluate_journalist_llm(
@@ -2359,7 +2358,7 @@ Les {len(flash_infos)} Flash Infos dansaient avec les {len(horoscopes)} horoscop
 mais {critical_liner_issues} ombres critiques et {len(liner_warnings)} avertissements (les liners à corriger) perturbaient l'harmonie avec la programmation musicale.
 Avec une cohérence de {coherence_rate:.0f}%, l'équipe devait réaligner chaque liner avec son artiste.
 
-Harry, avec ses 3 passages parfaits, continuait d'inspirer, tandis que Solitude, reine de la nuit avec {animateurs['Solitude']['passages']} passages,
+Harry, avec ses 3 passages parfaits, continuait d'inspirer, tandis que Solitude, reine de la nuit avec {animateurs.get('Mulatresse Solitude', {}).get('passages', 0)} passages,
 monnait l'exemple. Maryse, parfaite avec sa note de 10/10, était notre étoile polaire.
 
 Au réveil, le Directeur a compris qu'il fallait :
