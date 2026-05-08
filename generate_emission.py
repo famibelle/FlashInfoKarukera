@@ -179,8 +179,49 @@ def _load_prompt(filename: str) -> str:
 SYSTEM_PROMPT = _load_prompt("monique_ame.md") + "\n\n" + _load_prompt("monique.md") + "\n\n" + _load_prompt("emission_instruction.md")
 
 
+def generate_catchy_title(elements: dict, text: str = "") -> str:
+    """Genere un titre accrocheur pour l'emission base sur les elements et le texte."""
+    track = elements.get("inspiration", {})
+    track_title = track.get("title", "")
+    track_artist = track.get("artist", "")
+    
+    # Extraire les themes principaux des elements
+    themes = []
+    category_titles = {
+        "kreyol_resistance_symbol_ref.md": "Symboles de resistance creole",
+        "faune_guadeloupe_ref.md": "Faune de Guadeloupe",
+        "flore_guadeloupe_ref.md": "Flore de Guadeloupe",
+        "lieux_spirituels_ref.md": "Lieux spirituels",
+        "histoire_guadeloupe_ref.md": "Histoire de Guadeloupe",
+    }
+    
+    for file_key, category_title in category_titles.items():
+        if file_key in elements:
+            content = elements[file_key].get("content", "")
+            if content:
+                # Extraire le premier mot ou sujet principal
+                first_word = content.split("\t")[0].split("|")[0].strip()
+                if first_word and first_word != "Plante" and first_word != "Insecte" and first_word != "Cap" and first_word != "1815":
+                    themes.append(first_word)
+    
+    # Si on a des themes, les utiliser
+    if themes:
+        main_theme = themes[0]
+        if track_title:
+            return f"{main_theme} : lission inspiree par {track_title} — Radio Karukera"
+        else:
+            return f"Decouverte de {main_theme} — Radio Karukera"
+    
+    # Fallback avec l'inspiration musicale
+    if track_title:
+        return f"Emmission culturelle inspiree par {track_title} — Radio Karukera"
+    
+    # Fallback generique
+    return "Emmission culturelle — Decouverte de la Guadeloupe"
+
+
 def generate_monologue(elements: dict, verbose: bool = False) -> str:
-    """Génère le texte du monologue via LLM."""
+    """Genere le texte du monologue via LLM."""
     track = elements.get("inspiration", {})
     track_desc = f"'{track['title']}' par {track['artist']} ({track['genre']})"
     
@@ -404,11 +445,15 @@ def main():
     word_count = len(text.split())
     print(f"✅ Monologue généré : {word_count} mots")
     
+    # 2.5. Générer un titre accrocheur
+    catchy_title = generate_catchy_title(elements, text)
+    print(f"✅ Titre accrocheur : {catchy_title}")
+    
     # 3. Sauvegarde JSON
     output_data = {
         "date": today,
         "type": "emission",
-        "title": "Émission culturelle — Découverte de la Guadeloupe",
+        "title": catchy_title,
         "duration": "~3 minutes",
         "word_count": word_count,
         "voice": f"{TTS_VOICE_BASE}* (tons variés)",
@@ -451,7 +496,7 @@ def main():
     print(f"✅ MP3 → {out_mp3} ({size_kb} Ko)")
 
     # 5. Mise à jour du podcast.xml
-    _update_podcast_xml(out_mp3)
+    _update_podcast_xml(out_mp3, title=catchy_title)
     
     # 6. Lecture automatique du fichier
     print("\n🔊 Lecture du fichier audio...")
@@ -489,8 +534,8 @@ def _indent_xml(elem, level=0):
             elem.tail = i
 
 
-def _update_podcast_xml(mp3_path: Path) -> None:
-    """Ajoute l'émission au fichier podcast.xml."""
+def _update_podcast_xml(mp3_path: Path, title: str = "Émission culturelle") -> None:
+    """Ajoute l'émission au fichier podcast.xml avec un titre personnalise."""
     PODCAST_PATH = Path("docs/podcast.xml")
     if not PODCAST_PATH.exists():
         print("⚠️  podcast.xml introuvable")
@@ -523,7 +568,7 @@ def _update_podcast_xml(mp3_path: Path) -> None:
         
         # Créer le nouvel item
         item = ET.Element('item')
-        ET.SubElement(item, 'title').text = f"Émission culturelle — {today.isoformat()}"
+        ET.SubElement(item, 'title').text = title
         desc = ET.SubElement(item, 'description')
         desc.text = "Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe."
         ET.SubElement(item, 'pubDate').text = pub_date
