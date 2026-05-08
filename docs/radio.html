@@ -790,37 +790,32 @@
 
     _updateNowPlaying(item) {
       btnPlay.textContent = '⏸';
-      const subtypeLabels = {
-        flash_info:   'Votre Flash Info',
-        horoscope:    'Votre Horoscope',
-        announcement: 'Annonce',
-      };
       if (item.type === 'music') {
-        document.getElementById('np-type').textContent   = 'Musique';
+        document.getElementById('np-type').textContent   = '🎵 Musique';
         document.getElementById('np-title').textContent  = item.title  || '—';
         document.getElementById('np-artist').textContent = item.artist || '';
       } else if (item.type === 'liner') {
-        document.getElementById('np-type').textContent   = 'Dans un moment…';
+        document.getElementById('np-type').textContent   = '🎙️ Dans un moment…';
         document.getElementById('np-title').textContent  = item.label || 'Annonce à venir';
         document.getElementById('np-artist').textContent = '';
       } else if (item.type === 'capsule') {
-        document.getElementById('np-type').textContent   = 'Capsule culturelle';
+        document.getElementById('np-type').textContent   = '🌺 Capsule culturelle';
         document.getElementById('np-title').textContent  = item.label || 'Guadeloupe';
         document.getElementById('np-artist').textContent = '';
       } else {
         // Formatage personnalisé pour flash_info et horoscope
         if (item.subtype === 'flash_info') {
           const { dateStr, moment } = this._extractDateAndMoment(item);
-          document.getElementById('np-type').textContent   = 'Votre Flash Info';
+          document.getElementById('np-type').textContent   = '📰 Votre Flash Info';
           document.getElementById('np-title').textContent  = `du ${dateStr} ${moment} en Guadeloupe`;
           document.getElementById('np-artist').textContent = '';
         } else if (item.subtype === 'horoscope') {
           const { dateStr, moment } = this._extractDateAndMoment(item);
-          document.getElementById('np-type').textContent   = 'Votre Horoscope';
+          document.getElementById('np-type').textContent   = '✨ Votre Horoscope';
           document.getElementById('np-title').textContent  = `de ce ${moment} du ${dateStr}`;
           document.getElementById('np-artist').textContent = '';
         } else {
-          document.getElementById('np-type').textContent   = subtypeLabels[item.subtype] || '🎙️';
+          document.getElementById('np-type').textContent   = '🎙️';
           document.getElementById('np-title').textContent  = item.label || 'Transition';
           document.getElementById('np-artist').textContent = '';
         }
@@ -828,23 +823,23 @@
     }
 
     _renderQueue() {
-      const subtypeIcons = { flash_info: 'FI', horoscope: 'HO', announcement: 'AN' };
+      const subtypeIcons = { flash_info: '📰', horoscope: '✨', announcement: '🎙️' };
       const items = Array.from({ length: 5 }, (_, i) => this.seq[(this.pos + 1 + i) % this.seq.length]);
       document.getElementById('queue-list').innerHTML = items.map((it, i) => {
         let icon, title, artist = '';
         const targetIdx = (this.pos + 1 + i) % this.seq.length;
         if (it.type === 'music') {
-          icon   = 'MU';
+          icon   = '🎵';
           title  = it.title  || '—';
           artist = it.artist || '';
         } else if (it.type === 'liner') {
-          icon  = 'LR';
+          icon  = '🎙️';
           title = it.label || 'Dans un moment…';
         } else if (it.type === 'capsule') {
-          icon  = 'CP';
+          icon  = '🌺';
           title = it.label || 'Capsule culturelle';
         } else {
-          icon  = subtypeIcons[it.subtype] || 'TC';
+          icon  = subtypeIcons[it.subtype] || '🎙️';
           title = it.label || 'Transition';
         }
         return `<div class="queue-item" data-idx="${targetIdx}">
@@ -864,22 +859,22 @@
 
     _renderFullPlaylist() {
       if (!this._playlistOpen) return;
-      const subtypeIcons = { flash_info: 'FI', horoscope: 'HO', announcement: 'AN' };
+      const subtypeIcons = { flash_info: '📰', horoscope: '✨', announcement: '🎙️' };
       const el = document.getElementById('full-playlist');
       el.innerHTML = this.seq.map((it, i) => {
         let icon, title, artist = '';
         if (it.type === 'music') {
-          icon   = 'MU';
+          icon   = '🎵';
           title  = it.title  || '—';
           artist = it.artist || '';
         } else if (it.type === 'liner') {
-          icon  = 'LR';
+          icon  = '🎙️';
           title = it.label || 'Dans un moment…';
         } else if (it.type === 'capsule') {
-          icon  = 'CP';
+          icon  = '🌺';
           title = it.label || 'Capsule culturelle';
         } else {
-          icon  = subtypeIcons[it.subtype] || 'TC';
+          icon  = subtypeIcons[it.subtype] || '🎙️';
           title = it.label || 'Transition';
         }
         const cur = i === this.pos ? ' pl-current' : '';
