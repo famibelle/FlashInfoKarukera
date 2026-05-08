@@ -471,7 +471,9 @@
 
     async load() {
       try {
-        const r    = await fetch('radio_sequence.json?t=' + Date.now());
+        // radio_sequence.json est a la racine, radio.html est dans docs/
+        // Utiliser un chemin absolu depuis la racine du site
+        const r    = await fetch('/FlashInfoKarukera/radio_sequence.json?t=' + Date.now());
         const data = await r.json();
         this.seq   = data.sequence || [];
       } catch (e) {
