@@ -78,8 +78,9 @@
 
 
 
-    /* YouTube frame */
+    /* YouTube frame - masqué par défaut, affiché via _showYT() */
     #yt-wrap {
+      display: none;
       width: 100%;
       aspect-ratio: 16/9;
       border-radius: 12px;
@@ -108,6 +109,8 @@
       cursor: pointer;
       touch-action: none;  /* Désactive le scroll natif pour permettre preventDefault */
     }
+
+    /* YouTube wrap - masqué par défaut, affiché uniquement pour les vidéos */
 
     #transition-overlay.on { display: flex; }
 
