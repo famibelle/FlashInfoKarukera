@@ -2772,6 +2772,13 @@ def main():
             "Combinable avec --horoscope-signs, --horoscope-include, --tiktok, --output."
         ),
     )
+    parser.add_argument(
+        "--overwrite", action="store_true",
+        help=(
+            "Écrase les fichiers JSON et MP3 existants sans vérification. "
+            "Utile pour régénérer un flash info pour une date déjà traitée."
+        ),
+    )
     args = parser.parse_args()
 
     if args.test_horoscope:
