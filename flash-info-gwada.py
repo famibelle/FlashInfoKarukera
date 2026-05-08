@@ -308,6 +308,46 @@ def _load_prompt(filename: str) -> str:
     return (PROMPTS_DIR / filename).read_text(encoding="utf-8").rstrip()
 
 
+def _format_date_edition(d: Date, edition: str) -> str:
+    """Retourne ex: 'vendredi 8 mai matin'."""
+    date_str = _date_fr(d)
+    # Retirer l'année
+    date_without_year = date_str.replace(str(d.year), "").strip()
+    return f"{date_without_year} {edition}"
+
+
+def generate_flash_info_title(items: list[dict], target_date: Date, edition: str) -> str:
+    """Génère un titre accrocheur pour Flash Info.
+    Format: '[Sujet], dans votre Flash Info du [jour moment]'
+    """
+    import re
+    if not items:
+        date_edition = _format_date_edition(target_date, edition)
+        return f"Flash Info, dans votre Flash Info du {date_edition}"
+    
+    # Prendre le premier article
+    first_item = items[0]
+    title = (first_item.get("title") or "").strip()
+    
+    # Nettoyer le titre (enlever les balises, les guillemets, etc.)
+    title = re.sub(r'[\[\]\*\`"\'\n\r]', '', title)
+    title = re.sub(r'\s+', ' ', title).strip()
+    
+    # Limiter la longueur pour rester dans les 80 caractères finaux
+    # " dans votre Flash Info du vendredi 8 mai matin" = 42 caractères
+    # Donc max 38 caractères pour le titre
+    max_title_len = 38
+    if len(title) > max_title_len:
+        # Couper au dernier espace avant la limite
+        title = title[:max_title_len]
+        last_space = title.rfind(' ')
+        if last_space > 0:
+            title = title[:last_space]
+    
+    date_edition = _format_date_edition(target_date, edition)
+    return f"{title}, dans votre Flash Info du {date_edition}"
+
+
 # ── Étape 1 : Collecte RSS ────────────────────────────────────────────────────
 
 def _shorten_desc(text: str, max_chars: int) -> str:
@@ -3286,7 +3326,7 @@ def main():
     if items:
         save_used_titles(target_date, [it["title"] for it in items])
 
-    title      = f"Flash Info Guadeloupe — {date_str}, édition du {edition}"
+    title      = generate_flash_info_title(items, target_date, edition)
     intro_text = segments[0].strip() if segments else ""
 
     # ── Backblaze B2 — audio ──────────────────────────────────────────────────

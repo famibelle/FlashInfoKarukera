@@ -290,6 +290,74 @@ def _moment_du_jour() -> str:
 def _load_prompt(filename: str) -> str:
     return (PROMPTS_DIR / filename).read_text(encoding="utf-8").rstrip()
 
+
+def _format_horoscope_date_edition(d: Date, edition: str) -> str:
+    """Retourne ex: 'vendredi 8 mai matin'."""
+    date_str = _date_fr(d)
+    # Retirer l'année
+    date_without_year = date_str.replace(str(d.year), "").strip()
+    return f"{date_without_year} {edition}"
+
+
+def generate_horoscope_title(signs_fr: list[str], gen_date: Date, edition: str) -> str:
+    """Génère un titre accrocheur pour l'Horoscope.
+    Format: '[Croisement de signes], dans votre Horoscope du [jour moment]'
+    """
+    import re
+    
+    # Emoji par édition
+    edition_emojis = {
+        "matin": "🌅",
+        "midi": "🌞",
+        "soir": "🌙",
+    }
+    emoji = edition_emojis.get(edition, "✨")
+    
+    if not signs_fr:
+        date_edition = _format_horoscope_date_edition(gen_date, edition)
+        return f"{emoji} Horoscope, dans votre Horoscope du {date_edition}"
+    
+    # Prendre les 2-3 premiers signes
+    signs = signs_fr[:3]
+    
+    # Nettoyer les noms de signes (enlever les balises, etc.)
+    signs = [re.sub(r'[\[\]\*\`"\'\n\r]', '', s).strip() for s in signs]
+    
+    # Créer un croisement inattendu
+    if len(signs) == 1:
+        title = signs[0]
+    elif len(signs) == 2:
+        title = f"{signs[0]} & {signs[1]}"
+    else:
+        title = f"{signs[0]}, {signs[1]} & {signs[2]}"
+    
+    # Ajouter un thème basé sur les éléments des signes
+    themes = {
+        "Bélier": "l'audace",
+        "Taureau": "la stabilité",
+        "Gémeaux": "la communication",
+        "Cancer": "l'intuition",
+        "Lion": "la créativité",
+        "Vierge": "la précision",
+        "Balance": "l'harmonie",
+        "Scorpion": "la passion",
+        "Sagittaire": "l'aventure",
+        "Capricorne": "la persévérance",
+        "Verseau": "l'innovation",
+        "Poissons": "les émotions",
+    }
+    
+    # Trouver un thème commun ou créer une phrase
+    if len(signs) == 1 and signs[0] in themes:
+        title = f"{signs[0]} : {themes[signs[0]]}"
+    elif len(signs) >= 2:
+        # Pour plusieurs signes, utiliser une phrase générique
+        title = f"{title} : l'alliance des énergies"
+    
+    date_edition = _format_horoscope_date_edition(gen_date, edition)
+    return f"{emoji} {title}, dans votre Horoscope du {date_edition}"
+
+
 # ── Météo (contexte local) ────────────────────────────────────────────────────
 
 def _rain_label(mm: float) -> str:
@@ -2092,7 +2160,7 @@ def main():
     _upload_to_b2(output_path, b2_key_audio)
 
     edition_emoji = "🌅" if args.edition == "matin" else "🌙"
-    ia_episode_title = f"{edition_emoji} Horoscope {args.edition} — {_date_fr(gen_date)}"
+    ia_episode_title = generate_horoscope_title(signs_fr, gen_date, args.edition)
 
     # ── GitHub Releases — audio public ───────────────────────────────────────
     gh_tag = f"horoscope-{gen_date.strftime('%Y-%m')}"
@@ -2139,7 +2207,7 @@ def main():
             all_sign_tags   = list(dict.fromkeys(t for tags in signs_hashtags for t in tags))
             tiktok_hashtags = HOROSCOPE_HASHTAGS_BASE + all_sign_tags
             video_metadata = {
-                "title":       f"{edition_emoji} Horoscope Karukera — {date_label}",
+                "title":       generate_horoscope_title(signs_fr, gen_date, args.edition),
                 "artist":      "Botiran",
                 "album":       "Horoscope Karukera",
                 "description": intro_text[:500],
@@ -2199,7 +2267,7 @@ def main():
     # ── Buzzsprout ────────────────────────────────────────────────────────────
     if not args.dry_run and not args.no_send and BUZZSPROUT_API_TOKEN and BUZZSPROUT_PODCAST_ID:
         signs_label = ", ".join(signs_fr)
-        bz_title = f"Horoscope {args.edition} du {_date_fr(gen_date)} — {signs_label}"
+        bz_title = generate_horoscope_title(signs_fr, gen_date, args.edition)
         bz_description = (
             f"Horoscope {args.edition} du {_date_fr(gen_date)} par Maryse.\n"
             f"Signes du jour : {signs_label}.\n\n"
