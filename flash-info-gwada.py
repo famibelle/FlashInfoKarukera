@@ -17,7 +17,7 @@ import urllib.request
 import urllib.parse
 import urllib.error
 import xml.etree.ElementTree as ET
-from datetime import datetime, date as Date, timedelta
+from datetime import datetime, date as Date, timedelta, timezone
 from email.utils import parsedate
 from pathlib import Path
 from zoneinfo import ZoneInfo
