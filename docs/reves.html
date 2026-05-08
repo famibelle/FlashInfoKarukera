@@ -85,11 +85,15 @@
       border-radius: 16px;
       padding: 1.5rem;
       transition: border-color 0.15s, transform 0.15s;
-      cursor: pointer;
+      overflow: hidden;
     }
     .dream-card:hover {
       border-color: #4a4f6a;
       transform: translateY(-2px);
+    }
+
+    .dream-card.expanded {
+      border-color: #3b82f6;
     }
 
     .dream-header {
@@ -147,12 +151,95 @@
       margin-bottom: 1rem;
     }
 
+    .dream-content.expanded {
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
     .dream-content blockquote {
       border-left: 3px solid #3b82f6;
       padding-left: 1rem;
       margin: 1rem 0;
       color: #93c5fd;
       font-style: italic;
+    }
+
+    .dream-content h1,
+    .dream-content h2,
+    .dream-content h3,
+    .dream-content h4 {
+      margin: 1.5rem 0 1rem 0;
+      color: #e8e8e8;
+    }
+
+    .dream-content h2 { font-size: 1.3rem; border-bottom: 1px solid #2a2d3a; padding-bottom: 0.5rem; }
+    .dream-content h3 { font-size: 1.1rem; color: #93c5fd; }
+    .dream-content h4 { font-size: 1rem; color: #8b8fa8; }
+
+    .dream-content ul,
+    .dream-content ol {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+      color: #c4c8e2;
+    }
+
+    .dream-content li {
+      margin: 0.5rem 0;
+    }
+
+    .dream-content p {
+      margin: 0.75rem 0;
+    }
+
+    .dream-content strong {
+      color: #e8e8e8;
+    }
+
+    .dream-content em {
+      color: #93c5fd;
+      font-style: italic;
+    }
+
+    .dream-content a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    .dream-content a:hover {
+      text-decoration: underline;
+    }
+
+    .dream-content hr {
+      border: none;
+      border-top: 1px solid #2a2d3a;
+      margin: 1.5rem 0;
+    }
+
+    .dream-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+    }
+
+    .dream-content th,
+    .dream-content td {
+      padding: 0.5rem;
+      text-align: left;
+      border: 1px solid #2a2d3a;
+    }
+
+    .dream-content th {
+      background: #252836;
+      color: #8b8fa8;
+    }
+
+    .dream-content tr:nth-child(even) {
+      background: #1a1d27;
+    }
+
+    .dream-content tr:nth-child(odd) {
+      background: #1f222e;
     }
 
     .dream-meta {
@@ -170,9 +257,23 @@
       color: #60a5fa;
       text-decoration: none;
       font-size: 0.8rem;
+      cursor: pointer;
       transition: color 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
     }
+
     .dream-link:hover { color: #93c5fd; }
+
+    .dream-link:before {
+      content: '→';
+      transition: transform 0.15s;
+    }
+
+    .dream-card.expanded .dream-link:before {
+      transform: rotate(90deg);
+    }
 
     /* Animation */
     @keyframes fadeIn {
@@ -184,9 +285,16 @@
       animation: fadeIn 0.3s ease forwards;
     }
 
+    @keyframes expand {
+      from { max-height: 500px; }
+      to { max-height: 2000px; }
+    }
+
     @media (max-width: 600px) {
       .dreams-grid { gap: 1rem; }
       .dream-header { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+      .dream-content { font-size: 0.85rem; }
+      .dream-content.expanded { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -245,11 +353,168 @@
       }
     ];
 
+    // Cache pour les contenus chargés
+    const contentCache = new Map();
+
     // Format date pour affichage
     function formatDate(dateStr) {
       const date = new Date(dateStr);
       const options = { day: '2-digit', month: 'long', year: 'numeric' };
       return date.toLocaleDateString('fr-FR', options);
+    }
+
+    // Convertit le markdown basique en HTML
+    function renderMarkdown(text) {
+      // Enleve la première ligne (titre principal # ) car on a déjà le titre dans la card
+      let lines = text.split('\n');
+      
+      // Trouver l'index après le premier --- (séparateur)
+      let startIndex = 0;
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].trim() === '---') {
+          startIndex = i + 1;
+          break;
+        }
+      }
+      
+      lines = lines.slice(startIndex);
+      
+      // Supprimer les lignes vides au début
+      while (lines.length > 0 && lines[0].trim() === '') {
+        lines.shift();
+      }
+      
+      let html = '';
+      let inList = false;
+      let inBlockquote = false;
+
+      lines.forEach(line => {
+        // Ignorer les métadonnées en haut
+        if (line.trim() === '---') {
+          html += '<hr>';
+          return;
+        }
+
+        // Titres
+        if (line.startsWith('## ')) {
+          if (inList) { html += '</ul>'; inList = false; }
+          if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
+          html += `<h2>${line.substring(3).trim()}</h2>`;
+          return;
+        }
+        if (line.startsWith('### ')) {
+          if (inList) { html += '</ul>'; inList = false; }
+          if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
+          html += `<h3>${line.substring(4).trim()}</h3>`;
+          return;
+        }
+        if (line.startsWith('#### ')) {
+          if (inList) { html += '</ul>'; inList = false; }
+          if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
+          html += `<h4>${line.substring(5).trim()}</h4>`;
+          return;
+        }
+
+        // Blockquotes
+        if (line.startsWith('>')) {
+          if (!inBlockquote) {
+            if (inList) { html += '</ul>'; inList = false; }
+            html += '<blockquote>';
+            inBlockquote = true;
+          }
+          html += line.substring(1).trim() + '<br>';
+          return;
+        }
+        if (inBlockquote) {
+          html += '</blockquote>';
+          inBlockquote = false;
+        }
+
+        // Listes
+        if (line.startsWith('- ') || line.startsWith('* ')) {
+          if (!inList) {
+            if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
+            html += '<ul>';
+            inList = true;
+          }
+          const content = line.substring(2).trim();
+          html += `<li>${content}</li>`;
+          return;
+        }
+        if (inList) {
+          html += '</ul>';
+          inList = false;
+        }
+
+        // Gras et italique
+        let processedLine = line
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.*?)\*/g, '<em>$1</em>')
+          .replace(/`(.*?)`/g, '<code>$1</code>');
+
+        // Liens
+        processedLine = processedLine.replace(/\\[(.*?)\\]\\((.*?)\\)/g, '<a href="$2" target="_blank">$1</a>');
+
+        // Tableaux
+        if (line.includes('|')) {
+          if (inList) { html += '</ul>'; inList = false; }
+          if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
+          // Simple table handling - just keep as is for now
+          html += `<p>${processedLine}</p>`;
+          return;
+        }
+
+        // Paragraphe normal
+        if (line.trim() !== '') {
+          html += `<p>${processedLine}</p>`;
+        }
+      });
+
+      // Fermer les balises ouvertes
+      if (inList) html += '</ul>';
+      if (inBlockquote) html += '</blockquote>';
+
+      return html;
+    }
+
+    // Charge le contenu complet d'un rêve
+    async function loadFullContent(file) {
+      if (contentCache.has(file)) {
+        return contentCache.get(file);
+      }
+
+      try {
+        const response = await fetch(file);
+        if (!response.ok) {
+          throw new Error('Fichier non trouve');
+        }
+        const text = await response.text();
+        contentCache.set(file, text);
+        return text;
+      } catch (error) {
+        console.error('Erreur chargement:', error);
+        return null;
+      }
+    }
+
+    // Toggle l'expansion de la carte
+    async function toggleDreamCard(card, dream) {
+      card.classList.toggle('expanded');
+      const contentDiv = card.querySelector('.dream-content');
+      const link = card.querySelector('.dream-link');
+
+      if (card.classList.contains('expanded')) {
+        link.textContent = 'Masquer';
+        const fullContent = await loadFullContent(dream.file);
+        if (fullContent) {
+          contentDiv.innerHTML = renderMarkdown(fullContent);
+          contentDiv.classList.add('expanded');
+        }
+      } else {
+        link.textContent = 'Lire l\'analyse complete';
+        contentDiv.innerHTML = `<p>${dream.excerpt}</p>`;
+        contentDiv.classList.remove('expanded');
+      }
     }
 
     // Genere une carte de reve
@@ -267,12 +532,19 @@
         <h2 class="dream-title">🌙 ${dream.title}</h2>
         ${dream.score ? `<span class="dream-score">✨ Score: ${dream.score}/100</span>` : ''}
         <div class="dream-content">
-          ${dream.excerpt}
+          <p>${dream.excerpt}</p>
         </div>
         <div class="dream-meta">
-          <a href="${dream.file}" class="dream-link" target="_blank">Lire l'analyse complete →</a>
+          <span class="dream-link" data-file="${dream.file}">Lire l'analyse complete</span>
         </div>
       `;
+
+      // Gestion du clic sur le lien
+      const link = card.querySelector('.dream-link');
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleDreamCard(card, dream);
+      });
 
       return card;
     }
