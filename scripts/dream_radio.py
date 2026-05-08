@@ -1611,25 +1611,25 @@ def analyze_liner_format(liner_text):
     
     # Problème 5: Format générique détecté (mots-clés)
     generic_patterns = [
-        (r"la voix qui\b", "expression générique"),
-        (r"la voix de\b", "expression générique"),
+        (r"la voix qui\b", "formule \"la voix qui\""),
+        (r"la voix de\b",  "formule \"la voix de\""),
         (r"écoutez bien\b", "appel à l'écoute"),
-        (r"attention\b", "appel à l'attention"),
-        (r"voici\b", "introduction générique"),
-        (r"maintenant\b", "référence temporelle vague"),
-        (r"et voici\b", "introduction générique"),
-        (r"sur radio\b", "référence à la radio"),
-        (r"sur les ondes\b", "référence aux ondes"),
-        (r"pour vous\b", "appel au public"),
-        (r"le jour se lève\b", "description générique"),
-        (r"un rythme\b", "description musicale vague"),
-        (r"la mémoire de\b", "référence vague"),
-        (r"nos terres\b", "référence générique"),
+        (r"attention\b",    "appel à l'attention"),
+        (r"voici\b",        "introduction \"Voici\""),
+        (r"maintenant\b",   "référence temporelle vague"),
+        (r"et voici\b",     "introduction \"Et voici\""),
+        (r"sur radio\b",    "référence générique à la radio"),
+        (r"sur les ondes\b","référence générique aux ondes"),
+        (r"pour vous\b",    "appel au public"),
+        (r"le jour se lève\b", "description générique du matin"),
+        (r"un rythme\b",    "description musicale vague"),
+        (r"la mémoire de\b","référence vague à la mémoire"),
+        (r"nos terres\b",   "référence générique aux terres"),
     ]
-    
+
     for pattern, desc in generic_patterns:
         if re.search(pattern, text, re.IGNORECASE):
-            return f"Liner trop générique: {desc} ('{pattern}')"
+            return f"Formule trop générique : {desc}"
     
     # Problème 6: Pas de séparateur (devrait avoir un artiste et un titre)
     extracted = extract_artist_title(text)
@@ -1645,9 +1645,9 @@ def analyze_liner_format(liner_text):
         
         text_lower = text.lower()
         if any(artist in text_lower for artist in known_artists):
-            return "Format non standard: artiste détecté mais titre manquant (utiliser 'Artiste - Titre')"
+            return "Format non standard : artiste détecté mais titre manquant"
         else:
-            return "Format non standard: pas de séparateur artiste/titre détecté (utiliser 'Artiste - Titre')"
+            return "Format non standard : pas de séparateur artiste/titre"
     
     # Problème 7: L'artiste extrait est trop court (1-2 caractères)
     if extracted.get("artist") and len(extracted["artist"]) < 3:
@@ -2824,7 +2824,7 @@ def build_antenne_data(date_str):
             else:
                 issues.append({
                     "type": "artist_mismatch", "severity": "high",
-                    "detail": f"Attendu: '{next_artist}', trouvé: '{extracted['artist']}'",
+                    "detail": f"Artiste attendu : {next_artist}",
                 })
         else:
             is_coherent = True
@@ -3272,12 +3272,21 @@ def render_technical_dream(report, api_key=None):
 
     # Tableau workflows
     md += f"## {MUSIC} Statistiques Workflows\n\n"
-    md += "| Workflow | Runs | Durée moy. | Succès | Dernier statut |\n"
-    md += "|----------|------|------------|--------|----------------|\n"
+    md += "| Workflow | Runs | Durée moy. | Succès 7j | Santé |\n"
+    md += "|----------|------|------------|-----------|-------|\n"
     for wf in workflows:
-        icon = CHECK if wf["last_status"] == "success" else CROSS
-        md += f"| {wf['name']} | {wf['runs']} | {format_duration(wf['avg_duration_s'])} | {wf['success_rate']*100:.0f}% | {icon} |\n"
-    md += f"| **Total** | **{summary['total_runs']}** | **{format_duration(total_avg)}** | **{summary['global_success_rate']*100:.1f}%** | - |\n"
+        rate = wf["success_rate"]
+        last_ok = wf["last_status"] == "success"
+        if rate >= 0.90:
+            health = "🟢 OK" if last_ok else "🟡 Dégradé"
+        elif rate >= 0.50:
+            health = "🟡 Dégradé"
+        else:
+            health = "🔴 Critique"
+        md += f"| {wf['name']} | {wf['runs']} | {format_duration(wf['avg_duration_s'])} | {rate*100:.0f}% | {health} |\n"
+    global_rate = summary['global_success_rate']
+    global_health = "🟢" if global_rate >= 0.90 else ("🟡" if global_rate >= 0.70 else "🔴")
+    md += f"| **Total** | **{summary['total_runs']}** | **{format_duration(total_avg)}** | **{global_rate*100:.1f}%** | {global_health} |\n"
     md += "\n---\n\n"
 
     md += f"*[Voir le rêve de l'Antenne](../antenne/{date_str}.md)*\n"
@@ -3288,16 +3297,43 @@ def _default_technical_narrative(report):
     summary = report["technical"]["summary"]
     signals = report["signals"]["technical"]
     critical = [s for s in signals if s["severity"] == "high"]
-    return (
-        f"Cette nuit, les serveurs de Radio Botiran {DREAM} ont rêvé de bits caribéens... "
-        f"Les {summary['total_runs']} workflows ont dansé comme des vagues sur la plage, "
-        f"avec un taux de succès de {summary['global_success_rate']*100:.1f}%. "
-        + (f"Mais {len(critical)} signaux critiques troublaient l'harmonie — "
-           f"{', '.join(s['context'][:60] for s in critical[:2])}. "
-           if critical else f"Aucun signal critique : l'orchestre jouait en parfaite harmonie. ")
-        + f"Au réveil, l'équipe a compris qu'il fallait surveiller : "
-        f"{', '.join(summary['workflows_in_alert'][:3]) or 'aucun workflow en alerte'}."
-    )
+    rate = summary["global_success_rate"] * 100
+
+    lines = []
+
+    # Ouverture poétique
+    if not critical:
+        lines.append(
+            f"Cette nuit, les serveurs de Radio Botiran {DREAM} ont rêvé de bits caribéens... "
+            f"Les {summary['total_runs']} workflows ont dansé en parfaite harmonie, "
+            f"avec un taux de succès de {rate:.1f}%."
+        )
+    else:
+        lines.append(
+            f"Cette nuit, les serveurs de Radio Botiran {DREAM} ont rêvé de bits caribéens... "
+            f"Les {summary['total_runs']} workflows ont dansé comme des vagues sur la plage, "
+            f"avec un taux de succès de {rate:.1f}%. "
+            f"Mais {len(critical)} signal{'s' if len(critical) > 1 else ''} critique{'s' if len(critical) > 1 else ''} "
+            f"troublai{'en' if len(critical) > 1 else ''}t l'harmonie."
+        )
+
+    # Signaux critiques
+    if critical:
+        lines.append("")
+        for s in critical:
+            lines.append(f"- {s['context']}")
+
+    # À surveiller
+    alerts = summary.get("workflows_in_alert", [])
+    lines.append("")
+    if alerts:
+        lines.append("Au réveil, l'équipe a noté les workflows à surveiller :")
+        for wf in alerts[:5]:
+            lines.append(f"- `{wf}`")
+    else:
+        lines.append("Au réveil, aucun workflow n'était en alerte.")
+
+    return "\n".join(lines)
 
 
 def render_antenne_dream(report, api_key=None):
@@ -3333,7 +3369,7 @@ def render_antenne_dream(report, api_key=None):
         md += f"## {WARNING} Signaux Détectés\n\n"
         for s in all_editorial_signals:
             icon = CROSS if s["severity"] == "high" else (WARNING if s["severity"] == "medium" else IDEA)
-            md += f"- {icon} **[{s['type']}]** {s['context']}\n"
+            md += f"- {icon} {s['context']}\n"
         md += "\n---\n\n"
 
     # Évaluations journalistes
@@ -3386,12 +3422,12 @@ def render_antenne_dream(report, api_key=None):
     # Bilan journée
     md += f"## {NEWS} Bilan de la Journée\n\n"
     md += "| Type | Générés | Statut |\n|------|---------|--------|\n"
-    md += f"| Flash Info | {content['flash_infos']['count']} | {CHECK} |\n"
-    md += f"| Horoscopes | {content['horoscopes']['count']} | {CHECK if not content['horoscopes']['anomalies'] else WARNING} |\n"
+    md += f"| Flash Info | {content['flash_infos']['count']} | {CHECK if content['flash_infos']['count'] > 0 else WARNING} |\n"
+    md += f"| Horoscopes | {content['horoscopes']['count']} | {CHECK if content['horoscopes']['count'] > 0 and not content['horoscopes']['anomalies'] else WARNING} |\n"
     md += f"| Liners     | {liners['total']} | {CHECK if liners['coherence_rate'] >= 0.90 else WARNING} |\n"
-    md += f"| Émissions  | {content['emissions']['count']} | {CHECK} |\n"
-    md += f"| Capsules   | {content['capsules']['count']} | {CHECK} |\n"
-    md += f"| Musique    | {music['total_tracks']} titres | {CHECK} |\n"
+    md += f"| Émissions  | {content['emissions']['count']} | {CHECK if content['emissions']['count'] > 0 else WARNING} |\n"
+    md += f"| Capsules   | {content['capsules']['count']} | {CHECK if content['capsules']['count'] > 0 else '—'} |\n"
+    md += f"| Musique    | {music['total_tracks']} titres | {CHECK if music['total_tracks'] > 0 else WARNING} |\n"
     md += "\n---\n\n"
 
     # Cohérence liners
@@ -3399,27 +3435,34 @@ def render_antenne_dream(report, api_key=None):
     md += f"**Score : {liners['coherence_rate']*100:.0f}% ({liners['coherent']}/{liners['total']} cohérents)**\n\n"
     critical_items = [it for it in liners["items"] if any(iss["severity"] == "high" for iss in it["issues"])]
     if critical_items:
+        has_format = any(
+            "format" in iss["detail"].lower()
+            for it in critical_items for iss in it["issues"] if iss["severity"] == "high"
+        )
+        if has_format:
+            md += f"> Format attendu : **Artiste - Titre** (ex : *Kassav' - Zouk la sé sèl médikaman nou ni*)\n\n"
         md += f"### {CROSS} Liners à corriger\n\n"
         for item in critical_items[:10]:
             for iss in item["issues"]:
                 if iss["severity"] == "high":
-                    md += f"- **#{item['index']}** {CROSS} \"{item['text'][:50]}...\"\n"
+                    md += f"- **#{item['index']}** \"{item['text'][:60]}...\"\n"
                     md += f"  - *{iss['detail']}*\n"
                     if item.get("next_music"):
                         nm = item["next_music"]
-                        md += f"  - *Musique suivante* : {nm.get('artist')} — {nm.get('title')}\n"
+                        md += f"  - *→ {nm.get('artist')} — {nm.get('title')}*\n"
     else:
         md += f"{CHECK} Tous les liners sont cohérents avec la programmation !\n"
     md += "\n---\n\n"
 
     # Programmation musicale
-    top_genres = dict(sorted(music["genres"].items(), key=lambda x: x[1], reverse=True)[:6])
+    top_genres = sorted(music["genres"].items(), key=lambda x: x[1], reverse=True)[:6]
+    genres_str = ", ".join(f"{g or 'Variété'} ({n})" for g, n in top_genres) if top_genres else "Non renseigné"
     md += f"## {MUSIC} Programmation Musicale\n\n"
     md += f"| Métrique | Valeur |\n|---|---|\n"
     md += f"| Titres | {music['total_tracks']} |\n"
     md += f"| Artistes uniques | {len(music['artists'])} |\n"
     md += f"| Répétition max | {music['max_artist_repetition']}x ({music['top_artist']}) |\n"
-    md += f"| Genres | {top_genres} |\n"
+    md += f"| Genres | {genres_str} |\n"
     md += "\n"
     if music["consecutive_same_artist"]:
         md += f"{WARNING} Séquences consécutives: "
@@ -3448,13 +3491,25 @@ def _default_antenne_narrative(report):
 
 
 def _default_journalist_eval(name, passages):
+    if passages == 0:
+        return {
+            "passages": 0, "note": 0,
+            "feedback": f"{WARNING} Aucun contenu produit",
+            "recommandations": ["Vérifier la génération du contenu"],
+            "format_score": 0, "content_score": 0, "style_score": 0, "originality_score": 0,
+            "strengths": [], "weaknesses": ["Aucun passage détecté"],
+        }
+    if passages >= 50:
+        note, feedback = 7, f"{CHECK} Volume important — évaluation LLM recommandée"
+    elif passages >= 10:
+        note, feedback = 7, f"{CHECK} Activité régulière détectée"
+    else:
+        note, feedback = 7, f"{CHECK} Contenu présent"
     return {
-        "passages": passages,
-        "note": 7 if passages > 0 else 0,
-        "feedback": f"{CHECK} Contenu généré" if passages > 0 else f"{WARNING} Aucun contenu",
-        "recommandations": ["Continuer sur cette lancée"] if passages > 0 else ["Vérifier la génération"],
+        "passages": passages, "note": note, "feedback": feedback,
+        "recommandations": ["Activer le LLM pour une évaluation qualitative"],
         "format_score": 2, "content_score": 2, "style_score": 2, "originality_score": 1,
-        "strengths": [], "weaknesses": [] if passages > 0 else ["Aucun contenu produit"],
+        "strengths": [], "weaknesses": [],
     }
 
 
