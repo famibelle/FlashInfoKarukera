@@ -195,7 +195,7 @@ def _generate_title_llm(text: str) -> str | None:
         "Tu réponds TOUJOURS par une seule phrase courte — jamais de liste, jamais de tirets."
     )
     user = (
-        f"Voici le texte d'une émission culturelle sur la Guadeloupe :\n\n{text[:1500]}\n\n"
+        f"Voici le texte d'une émission culturelle sur la Guadeloupe :\n\n{text}\n\n"
         "Génère UN SEUL titre poétique et évocateur (max 65 caractères) qui capture l'essence de cette émission. "
         "Pas de guillemets, pas de ponctuation finale."
     )
