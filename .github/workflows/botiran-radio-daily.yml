@@ -23,6 +23,7 @@ on:
 permissions:
   contents: write
   actions: read
+  workflows: write
 
 concurrency:
   group: radio-update
