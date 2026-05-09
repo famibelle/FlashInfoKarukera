@@ -116,7 +116,12 @@ jobs:
           git add docs/capsules/ playlists/youtube_cache.json
           if ! git diff --cached --quiet; then
             git commit -m "feat: capsules culturelles ${{ env.TARGET_DATE }} [skip ci]"
-            git push || (git pull origin main --rebase -X ours --no-edit && git push)
+            for attempt in 1 2 3; do
+              git push && break
+              echo "⚠️  Push échoué (tentative $attempt/3), sync et retry…"
+              sleep $((RANDOM % 10 + 5))
+              git pull origin main --rebase -X ours --no-edit
+            done
             COMMIT_DURATION=$(( $(date +%s) - COMMIT_START ))
             echo "::notice title=✅ Capsules::[4/5] Commit terminé en ${COMMIT_DURATION}s"
           else
