@@ -2,8 +2,7 @@ name: Émission Culturelle Quotidienne
 
 on:
   schedule:
-    - cron: "30 6 * * *"   # matin : 6h30 UTC
-    - cron: "30 16 * * *"  # soir  : 16h30 UTC
+    - cron: "30 16 * * *"  # soir  : 16h30 UTC (18h30 Paris)
   workflow_dispatch:
     inputs:
       edition:

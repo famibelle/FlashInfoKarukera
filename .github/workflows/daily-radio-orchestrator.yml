@@ -158,12 +158,22 @@ jobs:
         id: start-time
         run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
 
+      - name: Déterminer l'édition
+        id: edition
+        run: |
+          HOUR=$(date -u +%H)
+          if [ "$HOUR" -lt 12 ]; then
+            echo "value=matin" >> $GITHUB_OUTPUT
+          else
+            echo "value=soir" >> $GITHUB_OUTPUT
+          fi
+
       - name: Déclencher Émission
         env:
           GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
           REPO: ${{ github.repository }}
         run: |
-          gh workflow run emission-daily.yml --repo "$REPO"
+          gh workflow run emission-daily.yml --repo "$REPO" --field edition=${{ steps.edition.outputs.value }}
           sleep 15
           WORKFLOW_ID=$(gh api repos/$REPO/actions/workflows/emission-daily.yml --jq '.id')
           RUN_ID=$(gh api repos/$REPO/actions/workflows/$WORKFLOW_ID/runs --jq '.workflow_runs[0].id')
@@ -197,7 +207,9 @@ jobs:
       - name: Vérifier si émission existe
         id: check_emission
         run: |
-          FILE="docs/audio/Emissions/emission-$(date -u +%Y-%m-%d).mp3"
+          HOUR=$(date -u +%H)
+          if [ "$HOUR" -lt 12 ]; then EDITION=matin; else EDITION=soir; fi
+          FILE="docs/audio/Emissions/emission-$(date -u +%Y-%m-%d)-${EDITION}.mp3"
           if [ -f "$FILE" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
           else
