@@ -95,10 +95,15 @@ def call_mistral(system: str, user: str, *, temperature: float = 0.85, max_token
                 raise
 
 
+_SIGN_EMOJI_PATTERN = re.compile(
+    r'^[A-ZÀÂÄÉÈÊËÏÎÔÙÛÜŸA-z][\w\s]* [♈♉♊♋♌♍♎♏♐♑♒♓] & [A-ZÀÂÄÉÈÊËÏÎÔÙÛÜŸA-z][\w\s]* [♈♉♊♋♌♍♎♏♐♑♒♓] :\s*'
+)
+
 def _clean(raw: str) -> str:
-    """Retire guillemets, astérisques, sauts de ligne produits par le LLM."""
+    """Retire guillemets, astérisques, sauts de ligne et préfixes signe/emoji produits par le LLM."""
     title = re.sub(r'[\[\]\*\`\"\'\n\r]', '', raw)
     title = re.sub(r'\s+', ' ', title).strip().rstrip('.')
+    title = _SIGN_EMOJI_PATTERN.sub('', title).strip()
     return title
 
 
@@ -157,13 +162,12 @@ def _date_fr(date_compact: str) -> tuple[str, str]:
     return str(int(date_compact[6:8])), MONTH_NAMES.get(date_compact[4:6], '?')
 
 
-def generate_horoscope_title(filepath: Path, edition: str, date_compact: str) -> str | None:
+def generate_horoscope_title(filepath: Path, edition: str, date_compact: str, recent_titles: list[str] | None = None) -> str | None:
     text = filepath.read_text(encoding='utf-8')
 
     sign_texts = parse_sign_texts(text)
     sign_list  = parse_sign_list(text)
 
-    # Sélectionner parmi les signes qui ont du texte, dans l'ordre du fichier
     available = [s for s in sign_list if s in sign_texts and len(sign_texts[s]) > 80]
     if len(available) < 2:
         available = [s for s in sign_texts if len(sign_texts[s]) > 80]
@@ -174,20 +178,36 @@ def generate_horoscope_title(filepath: Path, edition: str, date_compact: str) ->
     excerpt1 = sign_texts[signe1][:700]
     excerpt2 = sign_texts[signe2][:700]
 
+    avoid_block = ''
+    if recent_titles:
+        # Extraire les mots significatifs (4+ lettres) les plus fréquents pour les interdire explicitement
+        word_counts: dict[str, int] = {}
+        for t in recent_titles:
+            # Isoler la phrase de corrélation (entre ": " et ", dans votre horoscope")
+            m = re.search(r':\s*(.+?),\s*dans votre horoscope', t)
+            phrase = m.group(1) if m else t
+            for w in re.findall(r'[a-zàâäéèêëïîôùûüÿ]{4,}', phrase.lower()):
+                word_counts[w] = word_counts.get(w, 0) + 1
+        banned = sorted(w for w, c in word_counts.items() if c >= 2)
+        if banned:
+            avoid_block = (
+                f"\n\nMots et verbes déjà surexploités — interdits dans ta réponse : "
+                f"{', '.join(banned[:20])}."
+            )
+
     system = (
         "Tu es un rédacteur créatif pour Radio Karukera, une radio de la diaspora guadeloupéenne au Luxembourg. "
-        "Tu génères des titres d'horoscopes courts, poétiques, percutants, avec une touche créole et caraïbéenne."
+        "Tu génères des titres d'horoscopes courts, poétiques, percutants, avec une touche créole et caraïbéenne. "
+        "Tu réponds TOUJOURS par une seule phrase courte — jamais de liste, jamais de tirets, jamais de signe deux-points, jamais d'analyse."
     )
     user = (
-        f"Voici des extraits de l'horoscope pour deux signes :\n\n"
-        f"{signe1.upper()} :\n{excerpt1}\n\n"
-        f"{signe2.upper()} :\n{excerpt2}\n\n"
-        "Identifie les images, symboles ou sensations dominants dans chaque texte "
-        "(plantes, animaux, éléments, tensions…). "
-        "Crée une corrélation inattendue et poétique entre ces deux univers — "
-        "quelque chose de surprenant qui donne envie d'écouter.\n"
-        "Retourne UNIQUEMENT une phrase courte (max 55 caractères).\n"
-        "Pas de guillemets, pas de ponctuation finale."
+        f"Horoscope — {signe1.upper()} :\n{excerpt1}\n\n"
+        f"Horoscope — {signe2.upper()} :\n{excerpt2}\n\n"
+        f"Trouve l'image ou la sensation la plus forte dans chaque texte, puis forge UNE SEULE phrase poétique "
+        f"qui croise ces deux univers de façon surprenante.\n"
+        f"Exemple de bonne réponse : «Le kabrit broute l'ombre du gran pélikan»\n"
+        f"{avoid_block}\n"
+        f"Réponds avec cette unique phrase (max 55 caractères). Pas de guillemets, pas de ponctuation finale."
     )
 
     raw = call_mistral(system, user, temperature=0.88, max_tokens=80)
@@ -202,8 +222,29 @@ def generate_horoscope_title(filepath: Path, edition: str, date_compact: str) ->
     return f"{signe1} {e1} & {signe2} {e2} : {correlation}, dans votre horoscope de ce {edition} du {day} {month}"
 
 
+_SIGN_NAMES = {
+    'Bélier', 'Taureau', 'Gémeaux', 'Cancer', 'Lion', 'Vierge',
+    'Balance', 'Scorpion', 'Sagittaire', 'Capricorne', 'Verseau', 'Poissons',
+    'Bèlmè', 'Toré', 'Jimo', 'Kannkrab', 'Lyon', 'Vyèj',
+    'Balans', 'Skòpyon', 'Sajitè', 'Kaprikòn', 'Vèso', 'Pwason',
+}
+
+def _strip_horoscope_sections(text: str) -> str:
+    """Retire les paragraphes horoscope (signe zodiacal en début de section) d'un flash info."""
+    sep = '————'
+    sections = text.split(sep)
+    news = []
+    for section in sections:
+        first_word = section.strip().split(',')[0].strip()
+        if first_word in _SIGN_NAMES:
+            continue
+        news.append(section)
+    return sep.join(news)
+
+
 def generate_flash_title(filepath: Path, edition: str, date_compact: str) -> str | None:
-    text = filepath.read_text(encoding='utf-8')[:2000]
+    raw_text = filepath.read_text(encoding='utf-8')
+    text = _strip_horoscope_sections(raw_text)
 
     day, month = _date_fr(date_compact)
 
@@ -227,7 +268,7 @@ def generate_flash_title(filepath: Path, edition: str, date_compact: str) -> str
 def generate_emission_title(filepath: Path) -> str | None:
     try:
         data  = json.loads(filepath.read_text(encoding='utf-8'))
-        text  = data.get('text', '')[:2000]
+        text  = data.get('text', '')
     except Exception:
         return None
 
@@ -309,6 +350,17 @@ def update_titles(*, apply: bool = False, only_type: str | None = None) -> None:
     skipped = 0
     errors  = 0
 
+    # Pré-alimenter avec les titres horoscope existants pour éviter les répétitions dès le premier appel
+    recent_horoscope_titles: list[str] = []
+    for item in items:
+        guid_el  = item.find('guid')
+        title_el = item.find('title')
+        if guid_el is None or title_el is None:
+            continue
+        _, _, ctype = parse_guid(guid_el.text or '')
+        if ctype == 'horoscope' and title_el.text:
+            recent_horoscope_titles.append(title_el.text)
+
     for item in items:
         guid_el  = item.find('guid')
         title_el = item.find('title')
@@ -332,7 +384,9 @@ def update_titles(*, apply: bool = False, only_type: str | None = None) -> None:
         print(f"  🔄 {guid}…", flush=True)
         try:
             if content_type == 'horoscope':
-                title = generate_horoscope_title(source, edition, date_compact)
+                title = generate_horoscope_title(source, edition, date_compact, recent_horoscope_titles)
+                if title:
+                    recent_horoscope_titles.append(title)
             elif content_type == 'flash-info':
                 title = generate_flash_title(source, edition, date_compact)
             elif content_type == 'emission':
