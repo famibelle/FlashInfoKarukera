@@ -183,7 +183,7 @@ SYSTEM_PROMPT = _load_prompt("monique_ame.md") + "\n\n" + _load_prompt("monique.
 
 def _generate_title_llm(text: str) -> str | None:
     """Génère un titre poétique via Mistral à partir du texte de l'émission."""
-    import urllib.request, urllib.error, time as _time
+    import re, urllib.request, urllib.error, time as _time
     try:
         key = os.environ["MISTRAL_API_KEY"]
     except KeyError:
