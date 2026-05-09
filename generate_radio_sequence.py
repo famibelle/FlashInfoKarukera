@@ -276,6 +276,34 @@ def load_transitions() -> dict[str, list[dict]]:
             slots[slot] = {"type": "transition", "subtype": subtype,
                            "url": url, "label": title, "icon": icon}
 
+    # 3. Pré-remplir les slots attendus du jour non encore générés.
+    # On remplace aussi les slots RSS qui pointent vers un jour précédent.
+    def _is_today(slot_url: str) -> bool:
+        return today in slot_url or today_compact in slot_url
+
+    for edition in ["matin", "midi", "soir"]:
+        slot_name = f"flash_{edition}"
+        if slot_name not in slots or not _is_today(slots[slot_name]["url"]):
+            url = (f"https://famibelle.github.io/FlashInfoKarukera/audio/flash-info"
+                   f"/{today[:7]}/flash-info-{today_compact}-{edition}.mp3")
+            slots[slot_name] = {
+                "type": "transition", "subtype": "flash_info",
+                "url": url,
+                "label": f"Flash Info Guadeloupe — {today}, édition du {edition}",
+                "icon": "📰", "pending": True,
+            }
+    for edition in ["matin", "soir"]:
+        slot_name = f"horoscope_{edition}"
+        if slot_name not in slots or not _is_today(slots[slot_name]["url"]):
+            url = (f"https://famibelle.github.io/FlashInfoKarukera/audio/horoscope"
+                   f"/{today[:7]}/horoscope-{today_compact}-{edition}.mp3")
+            slots[slot_name] = {
+                "type": "transition", "subtype": "horoscope",
+                "url": url,
+                "label": f"Horoscope {edition} — {today}",
+                "icon": "✨", "pending": True,
+            }
+
     return slots
 
 
@@ -479,16 +507,20 @@ def build_sequence(pool: list[dict], slots: dict[str, dict]) -> list[dict]:
                     print(f"  🎙️  Interview insérée après flash info midi", flush=True)
                 
                 # Insert emission after interview (or after flash info if no interview)
-                emission_path = Path("docs/audio/Emissions") / f"emission-{date.today().isoformat()}.mp3"
+                emission_date = date.today().isoformat()
+                emission_path = Path("docs/audio/Emissions") / f"emission-{emission_date}.mp3"
+                gh_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-{emission_date}.mp3"
+                seq.append({
+                    "type": "transition", "subtype": "emission",
+                    "url": gh_url,
+                    "label": f"Émission culturelle — Découverte de la Guadeloupe — {emission_date}",
+                    "icon": "🎤",
+                    **({"pending": True} if not emission_path.exists() else {}),
+                })
                 if emission_path.exists():
-                    gh_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/{emission_path.name}"
-                    seq.append({
-                        "type": "transition", "subtype": "emission",
-                        "url": gh_url,
-                        "label": f"Émission culturelle — Découverte de la Guadeloupe — {date.today().isoformat()}",
-                        "icon": "🎤"
-                    })
                     print(f"  🎤  Émission insérée après flash info midi", flush=True)
+                else:
+                    print(f"  🎤  Émission pré-réservée (pas encore générée)", flush=True)
             print(f"  🎵 {size} pistes avec liners/capsules…", flush=True)
             seq += _music_with_liners(pool[pos : pos + size], bloc)
             pos += size

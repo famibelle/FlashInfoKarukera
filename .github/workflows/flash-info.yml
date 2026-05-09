@@ -252,6 +252,12 @@ jobs:
             echo "Aucun changement à commiter"
           fi
 
+      - name: 🚀 Déclencher le déploiement GitHub Pages
+        if: steps.check_flash.outputs.exists != 'true'
+        run: gh workflow run pages.yml --ref main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: ⏱️  Execution Time Summary
         run: |
           echo "=========================================="
