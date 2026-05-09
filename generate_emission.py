@@ -290,7 +290,8 @@ def _generate_title_llm(text: str) -> str | None:
         try:
             with urllib.request.urlopen(req, timeout=30) as r:
                 raw = json.loads(r.read())["choices"][0]["message"]["content"].strip()
-                title = re.sub(r'[\[\]\*\`\"\'\n\r]', "", raw)
+                title = re.sub(r'[\[\]\*\`\"\n\r]', "", raw)
+                title = title.strip("'")  # guillemets entourants seulement
                 title = re.sub(r"\s+", " ", title).strip().rstrip(".")
                 return title or None
         except urllib.error.HTTPError as e:

@@ -88,7 +88,8 @@ def _call_mistral_local(system: str, user: str, temperature: float = 0.85, max_t
 
 
 def _clean(raw: str) -> str:
-    title = re.sub(r'[\[\]\*\`\"\'\n\r]', "", raw)
+    title = re.sub(r'[\[\]\*\`\"\n\r]', "", raw)
+    title = title.strip("'")  # guillemets entourants seulement
     title = re.sub(r"\s+", " ", title).strip().rstrip(".")
     return title
 
