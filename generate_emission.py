@@ -560,20 +560,67 @@ def main():
     args = parser.parse_args()
 
     if args.sources:
+        import re as _re, textwrap
         edition = args.edition
         elements = _select_elements(edition)
-        labels = {
-            "kreyol_resistance_symbol_ref.md": "Symboles de résistance créole",
-            "faune_guadeloupe_ref.md":         "Faune",
-            "flore_guadeloupe_ref.md":         "Flore",
-            "lieux_spirituels_ref.md":          "Lieux spirituels",
-            "histoire_guadeloupe_ref.md":       "Histoire",
-        }
-        for key, label in labels.items():
-            if key in elements:
-                print(f"  - {label} : {elements[key]['content']}")
+
+        ENTRIES = [
+            ("kreyol_resistance_symbol_ref.md", "🌿", "Symboles de résistance créole"),
+            ("faune_guadeloupe_ref.md",         "🐸", "Faune"),
+            ("flore_guadeloupe_ref.md",         "🌺", "Flore"),
+            ("lieux_spirituels_ref.md",         "💧", "Lieux spirituels"),
+            ("histoire_guadeloupe_ref.md",      "🔥", "Histoire"),
+        ]
+
+        WIDTH = 72
+        BAR   = "─" * WIDTH
+
+        # Header
+        from datetime import date as _date
+        d = _date.today()
+        MONTH = {"01":"janvier","02":"février","03":"mars","04":"avril","05":"mai",
+                 "06":"juin","07":"juillet","08":"août","09":"septembre",
+                 "10":"octobre","11":"novembre","12":"décembre"}
+        date_fr = f"{d.day} {MONTH[d.strftime('%m')]} {d.year}"
+        print()
+        print(BAR)
+        print(f"  Émission {edition} — {date_fr}")
+        print(BAR)
+
+        for key, emoji, label in ENTRIES:
+            if key not in elements:
+                continue
+            raw = elements[key]["content"]
+            cells = [_re.sub(r'\*+', '', c).strip() for c in raw.split('\t') if c.strip()]
+
+            print()
+            print(f"  {emoji}  {label}")
+
+            # Titre : 2–3 premières cellules non-étoile
+            title_cells = [c for c in cells[:4] if c and not c.startswith('⭐')][:3]
+            if title_cells:
+                print(f"     {'  ·  '.join(title_cells)}")
+
+            # Sacralité
+            sacre = next((c for c in cells if c.startswith('⭐')), None)
+            if sacre:
+                print(f"     {sacre}")
+
+            # Description : dernière cellule substantielle
+            desc = next((c for c in reversed(cells)
+                         if len(c) > 30 and not c.startswith('⭐')), None)
+            if desc:
+                for line in textwrap.wrap(desc, width=WIDTH - 5):
+                    print(f"     {line}")
+
+        # Morceau
         insp = elements.get("inspiration", {})
-        print(f"  - Morceau précédant : {insp.get('title','?')} — {insp.get('artist','?')}")
+        print()
+        print(f"  🎵  Morceau précédant")
+        print(f"     {insp.get('title','?')}  ·  {insp.get('artist','?')}")
+        print()
+        print(BAR)
+        print()
         return
 
     edition = args.edition
