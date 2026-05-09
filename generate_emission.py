@@ -269,7 +269,9 @@ def _generate_title_llm(text: str) -> str | None:
     )
     user = (
         f"Voici le texte d'une émission culturelle sur la Guadeloupe :\n\n{text}\n\n"
-        "Génère UN SEUL titre poétique et évocateur (max 65 caractères) qui capture l'essence de cette émission. "
+        "Génère UN SEUL titre poétique et évocateur (max 65 caractères) qui capture l'essence culturelle de cette émission. "
+        "Le titre doit parler de la Guadeloupe, de ses traditions, de sa nature ou de son histoire. "
+        "N'utilise PAS de titres de chansons, de noms d'artistes ou de références musicales. "
         "Pas de guillemets, pas de ponctuation finale."
     )
     payload = json.dumps({
