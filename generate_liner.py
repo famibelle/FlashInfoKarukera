@@ -26,7 +26,8 @@ logger = logging.getLogger(__name__)
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-PROMPTS_DIR    = Path(__file__).parent / "private" / "prompts"
+PROMPTS_DIR        = Path(__file__).parent / "private" / "prompts"
+INDEX_CULTUREL_DIR = Path(__file__).parent / "private" / "index_culturel"
 LINERS_DIR     = Path("docs/liners")
 CAPSULES_DIR   = Path("docs/capsules")
 CACHE_FILE     = Path("playlists/youtube_cache.json")  # Gardé pour compatibilité
@@ -63,22 +64,23 @@ def save_cache(cache: dict):
 # ── Prompts ──────────────────────────────────────────────────────────────────
 
 def _load_prompt(filename: str) -> str:
-    """Charge un fichier de prompt depuis PROMPTS_DIR."""
-    path = PROMPTS_DIR / filename
-    if not path.exists():
-        raise FileNotFoundError(f"Prompt introuvable : {path}")
-    return path.read_text(encoding="utf-8").strip()
+    """Charge un fichier de prompt depuis INDEX_CULTUREL_DIR ou PROMPTS_DIR."""
+    for base in (INDEX_CULTUREL_DIR, PROMPTS_DIR):
+        path = base / filename
+        if path.exists():
+            return path.read_text(encoding="utf-8").strip()
+    raise FileNotFoundError(f"Prompt introuvable : {filename}")
 
 
 def _select_random_ref_lines(num_per_file: int = 3) -> str:
     """Sélectionne aléatoirement des lignes de référence depuis les fichiers _ref.md."""
     import random
     ref_files = [
-        PROMPTS_DIR / "kreyol_resistance_symbol_ref.md",
-        PROMPTS_DIR / "faune_guadeloupe_ref.md",
-        PROMPTS_DIR / "flore_guadeloupe_ref.md",
-        PROMPTS_DIR / "lieux_spirituels_ref.md",
-        PROMPTS_DIR / "histoire_guadeloupe_ref.md",
+        INDEX_CULTUREL_DIR / "kreyol_resistance_symbol_ref.md",
+        INDEX_CULTUREL_DIR / "faune_guadeloupe_ref.md",
+        INDEX_CULTUREL_DIR / "flore_guadeloupe_ref.md",
+        INDEX_CULTUREL_DIR / "lieux_spirituels_ref.md",
+        INDEX_CULTUREL_DIR / "histoire_guadeloupe_ref.md",
     ]
     result_lines = []
     for filepath in ref_files:

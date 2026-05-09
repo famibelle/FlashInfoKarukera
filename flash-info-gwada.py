@@ -70,12 +70,12 @@ def _select_random_lines_from_file(filepath: Path, num_lines: int = 5) -> list[s
 def _get_random_spiritual_elements(num_per_file: int = 5) -> str:
     """Sélectionne aléatoirement num_per_file éléments de CHACUN des 4 fichiers _ref.md."""
     all_lines = []
-    PROMPTS_DIR_LOCAL = Path(__file__).parent / "private" / "prompts"
+    _index_culturel = Path(__file__).parent / "private" / "index_culturel"
     ref_files = [
-        PROMPTS_DIR_LOCAL / "faune_guadeloupe_ref.md",
-        PROMPTS_DIR_LOCAL / "flore_guadeloupe_ref.md",
-        PROMPTS_DIR_LOCAL / "lieux_spirituels_ref.md",
-        PROMPTS_DIR_LOCAL / "kreyol_resistance_symbol_ref.md",
+        _index_culturel / "faune_guadeloupe_ref.md",
+        _index_culturel / "flore_guadeloupe_ref.md",
+        _index_culturel / "lieux_spirituels_ref.md",
+        _index_culturel / "kreyol_resistance_symbol_ref.md",
     ]
     
     for filepath in ref_files:
@@ -153,7 +153,8 @@ PAGES_BASE       = "https://famibelle.github.io/FlashInfoKarukera"
 
 OUTPUT_DIR      = Path("/tmp")
 STINGERS_DIR    = Path(__file__).parent / "Stingers"
-PROMPTS_DIR     = Path(__file__).parent / "private" / "prompts"
+PROMPTS_DIR        = Path(__file__).parent / "private" / "prompts"
+INDEX_CULTUREL_DIR = Path(__file__).parent / "private" / "index_culturel"
 MEDIA_DIR       = Path(__file__).parent / "Media"
 DATA_DIR        = Path(__file__).parent / "data"
 ARCHIVES_DIR    = Path(__file__).parent / "archives" / "flash-info"
@@ -304,8 +305,12 @@ def _date_fr(d: Date) -> str:
 
 
 def _load_prompt(filename: str) -> str:
-    """Charge un prompt système depuis le dossier prompts/ en retirant le trailing whitespace."""
-    return (PROMPTS_DIR / filename).read_text(encoding="utf-8").rstrip()
+    """Charge un prompt depuis INDEX_CULTUREL_DIR ou PROMPTS_DIR."""
+    for base in (INDEX_CULTUREL_DIR, PROMPTS_DIR):
+        path = base / filename
+        if path.exists():
+            return path.read_text(encoding="utf-8").rstrip()
+    raise FileNotFoundError(f"Prompt introuvable : {filename}")
 
 
 def _format_date_edition(d: Date, edition: str) -> str:

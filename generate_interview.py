@@ -45,13 +45,14 @@ _sign_for_date = flash_info_gwada._sign_for_date
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-PROMPTS_DIR = Path(__file__).parent / "private" / "prompts"
+PROMPTS_DIR       = Path(__file__).parent / "private" / "prompts"
+INDEX_CULTUREL_DIR = Path(__file__).parent / "private" / "index_culturel"
 SOURCE_FILES = [
-    PROMPTS_DIR / "kreyol_resistance_symbol_ref.md",
-    PROMPTS_DIR / "faune_guadeloupe_ref.md",
-    PROMPTS_DIR / "flore_guadeloupe_ref.md",
-    PROMPTS_DIR / "lieux_spirituels_ref.md",
-    PROMPTS_DIR / "histoire_guadeloupe_ref.md",
+    INDEX_CULTUREL_DIR / "kreyol_resistance_symbol_ref.md",
+    INDEX_CULTUREL_DIR / "faune_guadeloupe_ref.md",
+    INDEX_CULTUREL_DIR / "flore_guadeloupe_ref.md",
+    INDEX_CULTUREL_DIR / "lieux_spirituels_ref.md",
+    INDEX_CULTUREL_DIR / "histoire_guadeloupe_ref.md",
 ]
 OUTPUT_DIR  = Path("docs/audio/Emissions")
 

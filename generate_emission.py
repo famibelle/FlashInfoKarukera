@@ -37,13 +37,14 @@ from tts_utils import tts_call, normalize_for_tts
 
 # ── Config ──────────────────────────────────────────────────────────────────
 
-PROMPTS_DIR = Path(__file__).parent / "private" / "prompts"
+PROMPTS_DIR        = Path(__file__).parent / "private" / "prompts"
+INDEX_CULTUREL_DIR = Path(__file__).parent / "private" / "index_culturel"
 SOURCE_FILES = [
-    PROMPTS_DIR / "kreyol_resistance_symbol_ref.md",
-    PROMPTS_DIR / "faune_guadeloupe_ref.md",
-    PROMPTS_DIR / "flore_guadeloupe_ref.md",
-    PROMPTS_DIR / "lieux_spirituels_ref.md",
-    PROMPTS_DIR / "histoire_guadeloupe_ref.md",
+    INDEX_CULTUREL_DIR / "kreyol_resistance_symbol_ref.md",
+    INDEX_CULTUREL_DIR / "faune_guadeloupe_ref.md",
+    INDEX_CULTUREL_DIR / "flore_guadeloupe_ref.md",
+    INDEX_CULTUREL_DIR / "lieux_spirituels_ref.md",
+    INDEX_CULTUREL_DIR / "histoire_guadeloupe_ref.md",
 ]
 OUTPUT_DIR = Path("docs/audio/Emissions")
 
@@ -169,11 +170,12 @@ def _mistral_chat(system: str, user: str) -> str:
 # ── Génération du monologue ───────────────────────────────────────────────
 
 def _load_prompt(filename: str) -> str:
-    """Charge un fichier de prompt depuis PROMPTS_DIR."""
-    path = PROMPTS_DIR / filename
-    if not path.exists():
-        raise FileNotFoundError(f"Prompt introuvable : {path}")
-    return path.read_text(encoding="utf-8").strip()
+    """Charge un fichier de prompt depuis PROMPTS_DIR ou INDEX_CULTUREL_DIR."""
+    for base in (INDEX_CULTUREL_DIR, PROMPTS_DIR):
+        path = base / filename
+        if path.exists():
+            return path.read_text(encoding="utf-8").strip()
+    raise FileNotFoundError(f"Prompt introuvable : {filename}")
 
 # Charger le prompt Monique pour les émissions
 SYSTEM_PROMPT = _load_prompt("monique_ame.md") + "\n\n" + _load_prompt("monique.md") + "\n\n" + _load_prompt("emission_instruction.md")

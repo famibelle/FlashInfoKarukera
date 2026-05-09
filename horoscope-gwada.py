@@ -90,10 +90,10 @@ def _get_random_spiritual_elements(num_per_file: int = 5) -> str:
     """
     all_lines = []
     ref_files = [
-        PROMPTS_DIR / "faune_guadeloupe_ref.md",
-        PROMPTS_DIR / "flore_guadeloupe_ref.md",
-        PROMPTS_DIR / "lieux_spirituels_ref.md",
-        PROMPTS_DIR / "kreyol_resistance_symbol_ref.md",
+        INDEX_CULTUREL_DIR / "faune_guadeloupe_ref.md",
+        INDEX_CULTUREL_DIR / "flore_guadeloupe_ref.md",
+        INDEX_CULTUREL_DIR / "lieux_spirituels_ref.md",
+        INDEX_CULTUREL_DIR / "kreyol_resistance_symbol_ref.md",
     ]
     
     for filepath in ref_files:
@@ -151,7 +151,8 @@ PAGES_BASE        = "https://famibelle.github.io/FlashInfoKarukera"
 
 OUTPUT_DIR   = Path("/tmp")
 STINGERS_DIR = Path(__file__).parent / "Stingers"
-PROMPTS_DIR  = Path(__file__).parent / "private" / "prompts"
+PROMPTS_DIR        = Path(__file__).parent / "private" / "prompts"
+INDEX_CULTUREL_DIR = Path(__file__).parent / "private" / "index_culturel"
 DATA_DIR     = Path(__file__).parent / "data"
 ARCHIVES_DIR = Path(__file__).parent / "archives" / "horoscope"
 DOCS_DIR     = Path(__file__).parent / "docs"
@@ -288,7 +289,11 @@ def _moment_du_jour() -> str:
 
 
 def _load_prompt(filename: str) -> str:
-    return (PROMPTS_DIR / filename).read_text(encoding="utf-8").rstrip()
+    for base in (INDEX_CULTUREL_DIR, PROMPTS_DIR):
+        path = base / filename
+        if path.exists():
+            return path.read_text(encoding="utf-8").rstrip()
+    raise FileNotFoundError(f"Prompt introuvable : {filename}")
 
 
 def _format_horoscope_date_edition(d: Date, edition: str) -> str:
@@ -503,8 +508,8 @@ def _resolve_sign(name: str) -> str | None:
 
 
 def _load_zodiak_kreyol() -> dict:
-    """Parse prompts/zodiak_kreyol_ref.md → dict[sign_en, {...}]."""
-    path = PROMPTS_DIR / "zodiak_kreyol_ref.md"
+    """Parse zodiak_kreyol_ref.md → dict[sign_en, {...}]."""
+    path = INDEX_CULTUREL_DIR / "zodiak_kreyol_ref.md"
     if not path.exists():
         return {}
     result = {}
