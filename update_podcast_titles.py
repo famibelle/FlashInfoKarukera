@@ -105,14 +105,25 @@ def generate_emission_title(filepath: Path) -> str | None:
     if not text:
         return None
 
+    inspiration = data.get("inspiration") or {}
+    track_title  = inspiration.get("title", "")
+    track_artist = inspiration.get("artist", "")
+    music_ban = ""
+    if track_title or track_artist:
+        music_ban = (
+            f"\nIMPORTANT : n'utilise PAS le titre de chanson « {track_title} », "
+            f"ni le nom de l'artiste « {track_artist} », ni aucune référence musicale dans le titre."
+        )
+
     system = (
         "Tu es un rédacteur poétique pour Radio Karukera, une radio de la diaspora guadeloupéenne. "
         "Tu crées des titres d'émissions culturelles évocateurs, qui inspirent et donnent envie d'écouter."
     )
     user = (
         f"Voici le texte d'une émission culturelle sur la Guadeloupe :\n\n{text}\n\n"
-        "Génère un titre poétique et évocateur (max 60 caractères) qui capture l'essence de cette émission. "
-        "Pas de guillemets, pas de ponctuation finale."
+        "Génère un titre poétique et évocateur (max 60 caractères) qui capture l'essence culturelle "
+        "de cette émission — faune, flore, histoire ou mémoire guadeloupéenne. "
+        f"Pas de guillemets, pas de ponctuation finale.{music_ban}"
     )
     raw = _call_mistral_local(system, user, temperature=0.85, max_tokens=80)
     return _clean(raw) or None
