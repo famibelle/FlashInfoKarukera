@@ -445,9 +445,9 @@ jobs:
           echo "📝 Fichiers staged :"
           git diff --cached --name-only
           
-          # Commit sans stash (évite les conflits)
+          git pull origin main --no-rebase -X ours --no-edit 2>/dev/null || true
           git commit -m "chore: update radio sequence & caches [skip ci]" --no-edit
-          git push origin +HEAD:main
+          git push || (git pull origin main --rebase -X ours --no-edit && git push)
 
       - name: ✅ Vérifier commit
         run: |
