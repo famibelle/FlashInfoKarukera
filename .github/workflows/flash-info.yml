@@ -257,7 +257,7 @@ jobs:
         if: steps.check_flash.outputs.exists != 'true'
         run: gh workflow run pages.yml --ref main
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
 
       - name: ⏱️  Execution Time Summary
         run: |
