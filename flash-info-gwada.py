@@ -3448,7 +3448,6 @@ def main():
             archive_path, edition,
             target_date.strftime("%Y%m%d"),
             api_key=MISTRAL_API_KEY,
-            podcast_path=PODCAST_RSS_PATH,
         )
         if llm_title:
             print(f"   ✨ Titre LLM : {llm_title}")

@@ -52,10 +52,21 @@ jobs:
     if: inputs.run_horoscope == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     continue-on-error: true
+    outputs:
+      edition: ${{ steps.edition.outputs.value }}
     steps:
       - name: ⏱️  Start Time Tracking
         id: start-time
         run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+
+      - name: Déterminer l'édition (matin / midi / soir)
+        id: edition
+        run: |
+          HOUR=$(date -u +%H)
+          if   [ "$HOUR" -lt 6  ]; then echo "value=matin" >> $GITHUB_OUTPUT
+          elif [ "$HOUR" -lt 12 ]; then echo "value=midi"  >> $GITHUB_OUTPUT
+          else                          echo "value=soir"  >> $GITHUB_OUTPUT
+          fi
 
       - name: Déclencher Horoscope
         env:
@@ -63,7 +74,9 @@ jobs:
           REPO: ${{ github.repository }}
           VERBOSE: ${{ github.event.inputs.verbose }}
         run: |
-          gh workflow run horoscope-daily.yml --repo "$REPO" --field verbose=${VERBOSE:-false}
+          gh workflow run horoscope-daily.yml --repo "$REPO" \
+            --field verbose=${VERBOSE:-false} \
+            --field edition=${{ steps.edition.outputs.value }}
           sleep 15
           WORKFLOW_ID=$(gh api repos/$REPO/actions/workflows/horoscope-daily.yml --jq '.id')
           RUN_ID=$(gh api repos/$REPO/actions/workflows/$WORKFLOW_ID/runs --jq '.workflow_runs[0].id')
@@ -98,7 +111,9 @@ jobs:
           REPO: ${{ github.repository }}
           VERBOSE: ${{ github.event.inputs.verbose }}
         run: |
-          gh workflow run flash-info.yml --repo "$REPO" --field verbose=${VERBOSE:-false}
+          gh workflow run flash-info.yml --repo "$REPO" \
+            --field verbose=${VERBOSE:-false} \
+            --field edition=${{ needs.horoscope.outputs.edition }}
           sleep 15
           WORKFLOW_ID=$(gh api repos/$REPO/actions/workflows/flash-info.yml --jq '.id')
           RUN_ID=$(gh api repos/$REPO/actions/workflows/$WORKFLOW_ID/runs --jq '.workflow_runs[0].id')
