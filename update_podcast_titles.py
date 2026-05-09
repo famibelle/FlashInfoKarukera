@@ -17,8 +17,8 @@ Usage :
 
 import json
 import os
-import random
 import re
+import subprocess
 import sys
 import time
 import urllib.request
@@ -31,13 +31,16 @@ try:
 except ImportError:
     pass
 
-# ── Config ───────────────────────────────────────────────────────────────────
+from title_generator import (
+    generate_flash_title,
+    generate_horoscope_title,
+    _load_recent_horoscope_titles,
+)
 
-API_KEY  = os.getenv("MISTRAL_API_KEY_BOTIRAN")
-MODEL    = "mistral-small-latest"
-CHAT_URL = "https://api.mistral.ai/v1/chat/completions"
+# ── Config ────────────────────────────────────────────────────────────────────
 
-PODCAST_PATH  = Path("docs/podcast.xml")
+API_KEY      = os.getenv("MISTRAL_API_KEY_BOTIRAN")
+PODCAST_PATH = Path("docs/podcast.xml")
 HOROSCOPE_DIR = Path("archives/horoscope")
 FLASH_DIR     = Path("archives/flash-info")
 EMISSION_DIR  = Path("docs/audio/Emissions")
@@ -48,34 +51,22 @@ MONTH_NAMES = {
     "09": "septembre", "10": "octobre", "11": "novembre", "12": "décembre",
 }
 
-SIGN_EMOJIS = {
-    "Bélier": "♈", "Taureau": "♉", "Gémeaux": "♊", "Cancer": "♋",
-    "Lion": "♌",   "Vierge": "♍",  "Balance": "♎", "Scorpion": "♏",
-    "Sagittaire": "♐", "Capricorne": "♑", "Verseau": "♒", "Poissons": "♓",
-}
+# ── Mistral (pour les émissions, non couvert par title_generator) ─────────────
 
-# ── Mistral ──────────────────────────────────────────────────────────────────
+MODEL    = "mistral-small-latest"
+CHAT_URL = "https://api.mistral.ai/v1/chat/completions"
 
-def call_mistral(system: str, user: str, *, temperature: float = 0.85, max_tokens: int = 120) -> str:
+
+def _call_mistral_local(system: str, user: str, temperature: float = 0.85, max_tokens: int = 120) -> str:
     if not API_KEY:
         raise RuntimeError("MISTRAL_API_KEY_BOTIRAN manquant dans .env")
-
     payload = {
-        "model": MODEL,
-        "temperature": temperature,
-        "max_tokens": max_tokens,
-        "messages": [
-            {"role": "system", "content": system},
-            {"role": "user",   "content": user},
-        ],
+        "model": MODEL, "temperature": temperature, "max_tokens": max_tokens,
+        "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
     }
     req = urllib.request.Request(
-        CHAT_URL,
-        data=json.dumps(payload).encode(),
-        headers={
-            "Authorization": f"Bearer {API_KEY}",
-            "Content-Type": "application/json",
-        },
+        CHAT_URL, data=json.dumps(payload).encode(),
+        headers={"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"},
     )
     for attempt in range(4):
         try:
@@ -93,185 +84,23 @@ def call_mistral(system: str, user: str, *, temperature: float = 0.85, max_token
                 time.sleep(15 * 2 ** attempt)
             else:
                 raise
+    return ""
 
-
-_SIGN_EMOJI_PATTERN = re.compile(
-    r'^[A-ZÀÂÄÉÈÊËÏÎÔÙÛÜŸA-z][\w\s]* [♈♉♊♋♌♍♎♏♐♑♒♓] & [A-ZÀÂÄÉÈÊËÏÎÔÙÛÜŸA-z][\w\s]* [♈♉♊♋♌♍♎♏♐♑♒♓] :\s*'
-)
 
 def _clean(raw: str) -> str:
-    """Retire guillemets, astérisques, sauts de ligne et préfixes signe/emoji produits par le LLM."""
-    title = re.sub(r'[\[\]\*\`\"\'\n\r]', '', raw)
-    title = re.sub(r'\s+', ' ', title).strip().rstrip('.')
-    title = _SIGN_EMOJI_PATTERN.sub('', title).strip()
+    title = re.sub(r'[\[\]\*\`\"\'\n\r]', "", raw)
+    title = re.sub(r"\s+", " ", title).strip().rstrip(".")
     return title
 
 
-# ── Parseur horoscope ────────────────────────────────────────────────────────
-
-def _normalize_sign(raw: str) -> str | None:
-    """'TAUREAU' → 'Taureau', vérifie que c'est un signe connu."""
-    candidate = raw.strip().title()
-    return candidate if candidate in SIGN_EMOJIS else None
-
-
-def parse_sign_texts(horoscope_text: str) -> dict[str, str]:
-    """Retourne {nom_signe: texte_brut} pour chaque signe trouvé."""
-    signs: dict[str, list[str]] = {}
-    current: str | None = None
-
-    SKIP_PREFIXES = (
-        'HOROSCOPE KARUKERA', 'Signes :', 'Nous sommes le', 'Que la ', 'Que les ',
-        'Allez,', '====', 'Bèl bonjou',
-    )
-
-    for line in horoscope_text.splitlines():
-        stripped = line.strip()
-
-        m = re.match(r'=== ([A-ZÀÂÄÉÈÊËÏÎÔÙÛÜŸ]+) ===', stripped)
-        if m:
-            current = _normalize_sign(m.group(1))
-            if current and current not in signs:
-                signs[current] = []
-            continue
-
-        if current and stripped and len(stripped) > 20:
-            if not any(stripped.startswith(p) for p in SKIP_PREFIXES):
-                signs[current].append(stripped)
-
-    return {k: ' '.join(v) for k, v in signs.items() if v}
-
-
-def parse_sign_list(horoscope_text: str) -> list[str]:
-    """Extrait la liste ordonnée depuis la ligne 'Signes : ...'"""
-    for line in horoscope_text.splitlines():
-        if line.startswith('Signes :'):
-            found = []
-            for part in line.split(':', 1)[1].split(','):
-                name = part.strip().replace('&', '').replace('*', '').strip()
-                if name in SIGN_EMOJIS:
-                    found.append(name)
-            return found
-    return []
-
-
-# ── Générateurs de titres ────────────────────────────────────────────────────
-
-def _date_fr(date_compact: str) -> tuple[str, str]:
-    """'20260509' → ('9', 'mai')"""
-    return str(int(date_compact[6:8])), MONTH_NAMES.get(date_compact[4:6], '?')
-
-
-def generate_horoscope_title(filepath: Path, edition: str, date_compact: str, recent_titles: list[str] | None = None) -> str | None:
-    text = filepath.read_text(encoding='utf-8')
-
-    sign_texts = parse_sign_texts(text)
-    sign_list  = parse_sign_list(text)
-
-    available = [s for s in sign_list if s in sign_texts and len(sign_texts[s]) > 80]
-    if len(available) < 2:
-        available = [s for s in sign_texts if len(sign_texts[s]) > 80]
-    if len(available) < 2:
-        return None
-
-    signe1, signe2 = random.sample(available, 2)
-    excerpt1 = sign_texts[signe1][:700]
-    excerpt2 = sign_texts[signe2][:700]
-
-    avoid_block = ''
-    if recent_titles:
-        # Extraire les mots significatifs (4+ lettres) les plus fréquents pour les interdire explicitement
-        word_counts: dict[str, int] = {}
-        for t in recent_titles:
-            # Isoler la phrase de corrélation (entre ": " et ", dans votre horoscope")
-            m = re.search(r':\s*(.+?),\s*dans votre horoscope', t)
-            phrase = m.group(1) if m else t
-            for w in re.findall(r'[a-zàâäéèêëïîôùûüÿ]{4,}', phrase.lower()):
-                word_counts[w] = word_counts.get(w, 0) + 1
-        banned = sorted(w for w, c in word_counts.items() if c >= 2)
-        if banned:
-            avoid_block = (
-                f"\n\nMots et verbes déjà surexploités — interdits dans ta réponse : "
-                f"{', '.join(banned[:20])}."
-            )
-
-    system = (
-        "Tu es un rédacteur créatif pour Radio Karukera, une radio de la diaspora guadeloupéenne au Luxembourg. "
-        "Tu génères des titres d'horoscopes courts, poétiques, percutants, avec une touche créole et caraïbéenne. "
-        "Tu réponds TOUJOURS par une seule phrase courte — jamais de liste, jamais de tirets, jamais de signe deux-points, jamais d'analyse."
-    )
-    user = (
-        f"Horoscope — {signe1.upper()} :\n{excerpt1}\n\n"
-        f"Horoscope — {signe2.upper()} :\n{excerpt2}\n\n"
-        f"Trouve l'image ou la sensation la plus forte dans chaque texte, puis forge UNE SEULE phrase poétique "
-        f"qui croise ces deux univers de façon surprenante.\n"
-        f"Exemple de bonne réponse : «Le kabrit broute l'ombre du gran pélikan»\n"
-        f"{avoid_block}\n"
-        f"Réponds avec cette unique phrase (max 55 caractères). Pas de guillemets, pas de ponctuation finale."
-    )
-
-    raw = call_mistral(system, user, temperature=0.88, max_tokens=80)
-    correlation = _clean(raw)
-    if not correlation:
-        return None
-
-    e1 = SIGN_EMOJIS.get(signe1, '✨')
-    e2 = SIGN_EMOJIS.get(signe2, '✨')
-    day, month = _date_fr(date_compact)
-
-    return f"{signe1} {e1} & {signe2} {e2} : {correlation}, dans votre horoscope de ce {edition} du {day} {month}"
-
-
-_SIGN_NAMES = {
-    'Bélier', 'Taureau', 'Gémeaux', 'Cancer', 'Lion', 'Vierge',
-    'Balance', 'Scorpion', 'Sagittaire', 'Capricorne', 'Verseau', 'Poissons',
-    'Bèlmè', 'Toré', 'Jimo', 'Kannkrab', 'Lyon', 'Vyèj',
-    'Balans', 'Skòpyon', 'Sajitè', 'Kaprikòn', 'Vèso', 'Pwason',
-}
-
-def _strip_horoscope_sections(text: str) -> str:
-    """Retire les paragraphes horoscope (signe zodiacal en début de section) d'un flash info."""
-    sep = '————'
-    sections = text.split(sep)
-    news = []
-    for section in sections:
-        first_word = section.strip().split(',')[0].strip()
-        if first_word in _SIGN_NAMES:
-            continue
-        news.append(section)
-    return sep.join(news)
-
-
-def generate_flash_title(filepath: Path, edition: str, date_compact: str) -> str | None:
-    raw_text = filepath.read_text(encoding='utf-8')
-    text = _strip_horoscope_sections(raw_text)
-
-    day, month = _date_fr(date_compact)
-
-    system = (
-        "Tu es un rédacteur accrocheur pour Radio Karukera, une radio de la diaspora guadeloupéenne. "
-        "Tu écris des titres de flash info courts qui donnent envie d'écouter sans tout révéler — "
-        "comme un teaser."
-    )
-    user = (
-        f"Voici le texte d'un flash info guadeloupéen — édition du {edition} du {day} {month} :\n\n"
-        f"{text}\n\n"
-        "Choisis l'info la plus marquante et génère UN SEUL titre accrocheur (max 70 caractères) "
-        "qui donne envie d'écouter sans tout révéler, comme un teaser radio. "
-        "Une seule phrase, pas de liste, pas de numérotation, pas de guillemets, pas de ponctuation finale."
-    )
-
-    raw = call_mistral(system, user, temperature=0.80, max_tokens=100)
-    return _clean(raw) or None
-
+# ── Générateur émission ───────────────────────────────────────────────────────
 
 def generate_emission_title(filepath: Path) -> str | None:
     try:
-        data  = json.loads(filepath.read_text(encoding='utf-8'))
-        text  = data.get('text', '')
+        data = json.loads(filepath.read_text(encoding="utf-8"))
+        text = data.get("text", "")
     except Exception:
         return None
-
     if not text:
         return None
 
@@ -280,55 +109,45 @@ def generate_emission_title(filepath: Path) -> str | None:
         "Tu crées des titres d'émissions culturelles évocateurs, qui inspirent et donnent envie d'écouter."
     )
     user = (
-        f"Voici le texte d'une émission culturelle sur la Guadeloupe :\n\n"
-        f"{text}\n\n"
+        f"Voici le texte d'une émission culturelle sur la Guadeloupe :\n\n{text}\n\n"
         "Génère un titre poétique et évocateur (max 60 caractères) qui capture l'essence de cette émission. "
         "Pas de guillemets, pas de ponctuation finale."
     )
-
-    raw = call_mistral(system, user, temperature=0.85, max_tokens=80)
+    raw = _call_mistral_local(system, user, temperature=0.85, max_tokens=80)
     return _clean(raw) or None
 
 
 # ── Résolution guid / fichier source ─────────────────────────────────────────
 
 def parse_guid(guid: str) -> tuple[str, str, str]:
-    """Retourne (date_compact, edition, content_type) depuis un guid RSS."""
-    m = re.search(r'horoscope-(\d{8})-(\w+)', guid)
+    m = re.search(r"horoscope-(\d{8})-(\w+)", guid)
     if m:
-        return m.group(1), m.group(2), 'horoscope'
-
-    m = re.search(r'flash-info-(\d{8})-(\w+)', guid)
+        return m.group(1), m.group(2), "horoscope"
+    m = re.search(r"flash-info-(\d{8})-(\w+)", guid)
     if m:
-        return m.group(1), m.group(2), 'flash-info'
-
-    m = re.search(r'emission-(\d{4})-(\d{2})-(\d{2})', guid)
+        return m.group(1), m.group(2), "flash-info"
+    m = re.search(r"emission-(\d{4})-(\d{2})-(\d{2})", guid)
     if m:
-        return f"{m.group(1)}{m.group(2)}{m.group(3)}", '', 'emission'
-
-    m = re.search(r'emission-(\d{8})', guid)
+        return f"{m.group(1)}{m.group(2)}{m.group(3)}", "", "emission"
+    m = re.search(r"emission-(\d{8})", guid)
     if m:
-        return m.group(1), '', 'emission'
-
-    return '', '', ''
+        return m.group(1), "", "emission"
+    return "", "", ""
 
 
 def resolve_source(content_type: str, date_compact: str, edition: str) -> Path | None:
-    if content_type == 'horoscope':
+    if content_type == "horoscope":
         p = HOROSCOPE_DIR / f"horoscope-{date_compact}-{edition}.txt"
         return p if p.exists() else None
-
-    if content_type == 'flash-info':
+    if content_type == "flash-info":
         p = FLASH_DIR / f"flash-info-{date_compact}-{edition}.txt"
         return p if p.exists() else None
-
-    if content_type == 'emission':
+    if content_type == "emission":
         date_iso = f"{date_compact[:4]}-{date_compact[4:6]}-{date_compact[6:8]}"
         for stem in (f"emission-{date_iso}", f"emission-{date_compact}"):
             p = EMISSION_DIR / f"{stem}.json"
             if p.exists():
                 return p
-
     return None
 
 
@@ -344,7 +163,7 @@ def update_titles(*, apply: bool = False, only_type: str | None = None) -> None:
 
     tree  = ET.parse(PODCAST_PATH)
     root  = tree.getroot()
-    items = root.findall('.//item')
+    items = root.findall(".//item")
 
     changed = 0
     skipped = 0
@@ -353,21 +172,21 @@ def update_titles(*, apply: bool = False, only_type: str | None = None) -> None:
     # Pré-alimenter avec les titres horoscope existants pour éviter les répétitions dès le premier appel
     recent_horoscope_titles: list[str] = []
     for item in items:
-        guid_el  = item.find('guid')
-        title_el = item.find('title')
+        guid_el  = item.find("guid")
+        title_el = item.find("title")
         if guid_el is None or title_el is None:
             continue
-        _, _, ctype = parse_guid(guid_el.text or '')
-        if ctype == 'horoscope' and title_el.text:
+        _, _, ctype = parse_guid(guid_el.text or "")
+        if ctype == "horoscope" and title_el.text:
             recent_horoscope_titles.append(title_el.text)
 
     for item in items:
-        guid_el  = item.find('guid')
-        title_el = item.find('title')
+        guid_el  = item.find("guid")
+        title_el = item.find("title")
         if guid_el is None or title_el is None:
             continue
 
-        guid = guid_el.text or ''
+        guid = guid_el.text or ""
         date_compact, edition, content_type = parse_guid(guid)
 
         if not date_compact or not content_type:
@@ -383,13 +202,17 @@ def update_titles(*, apply: bool = False, only_type: str | None = None) -> None:
 
         print(f"  🔄 {guid}…", flush=True)
         try:
-            if content_type == 'horoscope':
-                title = generate_horoscope_title(source, edition, date_compact, recent_horoscope_titles)
+            if content_type == "horoscope":
+                title = generate_horoscope_title(
+                    source, edition, date_compact,
+                    api_key=API_KEY,
+                    recent_titles=recent_horoscope_titles,
+                )
                 if title:
                     recent_horoscope_titles.append(title)
-            elif content_type == 'flash-info':
-                title = generate_flash_title(source, edition, date_compact)
-            elif content_type == 'emission':
+            elif content_type == "flash-info":
+                title = generate_flash_title(source, edition, date_compact, api_key=API_KEY)
+            elif content_type == "emission":
                 title = generate_emission_title(source)
             else:
                 continue
@@ -403,7 +226,7 @@ def update_titles(*, apply: bool = False, only_type: str | None = None) -> None:
             skipped += 1
             continue
 
-        old = title_el.text or ''
+        old = title_el.text or ""
         print(f"     ancien : {old}")
         print(f"     nouveau: {title}")
         print()
@@ -414,10 +237,14 @@ def update_titles(*, apply: bool = False, only_type: str | None = None) -> None:
 
     print("─" * 60)
     if apply and changed > 0:
-        ET.register_namespace('itunes', 'http://www.itunes.com/dtds/podcast-1.0.dtd')
-        tree.write(PODCAST_PATH, encoding='utf-8', xml_declaration=True)
-        import subprocess
-        subprocess.run(['sed', '-i', 's/<ns0:/<itunes:/g;s/<\\/ns0:/<\\/itunes:/g;s/ ns0:/ itunes:/g;s/xmlns:ns0=/xmlns:itunes=/g', str(PODCAST_PATH)], check=True)
+        ET.register_namespace("itunes", "http://www.itunes.com/dtds/podcast-1.0.dtd")
+        tree.write(PODCAST_PATH, encoding="utf-8", xml_declaration=True)
+        subprocess.run(
+            ["sed", "-i",
+             "s/<ns0:/<itunes:/g;s/<\\/ns0:/<\\/itunes:/g;s/ ns0:/ itunes:/g;s/xmlns:ns0=/xmlns:itunes=/g",
+             str(PODCAST_PATH)],
+            check=True,
+        )
         print(f"💾 {changed} titres mis à jour dans {PODCAST_PATH}")
     elif not apply:
         print(f"[dry-run] {changed} titre(s) générés. Relancez avec --update pour sauvegarder.")
@@ -430,14 +257,12 @@ def update_titles(*, apply: bool = False, only_type: str | None = None) -> None:
         print(f"❌ {errors} erreur(s) lors des appels LLM.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     args      = sys.argv[1:]
-    apply     = '--update' in args
+    apply     = "--update" in args
     only_type = None
-
-    if '--type' in args:
-        idx = args.index('--type')
+    if "--type" in args:
+        idx = args.index("--type")
         if idx + 1 < len(args):
             only_type = args[idx + 1]
-
     update_titles(apply=apply, only_type=only_type)

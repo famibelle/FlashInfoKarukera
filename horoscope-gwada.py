@@ -2243,11 +2243,29 @@ def main():
 
     edition_emoji = "🌅" if args.edition == "matin" else "🌙"
     horoscope_full_text = "\n\n".join(archive_texts)
-    ia_episode_title = generate_horoscope_title(
-        signs_fr, gen_date, args.edition,
-        api_key=MISTRAL_API_KEY if MISTRAL_API_KEY else None,
-        horoscope_text=horoscope_full_text
-    )
+
+    # Titre accrocheur via module partagé (corrélation 2 signes + anti-répétition)
+    ia_episode_title = None
+    try:
+        from title_generator import generate_horoscope_title as _gen_horo_title
+        ia_episode_title = _gen_horo_title(
+            horoscope_full_text, args.edition,
+            gen_date.strftime("%Y%m%d"),
+            api_key=MISTRAL_API_KEY if MISTRAL_API_KEY else None,
+            podcast_path=HOROSCOPE_RSS_PATH,
+        )
+        if ia_episode_title:
+            print(f"   ✨ Titre LLM : {ia_episode_title}")
+    except Exception as _e:
+        print(f"   ⚠️  Titre LLM ignoré (non bloquant) : {_e}")
+
+    # Fallback sur l'ancienne méthode si le module échoue
+    if not ia_episode_title:
+        ia_episode_title = generate_horoscope_title(
+            signs_fr, gen_date, args.edition,
+            api_key=MISTRAL_API_KEY if MISTRAL_API_KEY else None,
+            horoscope_text=horoscope_full_text
+        )
 
     # ── GitHub Releases — audio public ───────────────────────────────────────
     gh_tag = f"horoscope-{gen_date.strftime('%Y-%m')}"

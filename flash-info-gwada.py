@@ -3512,6 +3512,21 @@ def main():
     # Étape 5 — Buzzsprout → Spotify
     episode_url, bz_audio_url = publish_buzzsprout(output_path, title, description, tags)
 
+    # ── Titre accrocheur LLM ──────────────────────────────────────────────────
+    try:
+        from title_generator import generate_flash_title as _gen_flash_title
+        llm_title = _gen_flash_title(
+            archive_path, edition,
+            target_date.strftime("%Y%m%d"),
+            api_key=MISTRAL_API_KEY,
+            podcast_path=PODCAST_RSS_PATH,
+        )
+        if llm_title:
+            print(f"   ✨ Titre LLM : {llm_title}")
+            title = llm_title
+    except Exception as _e:
+        print(f"   ⚠️  Titre LLM ignoré (non bloquant) : {_e}")
+
     # ── Podcast RSS — archive.org > Buzzsprout > B2 > GitHub Pages (fallback) ──
     # Utiliser GitHub Pages comme fallback si aucune plateforme externe ne fonctionne
     fallback_url = f"{PAGES_BASE}/audio/flash-info/{target_date.strftime('%Y-%m')}/{output_path.name}"
