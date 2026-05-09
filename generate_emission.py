@@ -555,7 +555,26 @@ def main():
     parser.add_argument("--edition", choices=["matin", "soir"], default="matin",
                         help="Édition du jour (matin ou soir)")
     parser.add_argument("--overwrite", action="store_true", help="Écrase les fichiers existants")
+    parser.add_argument("--sources", action="store_true",
+                        help="Affiche uniquement les éléments sélectionnés sans générer l'émission")
     args = parser.parse_args()
+
+    if args.sources:
+        edition = args.edition
+        elements = _select_elements(edition)
+        labels = {
+            "kreyol_resistance_symbol_ref.md": "Symboles de résistance créole",
+            "faune_guadeloupe_ref.md":         "Faune",
+            "flore_guadeloupe_ref.md":         "Flore",
+            "lieux_spirituels_ref.md":          "Lieux spirituels",
+            "histoire_guadeloupe_ref.md":       "Histoire",
+        }
+        for key, label in labels.items():
+            if key in elements:
+                print(f"  - {label} : {elements[key]['content']}")
+        insp = elements.get("inspiration", {})
+        print(f"  - Morceau précédant : {insp.get('title','?')} — {insp.get('artist','?')}")
+        return
 
     edition = args.edition
 
