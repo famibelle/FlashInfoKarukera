@@ -193,6 +193,7 @@ jobs:
           git pull origin main --no-rebase -X ours --no-edit 2>/dev/null || true
           git add data/used_flora.json archives/horoscope/
           git add docs/audio/horoscope/
+          git add docs/podcast.xml
           if ! git diff --cached --quiet; then
             git commit -m "chore: horoscope ${{ env.TARGET_DATE }} — archive + flore + RSS [skip ci]"
             git push || (git pull origin main --rebase -X ours --no-edit && git push)

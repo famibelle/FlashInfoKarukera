@@ -360,7 +360,10 @@ def update_titles(*, apply: bool = False, only_type: str | None = None) -> None:
 
     print("─" * 60)
     if apply and changed > 0:
+        ET.register_namespace('itunes', 'http://www.itunes.com/dtds/podcast-1.0.dtd')
         tree.write(PODCAST_PATH, encoding='utf-8', xml_declaration=True)
+        import subprocess
+        subprocess.run(['sed', '-i', 's/<ns0:/<itunes:/g;s/<\\/ns0:/<\\/itunes:/g;s/ ns0:/ itunes:/g;s/xmlns:ns0=/xmlns:itunes=/g', str(PODCAST_PATH)], check=True)
         print(f"💾 {changed} titres mis à jour dans {PODCAST_PATH}")
     elif not apply:
         print(f"[dry-run] {changed} titre(s) générés. Relancez avec --update pour sauvegarder.")

@@ -245,6 +245,7 @@ jobs:
           git pull origin main --no-rebase -X ours --no-edit 2>/dev/null || true
           git add data/used_articles_*.json archives/flash-info/
           git add docs/audio/flash-info/
+          git add docs/podcast.xml
           if ! git diff --cached --quiet; then
             git commit -m "chore: flash info ${{ env.TARGET_DATE }} — archive + anti-répétition + RSS [skip ci]"
             git push || (git pull origin main --rebase -X ours --no-edit && git push)
