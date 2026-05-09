@@ -485,18 +485,27 @@ def main():
     parser = argparse.ArgumentParser(description="Émission culturelle quotidienne — 3 min monologue")
     parser.add_argument("--verbose", action="store_true", help="Affiche prompts et sorties LLM")
     parser.add_argument("--dry-run", action="store_true", help="Texte seul, sans TTS")
+    parser.add_argument("--edition", choices=["matin", "soir"], default="matin",
+                        help="Édition du jour (matin ou soir)")
+    parser.add_argument("--overwrite", action="store_true", help="Écrase les fichiers existants")
     args = parser.parse_args()
-    
+
+    edition = args.edition
+
     # Avertir si des fichiers sources manquent (mais continuer)
     missing = [f for f in SOURCE_FILES if not f.exists()]
     if missing:
         for f in missing:
             print(f"⚠️  Fichier introuvable : {f}", file=sys.stderr)
-    
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     today = date.today().isoformat()
-    out_mp3 = OUTPUT_DIR / f"emission-{today}.mp3"
-    out_json = OUTPUT_DIR / f"emission-{today}.json"
+    out_mp3  = OUTPUT_DIR / f"emission-{today}-{edition}.mp3"
+    out_json = OUTPUT_DIR / f"emission-{today}-{edition}.json"
+
+    if out_mp3.exists() and not args.overwrite and not args.dry_run:
+        print(f"⚠️  {out_mp3.name} existe déjà. Utilisez --overwrite pour régénérer.")
+        return
     
     # 1. Sélection des éléments + inspiration
     print("🎲 Sélection des éléments…")
@@ -516,6 +525,7 @@ def main():
     # 3. Sauvegarde JSON
     output_data = {
         "date": today,
+        "edition": edition,
         "type": "emission",
         "title": catchy_title,
         "duration": "~3 minutes",
@@ -524,7 +534,7 @@ def main():
         "inspiration": elements.get("inspiration", {}),
         "elements": {k: v for k, v in elements.items() if k != "inspiration"},
         "text": text,
-        "audio_url": f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-{today}.mp3"
+        "audio_url": f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-{today}-{edition}.mp3"
     }
     out_json.write_text(json.dumps(output_data, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"💾 JSON → {out_json}")
@@ -532,7 +542,7 @@ def main():
     # Archive texte pour analyse par dream_radio
     archives_dir = Path("archives/emissions")
     archives_dir.mkdir(parents=True, exist_ok=True)
-    archive_path = archives_dir / f"emission-{today}.txt"
+    archive_path = archives_dir / f"emission-{today}-{edition}.txt"
     archive_path.write_text(text, encoding="utf-8")
     print(f"📝 Archive → {archive_path}")
     
@@ -613,9 +623,12 @@ def _update_podcast_xml(mp3_path: Path, title: str = "Émission culturelle") -> 
         return
 
     today = date.today()
-    guid = f'emission-{today.isoformat()}'
+    # Déduire l'édition depuis le nom du fichier MP3
+    stem = mp3_path.stem  # e.g. "emission-2026-05-09-matin"
+    edition = stem.rsplit("-", 1)[-1] if stem.rsplit("-", 1)[-1] in ("matin", "soir") else ""
+    guid = f'emission-{today.isoformat()}-{edition}' if edition else f'emission-{today.isoformat()}'
     mp3_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/{mp3_path.name}"
-    
+
     # Vérifier si cette émission existe déjà
     existing_content = PODCAST_PATH.read_text(encoding='utf-8')
     if f'<guid>{guid}</guid>' in existing_content or mp3_url in existing_content:
@@ -647,7 +660,7 @@ def _update_podcast_xml(mp3_path: Path, title: str = "Émission culturelle") -> 
         enc.set('url', mp3_url)
         enc.set('length', str(mp3_size))
         enc.set('type', 'audio/mpeg')
-        ET.SubElement(item, 'guid', {'isPermaLink': 'false'}).text = f'emission-{today.isoformat()}'
+        ET.SubElement(item, 'guid', {'isPermaLink': 'false'}).text = guid
         # itunes:duration
         ET.SubElement(item, f'{{{NS_ITUNES}}}duration').text = '180'
         

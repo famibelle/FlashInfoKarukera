@@ -1,8 +1,17 @@
 name: Émission Culturelle Quotidienne
 
 on:
+  schedule:
+    - cron: "30 6 * * *"   # matin : 6h30 UTC
+    - cron: "30 16 * * *"  # soir  : 16h30 UTC
   workflow_dispatch:
     inputs:
+      edition:
+        description: "Édition (matin ou soir)"
+        type: choice
+        options: ["matin", "soir"]
+        required: false
+        default: "matin"
       verbose:
         description: "Mode verbeux (affiche prompts LLM)"
         type: boolean
@@ -48,10 +57,25 @@ jobs:
       - name: Installer FFmpeg
         run: sudo apt-get install -y ffmpeg
 
+      - name: Déterminer l'édition
+        id: edition
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            HOUR=$(date -u +%H)
+            if [ "$HOUR" -lt 12 ]; then
+              echo "value=matin" >> $GITHUB_OUTPUT
+            else
+              echo "value=soir" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "value=${{ github.event.inputs.edition || 'matin' }}" >> $GITHUB_OUTPUT
+          fi
+
       - name: Vérifier si émission existe déjà
         id: check_emission
         run: |
-          EMMISSION_FILE="docs/audio/Emissions/emission-$(date -u +%Y-%m-%d).mp3"
+          EDITION="${{ steps.edition.outputs.value }}"
+          EMISSION_FILE="docs/audio/Emissions/emission-$(date -u +%Y-%m-%d)-${EDITION}.mp3"
           if [ "${{ github.event.inputs.overwrite }}" = "true" ]; then
             echo "exists=false" >> $GITHUB_OUTPUT
           elif [ -f "$EMISSION_FILE" ]; then
@@ -60,16 +84,15 @@ jobs:
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Générer l'émission culturelle quotidienne
+      - name: Générer l'émission culturelle
         if: steps.check_emission.outputs.exists != 'true'
         env:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: |
-          python generate_emission.py ${{
-            github.event.inputs.verbose == 'true' && '--verbose' || ''
-          }} ${{
-            github.event.inputs.overwrite == 'true' && '--overwrite' || ''
-          }}
+          ARGS="--edition ${{ steps.edition.outputs.value }}"
+          if [ "${{ github.event.inputs.verbose }}" = "true" ]; then ARGS="$ARGS --verbose"; fi
+          if [ "${{ github.event.inputs.overwrite }}" = "true" ]; then ARGS="$ARGS --overwrite"; fi
+          python generate_emission.py $ARGS
 
       - name: Commit l'émission générée
         if: steps.check_emission.outputs.exists != 'true'
@@ -77,9 +100,10 @@ jobs:
           git config user.name "github-actions[Émission]"
           git config user.email "github-actions@github.com"
           git pull origin main --no-rebase -X ours --no-edit 2>/dev/null || true
-          git add docs/audio/Emissions/emission-*.mp3 docs/audio/Emissions/emission-*.json docs/podcast.xml
+          git add docs/audio/Emissions/emission-*.mp3 docs/audio/Emissions/emission-*.json
+          git add archives/emissions/ docs/podcast.xml
           if ! git diff --cached --quiet; then
-            git commit -m "feat: émission culturelle quotidienne [skip ci]"
+            git commit -m "feat: émission culturelle ${{ steps.edition.outputs.value }} $(date -u +%Y-%m-%d) [skip ci]"
             git push || (git pull origin main --rebase -X ours --no-edit && git push)
           fi
 
@@ -87,16 +111,14 @@ jobs:
         if: steps.check_emission.outputs.exists != 'true'
         run: gh workflow run pages.yml --ref main
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_SUBMODULE }}
 
       - name: ⏱️  Execution Time Summary
         run: |
           echo "=========================================="
           echo "  ⏱️  ÉMISSION JOB TIME SUMMARY"
           echo "=========================================="
-          echo "  Start: ${{ env.JOB_START_TIME }}"
+          echo "  Édition : ${{ steps.edition.outputs.value }}"
+          echo "  Start: ${{ steps.start-time.outputs.time }}"
           echo "  End:   $(date -u '+%Y-%m-%d %H:%M:%S')"
-          echo "  Total: ~$(($(date +%s) - $(date -d "${{ env.JOB_START_TIME }}" +%s 2>/dev/null || echo 0))) seconds"
           echo "=========================================="
-        env:
-          JOB_START_TIME: ${{ steps.start-time.outputs.time }}

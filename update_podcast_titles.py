@@ -126,6 +126,11 @@ def parse_guid(guid: str) -> tuple[str, str, str]:
     m = re.search(r"flash-info-(\d{8})-(\w+)", guid)
     if m:
         return m.group(1), m.group(2), "flash-info"
+    # Émission avec édition : emission-2026-05-09-matin
+    m = re.search(r"emission-(\d{4})-(\d{2})-(\d{2})-(matin|soir)", guid)
+    if m:
+        return f"{m.group(1)}{m.group(2)}{m.group(3)}", m.group(4), "emission"
+    # Émission sans édition (ancien format) : emission-2026-05-09
     m = re.search(r"emission-(\d{4})-(\d{2})-(\d{2})", guid)
     if m:
         return f"{m.group(1)}{m.group(2)}{m.group(3)}", "", "emission"
@@ -144,7 +149,15 @@ def resolve_source(content_type: str, date_compact: str, edition: str) -> Path |
         return p if p.exists() else None
     if content_type == "emission":
         date_iso = f"{date_compact[:4]}-{date_compact[4:6]}-{date_compact[6:8]}"
-        for stem in (f"emission-{date_iso}", f"emission-{date_compact}"):
+        # Chercher avec édition en priorité, puis sans (rétrocompatibilité)
+        candidates = []
+        if edition:
+            candidates += [
+                f"emission-{date_iso}-{edition}",
+                f"emission-{date_compact}-{edition}",
+            ]
+        candidates += [f"emission-{date_iso}", f"emission-{date_compact}"]
+        for stem in candidates:
             p = EMISSION_DIR / f"{stem}.json"
             if p.exists():
                 return p

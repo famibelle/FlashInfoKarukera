@@ -477,6 +477,20 @@ def build_sequence(pool: list[dict], slots: dict[str, dict]) -> list[dict]:
             if flash_key in slots:
                 print(f"  📰 Flash info {bloc}", flush=True)
                 seq.append(slots[flash_key])
+                emission_date = date.today().isoformat()
+                emission_path = Path("docs/audio/Emissions") / f"emission-{emission_date}-{bloc}.mp3"
+                gh_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-{emission_date}-{bloc}.mp3"
+                seq.append({
+                    "type": "transition", "subtype": "emission",
+                    "url": gh_url,
+                    "label": f"Émission culturelle — {bloc} — {emission_date}",
+                    "icon": "🎤",
+                    **({"pending": True} if not emission_path.exists() else {}),
+                })
+                if emission_path.exists():
+                    print(f"  🎤  Émission {bloc} insérée après flash info {bloc}", flush=True)
+                else:
+                    print(f"  🎤  Émission {bloc} pré-réservée (pas encore générée)", flush=True)
 
             first_group   = pool[pos : pos + HOROSCOPE_AFTER]
             first_artists = list(dict.fromkeys(t.get("artist", "") for t in first_group if t.get("artist")))
@@ -516,22 +530,6 @@ def build_sequence(pool: list[dict], slots: dict[str, dict]) -> list[dict]:
                         "icon": "🎙️"
                     })
                     print(f"  🎙️  Interview insérée après flash info midi", flush=True)
-                
-                # Insert emission after interview (or after flash info if no interview)
-                emission_date = date.today().isoformat()
-                emission_path = Path("docs/audio/Emissions") / f"emission-{emission_date}.mp3"
-                gh_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-{emission_date}.mp3"
-                seq.append({
-                    "type": "transition", "subtype": "emission",
-                    "url": gh_url,
-                    "label": f"Émission culturelle — Découverte de la Guadeloupe — {emission_date}",
-                    "icon": "🎤",
-                    **({"pending": True} if not emission_path.exists() else {}),
-                })
-                if emission_path.exists():
-                    print(f"  🎤  Émission insérée après flash info midi", flush=True)
-                else:
-                    print(f"  🎤  Émission pré-réservée (pas encore générée)", flush=True)
             print(f"  🎵 {size} pistes avec liners/capsules…", flush=True)
             seq += _music_with_liners(pool[pos : pos + size], bloc)
             pos += size
