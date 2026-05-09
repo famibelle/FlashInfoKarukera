@@ -322,5 +322,7 @@ def generate_horoscope_title(
     e1 = SIGN_EMOJIS.get(signe1, "✨")
     e2 = SIGN_EMOJIS.get(signe2, "✨")
     day, month = _date_fr(date_compact)
+    _EDITION_PREP = {"matin": "au matin", "midi": "à midi", "soir": "au soir"}
+    prep = _EDITION_PREP.get(edition, edition)
 
-    return f"{signe1} {e1} & {signe2} {e2} : {correlation}, dans votre horoscope de ce {edition} du {day} {month}"
+    return f"{signe1} {e1} & {signe2} {e2} : {correlation}, dans votre horoscope du {day} {month} {prep}"
