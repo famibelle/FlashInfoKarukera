@@ -38,6 +38,7 @@ _verbose: bool = False
 TRACKS_PER_LINER   = 6   # pistes entre deux liners
 TRACKS_PER_CAPSULE = 6   # pistes entre deux capsules culturelles
 HOROSCOPE_AFTER    = 6   # chansons entre flash info et horoscope
+EMISSION_AFTER     = 3   # chansons entre horoscope et émission culturelle
 
 # Répartition des blocs (doit correspondre à playlist_24h.py)
 BLOCK_SIZES = {
@@ -473,25 +474,13 @@ def build_sequence(pool: list[dict], slots: dict[str, dict]) -> list[dict]:
     for bloc, size in BLOCK_SIZES.items():
         print(f"\n── Bloc {bloc} ({size} pistes) ──────────────────────────────", flush=True)
         if bloc in ("matin", "soir"):
+            # 1. Flash info
             flash_key = f"flash_{bloc}"
             if flash_key in slots:
                 print(f"  📰 Flash info {bloc}", flush=True)
                 seq.append(slots[flash_key])
-                emission_date = date.today().isoformat()
-                emission_path = Path("docs/audio/Emissions") / f"emission-{emission_date}-{bloc}.mp3"
-                gh_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-{emission_date}-{bloc}.mp3"
-                seq.append({
-                    "type": "transition", "subtype": "emission",
-                    "url": gh_url,
-                    "label": f"Émission culturelle — {bloc} — {emission_date}",
-                    "icon": "🎤",
-                    **({"pending": True} if not emission_path.exists() else {}),
-                })
-                if emission_path.exists():
-                    print(f"  🎤  Émission {bloc} insérée après flash info {bloc}", flush=True)
-                else:
-                    print(f"  🎤  Émission {bloc} pré-réservée (pas encore générée)", flush=True)
 
+            # 2. Liner + HOROSCOPE_AFTER morceaux
             first_group   = pool[pos : pos + HOROSCOPE_AFTER]
             first_artists = list(dict.fromkeys(t.get("artist", "") for t in first_group if t.get("artist")))
             print(f"  🎙️  Liner {bloc} [1-{HOROSCOPE_AFTER}] — {', '.join(first_artists[:3])}", flush=True)
@@ -500,17 +489,40 @@ def build_sequence(pool: list[dict], slots: dict[str, dict]) -> list[dict]:
                 seq.append(liner)
             seq += _raw_music(first_group)
             pos += HOROSCOPE_AFTER
+
+            # 3. Capsule + horoscope
             print(f"  🌺 Capsule {bloc}-pre (après {HOROSCOPE_AFTER} pistes)", flush=True)
             capsule = get_capsule(bloc, 0)
             if capsule:
                 seq.append(capsule)
-
             horo_key = f"horoscope_{bloc}"
             if horo_key in slots:
                 print(f"  ✨ Horoscope {bloc}", flush=True)
                 seq.append(slots[horo_key])
 
-            remaining = size - HOROSCOPE_AFTER
+            # 4. EMISSION_AFTER morceaux de transition après l'horoscope
+            post_horo = pool[pos : pos + EMISSION_AFTER]
+            seq += _raw_music(post_horo)
+            pos += EMISSION_AFTER
+
+            # 5. Émission culturelle
+            emission_date = date.today().isoformat()
+            emission_path = Path("docs/audio/Emissions") / f"emission-{emission_date}-{bloc}.mp3"
+            gh_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-{emission_date}-{bloc}.mp3"
+            seq.append({
+                "type": "transition", "subtype": "emission",
+                "url": gh_url,
+                "label": f"Émission culturelle — {bloc} — {emission_date}",
+                "icon": "🎤",
+                **({"pending": True} if not emission_path.exists() else {}),
+            })
+            if emission_path.exists():
+                print(f"  🎤  Émission {bloc} (après horoscope + {EMISSION_AFTER} morceaux)", flush=True)
+            else:
+                print(f"  🎤  Émission {bloc} pré-réservée (pas encore générée)", flush=True)
+
+            # 6. Reste du bloc avec liners/capsules
+            remaining = size - HOROSCOPE_AFTER - EMISSION_AFTER
             print(f"  🎵 {remaining} pistes avec liners/capsules…", flush=True)
             seq += _music_with_liners(pool[pos : pos + remaining], bloc)
             pos += remaining
