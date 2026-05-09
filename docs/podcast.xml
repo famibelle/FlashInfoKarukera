@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
   <channel>
     <title>Karukera — Flash Info &amp; Horoscope</title>
     <link>https://famibelle.github.io/FlashInfoKarukera/</link>
@@ -8,12 +8,21 @@
     <copyright>© Botiran</copyright>
     <itunes:author>Botiran</itunes:author>
     <itunes:owner><itunes:name>Botiran</itunes:name><itunes:email>medhi.famibelle@outlook.fr</itunes:email></itunes:owner>
-    <itunes:image href="https://famibelle.github.io/FlashInfoKarukera/artwork.jpg" />
+    <itunes:image href="https://famibelle.github.io/FlashInfoKarukera/artwork.jpg"/>
     <image><url>https://famibelle.github.io/FlashInfoKarukera/artwork.jpg</url><title>Karukera — Flash Info &amp; Horoscope</title><link>https://famibelle.github.io/FlashInfoKarukera/</link></image>
-    <itunes:category text="News"><itunes:category text="Daily News" /></itunes:category>
+    <itunes:category text="News"><itunes:category text="Daily News"/></itunes:category>
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>🌅 Horoscope, dans votre horoscope de ce matin du samedi 9 mai</title>
+      <description><![CDATA[Nous sommes le samedi 9 mai 2026 et ce matin, le ciel de Karukera souffle sur trois feux qui ne s’éteignent jamais : le Taureau, têtu comme l’igwann qui attend son heure dans la roche ; la Balance, légère comme l’urakan qui danse au-dessus des vagues sans jamais toucher terre ; et le Lion, fier comme le gommier qui porte les pirogues vers l’inconnu. Réveillez-vous, mes gens, la journée commence avec le goût du manyòk grillé et l’odeur de la pluie sur la terre rouge.]]></description>
+      <pubDate>Sat, 09 May 2026 08:36:36 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/horoscope/2026-05/horoscope-20260509-matin.mp3" length="2565933" type="audio/mpeg"/>
+      <guid isPermaLink="false">horoscope-20260509-matin</guid>
+      <itunes:duration>03:59</itunes:duration>
+    </item>
+
+<item>
       <title>Sargasses en alerte : vigilance rouge dans trois communes du Sud</title>
       <description>Flash info Guadeloupe du 9 mai 2026 — édition du matin</description>
       <pubDate>Sat, 09 May 2026 03:33:00 +0000</pubDate>
@@ -22,7 +31,7 @@
       <itunes:duration>01:52</itunes:duration>
     </item>
 
-    <item>
+<item>
       <title>Poissons ♓ &amp; Capricorne ♑ : Le korosòl chante sous les doigts du kabrit, dans votre horoscope de ce matin du 9 mai</title>
       <description>Horoscope du vendredi 9 mai 2026 — matin</description>
       <pubDate>Sat, 09 May 2026 03:16:00 +0000</pubDate>
