@@ -83,6 +83,7 @@ jobs:
             git add docs/reves/
             git commit -m "docs: rêve quotidien $(date -u +%Y-%m-%d) [skip ci]" || true
             git push https://$GH_TOKEN@github.com/${{ github.repository }}.git HEAD:${{ github.ref }} || true
+            gh workflow run pages.yml --ref main || true
           else
             echo "✅ Aucun fichier rêve à commiter"
           fi
