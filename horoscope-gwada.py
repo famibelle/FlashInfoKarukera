@@ -128,8 +128,6 @@ B2_APPLICATION_KEY = os.environ.get("B2_APPLICATION_KEY", "")
 B2_BUCKET_NAME     = os.environ.get("B2_BUCKET_NAME", "")
 B2_ENDPOINT        = os.environ.get("B2_ENDPOINT", "")  # ex: https://s3.us-west-004.backblazeb2.com
 
-ARCHIVE_ACCESS_KEY = os.environ.get("ARCHIVE_ACCESS_KEY", "")
-ARCHIVE_SECRET_KEY = os.environ.get("ARCHIVE_SECRET_KEY", "")
 
 GITHUB_TOKEN     = os.environ.get("GITHUB_TOKEN", "")
 GITHUB_REPO      = "famibelle/FlashInfoKarukera"
@@ -1534,55 +1532,6 @@ def _upload_to_github_release(local_path: Path, tag: str, release_name: str) -> 
         return None
 
 
-# ── Internet Archive (archive.org) ────────────────────────────────────────────
-
-def _upload_to_archive_org(
-    local_path: Path,
-    identifier: str,
-    title: str,
-    description: str = "",
-    subject: str = "guadeloupe;podcast;karukera",
-) -> str | None:
-    if not all([ARCHIVE_ACCESS_KEY, ARCHIVE_SECRET_KEY]):
-        return None
-    try:
-        import requests as _req
-        # Les headers HTTP : pas de newlines, encodage UTF-8 en bytes
-        def _h(s: str) -> bytes:
-            return s.replace("\n", " ").replace("\r", "").strip().encode("utf-8")
-        filename = local_path.name
-        url = f"https://s3.us.archive.org/{identifier}/{filename}"
-        mediatype = "audio" if local_path.suffix == ".mp3" else "movies"
-        headers = {
-            "Authorization": f"LOW {ARCHIVE_ACCESS_KEY}:{ARCHIVE_SECRET_KEY}",
-            "x-amz-auto-make-bucket": "1",
-            "x-archive-ignore-preexisting-bucket": "1",
-            "x-archive-meta-mediatype": mediatype,
-            "x-archive-meta-title": _h(title),
-            "x-archive-meta-language": "fre",
-            "x-archive-meta-creator": "Botiran",
-            "x-archive-meta-subject": subject,
-            "Content-Type": "audio/mpeg" if local_path.suffix == ".mp3" else "video/mp4",
-            "Content-Length": str(local_path.stat().st_size),
-        }
-        if description:
-            headers["x-archive-meta-description"] = _h(description[:500])
-        print(f"   🏛️  archive.org upload → {identifier}/{filename}…")
-        with open(local_path, "rb") as f:
-            resp = _req.put(url, data=f, headers=headers, timeout=120)
-        resp.raise_for_status()
-        public_url = f"https://archive.org/download/{identifier}/{filename}"
-        print(f"   🏛️  archive.org → {public_url}")
-        return public_url
-    except Exception as e:
-        body = ""
-        try:
-            body = f" — {resp.text[:300]}"
-        except Exception:
-            pass
-        print(f"   ⚠️  archive.org upload échoué (non bloquant) : {e}{body}")
-        return None
-
 
 def _rfc2822(dt: "DateTime") -> str:
     return dt.strftime("%a, %d %b %Y %H:%M:%S +0000")
@@ -2277,19 +2226,8 @@ def main():
     gh_release_name = f"Horoscope Karukera — {gen_date.strftime('%B %Y')}"
     gh_audio_url = _upload_to_github_release(output_path, gh_tag, gh_release_name)
 
-    # ── Internet Archive — audio (non bloquant) ───────────────────────────────
-    ia_identifier = f"botiran-horoscope-karukera-{gen_date.strftime('%Y-%m')}"
-    ia_url = _upload_to_archive_org(
-        output_path,
-        identifier=ia_identifier,
-        title=ia_episode_title,
-        description=intro_text,
-        subject="guadeloupe;horoscope;astrologie;karukera;antilles;botiran",
-    )
-
-    # Utiliser GitHub Pages comme fallback si aucune plateforme externe ne fonctionne
     fallback_url = f"{PAGES_BASE}/audio/horoscope/{gen_date.strftime('%Y-%m')}/{output_path.name}"
-    podcast_audio_url = gh_audio_url or ia_url or fallback_url
+    podcast_audio_url = gh_audio_url or fallback_url
     if podcast_audio_url:
         _update_podcast_rss(
             rss_path=HOROSCOPE_RSS_PATH,
@@ -2349,13 +2287,6 @@ def main():
                 print(f"🎬 Vidéo horoscope : {concat_video}")
                 b2_key_video = f"horoscope/{gen_date.strftime('%Y/%m')}/{concat_video.name}"
                 _upload_to_b2(concat_video, b2_key_video)
-                _upload_to_archive_org(
-                    concat_video,
-                    identifier=ia_identifier,
-                    title=ia_episode_title,
-                    description=intro_text,
-                    subject="guadeloupe;horoscope;vidéo;karukera;antilles;botiran",
-                )
                 print("📤 Envoi vidéo horoscope sur Telegram (post principal)…")
                 main_msg_id = send_telegram_video(
                     concat_video,
