@@ -1,5 +1,19 @@
 # Notes de développement — Observations techniques
 
+## 10. `dreams-daily` analysait le jour courant au lieu de la veille
+
+**Symptôme** : `passages=0` pour Harry, Maryse Condé, Monique, Mulatresse Solitude dans le rapport — évaluations LLM toutes à 0/10.
+
+**Cause** : le script tourne à 00:00 UTC. Sans `--date` explicite, `get_today()` retourne la date UTC courante (le nouveau jour). Flash-info, horoscope et émission ne sont générés qu'à partir de 02:00 UTC → `load_journalist_texts` ne trouve rien. Seule Corinne (liners pré-existants en cache) avait des textes.
+
+**Fix** : le workflow calcule `yesterday` automatiquement quand `DATE_INPUT` est vide :
+```bash
+DATE="${DATE_INPUT:-$(date -u -d 'yesterday' +%Y-%m-%d)}"
+```
+
+---
+
+
 ## 1. `[skip ci]` bloque le déploiement GitHub Pages
 
 **Symptôme** : le site `radio.html` affichait du contenu vieux de plusieurs jours.
