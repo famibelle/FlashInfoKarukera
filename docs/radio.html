@@ -338,6 +338,14 @@
     .pl-title { color: #b8b8c8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .pl-artist { font-size: 0.74rem; color: #555; }
 
+    .qi-pending .qi-title, .pl-pending .pl-title { color: #3a3d50; }
+    .qi-pending .qi-icon,  .pl-pending .pl-icon  { opacity: 0.35; }
+    .item-badge {
+      display: inline-block; font-size: 0.6rem; color: #6366f1;
+      background: #1e1b4b; padding: 1px 6px; border-radius: 4px;
+      margin-left: 5px; vertical-align: middle;
+    }
+
     /* Overlay de bienvenue avec bouton Play animé */
     #welcome-overlay {
       position: absolute;
@@ -469,7 +477,7 @@
         <canvas id="eq-canvas"></canvas>
       </div>
 
-      <div class="now-playing">
+      <div class="now-playing" aria-live="polite" aria-atomic="true">
         <div class="np-type" id="np-type">Musique</div>
         <div class="np-title" id="np-title">Chargement…</div>
         <div class="np-artist" id="np-artist"></div>
@@ -576,11 +584,14 @@
 
       this._playlistOpen = false;
       this._pendingVideo = null;
-      this._eqRaf      = null;
-      this._audioCtx   = null;
-      this._analyser   = null;
-      this._freqData   = null;
+      this._eqRaf               = null;
+      this._audioCtx            = null;
+      this._analyser            = null;
+      this._freqData            = null;
+      this._eqMousedownHandler  = null;
+      this._eqTouchstartHandler = null;
 
+      this.btnPlay = document.getElementById('btn-play');
       this.trAudio = document.getElementById('tr-audio');
       this.trAudio.addEventListener('ended', () => this._next());
       this.trAudio.addEventListener('error', () => {
@@ -644,30 +655,18 @@
       });
     }
 
-    // ── Démarrage ────────────────────────────────────────────
-
-    async start() {
-      if (this.seq.length === 0) await this.load();
-      this.started = true;
-      this._initAudioContext();
-      this._show();
-      // iOS : _playAt(0) avant tout await pour rester dans le contexte du geste utilisateur.
-      // Si le premier item est de la musique et YT pas encore prêt, _pendingVideo prend le relais.
-      this._playAt(0);
-
-      await this._ytApiReady;
-      if (window.YT && window.YT.Player && !this.yt) await this._initYT();
-    }
-
     // ── Séquencement ─────────────────────────────────────────
 
-    _playAt(index) {
+    _playAt(index, _visited = new Set()) {
+      if (this.seq.length === 0) return;
       this.pos = ((index % this.seq.length) + this.seq.length) % this.seq.length;
       const item = this.seq[this.pos];
 
       // Sauter les liners/capsules sans URL (non encore générés)
       if ((item.type === 'liner' || item.type === 'capsule') && !item.url) {
-        return this._playAt(this.pos + 1);
+        if (_visited.has(this.pos)) return; // tous les items non jouables, on s'arrête
+        _visited.add(this.pos);
+        return this._playAt(this.pos + 1, _visited);
       }
 
       // Arrêter tout ce qui joue avant de passer à l'élément suivant
@@ -710,12 +709,21 @@
     _next() { this._playAt(this.pos + 1); }
     _prev() { this._playAt(this.pos - 1); }
 
-    // Les liners sont co-hébergés avec le player (docs/liners/) — on résout
-    // l'URL absolue GitHub Pages en chemin relatif pour que ça marche en local
-    // ET sur GitHub Pages sans avoir besoin de pousser d'abord.
     _resolveUrl(url) {
       const base = 'https://famibelle.github.io/FlashInfoKarukera/';
       return url.startsWith(base) ? url.slice(base.length) : url;
+    }
+
+    _esc(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    _itemDisplayProps(item) {
+      const subtypeIcons = { flash_info: '📰', horoscope: '✨', announcement: '🎙️' };
+      if (item.type === 'music')   return { icon: '🎵', title: item.title  || '—',                 artist: item.artist || '' };
+      if (item.type === 'liner')   return { icon: '🎙️', title: item.label  || 'Dans un moment…',   artist: '' };
+      if (item.type === 'capsule') return { icon: '🌺', title: item.label  || 'Capsule culturelle', artist: '' };
+      return { icon: subtypeIcons[item.subtype] || '🎙️', title: item.label || 'Transition', artist: '' };
     }
 
     // ── Lecture / pause ──────────────────────────────────────
@@ -729,14 +737,14 @@
         if (this.ytReady) {
           const s = this.yt.getPlayerState();
           s === YT.PlayerState.PLAYING ? this.yt.pauseVideo() : this.yt.playVideo();
-          btnPlay.textContent = s === YT.PlayerState.PLAYING ? '▶' : '⏸';
+          this.btnPlay.textContent = s === YT.PlayerState.PLAYING ? '▶' : '⏸';
         } else {
           // YT pas encore prêt — afficher le player et initialiser si nécessaire
           this._showYT();
           if (this.yt) {
             // YT existe mais pas encore prêt (onReady pas encore appelé)
             // La vidéo sera chargée quand onReady sera déclenché (via _pendingVideo)
-            btnPlay.textContent = '⏸';
+            this.btnPlay.textContent = '⏸';
           } else {
             // YT n'existe pas encore — initialiser
             this._ytApiReady.then(() => {
@@ -744,28 +752,25 @@
                 return this._initYT();
               }
             }).then(() => {
-              // Une fois YT initialisé, charger et jouer la vidéo
               if (this.ytReady) {
                 this.yt.loadVideoById(item.videoId);
                 this.yt.setVolume(this._vol());
                 this.yt.playVideo();
-                btnPlay.textContent = '⏸';
+                this.btnPlay.textContent = '⏸';
               }
             });
           }
         }
       } else {
-        // Liner MP3 + transitions (flash info, horoscope) → HTML5 Audio
+        // MP3 → HTML5 Audio
         this._initAudioContext();
-        if (item.type !== 'music') {
-          this._showTransition(item);
-        }
+        this._showTransition(item);
         if (this.trAudio.paused) {
           this.trAudio.play().catch(e => console.warn('[audio] échec play:', e));
         } else {
           this.trAudio.pause();
         }
-        btnPlay.textContent = this.trAudio.paused ? '▶' : '⏸';
+        this.btnPlay.textContent = this.trAudio.paused ? '▶' : '⏸';
       }
     }
 
@@ -849,64 +854,67 @@
     }
 
     _updateNowPlaying(item) {
-      btnPlay.textContent = '⏸';
+      this.btnPlay.textContent = '⏸';
+      let msTitle = '', msArtist = 'Radio Karukera';
       if (item.type === 'music') {
         document.getElementById('np-type').textContent   = '🎵 Musique';
         document.getElementById('np-title').textContent  = item.title  || '—';
         document.getElementById('np-artist').textContent = item.artist || '';
+        msTitle = item.title || '—'; msArtist = item.artist || 'Radio Karukera';
       } else if (item.type === 'liner') {
         document.getElementById('np-type').textContent   = '🎙️ Dans un moment…';
         document.getElementById('np-title').textContent  = item.label || 'Annonce à venir';
         document.getElementById('np-artist').textContent = '';
+        msTitle = item.label || 'Annonce à venir';
       } else if (item.type === 'capsule') {
         document.getElementById('np-type').textContent   = '🌺 Capsule culturelle';
         document.getElementById('np-title').textContent  = item.label || 'Guadeloupe';
         document.getElementById('np-artist').textContent = '';
+        msTitle = item.label || 'Capsule culturelle';
       } else {
-        // Formatage personnalisé pour flash_info et horoscope
         if (item.subtype === 'flash_info') {
           const { dateStr, moment } = this._extractDateAndMoment(item);
           document.getElementById('np-type').textContent   = '📰 Votre Flash Info';
           document.getElementById('np-title').textContent  = `du ${dateStr} ${moment} en Guadeloupe`;
           document.getElementById('np-artist').textContent = '';
+          msTitle = `Flash Info du ${dateStr} ${moment}`;
         } else if (item.subtype === 'horoscope') {
           const { dateStr, moment } = this._extractDateAndMoment(item);
           document.getElementById('np-type').textContent   = '✨ Votre Horoscope';
           document.getElementById('np-title').textContent  = `de ce ${moment} du ${dateStr}`;
           document.getElementById('np-artist').textContent = '';
+          msTitle = `Horoscope de ce ${moment} du ${dateStr}`;
         } else {
           document.getElementById('np-type').textContent   = '🎙️';
           document.getElementById('np-title').textContent  = item.label || 'Transition';
           document.getElementById('np-artist').textContent = '';
+          msTitle = item.label || 'Transition';
         }
+      }
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title:   msTitle,
+          artist:  msArtist,
+          album:   'Radio Botiran 🐚',
+          artwork: [{ src: 'artwork.jpg', sizes: '512x512', type: 'image/jpeg' }],
+        });
       }
     }
 
     _renderQueue() {
-      const subtypeIcons = { flash_info: '📰', horoscope: '✨', announcement: '🎙️' };
-      const items = Array.from({ length: 5 }, (_, i) => this.seq[(this.pos + 1 + i) % this.seq.length]);
-      document.getElementById('queue-list').innerHTML = items.map((it, i) => {
-        let icon, title, artist = '';
-        const targetIdx = (this.pos + 1 + i) % this.seq.length;
-        if (it.type === 'music') {
-          icon   = '🎵';
-          title  = it.title  || '—';
-          artist = it.artist || '';
-        } else if (it.type === 'liner') {
-          icon  = '🎙️';
-          title = it.label || 'Dans un moment…';
-        } else if (it.type === 'capsule') {
-          icon  = '🌺';
-          title = it.label || 'Capsule culturelle';
-        } else {
-          icon  = subtypeIcons[it.subtype] || '🎙️';
-          title = it.label || 'Transition';
-        }
-        return `<div class="queue-item" data-idx="${targetIdx}">
+      const items = Array.from({ length: 5 }, (_, i) => ({
+        item: this.seq[(this.pos + 1 + i) % this.seq.length],
+        idx:  (this.pos + 1 + i) % this.seq.length,
+      }));
+      document.getElementById('queue-list').innerHTML = items.map(({ item: it, idx }) => {
+        const { icon, title, artist } = this._itemDisplayProps(it);
+        const pendingCls = it.pending ? ' qi-pending' : '';
+        const badge      = it.pending ? '<span class="item-badge">bientôt</span>' : '';
+        return `<div class="queue-item${pendingCls}" data-idx="${idx}">
           <span class="qi-icon">${icon}</span>
           <div class="qi-info">
-            <div class="qi-title">${title}</div>
-            ${artist ? `<div class="qi-artist">${artist}</div>` : ''}
+            <div class="qi-title">${this._esc(title)}${badge}</div>
+            ${artist ? `<div class="qi-artist">${this._esc(artist)}</div>` : ''}
           </div>
         </div>`;
       }).join('');
@@ -919,31 +927,18 @@
 
     _renderFullPlaylist() {
       if (!this._playlistOpen) return;
-      const subtypeIcons = { flash_info: '📰', horoscope: '✨', announcement: '🎙️' };
       const el = document.getElementById('full-playlist');
       el.innerHTML = this.seq.map((it, i) => {
-        let icon, title, artist = '';
-        if (it.type === 'music') {
-          icon   = '🎵';
-          title  = it.title  || '—';
-          artist = it.artist || '';
-        } else if (it.type === 'liner') {
-          icon  = '🎙️';
-          title = it.label || 'Dans un moment…';
-        } else if (it.type === 'capsule') {
-          icon  = '🌺';
-          title = it.label || 'Capsule culturelle';
-        } else {
-          icon  = subtypeIcons[it.subtype] || '🎙️';
-          title = it.label || 'Transition';
-        }
-        const cur = i === this.pos ? ' pl-current' : '';
-        return `<div class="pl-item${cur}" data-idx="${i}">
+        const { icon, title, artist } = this._itemDisplayProps(it);
+        const cur        = i === this.pos ? ' pl-current' : '';
+        const pendingCls = it.pending ? ' pl-pending' : '';
+        const badge      = it.pending ? '<span class="item-badge">bientôt</span>' : '';
+        return `<div class="pl-item${cur}${pendingCls}" data-idx="${i}">
           <span class="pl-num">${i + 1}</span>
           <span class="pl-icon">${icon}</span>
           <div class="pl-info">
-            <div class="pl-title">${title}</div>
-            ${artist ? `<div class="pl-artist">${artist}</div>` : ''}
+            <div class="pl-title">${this._esc(title)}${badge}</div>
+            ${artist ? `<div class="pl-artist">${this._esc(artist)}</div>` : ''}
           </div>
         </div>`;
       }).join('');
@@ -1035,8 +1030,12 @@
       };
 
       let dragging = false;
-      canvas.addEventListener('mousedown',  (e) => { dragging = true;  seek(e.clientX); });
-      canvas.addEventListener('touchstart', (e) => { dragging = true;  seek(e.touches[0].clientX); }, { passive: true });
+      if (this._eqMousedownHandler)  canvas.removeEventListener('mousedown',  this._eqMousedownHandler);
+      if (this._eqTouchstartHandler) canvas.removeEventListener('touchstart', this._eqTouchstartHandler);
+      this._eqMousedownHandler  = (e) => { dragging = true; seek(e.clientX); };
+      this._eqTouchstartHandler = (e) => { dragging = true; seek(e.touches[0].clientX); };
+      canvas.addEventListener('mousedown',  this._eqMousedownHandler);
+      canvas.addEventListener('touchstart', this._eqTouchstartHandler, { passive: true });
       this._eqMoveHandler = (e) => { if (dragging) seek(e.touches ? e.touches[0].clientX : e.clientX); };
       this._eqUpHandler   = () => { dragging = false; };
       window.addEventListener('mousemove',  this._eqMoveHandler);
@@ -1051,7 +1050,11 @@
     _stopEQ() {
       if (this._eqRaf) { cancelAnimationFrame(this._eqRaf); this._eqRaf = null; }
       const canvas = document.getElementById('eq-canvas');
-      if (canvas) canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+      if (canvas) {
+        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+        if (this._eqMousedownHandler)  { canvas.removeEventListener('mousedown',  this._eqMousedownHandler);  this._eqMousedownHandler  = null; }
+        if (this._eqTouchstartHandler) { canvas.removeEventListener('touchstart', this._eqTouchstartHandler); this._eqTouchstartHandler = null; }
+      }
       if (this._eqMoveHandler) { window.removeEventListener('mousemove', this._eqMoveHandler); window.removeEventListener('touchmove', this._eqMoveHandler); this._eqMoveHandler = null; }
       if (this._eqUpHandler)   { window.removeEventListener('mouseup',   this._eqUpHandler);   window.removeEventListener('touchend',  this._eqUpHandler);   this._eqUpHandler   = null; }
       const trIcon = document.getElementById('tr-icon');
@@ -1111,8 +1114,26 @@
   btnPlay.addEventListener('click', () => radio.togglePlay());
   document.getElementById('btn-prev').addEventListener('click', () => radio._prev());
   document.getElementById('btn-skip').addEventListener('click', () => radio._next());
-  document.getElementById('volume').addEventListener('input', e => radio.setVolume(parseInt(e.target.value)));
-  
+  document.getElementById('volume').addEventListener('input', e => {
+    const v = parseInt(e.target.value);
+    radio.setVolume(v);
+    document.querySelector('.vol-icon').textContent = v === 0 ? '🔇' : v < 50 ? '🔉' : '🔊';
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.code === 'Space')      { e.preventDefault(); radio.togglePlay(); }
+    else if (e.code === 'ArrowRight') { e.preventDefault(); radio._next(); }
+    else if (e.code === 'ArrowLeft')  { e.preventDefault(); radio._prev(); }
+  });
+
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.setActionHandler('play',          () => radio.togglePlay());
+    navigator.mediaSession.setActionHandler('pause',         () => radio.togglePlay());
+    navigator.mediaSession.setActionHandler('previoustrack', () => radio._prev());
+    navigator.mediaSession.setActionHandler('nexttrack',     () => radio._next());
+  }
+
   // Rendre toute la transition-overlay cliquable pour play/pause (sauf le canvas)
   const transitionOverlay = document.getElementById('transition-overlay');
   const eqCanvas = document.getElementById('eq-canvas');
