@@ -51,6 +51,7 @@ jobs:
     name: 🔮 Horoscope
     if: inputs.run_horoscope == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: ⏱️  Start Time Tracking
         id: start-time
@@ -85,6 +86,7 @@ jobs:
     needs: horoscope
     if: inputs.run_flash_info == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: ⏱️  Start Time Tracking
         id: start-time
@@ -119,6 +121,7 @@ jobs:
     needs: flash-info
     if: inputs.run_capsules == true || github.event_name == 'schedule'
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: ⏱️  Start Time Tracking
         id: start-time
