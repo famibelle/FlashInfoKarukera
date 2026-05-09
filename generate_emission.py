@@ -47,6 +47,8 @@ SOURCE_FILES = [
     INDEX_CULTUREL_DIR / "histoire_guadeloupe_ref.md",
 ]
 OUTPUT_DIR = Path("docs/audio/Emissions")
+SELECTION_CACHE_PATH = Path(".dream_radio_cache") / "emission_selections.json"
+CACHE_MEMORY = 7  # évite les répétitions sur les 7 dernières sélections par catégorie
 
 # Voix Marie avec tons variés (disponibles dans Voxtral)
 TTS_VOICE_BASE = "fr_marie_"
@@ -55,15 +57,35 @@ MISTRAL_MODEL = "mistral-large-latest"
 
 # ── Sélection aléatoire ────────────────────────────────────────────────────
 
-def _select_random_lines_from_file(filepath: Path, num_lines: int = 1) -> list[str]:
+def _load_selection_cache() -> dict:
+    try:
+        return json.loads(SELECTION_CACHE_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _save_selection_cache(cache: dict) -> None:
+    try:
+        SELECTION_CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        SELECTION_CACHE_PATH.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception:
+        pass
+
+
+def _select_random_lines_from_file(
+    filepath: Path,
+    num_lines: int = 1,
+    exclude_names: set[str] | None = None,
+    recent: list[str] | None = None,
+) -> list[str]:
     """Sélectionne aléatoirement N lignes de tableau Markdown d'un fichier _ref.md."""
     header_keywords = ['famille', 'nom créole', 'nom français', 'nom scientifique',
                        'sacré', 'dimension culturelle', 'usage', 'catégorie', 'nom du lieu',
                        'commune', 'localisation']
-    
+
     data_lines = []
     content = filepath.read_text(encoding="utf-8")
-    
+
     for line in content.split('\n'):
         stripped = line.strip()
         if not stripped:
@@ -78,8 +100,28 @@ def _select_random_lines_from_file(filepath: Path, num_lines: int = 1) -> list[s
                 if not any(keyword in line_lower for keyword in header_keywords):
                     clean_line = clean_line.replace('|', '\t')
                     data_lines.append(clean_line)
-    
-    random.shuffle(data_lines)
+
+    # Déduplication cross-fichiers : exclure les noms déjà sélectionnés dans ce run
+    if exclude_names:
+        filtered = []
+        for l in data_lines:
+            cells = l.split('\t')
+            name_cells = {cells[i].strip() for i in (1, 2) if i < len(cells) and cells[i].strip()}
+            if not name_cells & exclude_names:
+                filtered.append(l)
+        data_lines = filtered if filtered else data_lines  # fallback si tout exclu
+
+    # Anti-répétition inter-runs : mettre les récents en fin de liste
+    if recent:
+        recent_set = set(recent)
+        fresh = [l for l in data_lines if l not in recent_set]
+        used  = [l for l in data_lines if l in recent_set]
+        random.shuffle(fresh)
+        random.shuffle(used)
+        data_lines = fresh + used
+    else:
+        random.shuffle(data_lines)
+
     return data_lines[:min(num_lines, len(data_lines))]
 
 
@@ -119,7 +161,7 @@ def _load_preceding_track(edition: str) -> dict:
     return fallback
 
 
-def _select_elements(edition: str = "matin") -> dict:
+def _select_elements(edition: str = "matin", save_cache: bool = True) -> dict:
     """Sélectionne 1 élément par fichier + le morceau qui précède l'émission."""
     elements = {}
     file_titles = {
@@ -130,15 +172,30 @@ def _select_elements(edition: str = "matin") -> dict:
         "histoire_guadeloupe_ref.md": "Histoire de Guadeloupe",
     }
 
+    cache = _load_selection_cache()
+    new_cache = dict(cache)
+    selected_names: set[str] = set()  # déduplication cross-fichiers dans ce run
+
     for filepath in SOURCE_FILES:
-        if filepath.exists():
-            lines = _select_random_lines_from_file(filepath, 1)
-            if lines:
-                key = filepath.name
-                elements[key] = {
-                    "title": file_titles.get(key, key),
-                    "content": lines[0]
-                }
+        if not filepath.exists():
+            continue
+        key = filepath.name
+        recent = cache.get(key, [])[-CACHE_MEMORY:]
+        lines = _select_random_lines_from_file(filepath, 1, exclude_names=selected_names, recent=recent)
+        if lines:
+            # Enregistrer les noms (cols 1 et 2) pour éviter les doublons dans ce run
+            cells = lines[0].split('\t')
+            for col_idx in (1, 2):
+                if col_idx < len(cells) and len(cells[col_idx].strip()) > 2:
+                    selected_names.add(cells[col_idx].strip())
+            new_cache[key] = (cache.get(key, []) + [lines[0]])[-(CACHE_MEMORY * 2):]
+            elements[key] = {
+                "title": file_titles.get(key, key),
+                "content": lines[0]
+            }
+
+    if save_cache:
+        _save_selection_cache(new_cache)
 
     elements["inspiration"] = _load_preceding_track(edition)
     return elements
@@ -562,7 +619,7 @@ def main():
     if args.sources:
         import re as _re, textwrap
         edition = args.edition
-        elements = _select_elements(edition)
+        elements = _select_elements(edition, save_cache=False)
 
         ENTRIES = [
             ("kreyol_resistance_symbol_ref.md", "🌿", "Symboles de résistance créole"),
