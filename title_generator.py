@@ -87,7 +87,8 @@ def _call_mistral(system: str, user: str, api_key: str,
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
 def _clean(raw: str) -> str:
-    title = re.sub(r'[\[\]\*\`\"\'\n\r]', "", raw)
+    title = re.sub(r'[\[\]\*\`\"\n\r]', "", raw)
+    title = title.strip("'")
     title = re.sub(r"\s+", " ", title).strip().rstrip(".")
     title = _SIGN_EMOJI_PATTERN.sub("", title).strip()
     return title
@@ -226,9 +227,15 @@ def generate_flash_title(
         "Une seule phrase, pas de liste, pas de numérotation, pas de guillemets, pas de ponctuation finale."
     )
 
+    _EDITION_PREP = {"matin": "au matin", "midi": "à midi", "soir": "au soir"}
+
     try:
         raw = _call_mistral(system, user, api_key, temperature=0.80, max_tokens=100)
-        return _clean(raw) or None
+        teaser = _clean(raw)
+        if teaser:
+            prep = _EDITION_PREP.get(edition, edition)
+            return f"{teaser}, dans votre flash-info du {day} {month} {prep}"
+        return None
     except Exception as e:
         print(f"   ⚠️  Titre flash info LLM échoué : {e}")
         return None
