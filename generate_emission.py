@@ -83,26 +83,44 @@ def _select_random_lines_from_file(filepath: Path, num_lines: int = 1) -> list[s
     return data_lines[:min(num_lines, len(data_lines))]
 
 
-def _load_playlist_sample():
-    """Retourne un morceau de musique aléatoire de la playlist pour inspiration."""
+def _load_preceding_track(edition: str) -> dict:
+    """Retourne le morceau de musique qui précède l'émission dans radio_sequence.json."""
+    fallback = {"title": "la musique caribéenne", "artist": "nos artistes", "genre": "variés"}
     try:
         with open(Path("docs") / "radio_sequence.json", encoding="utf-8") as f:
             seq = json.load(f)["sequence"]
-        music_tracks = [t for t in seq if t.get("type") == "music"]
-        if music_tracks:
-            track = random.choice(music_tracks)
-            return {
-                "title": track.get("title", "Morceau inconnu"),
-                "artist": track.get("artist", "Artiste inconnu"),
-                "genre": track.get("genre", "N/A")
-            }
+
+        # Chercher la position de l'émission pour cette édition
+        emission_pos = None
+        for i, item in enumerate(seq):
+            if item.get("type") == "transition" and item.get("subtype") == "emission":
+                if f"— {edition} —" in item.get("label", ""):
+                    emission_pos = i
+                    break
+
+        if emission_pos is None:
+            # Séquence pas encore régénérée pour aujourd'hui : prendre le dernier music
+            print(f"⚠️  Slot émission {edition} absent de la séquence, dernier morceau utilisé", file=sys.stderr)
+            search_range = range(len(seq) - 1, -1, -1)
+        else:
+            # Remonter depuis la position de l'émission
+            search_range = range(emission_pos - 1, -1, -1)
+
+        for i in search_range:
+            if seq[i].get("type") == "music":
+                t = seq[i]
+                return {
+                    "title":  t.get("title",  "Morceau inconnu"),
+                    "artist": t.get("artist", "Artiste inconnu"),
+                    "genre":  t.get("genre",  "N/A"),
+                }
     except Exception as e:
-        print(f"⚠️  Playlist non disponible : {e}", file=sys.stderr)
-    return {"title": "la musique caribéenne", "artist": "nos artistes", "genre": "variés"}
+        print(f"⚠️  Séquence radio non disponible : {e}", file=sys.stderr)
+    return fallback
 
 
-def _select_elements():
-    """Sélectionne 1 élément par fichier + charge l'inspiration musicale."""
+def _select_elements(edition: str = "matin") -> dict:
+    """Sélectionne 1 élément par fichier + le morceau qui précède l'émission."""
     elements = {}
     file_titles = {
         "kreyol_resistance_symbol_ref.md": "Symboles de la résistance créole",
@@ -111,7 +129,7 @@ def _select_elements():
         "lieux_spirituels_ref.md": "Lieux spirituels de Guadeloupe",
         "histoire_guadeloupe_ref.md": "Histoire de Guadeloupe",
     }
-    
+
     for filepath in SOURCE_FILES:
         if filepath.exists():
             lines = _select_random_lines_from_file(filepath, 1)
@@ -121,10 +139,8 @@ def _select_elements():
                     "title": file_titles.get(key, key),
                     "content": lines[0]
                 }
-    
-    # Ajouter l'inspiration musicale
-    elements["inspiration"] = _load_playlist_sample()
-    
+
+    elements["inspiration"] = _load_preceding_track(edition)
     return elements
 
 
@@ -558,10 +574,10 @@ def main():
         print(f"⚠️  {out_mp3.name} existe déjà. Utilisez --overwrite pour régénérer.")
         return
     
-    # 1. Sélection des éléments + inspiration
+    # 1. Sélection des éléments + morceau précédant l'émission
     print("🎲 Sélection des éléments…")
-    elements = _select_elements()
-    print(f"   ✅ {len(elements) - 1} éléments + inspiration musicale")
+    elements = _select_elements(edition)
+    print(f"   ✅ {len(elements) - 1} éléments + morceau précédant ({elements['inspiration']['title']})")
     
     # 2. Génération du monologue
     text = generate_monologue(elements, verbose=args.verbose)
