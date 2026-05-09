@@ -96,6 +96,9 @@ def _clean(raw: str) -> str:
 
 # ── Générateur émission ───────────────────────────────────────────────────────
 
+_EDITION_PREP = {"matin": "au matin", "midi": "à midi", "soir": "au soir"}
+
+
 def generate_emission_title(filepath: Path) -> str | None:
     try:
         data = json.loads(filepath.read_text(encoding="utf-8"))
@@ -105,28 +108,68 @@ def generate_emission_title(filepath: Path) -> str | None:
     if not text:
         return None
 
-    inspiration = data.get("inspiration") or {}
+    # Date / édition depuis les métadonnées JSON
+    date_str = data.get("date", "")       # "2026-05-09"
+    edition  = data.get("edition") or ""  # "matin" | "soir" | None → ""
+    day_label = ""
+    if date_str:
+        parts = date_str.split("-")
+        if len(parts) == 3:
+            day_label = f"{int(parts[2])} {MONTH_NAMES.get(parts[1], '?')}"
+    prep = _EDITION_PREP.get(edition, "")
+
+    inspiration  = data.get("inspiration") or {}
     track_title  = inspiration.get("title", "")
     track_artist = inspiration.get("artist", "")
     music_ban = ""
     if track_title or track_artist:
         music_ban = (
-            f"\nIMPORTANT : n'utilise PAS le titre de chanson « {track_title} », "
-            f"ni le nom de l'artiste « {track_artist} », ni aucune référence musicale dans le titre."
+            f" N'utilise PAS « {track_title} » ni « {track_artist} », "
+            "ni aucune référence musicale."
         )
 
     system = (
         "Tu es un rédacteur poétique pour Radio Karukera, une radio de la diaspora guadeloupéenne. "
-        "Tu crées des titres d'émissions culturelles évocateurs, qui inspirent et donnent envie d'écouter."
+        "Tu identifies des éléments culturels guadeloupéens et tu crées des images poétiques inattendues."
     )
     user = (
         f"Voici le texte d'une émission culturelle sur la Guadeloupe :\n\n{text}\n\n"
-        "Génère un titre poétique et évocateur (max 60 caractères) qui capture l'essence culturelle "
-        "de cette émission — faune, flore, histoire ou mémoire guadeloupéenne. "
+        "ÉTAPE 1 — Parcours l'ensemble du texte et identifie 5 éléments guadeloupéens évocateurs "
+        "répartis dans différentes parties du texte (animaux, plantes, lieux, figures historiques, symboles…). "
+        "Ne prends PAS uniquement les premiers éléments mentionnés.\n\n"
+        "ÉTAPE 2 — Parmi ces 5 éléments, choisis les 2 qui formeraient le croisement le plus inattendu et poétique. "
+        "Forge une courte phrase qui les unit de façon surprenante.\n\n"
+        "Réponds UNIQUEMENT avec cette ligne finale (3 parties séparées par |) :\n"
+        "NOM_ELEMENT1 | NOM_ELEMENT2 | phrase poétique (max 50 caractères)\n\n"
         f"Pas de guillemets, pas de ponctuation finale.{music_ban}"
     )
-    raw = _call_mistral_local(system, user, temperature=0.85, max_tokens=80)
-    return _clean(raw) or None
+    raw = _call_mistral_local(system, user, temperature=0.88, max_tokens=300)
+
+    # Le LLM peut raisonner sur plusieurs lignes — on cherche la ligne ELEM1|ELEM2|phrase
+    final_line = raw.strip()
+    for line in reversed(raw.strip().splitlines()):
+        if line.count("|") >= 2:
+            final_line = line.strip()
+            break
+
+    parts = [p.strip() for p in final_line.split("|", 2)]
+    if len(parts) == 3:
+        elem1  = _clean(parts[0])
+        elem2  = _clean(parts[1])
+        phrase = _clean(parts[2])[:60]  # tronque si le LLM est trop bavard
+        if elem1 and elem2 and phrase:
+            title = f"{elem1} & {elem2} : {phrase}"
+            if day_label:
+                suffix = f" {prep}" if prep else ""
+                title += f", dans votre émission du {day_label}{suffix}"
+            return title
+
+    # Fallback si le LLM ne respecte pas le format
+    fallback = _clean(raw)
+    if fallback and day_label:
+        suffix = f" {prep}" if prep else ""
+        return f"{fallback}, dans votre émission du {day_label}{suffix}"
+    return fallback or None
 
 
 # ── Résolution guid / fichier source ─────────────────────────────────────────
