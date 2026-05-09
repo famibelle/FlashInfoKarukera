@@ -181,6 +181,57 @@ def _load_prompt(filename: str) -> str:
 SYSTEM_PROMPT = _load_prompt("monique_ame.md") + "\n\n" + _load_prompt("monique.md") + "\n\n" + _load_prompt("emission_instruction.md")
 
 
+def _generate_title_llm(text: str) -> str | None:
+    """Génère un titre poétique via Mistral à partir du texte de l'émission."""
+    import urllib.request, urllib.error, time as _time
+    try:
+        key = os.environ["MISTRAL_API_KEY"]
+    except KeyError:
+        return None
+
+    system = (
+        "Tu es un rédacteur poétique pour Radio Karukera, une radio de la diaspora guadeloupéenne. "
+        "Tu crées des titres d'émissions culturelles évocateurs, inspirants, avec une touche créole et caraïbéenne. "
+        "Tu réponds TOUJOURS par une seule phrase courte — jamais de liste, jamais de tirets."
+    )
+    user = (
+        f"Voici le texte d'une émission culturelle sur la Guadeloupe :\n\n{text[:1500]}\n\n"
+        "Génère UN SEUL titre poétique et évocateur (max 65 caractères) qui capture l'essence de cette émission. "
+        "Pas de guillemets, pas de ponctuation finale."
+    )
+    payload = json.dumps({
+        "model": "mistral-small-latest",
+        "temperature": 0.85,
+        "max_tokens": 80,
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user",   "content": user},
+        ],
+    }).encode()
+    req = urllib.request.Request(
+        "https://api.mistral.ai/v1/chat/completions",
+        data=payload,
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+    )
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                raw = json.loads(r.read())["choices"][0]["message"]["content"].strip()
+                title = re.sub(r'[\[\]\*\`\"\'\n\r]', "", raw)
+                title = re.sub(r"\s+", " ", title).strip().rstrip(".")
+                return title or None
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 500, 502, 503, 504) and attempt < 2:
+                _time.sleep(10 * 2 ** attempt)
+            else:
+                print(f"   ⚠️  Titre LLM émission échoué (HTTP {e.code})")
+                return None
+        except Exception as e:
+            print(f"   ⚠️  Titre LLM émission échoué : {e}")
+            return None
+    return None
+
+
 def generate_catchy_title(elements: dict, text: str = "") -> str:
     """Génère un titre accrocheur pour l'émission basé sur LE CONTENU uniquement.
     
@@ -518,9 +569,10 @@ def main():
     word_count = len(text.split())
     print(f"✅ Monologue généré : {word_count} mots")
     
-    # 2.5. Générer un titre accrocheur
-    catchy_title = generate_catchy_title(elements, text)
-    print(f"✅ Titre accrocheur : {catchy_title}")
+    # 2.5. Générer un titre accrocheur (LLM, fallback rule-based)
+    print("✨ Génération du titre (LLM)…")
+    catchy_title = _generate_title_llm(text) or generate_catchy_title(elements, text)
+    print(f"✅ Titre : {catchy_title}")
     
     # 3. Sauvegarde JSON
     output_data = {
