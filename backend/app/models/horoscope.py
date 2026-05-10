@@ -3,7 +3,7 @@ Pydantic models for Horoscope API.
 """
 from pydantic import BaseModel, Field
 from typing import Optional, List
-from datetime import date
+from datetime import date as date_type
 from enum import Enum
 
 
@@ -17,7 +17,7 @@ class EditionEnum(str, Enum):
 
 
 class HoroscopeFetchRequest(BaseModel):
-    date: date = Field(..., description="Date de l'horoscope (YYYY-MM-DD)")
+    date: date_type = Field(..., description="Date de l'horoscope (YYYY-MM-DD)")
     edition: EditionEnum = Field(..., description="Edition : matin, midi, soir")
     n_signs: int = Field(7, ge=1, le=12, description="Nombre de signes a inclure (défaut: 7)")
     include_signs: Optional[List[str]] = Field(
@@ -28,7 +28,7 @@ class HoroscopeFetchRequest(BaseModel):
 
 class HoroscopeTitleRequest(BaseModel):
     signs: List[str] = Field(..., min_items=1, max_items=4, description="Liste de 1 a 4 signes (ex: ['Bélier', 'Taureau'])")
-    date: date = Field(..., description="Date de l'horoscope")
+    date: date_type = Field(..., description="Date de l'horoscope")
     edition: EditionEnum = Field(..., description="Edition : matin, midi, soir")
     use_llm: bool = Field(
         True,
@@ -45,7 +45,7 @@ class SignText(BaseModel):
 
 
 class HoroscopeResponse(BaseModel):
-    date: date = Field(..., description="Date de l'horoscope")
+    date: date_type = Field(..., description="Date de l'horoscope")
     edition: EditionEnum = Field(..., description="Edition")
     signs: List[SignText] = Field(..., description="Liste des signes avec leurs textes")
     weather: Optional[str] = Field(None, description="Resume meteo du jour")
@@ -57,13 +57,13 @@ class HoroscopeTitleResponse(BaseModel):
     title: str = Field(..., description="Titre Apple Podcast-compatible")
     signs: List[str] = Field(..., description="Signes utilises dans le titre")
     edition: EditionEnum = Field(..., description="Edition")
-    date: date = Field(..., description="Date")
+    date: date_type = Field(..., description="Date")
     correlation: Optional[str] = Field(None, description="Theme de correlation extrait")
     zodiac_symbols: List[str] = Field(default_factory=list, description="Symboles zodiacaux utilises (♈, ♉, etc.)")
 
 
 class SignOfDayResponse(BaseModel):
-    date: date = Field(..., description="Date")
+    date: date_type = Field(..., description="Date")
     sign_fr: str = Field(..., description="Nom du signe en francais")
     sign_en: str = Field(..., description="Nom du signe en anglais")
     symbol: str = Field(..., description="Symbole zodiacal (♈, ♉, etc.)")
@@ -82,14 +82,14 @@ class AllZodiacSignsResponse(BaseModel):
 
 
 class WeatherResponse(BaseModel):
-    date: date = Field(..., description="Date")
+    date: date_type = Field(..., description="Date")
     summary: str = Field(..., description="Resume meteo (ex: 'Ensoleillé, 28-32°C')")
     temperature_min: float = Field(..., description="Temperature minimale (°C)")
     temperature_max: float = Field(..., description="Temperature maximale (°C)")
 
 
 class HoroscopeArchiveResponse(BaseModel):
-    date: date = Field(..., description="Date de l'horoscope")
+    date: date_type = Field(..., description="Date de l'horoscope")
     edition: EditionEnum = Field(..., description="Edition")
     filename: str = Field(..., description="Nom du fichier d'archive")
     full_text: str = Field(..., description="Contenu complet du fichier")
