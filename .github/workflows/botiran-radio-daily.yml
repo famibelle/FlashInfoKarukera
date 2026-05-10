@@ -294,7 +294,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: radio-content
-          path: docs/  # Upload tout le dossier docs/ pour éviter les problèmes de chemin
+          path: |
+            docs/radio_sequence.json
+            docs/liners/
+            docs/audio/
           if-no-files-found: error
           retention-days: 1
 
@@ -378,6 +381,14 @@ jobs:
           name: radio-archives
           path: archives/
 
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install dependencies
+        run: pip install -r requirements.txt
+
       - name: 📋 Générer le rapport de playlist
         run: |
           python show_playlist.py --no-colors --stats  > playlist_report.txt
@@ -428,26 +439,34 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Ajout de tous les fichiers nécessaires
+
+          # Sync avec le remote EN PREMIER pour éviter les conflits modify/delete
+          git pull origin main --no-rebase -X ours --no-edit 2>/dev/null || true
+
+          # Stage uniquement les fichiers gérés par ce job
+          # (docs/capsules/ est géré exclusivement par capsules-daily.yml)
           git add playlists/playlist_24h_id.txt docs/radio_sequence.json
-          [ -d docs/liners ]         && git add docs/liners/         || true
-          [ -d docs/capsules ]       && git add docs/capsules/       || true
-          [ -d docs/audio ]          && { git add docs/audio/; git add -u docs/audio/; } || true
-          [ -d archives ]            && git add archives/           || true
-          
+          [ -d docs/liners ] && git add docs/liners/ || true
+          [ -d docs/audio ]  && { git add docs/audio/; git add -u docs/audio/; } || true
+          [ -d archives ]    && git add archives/ || true
+
           # Vérification des changements
           if git diff --cached --quiet; then
             echo "ℹ️  Aucune modification à committer"
             exit 0
           fi
-          
+
           echo "📝 Fichiers staged :"
           git diff --cached --name-only
-          
-          git pull origin main --no-rebase -X ours --no-edit 2>/dev/null || true
-          git commit -m "chore: update radio sequence & caches [skip ci]" --no-edit
-          git push || (git pull origin main --rebase -X ours --no-edit && git push)
+
+          git commit -m "chore: update radio sequence & caches [skip ci]"
+
+          for attempt in 1 2 3; do
+            git push && break
+            echo "⚠️  Push échoué (tentative $attempt/3), sync et retry…"
+            sleep $((RANDOM % 10 + 5))
+            git pull origin main --no-rebase -X ours --no-edit || true
+          done
 
       - name: ✅ Vérifier commit
         run: |
