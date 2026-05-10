@@ -1,10 +1,10 @@
 {
   "date": "2026-05-09",
-  "generated_at": "2026-05-09T00:57:59.736079Z",
+  "generated_at": "2026-05-10T01:02:45.492469Z",
   "technical": {
     "summary": {
-      "total_runs": 282,
-      "global_success_rate": 0.5567375886524822,
+      "total_runs": 287,
+      "global_success_rate": 0.5749128919860628,
       "total_errors_in_logs": 0,
       "total_warnings_in_logs": 0,
       "workflows_in_alert": [
@@ -12,6 +12,7 @@
         "flash-info",
         "capsules-daily",
         "emission-daily",
+        "botiran-radio-daily",
         "daily-radio-orchestrator"
       ]
     },
@@ -19,10 +20,10 @@
       {
         "name": "horoscope-daily",
         "runs": 50,
-        "success": 24,
-        "failure": 8,
-        "success_rate": 0.48,
-        "avg_duration_s": 271.16,
+        "success": 25,
+        "failure": 7,
+        "success_rate": 0.5,
+        "avg_duration_s": 260.28,
         "last_status": "success",
         "last_failure_url": null
       },
@@ -32,47 +33,47 @@
         "success": 37,
         "failure": 7,
         "success_rate": 0.74,
-        "avg_duration_s": 451.26,
+        "avg_duration_s": 462.76,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "capsules-daily",
         "runs": 50,
-        "success": 17,
-        "failure": 32,
-        "success_rate": 0.34,
-        "avg_duration_s": 245.1,
+        "success": 20,
+        "failure": 29,
+        "success_rate": 0.4,
+        "avg_duration_s": 241.8695652173913,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "emission-daily",
-        "runs": 32,
-        "success": 24,
-        "failure": 6,
-        "success_rate": 0.75,
-        "avg_duration_s": 178.0,
+        "runs": 37,
+        "success": 28,
+        "failure": 7,
+        "success_rate": 0.7567567567567568,
+        "avg_duration_s": 171.16216216216216,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "botiran-radio-daily",
         "runs": 50,
-        "success": 47,
-        "failure": 0,
-        "success_rate": 0.94,
-        "avg_duration_s": 610.78,
+        "success": 44,
+        "failure": 4,
+        "success_rate": 0.88,
+        "avg_duration_s": 531.5918367346939,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "daily-radio-orchestrator",
         "runs": 50,
-        "success": 8,
+        "success": 11,
         "failure": 32,
-        "success_rate": 0.16,
-        "avg_duration_s": 663.42,
+        "success_rate": 0.22,
+        "avg_duration_s": 764.38,
         "last_status": "success",
         "last_failure_url": null
       }
@@ -81,11 +82,12 @@
   "antenne": {
     "liners": {
       "total": 15,
-      "coherent": 4,
-      "coherence_rate": 0.26666666666666666,
+      "coherent": 3,
+      "coherence_rate": 0.2,
       "issues_by_type": {
         "format_invalid": 11,
-        "title_mismatch": 4
+        "artist_mismatch": 1,
+        "title_mismatch": 3
       }
     },
     "music": {
@@ -94,70 +96,75 @@
         "": 80
       },
       "artists": {
-        "Claudette et Ti Pierre": 1,
-        "Les Aiglons": 3,
-        "Akiyo": 1,
-        "Francky Vincent": 2,
-        "Patrick Andrey": 1,
-        "Dominik Coco, Fuckly": 1,
-        "Tabou Combo": 5,
-        "Ralph Thamar": 2,
-        "T-Vice": 1,
-        "Dominique Panol": 2,
-        "Patrick Saint-Eloi": 3,
-        "Kaysha, Kénédy": 1,
-        "Battery Cremil": 1,
-        "Dédé Saint-Prix": 2,
-        "Thierry Cham": 1,
-        "Zo Konpa, Zouk Love, Konpa Lakay": 1,
-        "Soft": 1,
-        "R. Carlos Nakai, Keola Beamer": 1,
-        "Lutchiana Mobulu 100%": 1,
-        "Carlos Nilson": 1,
-        "Edith Lefel": 3,
-        "Jean-Marie Ragald": 2,
-        "BélO": 2,
-        "Thierry Fanfant": 1,
-        "Sakiyo": 1,
-        "JOCELYNE BEROARD & PATRICK SAINT-ELOI & JEAN-PHILIPPE MARTHELY": 1,
-        "Zin": 2,
-        "Djakout #1": 1,
-        "Fabienne Payoute Bernadin": 1,
-        "Warren Saada, Nana Fofie": 1,
-        "Jean-Claude Naimro": 1,
-        "Kan'nida": 2,
-        "Warren": 1,
-        "System Band": 1,
-        "carimi": 1,
-        "Nu-Look": 1,
-        "Ludo, MARVIN": 1,
-        "Jacob Desvarieux": 1,
-        "TAGLIAMENTO F & ROBERT LOYSON": 1,
-        "KIM HYUN JOONG": 1,
-        "KASSAV'": 1,
-        "Zouk Machine": 1,
-        "Harry Diboula": 1,
-        "Zoukâme": 1,
-        "Mario Chicot": 2,
-        "Harmonik": 1,
-        "Joëlle Ursull": 1,
-        "Orlane": 1,
-        "Experience 7": 1,
-        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Experience 7": 2,
         "Marcé": 1,
-        "Misié Sadik, Fanny J": 1,
-        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
-        "Dominik Coco": 1,
-        "Top Vice": 2,
-        "Jacob Desvarieux, Kassav', Georges Décimus": 1,
+        "Mario Chicot": 3,
+        "Mini All Stars": 1,
+        "Kan'nida": 4,
+        "Battery Cremil": 2,
+        "Djakout # 1": 1,
+        "Nu-Look": 3,
+        "DJ Zouk": 1,
+        "T-Vice": 2,
+        "Joëlle Ursull": 1,
+        "Perle Lama, Goldee": 1,
+        "Jean-Philippe Marthély": 1,
+        "Tabou Combo": 4,
+        "BEL": 1,
+        "T-Vice, Phyllisia Ross": 1,
+        "JOCELYNE BEROARD & PATRICK SAINT-ELOI & JEAN-PHILIPPE MARTHELY": 1,
+        "VAKAM BAND": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "Orlane": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Jean-Marie Ragald": 1,
+        "KASSAV'": 2,
         "Meryl": 1,
-        "Carimi": 1,
-        "Jean-Michel Jarre": 1,
-        "Marcé & Toumpak": 1
+        "Top Vice": 3,
+        "Alex Warren": 1,
+        "Jocelyne Labylle": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Zo Konpa, Zouk Machine": 1,
+        "Stony": 1,
+        "Georges Decimus, Kassav": 1,
+        "LORYN Official": 1,
+        "Fabien Georges": 1,
+        "Harry Diboula": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Carimi": 2,
+        "Kim": 1,
+        "Jacob Desvarieux": 2,
+        "Djakout #1": 1,
+        "Dominique Panol": 1,
+        "Les Aiglons": 1,
+        "Fanny J": 1,
+        "JOCELYNE BEROARD": 1,
+        "Harmonik": 2,
+        "Akiyo": 1,
+        "Claudette Plante": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Edith Lefel": 2,
+        "Alain Ramanisum": 1,
+        "Francky Vincent": 1,
+        "Jean-Claude Naimro": 1,
+        "Zouk Machine": 1,
+        "Thierry Cham": 1,
+        "Dominik Coco": 2,
+        "Kali": 1,
+        "Medhy Custos": 1,
+        "BélO": 1,
+        "Yoan": 1,
+        "Sakiyo": 1
       },
-      "max_artist_repetition": 5,
-      "top_artist": "Tabou Combo",
-      "consecutive_same_artist": [],
+      "max_artist_repetition": 4,
+      "top_artist": "Kan'nida",
+      "consecutive_same_artist": [
+        {
+          "artist": "Harmonik",
+          "position": 51,
+          "count": 2
+        }
+      ],
       "abrupt_transitions": []
     },
     "content": {
@@ -171,9 +178,11 @@
         "anomalies": []
       },
       "emissions": {
-        "count": 1,
+        "count": 2,
         "themes": [
-          "🌿 **Urakan & Ravèt : La terre qui résiste**"
+          "Mwen Envie: Lâme des fourmis, goutis et ancêtres",
+          "Les racines invisibles de lâme créole",
+          "🌿 **Vaniy & Grenn-bwa : La terre qui résiste**"
         ]
       },
       "capsules": {
@@ -183,19 +192,19 @@
     },
     "journalists": {
       "Harry": {
-        "passages": 0
+        "passages": 2
       },
       "Maryse Condé": {
-        "passages": 0
+        "passages": 2
       },
       "Monique": {
-        "passages": 0
+        "passages": 1
       },
       "Mulatresse Solitude": {
-        "passages": 0
+        "passages": 13
       },
       "Corinne": {
-        "passages": 398
+        "passages": 473
       }
     }
   },
@@ -204,12 +213,12 @@
       {
         "type": "global_success_rate_critical",
         "severity": "high",
-        "context": "Taux succès global : 56% (objectif >90%)"
+        "context": "Taux succès global : 57% (objectif >90%)"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "horoscope-daily : 48% succès sur 7 jours"
+        "context": "horoscope-daily : 50% succès sur 7 jours"
       },
       {
         "type": "workflow_failure_rate",
@@ -219,24 +228,24 @@
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "capsules-daily : 34% succès sur 7 jours"
+        "context": "capsules-daily : 40% succès sur 7 jours"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "emission-daily : 75% succès sur 7 jours"
+        "context": "emission-daily : 76% succès sur 7 jours"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "daily-radio-orchestrator : 16% succès sur 7 jours"
+        "context": "daily-radio-orchestrator : 22% succès sur 7 jours"
       }
     ],
     "editorial": [
       {
         "type": "liner_coherence_critical",
         "severity": "high",
-        "context": "Cohérence liners : 27% (objectif >90%)"
+        "context": "Cohérence liners : 20% (objectif >90%)"
       },
       {
         "type": "liner_format_issues",
@@ -244,32 +253,11 @@
         "context": "11 liner(s) au format invalide"
       },
       {
-        "type": "journalist_no_content",
+        "type": "liner_artist_mismatch",
         "severity": "high",
-        "context": "Harry : aucun contenu généré aujourd'hui"
-      },
-      {
-        "type": "journalist_no_content",
-        "severity": "high",
-        "context": "Maryse Condé : aucun contenu généré aujourd'hui"
-      },
-      {
-        "type": "journalist_no_content",
-        "severity": "high",
-        "context": "Monique : aucun contenu généré aujourd'hui"
-      },
-      {
-        "type": "journalist_no_content",
-        "severity": "high",
-        "context": "Mulatresse Solitude : aucun contenu généré aujourd'hui"
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
       }
     ],
-    "music": [
-      {
-        "type": "artist_overplay",
-        "severity": "medium",
-        "context": "Tabou Combo joué 5x (objectif <5)"
-      }
-    ]
+    "music": []
   }
 }
