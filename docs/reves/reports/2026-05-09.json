@@ -1,10 +1,10 @@
 {
   "date": "2026-05-09",
-  "generated_at": "2026-05-10T01:02:45.492469Z",
+  "generated_at": "2026-05-10T23:21:00.504891Z",
   "technical": {
     "summary": {
-      "total_runs": 287,
-      "global_success_rate": 0.5749128919860628,
+      "total_runs": 291,
+      "global_success_rate": 0.6048109965635738,
       "total_errors_in_logs": 0,
       "total_warnings_in_logs": 0,
       "workflows_in_alert": [
@@ -20,60 +20,60 @@
       {
         "name": "horoscope-daily",
         "runs": 50,
-        "success": 25,
-        "failure": 7,
-        "success_rate": 0.5,
-        "avg_duration_s": 260.28,
+        "success": 26,
+        "failure": 6,
+        "success_rate": 0.52,
+        "avg_duration_s": 249.58,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "flash-info",
         "runs": 50,
-        "success": 37,
-        "failure": 7,
-        "success_rate": 0.74,
-        "avg_duration_s": 462.76,
+        "success": 38,
+        "failure": 6,
+        "success_rate": 0.76,
+        "avg_duration_s": 464.98,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "capsules-daily",
         "runs": 50,
-        "success": 20,
-        "failure": 29,
-        "success_rate": 0.4,
-        "avg_duration_s": 241.8695652173913,
+        "success": 23,
+        "failure": 26,
+        "success_rate": 0.46,
+        "avg_duration_s": 239.3846153846154,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "emission-daily",
-        "runs": 37,
-        "success": 28,
+        "runs": 41,
+        "success": 32,
         "failure": 7,
-        "success_rate": 0.7567567567567568,
-        "avg_duration_s": 171.16216216216216,
+        "success_rate": 0.7804878048780488,
+        "avg_duration_s": 162.21951219512195,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "botiran-radio-daily",
         "runs": 50,
-        "success": 44,
-        "failure": 4,
-        "success_rate": 0.88,
-        "avg_duration_s": 531.5918367346939,
+        "success": 43,
+        "failure": 5,
+        "success_rate": 0.86,
+        "avg_duration_s": 498.81632653061223,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "daily-radio-orchestrator",
         "runs": 50,
-        "success": 11,
-        "failure": 32,
-        "success_rate": 0.22,
-        "avg_duration_s": 764.38,
+        "success": 14,
+        "failure": 31,
+        "success_rate": 0.28,
+        "avg_duration_s": 817.38,
         "last_status": "success",
         "last_failure_url": null
       }
@@ -81,13 +81,12 @@
   },
   "antenne": {
     "liners": {
-      "total": 15,
-      "coherent": 3,
-      "coherence_rate": 0.2,
+      "total": 13,
+      "coherent": 0,
+      "coherence_rate": 0.0,
       "issues_by_type": {
-        "format_invalid": 11,
-        "artist_mismatch": 1,
-        "title_mismatch": 3
+        "format_invalid": 12,
+        "artist_mismatch": 1
       }
     },
     "music": {
@@ -96,75 +95,69 @@
         "": 80
       },
       "artists": {
-        "Experience 7": 2,
-        "Marcé": 1,
-        "Mario Chicot": 3,
-        "Mini All Stars": 1,
-        "Kan'nida": 4,
-        "Battery Cremil": 2,
-        "Djakout # 1": 1,
-        "Nu-Look": 3,
-        "DJ Zouk": 1,
         "T-Vice": 2,
-        "Joëlle Ursull": 1,
-        "Perle Lama, Goldee": 1,
-        "Jean-Philippe Marthély": 1,
-        "Tabou Combo": 4,
-        "BEL": 1,
-        "T-Vice, Phyllisia Ross": 1,
-        "JOCELYNE BEROARD & PATRICK SAINT-ELOI & JEAN-PHILIPPE MARTHELY": 1,
-        "VAKAM BAND": 1,
-        "Fabienne Payoute Bernadin": 1,
-        "Orlane": 1,
-        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
-        "Jean-Marie Ragald": 1,
-        "KASSAV'": 2,
-        "Meryl": 1,
-        "Top Vice": 3,
-        "Alex Warren": 1,
-        "Jocelyne Labylle": 1,
-        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
-        "Zo Konpa, Zouk Machine": 1,
-        "Stony": 1,
-        "Georges Decimus, Kassav": 1,
-        "LORYN Official": 1,
-        "Fabien Georges": 1,
-        "Harry Diboula": 1,
-        "Patrick Saint-Eloi, Kassav'": 1,
-        "Carimi": 2,
-        "Kim": 1,
-        "Jacob Desvarieux": 2,
-        "Djakout #1": 1,
-        "Dominique Panol": 1,
-        "Les Aiglons": 1,
-        "Fanny J": 1,
-        "JOCELYNE BEROARD": 1,
-        "Harmonik": 2,
-        "Akiyo": 1,
-        "Claudette Plante": 1,
-        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
-        "Edith Lefel": 2,
-        "Alain Ramanisum": 1,
-        "Francky Vincent": 1,
-        "Jean-Claude Naimro": 1,
-        "Zouk Machine": 1,
-        "Thierry Cham": 1,
+        "Carimi": 3,
+        "Jean-Luc Guanel": 1,
+        "Ralph Thamar": 2,
         "Dominik Coco": 2,
-        "Kali": 1,
-        "Medhy Custos": 1,
-        "BélO": 1,
-        "Yoan": 1,
-        "Sakiyo": 1
+        "Tabou Combo": 4,
+        "Ludo": 1,
+        "Perle Lama, Thierry Cham": 1,
+        "Mario Chicot": 2,
+        "Dominique Panol": 2,
+        "Exile One": 2,
+        "Mini All Stars": 1,
+        "Battery Cremil": 2,
+        "Joëlle Ursull": 2,
+        "Djakout # 1": 1,
+        "Patrick Andrey": 1,
+        "Warren Saada": 1,
+        "Kan'nida": 2,
+        "Jean-Claude Naimro": 1,
+        "Marcel Lollia Dit Velo": 2,
+        "Emile Volel & Tanya Saint-Val": 1,
+        "Princess Erika": 1,
+        "Edith Lefel": 2,
+        "Carlos Nilson": 1,
+        "PERLE LAMA": 1,
+        "Fanny J": 1,
+        "Slaï": 1,
+        "Patrick Saint-Eloi": 1,
+        "Edouard Benoit": 1,
+        "Francky Vincent, Eve Angeli": 1,
+        "Warren": 1,
+        "Nichols": 2,
+        "Patrick Saint-Eloi, Kassav'": 2,
+        "Francky Vincent": 1,
+        "Orlane": 2,
+        "Akiyo": 2,
+        "Kaysha, Kénédy": 1,
+        "Lynn Anderson": 1,
+        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
+        "Gilles Floro": 2,
+        "Jim Rama & Patrick Andrey": 1,
+        "Top Vice": 1,
+        "Fabien Georges": 1,
+        "Kjetil Møster, Jeff Parker, Joshua Abrams, John Herndon": 1,
+        "Zin": 1,
+        "KALI": 1,
+        "The Teddyson John Project": 1,
+        "Joe Nichols": 1,
+        "Alian Ramanisum": 1,
+        "Meryl": 1,
+        "Djakout #1": 1,
+        "Robert Loyson": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "KASSAV'": 1,
+        "sweet micky": 1,
+        "Thierry Cham": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Justice Crew": 1,
+        "Medhy Custos": 1
       },
       "max_artist_repetition": 4,
-      "top_artist": "Kan'nida",
-      "consecutive_same_artist": [
-        {
-          "artist": "Harmonik",
-          "position": 51,
-          "count": 2
-        }
-      ],
+      "top_artist": "Tabou Combo",
+      "consecutive_same_artist": [],
       "abrupt_transitions": []
     },
     "content": {
@@ -204,7 +197,7 @@
         "passages": 13
       },
       "Corinne": {
-        "passages": 473
+        "passages": 525
       }
     }
   },
@@ -213,44 +206,44 @@
       {
         "type": "global_success_rate_critical",
         "severity": "high",
-        "context": "Taux succès global : 57% (objectif >90%)"
+        "context": "Taux succès global : 60% (objectif >90%)"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "horoscope-daily : 50% succès sur 7 jours"
+        "context": "horoscope-daily : 52% succès sur 7 jours"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "flash-info : 74% succès sur 7 jours"
+        "context": "flash-info : 76% succès sur 7 jours"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "capsules-daily : 40% succès sur 7 jours"
+        "context": "capsules-daily : 46% succès sur 7 jours"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "emission-daily : 76% succès sur 7 jours"
+        "context": "emission-daily : 78% succès sur 7 jours"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "daily-radio-orchestrator : 22% succès sur 7 jours"
+        "context": "daily-radio-orchestrator : 28% succès sur 7 jours"
       }
     ],
     "editorial": [
       {
         "type": "liner_coherence_critical",
         "severity": "high",
-        "context": "Cohérence liners : 20% (objectif >90%)"
+        "context": "Cohérence liners : 0% (objectif >90%)"
       },
       {
         "type": "liner_format_issues",
         "severity": "high",
-        "context": "11 liner(s) au format invalide"
+        "context": "12 liner(s) au format invalide"
       },
       {
         "type": "liner_artist_mismatch",
