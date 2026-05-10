@@ -291,12 +291,14 @@ Genere UN titre conforme aux 6 regles ci-dessus."""
         """Retourne tous les signes du zodiaque."""
         signs = []
         for sign in ZODIAC_SIGNS:
+            start_month, start_day = sign["start"]
+            end_month, end_day = sign["end"]
             signs.append({
                 "name_fr": sign["name_fr"],
                 "name_en": sign["name_en"],
                 "symbol": sign["symbol"],
-                "start_date": sign["start"],
-                "end_date": sign["end"],
+                "start_date": f"{start_month:02d}-{start_day:02d}",
+                "end_date": f"{end_month:02d}-{end_day:02d}",
             })
         return AllZodiacSignsResponse(signs=signs)
 
