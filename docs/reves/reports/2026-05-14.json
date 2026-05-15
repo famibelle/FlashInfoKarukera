@@ -1,77 +1,76 @@
 {
   "date": "2026-05-14",
-  "generated_at": "2026-05-15T01:00:28.778250Z",
+  "generated_at": "2026-05-15T23:22:35.211599Z",
   "technical": {
     "summary": {
-      "total_runs": 192,
-      "global_success_rate": 0.8541666666666666,
+      "total_runs": 208,
+      "global_success_rate": 0.875,
       "total_errors_in_logs": 0,
       "total_warnings_in_logs": 0,
       "workflows_in_alert": [
         "horoscope-daily",
         "flash-info",
-        "botiran-radio-daily",
         "daily-radio-orchestrator"
       ]
     },
     "workflows": [
       {
         "name": "horoscope-daily",
-        "runs": 32,
-        "success": 22,
-        "failure": 9,
-        "success_rate": 0.6875,
-        "avg_duration_s": 325.53125,
-        "last_status": "failure",
+        "runs": 35,
+        "success": 24,
+        "failure": 10,
+        "success_rate": 0.6857142857142857,
+        "avg_duration_s": 335.9428571428571,
+        "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "flash-info",
-        "runs": 32,
-        "success": 26,
+        "runs": 35,
+        "success": 29,
         "failure": 3,
-        "success_rate": 0.8125,
-        "avg_duration_s": 374.28125,
+        "success_rate": 0.8285714285714286,
+        "avg_duration_s": 383.51428571428573,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "capsules-daily",
-        "runs": 23,
-        "success": 22,
+        "runs": 26,
+        "success": 25,
         "failure": 1,
-        "success_rate": 0.9565217391304348,
-        "avg_duration_s": 232.08695652173913,
+        "success_rate": 0.9615384615384616,
+        "avg_duration_s": 231.53846153846155,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "emission-daily",
-        "runs": 30,
-        "success": 28,
+        "runs": 34,
+        "success": 32,
         "failure": 1,
-        "success_rate": 0.9333333333333333,
-        "avg_duration_s": 134.46666666666667,
+        "success_rate": 0.9411764705882353,
+        "avg_duration_s": 147.97058823529412,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "botiran-radio-daily",
         "runs": 50,
-        "success": 44,
-        "failure": 5,
-        "success_rate": 0.88,
-        "avg_duration_s": 472.6938775510204,
+        "success": 47,
+        "failure": 2,
+        "success_rate": 0.94,
+        "avg_duration_s": 449.6,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "daily-radio-orchestrator",
-        "runs": 25,
-        "success": 22,
+        "runs": 28,
+        "success": 25,
         "failure": 3,
-        "success_rate": 0.88,
-        "avg_duration_s": 1652.64,
+        "success_rate": 0.8928571428571429,
+        "avg_duration_s": 1690.392857142857,
         "last_status": "success",
         "last_failure_url": null
       }
@@ -80,11 +79,11 @@
   "antenne": {
     "liners": {
       "total": 13,
-      "coherent": 1,
-      "coherence_rate": 0.07692307692307693,
+      "coherent": 2,
+      "coherence_rate": 0.15384615384615385,
       "issues_by_type": {
-        "format_invalid": 12,
-        "title_mismatch": 1
+        "format_invalid": 11,
+        "title_mismatch": 2
       }
     },
     "music": {
@@ -93,76 +92,70 @@
         "": 80
       },
       "artists": {
-        "Ludo": 2,
-        "alain ramanisum": 1,
-        "Harmonik": 1,
-        "Zouk Machine": 2,
-        "BEL": 1,
-        "Edith Lefel": 4,
-        "Jean-Michel Jean-Louis": 1,
-        "Meryl": 2,
-        "Mario Chicot": 1,
-        "Tabou Combo": 3,
-        "Nu-Look": 2,
-        "Warren Saada, Dadju": 1,
-        "Experience 7": 1,
-        "Fabienne Payoute Bernadin": 1,
-        "Patrick Saint-Eloi": 2,
-        "Antonio Carlos Jobim": 1,
-        "Kali": 1,
-        "Dominik Coco, Fuckly": 1,
-        "Orlane": 2,
-        "Carimi": 2,
-        "Princess Erika": 2,
-        "Princess Liz": 1,
-        "Joëlle Ursull": 2,
-        "Akiyo": 1,
-        "Les Aiglons": 1,
-        "Patrick Saint-Eloi, Kassav'": 1,
-        "Fabien Georges": 1,
-        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
-        "MASS POWER NOU": 1,
-        "Energy": 1,
-        "Jean-Claude Naimro": 1,
-        "Kan'nida": 2,
-        "Kaysha, Kénédy": 1,
-        "Thierry Cham": 1,
-        "Soft": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Battery Cremil": 3,
+        "Experience 7": 2,
+        "Perle Lama": 2,
+        "Akiyo": 2,
+        "The Teddyson John Project": 1,
         "Dominik Coco": 2,
-        "Tanya St-Val": 1,
-        "JEAN-CLAUDE NAIMRO": 1,
-        "Battery Cremil": 1,
-        "Medhy Custos": 1,
-        "Carlos Nilson": 1,
-        "Francky Vincent": 1,
-        "Fanny J": 1,
+        "Dédé Saint-Prix": 1,
+        "Carimi": 2,
+        "Marcel Lollia Dit Velo": 1,
+        "Princess Erika": 1,
+        "Dominique Panol": 5,
+        "Patrick Andrey": 1,
+        "Antonio Carlos Jobim": 1,
+        "Ghetto Zouk": 1,
+        "Ludo": 1,
+        "Stony": 1,
+        "Jean-Luc Guanel": 1,
+        "Zouk Machine": 1,
+        "T-Vice": 1,
         "Warren": 1,
-        "Gilles Floro": 2,
+        "Meryl": 1,
+        "Tanya St-Val": 2,
+        "Energy": 1,
+        "Edith Lefel": 3,
+        "Tabou Combo": 4,
         "Kaysha": 1,
-        "Gérard Lenorman": 1,
-        "Ti Paris": 1,
-        "Djakout #1": 1,
-        "KIM SEJEONG": 1,
-        "PERLE LAMA": 1,
-        "Emile Volel & Tanya Saint-Val": 1,
-        "Zo Konpa, Zouk Love, Konpa Kreyol": 1,
-        "Ralph Thamar, Jean-Claude Naimro": 1,
-        "Jocelyne Labylle": 1,
-        "ROBERT LOYSON": 1,
-        "Milca": 1,
-        "Zin": 1,
-        "Kimsé": 1,
+        "Kan'nida": 2,
+        "Patrick Saint-Eloi": 1,
+        "T Kimp Gee": 1,
+        "Patrick Saint-Eloi, Kassav'": 2,
         "Lutchiana Mobulu 100%": 1,
+        "Joëlle Ursull": 1,
+        "Mass": 1,
+        "Gilles Floro": 1,
+        "Ralph Thamar": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Ti Paris": 1,
+        "Jean Carlos Music Empire": 1,
+        "Djakout #1": 2,
+        "Dominik Coco, Fuckly": 1,
+        "Jocelyne Béroard": 1,
+        "Slaï": 1,
+        "Georges Decimus, Kassav": 2,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Marcé, Toumpak": 1,
+        "Jeff Joseph": 1,
+        "KASSAV'": 2,
+        "Mario Chicot": 1,
         "Jean-Michel Jarre": 1,
-        "Jocelyne Labylle, Cheela": 1,
-        "Leona Gabriel, Orchestre de la Boule Blanche": 1
+        "Dédé Saint-Prix, Gérard Pomer": 1,
+        "Francky Vincent": 1,
+        "Exile": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Milca": 1,
+        "Kjetil Møster, Jeff Parker, Joshua Abrams, John Herndon": 1,
+        "KIM SEJEONG": 1
       },
-      "max_artist_repetition": 4,
-      "top_artist": "Edith Lefel",
+      "max_artist_repetition": 5,
+      "top_artist": "Dominique Panol",
       "consecutive_same_artist": [
         {
-          "artist": "Edith Lefel",
-          "position": 8,
+          "artist": "KASSAV'",
+          "position": 60,
           "count": 2
         }
       ],
@@ -204,7 +197,7 @@
         "passages": 13
       },
       "Corinne": {
-        "passages": 680
+        "passages": 719
       }
     }
   },
@@ -213,12 +206,7 @@
       {
         "type": "global_success_rate_low",
         "severity": "medium",
-        "context": "Taux succès global : 85% (objectif >90%)"
-      },
-      {
-        "type": "workflow_last_run_failed",
-        "severity": "high",
-        "context": "horoscope-daily : dernier run échoué"
+        "context": "Taux succès global : 88% (objectif >90%)"
       },
       {
         "type": "workflow_failure_rate",
@@ -230,12 +218,12 @@
       {
         "type": "liner_coherence_critical",
         "severity": "high",
-        "context": "Cohérence liners : 8% (objectif >90%)"
+        "context": "Cohérence liners : 15% (objectif >90%)"
       },
       {
         "type": "liner_format_issues",
         "severity": "high",
-        "context": "12 liner(s) au format invalide"
+        "context": "11 liner(s) au format invalide"
       },
       {
         "type": "journalist_no_content",
@@ -243,6 +231,12 @@
         "context": "Monique : aucun contenu généré aujourd'hui"
       }
     ],
-    "music": []
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Dominique Panol joué 5x (objectif <5)"
+      }
+    ]
   }
 }
