@@ -1,0 +1,235 @@
+{
+  "date": "2026-05-15",
+  "generated_at": "2026-05-16T00:57:13.007083Z",
+  "technical": {
+    "summary": {
+      "total_runs": 166,
+      "global_success_rate": 0.9156626506024096,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 23,
+        "success": 15,
+        "failure": 8,
+        "success_rate": 0.6521739130434783,
+        "avg_duration_s": 335.82608695652175,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 421.5238095238095,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 228.38095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 29,
+        "success": 27,
+        "failure": 1,
+        "success_rate": 0.9310344827586207,
+        "avg_duration_s": 154.17241379310346,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 50,
+        "success": 47,
+        "failure": 2,
+        "success_rate": 0.94,
+        "avg_duration_s": 449.6,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 22,
+        "success": 21,
+        "failure": 1,
+        "success_rate": 0.9545454545454546,
+        "avg_duration_s": 1631.090909090909,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 2,
+      "coherence_rate": 0.15384615384615385,
+      "issues_by_type": {
+        "format_invalid": 11,
+        "title_mismatch": 2
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Battery Cremil": 3,
+        "Experience 7": 2,
+        "Perle Lama": 2,
+        "Akiyo": 2,
+        "The Teddyson John Project": 1,
+        "Dominik Coco": 2,
+        "Dédé Saint-Prix": 1,
+        "Carimi": 2,
+        "Marcel Lollia Dit Velo": 1,
+        "Princess Erika": 1,
+        "Dominique Panol": 5,
+        "Patrick Andrey": 1,
+        "Antonio Carlos Jobim": 1,
+        "Ghetto Zouk": 1,
+        "Ludo": 1,
+        "Stony": 1,
+        "Jean-Luc Guanel": 1,
+        "Zouk Machine": 1,
+        "T-Vice": 1,
+        "Warren": 1,
+        "Meryl": 1,
+        "Tanya St-Val": 2,
+        "Energy": 1,
+        "Edith Lefel": 3,
+        "Tabou Combo": 4,
+        "Kaysha": 1,
+        "Kan'nida": 2,
+        "Patrick Saint-Eloi": 1,
+        "T Kimp Gee": 1,
+        "Patrick Saint-Eloi, Kassav'": 2,
+        "Lutchiana Mobulu 100%": 1,
+        "Joëlle Ursull": 1,
+        "Mass": 1,
+        "Gilles Floro": 1,
+        "Ralph Thamar": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Ti Paris": 1,
+        "Jean Carlos Music Empire": 1,
+        "Djakout #1": 2,
+        "Dominik Coco, Fuckly": 1,
+        "Jocelyne Béroard": 1,
+        "Slaï": 1,
+        "Georges Decimus, Kassav": 2,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Marcé, Toumpak": 1,
+        "Jeff Joseph": 1,
+        "KASSAV'": 2,
+        "Mario Chicot": 1,
+        "Jean-Michel Jarre": 1,
+        "Dédé Saint-Prix, Gérard Pomer": 1,
+        "Francky Vincent": 1,
+        "Exile": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Milca": 1,
+        "Kjetil Møster, Jeff Parker, Joshua Abrams, John Herndon": 1,
+        "KIM SEJEONG": 1
+      },
+      "max_artist_repetition": 5,
+      "top_artist": "Dominique Panol",
+      "consecutive_same_artist": [
+        {
+          "artist": "KASSAV'",
+          "position": 60,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "La Guadeloupe chérit ses racines de résistance",
+          "Pas à pas, nos racines grandissent"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 2
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 719
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "horoscope-daily : 65% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 15% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "11 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Dominique Panol joué 5x (objectif <5)"
+      }
+    ]
+  }
+}
