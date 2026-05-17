@@ -1,0 +1,238 @@
+{
+  "date": "2026-05-16",
+  "generated_at": "2026-05-17T01:04:23.319442Z",
+  "technical": {
+    "summary": {
+      "total_runs": 163,
+      "global_success_rate": 0.9325153374233128,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 22,
+        "success": 14,
+        "failure": 8,
+        "success_rate": 0.6363636363636364,
+        "avg_duration_s": 317.8181818181818,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 396.6666666666667,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 227.85714285714286,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 27,
+        "failure": 0,
+        "success_rate": 0.9642857142857143,
+        "avg_duration_s": 148.67857142857142,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 50,
+        "success": 48,
+        "failure": 1,
+        "success_rate": 0.96,
+        "avg_duration_s": 422.02,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1579.0,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 2,
+      "coherence_rate": 0.15384615384615385,
+      "issues_by_type": {
+        "format_invalid": 10,
+        "title_mismatch": 2,
+        "artist_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "KALI": 1,
+        "Kan'nida": 1,
+        "Carimi": 1,
+        "Marcé, Toumpak": 1,
+        "JACOB F. DESVARIEUX & Georges Decimus": 1,
+        "Djakout #1": 2,
+        "Perle Lama, Warren Permal": 1,
+        "Edith Lefel": 2,
+        "Zouk Machine": 1,
+        "Jean-Philippe Marthély": 1,
+        "Georges Decimus, Kassav": 1,
+        "Jean-Marie Ragald": 1,
+        "T-Vice": 2,
+        "Battery Cremil": 2,
+        "Princesse": 1,
+        "Orlane": 1,
+        "Antonio Carlos Jobim": 1,
+        "Djakout # 1": 1,
+        "Dominique Panol": 3,
+        "T-vice": 1,
+        "Exile": 2,
+        "Zouklook": 1,
+        "Harry Diboula": 1,
+        "Experience 7": 2,
+        "Lutchiana": 1,
+        "Jean Carlos Music Empire": 1,
+        "Les Aiglons": 1,
+        "JOCELYNE BEROARD": 1,
+        "Tabou Combo": 3,
+        "BélO": 1,
+        "Warren Saada, Nana Fofie": 1,
+        "JazzyKey, Yoan": 1,
+        "Jocelyne Béroard": 1,
+        "Carnaval Band": 1,
+        "Marcé & Toumpak": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Harmonik": 2,
+        "Kassav'": 1,
+        "Mario Chicot": 3,
+        "Joëlle Ursull": 1,
+        "Mass": 1,
+        "Ti Paris": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Dédé Saint-Prix": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Nichols": 1,
+        "Ludo": 1,
+        "Princess Erika": 1,
+        "Fabien Georges": 1,
+        "Soft": 1,
+        "Milca": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Gilles Floro": 1,
+        "Warren Saada, Dadju": 1,
+        "Kali": 1,
+        "Patrick Saint Eloi, Kassav'": 1,
+        "Dominik Coco": 2,
+        "Zoukovery": 1,
+        "Patrick Andrey": 1,
+        "Princess Liz": 1,
+        "Lutchiana Mobulu 100%": 1,
+        "Akiyo": 1,
+        "Zin": 1,
+        "Sweet Micky": 1,
+        "Jean-Luc Guanel": 1,
+        "Klimax": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Dominique Panol",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "La Guadeloupe chante sa résistance verte",
+          "Les racines vivantes de la Guadeloupe"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 2
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 758
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "horoscope-daily : 64% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 15% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "10 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
