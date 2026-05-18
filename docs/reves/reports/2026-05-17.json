@@ -1,0 +1,229 @@
+{
+  "date": "2026-05-17",
+  "generated_at": "2026-05-18T01:04:55.463587Z",
+  "technical": {
+    "summary": {
+      "total_runs": 163,
+      "global_success_rate": 0.9386503067484663,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 22,
+        "success": 13,
+        "failure": 9,
+        "success_rate": 0.5909090909090909,
+        "avg_duration_s": 307.1363636363636,
+        "last_status": "failure",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 404.0952380952381,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 228.9047619047619,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 27,
+        "failure": 0,
+        "success_rate": 0.9642857142857143,
+        "avg_duration_s": 154.64285714285714,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 50,
+        "success": 50,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 374.12,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1582.6190476190477,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 0,
+      "coherence_rate": 0.0,
+      "issues_by_type": {
+        "format_invalid": 13
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Zin": 3,
+        "Slaï": 2,
+        "Mass": 1,
+        "Edouard Benoit": 1,
+        "Ralph Thamar": 2,
+        "DJ Zouk": 1,
+        "Exile": 2,
+        "Georges Decimus, Kassav": 1,
+        "Edith Lefel": 2,
+        "Princess Erika": 1,
+        "Al Lirvat": 1,
+        "T-Vice": 2,
+        "Akiyo": 2,
+        "KASSAV'": 2,
+        "Marcel Lollia Dit Velo": 1,
+        "Nailah Blackman & Teddyson John": 1,
+        "KIM SEJEONG": 1,
+        "Jean Marie Ragald": 1,
+        "Dominik Coco": 2,
+        "Thierry Cham": 2,
+        "Zouk Machine": 2,
+        "Ludo": 1,
+        "Jeff Joseph": 1,
+        "Medhy Custos": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Jim Rama, Patrick Andrey": 1,
+        "Princess Liz": 1,
+        "Carimi": 2,
+        "MASS POWER NOU": 1,
+        "Les Aiglons": 2,
+        "Nu-Look": 2,
+        "Djakout # 1": 1,
+        "Carnaval Band": 1,
+        "Joëlle Ursull": 2,
+        "DJ Jean-Louis": 1,
+        "BélO": 2,
+        "Fanny J": 1,
+        "Gilles Floro": 1,
+        "Meryl": 1,
+        "Battery Cremil": 1,
+        "Kan'nida": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "KALI": 1,
+        "Tabou Combo": 3,
+        "EXILE": 1,
+        "Claudette et Ti Pierre": 1,
+        "Jerry Jeff Walker": 1,
+        "Teddyson John": 1,
+        "Soft": 1,
+        "Caroline Guenette": 1,
+        "Djakout #1": 1,
+        "Mario Chicot": 2,
+        "Yoan": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Top Vice": 1,
+        "Lutchiana": 1,
+        "Sam Smith, Kim Petras": 1,
+        "Harry Diboula": 1,
+        "Perle Lama": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Zin",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Léwoz anba zéyè an pilwon",
+          "Guadeloupe la vivante et ses murmures résistants"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 1
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 784
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "workflow_last_run_failed",
+        "severity": "high",
+        "context": "horoscope-daily : dernier run échoué"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "horoscope-daily : 59% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 0% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "13 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
