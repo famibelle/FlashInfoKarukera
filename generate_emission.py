@@ -1045,11 +1045,17 @@ def _create_emissions_xml() -> None:
     ET.SubElement(channel, 'link').text = 'https://famibelle.github.io/FlashInfoKarukera/'
     ET.SubElement(channel, 'description').text = (
         'Découvrez les symboles, l\'histoire et la nature de la Guadeloupe à travers '
-        'des émissions culturelles quotidiennes de 3 minutes.'
+        'des émissions culturelles quotidiennes de 3 minutes. Chaque épisode explore '
+        'un aspect unique de la culture guadeloupéenne, des traditions aux paysages, '
+        'en passant par les figures historiques et les symboles de résistance.'
     )
     ET.SubElement(channel, 'language').text = 'fr'
     ET.SubElement(channel, 'copyright').text = '© 2026 Botiran'
     ET.SubElement(channel, 'itunes:author').text = 'Botiran'
+    
+    # ✨ Fréquence de publication
+    ET.SubElement(channel, 'itunes:updateFrequency').text = 'daily'
+    ET.SubElement(channel, 'itunes:updatePeriod').text = 'day'
     
     owner = ET.SubElement(channel, 'itunes:owner')
     ET.SubElement(owner, 'itunes:name').text = 'Botiran'
