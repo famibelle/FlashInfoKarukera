@@ -154,7 +154,7 @@ INDEX_CULTUREL_DIR = Path(__file__).parent / "private" / "index_culturel"
 DATA_DIR     = Path(__file__).parent / "data"
 ARCHIVES_DIR = Path(__file__).parent / "archives" / "horoscope"
 DOCS_DIR     = Path(__file__).parent / "docs"
-HOROSCOPE_RSS_PATH = DOCS_DIR / "podcast.xml"
+HOROSCOPE_RSS_PATH = DOCS_DIR / "horoscope.xml"
 USED_FLORA_PATH = DATA_DIR / "used_flora.json"
 USED_FAUNE_PATH = DATA_DIR / "used_faune.json"
 FLORA_MEMORY_DAYS = 7  # fenêtre glissante d'anti-répétition
@@ -2241,9 +2241,9 @@ def main():
             guid=output_path.stem,
             pub_date=DateTime.utcnow(),
         )
-        print(f"   📻 podcast.xml mis à jour → {podcast_audio_url}")
+        print(f"   📻 horoscope.xml mis à jour → {podcast_audio_url}")
     else:
-        print("   ⚠️  podcast.xml non mis à jour (aucune URL audio disponible)")
+        print("   ⚠️  horoscope.xml non mis à jour (aucune URL audio disponible)")
 
     main_msg_id: int | None = None
     edition_emoji = "🌅" if args.edition == "matin" else "🌙"

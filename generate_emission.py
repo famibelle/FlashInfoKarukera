@@ -49,6 +49,8 @@ SOURCE_FILES = [
 OUTPUT_DIR = Path("docs/audio/Emissions")
 SELECTION_CACHE_PATH = Path(".dream_radio_cache") / "emission_selections.json"
 CACHE_MEMORY = 7  # évite les répétitions sur les 7 dernières sélections par catégorie
+PODCAST_RSS_PATH = Path("docs/podcast.xml")
+EMISIONS_RSS_PATH = Path("docs/emissions.xml")
 
 # Voix Marie avec tons variés (disponibles dans Voxtral)
 TTS_VOICE_BASE = "fr_marie_"
@@ -772,6 +774,8 @@ def main():
 
     # 5. Mise à jour du podcast.xml
     _update_podcast_xml(out_mp3, title=catchy_title)
+    # 5b. Mise à jour du emissions.xml (podcast dédié aux émissions culturelles)
+    _update_emissions_xml(out_mp3, title=catchy_title)
     
     # 6. Lecture automatique du fichier
     print("\n🔊 Lecture du fichier audio...")
@@ -811,8 +815,7 @@ def _indent_xml(elem, level=0):
 
 def _update_podcast_xml(mp3_path: Path, title: str = "Émission culturelle") -> None:
     """Ajoute l'émission au fichier podcast.xml avec un titre personnalise."""
-    PODCAST_PATH = Path("docs/podcast.xml")
-    if not PODCAST_PATH.exists():
+    if not PODCAST_RSS_PATH.exists():
         print("⚠️  podcast.xml introuvable")
         return
 
@@ -824,7 +827,7 @@ def _update_podcast_xml(mp3_path: Path, title: str = "Émission culturelle") -> 
     mp3_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/{mp3_path.name}"
 
     # Vérifier si cette émission existe déjà
-    existing_content = PODCAST_PATH.read_text(encoding='utf-8')
+    existing_content = PODCAST_RSS_PATH.read_text(encoding='utf-8')
     if f'<guid>{guid}</guid>' in existing_content or mp3_url in existing_content:
         print(f"⚠️  Émission {guid} déjà dans podcast.xml, ignorée")
         return
@@ -834,7 +837,7 @@ def _update_podcast_xml(mp3_path: Path, title: str = "Émission culturelle") -> 
 
     # Parse XML
     try:
-        tree = ET.parse(PODCAST_PATH)
+        tree = ET.parse(PODCAST_RSS_PATH)
         root = tree.getroot()
         channel = root.find('channel')
         if channel is None:
@@ -884,10 +887,85 @@ def _update_podcast_xml(mp3_path: Path, title: str = "Émission culturelle") -> 
         xml_content = xml_content.replace('ns1:', 'itunes:')
         xml_content = xml_content.replace('ns2:', 'itunes:')
         
-        PODCAST_PATH.write_text(xml_content, encoding='utf-8')
-        print(f"✅ podcast.xml mis à jour avec l'émission")
+        PODCAST_RSS_PATH.write_text(xml_content, encoding='utf-8')
+        print(f"✅ {PODCAST_RSS_PATH.name} mis à jour avec l'émission")
     except Exception as e:
-        print(f"⚠️  Erreur mise à jour podcast.xml: {e}")
+        print(f"⚠️  Erreur mise à jour {PODCAST_RSS_PATH.name}: {e}")
+
+
+def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle") -> None:
+    """Ajoute l'émission au fichier emissions.xml (podcast dédié aux émissions culturelles)."""
+    if not EMISIONS_RSS_PATH.exists():
+        print("⚠️  emissions.xml introuvable")
+        return
+
+    today = date.today()
+    stem = mp3_path.stem
+    edition = stem.rsplit("-", 1)[-1] if stem.rsplit("-", 1)[-1] in ("matin", "soir") else ""
+    guid = f'emission-{today.isoformat()}-{edition}' if edition else f'emission-{today.isoformat()}'
+    mp3_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/{mp3_path.name}"
+
+    # Vérifier si cette émission existe déjà
+    existing_content = EMISIONS_RSS_PATH.read_text(encoding='utf-8')
+    if f'<guid>{guid}</guid>' in existing_content or mp3_url in existing_content:
+        print(f"⚠️  Émission {guid} déjà dans emissions.xml, ignorée")
+        return
+
+    mp3_size = mp3_path.stat().st_size
+    pub_date = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
+
+    # Parse XML
+    try:
+        tree = ET.parse(EMISIONS_RSS_PATH)
+        root = tree.getroot()
+        channel = root.find('channel')
+        if channel is None:
+            print("⚠️  Balise <channel> introuvable dans emissions.xml")
+            return
+
+        # Namespace itunes
+        NS_ITUNES = 'http://www.itunes.com/dtds/podcast-1.0.dtd'
+        
+        # Créer le nouvel item
+        item = ET.Element('item')
+        ET.SubElement(item, 'title').text = title
+        desc = ET.SubElement(item, 'description')
+        desc.text = "Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe."
+        ET.SubElement(item, 'pubDate').text = pub_date
+        enc = ET.SubElement(item, 'enclosure')
+        enc.set('url', mp3_url)
+        enc.set('length', str(mp3_size))
+        enc.set('type', 'audio/mpeg')
+        ET.SubElement(item, 'guid', {'isPermaLink': 'false'}).text = guid
+        ET.SubElement(item, f'{{{NS_ITUNES}}}duration').text = '180'
+        
+        # Ajouter l'item au channel
+        channel.append(item)
+
+        # S'assurer que le namespace itunes est déclaré
+        if 'xmlns:itunes' not in root.attrib:
+            for attr in list(root.attrib.keys()):
+                if attr.startswith('xmlns:') and root.attrib[attr] == NS_ITUNES:
+                    del root.attrib[attr]
+            root.set('xmlns:itunes', NS_ITUNES)
+        
+        # Indenter et sauvegarder
+        _indent_xml(root)
+        
+        import io
+        xml_buffer = io.StringIO()
+        tree.write(xml_buffer, encoding='unicode', xml_declaration=True)
+        xml_content = xml_buffer.getvalue()
+        
+        # Remplacer les préfixes nsX: par itunes:
+        xml_content = xml_content.replace('ns0:', 'itunes:')
+        xml_content = xml_content.replace('ns1:', 'itunes:')
+        xml_content = xml_content.replace('ns2:', 'itunes:')
+        
+        EMISIONS_RSS_PATH.write_text(xml_content, encoding='utf-8')
+        print(f"✅ emissions.xml mis à jour avec l'émission")
+    except Exception as e:
+        print(f"⚠️  Erreur mise à jour emissions.xml: {e}")
 
 
 if __name__ == "__main__":

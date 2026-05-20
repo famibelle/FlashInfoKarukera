@@ -157,7 +157,7 @@ MEDIA_DIR       = Path(__file__).parent / "Media"
 DATA_DIR        = Path(__file__).parent / "data"
 ARCHIVES_DIR    = Path(__file__).parent / "archives" / "flash-info"
 DOCS_DIR        = Path(__file__).parent / "docs"
-PODCAST_RSS_PATH = DOCS_DIR / "podcast.xml"
+PODCAST_RSS_PATH = DOCS_DIR / "flash-info.xml"
 BOTIRAN_PROFILE = MEDIA_DIR / "botiran_profile.jpg"
 GUADELOUPE_TZ   = ZoneInfo("America/Guadeloupe")
 
@@ -3471,9 +3471,9 @@ def main():
             guid=output_path.stem,
             pub_date=datetime.utcnow(),
         )
-        print(f"   📻 podcast.xml mis à jour → {podcast_audio_url}")
+        print(f"   📻 flash-info.xml mis à jour → {podcast_audio_url}")
     else:
-        print("   ⚠️  podcast.xml non mis à jour (aucune URL audio disponible)")
+        print("   ⚠️  flash-info.xml non mis à jour (aucune URL audio disponible)")
 
     print(f"\n✅ Flash info terminé : {output_path}")
 
