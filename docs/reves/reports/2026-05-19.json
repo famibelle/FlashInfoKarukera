@@ -1,0 +1,230 @@
+{
+  "date": "2026-05-19",
+  "generated_at": "2026-05-20T01:06:56.487803Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 0.937888198757764,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 11,
+        "failure": 9,
+        "success_rate": 0.5238095238095238,
+        "avg_duration_s": 374.14285714285717,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 382.14285714285717,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 229.71428571428572,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 121.32142857142857,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 290.1020408163265,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1495.047619047619,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 0,
+      "coherence_rate": 0.0,
+      "issues_by_type": {
+        "format_invalid": 13
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Dominik Coco": 3,
+        "Tabou Combo": 3,
+        "Zouk Factory": 1,
+        "Harry Diboula": 2,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Kan'nida": 2,
+        "Jean-Luc Guanel": 2,
+        "Djakout #1": 2,
+        "Tanya St-Val": 2,
+        "Dominique Panol": 3,
+        "Carlos Nilson": 1,
+        "Mario Chicot": 2,
+        "T-Vice": 1,
+        "Latin Band": 1,
+        "Sakiyo": 1,
+        "Edith Lefel": 1,
+        "Battery Cremil": 2,
+        "Soft": 2,
+        "Zo Konpa, Zouk Love, Konpa Lakay": 1,
+        "Lutchiana Mobulu 100%": 1,
+        "Francky Vincent": 1,
+        "Nichols": 1,
+        "Joëlle Ursull": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Zin": 2,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Misié Sadik, Fanny J": 1,
+        "Sweet Micky": 1,
+        "Ralph Thamar": 1,
+        "Experience 7": 2,
+        "Milca": 1,
+        "Energy": 1,
+        "Gilles Floro": 2,
+        "Perle Lama": 2,
+        "Zouk Machine": 1,
+        "Thierry Cham": 2,
+        "PATRICK SAINT-ELOI": 1,
+        "Jean-Michel Jarre": 1,
+        "Kimsé": 1,
+        "Alexandre Stellio et son orchestre Créole": 1,
+        "EXILE": 1,
+        "BEL": 1,
+        "Nu-Look": 2,
+        "BélO": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "carimi": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Les Aiglons": 1,
+        "Jocelyne Béroard": 1,
+        "Exile": 1,
+        "System Band": 1,
+        "Jeff Joseph": 1,
+        "Marcé & Toumpak": 1,
+        "Claudette et Ti Pierre": 1,
+        "Akiyo": 1,
+        "Jacob Desvarieux": 1,
+        "Jack, Jeff": 1,
+        "JACOB F. DESVARIEUX & Georges Decimus": 1,
+        "Georges Decimus, Kassav": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Dominik Coco",
+      "consecutive_same_artist": [
+        {
+          "artist": "Nu-Look",
+          "position": 54,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Voix des mangroves et résistance des ancêtres",
+          "Lè ou tann wèzans manman té"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 2
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 849
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "horoscope-daily : 52% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 0% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "13 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
