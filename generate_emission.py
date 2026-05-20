@@ -745,7 +745,16 @@ def main():
     parser.add_argument("--overwrite", action="store_true", help="Écrase les fichiers existants")
     parser.add_argument("--sources", action="store_true",
                         help="Affiche uniquement les éléments sélectionnés sans générer l'émission")
+    parser.add_argument("--import-existing", action="store_true",
+                        help="Importe toutes les émissions existantes (JSON) vers emissions.xml")
     args = parser.parse_args()
+
+    # Mode import : importer les émissions existantes et quitter
+    if args.import_existing:
+        _create_emissions_xml()  # S'assurer que le fichier existe
+        count = _import_existing_emissions()
+        print(f"\n✨ {count} émissions importées. Vérifiez {EMISIONS_RSS_PATH}")
+        return
 
     if args.sources:
         import re as _re, textwrap
@@ -1057,6 +1066,62 @@ def _create_emissions_xml() -> None:
   </channel>
 </rss>''', encoding='utf-8')
     print(f"✅ {EMISIONS_RSS_PATH.name} créé avec la structure de base")
+
+
+def _import_existing_emissions() -> int:
+    """Importe toutes les émissions existantes depuis docs/audio/Emissions/ vers emissions.xml.
+    
+    Returns:
+        int: Nombre d'émissions importées
+    """
+    emissions_dir = Path("docs/audio/Emissions")
+    if not emissions_dir.exists():
+        print("⚠️  Dossier docs/audio/Emissions/ introuvable")
+        return 0
+    
+    # Trouver tous les fichiers JSON d'émission
+    json_files = sorted(emissions_dir.glob("emission-2026-*.json"), reverse=True)
+    
+    if not json_files:
+        print("⚠️  Aucune émission existante trouvée dans docs/audio/Emissions/")
+        return 0
+    
+    print(f"📂 Import de {len(json_files)} émissions existantes...")
+    imported_count = 0
+    
+    for json_file in json_files:
+        # Charger les métadonnées
+        try:
+            data = json.loads(json_file.read_text(encoding='utf-8'))
+            title = data.get('title', 'Émission culturelle')
+            text = data.get('text', '')
+            date_str = data.get('date', '')
+            
+            # Trouver le fichier MP3 correspondant
+            mp3_files = list(emissions_dir.glob(f"emission-{date_str}*.mp3"))
+            if not mp3_files:
+                print(f"   ⚠️  MP3 introuvable pour {json_file.name}")
+                continue
+            
+            mp3_path = mp3_files[0]
+            
+            # Vérifier si déjà dans emissions.xml
+            guid_pattern = f'emission-{date_str}'
+            if EMISIONS_RSS_PATH.exists():
+                existing = EMISIONS_RSS_PATH.read_text(encoding='utf-8')
+                if guid_pattern in existing:
+                    print(f"   ⏭️  {json_file.name} déjà dans emissions.xml")
+                    continue
+            
+            # Importer l'émission
+            _update_emissions_xml(mp3_path, title=title, desc=text)
+            imported_count += 1
+            
+        except Exception as e:
+            print(f"   ⚠️  Erreur import {json_file.name} : {e}")
+    
+    print(f"✅ {imported_count} émissions importées dans emissions.xml")
+    return imported_count
 
 
 def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle", desc: str = "") -> None:
