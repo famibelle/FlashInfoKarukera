@@ -22,6 +22,8 @@ import random
 import subprocess
 import sys
 import tempfile
+import time
+import urllib.request
 from datetime import date, datetime
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -34,6 +36,11 @@ except ImportError:
 
 sys.path.insert(0, str(Path(__file__).parent))
 from tts_utils import tts_call, normalize_for_tts
+
+# ── Config Mistral ────────────────────────────────────────────────────────────
+MISTRAL_API_KEY = os.environ.get("MISTRAL_API_KEY", "")
+MISTRAL_CHAT_MODEL = "mistral-large-latest"
+MISTRAL_CHAT_URL = "https://api.mistral.ai/v1/chat/completions"
 
 # ── Config ──────────────────────────────────────────────────────────────────
 
@@ -51,6 +58,125 @@ SELECTION_CACHE_PATH = Path(".dream_radio_cache") / "emission_selections.json"
 CACHE_MEMORY = 7  # évite les répétitions sur les 7 dernières sélections par catégorie
 PODCAST_RSS_PATH = Path("docs/podcast.xml")
 EMISIONS_RSS_PATH = Path("docs/emissions.xml")
+
+# ── Fonction call_mistral ────────────────────────────────────────────────────
+
+def call_mistral(
+    system: str,
+    user: str,
+    *,
+    temperature: float = 0.3,
+    max_tokens: int = 1500,
+    json_mode: bool = False,
+    timeout: int = 60,
+    _retries: int = 4,
+) -> str:
+    """Appelle l'API Mistral chat completions avec retry exponentiel."""
+    if not MISTRAL_API_KEY:
+        raise ValueError("MISTRAL_API_KEY non configurée")
+    
+    payload: dict = {
+        "model": MISTRAL_CHAT_MODEL,
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+    }
+    if json_mode:
+        payload["response_format"] = {"type": "json_object"}
+    
+    req = urllib.request.Request(
+        MISTRAL_CHAT_URL,
+        data=json.dumps(payload).encode(),
+        headers={
+            "Authorization": f"Bearer {MISTRAL_API_KEY}",
+            "Content-Type": "application/json",
+        },
+    )
+    
+    for attempt in range(_retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                result = json.loads(r.read())
+            return result["choices"][0]["message"]["content"]
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 500, 502, 503, 504) and attempt < _retries:
+                wait = 15 * 2 ** attempt
+                print(f"   ⏳ Mistral {e.code} — attente {wait}s (tentative {attempt + 1}/{_retries})…")
+                time.sleep(wait)
+            else:
+                raise
+        except (TimeoutError, OSError) as e:
+            if attempt < _retries:
+                wait = 15 * 2 ** attempt
+                print(f"   ⏳ Mistral timeout réseau — attente {wait}s (tentative {attempt + 1}/{_retries})…")
+                time.sleep(wait)
+            else:
+                raise
+
+
+def _generate_metadata_with_llm(text: str, title: str) -> tuple[str, str]:
+    """Génère un teaser (itunes:summary) et des keywords (itunes:keywords) via Mistral.
+    
+    Args:
+        text: Description ou texte de l'émission
+        title: Titre de l'émission
+        
+    Returns:
+        tuple: (summary, keywords)
+    """
+    prompt = f"""Tu es un expert en podcasts culturels guadeloupéens.
+À partir du texte suivant, génère :
+1. Un RÉSUMÉ COURT (1 phrase, max 100 caractères) pour itunes:summary — doit être accrocheur et informatif
+2. Une liste de MOTS-CLÉS (5-8 mots, séparés par des virgules, SANS espaces) pour itunes:keywords — doivent être pertinents pour la recherche sur Apple Podcasts
+
+Texte : {text[:1500]}{'...' if len(text) > 1500 else ''}
+Titre : {title}
+
+Réponds UNIQUEMENT au format exact suivant (sans autre texte) :
+RESUME: <ton résumé ici>
+KEYWORDS: <tes,mots,clés,ici>"""
+    
+    try:
+        response = call_mistral(
+            system="Tu es un assistant strict. Réponds UNIQUEMENT avec le format RESUME:...\nKEYWORDS:...",
+            user=prompt,
+            temperature=0.3,
+            max_tokens=300,
+        )
+        
+        # Parser la réponse
+        summary = "Émission culturelle quotidienne sur la Guadeloupe."
+        keywords = "Guadeloupe,culture,histoire,nature,symboles"
+        
+        for line in response.split('\n'):
+            line = line.strip()
+            if line.startswith('RESUME:'):
+                summary = line.replace('RESUME:', '').strip()[:100]  # Limiter à 100 caractères
+            elif line.startswith('KEYWORDS:'):
+                keywords = line.replace('KEYWORDS:', '').strip()
+        
+        # Nettoyage : supprimer les espaces dans les keywords
+        keywords = keywords.replace(' ', '')
+        
+        # Fallback si vide
+        if not summary:
+            summary = "Émission culturelle quotidienne sur la Guadeloupe."
+        if not keywords:
+            keywords = "Guadeloupe,culture,histoire,nature,symboles"
+            
+        return summary, keywords
+        
+    except Exception as e:
+        print(f"   ⚠️  Génération LLM des métadonnées échouée : {e}")
+        # Valeurs par défaut
+        return (
+            "Émission culturelle quotidienne sur la Guadeloupe.",
+            "Guadeloupe,culture,histoire,nature,symboles"
+        )
+
 
 # Voix Marie avec tons variés (disponibles dans Voxtral)
 TTS_VOICE_BASE = "fr_marie_"
@@ -775,7 +901,7 @@ def main():
     # 5. Mise à jour du podcast.xml
     _update_podcast_xml(out_mp3, title=catchy_title)
     # 5b. Mise à jour du emissions.xml (podcast dédié aux émissions culturelles)
-    _update_emissions_xml(out_mp3, title=catchy_title)
+    _update_emissions_xml(out_mp3, title=catchy_title, desc=text)
     
     # 6. Lecture automatique du fichier
     print("\n🔊 Lecture du fichier audio...")
@@ -893,11 +1019,59 @@ def _update_podcast_xml(mp3_path: Path, title: str = "Émission culturelle") -> 
         print(f"⚠️  Erreur mise à jour {PODCAST_RSS_PATH.name}: {e}")
 
 
-def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle") -> None:
-    """Ajoute l'émission au fichier emissions.xml (podcast dédié aux émissions culturelles)."""
-    if not EMISIONS_RSS_PATH.exists():
-        print("⚠️  emissions.xml introuvable")
+def _create_emissions_xml() -> None:
+    """Crée emissions.xml avec la structure de base si le fichier n'existe pas."""
+    if EMISIONS_RSS_PATH.exists():
         return
+    
+    EMISIONS_RSS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    EMISIONS_RSS_PATH.write_text('''<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>Émissions Culturelles Karukera</title>
+    <link>https://famibelle.github.io/FlashInfoKarukera/</link>
+    <description>Découvrez les symboles, l'histoire et la nature de la Guadeloupe à travers des émissions culturelles quotidiennes de 3 minutes.</description>
+    <language>fr</language>
+    <copyright>© 2026 Botiran</copyright>
+    <itunes:author>Botiran</itunes:author>
+    <itunes:owner>
+      <itunes:name>Botiran</itunes:name>
+      <itunes:email>medhi.famibelle@outlook.fr</itunes:email>
+    </itunes:owner>
+    <itunes:image href="https://famibelle.github.io/FlashInfoKarukera/artwork-emissions.jpg"/>
+    <!-- ✨ TEASER (itunes:summary) -->
+    <itunes:summary>Des émissions culturelles quotidiennes de 3 minutes sur la Guadeloupe, explorant symboles, histoire et nature.</itunes:summary>
+    <!-- ✨ KEYWORDS -->
+    <itunes:keywords>Guadeloupe,culture,histoire,nature,symboles,Antilles,Caraïbes,tradition,patrimoine</itunes:keywords>
+    <image>
+      <url>https://famibelle.github.io/FlashInfoKarukera/artwork-emissions.jpg</url>
+      <title>Émissions Culturelles Karukera</title>
+      <link>https://famibelle.github.io/FlashInfoKarukera/</link>
+    </image>
+    <itunes:category text="Arts">
+      <itunes:category text="Performing Arts"/></itunes:category>
+    <itunes:category text="Society & Culture">
+      <itunes:category text="History"/></itunes:category>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:type>episodic</itunes:type>
+  </channel>
+</rss>''', encoding='utf-8')
+    print(f"✅ {EMISIONS_RSS_PATH.name} créé avec la structure de base")
+
+
+def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle", desc: str = "") -> None:
+    """Ajoute l'émission au fichier emissions.xml (podcast dédié aux émissions culturelles).
+    
+    Args:
+        mp3_path: Chemin du fichier MP3
+        title: Titre de l'émission
+        desc: Description complète (pour générer summary et keywords via LLM)
+    """
+    if not EMISIONS_RSS_PATH.exists():
+        _create_emissions_xml()
+        if not EMISIONS_RSS_PATH.exists():
+            print("⚠️  Impossible de créer emissions.xml")
+            return
 
     today = date.today()
     stem = mp3_path.stem
@@ -914,6 +1088,15 @@ def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle") -
     mp3_size = mp3_path.stat().st_size
     pub_date = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
 
+    # ✨ Générer teaser et keywords via LLM si description disponible
+    if desc:
+        summary, keywords = _generate_metadata_with_llm(desc, title)
+        print(f"   ✨ Teaser LLM : {summary}")
+        print(f"   ✨ Keywords LLM : {keywords}")
+    else:
+        summary = "Émission culturelle quotidienne sur la Guadeloupe."
+        keywords = "Guadeloupe,culture,histoire,nature,symboles"
+
     # Parse XML
     try:
         tree = ET.parse(EMISIONS_RSS_PATH)
@@ -929,8 +1112,8 @@ def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle") -
         # Créer le nouvel item
         item = ET.Element('item')
         ET.SubElement(item, 'title').text = title
-        desc = ET.SubElement(item, 'description')
-        desc.text = "Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe."
+        description_elem = ET.SubElement(item, 'description')
+        description_elem.text = desc if desc else "Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe."
         ET.SubElement(item, 'pubDate').text = pub_date
         enc = ET.SubElement(item, 'enclosure')
         enc.set('url', mp3_url)
@@ -938,6 +1121,10 @@ def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle") -
         enc.set('type', 'audio/mpeg')
         ET.SubElement(item, 'guid', {'isPermaLink': 'false'}).text = guid
         ET.SubElement(item, f'{{{NS_ITUNES}}}duration').text = '180'
+        
+        # ✨ NOUVEAU : Ajouter teaser et keywords dans l'item
+        ET.SubElement(item, f'{{{NS_ITUNES}}}summary').text = summary
+        ET.SubElement(item, f'{{{NS_ITUNES}}}keywords').text = keywords
         
         # Ajouter l'item au channel
         channel.append(item)
