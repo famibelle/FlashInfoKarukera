@@ -1033,38 +1033,68 @@ def _create_emissions_xml() -> None:
     if EMISIONS_RSS_PATH.exists():
         return
     
+    # Utiliser ElementTree pour un échappement XML correct
+    NS_ITUNES = 'http://www.itunes.com/dtds/podcast-1.0.dtd'
+    
+    rss = ET.Element('rss', version='2.0')
+    rss.set('xmlns:itunes', NS_ITUNES)
+    
+    channel = ET.SubElement(rss, 'channel')
+    
+    ET.SubElement(channel, 'title').text = 'Émissions Culturelles Karukera'
+    ET.SubElement(channel, 'link').text = 'https://famibelle.github.io/FlashInfoKarukera/'
+    ET.SubElement(channel, 'description').text = (
+        'Découvrez les symboles, l\'histoire et la nature de la Guadeloupe à travers '
+        'des émissions culturelles quotidiennes de 3 minutes.'
+    )
+    ET.SubElement(channel, 'language').text = 'fr'
+    ET.SubElement(channel, 'copyright').text = '© 2026 Botiran'
+    ET.SubElement(channel, 'itunes:author').text = 'Botiran'
+    
+    owner = ET.SubElement(channel, 'itunes:owner')
+    ET.SubElement(owner, 'itunes:name').text = 'Botiran'
+    ET.SubElement(owner, 'itunes:email').text = 'medhi.famibelle@outlook.fr'
+    
+    ET.SubElement(channel, 'itunes:image').set('href', 'https://famibelle.github.io/FlashInfoKarukera/artwork-emissions.jpg')
+    
+    # ✨ TEASER (itunes:summary)
+    ET.SubElement(channel, 'itunes:summary').text = (
+        'Des émissions culturelles quotidiennes de 3 minutes sur la Guadeloupe, '
+        'explorant symboles, histoire et nature.'
+    )
+    
+    # ✨ KEYWORDS
+    ET.SubElement(channel, 'itunes:keywords').text = (
+        'Guadeloupe,culture,histoire,nature,symboles,Antilles,Caraïbes,tradition,patrimoine'
+    )
+    
+    image = ET.SubElement(channel, 'image')
+    ET.SubElement(image, 'url').text = 'https://famibelle.github.io/FlashInfoKarukera/artwork-emissions.jpg'
+    ET.SubElement(image, 'title').text = 'Émissions Culturelles Karukera'
+    ET.SubElement(image, 'link').text = 'https://famibelle.github.io/FlashInfoKarukera/'
+    
+    cat1 = ET.SubElement(channel, 'itunes:category', text='Arts')
+    ET.SubElement(cat1, 'itunes:category', text='Performing Arts')
+    
+    cat2 = ET.SubElement(channel, 'itunes:category', text='Society & Culture')
+    ET.SubElement(cat2, 'itunes:category', text='History')
+    
+    ET.SubElement(channel, 'itunes:explicit').text = 'no'
+    ET.SubElement(channel, 'itunes:type').text = 'episodic'
+    
+    # Écrire avec indentation
+    _indent_xml(rss)
+    
+    from io import BytesIO
+    xml_buffer = BytesIO()
+    ET.ElementTree(rss).write(xml_buffer, encoding='utf-8', xml_declaration=True)
+    xml_content = xml_buffer.getvalue().decode('utf-8')
+    
+    # Corriger les préfixes nsX: en itunes:
+    xml_content = xml_content.replace('ns0:', 'itunes:')
+    
     EMISIONS_RSS_PATH.parent.mkdir(parents=True, exist_ok=True)
-    EMISIONS_RSS_PATH.write_text('''<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
-  <channel>
-    <title>Émissions Culturelles Karukera</title>
-    <link>https://famibelle.github.io/FlashInfoKarukera/</link>
-    <description>Découvrez les symboles, l'histoire et la nature de la Guadeloupe à travers des émissions culturelles quotidiennes de 3 minutes.</description>
-    <language>fr</language>
-    <copyright>© 2026 Botiran</copyright>
-    <itunes:author>Botiran</itunes:author>
-    <itunes:owner>
-      <itunes:name>Botiran</itunes:name>
-      <itunes:email>medhi.famibelle@outlook.fr</itunes:email>
-    </itunes:owner>
-    <itunes:image href="https://famibelle.github.io/FlashInfoKarukera/artwork-emissions.jpg"/>
-    <!-- ✨ TEASER (itunes:summary) -->
-    <itunes:summary>Des émissions culturelles quotidiennes de 3 minutes sur la Guadeloupe, explorant symboles, histoire et nature.</itunes:summary>
-    <!-- ✨ KEYWORDS -->
-    <itunes:keywords>Guadeloupe,culture,histoire,nature,symboles,Antilles,Caraïbes,tradition,patrimoine</itunes:keywords>
-    <image>
-      <url>https://famibelle.github.io/FlashInfoKarukera/artwork-emissions.jpg</url>
-      <title>Émissions Culturelles Karukera</title>
-      <link>https://famibelle.github.io/FlashInfoKarukera/</link>
-    </image>
-    <itunes:category text="Arts">
-      <itunes:category text="Performing Arts"/></itunes:category>
-    <itunes:category text="Society & Culture">
-      <itunes:category text="History"/></itunes:category>
-    <itunes:explicit>no</itunes:explicit>
-    <itunes:type>episodic</itunes:type>
-  </channel>
-</rss>''', encoding='utf-8')
+    EMISIONS_RSS_PATH.write_text(xml_content, encoding='utf-8')
     print(f"✅ {EMISIONS_RSS_PATH.name} créé avec la structure de base")
 
 
@@ -1204,10 +1234,10 @@ def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle", d
         # Indenter et sauvegarder
         _indent_xml(root)
         
-        import io
-        xml_buffer = io.StringIO()
-        tree.write(xml_buffer, encoding='unicode', xml_declaration=True)
-        xml_content = xml_buffer.getvalue()
+        from io import BytesIO
+        xml_buffer = BytesIO()
+        tree.write(xml_buffer, encoding='utf-8', xml_declaration=True)
+        xml_content = xml_buffer.getvalue().decode('utf-8')
         
         # Remplacer les préfixes nsX: par itunes:
         xml_content = xml_content.replace('ns0:', 'itunes:')
