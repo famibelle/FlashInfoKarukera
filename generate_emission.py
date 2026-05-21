@@ -1150,7 +1150,7 @@ def _import_existing_emissions() -> int:
                     continue
             
             # Importer l'émission
-            _update_emissions_xml(mp3_path, title=title, desc=text)
+            _update_emissions_xml(mp3_path, title=title, desc=text, emission_date=date_str)
             imported_count += 1
             
         except Exception as e:
@@ -1160,13 +1160,14 @@ def _import_existing_emissions() -> int:
     return imported_count
 
 
-def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle", desc: str = "") -> None:
+def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle", desc: str = "", emission_date: str = None) -> None:
     """Ajoute l'émission au fichier emissions.xml (podcast dédié aux émissions culturelles).
     
     Args:
         mp3_path: Chemin du fichier MP3
         title: Titre de l'émission
         desc: Description complète (pour générer summary et keywords via LLM)
+        emission_date: Date de l'émission au format YYYY-MM-DD (si None, utilise aujourd'hui)
     """
     if not EMISIONS_RSS_PATH.exists():
         _create_emissions_xml()
@@ -1174,10 +1175,29 @@ def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle", d
             print("⚠️  Impossible de créer emissions.xml")
             return
 
-    today = date.today()
+    # Utiliser la date fournie ou la date du fichier MP3 ou aujourd'hui
+    if emission_date:
+        pub_date_obj = datetime.strptime(emission_date, "%Y-%m-%d")
+    else:
+        # Essayer d'extraire la date du nom de fichier (emission-2026-05-04-matin.mp3)
+        stem = mp3_path.stem
+        parts = stem.split("-")
+        date_part = None
+        for part in parts:
+            if len(part) == 10 and part[4] == "-" and part[7] == "-":
+                date_part = part
+                break
+        if date_part:
+            pub_date_obj = datetime.strptime(date_part, "%Y-%m-%d")
+        else:
+            pub_date_obj = datetime.utcnow()
+    
+    pub_date_str = pub_date_obj.strftime("%a, %d %b %Y %H:%M:%S +0000")
+    date_iso = pub_date_obj.strftime("%Y-%m-%d")
+    
     stem = mp3_path.stem
     edition = stem.rsplit("-", 1)[-1] if stem.rsplit("-", 1)[-1] in ("matin", "soir") else ""
-    guid = f'emission-{today.isoformat()}-{edition}' if edition else f'emission-{today.isoformat()}'
+    guid = f'emission-{date_iso}-{edition}' if edition else f'emission-{date_iso}'
     mp3_url = f"https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/{mp3_path.name}"
 
     # Vérifier si cette émission existe déjà
@@ -1187,7 +1207,6 @@ def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle", d
         return
 
     mp3_size = mp3_path.stat().st_size
-    pub_date = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
 
     # ✨ Générer teaser et keywords via LLM si description disponible
     if desc:
@@ -1215,7 +1234,7 @@ def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle", d
         ET.SubElement(item, 'title').text = title
         description_elem = ET.SubElement(item, 'description')
         description_elem.text = desc if desc else "Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe."
-        ET.SubElement(item, 'pubDate').text = pub_date
+        ET.SubElement(item, 'pubDate').text = pub_date_str
         enc = ET.SubElement(item, 'enclosure')
         enc.set('url', mp3_url)
         enc.set('length', str(mp3_size))
