@@ -1031,5 +1031,13 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-20-soir</guid>
       <itunes:duration>180</itunes:duration>
     </item>
+    <item>
+      <title>La Guadeloupe chante dans nos racines</title>
+      <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
+      <pubDate>Thu, 21 May 2026 03:41:38 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-21-matin.mp3" length="1630869" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-05-21-matin</guid>
+      <itunes:duration>180</itunes:duration>
+    </item>
   </channel>
 </rss>
