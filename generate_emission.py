@@ -1233,7 +1233,7 @@ def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle", d
         item = ET.Element('item')
         ET.SubElement(item, 'title').text = title
         description_elem = ET.SubElement(item, 'description')
-        description_elem.text = desc if desc else "Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe."
+        description_elem.text = summary
         ET.SubElement(item, 'pubDate').text = pub_date_str
         enc = ET.SubElement(item, 'enclosure')
         enc.set('url', mp3_url)
