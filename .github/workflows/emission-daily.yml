@@ -100,7 +100,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git pull origin main --no-rebase -X ours --no-edit 2>/dev/null || true
           git add docs/audio/Emissions/emission-*.mp3 docs/audio/Emissions/emission-*.json
-          git add archives/emissions/ docs/podcast.xml
+          git add archives/emissions/ docs/podcast.xml docs/emissions.xml
           if ! git diff --cached --quiet; then
             git commit -m "feat: émission culturelle ${{ steps.edition.outputs.value }} $(date -u +%Y-%m-%d) [skip ci]"
             for attempt in 1 2 3; do

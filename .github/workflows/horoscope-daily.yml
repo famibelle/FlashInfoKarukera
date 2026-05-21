@@ -194,6 +194,7 @@ jobs:
           git add data/used_flora.json archives/horoscope/
           git add docs/audio/horoscope/
           git add docs/podcast.xml
+          git add docs/horoscope.xml
           if ! git diff --cached --quiet; then
             git commit -m "chore: horoscope ${{ env.TARGET_DATE }} — archive + flore + RSS [skip ci]"
             for attempt in 1 2 3; do

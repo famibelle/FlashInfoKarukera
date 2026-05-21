@@ -246,6 +246,7 @@ jobs:
           git add data/used_articles_*.json archives/flash-info/
           git add docs/audio/flash-info/
           git add docs/podcast.xml
+          git add docs/flash-info.xml
           if ! git diff --cached --quiet; then
             git commit -m "chore: flash info ${{ env.TARGET_DATE }} — archive + anti-répétition + RSS [skip ci]"
             for attempt in 1 2 3; do
