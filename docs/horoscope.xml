@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>Karukera — Flash Info &amp; Horoscope</title>
+    <link>https://famibelle.github.io/FlashInfoKarukera/</link>
+    <description>Flash info et horoscope de la Guadeloupe — matin, midi et soir par Botiran</description>
+    <language>fr</language>
+    <copyright>© Botiran</copyright>
+    <itunes:author>Botiran</itunes:author>
+    <itunes:owner><itunes:name>Botiran</itunes:name><itunes:email>medhi.famibelle@outlook.fr</itunes:email></itunes:owner>
+    <itunes:image href="https://famibelle.github.io/FlashInfoKarukera/artwork.jpg"/>
+    <image><url>https://famibelle.github.io/FlashInfoKarukera/artwork.jpg</url><title>Karukera — Flash Info &amp; Horoscope</title><link>https://famibelle.github.io/FlashInfoKarukera/</link></image>
+    <itunes:category text="News"><itunes:category text="Daily News"/></itunes:category>
+    <itunes:explicit>no</itunes:explicit>
+
+    <item>
+      <title>Bélier ♈ &amp; Poissons ♓ : Le Gwo Zandoli danse avec les coquilles de Karet, dans votre horoscope du 21 mai au soir</title>
+      <description><![CDATA[Nous sommes le jeudi 21 mai 2026 et ce soir, le ciel de Karukera chuchote à ceux qui savent écouter. Les étoiles ont choisi de poser leur regard sur les Gémeaux, les Bélier et les Poissons, trois feux qui dansent différemment, mais qui ce soir partagent la même lune basse sur la mangrove. Respirez, posez la journée comme on dépose un panier de fruits mûrs au pied de l’arbre : sans regret, sans hâte. Demain est une autre pirogue.]]></description>
+      <pubDate>Thu, 21 May 2026 19:45:04 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/horoscope-2026-05/horoscope-20260521-soir.mp3" length="2788725" type="audio/mpeg"/>
+      <guid isPermaLink="false">horoscope-20260521-soir</guid>
+      <itunes:duration>04:29</itunes:duration>
+    </item>
+
+  </channel>
+</rss>
