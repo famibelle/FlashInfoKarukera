@@ -1233,7 +1233,11 @@ def _update_emissions_xml(mp3_path: Path, title: str = "Émission culturelle", d
         
         # Créer le nouvel item
         item = ET.Element('item')
-        ET.SubElement(item, 'title').text = title
+        # Nettoyer le titre (supprimer markdown et emojis si nécessaire)
+        import re
+        clean_title = re.sub(r'[\*_~`]', '', title)  # Supprimer * _ ~ `
+        clean_title = re.sub(r'[#@]', '', clean_title)  # Supprimer # @
+        ET.SubElement(item, 'title').text = clean_title
         description_elem = ET.SubElement(item, 'description')
         description_elem.text = summary
         ET.SubElement(item, 'pubDate').text = pub_date_str
