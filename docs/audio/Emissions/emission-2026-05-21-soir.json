@@ -1,0 +1,38 @@
+{
+  "date": "2026-05-21",
+  "edition": "soir",
+  "type": "emission",
+  "title": "Nos racines chantent sous la pluie",
+  "duration": "~3 minutes",
+  "word_count": 508,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Tèt pen sèk",
+    "artist": "Jean-Michel Jean-Louis",
+    "genre": ""
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Pratique / Résistance culturelle \t Kont \t Conte traditionnel \t N/A \t ⭐⭐⭐ RÉSISTANCE CULTURELLE \t Récits transmis oralement pour préserver l'histoire africaine. Symbole de la résistance par la mémoire (Hurbon 1972)."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Chauve-souris         \t Chauv-souris grise        \t Mormoops de la Guadeloupe \t Mormoops megalophylla          \t ⭐⭐ Culturel          \t Endémique. Chasse les insectes nuisibles. Symbole de purification nocturne (quimbois)."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Rimèd razié            \t Sitwonèl                     \t Citronnelle             \t Cymbopogon citratus            \t Plante en touffes. Tisane calmante, répulsive anti-moustiques. Incontournable."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Site archéologique    \t Abri sous Roche de la Pointe Allègre     \t Sainte-Rose, Pointe Allègre (16.3000° N, 61.7000° W) \t ⭐⭐ Symbolique          \t Abri utilisé par les Kalinagos pour des rituels de pêche. Vestiges de coquillages et outils (archives DASSA, 1830 ; Hurbon 1972, p. 125). Utilisé pour des cérémonies de protection des pêcheurs."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**1848–1900** \t **Persistance des inégalités économiques et sociales** \t **Héritage de l’esclavage : lutte continue pour la justice sociale et économique** \t Création de syndicats (ex. : *Union des Travailleurs Agricoles*), revendications pour l’égalité des salaires \t Pointe-à-Pitre (centre économique), zones rurales de Grande-Terre \t Vaudou Kongolais : rituels pour la justice sociale (ex. : *pwen de solidarité* dans les syndicats)"
+    }
+  },
+  "text": "Ah mes chers auditeurs, aujourd’hui on va marcher ensemble sur les sentiers de notre mémoire, ceux qui sentent le sel et la terre mouillée. Comme dans *Tèt pen sèk*, cette chanson qui nous parle de résistance et de racines profondes, je vous propose de plonger dans ce qui fait battre le cœur de notre Guadeloupe. Pas juste comme une carte postale, mais comme un vivant, un écosystème où chaque feuille, chaque animal, chaque pierre raconte une histoire de lutte et de survie.\n\nCommençons par un petit être qui danse dans la nuit, la chauve-souris grise, qu’on appelle aussi *mormoops* chez nous. Vous savez, ces créatures mal aimées que certains trouvent effrayantes ? Pourtant, elles sont nos alliées silencieuses. Imaginez : une seule chauve-souris peut avaler des milliers de moustiques en une nuit. Dans nos traditions, on dit qu’elles purifient l’air, qu’elles chassent les mauvaises énergies. Et puis, écoutez bien ce détail : elles sont endémiques à nos îles. Ça veut dire qu’elles n’existent nulle part ailleurs dans le monde. Un vrai trésor volant, qui nous rappelle que même dans l’obscurité, la vie persiste et résiste.\n\nEt parlons maintenant de la citronnelle, ce *rimèd razié* qui pousse en touffes généreuses dans nos cours. Ah, cette odeur ! Dès qu’on froisse ses feuilles entre les doigts, ça sent le soleil et la terre après la pluie. Nos grands-mères en faisaient des tisanes pour calmer les nerfs, pour éloigner les moustiques aussi. Mais saviez-vous que dans les plantations, après l’abolition, les anciens utilisaient la citronnelle pour se protéger ? Pas seulement des insectes, non. Pour se protéger des mauvais sorts, pour garder leur esprit clair dans un monde qui voulait encore les écraser. Une plante humble, mais combien puissante.\n\nMaintenant, laissez-moi vous emmener à la Pointe Allègre, du côté de Sainte-Rose. Là-bas, il y a un abri sous roche où nos ancêtres kalinagos venaient prier avant de partir pêcher. Des coquillages, des outils en pierre, des traces de feux sacrés… Tout ça raconte une histoire de respect, de connexion avec la mer. Les archéologues ont trouvé des preuves que cet endroit était un lieu de rituels pour demander la protection des esprits de l’eau. Et plus tard, après 1848, quand les anciens esclaves ont dû se battre pour leurs droits, certains y sont revenus. Ils y déposaient des *pwen*, ces petits objets chargés de pouvoir, pour demander justice. Parce que la résistance, voyez-vous, elle ne s’est jamais arrêtée. Elle a juste changé de forme.\n\nAlors aujourd’hui, quand je vois une chauve-souris tracer son chemin dans le ciel du soir, quand je sens l’odeur de la citronnelle dans ma tasse, quand je passe près de la Pointe Allègre, je me dis que tout est lié. Notre nature, notre histoire, notre culture… C’est un seul et même tissu, solide comme les racines d’un palétuvier. Et comme le dit si bien *Tèt pen sèk*, même quand le vent souffle fort, même quand la sécheresse menace, on garde la tête haute. Parce que nos racines, elles, sont profondes. Et personne ne pourra jamais les arracher.",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-21-soir.mp3"
+}
