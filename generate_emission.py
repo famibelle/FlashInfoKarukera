@@ -70,13 +70,14 @@ def call_mistral(
     json_mode: bool = False,
     timeout: int = 60,
     _retries: int = 4,
+    model: str = MISTRAL_CHAT_MODEL,
 ) -> str:
     """Appelle l'API Mistral chat completions avec retry exponentiel."""
     if not MISTRAL_API_KEY:
         raise ValueError("MISTRAL_API_KEY non configurée")
     
     payload: dict = {
-        "model": MISTRAL_CHAT_MODEL,
+        "model": model,
         "temperature": temperature,
         "max_tokens": max_tokens,
         "messages": [
@@ -145,6 +146,7 @@ KEYWORDS: <tes,mots,clés,ici>"""
             user=prompt,
             temperature=0.3,
             max_tokens=300,
+            model="mistral-small-latest",
         )
         
         # Parser la réponse
