@@ -20,6 +20,7 @@ LIEUX_GUADELOUPE = [
     "Grand-Bourg", "Capesterre", "Saint-Louis", "Les Saintes", "Terre-de-Haut",
     "La Désirade", "Saint-Martin", "Marigot", "Saint-Barthélemy", "Gustavia",
     "Marie-Galante", "Grande-Terre", "Basse-Terre", "Karukera",
+    "Houëlmont", "Mougoutte", "Dubedou", "Ravine-Chaude", "Ravine-Blanche",
 ]
 
 # Pays et grandes villes du monde (en français, plus long en premier)
