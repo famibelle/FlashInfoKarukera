@@ -3020,14 +3020,21 @@ def main():
             check_date = datetime.now(GUADELOUPE_TZ).date()
 
         print(f"🔍 Vérification des flux RSS pour le {_date_fr(check_date)}…\n")
+        
+        # Convertir check_date en datetime pour _parse_feed_items (offset-naive)
+        cutoff = datetime(check_date.year, check_date.month, check_date.day)
+        
+        # Collecter tous les articles de la journée
+        all_day_items = []
         ok, ko = [], []
+        
         for source in RSS_SOURCES:
             try:
                 with urllib.request.urlopen(source.url, timeout=10) as r:
                     content = r.read()
                 root = ET.fromstring(content)
                 total_found = len(root.findall(".//item")) + len(root.findall(".//entry"))
-                day_items = _parse_feed_items(root, check_date)
+                day_items = _parse_feed_items(root, cutoff)
                 print(f"  ✅  {source.name}")
                 print(f"      {source.url}")
                 print(f"      {total_found} entrées au total, {len(day_items)} pour le {check_date}")
@@ -3039,11 +3046,61 @@ def main():
                             print(f"          {preview}{'…' if len(desc) > 120 else ''}")
                 print()
                 ok.append(source.name)
+                # Ajouter les articles à la liste globale avec leur source et priorité
+                for pubdate_utc, title, date_str_item, desc in day_items:
+                    lieu = _extract_lieu(title, desc)
+                    priority = _lieu_priority(lieu)
+                    all_day_items.append({
+                        "title": title,
+                        "source": source.name,
+                        "category": source.category,
+                        "lieu": lieu,
+                        "priority": priority,
+                        "pubdate": date_str_item
+                    })
             except Exception as e:
                 print(f"  ❌  {source.name}")
                 print(f"      {source.url}")
                 print(f"      Erreur : {e}\n")
                 ko.append(source.name)
+        
+        # Afficher la liste des articles RETENUS (priorité <= 1)
+        print("=" * 60)
+        print("📋 ARTICLES RETENUS (après filtre priorité <= 1)")
+        print("=" * 60)
+        retained_items = [item for item in all_day_items if item["priority"] <= 1]
+        local_items = [item for item in retained_items if item["priority"] == 0]
+        na_items = [item for item in retained_items if item["priority"] == 1]
+        
+        print(f"\n📊 Statistiques :")
+        print(f"   Total collectés : {len(all_day_items)}")
+        print(f"   Retenus (priorité <= 1) : {len(retained_items)}")
+        print(f"   - Locaux (priorité 0) : {len(local_items)}")
+        print(f"   - N/A (priorité 1) : {len(na_items)}")
+        print(f"   Exclus (priorité 2) : {len(all_day_items) - len(retained_items)}")
+        
+        if retained_items:
+            print(f"\n📰 Liste des articles RETENUS :")
+            for i, item in enumerate(retained_items, 1):
+                priority_str = "🟢 LOCAL" if item["priority"] == 0 else "🟡 N/A"
+                print(f"   {i}. [{priority_str}] {item['source']} ({item['category']})")
+                print(f"      📌 {item['title'][:100]}")
+                print(f"      📍 Lieu: {item['lieu']}")
+                print()
+        else:
+            print("\n⚠️  Aucun article retenu")
+        
+        # Afficher aussi les articles EXCLUS
+        excluded_items = [item for item in all_day_items if item["priority"] == 2]
+        if excluded_items:
+            print(f"🗑️  Liste des articles EXCLUS (internationaux) :")
+            for i, item in enumerate(excluded_items, 1):
+                print(f"   {i}. [🔴 INTERNATIONAL] {item['source']} ({item['category']})")
+                print(f"      📌 {item['title'][:100]}")
+                print(f"      📍 Lieu: {item['lieu']}")
+                print()
+        
+        print(f"{'=' * 60}")
         print(f"Résultat : {len(ok)} OK, {len(ko)} en erreur")
         if ko:
             sys.exit(1)
