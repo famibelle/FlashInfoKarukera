@@ -164,6 +164,7 @@ jobs:
           echo "Arguments : $ARGS"
 
       - name: Générer l'horoscope
+        if: steps.check_horoscope.outputs.exists != 'true'
         env:
           MISTRAL_API_KEY:       ${{ secrets.MISTRAL_API_KEY }}
           TELEGRAM_BOT_TOKEN:    ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -181,9 +182,11 @@ jobs:
         run: python -u horoscope-gwada.py ${{ env.HORO_ARGS }}
 
       - name: 📁 Héberger les MP3 horoscope dans docs/audio/
+        if: steps.check_horoscope.outputs.exists != 'true'
         run: python patch_podcast_audio.py horoscope
 
       - name: Sauvegarder l'anti-répétition flore et les archives
+        if: steps.check_horoscope.outputs.exists != 'true'
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions [Horoscope]"
