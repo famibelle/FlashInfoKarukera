@@ -2229,6 +2229,7 @@ def main():
     fallback_url = f"{PAGES_BASE}/audio/horoscope/{gen_date.strftime('%Y-%m')}/{output_path.name}"
     podcast_audio_url = gh_audio_url or fallback_url
     if podcast_audio_url:
+        # Mettre à jour horoscope.xml (flux dédié)
         _update_podcast_rss(
             rss_path=HOROSCOPE_RSS_PATH,
             channel_title="Karukera — Flash Info & Horoscope",
@@ -2242,8 +2243,23 @@ def main():
             pub_date=DateTime.utcnow(),
         )
         print(f"   📻 horoscope.xml mis à jour → {podcast_audio_url}")
+        
+        # Mettre à jour podcast.xml (flux principal agrégé)
+        _update_podcast_rss(
+            rss_path=DOCS_DIR / "podcast.xml",
+            channel_title="Karukera — Flash Info & Horoscope",
+            channel_desc="Flash info et horoscope de la Guadeloupe — matin, midi et soir par Botiran",
+            episode_title=ia_episode_title,
+            episode_desc=intro_text,
+            audio_url=podcast_audio_url,
+            audio_size=output_path.stat().st_size,
+            duration_s=_stinger_duration(output_path),
+            guid=output_path.stem,
+            pub_date=DateTime.utcnow(),
+        )
+        print(f"   📻 podcast.xml mis à jour → {podcast_audio_url}")
     else:
-        print("   ⚠️  horoscope.xml non mis à jour (aucune URL audio disponible)")
+        print("   ⚠️  horoscope.xml et podcast.xml non mis à jour (aucune URL audio disponible)")
 
     main_msg_id: int | None = None
     edition_emoji = "🌅" if args.edition == "matin" else "🌙"

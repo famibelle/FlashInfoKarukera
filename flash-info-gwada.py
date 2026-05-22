@@ -3459,6 +3459,7 @@ def main():
     fallback_url = f"{PAGES_BASE}/audio/flash-info/{target_date.strftime('%Y-%m')}/{output_path.name}"
     podcast_audio_url = gh_audio_url or bz_audio_url or b2_audio_url or fallback_url
     if podcast_audio_url:
+        # Mettre à jour flash-info.xml (flux dédié)
         _update_podcast_rss(
             rss_path=PODCAST_RSS_PATH,
             channel_title="Karukera — Flash Info & Horoscope",
@@ -3472,8 +3473,23 @@ def main():
             pub_date=datetime.utcnow(),
         )
         print(f"   📻 flash-info.xml mis à jour → {podcast_audio_url}")
+        
+        # Mettre à jour podcast.xml (flux principal agrégé)
+        _update_podcast_rss(
+            rss_path=DOCS_DIR / "podcast.xml",
+            channel_title="Karukera — Flash Info & Horoscope",
+            channel_desc="Flash info et horoscope de la Guadeloupe — matin, midi et soir par Botiran",
+            episode_title=title,
+            episode_desc=intro_text,
+            audio_url=podcast_audio_url,
+            audio_size=output_path.stat().st_size,
+            duration_s=_stinger_duration(output_path),
+            guid=output_path.stem,
+            pub_date=datetime.utcnow(),
+        )
+        print(f"   📻 podcast.xml mis à jour → {podcast_audio_url}")
     else:
-        print("   ⚠️  flash-info.xml non mis à jour (aucune URL audio disponible)")
+        print("   ⚠️  flash-info.xml et podcast.xml non mis à jour (aucune URL audio disponible)")
 
     print(f"\n✅ Flash info terminé : {output_path}")
 
