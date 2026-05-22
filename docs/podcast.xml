@@ -1047,5 +1047,13 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-21-soir</guid>
       <itunes:duration>180</itunes:duration>
     </item>
+    <item>
+      <title>Lanmou anba latè chants graines souvenir</title>
+      <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
+      <pubDate>Fri, 22 May 2026 03:41:58 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-22-matin.mp3" length="1446621" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-05-22-matin</guid>
+      <itunes:duration>180</itunes:duration>
+    </item>
   </channel>
 </rss>
