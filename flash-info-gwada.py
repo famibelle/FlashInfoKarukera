@@ -425,14 +425,14 @@ def _lieu_priority(lieu: str) -> int:
 
 NEWS_WINDOW_HOURS = {
     "matin": 24,  # rattrape le décalage Guadeloupe UTC-4 vs Paris
-    "midi":   8,  # nouvelles depuis le flash du matin
-    "soir":   8,  # nouvelles depuis le flash du midi
+    "midi":  12,  # nouvelles depuis le flash du matin
+    "soir":  12,  # nouvelles depuis le flash du midi
 }
 
 
 def fetch_news(feeds: list[str], max_items: int, target_date: Date, edition: str = "matin", exclude_titles: "set[str] | None" = None) -> list[dict]:
     window = NEWS_WINDOW_HOURS.get(edition, 24)
-    cutoff = datetime.utcnow() - timedelta(hours=window)
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=window)
     print(f"📅 Fenêtre actualités : {window}h (depuis {cutoff.strftime('%Y-%m-%d %H:%M')} UTC)")
     all_items = []
     for url in feeds:
