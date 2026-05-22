@@ -3530,7 +3530,7 @@ def main():
             audio_size=output_path.stat().st_size,
             duration_s=_stinger_duration(output_path),
             guid=output_path.stem,
-            pub_date=datetime.utcnow(),
+            pub_date=datetime.now(timezone.utc),
         )
         print(f"   📻 flash-info.xml mis à jour → {podcast_audio_url}")
         
@@ -3545,7 +3545,7 @@ def main():
             audio_size=output_path.stat().st_size,
             duration_s=_stinger_duration(output_path),
             guid=output_path.stem,
-            pub_date=datetime.utcnow(),
+            pub_date=datetime.now(timezone.utc),
         )
         print(f"   📻 podcast.xml mis à jour → {podcast_audio_url}")
     else:
