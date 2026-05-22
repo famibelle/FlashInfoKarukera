@@ -373,10 +373,9 @@ Retourne UNIQUEMENT le titre au format :
 Sans explication, sans guillemets, maximum 50 caractères."""
         
         # Appel LLM
-        raw_title = call_mistral_api(
-            prompt,
-            api_key,
-            model="mistral-small",
+        raw_title = call_mistral(
+            system="Tu es un expert en titres accrocheurs pour l'horoscope guadeloupéen.",
+            user=prompt,
             max_tokens=100,
             temperature=0.8
         )
@@ -2265,7 +2264,7 @@ def main():
             audio_size=output_path.stat().st_size,
             duration_s=_stinger_duration(output_path),
             guid=output_path.stem,
-            pub_date=DateTime.utcnow(),
+            pub_date=DateTime.now(timezone.utc),
         )
         print(f"   📻 horoscope.xml mis à jour → {podcast_audio_url}")
         
@@ -2280,7 +2279,7 @@ def main():
             audio_size=output_path.stat().st_size,
             duration_s=_stinger_duration(output_path),
             guid=output_path.stem,
-            pub_date=DateTime.utcnow(),
+            pub_date=DateTime.now(timezone.utc),
         )
         print(f"   📻 podcast.xml mis à jour → {podcast_audio_url}")
     else:
