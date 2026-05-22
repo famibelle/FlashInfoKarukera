@@ -25,7 +25,7 @@ LIEUX_GUADELOUPE = [
 # Pays et grandes villes du monde (en français, plus long en premier)
 LIEUX_MONDE = [
     # Caraïbes et Amériques
-    "République dominicaine", "Trinidad-et-Tobago", "États-Unis", "Costa Rica",
+    "République dominicaine", "Trinidad-et-Tobago", "États-Unis", "USA", "United States", "Costa Rica",
     "Porto Rico", "Saint-Kitts", "Saint-Vincent", "Sainte-Lucie",
     "Martinique", "Guadeloupe", "Guyane française", "Guyane", "La Réunion",
     "Haïti", "Cuba", "Jamaïque", "Barbade", "Dominique", "Antigua",
@@ -43,6 +43,8 @@ LIEUX_MONDE = [
     "Sénégal", "Cameroun", "Maroc", "Algérie", "Tunisie", "Égypte",
     "Nigeria", "Ghana", "Mali", "Guinée", "Congo", "Kenya", "Éthiopie",
     "Abidjan", "Dakar", "Casablanca",
+    "Sierra Leone", "Liban", "Soudan", "Somalie", "Tchad", "Niger",
+    "Bénin", "Togo", "Madagascar", "Maurice", "Seychelles", "Comores",
     # Asie / Océanie / Moyen-Orient
     "Arabie saoudite", "Émirats arabes unis", "Corée du Sud", "Corée du Nord",
     "Chine", "Japon", "Inde", "Pakistan", "Australie", "Nouvelle-Zélande",
