@@ -470,11 +470,11 @@ def fetch_news(feeds: list[str], max_items: int, target_date: Date, edition: str
             print(f"   🔁  Anti-répétition : {before - len(candidates)} article(s) déjà diffusé(s) exclus")
 
     # Les articles du fil custom sont toujours inclus s'il y en a pour le jour J.
-    # Filtrer pour ne garder que les articles locaux (Guadeloupe) + custom
+    # Filtrer pour ne garder que les articles locaux (Guadeloupe) ou N/A + custom
     custom_items = [c for c in candidates if c["category"] == "custom"]
     other_items  = [c for c in candidates if c["category"] != "custom"]
-    # Ne garder que les articles avec un lieu en Guadeloupe (priorité 0)
-    other_items  = [c for c in other_items if _lieu_priority(c["lieu"]) == 0]
+    # Ne garder que les articles avec un lieu en Guadeloupe (priorité 0) ou N/A (priorité 1)
+    other_items  = [c for c in other_items if _lieu_priority(c["lieu"]) <= 1]
     other_items.sort(key=lambda it: _lieu_priority(it["lieu"]))
     slots = max(0, max_items - len(custom_items))
     items = custom_items + other_items[:slots]
