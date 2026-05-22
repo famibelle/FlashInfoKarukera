@@ -64,7 +64,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Colibri huppé / Orthorhyncus cristatus",
         "famille":     "oiseaux",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Son nom vient directement des Arawaks — le souffle de l'air à travers ses ailes. "
             "Il bat des ailes jusqu'à soixante fois par seconde, suspendu immobile devant la fleur. "
@@ -77,7 +77,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Colibri à gorge pourpre / Eulampis jugularis",
         "famille":     "oiseaux",
         "conditions":  ["soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Sa gorge est pourpre sous le soleil direct, presque noire dans l'ombre. "
             "Le même oiseau, la même plume, deux couleurs selon la lumière qu'on pose dessus. "
@@ -90,7 +90,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Sucrier à ventre jaune / Coereba flaveola",
         "famille":     "oiseaux",
         "conditions":  ["nuageux", "soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Petit oiseau jaune de tous les jardins créoles — il vit là où vit l'homme. "
             "Son chant change de rythme avant les changements de temps : "
@@ -103,7 +103,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Pélican brun / Pelecanus occidentalis",
         "famille":     "oiseaux",
         "conditions":  ["soleil", "vent"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Animal totem des pêcheurs — quand les pélicans plongent en masse, "
             "le banc de poissons est là. Leur présence groupée annonce le beau temps et la bonne prise. "
@@ -116,7 +116,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Frégate superbe / Fregata magnificens",
         "famille":     "oiseaux",
         "conditions":  ["vent", "soleil"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Ses ailes déployées mesurent plus de deux mètres. Elle ne se pose presque jamais, "
             "vole des jours entiers sans toucher terre ni eau — ses plumes ne sont pas imperméables. "
@@ -129,7 +129,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Pic de Guadeloupe / Melanerpes herminieri",
         "famille":     "oiseaux",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Endémique unique au monde — il n'existe nulle part ailleurs. "
             "Son tambourinage dans les arbres morts était interprété par les anciens "
@@ -142,7 +142,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Siffleur des montagnes / Myiadestes genibarbis",
         "famille":     "oiseaux",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Il vit dans la forêt haute, là où les mornes touchent les nuages. "
             "Son chant plaintif et long n'atteint le bourg qu'au crépuscule. "
@@ -155,7 +155,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Soukouyan (figure du folklore créole)",
         "famille":     "oiseaux",
         "conditions":  [],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "À la nuit tombée, le soukouyan enlève sa peau humaine et l'accroche aux branches "
             "d'un fromager. Il prend la forme d'une boule de feu ou d'un oiseau noir "
@@ -168,7 +168,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Grand papillon noir (Heraclides andraemon)",
         "famille":     "oiseaux",
         "conditions":  [],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Un grand papillon noir qui entre dans une maison est l'âme d'un ancêtre "
             "venu rendre visite. On ne le chasse jamais — lui faire du mal attire le malheur. "
@@ -184,7 +184,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Iguane vert / Iguana iguana",
         "famille":     "reptiles",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Animal totem des Arawaks, gardien de Petite-Terre. "
             "Les marrons s'en inspiraient : immobile et invisible dans la végétation, "
@@ -198,7 +198,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Anoli / Anolis marmoratus",
         "famille":     "reptiles",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Il en existe douze sous-espèces — une pour chaque île de l'archipel. "
             "Sa gorge se déploie en fanion coloré pour séduire ou intimider. "
@@ -211,7 +211,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Mabouya / Sphaerodactylus fantasticus",
         "famille":     "reptiles",
         "conditions":  [],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Lézard nocturne des murs et des cases — ses ventouses lui permettent de marcher au plafond. "
             "Son nom était celui du dieu du mal chez les Kalinagos. "
@@ -224,7 +224,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Couresse / Alsophis antillensis",
         "famille":     "reptiles",
         "conditions":  ["nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Couleuvre inoffensive, endémique des Antilles — elle ne mord que si on la provoque. "
             "Gardienne silencieuse des jardins et des réserves à grain, elle mange les rats et les fourmis. "
@@ -240,7 +240,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Hylode de Basse-Terre / Eleutherodactylus barlagnei",
         "famille":     "amphibiens",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Endémique de Basse-Terre uniquement — il vit dans les feuilles mortes de la forêt tropicale. "
             "Son chant nocturne est constant, mais quand il s'arrête d'un coup, "
@@ -253,7 +253,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Crapaud buffle / Rhinella marina",
         "famille":     "amphibiens",
         "conditions":  ["pluie", "nuageux"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Ses glandes parotides sécrètent un venin qui paralyse les prédateurs. "
             "Les gadèzafé créoles l'utilisaient dans leurs préparations les plus puissantes. "
@@ -269,7 +269,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Luciole / Ti flambeau",
         "famille":     "insectes",
         "conditions":  [],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Les anciens disaient que les lucioles sont les âmes des enfants morts sans baptême "
             "qui errent dans les mornes en attendant. Les voir en groupe dans la nuit "
@@ -282,7 +282,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Cabrit-bois / Grillon des Antilles",
         "famille":     "insectes",
         "conditions":  [],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Son chant tisse la nuit créole — régulier, sans relâche. "
             "Mais quand il s'arrête brusquement, les anciens immobilisaient toute la maison : "
@@ -295,7 +295,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Abeille péyi / Trigona sp.",
         "famille":     "insectes",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Dans la tradition africaine portée aux Antilles, l'abeille est messagère "
             "entre les vivants et les ancêtres. Un essaim qui entre dans une maison "
@@ -309,7 +309,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Fourmi manioc / Acromyrmex octospinosus",
         "famille":     "insectes",
         "conditions":  ["soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Ses colonnes traversent la forêt nuit et jour — des milliers d'ouvrières "
             "qui découpent et transportent sans jamais se reposer. "
@@ -323,7 +323,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Chauve-souris / Artibeus jamaicensis",
         "famille":     "insectes",
         "conditions":  [],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Elle voit dans l'obscurité ce que le jour cache entièrement. "
             "Dans le quimbois créole, elle est l'animal du passage entre les mondes — "
@@ -340,7 +340,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Agouti / Dasyprocta antillensis",
         "famille":     "mammifères",
         "conditions":  ["soleil", "nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Il a traversé la Caraïbe dans les pirogues des Arawaks — animal de compagnie "
             "et de subsistance amérindien, apporté exprès pour peupler les îles. "
@@ -353,7 +353,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Raton laveur de Guadeloupe / Procyon minor",
         "famille":     "mammifères",
         "conditions":  ["nuageux"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Symbole du Parc National de la Guadeloupe — sa présence dans une zone "
             "indique un écosystème forestier en bonne santé. "
@@ -369,7 +369,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Tortue verte / Chelonia mydas",
         "famille":     "marins",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Animal totem amérindien — longévité, fertilité, sagesse des âges. "
             "Elle revient pondre chaque année exactement sur la plage où elle est née, "
@@ -382,7 +382,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Tortue luth / Dermochelys coriacea",
         "famille":     "marins",
         "conditions":  [],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Plus grande tortue du monde — jusqu'à sept cents kilos. "
             "Elle émerge de la mer dans la nuit noire pour pondre, seule, en silence. "
@@ -395,7 +395,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Tortue imbriquée / Eretmochelys imbricata",
         "famille":     "marins",
         "conditions":  ["vent", "soleil"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Sa carapace translucide et dorée était taillée en parures rituelles amérindiennes. "
             "Aujourd'hui en danger critique d'extinction. "
@@ -408,7 +408,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Baleine à bosse / Megaptera novaeangliae",
         "famille":     "marins",
         "conditions":  ["vent"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Les Kalinagos y voyaient des ancêtres revenus sous forme marine. "
             "Les tuer portait malheur — conviction partagée par tous les pêcheurs créoles. "
@@ -421,7 +421,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Lamantin des Caraïbes / Trichechus manatus",
         "famille":     "marins",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Les premiers marins ont pris le lamantin pour une sirène — "
             "à l'origine des légendes de la Manman Dlo caribéenne. "
@@ -435,7 +435,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Poulpe / Octopus vulgaris",
         "famille":     "marins",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Huit bras, trois cœurs, sang bleu, intelligence de ce qui n'a pas d'os. "
             "Les pêcheurs créoles lui vouent un respect mêlé de crainte — "
@@ -449,7 +449,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Ouassou / Macrobrachium carcinus",
         "famille":     "marins",
         "conditions":  ["pluie", "nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Crevette géante des rivières de Basse-Terre — elle remonte les courants "
             "jusqu'aux sources les plus hautes des mornes. "
@@ -466,7 +466,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Crabe de terre / Cardisoma guanhumi",
         "famille":     "crustacés",
         "conditions":  ["pluie"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Il sort de la terre au moment précis où la saison tourne — "
             "la matoutou du lundi de Pâques, le festin du crabe après le carême. "
@@ -480,7 +480,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Crabe touloulou / Gecarcinus lateralis",
         "famille":     "crustacés",
         "conditions":  ["vent", "nuageux"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Son nom est hérité direct des Kalinagos, intact depuis des siècles. "
             "Il a donné son nom aux femmes masquées du carnaval de Guadeloupe — "
@@ -497,7 +497,7 @@ FAUNE_SIGNES: list[dict] = [
         "nom_commun":  "Mygale de la Soufrière / Theraphosidae sp.",
         "famille":     "arachnides",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Découverte seulement en 1999 sur les flancs de la Soufrière — "
             "pendant des siècles, elle était là sans que personne ne la connaisse. "

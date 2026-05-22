@@ -63,7 +63,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Courbaril / Locust tree",
         "famille":     "arbres",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Sa résine dorée — le copal — était récoltée par les guérisseurs pour calmer "
             "les douleurs articulaires et purifier l'espace. Bois imputrescible, "
@@ -75,7 +75,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Fromager / Kapokier",
         "famille":     "arbres",
         "conditions":  [],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Arbre sacré dans toute la Caraïbe — les anciens croyaient qu'il abritait "
             "les esprits des ancêtres. Son kapok garnissait les matelas et les gilets de sauvetage. "
@@ -87,7 +87,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Bois-canon / Trompette",
         "famille":     "arbres",
         "conditions":  ["pluie", "nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Il pousse vite là où la forêt a été blessée — premier à revenir après un cyclone. "
             "Sa tige creuse servait de conduit d'eau. Signe de renouveau après la perturbation, "
@@ -99,7 +99,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Manguier",
         "famille":     "arbres",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "L'arbre de la générosité — il donne à tous sans distinction. "
             "Son ombre a abrité des palabres, des siestes, des naissances. "
@@ -112,7 +112,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Calebassier",
         "famille":     "arbres",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Sa calebasse était le premier récipient — bol, louche, gourde, instrument de musique. "
             "Les quimboiseurs l'utilisaient pour les cérémonies de purification. "
@@ -124,7 +124,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Gommier blanc",
         "famille":     "arbres",
         "conditions":  ["soleil", "vent"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "C'est de lui qu'on taillait les pirogues de pêche — son bois léger et sa résine "
             "imperméable en faisaient le compagnon idéal de la mer. "
@@ -137,7 +137,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Arbre à pain / Fruit à pain",
         "famille":     "arbres",
         "conditions":  [],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Amené aux Antilles pour nourrir les esclaves, il est devenu l'arbre nourricier "
             "par excellence. Bouilli, rôti, frit — le fruit à pain ne se refuse jamais. "
@@ -149,7 +149,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Mombin / Prunier mombin",
         "famille":     "arbres",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Son fruit acidulé désaltère les marcheurs. L'écorce en décoction calmait "
             "les inflammations de gorge. Les enfants le grimpaient — c'est l'arbre "
@@ -161,7 +161,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Flamboyant",
         "famille":     "arbres",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Il fleurit en plein cœur de la saison sèche, quand tout se dessèche — "
             "rouge et orange au-dessus du vide. Aucune utilité médicinale décisive, "
@@ -173,7 +173,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Poirier pays / Roble",
         "famille":     "arbres",
         "conditions":  ["nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Ses fleurs roses tombent avant les feuilles — il fleurit à nu, sans rien cacher. "
             "Bois dur utilisé pour les charpentes et les meubles anciens. "
@@ -185,7 +185,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Palmiste royal",
         "famille":     "arbres",
         "conditions":  ["soleil", "vent"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Il pousse droit, toujours, même quand le vent courbe les autres. "
             "Son cœur — le chou palmiste — était le mets des jours de fête. "
@@ -197,7 +197,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Cocotier",
         "famille":     "arbres",
         "conditions":  ["soleil", "vent"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Rien ne se perd : l'eau, la chair, l'huile, la coque, la feuille, le bois. "
             "Les pêcheurs lisaient dans la direction de ses palmes l'orientation du vent dominant. "
@@ -209,7 +209,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Bois-baume / Balata",
         "famille":     "arbres",
         "conditions":  ["pluie", "nuageux"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Son latex rouge-brun — le balata — servait à calfater les embarcations "
             "et à fabriquer les premières balles de golf. Arbre de la forêt profonde, "
@@ -222,7 +222,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Acajou des Antilles",
         "famille":     "arbres",
         "conditions":  ["soleil"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Bois noble, rougeâtre, à grain serré — les ébénistes créoles en faisaient "
             "les buffets et les lits à baldaquin des grandes maisons. "
@@ -235,7 +235,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Châtaignier des Antilles",
         "famille":     "arbres",
         "conditions":  ["pluie", "nuageux"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Arbre de la forêt humide de montagne, il ancre les terres en pente "
             "et retient l'eau des crêtes. Sa noix, enveloppée d'un brou hérissé, "
@@ -247,7 +247,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Figuier maudit / Clusia",
         "famille":     "arbres",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Il commence sa vie comme épiphyte, posé sur un autre arbre, "
             "puis descend ses racines jusqu'au sol et finit par envelopper son hôte. "
@@ -260,7 +260,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Acajou à grandes feuilles / Mahogany",
         "famille":     "arbres",
         "conditions":  ["soleil", "nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Planté en allées devant les grandes habitations, il témoigne encore "
             "de cette histoire. Son bois — parmi les plus recherchés au monde — "
@@ -273,7 +273,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Mapou / Bois-savane",
         "famille":     "arbres",
         "conditions":  ["vent", "orage"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Les pêcheurs amerindiens écrasaient ses feuilles et racines dans l'eau "
             "pour étourdir les poissons — pêche traditionnelle, interdite aujourd'hui. "
@@ -286,7 +286,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Corossol / Soursop",
         "famille":     "arbres",
         "conditions":  ["chaleur", "soleil"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "La tisane de feuilles de corossol est le remède du soir — "
             "elle appelle le sommeil et calme la fièvre. "
@@ -299,7 +299,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Bois-côtelette / Amargo",
         "famille":     "arbres",
         "conditions":  ["pluie"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Amer comme son nom l'indique. Sa décoction était donnée aux convalescents "
             "pour purifier le sang après une maladie. L'amertume qui soigne — "
@@ -314,7 +314,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Citronnelle",
         "famille":     "herbes",
         "conditions":  ["chaleur", "soleil"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Plantée aux abords des cases pour éloigner les moustiques — "
             "sa tige froissée entre les paumes suffit. "
@@ -327,7 +327,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Verveine pays / Lippia",
         "famille":     "herbes",
         "conditions":  ["nuageux", "soleil"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "C'est la tisane du coucher — elle calme les nerfs et appelle le sommeil. "
             "Les mères en donnaient aux enfants agités, aux adultes anxieux. "
@@ -339,7 +339,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Herbe à tous maux / Origan du pays",
         "famille":     "herbes",
         "conditions":  [],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Son nom dit tout — toux, fièvre, digestion, rhume, douleur. "
             "On la trouve dans presque chaque jardin créole. "
@@ -352,7 +352,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Basilic grand vert",
         "famille":     "herbes",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Planté près de la porte, il protège la maison — croyance partagée "
             "de l'Inde aux Antilles. En cuisine il aromatise les court-bouillons. "
@@ -365,7 +365,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Sensitive / Herbe qui se cache",
         "famille":     "herbes",
         "conditions":  ["soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Elle se referme au moindre contact — ses feuilles se plient, "
             "comme pour protéger ce qui est fragile en elle. "
@@ -378,7 +378,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Herbe bleue / Verveine bleue",
         "famille":     "herbes",
         "conditions":  ["chaleur", "soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Plante des bords de route et des terrains vagues — "
             "elle pousse où personne ne la sème. En tisane, elle fait suer "
@@ -391,7 +391,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Chadron bénit / Chaya",
         "famille":     "herbes",
         "conditions":  [],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Feuilles riches en fer et en protéines — cuites, elles nourrissent mieux "
             "que beaucoup d'autres légumes. Les communautés rurales en vivaient. "
@@ -403,7 +403,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Margose / Liane amère",
         "famille":     "herbes",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Son fruit vert et ridé est un des plus amers qui soit. "
             "Les anciens en faisaient un remède contre le sucre dans le sang — "
@@ -416,7 +416,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Herbe à vers / Ansérine",
         "famille":     "herbes",
         "conditions":  ["nuageux"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Remède ancestral contre les parasites intestinaux — "
             "donné aux enfants chaque année, à jeun, avec du miel. "
@@ -429,7 +429,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Herbe savon / Petiveria",
         "famille":     "herbes",
         "conditions":  ["pluie", "nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Son odeur — ail et terre mouillée mélangés — est reconnaissable entre mille. "
             "On l'utilisait pour les bains purificateurs, pour nettoyer ce qu'on ne voit pas. "
@@ -441,7 +441,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Ortie brûlante des Antilles",
         "famille":     "herbes",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Ses poils urticants brûlent la peau pour plusieurs heures. "
             "Mais sa décoction en cataplasme soulage les douleurs articulaires — "
@@ -454,7 +454,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Ti-baume / Poivre des Antilles",
         "famille":     "herbes",
         "conditions":  ["pluie"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Ses feuilles froissées libèrent un arôme poivré et boisé. "
             "On les glissait sous l'oreiller pour éloigner les mauvais rêves. "
@@ -467,7 +467,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Canne rivière / Costus",
         "famille":     "herbes",
         "conditions":  ["pluie", "nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Elle pousse en spirale — ses feuilles s'enroulent autour d'une tige unique. "
             "Sa sève calmait les irritations de la gorge et les toux sèches. "
@@ -480,7 +480,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Herbe à pic / Bident",
         "famille":     "herbes",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Ses graines s'accrochent aux vêtements et aux poils des animaux — "
             "elle voyage ainsi partout où passent les vivants. "
@@ -493,7 +493,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Raisinier bord de mer",
         "famille":     "herbes",
         "conditions":  ["vent", "soleil"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Ses grandes feuilles rondes et coriaces résistent aux embruns et au vent marin. "
             "Ses baies violettes se mangeaient et servaient à faire une boisson fermentée. "
@@ -505,7 +505,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Passiflore / Grenadille",
         "famille":     "herbes",
         "conditions":  ["soleil"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Sa fleur complexe — couronne, étamines, pistil — impressionna les missionnaires "
             "qui y virent les symboles de la Passion. En tisane, ses feuilles calment "
@@ -517,7 +517,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Patate bord de mer / Ipomoée",
         "famille":     "herbes",
         "conditions":  ["vent", "soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Elle rampe sur le sable et fixe les dunes — ses racines retiennent "
             "ce que la mer voudrait emporter. Fleur mauve qui s'ouvre le matin "
@@ -530,7 +530,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Herbe chapelet / Leonotis",
         "famille":     "herbes",
         "conditions":  ["soleil", "nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Ses fleurs orangées s'étageaient en étages réguliers autour de la tige — "
             "comme les grains d'un chapelet. En décoction, contre la fièvre et la toux. "
@@ -542,7 +542,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Pourpier / Herbe grasse",
         "famille":     "herbes",
         "conditions":  ["chaleur", "soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Elle pousse dans les terrains secs où rien d'autre ne survit. "
             "Comestible — ses feuilles charnues en salade ou sautées à l'huile. "
@@ -554,7 +554,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Sénevé pays / Cléome",
         "famille":     "herbes",
         "conditions":  ["pluie", "nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Plante des jardins vivriers — ses jeunes pousses se mangeaient en légume, "
             "ses graines entraient dans certains préparations médicinales. "
@@ -569,7 +569,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Balisier / Heliconia",
         "famille":     "fleurs",
         "conditions":  ["pluie", "nuageux"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Ses grandes feuilles servaient à envelopper et couvrir les plats des fêtes. "
             "Plante de l'abondance et du partage — on la trouve aux abords des sources "
@@ -582,7 +582,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Frangipanier / Plumeria",
         "famille":     "fleurs",
         "conditions":  ["chaleur", "soleil"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Il fleurit blanc et jaune, avec un parfum qui traverse la nuit. "
             "Planté dans les cimetières — fleur de la mort et de la renaissance. "
@@ -595,7 +595,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Bougainvillier",
         "famille":     "fleurs",
         "conditions":  ["soleil", "vent"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Il grimpe sur tout — murs, grillages, arbres morts — et fleurit "
             "sans qu'on lui demande. Ses bractées colorées ne sont pas des pétales "
@@ -608,7 +608,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Hibiscus / Foulsapate",
         "famille":     "fleurs",
         "conditions":  ["soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Sa fleur ne dure qu'un jour — ouverte le matin, tombée le soir. "
             "En tisane, ses fleurs séchées donnent une boisson rouge acidulée "
@@ -621,7 +621,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Anthurium",
         "famille":     "fleurs",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Fleur de l'accueil et de l'hospitalité en Guadeloupe — "
             "on l'offre aux visiteurs, aux cérémonies. Sa spathe laquée rouge "
@@ -634,7 +634,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Oiseau de paradis / Strelitzia",
         "famille":     "fleurs",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Sa fleur imite exactement un oiseau en vol — bec orange, ailes bleues. "
             "Pollinisée par les oiseaux-mouches qui se posent sur la spathe. "
@@ -646,7 +646,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Alamanda jaune",
         "famille":     "fleurs",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Fleur jaune vif, liane vigoureuse — elle s'installe et ne part plus. "
             "Toutes ses parties sont toxiques si ingérées, malgré sa beauté affichée. "
@@ -658,7 +658,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Ixora / Bois de perdrix",
         "famille":     "fleurs",
         "conditions":  ["soleil"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Ses fleurs rouge vif poussent en boules denses — les enfants en suçaient "
             "le nectar sucré. Plante des haies et des cérémonies, "
@@ -671,7 +671,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Hier, aujourd'hui, demain",
         "famille":     "fleurs",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Elle porte ce nom parce que ses fleurs changent de couleur — "
             "violettes le premier jour, mauves le deuxième, blanches le troisième. "
@@ -684,7 +684,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Belle de jour / Ipomée",
         "famille":     "fleurs",
         "conditions":  ["soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Elle s'ouvre à l'aube et se ferme avant midi — fleur du lever, "
             "pas du plein jour. Liane légère qui monte sur n'importe quel support. "
@@ -697,7 +697,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Patte de vache / Bauhinie",
         "famille":     "fleurs",
         "conditions":  ["nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Sa feuille est découpée en deux lobes — comme l'empreinte d'un sabot, "
             "ou les ailes d'un papillon posé. Fleur rose tendre, légère. "
@@ -710,7 +710,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Russelia / Corail végétal",
         "famille":     "fleurs",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Ses tiges retombantes et ses petites fleurs tubulaires rouge vif "
             "imitent le corail des fonds marins. Elle fleurit presque toute l'année "
@@ -722,7 +722,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Poinsettia / Étoile de Noël",
         "famille":     "fleurs",
         "conditions":  ["nuageux", "vent"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Il fleurit quand les nuits s'allongent — plante du court du jour, "
             "de la saison sèche. Ses bractées rouges sont des feuilles transformées. "
@@ -735,7 +735,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Pervenche de Madagascar / Catharanthus",
         "famille":     "fleurs",
         "conditions":  ["chaleur", "soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Petite fleur rose ou blanche des bords de route — personne ne la remarque. "
             "Pourtant ses alcaloïdes ont révolutionné le traitement de certains cancers. "
@@ -747,7 +747,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Plumbago / Dentelaire",
         "famille":     "fleurs",
         "conditions":  ["soleil", "nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Fleurs bleu pâle en grappes légères — couleur rare dans la flore antillaise. "
             "Plante des haies discrètes, qui dure sans attention particulière. "
@@ -759,7 +759,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Noni / Morinda",
         "famille":     "fleurs",
         "conditions":  [],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Son fruit fermenté sent fort — très fort. "
             "Pourtant la médecine polynésienne et caribéenne en faisait un tonique universel. "
@@ -772,7 +772,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Raquette / Opuntia",
         "famille":     "fleurs",
         "conditions":  ["chaleur", "vent"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Il pousse dans les zones les plus arides du littoral, là où rien d'autre ne tient. "
             "Sa raquette charnue stocke l'eau pour des semaines. "
@@ -785,7 +785,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Balisier blanc / Strelitzia nicolai",
         "famille":     "fleurs",
         "conditions":  ["pluie", "nuageux"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Fleur blanche et bleu nuit, architecture silencieuse dans les jardins ombragés. "
             "Moins spectaculaire que son cousin orange, mais plus stable, plus profond. "
@@ -797,7 +797,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Portulacaria / Plante grasse bord de mer",
         "famille":     "fleurs",
         "conditions":  ["vent", "soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Plante charnue des falaises et des côtes rocheuses — "
             "ses petites feuilles brillantes résistent aux embruns salés. "
@@ -813,7 +813,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Vanille",
         "famille":     "vivriers",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Chaque fleur ne s'ouvre qu'une journée — et doit être pollinisée à la main, "
             "fleur par fleur, dans les quelques heures de l'ouverture. "
@@ -826,7 +826,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Cacaoyer / Cacao",
         "famille":     "vivriers",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Ses fruits poussent directement sur le tronc — cauliflore, "
             "phénomène rare et étrange. Les Mayas en faisaient la boisson des dieux "
@@ -839,7 +839,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Igname / Yam",
         "famille":     "vivriers",
         "conditions":  ["pluie"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Tubercule de l'ancrage — on l'enterre au début de la saison des pluies "
             "et on la déterre à la sèche. La Fête des cuisinières en Guadeloupe "
@@ -852,7 +852,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Giraumon / Courge caraïbe",
         "famille":     "vivriers",
         "conditions":  ["soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Grand, lourd, orange dedans — il nourrit une famille entière. "
             "Soupe de giraumon, le plat des jours de repos et des grandes tablées. "
@@ -865,7 +865,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Chayote / Christophine",
         "famille":     "vivriers",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Liane vigoureuse qui monte très haut très vite — elle couvre les tonnelles "
             "en quelques semaines. Son fruit se mange cru, cuit, gratiné. "
@@ -878,7 +878,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Gombo / Okra",
         "famille":     "vivriers",
         "conditions":  ["chaleur", "soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Il est arrivé d'Afrique dans les mains des captifs — soigneusement "
             "gardé pour garder un peu du pays. Son mucilage lie les sauces. "
@@ -891,7 +891,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Piment sept-feux / Habanero",
         "famille":     "vivriers",
         "conditions":  ["chaleur", "soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Le plus fort qui soit — quelques gouttes suffisent. "
             "Mais il contient plus de vitamine C que n'importe quel agrume. "
@@ -904,7 +904,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Gingembre / Ginger",
         "famille":     "vivriers",
         "conditions":  ["pluie", "nuageux"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Son rhizome noueux, sous la terre, accumule la chaleur. "
             "En tisane il réchauffe, stimule, chasse le rhume. "
@@ -917,7 +917,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Curcuma / Safran pays",
         "famille":     "vivriers",
         "conditions":  ["soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Sa poudre jaune dorée teint les doigts, les tisanes, les currys. "
             "Anti-inflammatoire puissant connu depuis des millénaires en Asie et aux Antilles. "
@@ -929,7 +929,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Cannelle / Cannelier",
         "famille":     "vivriers",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "On écorce le cannelier en spirales fines qui sèchent et s'enroulent. "
             "Son arôme doux et chaud était utilisé pour les bains de purification "
@@ -942,7 +942,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Muscadier / Noix muscade",
         "famille":     "vivriers",
         "conditions":  ["nuageux"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Deux épices en une — la noix et le macis, la membrane rouge qui l'entoure. "
             "Elle a alimenté des guerres commerciales au XVIIe siècle. "
@@ -955,7 +955,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Patate douce",
         "famille":     "vivriers",
         "conditions":  [],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Nourriture de survie — elle pousse dans les sols les plus pauvres "
             "sans beaucoup d'eau. Les esclaves marrons en cultivaient dans les bois. "
@@ -968,7 +968,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Manioc / Cassave",
         "famille":     "vivriers",
         "conditions":  ["chaleur"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Sa racine contient de l'acide cyanhydrique — mortelle crue, "
             "inoffensive après transformation. Les Amérindiens savaient râper, "
@@ -981,7 +981,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Bananier / Banane",
         "famille":     "vivriers",
         "conditions":  ["pluie", "vent"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Une fois qu'il a porté son régime, le bananier meurt — "
             "mais un rejet reprend à sa base. Toujours une génération pour continuer. "
@@ -994,7 +994,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Ananas",
         "famille":     "vivriers",
         "conditions":  ["soleil", "chaleur"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Posé devant la porte, il signifiait l'accueil dans toute la Caraïbe amérindienne. "
             "Les Européens en ont fait le symbole de l'hospitalité des grandes maisons. "
@@ -1007,7 +1007,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Caféier / Café",
         "famille":     "vivriers",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Il pousse dans l'ombre des arbres de montagne — pas en plein soleil. "
             "Ses cerises rouges se cueillent à la main, une par une, à maturité. "
@@ -1020,7 +1020,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Canne à sucre",
         "famille":     "vivriers",
         "conditions":  ["soleil", "vent"],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "La douceur la plus chèrement payée de l'histoire. "
             "Son jus fermente en rhum — mémoire transformée en eau-de-vie. "
@@ -1033,7 +1033,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Maïs",
         "famille":     "vivriers",
         "conditions":  ["soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Plante du partage — on ne plante jamais un seul rang. "
             "La récolte se fait collectivement, en lévé-tèt. "
@@ -1046,7 +1046,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Papayer / Papaye",
         "famille":     "vivriers",
         "conditions":  ["chaleur", "soleil"],
-        "editions":    ["matin"],
+        "editions":    ["matin", "midi"],
         "savoir": (
             "Elle pousse vite, donne rapidement, vit peu. "
             "Sa sève blanche attendrit les viandes — les cuisinières l'utilisaient "
@@ -1059,7 +1059,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Café marron / Psychotria",
         "famille":     "vivriers",
         "conditions":  ["nuageux", "pluie"],
-        "editions":    ["soir"],
+        "editions":    ["soir", "midi"],
         "savoir": (
             "Cousin sauvage du caféier, sans caféine, qui pousse en sous-bois. "
             "Ses petites fleurs blanches parfument discrètement la forêt humide. "
@@ -1073,7 +1073,7 @@ FLORA_SIGNES: list[dict] = [
         "nom_commun":  "Noni des Antilles",
         "famille":     "vivriers",
         "conditions":  [],
-        "editions":    ["matin", "soir"],
+        "editions":    ["matin", "soir", "midi"],
         "savoir": (
             "Arbre robuste des zones côtières sèches — son fruit bulleux et malodorant "
             "était pourtant consommé en période de disette. "

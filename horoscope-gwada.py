@@ -216,6 +216,31 @@ EDITION_CONFIGS = {
             "jamais la même tournure. Deux phrases maximum."
         ),
     },
+    "midi": {
+        "moment": "cet après-midi",
+        "sign_instruction": (
+            "C'est l'ÉDITION DU MIDI. "
+            "Oriente le message vers la poursuite de la journée, ce qu'on peut accomplir, "
+            "les opportunités de l'après-midi, la énergie pour continuer. "
+            "Formules de motivation, de continuation, d'action. "
+            "Équilibre entre ce qui a été fait le matin et ce qui reste à faire."
+        ),
+        "intro_instruction": (
+            "Tu rédiges UNIQUEMENT l'introduction de l'horoscope du MIDI — "
+            "formule de transition, invitation à poursuivre la journée avec énergie. "
+            "Deux à trois phrases dans ta voix."
+        ),
+        "outro_system_suffix": (
+            "Tu rédiges UNIQUEMENT la conclusion de l'horoscope du midi — "
+            "pas de signe, juste la clôture de mi-journée."
+        ),
+        "outro_user": (
+            "Une courte formule de clôture pour la mi-journée dans ta voix — "
+            "bénédiction pour la suite de la journée — "
+            "puis une formule d'au revoir du type 'Bonne après-midi' ou une variante naturelle, "
+            "jamais la même tournure. Deux phrases maximum."
+        ),
+    },
     "soir": {
         "moment": "ce soir",
         "sign_instruction": (
@@ -1811,7 +1836,7 @@ def main():
         help="Chemin du fichier MP3 de sortie (défaut : horoscope-YYYYMMDD.mp3 dans /tmp).",
     )
     parser.add_argument(
-        "--edition", choices=["matin", "soir"], default="matin",
+        "--edition", choices=["matin", "midi", "soir"], default="matin",
         help="Édition du jour : 'matin' (intention, éveil) ou 'soir' (bilan, nuit). Défaut : matin.",
     )
     parser.add_argument(

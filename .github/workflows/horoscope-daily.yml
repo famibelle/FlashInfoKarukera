@@ -88,8 +88,12 @@ jobs:
           EDITION="${{ github.event.inputs.edition }}"
           if [ -z "$EDITION" ]; then
             HOUR=$(date -u +%H)
-            if [ "$HOUR" -lt 12 ]; then
+            if [ "$HOUR" -lt 5 ]; then
+              EDITION="soir"  # nuit = soir de la veille
+            elif [ "$HOUR" -lt 12 ]; then
               EDITION="matin"
+            elif [ "$HOUR" -lt 17 ]; then
+              EDITION="midi"
             else
               EDITION="soir"
             fi
@@ -112,6 +116,7 @@ jobs:
         run: |
           # Vérifier l'édition ciblée uniquement
           FILE_MATIN="docs/audio/horoscope/horoscope-${{ env.TARGET_DATE }}-matin.mp3"
+          FILE_MIDI="docs/audio/horoscope/horoscope-${{ env.TARGET_DATE }}-midi.mp3"
           FILE_SOIR="docs/audio/horoscope/horoscope-${{ env.TARGET_DATE }}-soir.mp3"
           FILE_GENERIC="docs/audio/horoscope/horoscope-${{ env.TARGET_DATE }}.mp3"
           
@@ -122,6 +127,10 @@ jobs:
             echo "exists=true" >> $GITHUB_OUTPUT
             echo "file_found=true" >> $GITHUB_OUTPUT
             echo "file_path=$FILE_MATIN" >> $GITHUB_OUTPUT
+          elif [ "${{ env.EDITION }}" = "midi" ] && [ -f "$FILE_MIDI" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "file_found=true" >> $GITHUB_OUTPUT
+            echo "file_path=$FILE_MIDI" >> $GITHUB_OUTPUT
           elif [ "${{ env.EDITION }}" = "soir" ] && [ -f "$FILE_SOIR" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
             echo "file_found=true" >> $GITHUB_OUTPUT
