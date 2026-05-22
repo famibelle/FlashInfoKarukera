@@ -11,6 +11,7 @@ SOURCE_NAMES = {
 
 # Communes et lieux guadeloupéens (plus long en premier pour éviter les faux-positifs)
 LIEUX_GUADELOUPE = [
+    # Communes
     "Pointe-à-Pitre", "Capesterre-Belle-Eau", "Capesterre de Marie-Galante",
     "Sainte-Anne", "Sainte-Rose", "Saint-François", "Saint-Claude",
     "Le Gosier", "Les Abymes", "Baie-Mahault", "Le Moule", "Petit-Bourg",
@@ -19,8 +20,24 @@ LIEUX_GUADELOUPE = [
     "Port-Louis", "Anse-Bertrand", "Petit-Canal", "Dampierre",
     "Grand-Bourg", "Capesterre", "Saint-Louis", "Les Saintes", "Terre-de-Haut",
     "La Désirade", "Saint-Martin", "Marigot", "Saint-Barthélemy", "Gustavia",
-    "Marie-Galante", "Grande-Terre", "Basse-Terre", "Karukera",
-    "Houëlmont", "Mougoutte", "Dubedou", "Ravine-Chaude", "Ravine-Blanche",
+    "Marie-Galante", "Grande-Terre", "Basse-Terre",
+    # Lieux-dits et quartiers
+    "Karukera", "Houëlmont", "Mougoutte", "Dubedou", "Ravine-Chaude", "Ravine-Blanche",
+    "Boisripeaux", "La Jaille", "Grand-Camp", "Morne-Coco", "La Providence",
+    "Blachon", "Baimbridge", "Conchou", "La Rosette", "Morne Moustique",
+    "La Cocoyer", "Fond Lahaye", "La Retraite", "Anse Bertrand", "Morne à Louis",
+    "La Caravelle", "Pointe de la Grande Vigie", "Anse à la Barque", "Fond Bananier",
+    "Morne Pisquet", "Anse à l'Eau", "Pointe des Châteaux", "Destrellan",
+    "Beausoleil", "Morne Piton", "Fond Baillif", "Morne à Vache", "La Plaine",
+    "Rivière des Pères", "Carmélite", "Pointe à Vache", "Morne à Piton",
+    "Sofaïa", "Pigeon", "Malendure", "Anse à la Perle", "Pointe Batterie",
+    "Fond Cacao", "Bananier", "Morne-à-Lau", "Anse Duffaut", "Capesterre",
+    "Folle Anse", "Viard", "La Boucan", "Morne-Piton", "La Datcha",
+    "La Pointe de la Verdure", "Carénage", "Rawel", "La Pointe",
+    "Bois-Jolan", "Anse Tarare", "Beauséjour",
+    # Sites historiques et culturels
+    "Bumidom", "Mémorial ACTe", "Fort Napoléon", "Habitation La Grivelière",
+    "Habitation Murat", "Habitation coloniale", "Case créole",
 ]
 
 # Pays et grandes villes du monde (en français, plus long en premier)
