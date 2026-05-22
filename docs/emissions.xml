@@ -219,5 +219,15 @@
       <itunes:summary>Découvrez la Guadeloupe à travers nature, musique et traditions dans "Lanmou anba latè".</itunes:summary>
       <itunes:keywords>Guadeloupe,nature,chants,traditions,PatrickSaintÉloi,ananaspéyi,grenouilles</itunes:keywords>
     </item>
+    <item>
+      <title>Voix de la terre guadeloupéenne</title>
+      <description>Découvrez les secrets de la Guadeloupe à travers ses créatures et plantes mystiques</description>
+      <pubDate>Fri, 22 May 2026 15:23:30 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-22-soir.mp3" length="2695053" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-05-22-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez les secrets de la Guadeloupe à travers ses créatures et plantes mystiques</itunes:summary>
+      <itunes:keywords>Guadeloupe,culturetraditionnelle,milpat,zebavers,forêt,spiritualité,nature,savoirs</itunes:keywords>
+    </item>
   </channel>
 </rss>
