@@ -432,7 +432,8 @@ NEWS_WINDOW_HOURS = {
 
 def fetch_news(feeds: list[str], max_items: int, target_date: Date, edition: str = "matin", exclude_titles: "set[str] | None" = None) -> list[dict]:
     window = NEWS_WINDOW_HOURS.get(edition, 24)
-    cutoff = datetime.now(timezone.utc) - timedelta(hours=window)
+    # Use naive UTC datetime for comparison (all feed dates are parsed as naive)
+    cutoff = (datetime.now(timezone.utc) - timedelta(hours=window)).replace(tzinfo=None)
     print(f"📅 Fenêtre actualités : {window}h (depuis {cutoff.strftime('%Y-%m-%d %H:%M')} UTC)")
     all_items = []
     for url in feeds:
