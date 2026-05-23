@@ -1,0 +1,226 @@
+{
+  "date": "2026-05-22",
+  "generated_at": "2026-05-23T01:02:20.534708Z",
+  "technical": {
+    "summary": {
+      "total_runs": 178,
+      "global_success_rate": 0.949438202247191,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 23,
+        "success": 14,
+        "failure": 8,
+        "success_rate": 0.6086956521739131,
+        "avg_duration_s": 348.6521739130435,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 27,
+        "success": 27,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 368.55555555555554,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 23,
+        "success": 23,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 232.17391304347825,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 32,
+        "success": 32,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 102.65625,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 50,
+        "success": 50,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 331.28,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 23,
+        "success": 23,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1543.7826086956522,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 2,
+      "coherence_rate": 0.15384615384615385,
+      "issues_by_type": {
+        "format_invalid": 11,
+        "title_mismatch": 2
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Ralph Thamar": 2,
+        "Jean-Claude Naimro": 1,
+        "Joe Jeff": 1,
+        "Rah WCK": 1,
+        "Joëlle Ursull": 1,
+        "Les Aiglons": 3,
+        "Akiyo": 2,
+        "Dominik Coco": 2,
+        "Zin": 2,
+        "Yoan": 2,
+        "JACOB F. DESVARIEUX & Georges Decimus": 1,
+        "Mario Chicot": 1,
+        "Carimi": 2,
+        "Gilles Floro": 2,
+        "Edith Lefel": 2,
+        "Lutchiana Mobulu 100%": 1,
+        "Tabou Combo": 3,
+        "Pure Energy Crew": 1,
+        "Medhy Custos": 2,
+        "Dominique Panol": 2,
+        "Warren Saada, Nana Fofie": 1,
+        "Kan'nida": 1,
+        "Stony": 1,
+        "Slaï": 1,
+        "Harmonik": 1,
+        "KASSAV'": 1,
+        "Jean-Marie Ragald": 2,
+        "Fanny J": 2,
+        "Jean-Michel Jarre": 1,
+        "Battery Cremil": 2,
+        "Jim Rama, Patrick Andrey": 1,
+        "BélO": 1,
+        "Milca": 1,
+        "Emile Volel & Tanya Saint-Val": 1,
+        "Meryl": 1,
+        "Top Vice": 2,
+        "Jacob Desvarieux, Kassav', Georges Décimus": 1,
+        "Teddyson John": 1,
+        "Exile": 1,
+        "ROBERT LOYSON": 1,
+        "Patrick Andrey": 1,
+        "Djakout # 1": 1,
+        "Perle Lama": 1,
+        "T-Vice": 2,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Dédé St Prix": 1,
+        "Zouk Machine": 1,
+        "Thierry Cham": 1,
+        "Nichols": 1,
+        "Marcé & Toumpak": 1,
+        "Nu-Look": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Tanya St-Val": 2,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "KALI": 1,
+        "Princess Erika": 1,
+        "T-vice": 1,
+        "KIM HYUN JOONG": 1,
+        "Jean-Michel Rotin": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Les Aiglons",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Voix de la terre guadeloupéenne",
+          "Lanmou anba latè chants graines souvenir"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 1017
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "horoscope-daily : 61% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 15% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "11 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
