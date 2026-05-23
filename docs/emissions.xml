@@ -229,5 +229,15 @@
       <itunes:summary>Découvrez les secrets de la Guadeloupe à travers ses créatures et plantes mystiques</itunes:summary>
       <itunes:keywords>Guadeloupe,culturetraditionnelle,milpat,zebavers,forêt,spiritualité,nature,savoirs</itunes:keywords>
     </item>
+    <item>
+      <title>La Guadeloupe respire sous le zandoli</title>
+      <description>Découvrez la résistance créole à travers symboles guadeloupéens comme le zandoli et l'igname.</description>
+      <pubDate>Sat, 23 May 2026 03:37:18 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-23-matin.mp3" length="1798653" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-05-23-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez la résistance créole à travers symboles guadeloupéens comme le zandoli et l'igname.</itunes:summary>
+      <itunes:keywords>Guadeloupe,résistance,créole,zandoli,igname,culture,histoire,symbole</itunes:keywords>
+    </item>
   </channel>
 </rss>
