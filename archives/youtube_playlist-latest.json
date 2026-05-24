@@ -2556,17 +2556,25 @@
       "creditsBrowseId": "MPTCblbcoAH6Kys"
     },
     {
-      "videoId": "_WcvRyXdDnY",
-      "title": "Miyel",
+      "videoId": "AnSrOPRgKMI",
+      "title": "Konpa Gouyad",
       "artists": [
         {
-          "name": "Joëlle Ursull",
-          "id": "UC6Ty56e5zA3-gNuNxVoej8Q"
+          "name": "Zo Konpa",
+          "id": "UCTIqtkgf4UgEzWr7l9uZ0xg"
+        },
+        {
+          "name": "Konpa Kreyol",
+          "id": "UCVbaeOCi-WluPUOcAn-TOGQ"
+        },
+        {
+          "name": "Zouk Machine",
+          "id": "UCFeD3BLJyGiuOTai02Db3Cg"
         }
       ],
       "album": {
-        "name": "Miyel",
-        "id": "MPREb_ZGXMAvYkS5z"
+        "name": "Chic Gouyad",
+        "id": "MPREb_ryfWVE4EwL0"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
@@ -2581,12 +2589,12 @@
       },
       "thumbnails": [
         {
-          "url": "https://yt3.googleusercontent.com/8WuDh1Urkx7Vnp2clEnyGKZQVUBX3iFI-hlMBn0CWirj_Fosj8zCEFri91PDqNLCnAeMCohFT1PGtDB7=w60-h60-l90-rj",
+          "url": "https://yt3.googleusercontent.com/jYXQiF372XVXRkg-DE7aN3fGvbMskKIUHjIjhCuXUhexd4nbU8HTv8P8TtWGxySmrw7KmocY0gYjTy0K=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
         {
-          "url": "https://yt3.googleusercontent.com/8WuDh1Urkx7Vnp2clEnyGKZQVUBX3iFI-hlMBn0CWirj_Fosj8zCEFri91PDqNLCnAeMCohFT1PGtDB7=w120-h120-l90-rj",
+          "url": "https://yt3.googleusercontent.com/jYXQiF372XVXRkg-DE7aN3fGvbMskKIUHjIjhCuXUhexd4nbU8HTv8P8TtWGxySmrw7KmocY0gYjTy0K=w120-h120-l90-rj",
           "width": 120,
           "height": 120
         }
@@ -2970,8 +2978,12 @@
       "title": "Kanel",
       "artists": [
         {
-          "name": "Gilles Floro",
-          "id": "UCQjohJqrMb7NSp3mBWmn2Eg"
+          "name": "Blu & Exile",
+          "id": "UCNDvQXpM-zUtuqSMT2aXNKw"
+        },
+        {
+          "name": "Exile",
+          "id": "UCe_EoWCPhUaqgXfPB8z052Q"
         }
       ],
       "album": {
@@ -3114,7 +3126,303 @@
           "id": "UCyU1SxDaY7ittRp6jAwh6WQ"
         },
         {
-          "name": "Kassav'",
+          "url": "https://yt3.googleusercontent.com/BJhRZKglZihLY3BQjLmEK8LUFGiTIEpm5hLyaHOZRPBp2sWKTk6b7h_YVivbVKb5Ikzn3_64-eykMEk=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:40",
+      "duration_seconds": 340,
+      "setVideoId": "7ACACDAE2131DACF",
+      "creditsBrowseId": "MPTCPvPPdxiNK7M"
+    },
+    {
+      "videoId": "v578ypzgcWo",
+      "title": "Nan Kisa M Pran La",
+      "artists": [
+        {
+          "name": "Djakout #1",
+          "id": "UCiDF91vFj14TzGon1ObLh4g"
+        }
+      ],
+      "album": {
+        "name": "Nou Pap Dòmi Deyò: Ou Pa Kontan,Vi’n Bat Mwen",
+        "id": "MPREb_8J06UUowoCu"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJxPp_sugFS_d4m8wxpHtZp9Ehrt8jdxaacvNRLv6Oy5gNQj4b765V7BA2GA8x0b163oP_s-i4P7edBEMDf4J8N8l0XGw",
+        "remove": "AB9zfpL0rxTmLZNu30bj9l5SjptwzI5KsAkSnLYzCO_EquiC5M3ZklkxT45cm6uEIWKx5UzCKQ_lcZVktw7Sc3lZL_4dvyMnCg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKwwCaydJhtSkOp_-pYJlIvNjMVdcymEF16BgCqUVx3H0lfmVkXQMHVp3F5wRm1cq4czgKgb906lvWs3eIcr9rKDcE6vVOl6yqvtRU8504aJCUlAz4",
+        "unpin": "AB9zfpJS_YejObzbnpkI-HA0tU8gPRweFOMFAPzJkirrkCxNOhbDs5iXeAXXr8ImcKmW_yZREVoIjr1oYCpAB_d7eGtjDUA1aNqwunuftuCq4X9xmbTF5uE"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/SqszYodcT6nYENrSx5jP1O2Y1HE_UA0bz1apOfhW6z5PZrf7h3kvZJHl2Plx75JIOKeaIDXeq3H7pdc=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/SqszYodcT6nYENrSx5jP1O2Y1HE_UA0bz1apOfhW6z5PZrf7h3kvZJHl2Plx75JIOKeaIDXeq3H7pdc=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "5:51",
+      "duration_seconds": 351,
+      "setVideoId": "359DCAAC3A21C6BE",
+      "creditsBrowseId": "MPTCv578ypzgcWo"
+    },
+    {
+      "videoId": "6IRuiZwnuKw",
+      "title": "Kléré (feat. Maxence Deshayes & Arnaud Dolmen)",
+      "artists": [
+        {
+          "name": "Soft",
+          "id": "UCfvAHDBq9zu9qcawVAWLxjA"
+        }
+      ],
+      "album": {
+        "name": "Ti Gwadloupéyen",
+        "id": "MPREb_05tXaXZ4K7M"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJGIc9TFDllEfld5BK_q3GLm7vDOTXTw4s0qv4sztp2TtsMpvPGDnzKJyGUA36TjkDjJylpNKZMUZt3hIYgTm_UXDi8aw",
+        "remove": "AB9zfpLyOv_suk7F_l4Qci3OVvQOxYPw2DR1QMC6DHBuYVpTOP_1_LjtqoJ519Mi3yFkftzWlzM0Eylqqv7pGmT6A47vVq8UFQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKlefr9Dy0zGNU0J-4YFnWq14uBVN0hHszzERWJl5B6atVrnTRcSK3ZK7RdALyGzTXINEHpPIAGVzq9iJVs0pj3Rwu2R8oWs9ZB5j4c9CQllTxIh9Q",
+        "unpin": "AB9zfpLCiyyYcT4YC-kun_B5iCsWSqxwL_qxnD2Da9A1w_TZpv3n2ERAtXTYvyWckuhgV-LThMwLXBMilb3qMRn5_vLnzlrZZQxDzxtcD1ZwKOomlQVzz3g"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/Qx5GRya72ErD3o0-AyQfmQpFYShf4NM0IiyPf2kXFoHOB-RdVzEcJcZGvJ9saHXI_Z5mQl7Uszon-Z0V=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/Qx5GRya72ErD3o0-AyQfmQpFYShf4NM0IiyPf2kXFoHOB-RdVzEcJcZGvJ9saHXI_Z5mQl7Uszon-Z0V=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "2:59",
+      "duration_seconds": 179,
+      "setVideoId": "4BDAA9AAC5F78B44",
+      "creditsBrowseId": "MPTC6IRuiZwnuKw"
+    },
+    {
+      "videoId": "gPnMev7ely0",
+      "title": "Ce soir ou jamais",
+      "artists": [
+        {
+          "name": "Slaï",
+          "id": "UC56ld_KS_9srW6O10EmS8AQ"
+        }
+      ],
+      "album": {
+        "name": "Florilège",
+        "id": "MPREb_rQpvGYckZXk"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpI6crMMtFW9fuqIZxB-CcU3NkoSwWDwYrzqa3no_sR5nmlDTBbsTlI-8_tRikk8ZMOraFgC9CQAnsJWMxNOrF1kaOmtOQ",
+        "remove": "AB9zfpLZoaloZWWvqpUCf249dhG6-YvE9uzh0Sor-_GfWFwr9BMiZ-yqaYYEx9GiAVaTFLUDKLWeqFabsg-ibsatq3eoehjCpQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpK7BbT9We1gqkprYykNPQfHQCjy-7hC2kw6Ironar1oOyhL-dN0D-rgBCTMIgzc17PeE5FD5KUprUG0Mt81vqcMMzv7-kNI4oFKs8pj4sFw4xdTNw8",
+        "unpin": "AB9zfpIeteE6lJjl1sPIm5IyCFzoQ8f4mf925K0KF2GtFp2HKXUa8TAmtDPU-KapZPiQNu7Q71dwFOWyJRrboyNpCrdrSqwLXL-_jNceLmM4hQGeOQe-SiY"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/C8LBTHCfddhEg_eOMc_mXz8q4riNOkIIfVO7V28Y0fGKHZxVZ78RJ_ABg6Ohs0ymL-u086faIqnMXlMZ=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/C8LBTHCfddhEg_eOMc_mXz8q4riNOkIIfVO7V28Y0fGKHZxVZ78RJ_ABg6Ohs0ymL-u086faIqnMXlMZ=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:22",
+      "duration_seconds": 202,
+      "setVideoId": "1CB82149E48E6B9E",
+      "creditsBrowseId": "MPTCgPnMev7ely0"
+    },
+    {
+      "videoId": "ZR7GD36-1zk",
+      "title": "Sinobôl",
+      "artists": [
+        {
+          "name": "Les Aiglons",
+          "id": "UCNCXL1K7hAxn4otjOZoIfqQ"
+        }
+      ],
+      "album": {
+        "name": "Le poids lourd",
+        "id": "MPREb_y05opLiSHzX"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpKHS7MaU7m2PwClr_SlBAIWsrSGjMiK4oCZU75-LKjT2Folplpu0w7AuO4aWhm1CCpPfhR4gvq6YAGaMkzpZTlbcqCWHA",
+        "remove": "AB9zfpL-9u_xCC_3hKGo12XMcah6LF5XrVknXZ0nnO_-225ulaolhUIxwf2roOZEZQjdWidf49v51GCi6loufnnr-jA18hwW3g"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpLHMCeXAt3GaKb3XYYgRPi9-zGXZfyapZtfiilKFoarNIq-_n2Ziyb0w1g3r4k_yu2Tq_GdFP5TMH__4it2PbsRyyG5ioAusgzWkUFtXRKtJ5gzUo0",
+        "unpin": "AB9zfpJ8WSU-l-yqmQV8FRpirfg0VZVMfVfcsggQ6W8Vg51qGd3Q08KDCJ46se4u-KNrcyyHrY9CF8LGrEGq6D6kzsqKxLFxxyWUCe7-TNJIBdCJU1ZjNms"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/7n6PLnuO_qhGoSBDEryYrl6y5myKhAqZitjiu_MLdZpbWCXe8JXi36a39H621NlEYTApWXBZxknZVOA-vw=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/7n6PLnuO_qhGoSBDEryYrl6y5myKhAqZitjiu_MLdZpbWCXe8JXi36a39H621NlEYTApWXBZxknZVOA-vw=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "7:15",
+      "duration_seconds": 435,
+      "setVideoId": "88CBFAD51D54CE0E",
+      "creditsBrowseId": "MPTCZR7GD36-1zk"
+    },
+    {
+      "videoId": "rMOIytrN4DY",
+      "title": "Ti kadance",
+      "artists": [
+        {
+          "name": "Dominique Panol",
+          "id": "UC5E4qX9ZLVSHqCMjxf7Pnvw"
+        }
+      ],
+      "album": {
+        "name": "Guadeloupèennes queens",
+        "id": "MPREb_qe72f0957SC"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIPMdHmi0Fo16a9Luuh4tFWZj0hMS9vScOf9wattR_PvOlJYfXpa6BuazvqjRy8N0XP52dEi3LepRIYNFabN6I6zECPaQ",
+        "remove": "AB9zfpKsj06L01ZOsF9txuVucLWs-UU8d8bymrH9Nlr6LFjRWPOMVfCbZeQvHQo3Mk5ZMqNu0hJwdWn-ReU3IAfB9sgEEPecuQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpKrBvZ-rdmkd0yxNm__2M-ZZQu--wJY6KG9pOaIbdrDovbCXa4xAxi7OlX7Wcv48RzgAJExw1qxE3qqRUG8XIx2VLp7gYvTb4cl8n-srkVkm7pAda0",
+        "unpin": "AB9zfpKXw6G18EcGp3IvnoojYTokjghJ70K9SQXAmp6064Dkh6-T3azTTm8Hke-UY7n9vdXfLWcGZx_EHILZUBGCjcDs60xV6GpcURqa-Kpg7F_rjRxKLNU"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/Jd55hdVOfsXve_uZ3Fm89WkqF4JT_T1NbqpJa8ZDo4XUaAa-cWYITb0pC2pu9gyO-WyUgZRIn1HYjtos=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/Jd55hdVOfsXve_uZ3Fm89WkqF4JT_T1NbqpJa8ZDo4XUaAa-cWYITb0pC2pu9gyO-WyUgZRIn1HYjtos=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:42",
+      "duration_seconds": 222,
+      "setVideoId": "7EBA3DDBEE029BE0",
+      "creditsBrowseId": "MPTCrMOIytrN4DY"
+    },
+    {
+      "videoId": "LmZZ2T8UBCg",
+      "title": "Kraze Peyi'm",
+      "artists": [
+        {
+          "name": "MASS POWER NOU",
+          "id": "UCjqSv90HY2yqK_JIRliOJ6Q"
+        }
+      ],
+      "album": {
+        "name": "Money Talk",
+        "id": "MPREb_LQ1VsqqBu3u"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIKICR9XW3gD4PPCK1xLr5xm5gNNqT0-07Qs00v_YrTnlfEYHyLoBQL5Vq7uf3WfHJNwemzOY8VM9OdFObRsaZHAFngbA",
+        "remove": "AB9zfpLxpVWL8KXP1RzQBbWEXBSDKdZPRUcUmes6cr5E646MiSZJAtfkUH8dXa0OKfDeYacMLynxMWKc7FwkAq5CHbhN3gqohQ"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpK87LTX7vFi-JPnJuNJfQnN-kYVl_-_nT2tCc8ol1DDBx1OE5-BIG2oQ8QhFU0LbjshMiELHsnozF9ibu__cmIuqBHu7rJicbpkMrX1cPB0yXAY5PU",
+        "unpin": "AB9zfpL_SH9ujFEBMn0HabKKO_iRXN3bPjJ1FqW0WIdEphsj1Eid4Og57qwr4PaUGRgl-Mu_uTMPC_VBp3F7l1t5e1SdoyZUNplMBkye7dQaBnOcroyEjH8"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/1svIA51hyDARLzpZ79lvTy9JxrP4ZNq-Hh-De-6hYFd4kLWLHVBk6YL568J-wpX5HvOeYaPWu0c9GwQ2=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/1svIA51hyDARLzpZ79lvTy9JxrP4ZNq-Hh-De-6hYFd4kLWLHVBk6YL568J-wpX5HvOeYaPWu0c9GwQ2=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "3:17",
+      "duration_seconds": 197,
+      "setVideoId": "9264A106BA32C7B3",
+      "creditsBrowseId": "MPTCLmZZ2T8UBCg"
+    },
+    {
+      "videoId": "KWYOqGeTD9c",
+      "title": "Syé Bwa",
+      "artists": [
+        {
+          "name": "KASSAV'",
           "id": "UCNktNoGoiJvHYmCgPIobIxQ"
         }
       ],
