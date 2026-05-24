@@ -249,5 +249,15 @@
       <itunes:summary>Découvrez les récits de résistance et de résilience de la Guadeloupe à travers culture, cuisine et t</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,créole,banane_plantain,souris_lafimi,vanille,résistance</itunes:keywords>
     </item>
+    <item>
+      <title>La terre qui murmure sous le chaperon blanc</title>
+      <description>Découvrez les résistances invisibles de la Guadeloupe à travers nature et mémoire.</description>
+      <pubDate>Sun, 24 May 2026 03:40:14 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-24-matin.mp3" length="1687605" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-05-24-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez les résistances invisibles de la Guadeloupe à travers nature et mémoire.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,tradition,agouti,christophine,résistance,patrimoine,forêt</itunes:keywords>
+    </item>
   </channel>
 </rss>
