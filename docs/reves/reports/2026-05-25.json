@@ -1,0 +1,229 @@
+{
+  "date": "2026-05-25",
+  "generated_at": "2026-05-26T01:03:33.946798Z",
+  "technical": {
+    "summary": {
+      "total_runs": 178,
+      "global_success_rate": 0.9775280898876404,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 23,
+        "success": 19,
+        "failure": 4,
+        "success_rate": 0.8260869565217391,
+        "avg_duration_s": 342.82608695652175,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 27,
+        "success": 27,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 352.85185185185185,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 23,
+        "success": 23,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 255.2608695652174,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 32,
+        "success": 32,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 101.125,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 50,
+        "success": 50,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 440.82,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 23,
+        "success": 23,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1598.608695652174,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "title_mismatch": 3,
+        "format_invalid": 10
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Jocelyne Béroard, Kassav'": 1,
+        "Battery Cremil": 2,
+        "Antonio Carlos Jobim": 1,
+        "Nichols": 2,
+        "TAGLIAMENTO F & ROBERT LOYSON": 1,
+        "Orlane": 1,
+        "Edith Lefel": 1,
+        "Jim Rama, Patrick Andrey": 1,
+        "Yoan, Axel Tony": 1,
+        "Dédé Saint-Prix": 2,
+        "Dominik Coco": 2,
+        "Mario Chicot": 2,
+        "Edouard Benoit": 1,
+        "Misié Sadik, Fanny J": 1,
+        "Nu-Look": 2,
+        "Energy": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Patrick Saint-Eloi": 1,
+        "Akiyo": 3,
+        "Kcrescendo Banda Junior": 1,
+        "Kan'nida": 1,
+        "Ralph Thamar": 2,
+        "T-Vice": 2,
+        "Lutchiana Mobulu 100%": 1,
+        "Jean-Marie Ragald": 1,
+        "Tanya St-Val": 1,
+        "Joëlle Ursull": 1,
+        "The Teddyson John Project": 1,
+        "Dominique Panol": 3,
+        "Top Vice": 2,
+        "DJ Jean-Louis": 1,
+        "Jacob Desvarieux": 1,
+        "Marcé, Toumpak": 1,
+        "Medhy Custos": 1,
+        "KASSAV'": 2,
+        "Perle Lama": 1,
+        "Ludo": 2,
+        "Mini All Stars": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Harmonik": 2,
+        "Jean-Luc Guanel": 1,
+        "Les Aiglons": 1,
+        "Thierry Cham": 1,
+        "Carlos Nilson": 1,
+        "Jean-Claude Naimro": 1,
+        "Zin": 1,
+        "Carimi": 1,
+        "Soft": 1,
+        "Zouklook": 1,
+        "Alain Ramanisum, Le Groupe Ravanna": 1,
+        "Robert Loyson": 1,
+        "Gaoulé Mizik": 1,
+        "Gilles Floro": 2,
+        "Tabou Combo": 1,
+        "Perle Lama, Thierry Cham": 1,
+        "EXILE": 1,
+        "Francky Vincent": 1,
+        "Slaï": 1,
+        "Jean-Michel Rotin": 1,
+        "Warren": 1,
+        "Zouk Machine": 1,
+        "Stony": 1,
+        "Warren Saada, Nana Fofie": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Akiyo",
+      "consecutive_same_artist": [
+        {
+          "artist": "KASSAV'",
+          "position": 39,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Nos veines portent la Soufrière",
+          "La Guadeloupe se dresse, mémoire et racines"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 1173
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "10 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
