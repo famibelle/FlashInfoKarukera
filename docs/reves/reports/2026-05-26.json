@@ -1,0 +1,169 @@
+{
+  "date": "2026-05-26",
+  "generated_at": "2026-05-27T23:30:36.133319Z",
+  "technical": {
+    "summary": {
+      "total_runs": 0,
+      "global_success_rate": 0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": []
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "artist_mismatch": 1,
+        "format_invalid": 9,
+        "title_mismatch": 3
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Emile Volel & Tanya Saint-Val": 1,
+        "Meryl": 2,
+        "KASSAV'": 2,
+        "Pure Energy Crew": 1,
+        "Tanya St-Val": 1,
+        "PERLE LAMA": 1,
+        "Djakout #1": 1,
+        "Dominik Coco": 3,
+        "Carimi": 3,
+        "Ralph Thamar": 1,
+        "Battery Cremil": 2,
+        "Top Vice": 1,
+        "Sam Smith, Kim Petras": 1,
+        "Nichols": 2,
+        "Tabou Combo": 4,
+        "Georges Decimus, Kassav": 2,
+        "Kimsé": 1,
+        "Edouard Benoit": 1,
+        "Warren Saada, Nana Fofie": 1,
+        "Les Aiglons": 1,
+        "Harmonik": 2,
+        "Zin": 2,
+        "Mini All Stars": 1,
+        "Jeff Joseph": 1,
+        "Marcé & Toumpak": 1,
+        "T-vice": 2,
+        "Medhy Custos": 1,
+        "MASS POWER NOU": 1,
+        "Gilles Floro": 1,
+        "Dominique Panol": 1,
+        "Mario Chicot": 2,
+        "Jean-Luc Guanel": 1,
+        "Edith Lefel": 1,
+        "T-Vice": 1,
+        "Claudette et Ti Pierre": 1,
+        "Robert Loyson": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Warren Saada, Dadju": 1,
+        "Patrick Saint-Eloi": 1,
+        "Zouk Machine": 1,
+        "Ti Paris": 1,
+        "Princess Erika": 1,
+        "Alain Ramanisum": 1,
+        "Stony": 1,
+        "BélO": 1,
+        "Kan'nida": 2,
+        "Joëlle Ursull": 3,
+        "Patrick Andrey": 1,
+        "JOCELYNE BEROARD": 1,
+        "Thierry Cham": 1,
+        "BEL": 1,
+        "R. Carlos Nakai, Keola Beamer": 1,
+        "NICHOLS": 1,
+        "Exile": 1,
+        "Jacob Desvarieux": 1,
+        "Francky Vincent": 1,
+        "Misié Sadik, Fanny J": 1,
+        "Jean-Michel Jarre": 1,
+        "Nu-Look": 1,
+        "Sakiyo": 1
+      },
+      "max_artist_repetition": 4,
+      "top_artist": "Tabou Combo",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Koko dlo et menhir chantent l’âme guadeloupéenne",
+          "Gupi gombo morne résistance"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 1277
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "global_success_rate_critical",
+        "severity": "high",
+        "context": "Taux succès global : 0% (objectif >90%)"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "9 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
