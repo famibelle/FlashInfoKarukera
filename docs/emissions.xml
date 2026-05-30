@@ -329,5 +329,15 @@
       <itunes:summary>Découvrez la Guadeloupe à travers ses trésors naturels et culturels, entre mémoire et biodiversité.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,tradition,biodiversité,couresse,dachine,histoire,nature</itunes:keywords>
     </item>
+    <item>
+      <title>Dans l'ombre des kapokiers la résistance danse</title>
+      <description>Découvrez les gardiens secrets de la Guadeloupe, entre résistance et mémoire vivante.</description>
+      <pubDate>Sat, 30 May 2026 21:35:58 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-30-matin.mp3" length="2084996" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-05-30-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez les gardiens secrets de la Guadeloupe, entre résistance et mémoire vivante.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,résistance,nature,tradition,plantes,animaux,chants</itunes:keywords>
+    </item>
   </channel>
 </rss>

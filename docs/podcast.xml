@@ -1473,5 +1473,13 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-27-soir</guid>
       <itunes:duration>180</itunes:duration>
     </item>
+    <item>
+      <title>Dans l'ombre des kapokiers la résistance danse</title>
+      <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
+      <pubDate>Sat, 30 May 2026 21:35:58 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-30-matin.mp3" length="2084996" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-05-30-matin</guid>
+      <itunes:duration>180</itunes:duration>
+    </item>
   </channel>
 </rss>
