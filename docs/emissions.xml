@@ -339,5 +339,15 @@
       <itunes:summary>Découvrez les gardiens secrets de la Guadeloupe, entre résistance et mémoire vivante.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,résistance,nature,tradition,plantes,animaux,chants</itunes:keywords>
     </item>
+    <item>
+      <title>Chatrou, igname et légendes qui chantent en nous</title>
+      <description>Plongez dans les légendes guadeloupéennes, entre mer, plantes et résistance culturelle.</description>
+      <pubDate>Sun, 31 May 2026 03:27:30 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-31-matin.mp3" length="2330444" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-05-31-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Plongez dans les légendes guadeloupéennes, entre mer, plantes et résistance culturelle.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,traditions,chatrou,gwoka,résistance,plantes,mémoire</itunes:keywords>
+    </item>
   </channel>
 </rss>

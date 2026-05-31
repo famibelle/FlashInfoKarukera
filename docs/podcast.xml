@@ -1481,5 +1481,13 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-30-matin</guid>
       <itunes:duration>180</itunes:duration>
     </item>
+    <item>
+      <title>Chatrou, igname et légendes qui chantent en nous</title>
+      <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
+      <pubDate>Sun, 31 May 2026 03:27:30 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-31-matin.mp3" length="2330444" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-05-31-matin</guid>
+      <itunes:duration>180</itunes:duration>
+    </item>
   </channel>
 </rss>
