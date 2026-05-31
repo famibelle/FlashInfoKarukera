@@ -1,10 +1,10 @@
 {
-  "date": "2026-05-29",
-  "generated_at": "2026-05-30T23:24:38.695851Z",
+  "date": "2026-05-30",
+  "generated_at": "2026-05-31T01:11:02.559703Z",
   "technical": {
     "summary": {
-      "total_runs": 130,
-      "global_success_rate": 0.9615384615384616,
+      "total_runs": 107,
+      "global_success_rate": 0.9532710280373832,
       "total_errors_in_logs": 0,
       "total_warnings_in_logs": 0,
       "workflows_in_alert": [
@@ -14,61 +14,61 @@
     "workflows": [
       {
         "name": "horoscope-daily",
-        "runs": 15,
-        "success": 15,
+        "runs": 12,
+        "success": 12,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 384.8666666666667,
+        "avg_duration_s": 384.6666666666667,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "flash-info",
-        "runs": 15,
-        "success": 15,
+        "runs": 12,
+        "success": 12,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 317.8666666666667,
+        "avg_duration_s": 316.0833333333333,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "capsules-daily",
-        "runs": 15,
-        "success": 15,
+        "runs": 12,
+        "success": 12,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 266.4,
+        "avg_duration_s": 243.41666666666666,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "emission-daily",
-        "runs": 26,
-        "success": 21,
+        "runs": 22,
+        "success": 17,
         "failure": 5,
-        "success_rate": 0.8076923076923077,
-        "avg_duration_s": 83.6923076923077,
+        "success_rate": 0.7727272727272727,
+        "avg_duration_s": 82.27272727272727,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "botiran-radio-daily",
-        "runs": 35,
-        "success": 35,
+        "runs": 28,
+        "success": 28,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 510.22857142857146,
+        "avg_duration_s": 502.0,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "daily-radio-orchestrator",
-        "runs": 24,
-        "success": 24,
+        "runs": 21,
+        "success": 21,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 988.8333333333334,
+        "avg_duration_s": 891.952380952381,
         "last_status": "success",
         "last_failure_url": null
       }
@@ -170,8 +170,7 @@
       "emissions": {
         "count": 2,
         "themes": [
-          "Zèpòl anba latè chanté Gwadloup",
-          "La Guadeloupe murmure ses racines"
+          "Dans l'ombre des kapokiers la résistance danse"
         ]
       },
       "capsules": {
@@ -198,7 +197,13 @@
     }
   },
   "signals": {
-    "technical": [],
+    "technical": [
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "emission-daily : 77% succès sur 7 jours"
+      }
+    ],
     "editorial": [
       {
         "type": "liner_coherence_critical",
