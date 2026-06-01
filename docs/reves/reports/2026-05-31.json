@@ -1,0 +1,243 @@
+{
+  "date": "2026-05-31",
+  "generated_at": "2026-06-01T01:14:15.577489Z",
+  "technical": {
+    "summary": {
+      "total_runs": 109,
+      "global_success_rate": 0.908256880733945,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "flash-info",
+        "emission-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 12,
+        "success": 11,
+        "failure": 1,
+        "success_rate": 0.9166666666666666,
+        "avg_duration_s": 322.25,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 13,
+        "success": 10,
+        "failure": 3,
+        "success_rate": 0.7692307692307693,
+        "avg_duration_s": 275.3076923076923,
+        "last_status": "failure",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 12,
+        "success": 12,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 247.83333333333334,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 22,
+        "success": 16,
+        "failure": 6,
+        "success_rate": 0.7272727272727273,
+        "avg_duration_s": 79.9090909090909,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 29,
+        "success": 29,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 393.0689655172414,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 803.6666666666666,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 4,
+      "coherence_rate": 0.3076923076923077,
+      "issues_by_type": {
+        "format_invalid": 9,
+        "title_mismatch": 4
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Carlos Nilson": 1,
+        "MASS POWER NOU": 1,
+        "Francky Vincent": 1,
+        "Jean-Luc Guanel": 1,
+        "Ralph Thamar": 1,
+        "TAGLIAMENTO F & ROBERT LOYSON": 1,
+        "Les Aiglons": 2,
+        "Soft": 1,
+        "Tabou Combo": 4,
+        "Djakout #1": 1,
+        "BélO": 1,
+        "Dominik Coco": 5,
+        "Jean-Marie Ragald": 2,
+        "Mario Chicot": 4,
+        "Sakiyo": 1,
+        "Akiyo": 3,
+        "KIM SEJEONG": 1,
+        "Jeff Buckley": 1,
+        "The Teddyson John Project": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Princess Erika": 2,
+        "Fanny J": 1,
+        "Joëlle Ursull": 2,
+        "T-Vice": 1,
+        "Ti Paris": 1,
+        "Nu-Look": 2,
+        "Experience 7": 1,
+        "alain ramanisum": 1,
+        "Marcé": 1,
+        "Medhy Custos": 1,
+        "BEL": 1,
+        "carimi": 1,
+        "Patrick Saint-Eloi": 1,
+        "Patrick St Eloi": 1,
+        "Jacob Desvarieux, Kassav', Georges Décimus": 1,
+        "Djakout # 1": 1,
+        "Gilles Floro": 1,
+        "Edith Lefel": 2,
+        "Top Vice": 1,
+        "Ludo": 2,
+        "Exile One": 1,
+        "Gaoulé Mizik": 1,
+        "Kaysha": 1,
+        "Harry Diboula": 1,
+        "R. Carlos Nakai, Keola Beamer": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Jean-Michel Jarre": 1,
+        "Zin": 2,
+        "Energy": 1,
+        "Yoan": 1,
+        "Kimsé": 1,
+        "Harmonik": 1,
+        "Marcé, Toumpak": 1,
+        "Battery Cremil": 1,
+        "Lutchiana Mobulu 100%": 1,
+        "T-vice": 1,
+        "KALI": 1,
+        "Dédé Saint-Prix": 1,
+        "Kan'nida": 1,
+        "Edouard Benoit": 1
+      },
+      "max_artist_repetition": 5,
+      "top_artist": "Dominik Coco",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Lamou Gwadloup sé tan mèz enmen",
+          "Chatrou, igname et légendes qui chantent en nous"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 1
+      },
+      "Maryse Condé": {
+        "passages": 2
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 1290
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "workflow_last_run_failed",
+        "severity": "high",
+        "context": "flash-info : dernier run échoué"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "flash-info : 77% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "emission-daily : 73% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 31% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "9 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Dominik Coco joué 5x (objectif <5)"
+      }
+    ]
+  }
+}
