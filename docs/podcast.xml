@@ -1521,5 +1521,13 @@ C'est parti.</description>
       <guid isPermaLink="false">emission-2026-05-31-soir</guid>
       <itunes:duration>180</itunes:duration>
     </item>
+    <item>
+      <title>L’invisible de nos racines guadeloupéennes</title>
+      <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
+      <pubDate>Mon, 01 Jun 2026 03:35:02 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-06-01-matin.mp3" length="2184764" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-06-01-matin</guid>
+      <itunes:duration>180</itunes:duration>
+    </item>
   </channel>
 </rss>
