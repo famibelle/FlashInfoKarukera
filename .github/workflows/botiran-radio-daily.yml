@@ -116,7 +116,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: 🎬 Install FFmpeg
-        uses: FedericoCarboni/setup-ffmpeg@v3
+        run: sudo apt-get update -o Dir::Cache::lock=/tmp/apt-lock && sudo apt-get install -y ffmpeg
 
       - name: 🔑 Write YouTube Music auth file
         run: |
@@ -218,7 +218,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: 🎬 Install FFmpeg
-        uses: FedericoCarboni/setup-ffmpeg@v3
+        run: sudo apt-get update -o Dir::Cache::lock=/tmp/apt-lock && sudo apt-get install -y ffmpeg
 
       - name: 🔑 Write YouTube Music auth file
         run: |
