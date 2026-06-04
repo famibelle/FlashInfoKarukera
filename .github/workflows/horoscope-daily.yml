@@ -64,7 +64,7 @@ jobs:
           submodules: true
 
       - name: Installer FFmpeg et polices emoji
-        run: sudo apt-get install -y ffmpeg fonts-noto-color-emoji
+        run: sudo apt-get update -o Dir::Cache::lock=/tmp/apt-lock && sudo apt-get install -y ffmpeg fonts-noto-color-emoji
 
       - name: Configurer Python
         uses: actions/setup-python@v5
