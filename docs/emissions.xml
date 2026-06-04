@@ -399,5 +399,15 @@
       <itunes:summary>Découvrez la Guadeloupe qui résiste à travers ses légendes, sa nature et sa culture vibrante !</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,résistance,TabouCombo,Lakay,serpanmoun,christophine,gwoka</itunes:keywords>
     </item>
+    <item>
+      <title>Terre de feu murmures et d’ombres vivantes</title>
+      <description>Plongez dans les secrets de la Guadeloupe à travers ses mythes, sa terre et ses arbres sacrés.</description>
+      <pubDate>Thu, 04 Jun 2026 09:33:12 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-06-04-matin.mp3" length="2207276" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-06-04-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Plongez dans les secrets de la Guadeloupe à travers ses mythes, sa terre et ses arbres sacrés.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,flamboyant,kwikwi,ancêtres,résistance,mémoire,traditions</itunes:keywords>
+    </item>
   </channel>
 </rss>
