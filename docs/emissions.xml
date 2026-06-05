@@ -429,5 +429,15 @@
       <itunes:summary>Plongez dans les symboles guadeloupéens : résistance, identité et traditions à travers musique, plan</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,identité,symboles,résistance,plantes,animaux,traditions</itunes:keywords>
     </item>
+    <item>
+      <title>Ravine Chaude et korosòl sacré</title>
+      <description>Découvrez les secrets de la Guadeloupe à travers ses plantes, ses animaux et son histoire de résista</description>
+      <pubDate>Fri, 05 Jun 2026 15:22:35 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-06-05-soir.mp3" length="1552797" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-06-05-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez les secrets de la Guadeloupe à travers ses plantes, ses animaux et son histoire de résista</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,résistance,korosòl,chouètkabrit,patrimoine,savoirs,traditions</itunes:keywords>
+    </item>
   </channel>
 </rss>
