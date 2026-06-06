@@ -1,0 +1,248 @@
+{
+  "date": "2026-06-05",
+  "generated_at": "2026-06-06T01:05:27.446164Z",
+  "technical": {
+    "summary": {
+      "total_runs": 154,
+      "global_success_rate": 0.7532467532467533,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily",
+        "flash-info",
+        "emission-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 18,
+        "success": 12,
+        "failure": 6,
+        "success_rate": 0.6666666666666666,
+        "avg_duration_s": 172.77777777777777,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 24,
+        "success": 5,
+        "failure": 16,
+        "success_rate": 0.20833333333333334,
+        "avg_duration_s": 220.70833333333334,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 18,
+        "success": 18,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 234.22222222222223,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 15,
+        "failure": 13,
+        "success_rate": 0.5357142857142857,
+        "avg_duration_s": 78.07142857142857,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 45,
+        "success": 45,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 112.97777777777777,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 831.4761904761905,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 1,
+      "coherence_rate": 0.07692307692307693,
+      "issues_by_type": {
+        "format_invalid": 12,
+        "title_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Djakout #1": 2,
+        "Sweet Micky": 1,
+        "Ralph Thamar, Jean-Claude Naimro": 1,
+        "Georges Decimus, Kassav": 1,
+        "Francky Vincent": 1,
+        "Yoan": 1,
+        "Dominique Panol": 1,
+        "DJ Jean-Louis": 1,
+        "KASSAV'": 4,
+        "Tabou Combo": 3,
+        "Jacob Desvarieux, Kassav', Georges Décimus": 1,
+        "T-Vice": 2,
+        "Exile": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Battery Cremil": 4,
+        "Dominik Coco": 2,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Tanya St-Val": 1,
+        "Ludo": 2,
+        "Edith Lefel": 2,
+        "KIM HYUN JOONG": 1,
+        "Perle Lama": 1,
+        "Dms Crew": 1,
+        "Joëlle Ursull": 3,
+        "Gaoulé Mizik": 1,
+        "Jacob Desvarieux": 1,
+        "Gilles Floro": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Harmonik": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Joe": 1,
+        "Thierry Cham": 1,
+        "Slaï": 1,
+        "Akiyo": 1,
+        "R. Carlos Nakai, Keola Beamer": 1,
+        "Nu-Look": 1,
+        "Experience 7": 1,
+        "Claudette et Ti Pierre": 2,
+        "Medhy Custos": 1,
+        "Zin": 1,
+        "Thierry Fanfant": 1,
+        "Les Aiglons": 2,
+        "Princess Liz": 1,
+        "DJ Zouk": 1,
+        "BélO": 2,
+        "coco & zia": 1,
+        "Kimsé": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Ralph Thamar": 1,
+        "Patrick Andrey": 1,
+        "Zouk Machine": 2,
+        "NICHOLS": 1,
+        "Top Vice": 2,
+        "Princess Erika": 1,
+        "Soft": 1,
+        "Jean-Luc Guanel": 1,
+        "JOCELYNE BEROARD": 1,
+        "Jean-Philippe Marthély": 1
+      },
+      "max_artist_repetition": 4,
+      "top_artist": "KASSAV'",
+      "consecutive_same_artist": [
+        {
+          "artist": "KASSAV'",
+          "position": 56,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Ravine Chaude et korosòl sacré",
+          "Mémwar anba lèzèt ka gwoupé"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 1342
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "global_success_rate_critical",
+        "severity": "high",
+        "context": "Taux succès global : 75% (objectif >90%)"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "horoscope-daily : 67% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "flash-info : 21% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "emission-daily : 54% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 8% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "12 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
