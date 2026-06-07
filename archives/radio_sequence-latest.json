@@ -149,12 +149,16 @@
       "duration": 385
     },
     {
-      "type": "music",
-      "videoId": "DjgpXQP-Lhc",
-      "title": "Fè Mwen Konfyans",
-      "artist": "Harmonik",
-      "genre": "",
-      "duration": 368
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-06-07-midi-12.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W22-francky-vinc_francky-vinc_thierry-cham.mp3",
+      "label": "Francky Vincent, l’énergie pure qui fait bouger les corps sous le soleil de midi.",
+      "icon": "🎙️"
     },
     {
       "type": "music",
