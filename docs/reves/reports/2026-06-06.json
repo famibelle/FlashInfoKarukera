@@ -1,0 +1,250 @@
+{
+  "date": "2026-06-06",
+  "generated_at": "2026-06-07T01:13:28.382175Z",
+  "technical": {
+    "summary": {
+      "total_runs": 168,
+      "global_success_rate": 0.7916666666666666,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily",
+        "flash-info",
+        "emission-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 15,
+        "failure": 6,
+        "success_rate": 0.7142857142857143,
+        "avg_duration_s": 206.57142857142858,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 27,
+        "success": 8,
+        "failure": 16,
+        "success_rate": 0.2962962962962963,
+        "avg_duration_s": 233.85185185185185,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 235.52380952380952,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 18,
+        "failure": 10,
+        "success_rate": 0.6428571428571429,
+        "avg_duration_s": 85.10714285714286,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 50,
+        "success": 50,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 174.06,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1055.095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 1,
+      "coherence_rate": 0.07692307692307693,
+      "issues_by_type": {
+        "format_invalid": 11,
+        "title_mismatch": 1,
+        "artist_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Fanny J": 1,
+        "Kjetil Møster, Jeff Parker, Joshua Abrams, John Herndon": 1,
+        "Jacob Desvarieux, Kassav', Georges Décimus": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Dominik Coco": 3,
+        "KIM HYUN JOONG": 1,
+        "KASSAV'": 3,
+        "Milca": 1,
+        "Kim": 1,
+        "Justice Crew": 1,
+        "Jean-Michel Jean-Louis": 2,
+        "Energy": 1,
+        "Dominique Panol": 3,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 3,
+        "Carimi": 2,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Les Aiglons": 2,
+        "JOCELYNE BEROARD": 1,
+        "Marcé": 1,
+        "Edith Lefel": 3,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Akiyo": 2,
+        "Princess Erika": 1,
+        "Orlane": 2,
+        "Jean-Luc Guanel": 1,
+        "Stony, Oswald": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Yoan": 1,
+        "Medhy Custos, Christian Nara": 1,
+        "Gilles Floro": 2,
+        "Patrick Saint-Eloi": 1,
+        "Soft": 1,
+        "Alain Ramanisum": 1,
+        "Harmonik": 1,
+        "Titaï, Warren Saada": 1,
+        "Tabou Combo": 1,
+        "Ludo": 1,
+        "Teddyson John": 1,
+        "Jean Marie Ragald": 1,
+        "Exile": 1,
+        "R. Carlos Nakai, Keola Beamer": 1,
+        "Meryl": 1,
+        "Alian Ramanisum": 1,
+        "Ralph Thamar": 1,
+        "Battery Cremil": 1,
+        "jey one, Yoan Retro": 1,
+        "Slaï": 2,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Carlos Nilson": 1,
+        "Djakout #1": 2,
+        "JACOB F. DESVARIEUX & Georges Decimus": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Joëlle Ursull": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Francky Vincent": 2,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Sweet Micky": 1,
+        "Thierry Fanfant": 1,
+        "Warren": 1,
+        "JOEY JEFFREY": 1,
+        "Jocelyne Labylle, Sonia Dersion, Leïla Chicot": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Dominik Coco",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Résistance en racines, mémoire en fruits mûrs",
+          "Échos d’une Guadeloupe qui résiste et chante"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 1394
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "global_success_rate_critical",
+        "severity": "high",
+        "context": "Taux succès global : 79% (objectif >90%)"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "horoscope-daily : 71% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "flash-info : 30% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "emission-daily : 64% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 8% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "11 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
