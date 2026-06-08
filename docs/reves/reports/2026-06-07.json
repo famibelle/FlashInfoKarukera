@@ -1,0 +1,246 @@
+{
+  "date": "2026-06-07",
+  "generated_at": "2026-06-08T01:13:33.667605Z",
+  "technical": {
+    "summary": {
+      "total_runs": 167,
+      "global_success_rate": 0.8203592814371258,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily",
+        "flash-info",
+        "emission-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 16,
+        "failure": 5,
+        "success_rate": 0.7619047619047619,
+        "avg_duration_s": 249.71428571428572,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 26,
+        "success": 10,
+        "failure": 13,
+        "success_rate": 0.38461538461538464,
+        "avg_duration_s": 256.5,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 230.8095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 19,
+        "failure": 9,
+        "success_rate": 0.6785714285714286,
+        "avg_duration_s": 92.39285714285714,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 50,
+        "success": 50,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 227.32,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1163.6666666666667,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "format_invalid": 9,
+        "title_mismatch": 3,
+        "artist_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Patrick Andrey": 1,
+        "Nu-Look": 1,
+        "Battery Cremil": 2,
+        "Jocelyne Béroard": 1,
+        "Carimi": 2,
+        "Claudette et Ti Pierre": 2,
+        "Akiyo": 4,
+        "Les Aiglons": 3,
+        "Meryl": 2,
+        "Dominique Panol": 4,
+        "Experience 7": 1,
+        "Ludo": 2,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Dominik Coco": 1,
+        "Zin": 2,
+        "Patrick Saint-Eloi": 1,
+        "Carlos Nilson": 1,
+        "Tabou Combo": 3,
+        "Edith Lefel": 2,
+        "Warren Saada, Nana Fofie": 1,
+        "Princess Erika": 2,
+        "Harmonik": 1,
+        "Teddyson John": 1,
+        "carimi": 1,
+        "Tanya St-Val": 2,
+        "Top Vice": 1,
+        "Jacob Desvarieux": 1,
+        "Mini All Stars": 1,
+        "Jeff Joseph": 1,
+        "Robert Loyson": 1,
+        "Kaysha": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Thierry Fanfant": 1,
+        "alain ramanisum": 1,
+        "Mario Chicot": 1,
+        "ROBERT LOYSON": 1,
+        "Jean-Luc Guanel": 1,
+        "Thierry Cham": 2,
+        "Fabien Georges": 1,
+        "Ralph Thamar, Jean-Claude Naimro": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav": 1,
+        "JOEY JEFFREY": 2,
+        "T-vice": 1,
+        "KASSAV'": 1,
+        "Edouard Benoit": 1,
+        "Alexandre Stellio": 1,
+        "Kimsé": 1,
+        "Soft": 1,
+        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
+        "T-Vice": 3,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Harry Diboula": 1,
+        "Zouklook": 1,
+        "Ralph Thamar": 1,
+        "Fanny J": 1,
+        "Yoan": 1,
+        "Energy": 1
+      },
+      "max_artist_repetition": 4,
+      "top_artist": "Akiyo",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "La Guadeloupe se lève dans l'humus",
+          "Mémoires vivantes dans les pierres de Gwada"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 1446
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "global_success_rate_low",
+        "severity": "medium",
+        "context": "Taux succès global : 82% (objectif >90%)"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "horoscope-daily : 76% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "flash-info : 38% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "emission-daily : 68% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "9 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
