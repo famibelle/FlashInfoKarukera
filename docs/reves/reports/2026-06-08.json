@@ -1,0 +1,253 @@
+{
+  "date": "2026-06-08",
+  "generated_at": "2026-06-09T01:04:58.964772Z",
+  "technical": {
+    "summary": {
+      "total_runs": 167,
+      "global_success_rate": 0.8682634730538922,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "flash-info",
+        "emission-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 19,
+        "failure": 2,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 299.57142857142856,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 26,
+        "success": 13,
+        "failure": 10,
+        "success_rate": 0.5,
+        "avg_duration_s": 284.1923076923077,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 246.04761904761904,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 21,
+        "failure": 7,
+        "success_rate": 0.75,
+        "avg_duration_s": 99.64285714285714,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 50,
+        "success": 50,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 295.26,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1310.5238095238096,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 1,
+      "coherence_rate": 0.07692307692307693,
+      "issues_by_type": {
+        "format_invalid": 12,
+        "title_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "R. Carlos Nakai, Keola Beamer": 1,
+        "Harmonik": 3,
+        "Jean-Marie Ragald": 1,
+        "Jean-Philippe Marthély & Thierry Benoît": 1,
+        "Ralph Thamar": 2,
+        "Akiyo": 2,
+        "Jocelyne Labylle": 1,
+        "DJ Jean-Louis": 1,
+        "KASSAV'": 1,
+        "Sakiyo": 1,
+        "Djakout # 1": 2,
+        "T-Vice": 3,
+        "Zouk Machine": 1,
+        "Les Aiglons": 1,
+        "Warren": 1,
+        "Slaï": 1,
+        "Joëlle Ursull": 2,
+        "Claudette et Ti Pierre": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Mario Chicot": 3,
+        "Carimi": 1,
+        "Gaoulé Mizik": 1,
+        "Zin": 3,
+        "Princess Erika": 2,
+        "Jacob Desvarieux, Georges Décimus, Kassav": 1,
+        "Soft": 1,
+        "Marcé & Toumpak": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Tanya St-Val": 2,
+        "Jean-Michel Jean-Louis": 1,
+        "Edith Lefel": 2,
+        "Kimsé": 1,
+        "Patrick Saint Eloi, Kassav'": 1,
+        "Top Vice": 2,
+        "Gilles Floro": 2,
+        "Thierry Cham": 1,
+        "BélO": 1,
+        "Ernest So": 1,
+        "Teddyson John": 1,
+        "Tabou Combo": 3,
+        "Justice Crew": 1,
+        "WCK": 1,
+        "KALI": 1,
+        "Jacob Desvarieux, Kassav', Georges Décimus": 1,
+        "Ti Paris": 1,
+        "Al Lirvat, Robert Mavounzy": 1,
+        "Energy": 1,
+        "Jean-Luc Guanel": 2,
+        "Milca": 1,
+        "Warren Saada, Nana Fofie": 1,
+        "Warren Saada, Franglish": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Dominique Panol": 1,
+        "Stony": 1,
+        "Gabrieli": 1,
+        "Jocelyne Labylle, Sonia Dersion, Leïla Chicot": 1,
+        "Carlos Nilson": 1,
+        "NICHOLS": 1,
+        "KIM SEJEONG": 1,
+        "Perle Lama, Thierry Cham": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Harmonik",
+      "consecutive_same_artist": [
+        {
+          "artist": "Akiyo",
+          "position": 5,
+          "count": 2
+        },
+        {
+          "artist": "Princess Erika",
+          "position": 28,
+          "count": 2
+        },
+        {
+          "artist": "Tabou Combo",
+          "position": 48,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "La Guadeloupe chante l'éternel combat",
+          "Gekos bois piment et pointes sacrées"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 1498
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "global_success_rate_low",
+        "severity": "medium",
+        "context": "Taux succès global : 87% (objectif >90%)"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "flash-info : 50% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "emission-daily : 75% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 8% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "12 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
