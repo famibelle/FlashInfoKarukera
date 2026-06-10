@@ -1,10 +1,10 @@
 {
   "date": "2026-06-09",
-  "generated_at": "2026-06-10T01:10:40.901489Z",
+  "generated_at": "2026-06-10T23:34:26.702421Z",
   "technical": {
     "summary": {
-      "total_runs": 167,
-      "global_success_rate": 0.9041916167664671,
+      "total_runs": 183,
+      "global_success_rate": 0.9016393442622951,
       "total_errors_in_logs": 0,
       "total_warnings_in_logs": 0,
       "workflows_in_alert": [
@@ -15,41 +15,41 @@
     "workflows": [
       {
         "name": "horoscope-daily",
-        "runs": 21,
-        "success": 20,
+        "runs": 24,
+        "success": 23,
         "failure": 1,
-        "success_rate": 0.9523809523809523,
-        "avg_duration_s": 343.23809523809524,
+        "success_rate": 0.9583333333333334,
+        "avg_duration_s": 350.9166666666667,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "flash-info",
-        "runs": 26,
-        "success": 16,
-        "failure": 7,
-        "success_rate": 0.6153846153846154,
-        "avg_duration_s": 300.96153846153845,
-        "last_status": "success",
+        "runs": 29,
+        "success": 18,
+        "failure": 8,
+        "success_rate": 0.6206896551724138,
+        "avg_duration_s": 308.7931034482759,
+        "last_status": "failure",
         "last_failure_url": null
       },
       {
         "name": "capsules-daily",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 246.52380952380952,
+        "avg_duration_s": 245.91666666666666,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "emission-daily",
-        "runs": 28,
-        "success": 23,
-        "failure": 5,
-        "success_rate": 0.8214285714285714,
-        "avg_duration_s": 102.0,
+        "runs": 32,
+        "success": 26,
+        "failure": 6,
+        "success_rate": 0.8125,
+        "avg_duration_s": 101.09375,
         "last_status": "success",
         "last_failure_url": null
       },
@@ -59,17 +59,17 @@
         "success": 50,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 363.92,
+        "avg_duration_s": 416.54,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "daily-radio-orchestrator",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 1470.1904761904761,
+        "avg_duration_s": 1486.0,
         "last_status": "success",
         "last_failure_url": null
       }
@@ -77,82 +77,100 @@
   },
   "antenne": {
     "liners": {
-      "total": 13,
-      "coherent": 2,
-      "coherence_rate": 0.15384615384615385,
+      "total": 15,
+      "coherent": 3,
+      "coherence_rate": 0.2,
       "issues_by_type": {
-        "format_invalid": 10,
-        "title_mismatch": 2,
+        "title_mismatch": 3,
+        "format_invalid": 11,
         "artist_mismatch": 1
       }
     },
     "music": {
-      "total_tracks": 80,
+      "total_tracks": 96,
       "genres": {
-        "": 80
+        "": 96
       },
       "artists": {
-        "Misié Sadik, Fanny J": 1,
-        "Klimax": 1,
-        "NICHOLS": 1,
-        "T-Vice": 3,
-        "Zouklook": 1,
-        "Yoan": 2,
-        "Princess Erika": 1,
-        "Orlane": 2,
-        "Slaï": 2,
-        "Nichols": 1,
-        "Claudette et Ti Pierre": 1,
-        "Tabou Combo": 2,
-        "MASS POWER NOU": 1,
-        "Dédé Saint-Prix": 1,
-        "Francky Vincent": 2,
-        "Edith Lefel": 3,
-        "Latin Band": 1,
-        "Dominik Coco, Fuckly": 1,
-        "DJ Jean-Louis": 1,
-        "Jean-Michel Jean-Louis": 2,
-        "Dominik Coco": 2,
-        "Nu-Look": 2,
-        "Kan'nida": 2,
-        "Kjetil Møster, Jeff Parker, Joshua Abrams, John Herndon": 1,
-        "Mario Chicot": 3,
-        "Jean Luc Guanel": 1,
-        "Thierry Fanfant": 1,
-        "Carimi": 2,
-        "Mini All Stars": 1,
-        "KASSAV'": 3,
-        "Zin": 1,
-        "Patrick Andrey": 1,
-        "Meryl": 1,
-        "Kimsé": 1,
-        "Alian Ramanisum": 1,
-        "Ernest So": 1,
-        "Les Aiglons": 1,
-        "JEAN-CLAUDE NAIMRO": 1,
-        "Georges Decimus, Kassav": 1,
-        "JACOB F. DESVARIEUX/GEORGES DECIMUS": 1,
-        "Gilles Floro": 2,
-        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
-        "Patrick Saint-Eloi": 2,
-        "Akiyo": 2,
-        "Fabienne Payoute Bernadin": 1,
-        "Zouk Machine": 2,
+        "Jean-Luc Guanel": 2,
+        "Dms Crew": 1,
         "Jean-Marie Ragald": 1,
-        "Tanya St-Val": 1,
-        "Battery Cremil": 1,
+        "Edith Lefel": 2,
+        "T-Vice": 3,
+        "Experience 7": 1,
+        "Djakout #1": 3,
+        "Dominique Panol": 2,
+        "Tabou Combo": 2,
+        "JEAN-PHILIPPE MARTHELY": 1,
+        "Kassav'": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Gaoulé Mizik": 1,
+        "Djakout # 1": 1,
+        "Nu-Look": 3,
+        "Jean Carlos Music Empire": 1,
+        "Tanya St-Val": 2,
+        "Dominik Coco": 2,
+        "Zouk Machine": 2,
+        "Robert Loyson": 1,
+        "Dédé Saint-Prix": 1,
+        "Justice Crew": 1,
+        "Zo Konpa, Zouk Love, Konpa Kreyol": 1,
+        "Georges Decimus, Kassav": 1,
+        "Les Aiglons": 1,
+        "Joëlle Ursull": 5,
+        "Warren": 1,
+        "Kan'nida": 3,
+        "Thierry Cham": 1,
+        "Teddyson John": 1,
+        "KASSAV'": 2,
+        "Battery Cremil": 2,
+        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
+        "Kjetil Møster, Jeff Parker, Joshua Abrams, John Herndon": 1,
+        "Patrick St Eloi": 1,
+        "JEAN-CLAUDE NAIMRO": 2,
+        "KALI": 1,
+        "Claudette et Ti Pierre": 1,
+        "Jocelyne Béroard, Kassav'": 2,
+        "Marcé, Toumpak": 1,
+        "KIM HYUN JOONG": 1,
+        "Zin": 2,
+        "Carimi": 3,
+        "Jim Rama, Patrick Andrey": 1,
+        "Jacob Desvarieux, Kassav', Georges Décimus": 1,
+        "Jean-Philippe Marthély": 1,
+        "Mass Paname": 1,
+        "Alexandre Stellio": 1,
+        "Ludo": 1,
         "Top Vice": 1,
-        "Jocelyne Béroard, Kassav'": 1,
-        "Djakout #1": 2,
-        "Loryn": 1,
-        "Soft": 1,
-        "Stony": 1,
-        "Jean-Luc Guanel": 1,
-        "KALI": 1
+        "Princess Erika": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "BélO": 2,
+        "Lutchiana": 1,
+        "Exile One": 1,
+        "Kali J, LiTTiE": 1,
+        "Jocelyne Labylle, Jean-Luc Guanel": 1,
+        "Jean Luc Guanel": 1,
+        "Patrick Andrey": 1,
+        "Ralph Thamar": 1,
+        "Princesse": 1,
+        "Harry Diboula": 1,
+        "Edouard Benoit": 1,
+        "Mario Chicot": 1,
+        "Akiyo": 1,
+        "Fabien Georges": 1,
+        "Orlane": 1,
+        "Slaï": 1,
+        "Perle Lama": 1
       },
-      "max_artist_repetition": 3,
-      "top_artist": "T-Vice",
-      "consecutive_same_artist": [],
+      "max_artist_repetition": 5,
+      "top_artist": "Joëlle Ursull",
+      "consecutive_same_artist": [
+        {
+          "artist": "Joëlle Ursull",
+          "position": 72,
+          "count": 2
+        }
+      ],
       "abrupt_transitions": []
     },
     "content": {
@@ -191,12 +209,17 @@
         "passages": 13
       },
       "Corinne": {
-        "passages": 1550
+        "passages": 1588
       }
     }
   },
   "signals": {
     "technical": [
+      {
+        "type": "workflow_last_run_failed",
+        "severity": "high",
+        "context": "flash-info : dernier run échoué"
+      },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
@@ -207,12 +230,12 @@
       {
         "type": "liner_coherence_critical",
         "severity": "high",
-        "context": "Cohérence liners : 15% (objectif >90%)"
+        "context": "Cohérence liners : 20% (objectif >90%)"
       },
       {
         "type": "liner_format_issues",
         "severity": "high",
-        "context": "10 liner(s) au format invalide"
+        "context": "11 liner(s) au format invalide"
       },
       {
         "type": "liner_artist_mismatch",
@@ -225,6 +248,12 @@
         "context": "Monique : aucun contenu généré aujourd'hui"
       }
     ],
-    "music": []
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Joëlle Ursull joué 5x (objectif <5)"
+      }
+    ]
   }
 }
