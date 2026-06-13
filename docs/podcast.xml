@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Un phénomène météo inédit secoue l’archipel dès ce midi, dans votre flash-info du 13 juin à midi</title>
+      <description><![CDATA[On fait le point à midi ce samedi treize juin deux mille vingt-six.]]></description>
+      <pubDate>Sat, 13 Jun 2026 09:14:57 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-06/flash-info-20260613-midi.mp3" length="181197" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20260613-midi</guid>
+      <itunes:duration>00:18</itunes:duration>
+    </item>
+
+<item>
       <title>Gémeaux ♊ &amp; Capricorne ♑ : L’acoma-boucan porte la foudre Capricorne, dans votre horoscope du 13 juin à midi</title>
       <description><![CDATA[Nous sommes le samedi 13 juin 2026 et cet après-midi, la mer porte des nouvelles qui ne sont pas pour tout le monde. Écoutez bien : c’est aux Gémeaux, aux Poissons et aux Capricorne que les esprits de la mangrove murmurent aujourd’hui. Prenez ce que la journée vous donne, mais gardez un œil sur l’igwann, il sait attendre son heure.]]></description>
       <pubDate>Sat, 13 Jun 2026 09:08:44 +0000</pubDate>
@@ -1821,15 +1830,6 @@ C'est parti.</description>
       <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-04/flash-info-20260430-soir.mp3" length="955947" type="audio/mpeg" />
       <guid isPermaLink="false">flash-info-20260430-soir</guid>
       <itunes:duration>02:05</itunes:duration>
-    </item>
-
-<item>
-      <title>sirik &amp; goumié blan : Le crabe danse sur la pirogue de guerre, dans votre émission du 4 mai</title>
-      <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
-      <pubDate>Mon, 04 May 2026 17:54:23 +0000</pubDate>
-      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-05-04.mp3" length="1178807" type="audio/mpeg" />
-      <guid isPermaLink="false">emission-2026-05-04</guid>
-      <itunes:duration>180</itunes:duration>
     </item>
 
   </channel>
