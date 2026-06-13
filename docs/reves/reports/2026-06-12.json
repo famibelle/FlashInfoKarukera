@@ -1,0 +1,230 @@
+{
+  "date": "2026-06-12",
+  "generated_at": "2026-06-13T01:13:58.593289Z",
+  "technical": {
+    "summary": {
+      "total_runs": 160,
+      "global_success_rate": 0.98125,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 413.8095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 20,
+        "failure": 1,
+        "success_rate": 0.9523809523809523,
+        "avg_duration_s": 379.8095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 244.8095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 26,
+        "failure": 2,
+        "success_rate": 0.9285714285714286,
+        "avg_duration_s": 113.75,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 48,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 482.1875,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1643.952380952381,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 2,
+      "coherence_rate": 0.15384615384615385,
+      "issues_by_type": {
+        "title_mismatch": 2,
+        "format_invalid": 10,
+        "artist_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Jean-Michel Jean-Louis": 1,
+        "Soft": 1,
+        "BélO": 2,
+        "Jim Rama & Patrick Andrey": 1,
+        "Ti Paris": 1,
+        "Edith Lefel": 3,
+        "Dédé Saint-Prix": 1,
+        "Claudette et Ti Pierre": 2,
+        "Jean-Philippe Marthély": 1,
+        "Jean-Claude Naimro": 1,
+        "Harmonik": 2,
+        "Jean-Philippe Marthély & Thierry Benoît": 1,
+        "Energy": 1,
+        "T-Vice": 2,
+        "Zouk Machine": 1,
+        "Klimax": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "Gilles Floro": 1,
+        "KASSAV'": 1,
+        "Milca": 1,
+        "Djakout #1": 2,
+        "DJ Zouk": 1,
+        "Edouard Benoit": 1,
+        "JEAN-PHILIPPE MARTHELY": 1,
+        "EDDY EDOUARD": 1,
+        "LeKim": 1,
+        "Zo Konpa, Zouk Machine": 1,
+        "Battery Cremil": 2,
+        "Ralph Thamar": 1,
+        "Francky Vincent": 2,
+        "Les Aiglons": 1,
+        "Marcé & Toumpak": 1,
+        "Patrick Saint Eloi, Kassav'": 1,
+        "JOCELYNE BEROARD & PATRICK SAINT-ELOI & JEAN-PHILIPPE MARTHELY": 1,
+        "Zin": 3,
+        "Yoan": 1,
+        "Chiré Ban'n": 1,
+        "Exile": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Perle Lama": 1,
+        "Warren": 1,
+        "Dominique Panol": 2,
+        "Thierry Cham": 1,
+        "Mario Chicot": 1,
+        "Zo Konpa, Konpa Kreyol, Zouk Machine": 1,
+        "Tabou Combo": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Harry Diboula": 1,
+        "Jean-Marie Ragald": 1,
+        "Top Vice": 1,
+        "Fabien Georges": 1,
+        "Kaysha": 1,
+        "JOCELYNE BEROARD": 1,
+        "Orlane": 1,
+        "MASS POWER NOU": 1,
+        "Media For The Masses": 1,
+        "Joëlle Ursull": 1,
+        "Jean Carlos Music Empire": 1,
+        "Kan'nida": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav": 1,
+        "Jean Luc Guanel": 1,
+        "Carimi": 3,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Patrick St Eloi": 1,
+        "Thierry Fanfant": 1,
+        "Akiyo": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Edith Lefel",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Ames vertes et murmures de résistance",
+          "Gupi zòsèy leur la ka rakonte an nou"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 1679
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 15% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "10 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
