@@ -1,0 +1,233 @@
+{
+  "date": "2026-06-13",
+  "generated_at": "2026-06-14T01:15:15.947671Z",
+  "technical": {
+    "summary": {
+      "total_runs": 160,
+      "global_success_rate": 0.98125,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 413.14285714285717,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 20,
+        "failure": 1,
+        "success_rate": 0.9523809523809523,
+        "avg_duration_s": 374.14285714285717,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 245.38095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 26,
+        "failure": 2,
+        "success_rate": 0.9285714285714286,
+        "avg_duration_s": 113.42857142857143,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 48,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 483.3541666666667,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1638.5714285714287,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 1,
+      "coherence_rate": 0.07692307692307693,
+      "issues_by_type": {
+        "format_invalid": 11,
+        "artist_mismatch": 1,
+        "title_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Ludo": 1,
+        "Dominik Coco, Fuckly": 1,
+        "BélO": 1,
+        "KALI": 1,
+        "Sakiyo": 1,
+        "Teddyson John": 1,
+        "Harry Diboula": 1,
+        "Zin": 4,
+        "Tanya St-Val": 2,
+        "Akiyo": 2,
+        "Nu-Look": 2,
+        "Gaoulé Mizik": 1,
+        "Carlos Nilson": 1,
+        "Les Aiglons": 1,
+        "Dominik Coco": 3,
+        "Experience 7": 1,
+        "Carimi": 3,
+        "R. Carlos Nakai, Keola Beamer": 1,
+        "Kan'nida": 2,
+        "Soft": 2,
+        "Slaï": 2,
+        "Jacob Desvarieux, Georges Décimus, Kassav": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Djakout #1": 1,
+        "Yoan": 1,
+        "T-Vice": 2,
+        "Thierry Cham": 1,
+        "Justice Crew": 1,
+        "Princess Erika": 1,
+        "Georges Decimus, Kassav": 1,
+        "Mini All Stars": 1,
+        "Zo Konpa, Konpa Lakay, Zouk Machine": 1,
+        "Mario Chicot": 2,
+        "KASSAV'": 1,
+        "Patrick Saint-Eloi": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Ralph Thamar, Jean-Claude Naimro": 1,
+        "Dédé Saint-Prix": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Stony": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "T-vice": 2,
+        "Al Lirvat, Robert Mavounzy": 1,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "Gilles Floro": 2,
+        "Medhy Custos": 1,
+        "Claudette et Ti Pierre": 1,
+        "Jean Carlos Music Empire": 1,
+        "Ralph Thamar, Gertrude Seinin": 1,
+        "Zouk Factory": 1,
+        "Top Vice": 1,
+        "Harmonik": 1,
+        "Ralph Thamar": 1,
+        "Battery Cremil": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "Ti Paris": 1,
+        "JACOB F. DESVARIEUX & Georges Decimus": 1,
+        "Tabou Combo": 1,
+        "Zoukovery": 1,
+        "Orlane": 1,
+        "TAGLIAMENTO F & ROBERT LOYSON": 1,
+        "Jim Rama & Patrick Andrey": 1
+      },
+      "max_artist_repetition": 4,
+      "top_artist": "Zin",
+      "consecutive_same_artist": [
+        {
+          "artist": "Carimi",
+          "position": 52,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Les murmures des racines guadeloupéennes",
+          "Lamèr kabwit ka palé an zansèt"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 1731
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 8% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "11 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
