@@ -609,5 +609,15 @@
       <itunes:summary>Découvrez les secrets des guêpes péyi et du palétuvier, gardiens de la sagesse guadeloupéenne.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,podcast,traditions,guêpes,palétuvier,mangrove,sagesse</itunes:keywords>
     </item>
+    <item>
+      <title>La voix des ancêtres dans l’écorce</title>
+      <description>Découvrez la Guadeloupe à travers ses fourmis mystiques et son calebassier, entre nature et traditio</description>
+      <pubDate>Sun, 14 Jun 2026 15:05:51 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-06-14-soir.mp3" length="2166477" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-06-14-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez la Guadeloupe à travers ses fourmis mystiques et son calebassier, entre nature et traditio</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,ancêtres,nature,folklore,fourmi,kalebassier</itunes:keywords>
+    </item>
   </channel>
 </rss>
