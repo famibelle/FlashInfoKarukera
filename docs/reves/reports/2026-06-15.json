@@ -1,0 +1,237 @@
+{
+  "date": "2026-06-15",
+  "generated_at": "2026-06-16T01:20:25.501052Z",
+  "technical": {
+    "summary": {
+      "total_runs": 160,
+      "global_success_rate": 0.98125,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 408.7142857142857,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 20,
+        "failure": 1,
+        "success_rate": 0.9523809523809523,
+        "avg_duration_s": 364.1904761904762,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 246.47619047619048,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 26,
+        "failure": 2,
+        "success_rate": 0.9285714285714286,
+        "avg_duration_s": 112.96428571428571,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 48,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 492.4583333333333,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1635.3809523809523,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "format_invalid": 9,
+        "title_mismatch": 3,
+        "artist_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Edith Lefel": 1,
+        "Fabien Georges": 1,
+        "coco & zia": 1,
+        "T-Vice, Phyllisia Ross": 1,
+        "Princess Erika": 1,
+        "Tabou Combo": 3,
+        "Georges Decimus, Kassav": 1,
+        "Carimi": 2,
+        "BEL": 1,
+        "Francky Vincent": 1,
+        "Exile One": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Kimsé": 1,
+        "Gilles Floro": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "BélO": 1,
+        "Zin": 1,
+        "Alix Georges": 1,
+        "Patrick Saint-Eloi, Kassav'": 2,
+        "Emile Volel & Tanya Saint-Val": 1,
+        "Claudette Plante": 1,
+        "Soft": 1,
+        "Jean-Luc Guanel": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Dominik Coco, Fuckly": 1,
+        "JOEY JEFFREY": 1,
+        "ROBERT LOYSON": 1,
+        "Experience 7": 2,
+        "Slaï": 2,
+        "Dédé Saint-Prix": 1,
+        "Kassav'": 1,
+        "Jean-Michel Rotin": 1,
+        "Jean-Claude Naimro": 1,
+        "T-vice": 1,
+        "Joëlle Ursull": 1,
+        "Les Aiglons": 1,
+        "Dominik Coco": 2,
+        "Dominique Panol": 2,
+        "NICHOLS": 1,
+        "Harmonik": 2,
+        "Claudette et Ti Pierre": 1,
+        "Latin Band": 1,
+        "MASS POWER NOU": 1,
+        "Medhy Custos": 1,
+        "Djakout #1": 2,
+        "Nu-Look": 1,
+        "EDDY EDOUARD": 1,
+        "Yoan": 1,
+        "Gérard Lenorman": 1,
+        "Warren Saada, Nana Fofie": 1,
+        "Ludo": 1,
+        "Perle Lama": 1,
+        "Harry Diboula": 1,
+        "Battery Cremil": 2,
+        "The Teddyson John Project": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav": 1,
+        "Zouklook": 1,
+        "Akiyo": 1,
+        "T-Vice": 2,
+        "Kan'nida": 1,
+        "Gabrieli": 1,
+        "Zouk Factory": 1,
+        "Thierry Fanfant": 1,
+        "Gaoulé Mizik": 1,
+        "Mario Chicot": 1,
+        "Ralph Thamar": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Tabou Combo",
+      "consecutive_same_artist": [
+        {
+          "artist": "Tabou Combo",
+          "position": 5,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "La Guadeloupe chante par ses racines et ses ailes",
+          "L'âme sauvage de la Guadeloupe chante sous nos yeu"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 1835
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "9 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
