@@ -1,0 +1,239 @@
+{
+  "date": "2026-06-17",
+  "generated_at": "2026-06-18T01:14:18.229862Z",
+  "technical": {
+    "summary": {
+      "total_runs": 160,
+      "global_success_rate": 0.99375,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 411.23809523809524,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 376.6190476190476,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 249.0,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 27,
+        "failure": 1,
+        "success_rate": 0.9642857142857143,
+        "avg_duration_s": 149.46428571428572,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 48,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 524.1041666666666,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1678.4285714285713,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 2,
+      "coherence_rate": 0.15384615384615385,
+      "issues_by_type": {
+        "format_invalid": 11,
+        "title_mismatch": 2
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Zin": 2,
+        "Dominik Coco, Fuckly": 1,
+        "LORYN Official": 1,
+        "Kali": 1,
+        "Edith Lefel": 4,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Joëlle Ursull": 1,
+        "Warren Saada": 1,
+        "Alain Ramanisum": 1,
+        "Jacob Desvarieux": 1,
+        "Top Vice": 2,
+        "KASSAV'": 3,
+        "Mario Chicot": 1,
+        "Robert Loyson": 1,
+        "BélO": 2,
+        "Dominique Panol": 2,
+        "Slaï": 3,
+        "Les Aiglons": 1,
+        "Patrick Saint-Eloi": 2,
+        "T-vice": 1,
+        "Harmonik": 1,
+        "T-Vice": 2,
+        "Dominik Coco": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "Nichols": 1,
+        "coco & zia": 1,
+        "Patrick Saint Eloi, Kassav'": 1,
+        "Alix Georges": 1,
+        "Soft": 1,
+        "Baye Mass": 1,
+        "Carine Fabien": 1,
+        "Thierry Cham": 1,
+        "Dédé Saint-Prix": 1,
+        "The L.A. Mass Choir": 1,
+        "Esteban Gabriel": 1,
+        "JOCELYNE BEROARD & PATRICK SAINT-ELOI & JEAN-PHILIPPE MARTHELY": 1,
+        "Gérard Depardieu": 1,
+        "Yoan": 1,
+        "Antonio Carlos Jobim": 1,
+        "Jean-Luc Guanel": 1,
+        "Warren": 1,
+        "Claudette et Ti Pierre": 1,
+        "KALI": 1,
+        "Stony": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Ralph Thamar": 1,
+        "Latin Band": 1,
+        "Patrick Andrey": 1,
+        "DJ Jean-Louis": 1,
+        "Djakout #1": 1,
+        "DJ Zouk": 1,
+        "Marcé, Toumpak": 1,
+        "Orlane": 1,
+        "Jocelyne Labylle, Sonia Dersion, Leïla Chicot": 1,
+        "Jean-Michel Jarre": 1,
+        "Tabou Combo": 1,
+        "Francky Vincent": 1,
+        "EDDY EDOUARD": 1,
+        "Jean Carlos Music Empire": 1,
+        "Sakiyo": 1,
+        "Princess Erika": 1,
+        "Perle Lama": 1,
+        "Harry Diboula": 2,
+        "Kan'nida": 1
+      },
+      "max_artist_repetition": 4,
+      "top_artist": "Edith Lefel",
+      "consecutive_same_artist": [
+        {
+          "artist": "KASSAV'",
+          "position": 12,
+          "count": 2
+        },
+        {
+          "artist": "Edith Lefel",
+          "position": 49,
+          "count": 2
+        },
+        {
+          "artist": "Harry Diboula",
+          "position": 77,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Le souffle sacré de nos mornes",
+          "Petite lumière dans les mornes guadeloupéens"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 1939
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 15% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "11 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
