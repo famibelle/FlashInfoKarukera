@@ -709,5 +709,15 @@
       <itunes:summary>Découvrez l'amour kréyòl à travers musique, nature et traditions en Guadeloupe.</itunes:summary>
       <itunes:keywords>amour,kréyòl,Guadeloupe,traditions,nature,musique,WarrenSaada,NanaFofie</itunes:keywords>
     </item>
+    <item>
+      <title>La terre parle sous nos pas guadeloupéens</title>
+      <description>Découvrez les secrets de la Guadeloupe à travers ses plantes, animaux et légendes ancestrales.</description>
+      <pubDate>Fri, 19 Jun 2026 15:28:14 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-06-19-soir.mp3" length="2105133" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-06-19-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez les secrets de la Guadeloupe à travers ses plantes, animaux et légendes ancestrales.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,tradition,plantes,animaux,légendes,histoire,nature</itunes:keywords>
+    </item>
   </channel>
 </rss>
