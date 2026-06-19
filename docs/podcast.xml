@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Le Sporting du Moule écrit l'histoire en conservant son titre, dans votre flash-info du 19 juin à midi</title>
+      <description><![CDATA[On fait le point à midi chez nous. Vendredi dix-neuf juin deux mille vingt-six, voici les infos de la mi-journée.]]></description>
+      <pubDate>Fri, 19 Jun 2026 09:51:08 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-06/flash-info-20260619-midi.mp3" length="1208013" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20260619-midi</guid>
+      <itunes:duration>01:57</itunes:duration>
+    </item>
+
+<item>
       <title>Poissons ♓ &amp; Gémeaux ♊ : Le karanbolié caresse la lune en silence, dans votre horoscope du 19 juin à midi</title>
       <description><![CDATA[Nous sommes le vendredi 19 juin 2026 et la mer aujourd’hui respire fort, comme si la Soufrière soufflait dans les voiles des frégates. Cet après-midi, écoutez bien : c’est aux Gémeaux, aux Taureaux et aux Poissons que je tends l’oreille, parce que les signes, voyez-vous, ce sont des histoires qu’on se raconte pour ne pas oublier que le ciel aussi a ses marées. Alors prenez votre temps, comme l’igwann sur son rocher, la journée n’est pas finie, elle mijote encore.]]></description>
       <pubDate>Fri, 19 Jun 2026 09:40:49 +0000</pubDate>
@@ -1817,15 +1826,6 @@ Posez la journée comme on dépose un panier de mangues mûres au pied du mangui
       <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/horoscope/2026-05/horoscope-20260505-matin.mp3" length="1908268" type="audio/mpeg" />
       <guid isPermaLink="false">horoscope-20260505-matin</guid>
       <itunes:duration>01:12</itunes:duration>
-    </item>
-
-<item>
-      <title>Météo troublée en Guadeloupe ce midi, attention aux orages, dans votre flash-info du 8 mai à midi</title>
-      <description>Flash info Guadeloupe du 08 May 2026 — édition du midi</description>
-      <pubDate>Fri, 08 May 2026 13:00:46 +0000</pubDate>
-      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-05/flash-info-20260508-midi.mp3" length="526557" type="audio/mpeg" />
-      <guid isPermaLink="false">flash-info-20260508-midi</guid>
-      <itunes:duration>00:20</itunes:duration>
     </item>
 
   </channel>
