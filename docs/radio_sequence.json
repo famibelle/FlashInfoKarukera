@@ -182,7 +182,7 @@
       "title": "Pou an passion",
       "artist": "Edith Lefel",
       "genre": "",
-      "duration": 289
+      "duration": 315
     },
     {
       "type": "music",
@@ -202,11 +202,11 @@
     },
     {
       "type": "music",
-      "videoId": "brxOrz5pqv4",
-      "title": "That's When You Bless Me",
-      "artist": "The L.A. Mass Choir",
+      "videoId": "3NhsuTyfUFY",
+      "title": "Nostalgia",
+      "artist": "Patrick Saint-Eloi",
       "genre": "",
-      "duration": 353
+      "duration": 170
     },
     {
       "type": "music",
@@ -630,6 +630,172 @@
       "duration": 261
     },
     {
+      "type": "music",
+      "videoId": "cmhT5TQ-zOk",
+      "title": "An ba chenn-la (Live)",
+      "artist": "Jean-Philippe Marthély",
+      "genre": "",
+      "duration": 144
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-06-19-midi-18.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W24-belo_robert-loyso_zin.mp3",
+      "label": "Zin, la voix qui porte la douleur et la fierté de nos luttes.",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "iORdYDagezA",
+      "title": "Lemante M",
+      "artist": "Zin",
+      "genre": "",
+      "duration": 385
+    },
+    {
+      "type": "music",
+      "videoId": "6jJ5c4u1Xww",
+      "title": "Pa lage sa (feat. Mandela)",
+      "artist": "BélO",
+      "genre": "",
+      "duration": 225
+    },
+    {
+      "type": "music",
+      "videoId": "SX1yYZKj0Zs",
+      "title": "Jean fouillé piè fouillé",
+      "artist": "Robert Loyson",
+      "genre": "",
+      "duration": 236
+    },
+    {
+      "type": "music",
+      "videoId": "_sLCaJ5UkSk",
+      "title": "Etinn limié la",
+      "artist": "Nichols",
+      "genre": "",
+      "duration": 264
+    },
+    {
+      "type": "music",
+      "videoId": "zdTDPzuxrzU",
+      "title": "Lanmou èpi respe",
+      "artist": "Jim Rama, Patrick Andrey",
+      "genre": "",
+      "duration": 257
+    },
+    {
+      "type": "music",
+      "videoId": "niFurzfZfsw",
+      "title": "Bo Kote M",
+      "artist": "Harmonik",
+      "genre": "",
+      "duration": 268
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-06-19-midi-24.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W24-dominik-coco_joey-jeffrey_yves-thole-e.mp3",
+      "label": "Joey Jeffrey, la voix qui porte l’âme de Pointe-à-Pitre comme un Ka qui résonne sur les mornes.",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "mJ9OuA6M3nE",
+      "title": "Five in The Morning (Freestyle)",
+      "artist": "JOEY JEFFREY",
+      "genre": "",
+      "duration": 173
+    },
+    {
+      "type": "music",
+      "videoId": "OfhjjEocV-g",
+      "title": "Soley sur mon frère",
+      "artist": "Dominik Coco",
+      "genre": "",
+      "duration": 106
+    },
+    {
+      "type": "music",
+      "videoId": "iSvQLYccZio",
+      "title": "Péyi a gwoka",
+      "artist": "YVES THOLE ET SON KONVWAKA",
+      "genre": "",
+      "duration": 260
+    },
+    {
+      "type": "transition",
+      "subtype": "flash_info",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-06/flash-info-20260619-soir.mp3",
+      "label": "Flash Info Guadeloupe — 2026-06-19, édition du soir",
+      "icon": "📰",
+      "pending": true
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W24-dominik-coco_dede-saint-p_kim-sejeong.mp3",
+      "label": "Dédé Saint-Prix, le gwoka qui murmure les légendes des mornes sous les étoiles.\n\nKIM SEJEONG, une voix pure qui traverse les océans comme un souffle de liberté.",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "nSG6d2Po8OM",
+      "title": "An tjè koko",
+      "artist": "Dédé Saint-Prix",
+      "genre": "",
+      "duration": 275
+    },
+    {
+      "type": "music",
+      "videoId": "s3kAUyZ1QyU",
+      "title": "Top or Cliff",
+      "artist": "KIM SEJEONG",
+      "genre": "",
+      "duration": 222
+    },
+    {
+      "type": "music",
+      "videoId": "lvHbeqlUFn0",
+      "title": "Clair obscur",
+      "artist": "Dominik Coco",
+      "genre": "",
+      "duration": 250
+    },
+    {
+      "type": "music",
+      "videoId": "pGhhhQdHaCM",
+      "title": "Emiyo",
+      "artist": "Mario Chicot",
+      "genre": "",
+      "duration": 306
+    },
+    {
+      "type": "music",
+      "videoId": "_qsNxZxuIyQ",
+      "title": "An ké ba'w (feat. Ambiance 3D)",
+      "artist": "Patrick Andrey",
+      "genre": "",
+      "duration": 223
+    },
+    {
+      "type": "music",
+      "videoId": "nQxHG_V1AGo",
+      "title": "An dènyé bo",
+      "artist": "Jean-Marie Ragald",
+      "genre": "",
+      "duration": 227
+    },
+    {
       "type": "capsule",
       "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-06-19-soir-0.mp3",
       "label": "Capsule culturelle Guadeloupe",
@@ -691,9 +857,9 @@
     },
     {
       "type": "music",
-      "videoId": "ydLADkoFpyQ",
-      "title": "An dé janm an-nou",
-      "artist": "G'Ny",
+      "videoId": "68dm_ZDoQvQ",
+      "title": "Just U & Me",
+      "artist": "Fox, Naelle",
       "genre": "",
       "duration": 234
     },
