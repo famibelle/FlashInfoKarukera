@@ -719,5 +719,15 @@
       <itunes:summary>Découvrez les secrets de la Guadeloupe à travers ses plantes, animaux et légendes ancestrales.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,tradition,plantes,animaux,légendes,histoire,nature</itunes:keywords>
     </item>
+    <item>
+      <title>L'âme verte et salée de la Guadeloupe</title>
+      <description>Découvrez la Guadeloupe à travers ses plantes, ses oiseaux et ses légendes vivantes.</description>
+      <pubDate>Sat, 20 Jun 2026 03:41:58 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-06-20-matin.mp3" length="2209605" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-06-20-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez la Guadeloupe à travers ses plantes, ses oiseaux et ses légendes vivantes.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,créole,colibri,aloès,résistance,tradition,nature</itunes:keywords>
+    </item>
   </channel>
 </rss>
