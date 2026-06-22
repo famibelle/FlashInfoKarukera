@@ -227,6 +227,18 @@ def normalize_for_tts(text: str) -> str:
 
 # ── TTS ───────────────────────────────────────────────────────────────────────
 
+class TTSGuardrailError(RuntimeError):
+    """Le texte a été bloqué par la politique de modération (guardrail) de l'API TTS.
+
+    Levée quand l'API renvoie un 403 « guardrail_violation » et qu'aucune
+    régénération n'a permis de produire un texte accepté.
+    """
+
+
+def _is_guardrail_403(code: int, body: str) -> bool:
+    return code == 403 and ("guardrail" in body.lower() or '"code":"1920"' in body)
+
+
 def tts_call(
     text: str,
     output_path: Path,
@@ -234,37 +246,66 @@ def tts_call(
     *,
     api_key: str | None = None,
     _retries: int = 4,
+    regen_fn=None,
+    _guardrail_retries: int = 2,
 ) -> None:
+    """Synthétise `text` vers `output_path`.
+
+    Si l'API bloque le texte par garde-fou (403 guardrail) et que `regen_fn`
+    est fourni, ce callback est appelé pour produire un texte de remplacement
+    (déjà normalisé, prêt pour le TTS) et la requête est rejouée — jusqu'à
+    `_guardrail_retries` fois. Sans `regen_fn`, une `TTSGuardrailError` est levée.
+    """
     if not text.strip():
         raise RuntimeError("tts_call: texte vide")
     _key = api_key or os.environ["MISTRAL_API_KEY"]
-    payload = json.dumps({
-        "input": text,
-        "model": TTS_MODEL,
-        "response_format": "mp3",
-        "voice_id": voice_id,
-    }).encode()
-    req = urllib.request.Request(
-        "https://api.mistral.ai/v1/audio/speech",
-        data=payload,
-        headers={
-            "Authorization": f"Bearer {_key}",
-            "Content-Type": "application/json",
-        },
-    )
-    for attempt in range(_retries + 1):
+
+    def _build_req(_text: str) -> urllib.request.Request:
+        payload = json.dumps({
+            "input": _text,
+            "model": TTS_MODEL,
+            "response_format": "mp3",
+            "voice_id": voice_id,
+        }).encode()
+        return urllib.request.Request(
+            "https://api.mistral.ai/v1/audio/speech",
+            data=payload,
+            headers={
+                "Authorization": f"Bearer {_key}",
+                "Content-Type": "application/json",
+            },
+        )
+
+    req = _build_req(text)
+    response = None
+    attempt = 0          # tentatives sur erreurs transitoires (429/5xx)
+    guardrail_attempts = 0   # régénérations sur 403 guardrail
+    while True:
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
                 response = json.loads(r.read())
             break
         except urllib.error.HTTPError as e:
             body = e.read().decode(errors="replace")
+            if _is_guardrail_403(e.code, body):
+                if regen_fn and guardrail_attempts < _guardrail_retries:
+                    guardrail_attempts += 1
+                    print(f"   🛡️  TTS bloqué par guardrail — régénération du texte "
+                          f"(tentative {guardrail_attempts}/{_guardrail_retries})…")
+                    new_text = (regen_fn() or "").strip()
+                    if not new_text:
+                        raise TTSGuardrailError(
+                            f"TTS 403 guardrail — régénération vide : {body}") from None
+                    req = _build_req(new_text)
+                    continue
+                raise TTSGuardrailError(f"TTS HTTP 403 (guardrail) : {body}") from None
             if e.code in (429, 500, 502, 503, 504) and attempt < _retries:
                 wait = 15 * 2 ** attempt
-                print(f"   ⏳ TTS {e.code} — attente {wait}s (tentative {attempt + 1}/{_retries})…")
+                attempt += 1
+                print(f"   ⏳ TTS {e.code} — attente {wait}s (tentative {attempt}/{_retries})…")
                 time.sleep(wait)
-            else:
-                raise RuntimeError(f"TTS HTTP {e.code} ({e.reason}): {body}") from None
+                continue
+            raise RuntimeError(f"TTS HTTP {e.code} ({e.reason}): {body}") from None
     if "audio_data" not in response:
         raise RuntimeError(f"TTS error: {response}")
     

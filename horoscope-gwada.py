@@ -136,6 +136,7 @@ from tts_utils import (
     TTS_MODEL, STT_MODEL, TTS_VOICE_DEFAULT, TTS_VOICES,
     normalize_for_tts as _normalize_for_tts,
     tts_call as _tts_call,
+    TTSGuardrailError,
     transcribe_with_words,
     resolve_stinger,
 )
@@ -2045,7 +2046,11 @@ def main():
     intro_path = seg_dir / "seg_intro.mp3"
     if not args.text_only:
         print(f"🔊 TTS intro → {intro_path.name}")
-        _tts_call(_normalize_for_tts(intro_text), intro_path, TTS_VOICES["curious"])
+        def _regen_intro() -> str:
+            return _normalize_for_tts(_strip_markdown(
+                call_mistral(intro_system, intro_user, temperature=0.9, max_tokens=240)))
+        _tts_call(_normalize_for_tts(intro_text), intro_path, TTS_VOICES["curious"],
+                  regen_fn=_regen_intro)
 
     # ── Signe du jour : flore ou faune caribéenne ────────────────────────────
     recent_flora = _load_recent_flora()
@@ -2074,7 +2079,14 @@ def main():
         used_flora = list(dict.fromkeys(used_flora + [signe_entry["nom_creole"]]))
         if not args.text_only:
             print(f"🔊 TTS signe du jour → {signe_path.name}")
-            _tts_call(_normalize_for_tts(signe_text), signe_path, TTS_VOICES["curious"])
+            def _regen_signe() -> str:
+                if signe_type == "flore":
+                    new = _generate_flora_text(maryse_base, signe_entry, weather_summary, moment_label)
+                else:
+                    new = _generate_faune_text(maryse_base, signe_entry, weather_summary, moment_label)
+                return _normalize_for_tts(new)
+            _tts_call(_normalize_for_tts(signe_text), signe_path, TTS_VOICES["curious"],
+                      regen_fn=_regen_signe)
     else:
         print("Signe du jour ignoré (aucun candidat disponible)")
 
@@ -2156,7 +2168,11 @@ def main():
         seg_path = seg_dir / f"seg_{i:02d}.mp3"
         if not args.text_only:
             print(f"🔊 [{i + 1}/{n_signs}] TTS {sign_fr} → {seg_path.name}")
-            _tts_call(_normalize_for_tts(segment), seg_path, TTS_VOICES["curious"])
+            def _regen_sign(_system=system, _user=user_prompt) -> str:
+                return _normalize_for_tts(_strip_markdown(
+                    call_mistral(_system, _user, temperature=0.9, max_tokens=600)))
+            _tts_call(_normalize_for_tts(segment), seg_path, TTS_VOICES["curious"],
+                      regen_fn=_regen_sign)
             seg_paths.append(seg_path)
 
     # ── Outro dédiée ──────────────────────────────────────────────────────────
@@ -2173,7 +2189,11 @@ def main():
     outro_path = seg_dir / "seg_outro.mp3"
     if not args.text_only:
         print(f"🔊 TTS outro → {outro_path.name}")
-        _tts_call(_normalize_for_tts(outro_text), outro_path, TTS_VOICES["curious"])
+        def _regen_outro() -> str:
+            return _normalize_for_tts(_strip_markdown(
+                call_mistral(outro_system, outro_user, temperature=0.9, max_tokens=100)))
+        _tts_call(_normalize_for_tts(outro_text), outro_path, TTS_VOICES["curious"],
+                  regen_fn=_regen_outro)
 
     archive_texts.append(f"=== OUTRO ===\n{outro_text}")
 
