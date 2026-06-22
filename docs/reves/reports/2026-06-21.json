@@ -1,0 +1,223 @@
+{
+  "date": "2026-06-21",
+  "generated_at": "2026-06-22T01:17:37.926295Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 0.9813664596273292,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 19,
+        "failure": 1,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 473.42857142857144,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 427.23809523809524,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 253.04761904761904,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 187.35714285714286,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 48,
+        "failure": 1,
+        "success_rate": 0.9795918367346939,
+        "avg_duration_s": 503.0204081632653,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1891.142857142857,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 1,
+      "coherence_rate": 0.07692307692307693,
+      "issues_by_type": {
+        "format_invalid": 12,
+        "title_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Akiyo": 2,
+        "T-Vice": 1,
+        "Soft": 1,
+        "Orlane": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Djakout #1": 3,
+        "Pure Energy Crew": 1,
+        "BélO": 2,
+        "JOCELYNE BEROARD": 1,
+        "Joëlle Ursull": 2,
+        "Fanny J": 2,
+        "Tanya St-Val": 1,
+        "BEL": 1,
+        "Milca": 2,
+        "Edith Lefel": 2,
+        "Yoan": 2,
+        "Les Aiglons": 1,
+        "Medhy Custos": 1,
+        "Kali": 1,
+        "Dominique Panol": 2,
+        "Gilles Floro": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Dominik Coco": 2,
+        "Ti Paris": 1,
+        "Jocelyne Labylle": 1,
+        "R. Carlos Nakai, Keola Beamer": 1,
+        "Ludo": 1,
+        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
+        "Thierry Cham": 1,
+        "Sakiyo": 1,
+        "Battery Cremil": 3,
+        "Francky Vincent": 1,
+        "Jacob Desvarieux, Kassav', Georges Décimus": 1,
+        "Harmonik": 2,
+        "PERLE LAMA": 1,
+        "Esteban Gabriel": 1,
+        "Patrick Saint-Eloi": 3,
+        "Princess Liz": 1,
+        "Nichols": 1,
+        "Nu-Look": 1,
+        "Tabou Combo": 3,
+        "Claudette et Ti Pierre": 1,
+        "Jim Rama, Patrick Andrey": 1,
+        "Carimi": 2,
+        "Meryl": 1,
+        "JACOB F. DESVARIEUX/GEORGES DECIMUS": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Jean-Philippe Marthély": 1,
+        "Zin": 1,
+        "Kan'nida": 1,
+        "Caroline Guenette": 1,
+        "Jean Carlos Music Empire": 1,
+        "KASSAV'": 3,
+        "Chiré Ban'n": 1,
+        "Fox, Naelle": 1,
+        "Ralph Thamar": 1,
+        "The Teddyson John Project": 1,
+        "Djakout # 1": 1,
+        "Princess Erika": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Djakout #1",
+      "consecutive_same_artist": [
+        {
+          "artist": "KASSAV'",
+          "position": 64,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "L'âme des mangroves murmure encore",
+          "Résistance en racines et en étoiles"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 2
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 2108
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 8% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "12 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
