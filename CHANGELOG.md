@@ -10,6 +10,15 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Sécur
 ## [Non publié]
 
 ### Corrigé
+- Robustesse réseau des appels Mistral : les boucles de *retry* ne rattrapaient
+  que les `HTTPError` (429/5xx) et laissaient remonter les `TimeoutError` /
+  `URLError`, faisant échouer tout le pipeline dès le premier timeout réseau
+  (cf. émission culturelle plantée le 2026-06-22, run `27967444877`). Les boucles
+  critiques rejouent désormais aussi sur erreur réseau, avec le même *backoff*
+  exponentiel : `_mistral_chat` + classifieur de ton (`generate_emission.py`),
+  `_mistral_chat` (`generate_interview.py`), liners (`generate_liner.py`),
+  ainsi que le TTS et le STT Voxtral (`tts_utils.py`, partagés par tous les
+  pipelines).
 - TTS Voxtral : régénération automatique du texte sur un 403 *guardrail* Mistral.
   `tts_call` distingue désormais ce cas via `TTSGuardrailError` et accepte un
   callback `regen_fn` (re-génération à `temperature=0.9` puis rejeu de la requête),

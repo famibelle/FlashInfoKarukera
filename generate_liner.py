@@ -152,6 +152,13 @@ def _mistral_chat(system: str, user: str, max_retries: int = 4, label: str = "")
                 wait *= 2
             else:
                 raise
+        except (urllib.error.URLError, TimeoutError) as e:
+            if attempt < max_retries:
+                logger.warning(f"  Mistral réseau [{label}] ({e}) — attente {wait}s (tentative {attempt}/{max_retries})")
+                time.sleep(wait)
+                wait *= 2
+            else:
+                raise
 
 
 # ── Génération des liners ─────────────────────────────────────────────────────

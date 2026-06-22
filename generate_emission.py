@@ -367,6 +367,13 @@ def _mistral_chat(system: str, user: str) -> str:
                 time.sleep(wait)
             else:
                 raise RuntimeError(f"LLM HTTP {e.code}: {body}") from None
+        except (urllib.error.URLError, TimeoutError) as e:
+            if attempt < 3:
+                wait = 15 * 2 ** attempt
+                print(f"   ⏳ LLM réseau ({e}) — attente {wait}s…")
+                time.sleep(wait)
+            else:
+                raise RuntimeError(f"LLM réseau: {e}") from None
     raise RuntimeError("LLM : trop de tentatives")
 
 
@@ -669,6 +676,13 @@ def _mistral_chat_classifier(system: str, user: str) -> str:
                 time.sleep(wait)
             else:
                 raise RuntimeError(f"Tone classifier HTTP {e.code}: {body}") from None
+        except (urllib.error.URLError, TimeoutError) as e:
+            if attempt < 3:
+                wait = 10 * 2 ** attempt
+                print(f"   ⏳ Tone classifier réseau ({e}) — attente {wait}s…")
+                time.sleep(wait)
+            else:
+                raise RuntimeError(f"Tone classifier réseau: {e}") from None
     raise RuntimeError("Tone classifier: trop de tentatives")
 
 

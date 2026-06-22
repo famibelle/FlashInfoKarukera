@@ -306,6 +306,14 @@ def tts_call(
                 time.sleep(wait)
                 continue
             raise RuntimeError(f"TTS HTTP {e.code} ({e.reason}): {body}") from None
+        except (urllib.error.URLError, TimeoutError) as e:
+            if attempt < _retries:
+                wait = 15 * 2 ** attempt
+                attempt += 1
+                print(f"   ⏳ TTS réseau ({e}) — attente {wait}s (tentative {attempt}/{_retries})…")
+                time.sleep(wait)
+                continue
+            raise RuntimeError(f"TTS réseau: {e}") from None
     if "audio_data" not in response:
         raise RuntimeError(f"TTS error: {response}")
     
@@ -369,6 +377,13 @@ def _stt_raw(audio_path: Path, word_timestamps: bool = False, *, api_key: str | 
             else:
                 body_err = e.read().decode(errors="replace")
                 raise RuntimeError(f"STT HTTP {e.code}: {body_err}") from None
+        except (urllib.error.URLError, TimeoutError) as e:
+            if attempt < 4:
+                wait = 10 * 2 ** attempt
+                print(f"   ⏳ STT réseau ({e}) — attente {wait}s (tentative {attempt + 1}/5)…")
+                time.sleep(wait)
+            else:
+                raise RuntimeError(f"STT réseau: {e}") from None
 
 
 def transcribe_audio(audio_path: Path, *, api_key: str | None = None) -> str:
