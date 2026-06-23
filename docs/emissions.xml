@@ -789,5 +789,15 @@
       <itunes:summary>Découvrez la Guadeloupe à travers ses racines, sa nature sacrée et ses légendes vivantes.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,traditions,nature,histoire,rainette,friyapen,patrimoine</itunes:keywords>
     </item>
+    <item>
+      <title>Drapo an mwen Lari Ginen</title>
+      <description>Voyage au cœur de la mémoire guadeloupéenne à travers nature et résistance culturelle.</description>
+      <pubDate>Tue, 23 Jun 2026 15:21:30 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-06-23-soir.mp3" length="1958685" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-06-23-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Voyage au cœur de la mémoire guadeloupéenne à travers nature et résistance culturelle.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,mémoire,nature,tradition,Kalinago,plantes,résistance</itunes:keywords>
+    </item>
   </channel>
 </rss>
