@@ -25,6 +25,12 @@ Catégories utilisées : `Ajouté`, `Modifié`, `Corrigé`, `Supprimé`, `Sécur
   câblé sur les 4 points de synthèse de l'horoscope. Voir
   `DEBUG_NOTES_TTS_GUARDRAIL_2026-06-22.md`.
 
+### Modifié
+- GitHub Actions : montée de version des actions tournant encore sur Node 20
+  (déprécié) — `actions/checkout` v4→v5, `actions/setup-python` v4/v5→v6,
+  `actions/cache` v3→v4. Supprime l'avertissement de dépréciation Node 20 sur
+  l'ensemble des workflows.
+
 ### Ajouté
 - `CLAUDE.md` — guide d'architecture pour Claude Code.
 - `CHANGELOG.md` — ce fichier, pour suivre les versions.

@@ -220,7 +220,7 @@ jobs:
         run: echo "time=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Vérifier si émission existe
         id: check_emission
