@@ -799,5 +799,15 @@
       <itunes:summary>Voyage au cœur de la mémoire guadeloupéenne à travers nature et résistance culturelle.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,mémoire,nature,tradition,Kalinago,plantes,résistance</itunes:keywords>
     </item>
+    <item>
+      <title>La forêt chantante des pierres et des prières</title>
+      <description>Découvrez la nature guadeloupéenne comme résistance vivante, entre symboles et traditions ancestrale</description>
+      <pubDate>Wed, 24 Jun 2026 03:42:24 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-06-24-matin.mp3" length="1800381" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-06-24-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez la nature guadeloupéenne comme résistance vivante, entre symboles et traditions ancestrale</itunes:summary>
+      <itunes:keywords>nature,Guadeloupe,résistance,symboles,forêt,traditions,créole,Kali</itunes:keywords>
+    </item>
   </channel>
 </rss>
