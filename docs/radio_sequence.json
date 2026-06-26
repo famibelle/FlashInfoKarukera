@@ -67,6 +67,38 @@
       "duration": 267
     },
     {
+      "type": "music",
+      "videoId": "vbeIKHl9cHM",
+      "title": "La réunion lé la (Ambiance live)",
+      "artist": "Alian Ramanisum",
+      "genre": "",
+      "duration": 242
+    },
+    {
+      "type": "music",
+      "videoId": "v578ypzgcWo",
+      "title": "Nan Kisa M Pran La",
+      "artist": "Djakout #1",
+      "genre": "",
+      "duration": 351
+    },
+    {
+      "type": "music",
+      "videoId": "pXzIo0PSLak",
+      "title": "On Ti Moman",
+      "artist": "Jocelyne Labylle",
+      "genre": "",
+      "duration": 248
+    },
+    {
+      "type": "music",
+      "videoId": "clKc6LvgVYQ",
+      "title": "Wasn't Meant to Be",
+      "artist": "Nu-Look",
+      "genre": "",
+      "duration": 420
+    },
+    {
       "type": "capsule",
       "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-06-26-matin-0.mp3",
       "label": "Capsule culturelle Guadeloupe",
@@ -397,9 +429,75 @@
     },
     {
       "type": "music",
-      "videoId": "nHrZLRxvbUs",
-      "title": "On doucè",
-      "artist": "Gilles Floro",
+      "videoId": "U-m1CWhbKU8",
+      "title": "Mwen Bisoin La Pé",
+      "artist": "Battery Cremil",
+      "genre": "",
+      "duration": 292
+    },
+    {
+      "type": "music",
+      "videoId": "RMXQmqg1N54",
+      "title": "Timidité",
+      "artist": "T-vice",
+      "genre": "",
+      "duration": 377
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-06-26-midi-24.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W25-jacob-f-des_jocelyne-ber_joelle-ursul.mp3",
+      "label": "Jocelyne Béroard, la voix qui porte l’âme de la Guadeloupe à travers les décennies.",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "j7XVKwvfj4Y",
+      "title": "Kolé Séré",
+      "artist": "JOCELYNE BEROARD",
+      "genre": "",
+      "duration": 284
+    },
+    {
+      "type": "music",
+      "videoId": "Zovyt2rY7pw",
+      "title": "Tim-Tim Bwa Sek",
+      "artist": "JACOB F. DESVARIEUX & Georges Decimus",
+      "genre": "",
+      "duration": 265
+    },
+    {
+      "type": "music",
+      "videoId": "7i8u9sUsJJw",
+      "title": "Comme dans un film",
+      "artist": "Joëlle Ursull",
+      "genre": "",
+      "duration": 278
+    },
+    {
+      "type": "transition",
+      "subtype": "flash_info",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-06/flash-info-20260626-soir.mp3",
+      "label": "Flash Info Guadeloupe — 2026-06-26, édition du soir",
+      "icon": "📰",
+      "pending": true
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W25-dominik-coco_jocelyne-ber_kannida.mp3",
+      "label": "Dominik Coco, la voix qui porte l’âme des mornes sous les étoiles.",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "solJNrYJfNA",
+      "title": "Isislôv",
+      "artist": "Dominik Coco",
       "genre": "",
       "duration": 255
     },
