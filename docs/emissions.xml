@@ -849,5 +849,15 @@
       <itunes:summary>Découvrez l'histoire vivante de la Guadeloupe à travers résistance, mémoire et trésors créoles.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,créole,résistance,mémoire,traditions,histoire,Amérindiens</itunes:keywords>
     </item>
+    <item>
+      <title>Zandoli et manguié chantent la Guadeloupe</title>
+      <description>Découvrez la Guadeloupe à travers ses symboles de résilience : zouk, zandoli et manguier !</description>
+      <pubDate>Fri, 26 Jun 2026 15:18:55 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-06-26-soir.mp3" length="1886949" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-06-26-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez la Guadeloupe à travers ses symboles de résilience : zouk, zandoli et manguier !</itunes:summary>
+      <itunes:keywords>zouk,Guadeloupe,zandoli,manguié,résilience,culture,antilles,nature</itunes:keywords>
+    </item>
   </channel>
 </rss>
