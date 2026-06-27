@@ -1,0 +1,231 @@
+{
+  "date": "2026-06-26",
+  "generated_at": "2026-06-27T01:05:34.236854Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 0.9813664596273292,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 20,
+        "failure": 1,
+        "success_rate": 0.9523809523809523,
+        "avg_duration_s": 403.95238095238096,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 468.42857142857144,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 277.6666666666667,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 27,
+        "failure": 1,
+        "success_rate": 0.9642857142857143,
+        "avg_duration_s": 151.78571428571428,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 48,
+        "failure": 1,
+        "success_rate": 0.9795918367346939,
+        "avg_duration_s": 607.5102040816327,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1940.6190476190477,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 1,
+      "coherence_rate": 0.07692307692307693,
+      "issues_by_type": {
+        "format_invalid": 12,
+        "title_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Dominik Coco, Fuckly": 1,
+        "Medhy Custos": 1,
+        "Joëlle Ursull": 1,
+        "DJ Jean-Louis": 1,
+        "Energy": 1,
+        "Dominik Coco": 2,
+        "Edith Lefel": 3,
+        "Carlos Nilson": 1,
+        "Top Vice": 2,
+        "Slaï": 2,
+        "Ludo": 2,
+        "Ralph Thamar": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Mario Chicot": 1,
+        "Sweet Micky": 1,
+        "Stony, Oswald": 1,
+        "Princesse Dinie": 1,
+        "Les Aiglons": 1,
+        "Patrick Saint-Eloi": 2,
+        "Mass Vocal": 1,
+        "EDDY EDOUARD": 1,
+        "Fanny J": 1,
+        "Zin": 3,
+        "Georges Decimus, Kassav": 1,
+        "Jocelyne Labylle": 1,
+        "Milca": 1,
+        "Alain Ramanisum": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Battery Cremil": 1,
+        "Dominique Panol": 3,
+        "JOCELYNE BEROARD": 1,
+        "Nu-Look": 1,
+        "Lutchiana": 1,
+        "Gérard Lenorman": 1,
+        "Ti Paris": 1,
+        "Dédé Saint-Prix": 1,
+        "The Peace Accord": 1,
+        "T-Vice": 1,
+        "Akiyo": 1,
+        "Fabien Georges": 1,
+        "Klimax": 1,
+        "Sakiyo": 1,
+        "Harmonik": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Jean Luc Guanel": 1,
+        "Harry Diboula": 1,
+        "KASSAV'": 1,
+        "Kassav'": 1,
+        "T-vice": 1,
+        "Tabou Combo": 2,
+        "Orlane": 1,
+        "KALI": 1,
+        "Experience 7": 1,
+        "Francky Vincent": 1,
+        "EXILE": 1,
+        "Jacob Desvarieux": 1,
+        "Gaoulé Mizik": 1,
+        "Carimi": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "Patrick St Eloi": 1,
+        "Jeff Joseph": 1,
+        "Tanya St-Val": 2,
+        "DJ Zouk": 1,
+        "Djakout #1": 1,
+        "Nichols": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Meryl": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Edith Lefel",
+      "consecutive_same_artist": [
+        {
+          "artist": "Tanya St-Val",
+          "position": 71,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Géants d'hier zansèt et parfums d'éternité",
+          "Zandoli et manguié chantent la Guadeloupe"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 2355
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 8% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "12 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
