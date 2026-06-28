@@ -889,5 +889,15 @@
       <itunes:summary>Découvrez comment la Guadeloupe résiste à travers sa nature, ses plantes et ses traditions ancestral</itunes:summary>
       <itunes:keywords>Guadeloupe,résistance,nature,traditions,plantes,ancestral,krapo,alowès</itunes:keywords>
     </item>
+    <item>
+      <title>Des racines, des cœurs et la mer qui chante</title>
+      <description>Plongez dans les légendes guadeloupéennes entre terre, mer et traditions ancestrales.</description>
+      <pubDate>Sun, 28 Jun 2026 14:55:11 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-06-28-soir.mp3" length="1344141" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-06-28-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Plongez dans les légendes guadeloupéennes entre terre, mer et traditions ancestrales.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,traditions,mer,ancêtres,Kalinagos,folklore,patrimoine</itunes:keywords>
+    </item>
   </channel>
 </rss>
