@@ -1,0 +1,231 @@
+{
+  "date": "2026-06-27",
+  "generated_at": "2026-06-28T01:10:43.189524Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 0.9813664596273292,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 20,
+        "failure": 1,
+        "success_rate": 0.9523809523809523,
+        "avg_duration_s": 407.57142857142856,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 470.23809523809524,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 279.85714285714283,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 27,
+        "failure": 1,
+        "success_rate": 0.9642857142857143,
+        "avg_duration_s": 155.21428571428572,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 48,
+        "failure": 1,
+        "success_rate": 0.9795918367346939,
+        "avg_duration_s": 610.8367346938776,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1955.7619047619048,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 4,
+      "coherence_rate": 0.3076923076923077,
+      "issues_by_type": {
+        "format_invalid": 7,
+        "artist_mismatch": 2,
+        "title_mismatch": 3
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Nu-Look": 1,
+        "Warren Saada": 1,
+        "KASSAV'": 3,
+        "Tabou Combo": 2,
+        "The Peace Accord": 1,
+        "T-vice": 1,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "EDDY EDOUARD": 1,
+        "Kan'nida": 2,
+        "Zouklook": 1,
+        "Battery Cremil": 3,
+        "Gérard Lenorman": 1,
+        "Caroline Guenette": 1,
+        "Mario Chicot": 3,
+        "Carimi": 2,
+        "Princess Erika": 2,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Edith Lefel": 2,
+        "JOCELYNE BEROARD": 1,
+        "Warren Saada, Nana Fofie": 1,
+        "ROBERT LOYSON": 1,
+        "Dominique Panol": 2,
+        "Jean-Marie Ragald": 1,
+        "Djakout #1": 2,
+        "Gilles Floro": 2,
+        "MASS POWER NOU": 1,
+        "Pure Energy Crew": 1,
+        "JEAN-PHILIPPE MARTHELY": 1,
+        "Akiyo": 2,
+        "Warren": 1,
+        "Experience 7": 1,
+        "DJ Jean-Louis": 1,
+        "Yoan": 1,
+        "Meryl": 1,
+        "Jeff Joseph": 1,
+        "Top Vice": 1,
+        "Ludo": 1,
+        "Zin": 3,
+        "Teddyson John": 1,
+        "BélO": 2,
+        "G'Ny": 1,
+        "Ralph Thamar": 1,
+        "Georges Decimus, Kassav": 1,
+        "Stony": 1,
+        "Dominik Coco": 1,
+        "Medhy Custos": 1,
+        "Stony, Oswald": 1,
+        "KALI": 1,
+        "Harry Diboula": 1,
+        "Gaoulé Mizik": 1,
+        "Emile Volel & Tanya Saint-Val": 1,
+        "Perle Lama": 1,
+        "Mass": 1,
+        "Joëlle Ursull": 1,
+        "Ralph Thamar, Jean-Claude Naimro": 1,
+        "Milca": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Jean-Philippe Marthély": 1,
+        "Chiré Ban'n": 1,
+        "Yoan, Axel Tony": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "KASSAV'",
+      "consecutive_same_artist": [
+        {
+          "artist": "Edith Lefel",
+          "position": 18,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Guadeloupe liané ka fé résistans",
+          "Graine de résistance sous le ciel kréyòl"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 2407
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 31% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "7 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "2 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
