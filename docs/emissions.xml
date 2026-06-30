@@ -929,5 +929,15 @@
       <itunes:summary>Découvrez les trésors invisibles de la Guadeloupe : nature, histoire et saveurs locales.</itunes:summary>
       <itunes:keywords>Guadeloupe,nature,kwikwi,citronpéyi,cuisinecréole,folklore,patrimoine,traditions</itunes:keywords>
     </item>
+    <item>
+      <title>La Guadeloupe chante à voix basse</title>
+      <description>Découvrez la Guadeloupe à travers ses plantes, oiseaux et secrets historiques qui résistent et vibre</description>
+      <pubDate>Tue, 30 Jun 2026 15:19:57 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-06-30-soir.mp3" length="1851069" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-06-30-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez la Guadeloupe à travers ses plantes, oiseaux et secrets historiques qui résistent et vibre</itunes:summary>
+      <itunes:keywords>Guadeloupe,nature,histoire,résistance,oiseaux,plantes,tradition,culture</itunes:keywords>
+    </item>
   </channel>
 </rss>
