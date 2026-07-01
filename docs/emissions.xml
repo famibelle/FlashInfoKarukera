@@ -949,5 +949,15 @@
       <itunes:summary>Découvrez les forces invisibles de la Guadeloupe à travers nature, résistance et mémoire vivante.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,résistance,nature,mémoire,traditions,racines,patrimoine</itunes:keywords>
     </item>
+    <item>
+      <title>Mémoire vivante : quand la terre chuchote</title>
+      <description>Voyage dans les racines de la Guadeloupe : nature, histoire et résistance à travers ses symboles.</description>
+      <pubDate>Wed, 01 Jul 2026 15:25:19 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-07-01-soir.mp3" length="1770381" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-07-01-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Voyage dans les racines de la Guadeloupe : nature, histoire et résistance à travers ses symboles.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,histoire,nature,résistance,symboles,tradition,patrimoine</itunes:keywords>
+    </item>
   </channel>
 </rss>
