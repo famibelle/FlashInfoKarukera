@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:ns0="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
   <channel>
     <title>Karukera — Flash Info &amp; Horoscope</title>
     <link>https://famibelle.github.io/FlashInfoKarukera/</link>
@@ -7,21 +7,22 @@
     <language>fr</language>
     <copyright>© Botiran</copyright>
     <itunes:author>Botiran</itunes:author>
-    <itunes:owner>
-      <itunes:name>Botiran</itunes:name>
-      <itunes:email>medhi.famibelle@outlook.fr</itunes:email>
-    </itunes:owner>
-    <itunes:image href="https://famibelle.github.io/FlashInfoKarukera/artwork.jpg" />
-    <image>
-      <url>https://famibelle.github.io/FlashInfoKarukera/artwork.jpg</url>
-      <title>Karukera — Flash Info &amp; Horoscope</title>
-      <link>https://famibelle.github.io/FlashInfoKarukera/</link>
-    </image>
-    <itunes:category text="News">
-      <itunes:category text="Daily News" />
-    </itunes:category>
+    <itunes:owner><itunes:name>Botiran</itunes:name><itunes:email>medhi.famibelle@outlook.fr</itunes:email></itunes:owner>
+    <itunes:image href="https://famibelle.github.io/FlashInfoKarukera/artwork.jpg"/>
+    <image><url>https://famibelle.github.io/FlashInfoKarukera/artwork.jpg</url><title>Karukera — Flash Info &amp; Horoscope</title><link>https://famibelle.github.io/FlashInfoKarukera/</link></image>
+    <itunes:category text="News"><itunes:category text="Daily News"/></itunes:category>
     <itunes:explicit>no</itunes:explicit>
+
     <item>
+      <title>Verseau ♒ &amp; Bélier ♈ : La pluie danse sur le flamboyant en feu, dans votre horoscope du 1 juillet à midi</title>
+      <description><![CDATA[Nous sommes le mercredi 1 juillet 2026 et cet après-midi, c’est l’igwann qui nous observe depuis les branches basses de la mémoire. Il a choisi son moment : Cancer, Bélier, Verseau, trois feux sous des formes différentes. À vous de jouer maintenant, sans vous presser, mais sans vous cacher.]]></description>
+      <pubDate>Wed, 01 Jul 2026 09:13:11 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/horoscope/2026-07/horoscope-20260701-midi.mp3" length="2553117" type="audio/mpeg"/>
+      <guid isPermaLink="false">horoscope-20260701-midi</guid>
+      <itunes:duration>03:58</itunes:duration>
+    </item>
+
+<item>
       <title>Fusillade meurtrière à Capesterre-Belle-Eau sous le choc, dans votre flash-info du 1 juillet au matin</title>
       <description>Bèl bonjou Guadeloupe ! Mercredi premier juillet deux mille vingt-six, il est cinq heures vingt-huit à Paris, et ici, le jour se lève avec son lot de nouvelles.</description>
       <pubDate>Wed, 01 Jul 2026 03:35:22 +0000</pubDate>
@@ -29,7 +30,8 @@
       <guid isPermaLink="false">flash-info-20260701-matin</guid>
       <itunes:duration>04:28</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Gémeaux ♊ : Le dachine soulève un cœur en marée, dans votre horoscope du 1 juillet au matin</title>
       <description>Nous sommes le mercredi 1 juillet 2026 et ce matin, la mer est calme, mais sous la surface, les courants travaillent. Écoutez bien : aujourd’hui, c’est aux Cancer, aux Gémeaux et aux Bélier que la parole des ancêtres s’adresse, ceux qui portent l’eau, le vent et le feu en eux, comme trois branches d’un même arbre qui plie sans rompre. Ouvrez les yeux, les oreilles, et surtout, ouvrez la peau : ce qui doit entrer en vous ce matin ne passera pas par les mots seulement.</description>
       <pubDate>Wed, 01 Jul 2026 03:22:36 +0000</pubDate>
@@ -37,7 +39,8 @@
       <guid isPermaLink="false">horoscope-20260701-matin</guid>
       <itunes:duration>03:59</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Éric Jalton condamné à 18 mois avec sursis et 5 ans d’inéligibilité, dans votre flash-info du 30 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le mardi trente juin deux mille vingt-six, il est dix-sept heures cinq. Une journée marquée par des décisions judiciaires et des faits qui rappellent la vigilance dans nos communes.</description>
       <pubDate>Tue, 30 Jun 2026 15:11:43 +0000</pubDate>
@@ -45,7 +48,8 @@
       <guid isPermaLink="false">flash-info-20260630-soir</guid>
       <itunes:duration>03:05</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Poissons ♓ : Le touloulou porte la lune dans sa carapace, dans votre horoscope du 30 juin au soir</title>
       <description>Nous sommes le mardi 30 juin 2026 et ce soir, la lune se lève sur trois signes qui portent l’eau et le feu en eux, Cancer, Bélier, Poissons. Écoutez bien : l’igwann a choisi de se montrer ce soir, immobile dans la nuit chaude, et sa patience est un message. Posez vos fardeaux, laissez la foumi manyok finir son travail dans l’ombre, demain est un autre cyclone.</description>
       <pubDate>Tue, 30 Jun 2026 14:59:04 +0000</pubDate>
@@ -53,7 +57,8 @@
       <guid isPermaLink="false">horoscope-20260630-soir</guid>
       <itunes:duration>03:59</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le jeune Youri Meles sacré Master 2026 à seulement 21 ans, dans votre flash-info du 30 juin à midi</title>
       <description>Flash Info Guadeloupe, mardi trente juin deux mille vingt-six. On fait le point à la mi-journée sur ce qui se passe en Guadeloupe.</description>
       <pubDate>Tue, 30 Jun 2026 09:24:17 +0000</pubDate>
@@ -61,7 +66,8 @@
       <guid isPermaLink="false">flash-info-20260630-midi</guid>
       <itunes:duration>03:03</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Taureau ♉ : La pluie danse entre les doigts du pêcheur et les épaules du Taureau, dans votre horoscope du 30 juin à midi</title>
       <description>Nous sommes le mardi 30 juin 2026 et la mer, ce matin, a laissé sur le sable des traces qui ressemblent à des signes. Cet après-midi, c’est aux Cancer, aux Gémeaux et aux Taureau que je tends l’oreille, écoutez bien ce que le vent vous murmure entre les feuilles du gommier. La journée n’est pas finie, et les esprits des mornes savent que c’est maintenant que tout peut basculer.</description>
       <pubDate>Tue, 30 Jun 2026 09:12:29 +0000</pubDate>
@@ -69,7 +75,8 @@
       <guid isPermaLink="false">horoscope-20260630-midi</guid>
       <itunes:duration>04:08</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>L'art guadeloupéen brille à l'international avec la Pool Art Fair, dans votre flash-info du 30 juin au matin</title>
       <description>Bèl bonjou Guadeloupe ! Nous sommes le mardi trente juin deux mille vingt-six, il est cinq heures vingt-six, et voici votre Flash Info Botiran pour démarrer la journée ensemble.</description>
       <pubDate>Tue, 30 Jun 2026 03:33:23 +0000</pubDate>
@@ -77,7 +84,8 @@
       <guid isPermaLink="false">flash-info-20260630-matin</guid>
       <itunes:duration>04:13</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Sagittaire ♐ &amp; Lion ♌ : La rivière Wasou porte l’ombre dansante du pélikan, dans votre horoscope du 30 juin au matin</title>
       <description>Nous sommes le mardi 30 juin 2026 et ce matin, le ciel se souvient. Il a choisi de parler à ceux qui portent l’eau, le feu et la lumière crue du soleil, Cancer, Sagittaire, Lion. Écoutez : la mangrove chuchote avant que le jour ne se lève tout à fait.</description>
       <pubDate>Tue, 30 Jun 2026 03:20:42 +0000</pubDate>
@@ -85,7 +93,8 @@
       <guid isPermaLink="false">horoscope-20260630-matin</guid>
       <itunes:duration>03:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le procès d'Ary Chalus secoue la Guadeloupe plus qu'une tempête, dans votre flash-info du 29 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du lundi vingt-neuf juin deux mille vingt-six.</description>
       <pubDate>Mon, 29 Jun 2026 15:26:56 +0000</pubDate>
@@ -93,7 +102,8 @@
       <guid isPermaLink="false">flash-info-20260629-soir</guid>
       <itunes:duration>02:22</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Vierge ♍ : La Balance trinque avec la Vierge au vin de canne amer, dans votre horoscope du 29 juin au soir</title>
       <description>Nous sommes le lundi 29 juin 2026 et ce soir, la lune se lève sur trois signes qui portent l’eau, la terre et l’air comme des racines, des feuilles et des ailes, Cancer, Vierge, Balance. Vous qui rentrez avec la fatigue des champs ou des bureaux, posez vos paniers, vos dossiers, vos soucis sur le seuil. La nuit est une mangrove : elle filtre, elle respire, elle vous rend ce que vous lui donnez. Écoutez.</description>
       <pubDate>Mon, 29 Jun 2026 15:15:24 +0000</pubDate>
@@ -101,7 +111,8 @@
       <guid isPermaLink="false">horoscope-20260629-soir</guid>
       <itunes:duration>04:57</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le milieu sportif des Abymes en émoi après de nouvelles révélations, dans votre flash-info du 29 juin à midi</title>
       <description>Pause actualité en ce lundi vingt-neuf juin deux mille vingt-six. Il est onze heures quarante-sept, voici les informations de la mi-journée chez nous.</description>
       <pubDate>Mon, 29 Jun 2026 09:51:35 +0000</pubDate>
@@ -109,7 +120,8 @@
       <guid isPermaLink="false">flash-info-20260629-midi</guid>
       <itunes:duration>02:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Bélier ♈ : L’eau du toboggan tisse des rubans autour des racines, dans votre horoscope du 29 juin à midi</title>
       <description>Nous sommes le lundi 29 juin 2026 et la mer, ce matin, a léché les rochers de Gosier comme une chatte qui fait sa toilette, sans hâte, mais sans rien oublier. Cet après-midi, c’est aux Cancer, Capricorne et Bélier que je tends l’oreille, parce que les astres, aujourd’hui, dansent sur un rythme de gwoka lent, celui qui précède l’orage. Écoutez bien : l’igwann est immobile dans les feuilles, mais ses yeux brillent.</description>
       <pubDate>Mon, 29 Jun 2026 09:40:51 +0000</pubDate>
@@ -117,7 +129,8 @@
       <guid isPermaLink="false">horoscope-20260629-midi</guid>
       <itunes:duration>04:09</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>L’économie guadeloupéenne en 2025, entre reprise fragile et inégalités qui persistent, dans votre flash-info du 29 juin au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Lundi vingt-neuf juin deux mille vingt-six, il est cinq heures trente — l'aube se lève sur l'archipel, et avec elle, les nouvelles du jour.</description>
       <pubDate>Mon, 29 Jun 2026 03:37:26 +0000</pubDate>
@@ -125,7 +138,8 @@
       <guid isPermaLink="false">flash-info-20260629-matin</guid>
       <itunes:duration>04:11</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Gémeaux ♊ : Le taureau danse avec l’ombre du gémeau sous les alpinia, dans votre horoscope du 29 juin au matin</title>
       <description>Nous sommes le lundi 29 juin 2026 et ce matin, la mer est encore noire quand les premiers coqs chantent. Écoutez bien, mes enfants : aujourd’hui, c’est le Cancer qui porte la lune dans son ventre, le Taureau qui rumine sa force sous le manguier, et les Gémeaux qui dansent entre deux eaux comme l’urakan au-dessus de la Soufrière. Prenez votre café noir, respirez l’odeur du bois d’inde qui brûle quelque part, et laissez les signes vous parler avant que le soleil ne monte trop haut.</description>
       <pubDate>Mon, 29 Jun 2026 03:24:48 +0000</pubDate>
@@ -133,7 +147,8 @@
       <guid isPermaLink="false">horoscope-20260629-matin</guid>
       <itunes:duration>04:11</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le nouveau patron du tourisme à Marie-Galante veut tout faire péter, dans votre flash-info du 28 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le dimanche vingt-huit juin deux mille vingt-six, il est seize heures quarante-quatre.</description>
       <pubDate>Sun, 28 Jun 2026 14:47:24 +0000</pubDate>
@@ -141,7 +156,8 @@
       <guid isPermaLink="false">flash-info-20260628-soir</guid>
       <itunes:duration>01:37</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Cancer ♋ : Le taureau pose son fardeau sur la carapace du cancer, dans votre horoscope du 28 juin au soir</title>
       <description>Nous sommes le dimanche 28 juin 2026 et ce soir, la lune se lève sur trois signes qui portent la terre et l’eau en eux comme un jardin de case après la pluie.
 
@@ -151,7 +167,8 @@ Cancer, Taureau, Gémeaux, ce soir, c’est à vous que la nuit parle en langue 
       <guid isPermaLink="false">horoscope-20260628-soir</guid>
       <itunes:duration>03:54</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Une crise politique secoue Pointe-à-Pitre, où les rues s'enflamment, dans votre flash-info du 28 juin à midi</title>
       <description>On fait le point à midi, ce dimanche vingt-huit juin deux mille vingt-six.</description>
       <pubDate>Sun, 28 Jun 2026 09:15:23 +0000</pubDate>
@@ -159,7 +176,8 @@ Cancer, Taureau, Gémeaux, ce soir, c’est à vous que la nuit parle en langue 
       <guid isPermaLink="false">flash-info-20260628-midi</guid>
       <itunes:duration>00:20</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Cancer ♋ : Le manman dlo glisse entre mangroves et crabes rouges, dans votre horoscope du 28 juin à midi</title>
       <description>Nous sommes le dimanche 28 juin 2026 et cet après-midi, la mer porte des nouvelles qui ne sont pas écrites dans les livres. Écoutez bien : le Cancer, la Balance et la Vierge vont marcher sur des chemins que même les ancêtres n’ont pas tout à fait prévus. Prenez votre temps, mais ne traînez pas, la mangrove n’attend personne.</description>
       <pubDate>Sun, 28 Jun 2026 09:08:01 +0000</pubDate>
@@ -167,7 +185,8 @@ Cancer, Taureau, Gémeaux, ce soir, c’est à vous que la nuit parle en langue 
       <guid isPermaLink="false">horoscope-20260628-midi</guid>
       <itunes:duration>04:34</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le CHU déménage pour mieux soigner les drépanocytaires, dans votre flash-info du 28 juin au matin</title>
       <description>Bèl bonjou Guadeloupe ! Dimanche vingt-huit juin deux mille vingt-six, il est cinq heures vingt-huit, et nous voilà ensemble pour ce premier flash de la journée.</description>
       <pubDate>Sun, 28 Jun 2026 03:34:16 +0000</pubDate>
@@ -175,7 +194,8 @@ Cancer, Taureau, Gémeaux, ce soir, c’est à vous que la nuit parle en langue 
       <guid isPermaLink="false">flash-info-20260628-matin</guid>
       <itunes:duration>04:08</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Cancer ♋ : Le foumi manyok ramène la sève du Touloulou, dans votre horoscope du 28 juin au matin</title>
       <description>Nous sommes le dimanche 28 juin 2026 et ce matin, la mer porte un souffle différent, comme si les vagues avaient écouté les rêves de la nuit et décidé de les rendre à la terre. Écoutez bien : aujourd’hui, c’est aux Cancer, aux Vierge et aux Lion que le jour tend les bras. Pas pour leur faire des promesses, non, juste pour leur rappeler qu’ils sont vivants, et que la vie, parfois, se glisse dans les détails qu’on oublie de regarder.</description>
       <pubDate>Sun, 28 Jun 2026 03:22:01 +0000</pubDate>
@@ -183,7 +203,8 @@ Cancer, Taureau, Gémeaux, ce soir, c’est à vous que la nuit parle en langue 
       <guid isPermaLink="false">horoscope-20260628-matin</guid>
       <itunes:duration>04:19</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Fermez les classes Irénée, le rectorat dit non à Germain Saint-Ruf, dans votre flash-info du 27 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du samedi vingt-sept juin deux mille vingt-six.</description>
       <pubDate>Sat, 27 Jun 2026 14:46:19 +0000</pubDate>
@@ -191,7 +212,8 @@ Cancer, Taureau, Gémeaux, ce soir, c’est à vous que la nuit parle en langue 
       <guid isPermaLink="false">flash-info-20260627-soir</guid>
       <itunes:duration>01:38</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Cancer ♋ : Le bèf pose sa bosse sous la lune de la mangrove, dans votre horoscope du 27 juin au soir</title>
       <description>Nous sommes le samedi 27 juin 2026 et ce soir, la lune se lève sur trois feux qui brûlent sans se consumer.
 
@@ -201,7 +223,8 @@ Cancer, Taureau, Lion, vos cœurs sont des mangroves ce soir : entre deux eaux, 
       <guid isPermaLink="false">horoscope-20260627-soir</guid>
       <itunes:duration>04:26</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Une surprise politique secoue la Guadeloupe ce midi, dans votre flash-info du 27 juin à midi</title>
       <description>On fait le point à midi, ce samedi vingt-sept juin deux mille vingt-six.</description>
       <pubDate>Sat, 27 Jun 2026 09:07:06 +0000</pubDate>
@@ -209,7 +232,8 @@ Cancer, Taureau, Lion, vos cœurs sont des mangroves ce soir : entre deux eaux, 
       <guid isPermaLink="false">flash-info-20260627-midi</guid>
       <itunes:duration>00:19</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Poissons ♓ &amp; Scorpion ♏ : Le gwoka pleure dans la cendre du corossol, dans votre horoscope du 27 juin à midi</title>
       <description>Nous sommes le samedi 27 juin 2026 et la mer monte, comme elle monte toujours à cette heure où le soleil tape sur les toits de tôle de Pointe-à-Pitre. Cet après-midi, c’est aux Cancer, aux Scorpion et aux Poissons que je tends l’oreille, ceux qui portent l’eau en eux, ceux qui savent que la vie coule, même quand on fait semblant de ne pas voir les fuites. Allez, respirez un coup, l’igwann vous regarde depuis son rocher : la patience est une arme, pas une soumission.</description>
       <pubDate>Sat, 27 Jun 2026 08:59:56 +0000</pubDate>
@@ -217,7 +241,8 @@ Cancer, Taureau, Lion, vos cœurs sont des mangroves ce soir : entre deux eaux, 
       <guid isPermaLink="false">horoscope-20260627-midi</guid>
       <itunes:duration>04:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La Ligue guadeloupéenne de football ferme définitivement ses portes, dans votre flash-info du 27 juin au matin</title>
       <description>Bèl bonjou Guadeloupe, nous sommes le samedi vingt-sept juin deux mille vingt-six, il est cinq heures vingt-cinq à Paris et voici votre Flash Info du matin.</description>
       <pubDate>Sat, 27 Jun 2026 03:33:41 +0000</pubDate>
@@ -225,7 +250,8 @@ Cancer, Taureau, Lion, vos cœurs sont des mangroves ce soir : entre deux eaux, 
       <guid isPermaLink="false">flash-info-20260627-matin</guid>
       <itunes:duration>05:35</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Poissons ♓ : L'œuf de tortue éclot dans la gousse de sel, dans votre horoscope du 27 juin au matin</title>
       <description>Nous sommes le samedi 27 juin 2026 et ce matin, la mer porte un souffle qui vient de loin, comme si l’urakan avait frôlé les côtes cette nuit sans qu’on l’entende. Ceux qui naquirent sous le signe du Cancer, du Taureau et des Poissons, levez-vous : aujourd’hui, c’est votre jour à marcher léger, mais les pieds bien plantés dans la terre rouge. Écoutez le chant des foumi manyok dans les herbes hautes, elles savent où va la force.</description>
       <pubDate>Sat, 27 Jun 2026 03:19:36 +0000</pubDate>
@@ -233,7 +259,8 @@ Cancer, Taureau, Lion, vos cœurs sont des mangroves ce soir : entre deux eaux, 
       <guid isPermaLink="false">horoscope-20260627-matin</guid>
       <itunes:duration>04:07</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le procès d'Ary Chalus pourrait tout changer, dans votre flash-info du 26 juin au soir</title>
       <description>Bonsoir, ici Harry pour votre Flash Info Guadeloupe du vendredi vingt-six juin deux mille vingt-six. Il est dix-sept heures quatre, l'heure où les ombres s'étirent sur les mornes et où l'actualité ne s'arrête pas.</description>
       <pubDate>Fri, 26 Jun 2026 15:10:11 +0000</pubDate>
@@ -241,7 +268,8 @@ Cancer, Taureau, Lion, vos cœurs sont des mangroves ce soir : entre deux eaux, 
       <guid isPermaLink="false">flash-info-20260626-soir</guid>
       <itunes:duration>02:53</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Poissons ♓ &amp; Cancer ♋ : La tortue écoute l’igwann compter les vagues, dans votre horoscope du 26 juin au soir</title>
       <description>Nous sommes le vendredi 26 juin 2026 et ce soir, la lune se lève sur la mangrove comme une pirogue qui glisse sans bruit. Les esprits du bord de mer murmurent aux signes qui savent écouter : Cancer, Poissons, Lion, vous êtes ceux que la nuit appelle, ceux que l’eau et le feu ont choisi pour danser ensemble ce soir.
 
@@ -251,7 +279,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260626-soir</guid>
       <itunes:duration>04:11</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gendarmerie en ébullition ce vendredi en Guadeloupe, dans votre flash-info du 26 juin à midi</title>
       <description>On fait le point à midi en Guadeloupe, ce vendredi vingt-six juin deux mille vingt-six. Voici les informations de ce début d'après-midi.</description>
       <pubDate>Fri, 26 Jun 2026 09:21:15 +0000</pubDate>
@@ -259,7 +288,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260626-midi</guid>
       <itunes:duration>02:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Poissons ♓ : Le foufou accroche un marron à la queue du karet, dans votre horoscope du 26 juin à midi</title>
       <description>Nous sommes le vendredi 26 juin 2026 et la mer porte encore l’écho des vagues de la nuit. Cet après-midi, c’est aux Cancer, aux Gémeaux et aux Poissons que je tends l’oreille, ceux qui nagent entre deux eaux, ceux qui parlent avec le vent, ceux qui sentent avant de voir. Prenez ce que la journée vous donne, mais gardez un peu de votre ombre pour vous.</description>
       <pubDate>Fri, 26 Jun 2026 09:10:40 +0000</pubDate>
@@ -267,7 +297,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260626-midi</guid>
       <itunes:duration>03:59</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le sang coule dans les murs de Basse-Terre, un scandale ébranle les plus hauts sommets, dans votre flash-info du 26 juin au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Vendredi vingt-six juin deux mille vingt-six, il est cinq heures vingt-huit à Paris, et voici votre flash info du matin sur Radio Botiran.</description>
       <pubDate>Fri, 26 Jun 2026 03:35:28 +0000</pubDate>
@@ -275,7 +306,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260626-matin</guid>
       <itunes:duration>04:40</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Gémeaux ♊ : Le flamboyant brûle et le fwou-fwou s’y noie, dans votre horoscope du 26 juin au matin</title>
       <description>Nous sommes le vendredi 26 juin 2026 et ce matin, la mer des Caraïbes souffle vers nous trois signes comme trois vagues différentes, le Cancer, le Bélier, les Gémeaux. Écoutez bien : l’eau, le feu et le vent se parlent aujourd’hui, et c’est dans cette conversation-là que votre journée va se dessiner. Ouvrez les yeux, tendez l’oreille, les ancêtres ont glissé quelque chose dans le vent de ce matin.</description>
       <pubDate>Fri, 26 Jun 2026 03:21:45 +0000</pubDate>
@@ -283,7 +315,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260626-matin</guid>
       <itunes:duration>04:15</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le tourisme monte, mais le BTP s’effondre en Guadeloupe, dans votre flash-info du 25 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe du jeudi vingt-cinq juin deux mille vingt-six.</description>
       <pubDate>Thu, 25 Jun 2026 15:14:37 +0000</pubDate>
@@ -291,7 +324,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260625-soir</guid>
       <itunes:duration>01:55</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Scorpion ♏ : Le touloulou fuit à l’intérieur du scorpion en silence, dans votre horoscope du 25 juin au soir</title>
       <description>Nous sommes le jeudi 25 juin 2026 et ce soir, la lune se lève sur trois eaux profondes, Cancer, Poissons, Scorpion. Trois signes qui portent la mer en eux, qui savent que la vie n’est pas seulement ce qu’on voit, mais ce qui coule dessous, ce qui attend son heure. Posez vos fardeaux, mes enfants des abysses : ce soir, l’igwann veille, immobile dans l’ombre, et la foumi manyok a déjà commencé son travail invisible. Soufflez. La mangrove vous attend.</description>
       <pubDate>Thu, 25 Jun 2026 15:04:45 +0000</pubDate>
@@ -299,7 +333,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260625-soir</guid>
       <itunes:duration>04:20</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Les marais de Guadeloupe révèlent leurs premiers secrets, dans votre flash-info du 25 juin à midi</title>
       <description>On fait le point à midi chez nous, ce jeudi vingt-cinq juin deux mille vingt-six. Voici les sept infos qui font l'actualité aujourd'hui.</description>
       <pubDate>Thu, 25 Jun 2026 09:21:11 +0000</pubDate>
@@ -307,7 +342,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260625-midi</guid>
       <itunes:duration>02:05</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Cancer ♋ : Le Gran Pélikan pêche la graine du palétuvier, dans votre horoscope du 25 juin à midi</title>
       <description>Nous sommes le jeudi 25 juin 2026 et cet après-midi, c’est à vous que je parle, ceux qui portent en eux la mer des Cancer, l’éclair des Verseau, le feu des Lion. Écoutez bien : la mangrove vous attend, avec ses racines qui boivent deux eaux à la fois. Prenez votre souffle, et avancez.</description>
       <pubDate>Thu, 25 Jun 2026 09:11:05 +0000</pubDate>
@@ -315,7 +351,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260625-midi</guid>
       <itunes:duration>04:08</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Eau en péril le Congrès agite les élus, dans votre flash-info du 25 juin au matin</title>
       <description>Bèl bonjou Guadeloupe ! Nous sommes le jeudi vingt-cinq juin deux mille vingt-six, et voici votre flash info du matin sur Radio Botiran.</description>
       <pubDate>Thu, 25 Jun 2026 03:33:43 +0000</pubDate>
@@ -323,7 +360,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260625-matin</guid>
       <itunes:duration>04:35</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Sagittaire ♐ : Le flamboyant embrase la main qui glisse d’un dossier verrouillé, dans votre horoscope du 25 juin au matin</title>
       <description>Nous sommes le jeudi 25 juin 2026 et ce matin, la mer est haute sur les rochers de Gosier. Écoutez bien : aujourd’hui, c’est aux Cancer, aux Sagittaire et aux Bélier que la parole des ancêtres s’adresse. Prenez votre café noir comme la terre de Basse-Terre, et laissez l’igwann vous rappeler que la patience est une arme.</description>
       <pubDate>Thu, 25 Jun 2026 03:20:28 +0000</pubDate>
@@ -331,7 +369,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260625-matin</guid>
       <itunes:duration>04:06</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Les ancêtres ont parlé, trois à fêter demain, dans votre flash-info du 24 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le mercredi vingt-quatre juin deux mille vingt-six, il est dix-sept heures neuf.</description>
       <pubDate>Wed, 24 Jun 2026 15:12:32 +0000</pubDate>
@@ -339,7 +378,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260624-soir</guid>
       <itunes:duration>02:11</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Cancer ♋ : L’ombre du bèf porte le lacrymo du Touloulou, dans votre horoscope du 24 juin au soir</title>
       <description>Nous sommes le mercredi 24 juin 2026 et ce soir, la lune se lève sur les eaux troubles de la mangrove, celles qui savent garder les secrets sans les étouffer. Je vois trois signes qui portent en eux la patience des racines et la force de ceux qui attendent leur heure : Cancer, Taureau, Vierge. Respirez, vous autres, la journée a pesé comme une pierre de rivière au fond des poches, mais ce soir, c’est le moment de la poser. Laissez l’igwann vous apprendre l’immobilité qui prépare le bond.</description>
       <pubDate>Wed, 24 Jun 2026 15:02:34 +0000</pubDate>
@@ -347,7 +387,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260624-soir</guid>
       <itunes:duration>03:53</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le procès d’Ary Chalus secoue la politique en Guadeloupe, dans votre flash-info du 24 juin à midi</title>
       <description>On fait le point à midi chez nous, ce mercredi vingt-quatre juin deux mille vingt-six. Voici sept infos qui font l'actualité aujourd'hui.</description>
       <pubDate>Wed, 24 Jun 2026 09:22:04 +0000</pubDate>
@@ -355,7 +396,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260624-midi</guid>
       <itunes:duration>02:33</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Verseau ♒ : Le vent gonfle ta poitrine à raser l’aube, dans votre horoscope du 24 juin à midi</title>
       <description>Nous sommes le mercredi 24 juin 2026 et la mer, ce matin, a laissé sur le sable des traces que personne ne verra, comme ces vérités qui nous traversent sans qu’on les nomme. Cet après-midi, c’est aux Cancer, Verseau et Scorpion que je tends l’oreille : vos vies, aujourd’hui, dansent avec l’invisible, et c’est là que la mangrove vous attend. Écoutez bien.</description>
       <pubDate>Wed, 24 Jun 2026 09:11:34 +0000</pubDate>
@@ -363,7 +405,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260624-midi</guid>
       <itunes:duration>04:09</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Forcené armé retranché à Lamentin le GIGN en action, dans votre flash-info du 24 juin au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Nous sommes le mercredi vingt-quatre juin deux mille vingt-six, il est cinq heures vingt-six, et voici votre Flash Info Botiran pour démarrer la journée ensemble.</description>
       <pubDate>Wed, 24 Jun 2026 03:34:45 +0000</pubDate>
@@ -371,7 +414,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260624-matin</guid>
       <itunes:duration>04:47</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Verseau ♒ : Lambi danse avec l’ombre du jenjanm, dans votre horoscope du 24 juin au matin</title>
       <description>Nous sommes le mercredi 24 juin 2026 et ce matin, la mer a parlé avant le soleil. Elle a murmuré trois noms : Cancer, Scorpion, Verseau, ceux que l’eau porte en elle, ceux qui savent que la vie commence là où la terre tremble et où les racines boivent l’invisible. Écoutez. Aujourd’hui, c’est à vous que le jour s’adresse.</description>
       <pubDate>Wed, 24 Jun 2026 03:20:55 +0000</pubDate>
@@ -379,7 +423,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260624-matin</guid>
       <itunes:duration>04:14</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Eau et assainissement en crise la préfecture promet des révélations, dans votre flash-info du 23 juin au soir</title>
       <description>Bonsoir. Ce mardi vingt-trois juin deux mille vingt-six, il est dix-sept heures douze. Voici les informations de ce début de soirée en Guadeloupe.</description>
       <pubDate>Tue, 23 Jun 2026 15:16:05 +0000</pubDate>
@@ -387,7 +432,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260623-soir</guid>
       <itunes:duration>02:06</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Gémeaux ♊ : Le pélikan crache des crabes sur les cailloux brûlants, dans votre horoscope du 23 juin au soir</title>
       <description>Nous sommes le mardi 23 juin 2026 et ce soir, la lune se lève sur trois signes qui portent la mangrove en eux : Cancer, Lion, Gémeaux. Entre deux eaux, entre deux feux, entre deux vérités, comme l’igwann qui attend son heure dans l’ombre des feuilles. Soufflez, maintenant. La journée a pesé comme une pierre de khan sous le soleil, mais la nuit est à vous. Laissez les foumi manyok travailler en silence.</description>
       <pubDate>Tue, 23 Jun 2026 15:06:41 +0000</pubDate>
@@ -395,7 +441,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260623-soir</guid>
       <itunes:duration>03:58</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Black-out en Guadeloupe les salariés d'EDF jugés ce matin, dans votre flash-info du 23 juin à midi</title>
       <description>On fait le point à midi chez nous. Mardi vingt-trois juin deux mille vingt-six, voici ce qui fait l'actualité aujourd'hui.</description>
       <pubDate>Tue, 23 Jun 2026 09:23:48 +0000</pubDate>
@@ -403,7 +450,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260623-midi</guid>
       <itunes:duration>02:42</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Capricorne ♑ &amp; Sagittaire ♐ : La lune allume ton pas sous les feuilles mortes, dans votre horoscope du 23 juin à midi</title>
       <description>Nous sommes le mardi 23 juin 2026 et la mer porte encore l’écho des marées de la nuit. Cet après-midi, c’est aux Cancer, Capricorne et Sagittaire que je tends l’oreille, ceux qui nagent entre deux eaux, ceux qui marchent droit malgré les pierres, ceux qui tirent des flèches vers des cieux qu’on ne voit pas encore. Écoutez bien : l’igwann se réveille dans l’ombre, et la foumi manyok a déjà tracé son chemin sous vos pas.</description>
       <pubDate>Tue, 23 Jun 2026 09:12:46 +0000</pubDate>
@@ -411,7 +459,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260623-midi</guid>
       <itunes:duration>04:22</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>L’art d’Égzo transforme l’école en scène de mémoire vivante à Sainte-Rose, dans votre flash-info du 23 juin au matin</title>
       <description>Bèl bonjou Guadeloupe ! Mardi vingt-trois juin deux mille vingt-six, il est cinq heures vingt-cinq à Paris, et voici votre Flash Info du matin pour démarrer la journée ensemble.</description>
       <pubDate>Tue, 23 Jun 2026 03:33:25 +0000</pubDate>
@@ -419,7 +468,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260623-matin</guid>
       <itunes:duration>04:59</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Cancer ♋ : Le kwi la sue sous la lune du matét, dans votre horoscope du 23 juin au matin</title>
       <description>Nous sommes le mardi 23 juin 2026 et ce matin, la mer est calme, mais sous la surface, les courants travaillent. Écoutez bien : aujourd’hui, c’est aux Cancer, aux Capricorne et aux Gémeaux que la parole des ancêtres s’adresse. Ouvrez les yeux avant que le soleil ne monte trop haut, les signes sont déjà là, dans l’ombre des manguiers et le cri des urakans qui tournent au-dessus de la Soufrière.</description>
       <pubDate>Tue, 23 Jun 2026 03:20:28 +0000</pubDate>
@@ -427,7 +477,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260623-matin</guid>
       <itunes:duration>03:39</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Quatre jeunes handballeurs guadeloupéens en route pour le haut niveau en métropole, dans votre flash-info du 22 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le lundi vingt-deux juin deux mille vingt-six, il est dix-sept heures cinquante et voici les informations de ce début de soirée.</description>
       <pubDate>Mon, 22 Jun 2026 16:13:06 +0000</pubDate>
@@ -435,7 +486,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260622-soir</guid>
       <itunes:duration>03:03</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Cancer ♋ : Le bèf tourne en rond mais porte l’orange mûre, dans votre horoscope du 22 juin au soir</title>
       <description>Nous sommes le lundi 22 juin 2026 et ce soir, c’est la lune qui chuchote aux trois terres lourdes, Cancer, Taureau, Capricorne. Vous qui portez le poids des racines, des murs, des silences qui pèsent plus que les mots, écoutez : la nuit va vous rendre ce que le jour vous a pris. Soufflez. L’igwann attend, immobile dans l’ombre, que vous osiez enfin bouger.</description>
       <pubDate>Mon, 22 Jun 2026 15:44:31 +0000</pubDate>
@@ -443,7 +495,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260622-soir</guid>
       <itunes:duration>03:30</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le GroKa résonne au tribunal de Pointe-à-Pitre pour la Fête de la Musique, dans votre flash-info du 22 juin à midi</title>
       <description>On fait le point à midi chez nous, ce lundi vingt-deux juin deux mille vingt-six. Voici sept infos qui rythment cette mi-journée, entre sport, culture et jeunesse.</description>
       <pubDate>Mon, 22 Jun 2026 10:16:59 +0000</pubDate>
@@ -451,7 +504,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260622-midi</guid>
       <itunes:duration>02:46</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Cancer ♋ : Le cœur du taureau trace des sillons dans les marées du Cancer, dans votre horoscope du 22 juin à midi</title>
       <description>Nous sommes le lundi 22 juin 2026 et la mer, ce matin, a laissé sur le sable des traces que la marée n’a pas encore effacées, comme les signes qui nous appellent aujourd’hui. Cet après-midi, c’est vers le Cancer, le Taureau et le Capricorne que je tourne l’oreille : trois terres, trois racines qui résistent à l’arrachement. Écoutez bien ce que la mangrove vous murmure avant que le soleil ne descende sur les mornes.</description>
       <pubDate>Mon, 22 Jun 2026 10:06:33 +0000</pubDate>
@@ -459,7 +513,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260622-midi</guid>
       <itunes:duration>03:55</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un motard grièvement blessé au Lamentin après une collision violente sur la RN2, dans votre flash-info du 22 juin au matin</title>
       <description>Bèl bonjou, la Guadeloupe ! Nous sommes le lundi vingt-deux juin deux mille vingt-six, il est cinq heures trente, et voici votre Flash Info Botiran pour bien démarrer la journée.</description>
       <pubDate>Mon, 22 Jun 2026 03:37:10 +0000</pubDate>
@@ -467,7 +522,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260622-matin</guid>
       <itunes:duration>04:22</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Sagittaire ♐ &amp; Cancer ♋ : Le cri de la crevette éclate dans l’écume des larmes, dans votre horoscope du 22 juin au matin</title>
       <description>Nous sommes le lundi 22 juin 2026 et ce matin, la mer est calme mais la Soufrière gronde en sourdine, signe que les ancêtres ont choisi leurs messagers. Écoutez bien, vous qui portez l’eau du Cancer, la terre du Taureau ou le feu du Sagittaire : aujourd’hui, c’est à vous que la mangrove murmure. Ouvrez les yeux avant que le soleil ne monte trop haut, les signes sont là, dans l’odeur du café qui bout et le chant des zandoli sur les murs.</description>
       <pubDate>Mon, 22 Jun 2026 03:24:38 +0000</pubDate>
@@ -475,7 +531,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">horoscope-20260622-matin</guid>
       <itunes:duration>04:10</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La justice française ouvre une brèche contre le racisme au travail et ça touche aussi la Guadeloupe, dans votre flash-info du 21 juin au soir</title>
       <description>Bonsoir. Nous sommes le dimanche vingt-et-un juin deux mille vingt-six, il est seize heures cinquante-sept en Guadeloupe. Voici votre Flash Info du soir, avec les nouvelles qui comptent pour chez nous.</description>
       <pubDate>Sun, 21 Jun 2026 15:00:41 +0000</pubDate>
@@ -483,7 +540,8 @@ Posez la journée comme on pose un panier de fruits mûrs sur la table de la var
       <guid isPermaLink="false">flash-info-20260621-soir</guid>
       <itunes:duration>01:52</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Verseau ♒ : Le Gwo Zandoli danse sur les coquilles du Lambi, dans votre horoscope du 21 juin au soir</title>
       <description>Nous sommes le dimanche 21 juin 2026 et ce soir, la lune se lève sur trois feux qui dansent différemment, celui du Cancer, tout en eaux profondes et mémoire des marées ; celui du Bélier, qui charge encore, même quand la nuit tombe ; et celui du Verseau, qui regarde les étoiles comme on consulte une carte secrète.
 
@@ -493,7 +551,8 @@ Posez vos fardeaux, mes enfants. La journée a mangé assez de vos forces. Ce so
       <guid isPermaLink="false">horoscope-20260621-soir</guid>
       <itunes:duration>04:29</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Incarcération express il brûle son espoir aux Abymes, dans votre flash-info du 21 juin à midi</title>
       <description>On fait le point à midi, ce dimanche vingt-et-un juin deux mille vingt-six.</description>
       <pubDate>Sun, 21 Jun 2026 09:23:05 +0000</pubDate>
@@ -501,7 +560,8 @@ Posez vos fardeaux, mes enfants. La journée a mangé assez de vos forces. Ce so
       <guid isPermaLink="false">flash-info-20260621-midi</guid>
       <itunes:duration>00:35</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un diacre de 54 ans deviendra prêtre en juillet et révèle son émotion, dans votre flash-info du 21 juin au matin</title>
       <description>Bèl bonjou Guadeloupe ! Dimanche vingt-et-un juin deux mille vingt-six, cinq heures vingt-neuf en métropole, mais ici l'aube se lève déjà. Une journée qui s'annonce sous les nuages et les averses, mais aussi sous le signe de la musique et de la solidarité. Commençons ce flash info ensemble.</description>
       <pubDate>Sun, 21 Jun 2026 03:38:15 +0000</pubDate>
@@ -509,7 +569,8 @@ Posez vos fardeaux, mes enfants. La journée a mangé assez de vos forces. Ce so
       <guid isPermaLink="false">flash-info-20260621-matin</guid>
       <itunes:duration>05:36</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Cancer ♋ : La gwo ka chante sous la case où mijote le lalo, dans votre horoscope du 21 juin au matin</title>
       <description>Nous sommes le dimanche 21 juin 2026 et ce matin, la mer est haute sur les côtes de Basse-Terre, comme si la Soufrière elle-même respirait plus fort. Écoutez bien : aujourd’hui, c’est aux Cancer, aux Verseau et aux Taureau que les ancêtres tendent l’oreille. Ouvrez les fenêtres, laissez entrer l’odeur du café et du bois d’inde, la journée commence avec la patience de l’igwann et la légèreté de l’urakan.</description>
       <pubDate>Sun, 21 Jun 2026 03:23:49 +0000</pubDate>
@@ -517,7 +578,8 @@ Posez vos fardeaux, mes enfants. La journée a mangé assez de vos forces. Ce so
       <guid isPermaLink="false">horoscope-20260621-matin</guid>
       <itunes:duration>04:25</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Tensions apaisées pour les pompiers de Guadeloupe, dans votre flash-info du 20 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du samedi vingt juin deux mille vingt-six.</description>
       <pubDate>Sat, 20 Jun 2026 15:00:43 +0000</pubDate>
@@ -525,7 +587,8 @@ Posez vos fardeaux, mes enfants. La journée a mangé assez de vos forces. Ce so
       <guid isPermaLink="false">flash-info-20260620-soir</guid>
       <itunes:duration>02:25</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Gémeaux ♊ : La mangrove murmure sous tes pieds et l’étang danse en silence, dans votre horoscope du 20 juin au soir</title>
       <description>Nous sommes le samedi 20 juin 2026 et ce soir, la lune se lève sur trois signes qui portent en eux le souffle de la mangrove, entre deux eaux, entre deux mondes, entre ce qu’on a laissé et ce qu’on n’a pas encore saisi.
 
@@ -535,7 +598,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">horoscope-20260620-soir</guid>
       <itunes:duration>03:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La Guadeloupe en alerte maximale ce midi, dans votre flash-info du 20 juin à midi</title>
       <description>On fait le point à midi, ce samedi vingt juin deux mille vingt-six.</description>
       <pubDate>Sat, 20 Jun 2026 09:14:24 +0000</pubDate>
@@ -543,7 +607,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">flash-info-20260620-midi</guid>
       <itunes:duration>00:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Sagittaire ♐ : L’odeur de vanille emporte les zandoli endormis, dans votre horoscope du 20 juin à midi</title>
       <description>Nous sommes le samedi 20 juin 2026 et cet après-midi, le ciel parle à ceux qui savent écouter. Aujourd’hui, c’est aux Gémeaux, aux Sagittaire et aux Bélier que la lumière va danser sur l’épaule, ceux qui bougent, ceux qui osent, ceux qui refusent de rester en place. Prenez ce que le jour vous donne, mais n’oubliez pas : l’igwann aussi sait attendre son heure.</description>
       <pubDate>Sat, 20 Jun 2026 09:08:17 +0000</pubDate>
@@ -551,7 +616,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">horoscope-20260620-midi</guid>
       <itunes:duration>03:47</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un incendie géant menace les plages de Sainte-Anne, dans votre flash-info du 20 juin au matin</title>
       <description>Bèl bonjou Guadeloupe ! Samedi vingt juin deux mille vingt-six, il est cinq heures vingt-six à Paris, et nous voilà ensemble pour ce premier flash de la journée. L'actualité ne dort jamais, et ce matin, la météo nous rappelle que la saison des pluies est bien installée.</description>
       <pubDate>Sat, 20 Jun 2026 03:33:57 +0000</pubDate>
@@ -559,7 +625,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">flash-info-20260620-matin</guid>
       <itunes:duration>04:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Cancer ♋ : Le vent chuchote au gommier qui murmure au courant, dans votre horoscope du 20 juin au matin</title>
       <description>Nous sommes le samedi 20 juin 2026 et ce matin, le ciel ne parle pas à tout le monde, seulement à ceux qui savent écouter les voix qui montent de la terre avant que le soleil ne les avale. Gémeaux, Lion, Cancer : aujourd’hui, c’est à vous que la mangrove murmure ses secrets entre deux eaux. Réveillez-vous avec l’odeur du café bouilli et le souvenir d’un rêve qui vous a frôlé sans se laisser attraper. La journée commence comme un zandoli : vous tenez la queue, mais le corps est déjà ailleurs.</description>
       <pubDate>Sat, 20 Jun 2026 03:21:52 +0000</pubDate>
@@ -567,7 +634,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">horoscope-20260620-matin</guid>
       <itunes:duration>04:01</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Pompiers en colère : des vies en jeu et pas de réponse, dans votre flash-info du 19 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le vendredi dix-neuf juin deux mille vingt-six, il est dix-sept heures quatorze. Une journée marquée par des mobilisations, des hommages et des initiatives qui comptent en Guadeloupe.</description>
       <pubDate>Fri, 19 Jun 2026 15:20:57 +0000</pubDate>
@@ -575,7 +643,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">flash-info-20260619-soir</guid>
       <itunes:duration>04:04</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Gémeaux ♊ : Le manguier murmure ce que les gémaux ont avalé, dans votre horoscope du 19 juin au soir</title>
       <description>Nous sommes le vendredi 19 juin 2026 et ce soir, la lune se lève sur trois signes qui portent en eux le souffle de l’igwann, cette patience qui n’est pas de l’attente, mais de la préparation. Gémeaux, Vierge, Lion… Vous qui dansez entre deux eaux, deux pensées, deux feux, ce soir, laissez la foumi manyok vous rappeler que même dans l’ombre, on construit. Posez la journée comme on pose un panier de manyòk au pied du manguier, avec la certitude que rien ne se perd, tout se transforme. Soufflez. La nuit est à vous.</description>
       <pubDate>Fri, 19 Jun 2026 15:07:31 +0000</pubDate>
@@ -583,7 +652,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">horoscope-20260619-soir</guid>
       <itunes:duration>04:47</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le Sporting du Moule écrit l'histoire en conservant son titre, dans votre flash-info du 19 juin à midi</title>
       <description>On fait le point à midi chez nous. Vendredi dix-neuf juin deux mille vingt-six, voici les infos de la mi-journée.</description>
       <pubDate>Fri, 19 Jun 2026 09:51:08 +0000</pubDate>
@@ -591,7 +661,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">flash-info-20260619-midi</guid>
       <itunes:duration>01:57</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Poissons ♓ &amp; Gémeaux ♊ : Le karanbolié caresse la lune en silence, dans votre horoscope du 19 juin à midi</title>
       <description>Nous sommes le vendredi 19 juin 2026 et la mer aujourd’hui respire fort, comme si la Soufrière soufflait dans les voiles des frégates. Cet après-midi, écoutez bien : c’est aux Gémeaux, aux Taureaux et aux Poissons que je tends l’oreille, parce que les signes, voyez-vous, ce sont des histoires qu’on se raconte pour ne pas oublier que le ciel aussi a ses marées. Alors prenez votre temps, comme l’igwann sur son rocher, la journée n’est pas finie, elle mijote encore.</description>
       <pubDate>Fri, 19 Jun 2026 09:40:49 +0000</pubDate>
@@ -599,7 +670,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">horoscope-20260619-midi</guid>
       <itunes:duration>04:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La prison de Baie-Mahault craque sous le poids de huit cents détenus, dans votre flash-info du 19 juin au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Vendredi dix-neuf juin deux mille vingt-six, il est cinq heures trente en ce matin où l'alizé se mêle déjà aux premières ondées. Bienvenue sur Radio Botiran pour votre flash info.</description>
       <pubDate>Fri, 19 Jun 2026 03:38:46 +0000</pubDate>
@@ -607,7 +679,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">flash-info-20260619-matin</guid>
       <itunes:duration>05:14</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Poissons ♓ : La vague murmure au rhum ti-punch, dans votre horoscope du 19 juin au matin</title>
       <description>Nous sommes le vendredi 19 juin 2026 et ce matin, le ciel se souvient. Il a choisi de parler aux Gémeaux, aux Poissons, aux Cancer, ceux qui portent l’eau et le vent dans les veines, ceux qui sentent avant de savoir. Écoutez : la journée commence comme une mangrove à marée basse, pleine de racines qui attendent leur heure.</description>
       <pubDate>Fri, 19 Jun 2026 03:24:55 +0000</pubDate>
@@ -615,7 +688,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">horoscope-20260619-matin</guid>
       <itunes:duration>04:16</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Prison de Baie-Mahault au bord de l'explosion huit détenus par cellule, dans votre flash-info du 18 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le jeudi dix-huit juin deux mille vingt-six, il est dix-sept heures quarante-deux, et voici les nouvelles du jour.</description>
       <pubDate>Thu, 18 Jun 2026 15:47:40 +0000</pubDate>
@@ -623,7 +697,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">flash-info-20260618-soir</guid>
       <itunes:duration>03:19</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>L'Open Corsair de Saint-François : un événement sportif à ne pas manquer, dans votre flash-info du 18 juin à midi</title>
       <description>On fait le point à midi chez nous, ce jeudi dix-huit juin deux mille vingt-six. Voici sept infos qui font l'actualité aujourd'hui.</description>
       <pubDate>Thu, 18 Jun 2026 09:46:38 +0000</pubDate>
@@ -631,7 +706,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">flash-info-20260618-midi</guid>
       <itunes:duration>02:39</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Scorpion ♏ : Le bèf boit l’ombre de l’alowès, dans votre horoscope du 18 juin à midi</title>
       <description>Nous sommes le jeudi 18 juin 2026 et la mer, ce matin, a laissé sur le sable des traces que personne ne lira. Mais les esprits, eux, savent. Cet après-midi, je vois trois signes qui dansent ensemble comme des feuilles sous l’alizé : les Gémeaux, légers comme l’urakan, le Taureau, solide comme le gommier, et le Scorpion, profond comme la mangrove. À vous de jouer maintenant.</description>
       <pubDate>Thu, 18 Jun 2026 09:35:36 +0000</pubDate>
@@ -639,7 +715,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">horoscope-20260618-midi</guid>
       <itunes:duration>04:55</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Funérailles d’une légende de Sainte-Anne ce matin à Galbas, dans votre flash-info du 18 juin au matin</title>
       <description>Bèl bonjou Guadeloupe, nous sommes jeudi dix-huit juin deux mille vingt-six, il est cinq heures vingt-sept à Paris et voici votre flash info matinal sur Radio Botiran.</description>
       <pubDate>Thu, 18 Jun 2026 03:33:40 +0000</pubDate>
@@ -647,7 +724,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">flash-info-20260618-matin</guid>
       <itunes:duration>03:49</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Gémeaux ♊ : Le Gran Pélikan boit les éclairs de la Soufrière, dans votre horoscope du 18 juin au matin</title>
       <description>Nous sommes le jeudi 18 juin 2026 et ce matin, le ciel de Karukera souffle trois noms à mon oreille, ceux qui danseront avec la lumière avant que le soleil ne monte trop haut. Écoutez : Gémeaux, Lion, Balance. Trois feux, trois vents, trois façons de marcher sur la terre mouillée de rosée. À vous de choisir quel pas sera le vôtre aujourd’hui.</description>
       <pubDate>Thu, 18 Jun 2026 03:21:54 +0000</pubDate>
@@ -655,7 +733,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">horoscope-20260618-matin</guid>
       <itunes:duration>04:16</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La Préfecture alerte sur les routes glissantes demain, dans votre flash-info du 17 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce mercredi dix-sept juin deux mille vingt-six.</description>
       <pubDate>Wed, 17 Jun 2026 15:23:25 +0000</pubDate>
@@ -663,7 +742,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">flash-info-20260617-soir</guid>
       <itunes:duration>02:45</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Scorpion ♏ : Le gommier blanc arrose tes cicatrices en dormant, dans votre horoscope du 17 juin au soir</title>
       <description>Nous sommes le mercredi 17 juin 2026 et ce soir, les étoiles ont choisi de murmurer à l’oreille des Gémeaux, des Scorpions et des Vierges. Pas pour leur dire ce qu’ils doivent faire, non, les étoiles ne commandent pas, elles suggèrent. Elles tracent des chemins dans l’ombre, comme l’igwann qui attend son heure sous les feuilles. Soufflez, vous autres. La journée a été longue, laissez-la s’enfoncer dans la terre comme la racine du manyòk. Demain est un autre cyclone.</description>
       <pubDate>Wed, 17 Jun 2026 15:11:47 +0000</pubDate>
@@ -671,7 +751,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">horoscope-20260617-soir</guid>
       <itunes:duration>04:26</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>À Capesterre, l'élection du maire ce soir pourrait tout changer, dans votre flash-info du 17 juin à midi</title>
       <description>On fait le point à midi chez nous. Il est onze heures quarante-neuf à Paris, mercredi dix-sept juin deux mille vingt-six. Voici les informations de la mi-journée.</description>
       <pubDate>Wed, 17 Jun 2026 09:54:39 +0000</pubDate>
@@ -679,7 +760,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">flash-info-20260617-midi</guid>
       <itunes:duration>02:57</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Gémeaux ♊ : Bèf à bos avale l’ombre du Fwou-Fwou, dans votre horoscope du 17 juin à midi</title>
       <description>Nous sommes le mercredi 17 juin 2026 et la terre tourne encore, malgré tout ce qu’on lui fait subir. Cet après-midi, c’est aux Gémeaux, aux Taureaux et aux Poissons que je tends l’oreille, les autres, écoutez quand même, on ne sait jamais ce que le vent peut vous apporter. Prenez une gorgée de café, une bouffée d’air, et laissez la journée vous parler.</description>
       <pubDate>Wed, 17 Jun 2026 09:43:36 +0000</pubDate>
@@ -687,7 +769,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">horoscope-20260617-midi</guid>
       <itunes:duration>04:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le GroKa de Jomimi enflamme la planète et divise la Guadeloupe, dans votre flash-info du 17 juin au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Mercredi dix-sept juin deux mille vingt-six, il est cinq heures vingt-sept. Ce matin, l'actualité nous parle de GroKa sous les projecteurs internationaux, de pauses fraîcheurs qui divisent le monde du foot, et d'une météo entre soleil et ondées sur nos mornes. On démarre ensemble, comme chaque jour.</description>
       <pubDate>Wed, 17 Jun 2026 03:35:01 +0000</pubDate>
@@ -695,7 +778,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">flash-info-20260617-matin</guid>
       <itunes:duration>04:34</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Gémeaux ♊ : L’oiseau de l’ombre picore l’écho de tes pieds légers, dans votre horoscope du 17 juin au matin</title>
       <description>Nous sommes le mercredi 17 juin 2026 et ce matin, le ciel parle à ceux qui savent écouter les voix qui ne crient pas. Les Gémeaux, les Verseau, les Balance, vous êtes appelés, pas pour obéir, mais pour danser avec ce que la journée va vous jeter comme mangues mûres ou comme cailloux. L’igwann est immobile dans la lumière, mais ses yeux voient tout. À vous de choisir ce que vous allez faire de cette patience-là.</description>
       <pubDate>Wed, 17 Jun 2026 03:22:33 +0000</pubDate>
@@ -703,7 +787,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">horoscope-20260617-matin</guid>
       <itunes:duration>03:54</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Marina de Saint-François : la démolition des ruines commence dimanche, dans votre flash-info du 16 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce mardi seize juin deux mille vingt-six.</description>
       <pubDate>Tue, 16 Jun 2026 15:55:05 +0000</pubDate>
@@ -711,7 +796,8 @@ Gémeaux, Balance, Cancer… ce soir, c’est à vous que je parle. Posez la jou
       <guid isPermaLink="false">flash-info-20260616-soir</guid>
       <itunes:duration>02:11</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Scorpion ♏ : Gran pélikan danse avec les ombres du jasmin, dans votre horoscope du 16 juin au soir</title>
       <description>Nous sommes le mardi 16 juin 2026 et ce soir, la lune se cache derrière les nuages de Rivière au Sel comme une vieille femme qui retient ses secrets. Écoutez bien : les signes qui dansent avec la nuit, ce sont les Gémeaux, le Lion et le Scorpion, ceux qui portent le feu et l’eau dans le même souffle.
 
@@ -721,7 +807,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260616-soir</guid>
       <itunes:duration>04:07</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Violences conjugales : deux ans et demi de prison ferme pour un homme qui a ébouillanté sa compagne, dans votre flash-info du 16 juin à midi</title>
       <description>On fait le point à midi chez nous, mardi seize juin deux mille vingt-six. Voici les sept infos du jour.</description>
       <pubDate>Tue, 16 Jun 2026 10:03:59 +0000</pubDate>
@@ -729,7 +816,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260616-midi</guid>
       <itunes:duration>02:35</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Gémeaux ♊ : Écoute danser l’ombre sur ta corbeille de vanille, dans votre horoscope du 16 juin à midi</title>
       <description>Nous sommes le mardi 16 juin 2026 et l’après-midi nous tend ses bras comme une mangrove à marée basse, à la fois solide et mouvante. Aujourd’hui, c’est aux Gémeaux, aux Verseau et aux Taureau que je m’adresse, ces signes qui portent en eux la double vie des îles : une face au soleil, l’autre dans l’ombre des mornes. Alors, respirez l’air chaud de cet après-midi, laissez-le gonfler vos poumons comme une voile, et écoutez ce que les esprits de Karukera murmurent pour vous.</description>
       <pubDate>Tue, 16 Jun 2026 09:52:32 +0000</pubDate>
@@ -737,7 +825,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260616-midi</guid>
       <itunes:duration>04:42</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Graves sargasses bloquent La Désirade, les habitants inquiets, dans votre flash-info du 16 juin au matin</title>
       <description>Bèl bonjou Guadeloupe ! Mardi seize juin deux mille vingt-six, cinq heures vingt-huit à Paris, et ici, la journée commence sous un ciel voilé, à écrire ensemble.</description>
       <pubDate>Tue, 16 Jun 2026 03:35:57 +0000</pubDate>
@@ -745,7 +834,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260616-matin</guid>
       <itunes:duration>04:51</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Verseau ♒ : Lambi rêve en murex sous les Chutes du Carbet, dans votre horoscope du 16 juin au matin</title>
       <description>Nous sommes le mardi 16 juin 2026 et ce matin, le ciel n’a pas choisi au hasard, il a posé son regard sur les Gémeaux, les Verseau et les Vierge, comme on dépose une mangue mûre au creux de la main. Réveillez-vous : l’igwann est immobile dans la lumière, mais son œil voit tout. La journée commence avec lui, patience et précision.</description>
       <pubDate>Tue, 16 Jun 2026 03:23:31 +0000</pubDate>
@@ -753,7 +843,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260616-matin</guid>
       <itunes:duration>03:45</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gwane a mis KO la Maison-Blanche avec sa ceinture UFC, dans votre flash-info du 15 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe en ce lundi quinze juin deux mille vingt-six.</description>
       <pubDate>Mon, 15 Jun 2026 16:14:09 +0000</pubDate>
@@ -761,7 +852,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260615-soir</guid>
       <itunes:duration>02:36</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Bélier ♈ : L’herbier abrite son ombre et la pluie recommence, dans votre horoscope du 15 juin au soir</title>
       <description>Nous sommes le lundi 15 juin 2026 et ce soir, la nuit pose ses questions à ceux qui savent écouter. Les étoiles ont choisi de parler aux Gémeaux, aux Bélier et aux Scorpion, trois feux qui dansent différemment sous la même lune. Soufflez, posez la journée comme on pose un panier de fruits mûrs sur la table de la varangue. Demain est un autre cyclone.</description>
       <pubDate>Mon, 15 Jun 2026 16:03:29 +0000</pubDate>
@@ -769,7 +861,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260615-soir</guid>
       <itunes:duration>03:54</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le Racing de Basse-Terre de retour en Régionale après quatre ans, dans votre flash-info du 15 juin à midi</title>
       <description>On fait le point à midi chez nous, ce lundi quinze juin deux mille vingt-six. Voici les sept infos qui font l'actualité aujourd'hui.</description>
       <pubDate>Mon, 15 Jun 2026 10:23:31 +0000</pubDate>
@@ -777,7 +870,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260615-midi</guid>
       <itunes:duration>02:23</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Balance ♎ : Le pélikan porte des sandales de piment, dans votre horoscope du 15 juin à midi</title>
       <description>Nous sommes le lundi 15 juin 2026 et cet après-midi, le ciel nous murmure trois noms comme des feuilles de malomé frôlées par le vent : Gémeaux, Balance, Lion. Écoutez bien, ces signes-là portent en eux le mouvement de l’urakan et la patience de l’igwann. La journée n’est pas finie, elle se déploie encore, comme une mangrove qui respire entre deux eaux. Allez, avançons.</description>
       <pubDate>Mon, 15 Jun 2026 10:13:46 +0000</pubDate>
@@ -785,7 +879,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260615-midi</guid>
       <itunes:duration>03:51</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le Rallye des Grands Fonds sacré à nouveau par les as de la route, dans votre flash-info du 15 juin au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Lundi quinze juin deux mille vingt-six, il est cinq heures vingt-neuf. Une nouvelle journée commence sous les alizés, avec son lot d'infos à partager. On fait le tour ensemble.</description>
       <pubDate>Mon, 15 Jun 2026 03:36:47 +0000</pubDate>
@@ -793,7 +888,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260615-matin</guid>
       <itunes:duration>03:59</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Scorpion ♏ : Le Cancer danse la Soufrière sous les doigts d’un crabe, dans votre horoscope du 15 juin au matin</title>
       <description>Nous sommes le lundi 15 juin 2026 et ce matin, la mer est calme mais la Soufrière gronde sous la brume, signe que les esprits ne dorment pas. Écoutez : aujourd’hui, c’est aux Gémeaux, aux Cancer et aux Scorpion que le vent porte les messages. Préparez vos oreilles, pas vos valises, la journée se vivra dans le mouvement des mots et l’immobilité des racines.</description>
       <pubDate>Mon, 15 Jun 2026 03:25:21 +0000</pubDate>
@@ -801,7 +897,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260615-matin</guid>
       <itunes:duration>03:43</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Mille cinq cents foyers dans le noir au Gosier, dans votre flash-info du 14 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du dimanche quatorze juin deux mille vingt-six.</description>
       <pubDate>Sun, 14 Jun 2026 14:58:31 +0000</pubDate>
@@ -809,7 +906,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260614-soir</guid>
       <itunes:duration>01:04</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Gémeaux ♊ : La lavande rouge a bu le silence du manguier, dans votre horoscope du 14 juin au soir</title>
       <description>Nous sommes le dimanche 14 juin 2026 et ce soir, la lune se lève sur trois signes qui portent en eux la mangrove, entre deux eaux, entre deux mondes, entre ce qui a été et ce qui vient. Écoutez bien, mes ti-sœurs, mes ti-frères : ce soir, c’est aux Gémeaux, aux Vierges et aux Cancers que la nuit parle. Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier, la terre saura quoi en faire.</description>
       <pubDate>Sun, 14 Jun 2026 14:50:51 +0000</pubDate>
@@ -817,7 +915,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260614-soir</guid>
       <itunes:duration>04:14</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Découvrez ce qui attend la Guadeloupe ce soir, dans votre flash-info du 14 juin à midi</title>
       <description>On fait le point à midi, ce dimanche quatorze juin deux mille vingt-six.</description>
       <pubDate>Sun, 14 Jun 2026 09:16:19 +0000</pubDate>
@@ -825,7 +924,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260614-midi</guid>
       <itunes:duration>00:16</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Sagittaire ♐ : Le zandoli graffe la rivière qui monte, dans votre horoscope du 14 juin à midi</title>
       <description>Nous sommes le dimanche 14 juin 2026 et la mer, ce matin, a laissé sur le sable des traces que personne ne reconnaît, comme ces signes du zodiaque qui croient nous connaître alors qu’ils ne savent rien de nos vies réelles. Cet après-midi, c’est aux Gémeaux, aux Bélier et aux Sagittaire que je tends l’oreille, parce que le ciel a décidé de leur chuchoter des vérités qui ne se disent qu’à moitié. Écoutez bien : l’igwann est immobile dans les branches, mais ses yeux voient tout.</description>
       <pubDate>Sun, 14 Jun 2026 09:10:34 +0000</pubDate>
@@ -833,7 +933,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260614-midi</guid>
       <itunes:duration>03:57</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Incendie ravageur à Sainte-Rose, les pompiers en pleine bataille, dans votre flash-info du 14 juin au matin</title>
       <description>Bèl bonjou Guadeloupe, dimanch katòz jen deux mille vingt-six, il est cinq heures vingt-huit an maten-la, lè pou pran nouvèl épi kouraj.</description>
       <pubDate>Sun, 14 Jun 2026 03:35:33 +0000</pubDate>
@@ -841,7 +942,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260614-matin</guid>
       <itunes:duration>04:47</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Poissons ♓ &amp; Cancer ♋ : La mer enfile la carapace de la calebasse, dans votre horoscope du 14 juin au matin</title>
       <description>Nous sommes le dimanche 14 juin 2026 et ce matin, la mer est calme, mais le vent porte déjà l’odeur de la pluie qui vient. Écoutez bien : aujourd’hui, c’est aux Gémeaux, aux Poissons et aux Cancers que la vie murmure des choses à l’oreille. Ouvrez les yeux avant le soleil, respirez profond, l’igwann vous observe depuis la branche, immobile, et il sait.</description>
       <pubDate>Sun, 14 Jun 2026 03:23:25 +0000</pubDate>
@@ -849,7 +951,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260614-matin</guid>
       <itunes:duration>03:44</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Condamnation à deux ans pour une femme enceinte après une agression à Sainte-Rose, dans votre flash-info du 13 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce samedi treize juin deux mille vingt-six.</description>
       <pubDate>Sat, 13 Jun 2026 14:57:03 +0000</pubDate>
@@ -857,7 +960,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260613-soir</guid>
       <itunes:duration>01:21</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Gémeaux ♊ : Karèz sonjé kouman soufrans lé bon, dans votre horoscope du 13 juin au soir</title>
       <description>Nous sommes le samedi 13 juin 2026 et ce soir, la lune danse avec les esprits de la mangrove. Écoutez bien : les signes qui vont parler aujourd’hui, c’est ceux qui portent l’eau et le vent en eux, Gémeaux, Vierge, Balance. Posez votre fatigue là où la mer lave les roches, et laissez venir.</description>
       <pubDate>Sat, 13 Jun 2026 14:48:56 +0000</pubDate>
@@ -865,7 +969,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260613-soir</guid>
       <itunes:duration>04:04</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un phénomène météo inédit secoue l’archipel dès ce midi, dans votre flash-info du 13 juin à midi</title>
       <description>On fait le point à midi ce samedi treize juin deux mille vingt-six.</description>
       <pubDate>Sat, 13 Jun 2026 09:14:57 +0000</pubDate>
@@ -873,7 +978,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260613-midi</guid>
       <itunes:duration>00:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Capricorne ♑ : L’acoma-boucan porte la foudre Capricorne, dans votre horoscope du 13 juin à midi</title>
       <description>Nous sommes le samedi 13 juin 2026 et cet après-midi, la mer porte des nouvelles qui ne sont pas pour tout le monde. Écoutez bien : c’est aux Gémeaux, aux Poissons et aux Capricorne que les esprits de la mangrove murmurent aujourd’hui. Prenez ce que la journée vous donne, mais gardez un œil sur l’igwann, il sait attendre son heure.</description>
       <pubDate>Sat, 13 Jun 2026 09:08:44 +0000</pubDate>
@@ -881,7 +987,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260613-midi</guid>
       <itunes:duration>04:06</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Deux suspects en prison cinq mois après un carnaval sanglant, dans votre flash-info du 13 juin au matin</title>
       <description>Bèl bonjou Guadeloupe ! Samedi treize juin deux mille vingt-six, il est cinq heures vingt-six. Une journée qui commence sous les nuages, avec son lot de nouvelles. On démarre ensemble, comme on prend son premier café, les yeux encore un peu lourds.</description>
       <pubDate>Sat, 13 Jun 2026 03:34:01 +0000</pubDate>
@@ -889,7 +996,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260613-matin</guid>
       <itunes:duration>04:16</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Sagittaire ♐ &amp; Lion ♌ : Le pélikan fend l'ombre du marakoudja, dans votre horoscope du 13 juin au matin</title>
       <description>Nous sommes le samedi 13 juin 2026 et ce matin, le ciel se souvient des anciens. Il a choisi de parler aux Gémeaux, aux Lions, aux Sagittaires, ceux qui portent le feu, le vent et l’horizon dans leurs os. Écoutez : la journée commence comme une mangue mûre, lourde de promesses et de pièges à la fois. Prenez-la sans précipitation, mais sans peur.</description>
       <pubDate>Sat, 13 Jun 2026 03:21:06 +0000</pubDate>
@@ -897,7 +1005,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260613-matin</guid>
       <itunes:duration>03:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Areva jugé pour l'affaire Thierry Dol au Niger, dans votre flash-info du 12 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du vendredi douze juin deux mille vingt-six.</description>
       <pubDate>Fri, 12 Jun 2026 15:18:33 +0000</pubDate>
@@ -905,7 +1014,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260612-soir</guid>
       <itunes:duration>02:42</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Sagittaire ♐ : Le pwason zorey avale l’odeur des raisiniers, dans votre horoscope du 12 juin au soir</title>
       <description>Nous sommes le vendredi 12 juin 2026 et ce soir, la lune se lève sur trois signes qui portent en eux le souffle du large et l’odeur de la terre mouillée : les Gémeaux, le Sagittaire, la Vierge. Écoutez bien, l’igwann est immobile dans les branches, mais son œil vous voit. Ce soir, c’est à vous qu’il murmure. Posez la journée comme on pose un panier de manioc au pied de l’arbre à pain : sans regret, sans hâte. Demain est une autre pirogue.</description>
       <pubDate>Fri, 12 Jun 2026 15:08:40 +0000</pubDate>
@@ -913,7 +1023,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260612-soir</guid>
       <itunes:duration>04:14</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Glissements de terrain en Basse-Terre la Préfecture appelle à la prudence, dans votre flash-info du 12 juin à midi</title>
       <description>On fait le point à midi pour ce Flash Info Guadeloupe, vendredi douze juin deux mille vingt-six. Sept actualités à retenir aujourd'hui.</description>
       <pubDate>Fri, 12 Jun 2026 09:39:13 +0000</pubDate>
@@ -921,7 +1032,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260612-midi</guid>
       <itunes:duration>02:53</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Bélier ♈ : Le Bélier mord l’étincelle du corossol mûr, dans votre horoscope du 12 juin à midi</title>
       <description>Nous sommes le vendredi 12 juin 2026 et la mer porte encore l’écho des vagues de la nuit. Cet après-midi, écoutez bien : c’est l’igwann qui se réveille pour les Gémeaux, l’urakan qui plane au-dessus des Bélier, et la foumi manyok qui creuse son chemin sous les pieds des Capricorne. La journée n’est pas finie, elle attend que vous la preniez.</description>
       <pubDate>Fri, 12 Jun 2026 09:29:17 +0000</pubDate>
@@ -929,7 +1041,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260612-midi</guid>
       <itunes:duration>03:51</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>L'incendie enflamme Sainte-Rose et menace la forêt, dans votre flash-info du 12 juin au matin</title>
       <description>Bèl bonjou Guadeloupe ! Vendredi douze juin deux mille vingt-six, il est cinq heures vingt-huit à Paris, et voici votre flash info matinal pour démarrer la journée informés et connectés.</description>
       <pubDate>Fri, 12 Jun 2026 03:34:57 +0000</pubDate>
@@ -937,7 +1050,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260612-matin</guid>
       <itunes:duration>03:47</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Gémeaux ♊ : Le lion pond son ombre dans la gélatine d’alowès, dans votre horoscope du 12 juin au matin</title>
       <description>Nous sommes le vendredi 12 juin 2026 et ce matin, la mer a chuchoté trois noms à la mangrove : Gémeaux, Lion, Cancer. Écoutez bien, ce sont les signes que la brise a portés jusqu’à nous avant l’aube, ceux qui dansent aujourd’hui entre les feuilles du gommier et les écailles de l’igwann. Prenez votre café tiède, laissez la lumière entrer, et voyez si votre ombre ce matin a la forme d’un de ces trois-là.</description>
       <pubDate>Fri, 12 Jun 2026 03:23:08 +0000</pubDate>
@@ -945,7 +1059,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260612-matin</guid>
       <itunes:duration>04:08</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La Foire des Roulottes fait un carton à Pointe-à-Pitre, dans votre flash-info du 11 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce jeudi onze juin deux mille vingt-six.</description>
       <pubDate>Thu, 11 Jun 2026 15:25:58 +0000</pubDate>
@@ -953,7 +1068,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260611-soir</guid>
       <itunes:duration>01:28</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Sagittaire ♐ : Gwo Zandoli boit l’ombre de l’ouassou, dans votre horoscope du 11 juin au soir</title>
       <description>Nous sommes le jeudi 11 juin 2026 et ce soir, les esprits de la mangrove chuchotent aux signes qui portent le feu et le mouvement. Écoutez ceux qui dansent entre deux vents : Gémeaux, Sagittaire, Bélier, ce soir, c’est à vous que la nuit parle. Posez la journée comme on pose un panier de fruits mûrs au pied de l’arbre, et laissez l’urakan vous porter.</description>
       <pubDate>Thu, 11 Jun 2026 15:16:29 +0000</pubDate>
@@ -961,7 +1077,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260611-soir</guid>
       <itunes:duration>04:23</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Curaçao, petit pays mais géant en football, qualifié pour la Coupe du monde, dans votre flash-info du 11 juin à midi</title>
       <description>On fait le point à midi chez nous, ce jeudi onze juin deux mille vingt-six. Voici sept infos qui font l'actualité du jour.</description>
       <pubDate>Thu, 11 Jun 2026 09:43:33 +0000</pubDate>
@@ -969,7 +1086,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260611-midi</guid>
       <itunes:duration>02:42</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Capricorne ♑ &amp; Lion ♌ : Le thym de Matouba brûle la sueur du grand pélikan, dans votre horoscope du 11 juin à midi</title>
       <description>Nous sommes le jeudi 11 juin 2026 et cet après-midi, le ciel nous murmure trois noms, comme trois feuilles de malomé plantées aux coins de la case pour écarter les mauvaises heures. Gémeaux, Lion, Capricorne, c’est à vous que la lumière oblique de ce jour s’adresse. Prenez-la comme on prend une mangue mûre : sans hésiter, même si le jus coule sur les doigts.</description>
       <pubDate>Thu, 11 Jun 2026 09:34:13 +0000</pubDate>
@@ -977,7 +1095,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260611-midi</guid>
       <itunes:duration>03:49</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Canne en feu et eau qui fuit la Grande-Terre tremble, dans votre flash-info du 11 juin au matin</title>
       <description>Bèl bonjou Guadeloupe ! Nous sommes le jeudi onze juin deux mille vingt-six, il est cinq heures vingt-cinq, et voici votre Flash Info Botiran pour bien démarrer la journée.</description>
       <pubDate>Thu, 11 Jun 2026 03:32:05 +0000</pubDate>
@@ -985,7 +1104,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260611-matin</guid>
       <itunes:duration>04:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Lion ♌ : Le balizié boit la lumière du Touloulou, dans votre horoscope du 11 juin au matin</title>
       <description>Nous sommes le jeudi 11 juin 2026 et ce matin, le ciel se souvient. Il a choisi de poser son regard sur les Gémeaux, les Cancers, les Lions, ceux qui portent la parole, l’eau et le feu en eux. Écoutez : l’igwann est immobile dans les branches, mais ses yeux brillent. La journée commence.</description>
       <pubDate>Thu, 11 Jun 2026 03:20:42 +0000</pubDate>
@@ -993,7 +1113,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260611-matin</guid>
       <itunes:duration>03:41</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Incendie suspect au rond-point Solitude les pompiers en intervention rapide, dans votre flash-info du 10 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le mercredi dix juin deux mille vingt-six, il est dix-sept heures seize à Paris, et voici les titres de ce soir.</description>
       <pubDate>Wed, 10 Jun 2026 15:20:08 +0000</pubDate>
@@ -1001,7 +1122,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260610-soir</guid>
       <itunes:duration>02:05</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Sagittaire ♐ &amp; Cancer ♋ : L’écume caresse les pieds nus du wasou, dans votre horoscope du 10 juin au soir</title>
       <description>Nous sommes le mercredi 10 juin 2026 et ce soir, c’est la lune qui décide. Elle a choisi de poser son regard sur les Gémeaux, les Cancer et les Sagittaire, ceux qui portent le feu et l’eau en eux, ceux qui savent que la vie est une danse entre deux vérités. Soufflez, maintenant. La journée a été longue comme un champ de canne sous le soleil. Posez vos corps, vos doutes, vos colères aussi, ce soir, c’est l’igwann qui veille, immobile dans l’ombre, et il attend que vous soyez prêts.</description>
       <pubDate>Wed, 10 Jun 2026 15:10:52 +0000</pubDate>
@@ -1009,7 +1131,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">horoscope-20260610-soir</guid>
       <itunes:duration>04:10</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Les mers des Antilles sous haute protection avec un pacte historique des maires, dans votre flash-info du 10 juin à midi</title>
       <description>On fait le point à midi en Guadeloupe, ce mercredi dix juin deux mille vingt-six. Voici sept informations qui font l'actualité chez nous.</description>
       <pubDate>Wed, 10 Jun 2026 09:28:12 +0000</pubDate>
@@ -1017,7 +1140,8 @@ Posez vos paquets, vos fatigues, vos colères du jour. La mangrove respire encor
       <guid isPermaLink="false">flash-info-20260610-midi</guid>
       <itunes:duration>02:20</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Bélier ♈ : Gwo Zandoli picore l’écho du fwou dans le sillon, dans votre horoscope du 10 juin à midi</title>
       <description>Nous sommes le mercredi 10 juin 2026 et cet après-midi, les esprits de la mangrove chuchotent trois noms, trois signes qui vont danser avec le soleil avant qu’il ne plonge dans la mer.
 
@@ -1027,7 +1151,8 @@ Gémeaux, Bélier, Cancer : aujourd’hui, c’est à vous que la lumière va l�
       <guid isPermaLink="false">horoscope-20260610-midi</guid>
       <itunes:duration>04:17</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Les maires de Petit-Canal, Gourbeyre, Saint-Louis, Baillif et Grand-Bourg définitivement élus, dans votre flash-info du 10 juin au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Mercredi dix juin deux mille vingt-six, il est cinq heures vingt-six à Paris, et nous voilà ensemble pour démarrer cette journée.</description>
       <pubDate>Wed, 10 Jun 2026 03:33:20 +0000</pubDate>
@@ -1035,7 +1160,8 @@ Gémeaux, Bélier, Cancer : aujourd’hui, c’est à vous que la lumière va l�
       <guid isPermaLink="false">flash-info-20260610-matin</guid>
       <itunes:duration>04:41</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Gémeaux ♊ : Le bèf broute les étoiles de l’awokasié, dans votre horoscope du 10 juin au matin</title>
       <description>Nous sommes le mercredi 10 juin 2026 et ce matin, le ciel se souvient. Il a retenu trois noms pour nous : Gémeaux, Vierge, Taureau, ceux qui portent la parole, la terre et la patience. Écoutez bien : l’igwann est immobile dans les feuilles, mais ses yeux voient tout.</description>
       <pubDate>Wed, 10 Jun 2026 03:21:25 +0000</pubDate>
@@ -1043,7 +1169,8 @@ Gémeaux, Bélier, Cancer : aujourd’hui, c’est à vous que la lumière va l�
       <guid isPermaLink="false">horoscope-20260610-matin</guid>
       <itunes:duration>03:54</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La mer avale un resto à Sainte-Anne, et l’érosion accélère le drame, dans votre flash-info du 9 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce mardi neuf juin deux mille vingt-six.</description>
       <pubDate>Tue, 09 Jun 2026 15:31:28 +0000</pubDate>
@@ -1051,7 +1178,8 @@ Gémeaux, Bélier, Cancer : aujourd’hui, c’est à vous que la lumière va l�
       <guid isPermaLink="false">flash-info-20260609-soir</guid>
       <itunes:duration>03:15</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Taureau ♉ : Le razè a bu la rumination du bèf, dans votre horoscope du 9 juin au soir</title>
       <description>Nous sommes le mardi 9 juin 2026 et ce soir, la lune se lève sur les eaux troubles de la mangrove, là où les racines respirent encore l’histoire des ancêtres. Écoutez bien : ce sont les Gémeaux, les Taureau et les Balance que je vois passer dans le reflet des étoiles, trois signes qui portent en eux le poids des choix, comme l’igwann immobile sous la feuille, attendant son heure. Posez vos fardeaux, mes enfants, la nuit est faite pour laisser le zandoli reprendre sa queue et repartir léger.</description>
       <pubDate>Tue, 09 Jun 2026 15:20:02 +0000</pubDate>
@@ -1059,7 +1187,8 @@ Gémeaux, Bélier, Cancer : aujourd’hui, c’est à vous que la lumière va l�
       <guid isPermaLink="false">horoscope-20260609-soir</guid>
       <itunes:duration>04:28</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le Trail du Café a explosé ses records, la Guadeloupe en ébullition, dans votre flash-info du 9 juin à midi</title>
       <description>On fait le point à midi chez nous, ce mardi neuf juin deux mille vingt-six. Voici sept infos qui font l'actualité aujourd'hui.</description>
       <pubDate>Tue, 09 Jun 2026 09:22:54 +0000</pubDate>
@@ -1067,7 +1196,8 @@ Gémeaux, Bélier, Cancer : aujourd’hui, c’est à vous que la lumière va l�
       <guid isPermaLink="false">flash-info-20260609-midi</guid>
       <itunes:duration>02:19</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Taureau ♉ : Le zandoli et le bœuf lèvent le même nuage, dans votre horoscope du 9 juin à midi</title>
       <description>Nous sommes le mardi 9 juin 2026 et cet après-midi, le ciel se souvient de ceux qui marchent entre deux vents, les Gémeaux, les Taureau, les Bélier. Écoutez : la mangrove chuchote vos noms aujourd’hui. Elle sait que vous portez en vous cette tension douce-amère entre ce qui vous tire en avant et ce qui vous retient. Alors, respirez l’odeur du bois d’inde qui monte des cours, laissez-la vous rappeler que même les racines les plus profondes finissent par danser avec le vent. La journée n’est pas finie, elle vous attend, comme une case ouverte sur la mer.</description>
       <pubDate>Tue, 09 Jun 2026 09:13:23 +0000</pubDate>
@@ -1075,7 +1205,8 @@ Gémeaux, Bélier, Cancer : aujourd’hui, c’est à vous que la lumière va l�
       <guid isPermaLink="false">horoscope-20260609-midi</guid>
       <itunes:duration>04:36</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Justice : Koury condamné à 24 mois avec sursis pour escroquerie, dans votre flash-info du 9 juin au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Nous sommes le mardi neuf juin deux mille vingt-six. Il est cinq heures vingt-huit, et voici votre Flash Info du matin pour démarrer la journée informés et connectés.</description>
       <pubDate>Tue, 09 Jun 2026 03:35:22 +0000</pubDate>
@@ -1083,7 +1214,8 @@ Gémeaux, Bélier, Cancer : aujourd’hui, c’est à vous que la lumière va l�
       <guid isPermaLink="false">flash-info-20260609-matin</guid>
       <itunes:duration>04:29</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Scorpion ♏ : Le manikou croque l’ombre du pélikan, dans votre horoscope du 9 juin au matin</title>
       <description>Nous sommes le mardi 9 juin 2026 et ce matin, le ciel s’ouvre comme une feuille de bananier après l’averse, net, brillant, sans pardon. Les esprits ont parlé : c’est aux Gémeaux de danser avec leurs contradictions, aux Lions de rugir sans se soucier des oreilles qui traînent, et aux Scorpions de se souvenir que la mangrove cache toujours une sortie, même quand on croit toucher le fond. Prenez votre café, mais gardez un peu de rhum pour les ancêtres, ils aiment ça, et aujourd’hui, ils écoutent.</description>
       <pubDate>Tue, 09 Jun 2026 03:22:16 +0000</pubDate>
@@ -1091,7 +1223,8 @@ Gémeaux, Bélier, Cancer : aujourd’hui, c’est à vous que la lumière va l�
       <guid isPermaLink="false">horoscope-20260609-matin</guid>
       <itunes:duration>04:06</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Curaçao fait son entrée fracassante (ou pas) au Mondial, dans votre flash-info du 8 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du lundi huit juin deux mille vingt-six.</description>
       <pubDate>Mon, 08 Jun 2026 15:22:40 +0000</pubDate>
@@ -1099,7 +1232,8 @@ Gémeaux, Bélier, Cancer : aujourd’hui, c’est à vous que la lumière va l�
       <guid isPermaLink="false">flash-info-20260608-soir</guid>
       <itunes:duration>02:05</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Verseau ♒ &amp; Capricorne ♑ : Le lambi porte les nuits usées du kabrit, dans votre horoscope du 8 juin au soir</title>
       <description>Nous sommes le lundi 8 juin 2026 et ce soir, la lune se lève sur la mangrove comme une pirogue silencieuse. Écoutez bien : les signes qui dansent avec elle, ce sont les Gémeaux, le Verseau, le Capricorne, ceux qui portent en eux le souffle du changement, comme l’urakan avant l’orage. Posez vos fardeaux, mes enfants, la nuit est une case fraîche où même les foumi manyok prennent le temps de respirer.</description>
       <pubDate>Mon, 08 Jun 2026 15:13:20 +0000</pubDate>
@@ -1107,7 +1241,8 @@ Gémeaux, Bélier, Cancer : aujourd’hui, c’est à vous que la lumière va l�
       <guid isPermaLink="false">horoscope-20260608-soir</guid>
       <itunes:duration>04:07</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La Dynamo sacrée en Coupe SEM un doublé historique, dans votre flash-info du 8 juin à midi</title>
       <description>Flash Info Guadeloupe — lundi huit juin deux mille vingt-six
 On fait le point à midi, avec les sept infos qui comptent ce début de semaine chez nous.</description>
@@ -1116,7 +1251,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">flash-info-20260608-midi</guid>
       <itunes:duration>02:55</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Taureau ♉ : La pluie d’alpinia rouge fait mûrir l’ombre du bœuf, dans votre horoscope du 8 juin à midi</title>
       <description>Nous sommes le lundi 8 juin 2026 et la mer est haute sur les côtes de Basse-Terre, comme une respiration qui monte. Cet après-midi, écoutez bien : c’est aux Gémeaux, aux Lions et aux Taureaux que la vie murmure aujourd’hui. Elle leur parle en créole, avec des mots qui collent à la peau.</description>
       <pubDate>Mon, 08 Jun 2026 09:41:06 +0000</pubDate>
@@ -1124,7 +1260,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">horoscope-20260608-midi</guid>
       <itunes:duration>03:50</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le cyclone des émotions de l'horoscope ouvre ses ailes sur la Guadeloupe, dans votre flash-info du 8 juin au matin</title>
       <description>Bèl bonjou, bienvenue sur Radio Botiran pour ce Flash Info Guadeloupe du lundi huit juin deux mille vingt-six.</description>
       <pubDate>Mon, 08 Jun 2026 03:36:35 +0000</pubDate>
@@ -1132,7 +1269,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">flash-info-20260608-matin</guid>
       <itunes:duration>03:54</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Poissons ♓ : Le gran pélikan noie ses plumes dans le corossol, dans votre horoscope du 8 juin au matin</title>
       <description>Nous sommes le lundi 8 juin 2026 et ce matin, le ciel se souvient de ceux qui marchent entre deux vents. Écoutez bien : les Gémeaux, les Lions et les Poissons sont appelés à danser avec l’igwann aujourd’hui, patient, invisible, mais prêt à bondir quand l’heure sonnera. La mangrove murmure vos noms, alors levez-vous avant que le soleil ne boive toute l’ombre.</description>
       <pubDate>Mon, 08 Jun 2026 03:24:50 +0000</pubDate>
@@ -1140,7 +1278,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">horoscope-20260608-matin</guid>
       <itunes:duration>03:50</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un homme grièvement brûlé dans l'incendie de sa case au Moule, dans votre flash-info du 7 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du dimanche sept juin deux mille vingt-six.</description>
       <pubDate>Sun, 07 Jun 2026 14:50:07 +0000</pubDate>
@@ -1148,7 +1287,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">flash-info-20260607-soir</guid>
       <itunes:duration>01:48</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Sagittaire ♐ : L’ouassou rêve entre tes deux cœurs qui s’effritent, dans votre horoscope du 7 juin au soir</title>
       <description>Nous sommes le dimanche 7 juin 2026 et ce soir, la lune se lève sur trois signes qui portent en eux le souffle large de l’urakan, ceux qui refusent de se poser quand le vent appelle. Écoutez : les Gémeaux, les Sagittaire, les Poissons. Ce soir, c’est à vous que la nuit parle en créole des étoiles. Soufflez, posez la journée comme on dépose un fardeau au pied du gommier. Demain est une autre pirogue.</description>
       <pubDate>Sun, 07 Jun 2026 14:41:19 +0000</pubDate>
@@ -1156,7 +1296,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">horoscope-20260607-soir</guid>
       <itunes:duration>04:26</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Double coup d'éclat pour Petit-Bourg ce week-end, dans votre flash-info du 7 juin à midi</title>
       <description>On fait le point à midi, dimanche sept juin deux mille vingt-six.</description>
       <pubDate>Sun, 07 Jun 2026 09:16:28 +0000</pubDate>
@@ -1164,7 +1305,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">flash-info-20260607-midi</guid>
       <itunes:duration>00:32</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Sagittaire ♐ : L’oiseau pèse l’odeur du piment sans mordre, dans votre horoscope du 7 juin à midi</title>
       <description>Nous sommes le dimanche 7 juin 2026 et cet après-midi, c’est la foumi manyok qui trace son chemin dans l’ombre, ceux qui savent écouter entendront son murmure. Les signes qui dansent aujourd’hui ? Gémeaux, Sagittaire, Taureau… Trois manières d’être au monde, trois façons de tenir debout quand le soleil tape sur la tôle des cases. À vous de choisir quelle racine vous portera.</description>
       <pubDate>Sun, 07 Jun 2026 09:07:54 +0000</pubDate>
@@ -1172,7 +1314,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">horoscope-20260607-midi</guid>
       <itunes:duration>04:05</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La Guadeloupe intronise enfin sa propre Ligue de foot, dans votre flash-info du 7 juin au matin</title>
       <description>Bèl bonjou, chè zòt ! Dimanch sept jen deux mille vingt-six, cinquièm jounen ka koumansé anba brilé maten-la.</description>
       <pubDate>Sun, 07 Jun 2026 03:36:05 +0000</pubDate>
@@ -1180,7 +1323,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">flash-info-20260607-matin</guid>
       <itunes:duration>05:16</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Gémeaux ♊ : Le bouf broute l’écho du gwoka sous l’avocatier, dans votre horoscope du 7 juin au matin</title>
       <description>Nous sommes le dimanche 7 juin 2026 et ce matin, la rosée sur les feuilles de malomé chuchote que trois signes vont danser avec le jour : Gémeaux, Taureau, Lion. Ouvrez les yeux comme l’igwann sort de sa cache, lent, précis, prêt à saisir ce que le ciel vous tend. La journée commence, et elle a déjà son rythme.</description>
       <pubDate>Sun, 07 Jun 2026 03:22:59 +0000</pubDate>
@@ -1188,7 +1332,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">horoscope-20260607-matin</guid>
       <itunes:duration>03:52</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Jean-Claude Maes s’éteint à Marie-Galante, la commune en deuil, dans votre flash-info du 6 juin au soir</title>
       <description>Bèl bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce samedi six juin deux mille vingt-six.</description>
       <pubDate>Sat, 06 Jun 2026 14:46:44 +0000</pubDate>
@@ -1196,7 +1341,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">flash-info-20260606-soir</guid>
       <itunes:duration>02:27</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Gémeaux ♊ : L’aloès chante sous le lait, dans votre horoscope du 6 juin au soir</title>
       <description>Nous sommes le samedi 6 juin 2026 et ce soir, la nuit s’étire comme une mangrove entre deux eaux, ni tout à fait terre, ni tout à fait mer. Écoutez bien : c’est aux Gémeaux, au Scorpion et au Cancer que les esprits de Karukera murmurent leurs secrets. Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier, la terre saura quoi en faire.</description>
       <pubDate>Sat, 06 Jun 2026 14:37:13 +0000</pubDate>
@@ -1204,7 +1350,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">horoscope-20260606-soir</guid>
       <itunes:duration>04:01</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un été guadeloupéen sous tension, l'alerte rouge est lancée, dans votre flash-info du 6 juin à midi</title>
       <description>On fait le point à midi, ce samedi six juin deux mille vingt-six. Voici les infos de Guadeloupe.</description>
       <pubDate>Sat, 06 Jun 2026 09:04:29 +0000</pubDate>
@@ -1212,7 +1359,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">flash-info-20260606-midi</guid>
       <itunes:duration>00:17</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Verseau ♒ &amp; Poissons ♓ : Le vent emporte la marée qui noie les papiers, dans votre horoscope du 6 juin à midi</title>
       <description>Nous sommes le samedi 6 juin 2026 et cet après-midi, le ciel nous parle à travers trois voix qui savent danser avec l’invisible : les Gémeaux, les Poissons, le Verseau. Écoutez bien, vous qui portez ces signes dans le sang, la mangrove murmure vos noms aujourd’hui.</description>
       <pubDate>Sat, 06 Jun 2026 08:58:03 +0000</pubDate>
@@ -1220,7 +1368,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">horoscope-20260606-midi</guid>
       <itunes:duration>04:03</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Les coraux de Guadeloupe en alerte rouge avant 2030, dans votre flash-info du 6 juin au matin</title>
       <description>Bèl bonjou Guadeloupe, nous sommes le samedi six juin deux mille vingt-six, il est cinq heures vingt-cinq à Paris et voici votre Flash Info Botiran pour bien démarrer la journée.</description>
       <pubDate>Sat, 06 Jun 2026 03:32:47 +0000</pubDate>
@@ -1228,7 +1377,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">flash-info-20260606-matin</guid>
       <itunes:duration>05:09</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Cancer ♋ : Le vent porte les racines, dans votre horoscope du 6 juin au matin</title>
       <description>Nous sommes le samedi 6 juin 2026 et ce matin, la lune se cache encore derrière les nuages de Basse-Terre, mais déjà l’odeur du café bouilli monte des cuisines. Écoutez bien : aujourd’hui, c’est aux Gémeaux, aux Balances et aux Cancers que la vie murmure des choses à l’oreille, des choses qui demandent à être entendues avant que le soleil ne tape trop fort. Prenez votre temps, comme l’igwann sur son rocher, et laissez venir.</description>
       <pubDate>Sat, 06 Jun 2026 03:19:40 +0000</pubDate>
@@ -1236,7 +1386,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">horoscope-20260606-matin</guid>
       <itunes:duration>04:25</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Enoha Laurent, 15 ans, défie l'océan et les records en wing foil, dans votre flash-info du 5 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le vendredi cinq juin deux mille vingt-six, il est dix-sept heures onze.</description>
       <pubDate>Fri, 05 Jun 2026 15:15:36 +0000</pubDate>
@@ -1244,7 +1395,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">flash-info-20260605-soir</guid>
       <itunes:duration>02:20</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Capricorne ♑ &amp; Gémeaux ♊ : Le madè étouffe sous le pas lourd du Foufou, dans votre horoscope du 5 juin au soir</title>
       <description>Nous sommes le vendredi 5 juin 2026 et ce soir, la nuit pose ses questions à ceux qui savent écouter. Trois signes traversent la mangrove ce soir : Gémeaux, Scorpion, Capricorne. Respirez, enfants de Karukera, la journée a usé vos épaules, mais l’igwann veille, immobile dans l’ombre. Laissez la foumi manyok reprendre son ouvrage en silence. Demain est une autre pirogue.</description>
       <pubDate>Fri, 05 Jun 2026 15:06:24 +0000</pubDate>
@@ -1252,7 +1404,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">horoscope-20260605-soir</guid>
       <itunes:duration>04:08</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Julien Chipotel, l’enfant de la Guadeloupe qui a conquis l’événementiel sportif mondial, dans votre flash-info du 5 juin à midi</title>
       <description>On fait le point à midi chez nous, ce vendredi cinq juin deux mille vingt-six. Voici les infos qui rythment la journée.</description>
       <pubDate>Fri, 05 Jun 2026 09:22:23 +0000</pubDate>
@@ -1260,7 +1413,8 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <guid isPermaLink="false">flash-info-20260605-midi</guid>
       <itunes:duration>02:09</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Gémeaux ♊ : Le Cancer étouffe le rire des Gémeaux dans son corail tiède, dans votre horoscope du 5 juin à midi</title>
       <description>Nous sommes le vendredi 5 juin 2026 et cet après-midi, la mangrove chuchote les noms de ceux qui doivent l’écouter.
 
@@ -1270,7 +1424,8 @@ Gémeaux, Cancer, Verseau, vos pas laissent des traces dans la terre humide, là
       <guid isPermaLink="false">horoscope-20260605-midi</guid>
       <itunes:duration>03:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Strike général à l’hôpital Louis-Constant Fleming dès ce matin, dans votre flash-info du 5 juin au matin</title>
       <description>Bèl bonjou Guadeloupe, et tous ceux qui nous écoutent ce vendredi cinq juin deux mille vingt-six. Il est cinq heures vingt-huit, et voici votre Flash Info Botiran pour démarrer la journée.</description>
       <pubDate>Fri, 05 Jun 2026 03:35:20 +0000</pubDate>
@@ -1278,7 +1433,8 @@ Gémeaux, Cancer, Verseau, vos pas laissent des traces dans la terre humide, là
       <guid isPermaLink="false">flash-info-20260605-matin</guid>
       <itunes:duration>04:41</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Gémeaux ♊ : Le loro avale l’écho du gwoka, dans votre horoscope du 5 juin au matin</title>
       <description>Nous sommes le vendredi 5 juin 2026 et ce matin, le vent souffle depuis les mornes de Basse-Terre, chargé de l’odeur du café qui bout et des feuilles de malomé écrasées sous les pas. Écoutez bien : aujourd’hui, c’est aux Gémeaux, aux Scorpions et aux Balances que la vie murmure à l’oreille, trois signes qui savent, mieux que les autres, que la vérité n’a jamais qu’une seule face. Alors levez-vous, secouez la rosée de la nuit, et laissez l’igwann vous rappeler que même immobile, on peut être prêt à bondir.</description>
       <pubDate>Fri, 05 Jun 2026 03:23:18 +0000</pubDate>
@@ -1286,7 +1442,8 @@ Gémeaux, Cancer, Verseau, vos pas laissent des traces dans la terre humide, là
       <guid isPermaLink="false">horoscope-20260605-matin</guid>
       <itunes:duration>04:00</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>VIH : +22% chez les jeunes à Basse-Terre, le CHU sonne l'alarme, dans votre flash-info du 4 juin au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du jeudi quatre juin deux mille vingt-six.</description>
       <pubDate>Thu, 04 Jun 2026 20:21:26 +0000</pubDate>
@@ -1294,7 +1451,8 @@ Gémeaux, Cancer, Verseau, vos pas laissent des traces dans la terre humide, là
       <guid isPermaLink="false">flash-info-20260604-soir</guid>
       <itunes:duration>03:10</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Gémeaux ♊ : Le touloulou porte l’écho des fwous-fwous, dans votre horoscope du 4 juin au soir</title>
       <description>Nous sommes le jeudi 4 juin 2026 et ce soir, c’est l’heure où la mangrove chuchote aux racines ce que le ciel n’ose pas dire aux étoiles. Écoutez bien : les signes qui dansent dans la nuit sont les Gémeaux, la Balance, le Cancer, ceux qui portent le sel et le sucre dans la même main, ceux qui savent que l’équilibre n’est pas une ligne droite, mais une pirogue qui tangue sous les alizés. Posez vos fardeaux, mes enfants, la lune va tirer la mer vers elle et vous avec.</description>
       <pubDate>Thu, 04 Jun 2026 15:07:48 +0000</pubDate>
@@ -1302,7 +1460,8 @@ Gémeaux, Cancer, Verseau, vos pas laissent des traces dans la terre humide, là
       <guid isPermaLink="false">horoscope-20260604-soir</guid>
       <itunes:duration>04:07</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Poissons ♓ : Sous le paréo rouge défait deux algues, dans votre horoscope du 4 juin au matin</title>
       <description>Nous sommes le jeudi 4 juin 2026 et ce matin, la rosée sur les feuilles de malomé nous rappelle que même l’invisible a son poids. Écoutez bien : les signes qui dansent aujourd’hui sont ceux qui savent tenir deux vérités à la fois, Gémeaux, Taureau, Poissons. Prenez votre café comme on prend la mer : sans savoir ce qu’elle vous réserve, mais prêt à naviguer.</description>
       <pubDate>Thu, 04 Jun 2026 03:23:43 +0000</pubDate>
@@ -1310,7 +1469,8 @@ Gémeaux, Cancer, Verseau, vos pas laissent des traces dans la terre humide, là
       <guid isPermaLink="false">horoscope-20260604-matin</guid>
       <itunes:duration>04:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Scorpion ♏ : Tes doigts gravent l’adieu sur la cendre, dans votre horoscope du 3 juin au soir</title>
       <description>Nous sommes le mercredi 3 juin 2026 et ce soir, c’est aux Gémeaux, aux Balances et aux Scorpions que la lune et les esprits murmurent. Posez vos soucis comme on pose un panier de mangues mûres au pied du manguier, la nuit est là pour les ramasser. Soufflez, vous avez bien mérité ce silence après la journée.</description>
       <pubDate>Wed, 03 Jun 2026 15:39:31 +0000</pubDate>
@@ -1318,7 +1478,8 @@ Gémeaux, Cancer, Verseau, vos pas laissent des traces dans la terre humide, là
       <guid isPermaLink="false">horoscope-20260603-soir</guid>
       <itunes:duration>04:05</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Capricorne ♑ : Le gombo tient le bwa fouyé par les racines, dans votre horoscope du 3 juin à midi</title>
       <description>Nous sommes le mercredi 3 juin 2026 et la terre sous nos pieds sait encore ce que les calendriers oublient. Cet après-midi, écoutez ceux qui portent le feu et le vent : les Gémeaux, les Bélier, les Capricorne, trois manières de tenir debout quand le ciel se fait lourd. La mangrove respire, la canne frémit, et quelque part, un igwann attend son heure.</description>
       <pubDate>Wed, 03 Jun 2026 09:41:04 +0000</pubDate>
@@ -1326,7 +1487,8 @@ Gémeaux, Cancer, Verseau, vos pas laissent des traces dans la terre humide, là
       <guid isPermaLink="false">horoscope-20260603-midi</guid>
       <itunes:duration>03:49</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Gémeaux ♊ : Le vent soulève la marmite et le foufou s’envole, dans votre horoscope du 3 juin au matin</title>
       <description>Nous sommes le mercredi 3 juin 2026 et ce matin, le ciel se souvient. Il a choisi de murmurer à l’oreille des Gémeaux, des Taureaux, des Balances, ceux qui portent en eux le double, la terre et l’équilibre, comme l’igwann porte deux peaux. Écoutez : la journée commence avec le goût du manioc grillé dans la bouche et le vent qui tourne comme une pirogue en gommier.</description>
       <pubDate>Wed, 03 Jun 2026 03:24:17 +0000</pubDate>
@@ -1334,7 +1496,8 @@ Gémeaux, Cancer, Verseau, vos pas laissent des traces dans la terre humide, là
       <guid isPermaLink="false">horoscope-20260603-matin</guid>
       <itunes:duration>04:01</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Gémeaux ♊ : Le Touloulou compte les grains de mil dans le creux de sa main, dans votre horoscope du 2 juin au soir</title>
       <description>Nous sommes le mardi 2 juin 2026 et ce soir, la lune se lève sur trois signes qui portent la marque de la mangrove, entre deux eaux, entre deux vents, entre ce qu’on montre et ce qu’on garde.
 
@@ -1344,7 +1507,8 @@ Gémeaux, Taureau, Cancer… vous êtes ce soir les gardiens d’une veillée qu
       <guid isPermaLink="false">horoscope-20260602-soir</guid>
       <itunes:duration>03:52</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Capricorne ♑ : La Soufrière avale la bourrique des mornes, dans votre horoscope du 2 juin à midi</title>
       <description>Nous sommes le mardi 2 juin 2026 et la mer porte encore l’écho des vagues de la nuit. Cet après-midi, c’est aux Gémeaux, aux Scorpions et aux Capricorne que je tends l’oreille, trois signes qui savent, chacun à leur manière, ce que signifie tenir debout quand le sol tremble sous les pieds. Alors, respirez l’air chaud de Rivière au Sel, laissez le khan bruisser dans les champs, et avancez : la journée n’a pas dit son dernier mot.</description>
       <pubDate>Tue, 02 Jun 2026 09:31:21 +0000</pubDate>
@@ -1352,7 +1516,8 @@ Gémeaux, Taureau, Cancer… vous êtes ce soir les gardiens d’une veillée qu
       <guid isPermaLink="false">horoscope-20260602-midi</guid>
       <itunes:duration>04:26</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Vierge ♍ : Le bèf presse l’écorce du manguier, dans votre horoscope du 31 mai au soir</title>
       <description>Nous sommes le dimanche 31 mai 2026 et ce soir, la lune se lève sur trois signes qui portent en eux la patience de l’igwann, cette façon de rester immobile sans se laisser oublier. Gémeaux, Vierge, Taureau, vous qui savez ce que c’est que d’attendre sans plier, ce soir, la foumi manyok travaille pour vous dans l’ombre. Posez la journée comme on pose un panier de manyòk au pied du manguier : elle a nourri, elle a tenu, maintenant, laissez-la reposer.</description>
       <pubDate>Sun, 31 May 2026 14:37:23 +0000</pubDate>
@@ -1360,7 +1525,8 @@ Gémeaux, Taureau, Cancer… vous êtes ce soir les gardiens d’une veillée qu
       <guid isPermaLink="false">horoscope-20260531-soir</guid>
       <itunes:duration>04:22</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Bélier ♈ : Le flamboyant mord l’écorce du zanmann, dans votre horoscope du 31 mai à midi</title>
       <description>Nous sommes le dimanche 31 mai 2026 et la mer est haute sur les côtes de Basse-Terre, comme si la Soufrière elle-même avait retenu son souffle. Cet après-midi, c’est aux Gémeaux, aux Bélier et aux Balance que je tends l’oreille, trois feux qui dansent différemment, mais qui savent, comme l’urakan, que le vent ne ment jamais. Alors, vous autres, accrochez vos ailes et laissez-moi vous dire ce que les ancêtres murmurent dans le bruissement des feuilles de gommier.</description>
       <pubDate>Sun, 31 May 2026 09:07:21 +0000</pubDate>
@@ -1368,7 +1534,8 @@ Gémeaux, Taureau, Cancer… vous êtes ce soir les gardiens d’une veillée qu
       <guid isPermaLink="false">horoscope-20260531-midi</guid>
       <itunes:duration>04:32</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>L'Assemblée enterre enfin le Code Noir un tournant historique pour la Guadeloupe, dans votre flash-info du 31 mai au matin</title>
       <description>Bèl bonjou Guadeloupe ! Dimanche trente-et-un mai deux mille vingt-six, il est sept heures dix-neuf — l'info matinale qui vous accompagne pour bien démarrer la journée.</description>
       <pubDate>Sun, 31 May 2026 05:26:23 +0000</pubDate>
@@ -1376,7 +1543,8 @@ Gémeaux, Taureau, Cancer… vous êtes ce soir les gardiens d’une veillée qu
       <guid isPermaLink="false">flash-info-20260531-matin</guid>
       <itunes:duration>04:44</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Derniers hommages à Gérard Pomer, ikon an kè a péyi, dans votre flash-info du 27 mai au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce mercredi vingt-sept mai deux mille vingt-six.</description>
       <pubDate>Wed, 27 May 2026 15:19:32 +0000</pubDate>
@@ -1384,7 +1552,8 @@ Gémeaux, Taureau, Cancer… vous êtes ce soir les gardiens d’une veillée qu
       <guid isPermaLink="false">flash-info-20260527-soir</guid>
       <itunes:duration>02:01</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Taureau ♉ : L’awokasié perd ses feuilles, le bèf rumine la patate douce, dans votre horoscope du 27 mai au soir</title>
       <description>Nous sommes le mercredi 27 mai 2026 et ce soir, le ciel se souvient. Il a retenu trois signes pour nous parler : les Gémeaux, le Taureau, la Balance, trois manières d’être au monde, trois façons de respirer la même nuit guadeloupéenne.
 
@@ -1394,7 +1563,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260527-soir</guid>
       <itunes:duration>04:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La Guadeloupe vibre au rythme de Bi-guine et mazurka ce week-end, dans votre flash-info du 27 mai à midi</title>
       <description>On fait le point à midi chez nous, en Guadeloupe, mercredi vingt-sept mai deux mille vingt-six.</description>
       <pubDate>Wed, 27 May 2026 09:20:48 +0000</pubDate>
@@ -1402,7 +1572,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260527-midi</guid>
       <itunes:duration>00:53</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Vierge ♍ : Les flamboyants rougissent sous tes pas et le rire mûrit en toi, dans votre horoscope du 27 mai à midi</title>
       <description>Nous sommes le mercredi 27 mai 2026 et cet après-midi, c’est l’igwann qui nous regarde depuis les branches du fromager, immobile, patient, mais l’œil vif. Les signes qui dansent aujourd’hui sous sa garde ? Gémeaux, Bélier, Vierge… trois feux qui ne demandent qu’à prendre, à condition de ne pas brûler ce qu’ils touchent. Alors, respirez l’air chaud de la savane, écoutez le vent dans les cannes, et avancez : la foumi manyok a déjà tracé son chemin dans la terre.</description>
       <pubDate>Wed, 27 May 2026 09:13:02 +0000</pubDate>
@@ -1410,7 +1581,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260527-midi</guid>
       <itunes:duration>04:46</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Eau du robinet interdite dans 12 secteurs de Basse-Terre, dans votre flash-info du 27 mai au matin</title>
       <description>Bèl bonjou Guadeloupe ! Mercredi vingt-sept mai deux mille vingt-six, il est cinq heures vingt-sept. Une journée qui commence sous les ondées, mais avec des nouvelles qui nous concernent tous, ici comme ailleurs. On démarre ensemble ce matin.</description>
       <pubDate>Wed, 27 May 2026 03:35:33 +0000</pubDate>
@@ -1418,7 +1590,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260527-matin</guid>
       <itunes:duration>05:35</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Gémeaux ♊ : Le bœuf boit l’eau du silence et le colibri la voit, dans votre horoscope du 27 mai au matin</title>
       <description>Nous sommes le mercredi 27 mai 2026 et ce matin, le ciel se souvient. Il a choisi de poser son regard sur les Gémeaux, les Taureaux et les Poissons, ceux qui dansent entre deux eaux, ceux qui portent la terre dans leur poing serré, ceux qui entendent murmurer l’invisible. Écoutez : la journée commence avec eux.</description>
       <pubDate>Wed, 27 May 2026 03:22:27 +0000</pubDate>
@@ -1426,7 +1599,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260527-matin</guid>
       <itunes:duration>03:40</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Secouristes agressés à Saint-François la colère monte, dans votre flash-info du 26 mai au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du mardi vingt-six mai deux mille vingt-six.</description>
       <pubDate>Tue, 26 May 2026 15:15:55 +0000</pubDate>
@@ -1434,7 +1608,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260526-soir</guid>
       <itunes:duration>01:41</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Vierge ♍ : La carapace de l’aloès avale les mangues tombées, dans votre horoscope du 26 mai au soir</title>
       <description>Nous sommes le mardi 26 mai 2026 et ce soir, la lune se lève sur trois signes qui portent l’écho des marées intérieures. Gémeaux, Scorpion, Vierge, ceux qui savent que la vérité n’est jamais une ligne droite, mais une mangrove où les racines s’entrelacent sous l’eau trouble. Posez vos fardeaux là, au bord de la nuit : l’igwann veille, immobile dans l’ombre, et il attend son heure.</description>
       <pubDate>Tue, 26 May 2026 15:07:27 +0000</pubDate>
@@ -1442,7 +1617,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260526-soir</guid>
       <itunes:duration>04:33</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Survoltez ces exploits qui font vibrer Guadeloupe ce week-end, dans votre flash-info du 26 mai à midi</title>
       <description>On fait le point à midi. Voici l'actualité de ce mardi vingt-six mai deux mille vingt-six en Guadeloupe.</description>
       <pubDate>Tue, 26 May 2026 09:23:48 +0000</pubDate>
@@ -1450,7 +1626,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260526-midi</guid>
       <itunes:duration>01:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Taureau ♉ : Le Gwo Zandoli mord l’arc-en-ciel du bèf, dans votre horoscope du 26 mai à midi</title>
       <description>Nous sommes le mardi 26 mai 2026 et la mer, ce matin, a laissé sur le sable des algues en forme de questions. Écoutez bien : cet après-midi, c’est aux Gémeaux, au Bélier et au Taureau que la vie va parler fort. Préparez vos oreilles, vos mains, et surtout, votre patience d’igwann, parce que ce qui doit venir ne se presse jamais.</description>
       <pubDate>Tue, 26 May 2026 09:14:57 +0000</pubDate>
@@ -1458,7 +1635,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260526-midi</guid>
       <itunes:duration>04:33</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Escrimeurs guadeloupéens brillent en argent à Antony, dans votre flash-info du 26 mai au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Mardi vingt-six mai deux mille vingt-six, il est cinq heures vingt-six. Une journée qui commence sous les nuages, mais avec des nouvelles qui méritent toute ton attention.</description>
       <pubDate>Tue, 26 May 2026 03:32:33 +0000</pubDate>
@@ -1466,7 +1644,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260526-matin</guid>
       <itunes:duration>03:44</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Scorpion ♏ : Le kolibri boit le silence de la Soufrière fumante, dans votre horoscope du 26 mai au matin</title>
       <description>Nous sommes le mardi 26 mai 2026 et ce matin, la mer est encore noire quand les premiers coqs chantent. Écoutez bien : aujourd’hui, c’est aux Gémeaux, aux Scorpions et aux Cancers que la vie va parler fort. Ouvrez les yeux comme on ouvre une noix de coco, il y a de l’eau dedans, et peut-être aussi un peu de feu.</description>
       <pubDate>Tue, 26 May 2026 03:22:09 +0000</pubDate>
@@ -1474,7 +1653,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260526-matin</guid>
       <itunes:duration>03:30</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>L’équipe junior d’escrime de Guadeloupe décroche l’argent aux Championnats de France, dans votre flash-info du 25 mai au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe du lundi vingt-cinq mai deux mille vingt-six.</description>
       <pubDate>Mon, 25 May 2026 15:16:42 +0000</pubDate>
@@ -1482,7 +1662,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260525-soir</guid>
       <itunes:duration>02:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Capricorne ♑ : Le kanaié enrobe le cabri comme un chemin de poussière, dans votre horoscope du 25 mai au soir</title>
       <description>Nous sommes le lundi 25 mai 2026 et ce soir, la lune se lève sur trois signes qui portent l’éclair dans leur ombre : Gémeaux, Verseau, Capricorne. Vous qui dansez entre deux vents, vous qui creusez la terre sans jamais vous y enterrer, vous qui regardez les étoiles comme on lit une lettre d’amour, ce soir, la mangrove vous attend. Posez vos fardeaux là où l’eau douce et l’eau salée se mêlent sans se combattre. L’igwann vous observe depuis les branches basses : patience n’est pas soumission. Soufflez. La nuit est à vous.</description>
       <pubDate>Mon, 25 May 2026 15:07:51 +0000</pubDate>
@@ -1490,7 +1671,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260525-soir</guid>
       <itunes:duration>04:22</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Météo ce soir en Guadeloupe un vrai suspense sous les orages, dans votre flash-info du 25 mai à midi</title>
       <description>On fait le point à midi en Guadeloupe, ce lundi vingt-cinq mai deux mille vingt-six.</description>
       <pubDate>Mon, 25 May 2026 09:31:44 +0000</pubDate>
@@ -1498,7 +1680,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260525-midi</guid>
       <itunes:duration>00:20</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Verseau ♒ &amp; Gémeaux ♊ : Verseau lambi réveille la sève des Gémeaux, dans votre horoscope du 25 mai à midi</title>
       <description>Nous sommes le lundi 25 mai 2026 et la mer, ce matin, a léché les rochers de Basse-Terre comme une chatte qui fait sa toilette, sans hâte, mais sans pardon. Cet après-midi, c’est aux Gémeaux, aux Verseau et aux Taureau que je tends l’oreille, parce que les esprits ont décidé de chuchoter plus fort dans leur direction. Écoutez bien : l’igwann est immobile dans les branches, mais ses yeux brillent.</description>
       <pubDate>Mon, 25 May 2026 09:25:14 +0000</pubDate>
@@ -1506,7 +1689,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260525-midi</guid>
       <itunes:duration>04:02</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Disparue à 86 ans : recherches urgentes en Guadeloupe, dans votre flash-info du 25 mai au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Lundi vingt-cinq mai deux mille vingt-six, il est cinq heures vingt-huit. Une journée qui commence sous les ondées, avec des nouvelles qui nous concernent. On démarre ensemble, comme chaque matin.</description>
       <pubDate>Mon, 25 May 2026 03:33:34 +0000</pubDate>
@@ -1514,7 +1698,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260525-matin</guid>
       <itunes:duration>03:21</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Poissons ♓ : Le gommier murmure au corossol, dans votre horoscope du 25 mai au matin</title>
       <description>Nous sommes le lundi 25 mai 2026 et ce matin, le vent porte trois noms : Gémeaux, Verseau, Poissons. Écoutez bien, la mer murmure vos chemins avant même que le soleil n’ait fini de monter sur la Soufrière. Aujourd’hui, c’est à vous que l’igwann montre comment rester immobile sans disparaître.</description>
       <pubDate>Mon, 25 May 2026 03:23:36 +0000</pubDate>
@@ -1522,7 +1707,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260525-matin</guid>
       <itunes:duration>03:37</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La gendarmerie alerte sur la hausse des violences contre les forces de l'ordre, dans votre flash-info du 24 mai au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du dimanche vingt-quatre mai deux mille vingt-six.</description>
       <pubDate>Sun, 24 May 2026 14:43:22 +0000</pubDate>
@@ -1530,7 +1716,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260524-soir</guid>
       <itunes:duration>01:57</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Cancer ♋ : La fourmi trouve son trésor sous la cendre du gommier, dans votre horoscope du 24 mai au soir</title>
       <description>Nous sommes le dimanche 24 mai 2026 et la nuit tombe sur nos vies comme une feuille de malomé sur le seuil, elle protège, elle veille, elle sait ce que le jour a caché. Ce soir, c’est aux Gémeaux, aux Scorpions et aux Cancers que je tends l’oreille : vos cœurs battent au rythme des foumis manyok, ces travailleuses invisibles qui bâtissent sans bruit, et vos peines, comme les zandolis, se détachent pour mieux renaître. Soufflez, mes enfants, la mangrove respire encore, et vous avec.</description>
       <pubDate>Sun, 24 May 2026 14:34:51 +0000</pubDate>
@@ -1538,7 +1725,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260524-soir</guid>
       <itunes:duration>04:06</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Météo en Guadeloupe ce midi : vigilance accrue sur les prochaines heures, dans votre flash-info du 24 mai à midi</title>
       <description>On fait le point à midi, ce dimanche vingt-quatre mai deux mille vingt-six.</description>
       <pubDate>Sun, 24 May 2026 09:02:24 +0000</pubDate>
@@ -1546,7 +1734,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260524-midi</guid>
       <itunes:duration>00:16</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Scorpion ♏ : Le cœur en carambole trempe au feu de la Soufrière, dans votre horoscope du 24 mai à midi</title>
       <description>Nous sommes le dimanche 24 mai 2026 et la mer, ce matin, a laissé des algues en offrande sur le sable de Gosier, signe que les esprits veillent, qu’ils déposent leurs messages comme on dépose un fruit mûr au pied d’un arbre. Cet après-midi, les signes qui dansent dans le ciel sont ceux qui savent bouger sans se perdre : Gémeaux, Sagittaire, Scorpion. Trois façons de traverser le même soleil, trois manières de dire que la vie n’est pas une ligne droite, mais une mangrove, on avance entre deux eaux, on respire entre deux mondes.</description>
       <pubDate>Sun, 24 May 2026 08:55:52 +0000</pubDate>
@@ -1554,7 +1743,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260524-midi</guid>
       <itunes:duration>04:34</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le FC Barcelone écrase l'OL Lyon en finale de la Ligue des champions féminine, dans votre flash-info du 24 mai au matin</title>
       <description>Bèl bonjou à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce dimanche vingt-quatre mai deux mille vingt-six. Il est cinq heures vingt-cinq, l'actualité ne s'arrête pas.</description>
       <pubDate>Sun, 24 May 2026 03:34:00 +0000</pubDate>
@@ -1562,7 +1752,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260524-matin</guid>
       <itunes:duration>05:43</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Poissons ♓ &amp; Gémeaux ♊ : La lune caresse les pétales qui ferment pour mieux respirer, dans votre horoscope du 24 mai au matin</title>
       <description>Nous sommes le dimanche 24 mai 2026 et ce matin, la mer est calme, mais sous la surface, les courants travaillent déjà. Écoutez bien : aujourd’hui, c’est aux Gémeaux, aux Cancer et aux Poissons que les esprits murmurent. Ouvrez grand les fenêtres, laissez entrer l’air salé, la journée commence avec eux.</description>
       <pubDate>Sun, 24 May 2026 03:20:45 +0000</pubDate>
@@ -1570,7 +1761,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260524-matin</guid>
       <itunes:duration>04:10</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Steam retire Plantation Simulator après la colère des associations guadeloupéennes, dans votre flash-info du 23 mai au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du samedi vingt-trois mai deux mille vingt-six.</description>
       <pubDate>Sat, 23 May 2026 14:45:47 +0000</pubDate>
@@ -1578,7 +1770,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260523-soir</guid>
       <itunes:duration>01:48</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Poissons ♓ &amp; Gémeaux ♊ : La karet étire ses pattes au clair de lune là où le tamaren suce le suc de tes secrets, dans votre horoscope du 23 mai au soir</title>
       <description>Nous sommes le samedi 23 mai 2026 et ce soir, la lune se lève sur les eaux troubles de Rivière au Sel. Écoutez bien : ce sont les Gémeaux qui dansent avec les mots, le Taureau qui creuse sa terre sans bruit, et les Poissons qui nagent entre deux mondes, comme l’urakan entre ciel et mer. Posez vos soucis, mes enfants, la nuit est une mangrove, elle sait garder les secrets.</description>
       <pubDate>Sat, 23 May 2026 14:36:08 +0000</pubDate>
@@ -1586,7 +1779,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260523-soir</guid>
       <itunes:duration>04:13</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Palme d'or à Cannes ce soir un suspense haletant sous le soleil des îles, dans votre flash-info du 23 mai à midi</title>
       <description>On fait le point à midi, ce samedi vingt-trois mai deux mille vingt-six.</description>
       <pubDate>Sat, 23 May 2026 08:52:52 +0000</pubDate>
@@ -1594,7 +1788,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260523-midi</guid>
       <itunes:duration>00:39</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Lion ♌ : Le fwèzè réveille les ailes du Fwou-Fwou, dans votre horoscope du 23 mai à midi</title>
       <description>Nous sommes le samedi 23 mai 2026 et le vent porte aujourd’hui trois signes comme des feuilles arrachées à l’arbre-mère : Gémeaux, Taureau, Lion. Cet après-midi, écoutez bien, la mangrove chuchote vos noms. Elle sait où vous en êtes, même si vous, vous faites semblant de l’ignorer.</description>
       <pubDate>Sat, 23 May 2026 08:46:15 +0000</pubDate>
@@ -1602,7 +1797,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260523-midi</guid>
       <itunes:duration>03:40</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un million d'euros contre la fourmi manioc en Guadeloupe, dans votre flash-info du 23 mai au matin</title>
       <description>Bèl bonjou, chè lèstann ! Nous sommes le samedi vingt-trois mai deux mille vingt-six, et voici votre Flash Info Guadeloupe à cinq heures vingt-trois.</description>
       <pubDate>Sat, 23 May 2026 03:30:23 +0000</pubDate>
@@ -1610,7 +1806,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">flash-info-20260523-matin</guid>
       <itunes:duration>04:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Gémeaux ♊ : Le colibri picore l’ombre de la roche à Cupidon, dans votre horoscope du 23 mai au matin</title>
       <description>Nous sommes le samedi 23 mai 2026 et ce matin, la mangrove chuchote des noms que nous seuls pouvons entendre. Écoutez : Gémeaux, Scorpion, Sagittaire, aujourd’hui, c’est à vous que les esprits tendent l’oreille. Debout, la rosée est encore fraîche sur les feuilles de malomé, et le jour vous appartient avant que le soleil ne monte trop haut.</description>
       <pubDate>Sat, 23 May 2026 03:18:39 +0000</pubDate>
@@ -1618,7 +1815,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260523-matin</guid>
       <itunes:duration>03:48</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Bélier ♈ : L’avocat mûrit sous tes pieds comme un secret de coco, dans votre horoscope du 22 mai à midi</title>
       <description>Nous sommes le vendredi 22 mai 2026 et cet après-midi, le vent tourne pour ceux qui savent écouter. Les signes qui dansent aujourd’hui sont ceux qui portent la parole légère et le cœur lourd, Gémeaux, Cancer, Verseau, Sagittaire, Bélier, Vierge, et toi, Taureau, qui regardes la terre sans te presser. Allez, respirez l’air qui vient de la mer, laissez-le vous traverser comme une pirogue en gommier blanc, et avancez.</description>
       <pubDate>Fri, 22 May 2026 18:25:55 +0000</pubDate>
@@ -1626,7 +1824,8 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260522-midi</guid>
       <itunes:duration>08:26</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Verseau ♒ &amp; Sagittaire ♐ : Lambi souffle le thé qui réveilleBwa bandé boit les ailes du kolibri, dans votre horoscope du 22 mai à midi</title>
       <description>Nous sommes le vendredi 22 mai 2026 et cet après-midi, le ciel nous parle à travers les voix mêlées des ancêtres et des vents qui tournent au-dessus de la Soufrière. Écoutez bien : aujourd’hui, c’est aux Gémeaux que la foumi manyok murmure des stratégies invisibles, aux Capricorne que l’igwann rappelle la force de l’immobilité, aux Verseau que l’urakan offre ses ailes sans attache. Taureau, Bélier, Sagittaire, Vierge, vos pas résonnent sur une terre où le manyòk et le khan ont nourri plus que des corps. La journée n’est pas finie, elle se réinvente encore.</description>
       <pubDate>Fri, 22 May 2026 18:18:41 +0000</pubDate>
@@ -1634,21 +1833,6 @@ Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier. La
       <guid isPermaLink="false">horoscope-20260522-midi</guid>
       <itunes:duration>10:00</itunes:duration>
     </item>
-    <item>
-      <title>Les prix en Guadeloupe dans le viseur du Sénat, dans votre flash-info du 22 mai au soir</title>
-      <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du vendredi vingt-deux mai deux mille vingt-six.</description>
-      <pubDate>Fri, 22 May 2026 15:16:47 +0000</pubDate>
-      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-05/flash-info-20260522-soir.mp3" length="1054965" type="audio/mpeg" />
-      <guid isPermaLink="false">flash-info-20260522-soir</guid>
-      <itunes:duration>01:42</itunes:duration>
-    </item>
-    <item>
-      <title>Mémwar anba péyi an nou</title>
-      <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
-      <pubDate>Wed, 01 Jul 2026 03:43:12 +0000</pubDate>
-      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-07-01-matin.mp3" length="1707045" type="audio/mpeg" />
-      <guid isPermaLink="false">emission-2026-07-01-matin</guid>
-      <itunes:duration>180</itunes:duration>
-    </item>
+
   </channel>
 </rss>
