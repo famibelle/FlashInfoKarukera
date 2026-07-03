@@ -979,5 +979,15 @@
       <itunes:summary>Découvrez les légendes et saveurs qui ont façonné l'âme guadeloupéenne à travers le ka et le koubari</itunes:summary>
       <itunes:keywords>Guadeloupe,ka,traditions,crabes,kalinagos,koubari,cuisine,culture</itunes:keywords>
     </item>
+    <item>
+      <title>Léza an chimen résistans</title>
+      <description>Plongez dans les racines de la résistance guadeloupéenne à travers nature et culture !</description>
+      <pubDate>Fri, 03 Jul 2026 03:34:19 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-07-03-matin.mp3" length="1935093" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-07-03-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Plongez dans les racines de la résistance guadeloupéenne à travers nature et culture !</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,crabes,résistance,traditions,piments,histoire,identité</itunes:keywords>
+    </item>
   </channel>
 </rss>
