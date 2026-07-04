@@ -3722,6 +3722,52 @@
       "duration_seconds": 296,
       "setVideoId": "8A5ECC2A8F4C1016",
       "creditsBrowseId": "MPTCOgE2cqrwQZc"
+    },
+    {
+      "videoId": "AYV5GosRcpM",
+      "title": "Chagren lanmou",
+      "artists": [
+        {
+          "name": "Tabou Combo",
+          "id": "UCp7g2PL0RXDFfur0tvETHBA"
+        }
+      ],
+      "album": {
+        "name": "Référence",
+        "id": "MPREb_XdIZVHoTDjo"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIPXfrPRZPJgo24DGxrw5_yCtbZ2VxrTAUqD4nj7G76pb8236xYv6oT3jNKFxqtGMlF_q8s9iyYIOQ1hmRKyPKcwVRqZg",
+        "remove": "AB9zfpJac_DBBH6J2FMbHysI8oNW2BUdpOQ3S6g15Lr_wLVp7iMhsK87f1iL48YDzphCyH83gTWZZ-TZF7ZBsSJxsyFyWKgitg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJz73L2I3duAxHFA3dyHrPr13EBy7xNDRkj5Vkfitc7aeBVZ3jYXYccsUGj4mZAhs0vAM6pZ4ZKXY8dP3PgnAWTnJBpZdvid19fkZHqUTqzc-c-bR4",
+        "unpin": "AB9zfpKae-zOwZ_03LFTjD9wKN7Fce4cdcyg75iriqv4yGkK6TdPYgBB4XBZJqnmPR6NH2WM-LkfFdfX6U4vXXvZ23uuIQAIwOfQWB1xRgc1ClGPMlFM_Dw"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/7Vbs-td11ex1IsfKd5_f56lfWJtsOu4om5I1-OHpAZ7_qJT1-uCV2PoqmONnHEMMO0Mnc__7ICb2d4apLQ=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/7Vbs-td11ex1IsfKd5_f56lfWJtsOu4om5I1-OHpAZ7_qJT1-uCV2PoqmONnHEMMO0Mnc__7ICb2d4apLQ=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "6:46",
+      "duration_seconds": 406,
+      "setVideoId": "0F253185B5BAB80C",
+      "creditsBrowseId": "MPTCAYV5GosRcpM"
     }
   ],
   "duration_seconds": 22361
