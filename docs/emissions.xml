@@ -1009,5 +1009,15 @@
       <itunes:summary>Découvrez la Guadeloupe à travers ses symboles, ses histoires et ses trésors cachés.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,créole,tradition,klop,pomme-liane,RocheGravée,histoire</itunes:keywords>
     </item>
+    <item>
+      <title>Mangue Péyi, Chouèt Kabrit : danse de l’âme guadeloupéenne</title>
+      <description>Plongez dans la magie du Kompa et des symboles guadeloupéens entre terre, mer et résistance créole.</description>
+      <pubDate>Sat, 04 Jul 2026 14:50:32 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-07-04-soir.mp3" length="2120493" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-07-04-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Plongez dans la magie du Kompa et des symboles guadeloupéens entre terre, mer et résistance créole.</itunes:summary>
+      <itunes:keywords>Kompa,Guadeloupe,Résistance,créole,Biodiversité,ChouètKabrit,ManguePéyi,CultureAntillaise</itunes:keywords>
+    </item>
   </channel>
 </rss>
