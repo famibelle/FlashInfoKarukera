@@ -1049,5 +1049,15 @@
       <itunes:summary>Découvrez les légendes et résistances cachées de la Guadeloupe à travers ses chants et ses oiseaux m</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,résistance,chants,oiseaux,folklore,histoire,traditions</itunes:keywords>
     </item>
+    <item>
+      <title>Les âmes de la mangrove et la pierre gravée</title>
+      <description>Plongez dans les secrets de la mangrove guadeloupéenne et ses gardiens invisibles.</description>
+      <pubDate>Mon, 06 Jul 2026 15:23:45 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-07-06-soir.mp3" length="1869189" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-07-06-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Plongez dans les secrets de la mangrove guadeloupéenne et ses gardiens invisibles.</itunes:summary>
+      <itunes:keywords>mangrove,Guadeloupe,ZoukMachine,patrimoine,arbres,kalinago,traditions</itunes:keywords>
+    </item>
   </channel>
 </rss>
