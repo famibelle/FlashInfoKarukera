@@ -1,0 +1,229 @@
+{
+  "date": "2026-07-05",
+  "generated_at": "2026-07-06T00:55:49.797743Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 449.9047619047619,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 449.14285714285717,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 244.28571428571428,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 154.60714285714286,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 560.204081632653,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1877.2857142857142,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "format_invalid": 8,
+        "title_mismatch": 3,
+        "artist_mismatch": 2
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "KASSAV'": 1,
+        "EDDY EDOUARD": 1,
+        "Tabou Combo": 2,
+        "Akiyo": 1,
+        "Dominik Coco": 1,
+        "Mario Chicot": 3,
+        "Thierry Fanfant": 1,
+        "Jean Luc Guanel": 2,
+        "Fabien Georges": 1,
+        "Patrick Andrey": 1,
+        "Teddyson John": 2,
+        "Jean-Philippe Marthély": 1,
+        "Top Vice": 2,
+        "Nu-Look": 3,
+        "BélO": 1,
+        "Rah WCK": 1,
+        "Yoan": 1,
+        "Thierry Cham": 2,
+        "Marcel Lollia Dit Velo": 1,
+        "Zin": 1,
+        "Claudette et Ti Pierre": 1,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "Jacob Desvarieux": 1,
+        "The Peace Accord": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Meryl": 1,
+        "Edouard Benoit": 1,
+        "Sweet Micky": 1,
+        "Edith Lefel": 2,
+        "Battery Cremil": 3,
+        "Lutchiana": 1,
+        "Ralph Thamar, Gertrude Seinin": 1,
+        "Klimax": 1,
+        "Patrick St Eloi": 1,
+        "Harry Diboula": 2,
+        "Fabienne Payoute Bernadin": 1,
+        "Gilles Floro": 1,
+        "Slaï": 1,
+        "Media For The Masses": 1,
+        "Medhy Custos": 2,
+        "Tanya St-Val": 1,
+        "Carimi": 2,
+        "T-Vice": 1,
+        "JOEY JEFFREY": 1,
+        "Carlos Nilson": 1,
+        "Experience 7": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "NICHOLS": 1,
+        "Patrick Saint-Eloi": 1,
+        "ZIN": 1,
+        "Jean-Claude Naimro": 1,
+        "Harmonik": 1,
+        "Stony, Oswald": 1,
+        "Kimsé": 1,
+        "Dominique Panol": 1,
+        "ROBERT LOYSON": 1,
+        "BEL": 1,
+        "Orlane": 1,
+        "Warren Saada": 1,
+        "Alain Ramanisum": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Les Aiglons": 1,
+        "Nichols": 1,
+        "Stony": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Mario Chicot",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "L’âme créole entre racines et résilience",
+          "Résistances enracinées dans l'âme guadeloupéenne"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 2823
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "8 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "2 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
