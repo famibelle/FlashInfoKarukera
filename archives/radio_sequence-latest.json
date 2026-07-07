@@ -568,12 +568,18 @@
       "duration": 306
     },
     {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-07/flash-info-20260707-soir.mp3",
-      "label": "Flash Info Guadeloupe — 2026-07-07, édition du soir",
-      "icon": "📰",
-      "pending": true
+      "type": "music",
+      "videoId": "GUBQIH4oqow",
+      "title": "Mwen inmé",
+      "artist": "Jean Luc Guanel",
+      "genre": "",
+      "duration": 236
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-07-07-matin-12.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
     },
     {
       "type": "liner",
@@ -653,9 +659,9 @@
     },
     {
       "type": "music",
-      "videoId": "Mw6vcU8yvU8",
-      "title": "Et moi je chante",
-      "artist": "Gérard Lenorman",
+      "videoId": "iVDHVrE6kvg",
+      "title": "Ena en sime",
+      "artist": "Alain Ramanisum",
       "genre": "",
       "duration": 183
     },
@@ -715,11 +721,11 @@
     },
     {
       "type": "music",
-      "videoId": "dsvwflbfL-w",
-      "title": "Eden Love (feat. Fabert Thenard)",
+      "videoId": "lvHbeqlUFn0",
+      "title": "Clair obscur",
       "artist": "Dominik Coco",
       "genre": "",
-      "duration": 243
+      "duration": 250
     },
     {
       "type": "music",
