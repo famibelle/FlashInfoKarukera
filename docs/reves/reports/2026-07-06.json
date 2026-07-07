@@ -1,9 +1,9 @@
 {
   "date": "2026-07-06",
-  "generated_at": "2026-07-07T00:54:51.676003Z",
+  "generated_at": "2026-07-07T23:22:44.735852Z",
   "technical": {
     "summary": {
-      "total_runs": 161,
+      "total_runs": 178,
       "global_success_rate": 1.0,
       "total_errors_in_logs": 0,
       "total_warnings_in_logs": 0,
@@ -12,61 +12,61 @@
     "workflows": [
       {
         "name": "horoscope-daily",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 440.23809523809524,
+        "avg_duration_s": 432.4166666666667,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "flash-info",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 438.76190476190476,
+        "avg_duration_s": 437.3333333333333,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "capsules-daily",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 222.57142857142858,
+        "avg_duration_s": 211.66666666666666,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "emission-daily",
-        "runs": 28,
-        "success": 28,
+        "runs": 32,
+        "success": 32,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 145.75,
+        "avg_duration_s": 141.21875,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "botiran-radio-daily",
-        "runs": 49,
-        "success": 49,
+        "runs": 50,
+        "success": 50,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 523.9387755102041,
+        "avg_duration_s": 505.86,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "daily-radio-orchestrator",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 1792.142857142857,
+        "avg_duration_s": 1758.875,
         "last_status": "success",
         "last_failure_url": null
       }
@@ -75,11 +75,11 @@
   "antenne": {
     "liners": {
       "total": 13,
-      "coherent": 2,
-      "coherence_rate": 0.15384615384615385,
+      "coherent": 1,
+      "coherence_rate": 0.07692307692307693,
       "issues_by_type": {
-        "format_invalid": 11,
-        "title_mismatch": 2
+        "format_invalid": 12,
+        "title_mismatch": 1
       }
     },
     "music": {
@@ -88,67 +88,70 @@
         "": 80
       },
       "artists": {
-        "Jocelyne Béroard, Kassav'": 1,
-        "KA": 1,
-        "Zouk Machine": 2,
-        "Jacob Desvarieux": 1,
-        "Joëlle Ursull": 2,
-        "Top Vice": 2,
-        "Patrick Andrey": 1,
-        "Tabou Combo": 4,
-        "JEAN-PHILIPPE MARTHELY": 1,
-        "T-Vice": 3,
-        "Akiyo": 2,
-        "Dominik Coco": 3,
-        "BEL": 1,
-        "Ralph Thamar": 2,
-        "Les Aiglons": 2,
-        "Orlane": 2,
+        "Dominik Coco": 5,
+        "Mario Chicot": 2,
+        "Dédé Saint-Prix": 1,
+        "Exile One": 1,
         "Zin": 2,
-        "Gérard Lenorman": 1,
-        "Soft": 1,
-        "Perle Lama, Thierry Cham": 1,
-        "Princess Erika": 2,
-        "Energy": 1,
-        "Djakout #1": 1,
-        "Patrick Saint Eloi, Kassav'": 1,
-        "Battery Cremil": 2,
-        "Carlos Nilson": 1,
+        "Medhy Custos": 1,
         "Meryl": 1,
-        "Kimsé": 1,
-        "Perle Lama": 1,
-        "Jean-Michel Jean-Louis": 2,
-        "Gaoulé Mizik": 1,
-        "Jean-Marie Ragald": 1,
-        "Al Lirvat, Robert Mavounzy": 1,
-        "Lutchiana Mobulu 100%": 1,
-        "Medhy Custos": 2,
-        "Alexandre Stellio": 1,
-        "Lutchiana": 1,
+        "Kaysha, Kénédy": 1,
+        "Tabou Combo": 3,
+        "LORYN Official": 1,
+        "Orlane": 2,
+        "Gilles Floro": 1,
+        "Stony": 1,
+        "Djakout #1": 2,
+        "Harry Diboula": 2,
+        "Chiré Ban'n": 1,
+        "ROBERT LOYSON": 1,
+        "Tanya St-Val": 2,
+        "Francky Vincent": 1,
+        "Jean Carlos Music Empire": 1,
+        "T-Vice": 2,
         "Ti Paris": 1,
-        "Edith Lefel": 3,
-        "Pure Energy Crew": 1,
-        "Patrick Saint-Eloi": 1,
-        "Claudette et Ti Pierre": 2,
-        "Milca": 1,
-        "Yoan": 1,
-        "Tanya St-Val": 1,
+        "Marcé, Toumpak": 1,
+        "Jacob Desvarieux": 1,
+        "Soft": 1,
+        "Thierry Cham": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Zouklook": 1,
+        "Jeff Joseph": 1,
         "Harmonik": 1,
-        "Kan'nida": 1,
-        "Mario Chicot": 1,
+        "Jocelyne Béroard": 2,
+        "Dominique Panol": 3,
+        "Jean-Philippe Marthély": 1,
+        "Yoan": 1,
+        "Kaysha": 1,
+        "Nailah Blackman & Teddyson John": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Kan'nida": 2,
+        "BélO": 1,
         "Carimi": 1,
+        "G'Ny": 1,
+        "Claudette Plante": 1,
+        "Nu-Look": 1,
         "JACOB F. DESVARIEUX & Georges Decimus": 1,
-        "YVES THOLE ET SON KONVWAKA": 1,
-        "Thierry Fanfant": 1,
-        "Dominique Panol": 1,
+        "Jean-Claude Naimro": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Ralph Thamar, Jean-Claude Naimro": 1,
+        "Princess Erika": 2,
+        "Lutchiana Mobulu 100%": 1,
+        "Sweet Micky": 1,
+        "Les Aiglons": 1,
         "Klimax": 1,
-        "Harry Diboula": 1,
-        "PATRICK SAINT-ELOI": 1,
-        "Ludo": 1,
-        "Zouk Factory": 1
+        "Patrick Saint Eloi, Kassav'": 1,
+        "Thierry Lof": 1,
+        "Warren": 1,
+        "Joëlle Ursull": 2,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "Patrick St Eloi": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Rah WCK": 1,
+        "Kimsé": 1
       },
-      "max_artist_repetition": 4,
-      "top_artist": "Tabou Combo",
+      "max_artist_repetition": 5,
+      "top_artist": "Dominik Coco",
       "consecutive_same_artist": [],
       "abrupt_transitions": []
     },
@@ -188,7 +191,7 @@
         "passages": 13
       },
       "Corinne": {
-        "passages": 2875
+        "passages": 2927
       }
     }
   },
@@ -198,12 +201,12 @@
       {
         "type": "liner_coherence_critical",
         "severity": "high",
-        "context": "Cohérence liners : 15% (objectif >90%)"
+        "context": "Cohérence liners : 8% (objectif >90%)"
       },
       {
         "type": "liner_format_issues",
         "severity": "high",
-        "context": "11 liner(s) au format invalide"
+        "context": "12 liner(s) au format invalide"
       },
       {
         "type": "journalist_no_content",
@@ -211,6 +214,12 @@
         "context": "Monique : aucun contenu généré aujourd'hui"
       }
     ],
-    "music": []
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Dominik Coco joué 5x (objectif <5)"
+      }
+    ]
   }
 }
