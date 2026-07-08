@@ -1089,5 +1089,15 @@
       <itunes:summary>Découvrez la Guadeloupe à travers ses légendes, sa nature et ses traditions vivantes.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,créole,traditions,nature,légendes,résistance,TabouCombo</itunes:keywords>
     </item>
+    <item>
+      <title>Moso Fela la terre chante</title>
+      <description>Découvrez les légendes et symboles cachés dans la terre et la culture guadeloupéenne.</description>
+      <pubDate>Wed, 08 Jul 2026 15:08:02 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-07-08-soir.mp3" length="1532181" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-07-08-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez les légendes et symboles cachés dans la terre et la culture guadeloupéenne.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,tradition,résistance,tarente,banane,pomme,canne,sucre</itunes:keywords>
+    </item>
   </channel>
 </rss>
