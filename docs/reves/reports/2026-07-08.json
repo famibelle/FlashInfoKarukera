@@ -1,0 +1,231 @@
+{
+  "date": "2026-07-08",
+  "generated_at": "2026-07-09T00:51:40.701112Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 424.04761904761904,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 420.5238095238095,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 184.33333333333334,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 134.35714285714286,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 468.3673469387755,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1661.5714285714287,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 2,
+      "coherence_rate": 0.15384615384615385,
+      "issues_by_type": {
+        "title_mismatch": 2,
+        "format_invalid": 10,
+        "artist_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "BEL": 1,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "Dominik Coco": 2,
+        "Energy": 1,
+        "Akiyo": 3,
+        "Zouklook": 1,
+        "Mario Chicot": 3,
+        "Tanya St-Val": 1,
+        "Claudette et Ti Pierre": 1,
+        "Patrick Saint-Eloi": 1,
+        "KIM HYUN JOONG": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "T-Vice": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "BélO": 3,
+        "Yoan": 1,
+        "Warren": 1,
+        "Kan'nida": 1,
+        "Nichols": 1,
+        "Harmonik": 3,
+        "Tabou Combo": 1,
+        "Experience 7": 1,
+        "JOCELYNE BEROARD": 1,
+        "Fabien Georges": 1,
+        "Carimi": 1,
+        "Battery Cremil": 5,
+        "Perle Lama": 1,
+        "EXILE": 1,
+        "The Peace Accord": 1,
+        "JEAN-CLAUDE NAIMRO": 2,
+        "T-vice": 2,
+        "Edith Lefel": 2,
+        "Al Lirvat, Robert Mavounzy": 1,
+        "JACOB F. DESVARIEUX/GEORGES DECIMUS": 1,
+        "Alexandre Stellio": 1,
+        "KA": 1,
+        "Zouk Factory": 1,
+        "Nu-Look": 2,
+        "Fanny J": 1,
+        "Thierry Cham": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Djakout #1": 1,
+        "NICHOLS": 1,
+        "Gilles Floro": 1,
+        "Teddyson John": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Warren Saada": 1,
+        "Soft": 1,
+        "Gaoulé Mizik": 1,
+        "Joëlle Ursull": 2,
+        "Milca": 2,
+        "KASSAV'": 1,
+        "Harry Diboula": 1,
+        "Perle Lama, Warren Permal": 1,
+        "KALI": 1,
+        "Dédé Saint-Prix": 1,
+        "Orlane": 1,
+        "Jean Luc Guanel": 1,
+        "Dominique Panol": 1,
+        "Justice Crew": 1
+      },
+      "max_artist_repetition": 5,
+      "top_artist": "Battery Cremil",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Guadeloupe murmure entre racines et vagues",
+          "Moso Fela la terre chante"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 2979
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 15% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "10 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Battery Cremil joué 5x (objectif <5)"
+      }
+    ]
+  }
+}
