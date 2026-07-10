@@ -1,0 +1,221 @@
+{
+  "date": "2026-07-09",
+  "generated_at": "2026-07-10T00:51:08.710281Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 409.85714285714283,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 396.2857142857143,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 143.1904761904762,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 123.60714285714286,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 466.55102040816325,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1659.095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 1,
+      "coherence_rate": 0.07692307692307693,
+      "issues_by_type": {
+        "format_invalid": 12,
+        "title_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Zouk Machine": 2,
+        "MASS POWER NOU": 1,
+        "Warren": 1,
+        "Carimi": 1,
+        "Robert Loyson": 1,
+        "Tabou Combo": 3,
+        "Battery Cremil": 3,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Ralph Thamar": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Mini All Stars": 1,
+        "Alain Ramanisum, Le Groupe Ravanna": 1,
+        "Kan'nida": 2,
+        "KA": 1,
+        "Claudette et Ti Pierre": 1,
+        "KASSAV'": 3,
+        "Francky Vincent": 2,
+        "Jean Luc Guanel": 1,
+        "Patrick Saint-Eloi": 2,
+        "Les Aiglons": 1,
+        "Ralph Thamar, Gertrude Seinin": 1,
+        "Djakout #1": 2,
+        "Nichols": 1,
+        "KIM HYUN JOONG": 1,
+        "Perle Lama": 1,
+        "Lutchiana": 1,
+        "Rah WCK": 1,
+        "Joëlle Ursull": 2,
+        "Princess Erika": 1,
+        "carimi": 1,
+        "Harry Diboula": 1,
+        "Dominique Panol": 2,
+        "T-Vice": 1,
+        "Akiyo": 1,
+        "Princess With A Purpose": 1,
+        "Fox, Naelle": 1,
+        "Meryl": 1,
+        "Jocelyne Labylle": 1,
+        "Milca": 2,
+        "ZOUK RIDDIM": 1,
+        "Alain Ramanisum": 1,
+        "Mario Chicot": 3,
+        "Tanya St-Val": 1,
+        "Dominik Coco": 2,
+        "Jean-Marie Ragald": 1,
+        "Stony, Oswald": 1,
+        "Edith Lefel": 1,
+        "Nu-Look": 1,
+        "Teddyson John": 1,
+        "Ludo": 1,
+        "LORYN Official": 1,
+        "Slaï": 1,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "Carlos Nilson": 1,
+        "T-vice": 1,
+        "R. Carlos Nakai, Keola Beamer": 1,
+        "Georges Decimus, Kassav": 1,
+        "The Peace Accord": 1,
+        "Gaoulé Mizik": 1,
+        "Mass Vocal": 1,
+        "KALI": 1,
+        "Media For The Masses": 1,
+        "Jim Rama, Patrick Andrey": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Tabou Combo",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "La Guadeloupe chante entre vent et racines",
+          "Mèzwi douvan ka palé latè an nou"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 3031
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 8% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "12 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
