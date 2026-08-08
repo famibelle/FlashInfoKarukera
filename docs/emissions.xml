@@ -1149,5 +1149,15 @@
       <itunes:summary>Découvrez la magie des marais guadeloupéens et leurs légendes vivantes, entre oiseaux migrateurs et </itunes:summary>
       <itunes:keywords>Guadeloupe,culture,ancêtres,nature,résistance,oiseaux,mangroves,gombo</itunes:keywords>
     </item>
+    <item>
+      <title>L'âme des mornes chante dans les feuilles</title>
+      <description>Découvrez l'âme de la Guadeloupe à travers ses chants, sa nature et ses traditions vivantes.</description>
+      <pubDate>Sat, 08 Aug 2026 14:30:39 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-08-08-soir.mp3" length="1774821" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-08-08-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez l'âme de la Guadeloupe à travers ses chants, sa nature et ses traditions vivantes.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,traditions,nature,JoëlleUrsull,rainetteka,kowosol</itunes:keywords>
+    </item>
   </channel>
 </rss>
