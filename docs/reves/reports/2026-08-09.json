@@ -1,0 +1,252 @@
+{
+  "date": "2026-08-09",
+  "generated_at": "2026-08-10T00:28:50.612411Z",
+  "technical": {
+    "summary": {
+      "total_runs": 156,
+      "global_success_rate": 0.7051282051282052,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily",
+        "flash-info",
+        "emission-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 7,
+        "failure": 14,
+        "success_rate": 0.3333333333333333,
+        "avg_duration_s": 217.76190476190476,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 7,
+        "failure": 14,
+        "success_rate": 0.3333333333333333,
+        "avg_duration_s": 182.95238095238096,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 129.66666666666666,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 10,
+        "failure": 18,
+        "success_rate": 0.35714285714285715,
+        "avg_duration_s": 147.28571428571428,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 44,
+        "success": 44,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 129.02272727272728,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 851.952380952381,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 6,
+      "coherence_rate": 0.46153846153846156,
+      "issues_by_type": {
+        "format_invalid": 7,
+        "title_mismatch": 6
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Fabienne Payoute Bernadin": 1,
+        "Zo Konpa, Zouk Machine": 1,
+        "Marcé, Toumpak": 1,
+        "Jean-Luc Guanel": 1,
+        "Battery Cremil": 5,
+        "Perle Lama, Thierry Cham": 1,
+        "Tanya St-Val": 3,
+        "Jean Luc Guanel": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Jean-Marie Ragald": 1,
+        "T-vice": 1,
+        "Akiyo": 2,
+        "Mario Chicot": 1,
+        "Gilles Floro": 3,
+        "Dominik Coco": 1,
+        "Ti Paris": 1,
+        "Harmonik": 2,
+        "Mass Vocal": 1,
+        "Jean-Michel Jarre": 1,
+        "Orlane": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Kim": 1,
+        "Jim Rama, Patrick Andrey": 1,
+        "Yoan": 1,
+        "Joëlle Ursull": 2,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Zouk Machine": 1,
+        "Tabou Combo": 1,
+        "Top Vice": 2,
+        "Zin": 2,
+        "Ludo": 1,
+        "Dominique Panol": 1,
+        "Exile One": 1,
+        "Dominique King": 1,
+        "Dédé Saint-Prix": 1,
+        "Jeff Joseph": 1,
+        "Djakout # 1": 1,
+        "Kan'nida": 2,
+        "T-Vice": 1,
+        "Princess Erika": 1,
+        "Edith Lefel": 2,
+        "Jean-Michel Jean-Louis": 1,
+        "Thierry Cham": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "BEL": 1,
+        "Robert Loyson": 1,
+        "JACOB F. DESVARIEUX & Georges Decimus": 1,
+        "Les Aiglons": 2,
+        "Warren": 1,
+        "Teddyson John": 1,
+        "Patrick Saint-Eloi": 1,
+        "Ralph Thamar": 1,
+        "Slaï": 1,
+        "Sweet Micky": 1,
+        "Antonio Carlos Jobim": 1,
+        "Warren Saada": 1,
+        "EDDY EDOUARD": 1,
+        "Experience 7": 1,
+        "Fanny J": 1,
+        "Georges Decimus, Kassav": 1,
+        "Stony": 1,
+        "Claudette et Ti Pierre": 1
+      },
+      "max_artist_repetition": 5,
+      "top_artist": "Battery Cremil",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Les Racines qui parlent à l’exil",
+          "Les murmures sacrés de la terre guadeloupéenne"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 3174
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "global_success_rate_critical",
+        "severity": "high",
+        "context": "Taux succès global : 71% (objectif >90%)"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "horoscope-daily : 33% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "flash-info : 33% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "emission-daily : 36% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 46% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "7 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Battery Cremil joué 5x (objectif <5)"
+      }
+    ]
+  }
+}
