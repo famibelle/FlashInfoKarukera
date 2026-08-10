@@ -36,13 +36,13 @@
       "title": "Mauvaise Élève",
       "artists": [
         {
-          "name": "Meryl",
-          "id": "UCxF_3BaeGCWLlFzwq09ecWg"
+          "name": "Top Vice",
+          "id": "UCtZQncYl7qqkFoLS0lYVHkg"
         }
       ],
       "album": {
-        "name": "Mauvaise Élève",
-        "id": "MPREb_HK3HmRk75VA"
+        "name": "Compas L'An 2000",
+        "id": "MPREb_SLYtRsKqIWn"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
@@ -57,12 +57,104 @@
       },
       "thumbnails": [
         {
-          "url": "https://yt3.googleusercontent.com/OH3ec4fdoAYnmfS2uwLrYbur2eEJatY-ukzb8hoegkR1qfGA5gL2b-X7J0x2rG5qbuf1fxqvvnLNRVuv2A=w60-h60-l90-rj",
+          "url": "https://yt3.googleusercontent.com/tIrV69wNI6C1UXE4-5a6Qs9LI2ofYKd0Qix0DvTHatAETVeVtaYiudix9jGLK-IWHi2geogu-tS8vSr4PQ=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
         {
-          "url": "https://yt3.googleusercontent.com/OH3ec4fdoAYnmfS2uwLrYbur2eEJatY-ukzb8hoegkR1qfGA5gL2b-X7J0x2rG5qbuf1fxqvvnLNRVuv2A=w120-h120-l90-rj",
+          "url": "https://yt3.googleusercontent.com/tIrV69wNI6C1UXE4-5a6Qs9LI2ofYKd0Qix0DvTHatAETVeVtaYiudix9jGLK-IWHi2geogu-tS8vSr4PQ=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "8:29",
+      "duration_seconds": 509,
+      "setVideoId": "A3FF67BC5BDE6D87",
+      "creditsBrowseId": "MPTCkNCXk0L5Buk"
+    },
+    {
+      "videoId": "EPduSn_F-vU",
+      "title": "Kif kif",
+      "artists": [
+        {
+          "name": "T-Vice",
+          "id": "UCneyvhQumGbPjF1W2FDMlZQ"
+        }
+      ],
+      "album": {
+        "name": "Atomik Konpa (Le top du Konpa)",
+        "id": "MPREb_Tj79KKJVdm9"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJE9jJUw4kmI1GRwcDW-FkciNsQnaiVa4YkmS828lbee9Td12Jt-fSxYtX5OrUGAdfxDhI1KzZso4yHSLidA4Ajq_UzcA",
+        "remove": "AB9zfpK-ElkV_rxPv3Pz4FtSEAn__0Qlnx6-9S_iEx6xhEDScHjkHK2ATwDf64U6JC0VZvgb2TrdYreo1ZCk540Uu41Oo8RWeA"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIKH3rjtvclqJY5n9yCANRVgQZpDBTI3XZnqqC2vmF7TMvehr9vBC9At_zNmWPpx2gJcHJ2ZNH4Gp677WGBZUAw9SW3U52kEcIIZHPVxct7dYjkZLk",
+        "unpin": "AB9zfpKQo1V0fWebO6jqdyyh4XIO6q0SedKy0ENlaoHcLxe38qdvnk5Y2Vu3--wad6VQnYaG_etaREkNWxtjcWjmZOcfP19rcQChHil4nHOrzRnFmSDtWWM"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/jm-CEL5Rc3nS_NHR4JKLIqMirtoI5RttS8g_qDYa4RhgVs6LLFJG0fMSUYg4lyUtmjP2MBCTrOH43YgI=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/jm-CEL5Rc3nS_NHR4JKLIqMirtoI5RttS8g_qDYa4RhgVs6LLFJG0fMSUYg4lyUtmjP2MBCTrOH43YgI=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "11:41",
+      "duration_seconds": 701,
+      "setVideoId": "54E33516A874A556",
+      "creditsBrowseId": "MPTCEPduSn_F-vU"
+    },
+    {
+      "videoId": "4sEukYuiwq8",
+      "title": "Ma copin's",
+      "artists": [
+        {
+          "name": "Francky Vincent",
+          "id": "UCOiOCSUv6k3OSpxfivGwnhw"
+        }
+      ],
+      "album": {
+        "name": "Mon fest' of",
+        "id": "MPREb_tEi6FKfNADd"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpLxsTKVO8sEj9yXHDU4rTPuJbhKgKG0NLJrQ5EX2xN2B59O4_Auvh8f-GKZmVaosYymaBkXl9mKWG1k1Babpd_YPK_9lA",
+        "remove": "AB9zfpK7zFH_604mmFYdGB32F7jHlRu6Hrr1SypkMDDRGF0WotKQG-xEF5W7d3DcUbknp-BXGSTZ6trQzTcJ44NMyvHVAoMY1w"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIo-VOAHPRDUEsFsckQWSMaOaNOZvtQb2J8tzRFAOkntAmplLLAcw91Igm8CA488jBVN3GslOkFudcjzVV69fMlX0XNVyZZQKR5oJwbUAA76CWQz1M",
+        "unpin": "AB9zfpLFxSwuWzbtMLAjEZrgS83-xdQdWc_549AVzqONAkUh9HaPiJpnFb5NfcaN7wYrYxilSSt_NUlDbkS988fycl0nL-Kx5Zfmn25O7OABaK8odlcV3eE"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/q9jHmZ5ZaPjOWZx7CXGGkGrvI6wKQ5wLfWU8I6qdBofUZ4ckdn01s6BPf_zL7Xjk214fDp6QW6lFC-9kRg=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/q9jHmZ5ZaPjOWZx7CXGGkGrvI6wKQ5wLfWU8I6qdBofUZ4ckdn01s6BPf_zL7Xjk214fDp6QW6lFC-9kRg=w120-h120-l90-rj",
           "width": 120,
           "height": 120
         }
@@ -1193,13 +1285,13 @@
       "title": "O la ou ye (Eva)",
       "artists": [
         {
-          "name": "Kassav'",
-          "id": "UCNktNoGoiJvHYmCgPIobIxQ"
+          "name": "Nichols",
+          "id": "UCPFYVkusthalIY8uYS6aYTQ"
         }
       ],
       "album": {
-        "name": "Best of 20ème anniversaire",
-        "id": "MPREb_ggIPL8S75EF"
+        "name": "Ladies Night",
+        "id": "MPREb_V9c9cCDgh5e"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
@@ -1214,12 +1306,12 @@
       },
       "thumbnails": [
         {
-          "url": "https://yt3.googleusercontent.com/BcCt0A1sz3PfSUDWys57dUbOtXswh2BerLkccQ7fJWflQnf8tQ_l2Eb3UNwzPjifxv88xlC4JpSEghw=w60-h60-l90-rj",
+          "url": "https://yt3.googleusercontent.com/DbfDMGjqVv4w0-zHJgZdo3SFOZHvv0YeOQ3wAB3eUACH7dIZq4FXkO3OP22vPjFCBuj5aatWhW56yuFj=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
         {
-          "url": "https://yt3.googleusercontent.com/BcCt0A1sz3PfSUDWys57dUbOtXswh2BerLkccQ7fJWflQnf8tQ_l2Eb3UNwzPjifxv88xlC4JpSEghw=w120-h120-l90-rj",
+          "url": "https://yt3.googleusercontent.com/DbfDMGjqVv4w0-zHJgZdo3SFOZHvv0YeOQ3wAB3eUACH7dIZq4FXkO3OP22vPjFCBuj5aatWhW56yuFj=w120-h120-l90-rj",
           "width": 120,
           "height": 120
         }
