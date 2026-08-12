@@ -1,0 +1,38 @@
+{
+  "date": "2026-08-12",
+  "edition": "matin",
+  "type": "emission",
+  "title": "La Guadeloupe murmure ses combats",
+  "duration": "~3 minutes",
+  "word_count": 519,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Ferme ta gueule",
+    "artist": "Les Aiglons",
+    "genre": ""
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Animal / Résistance spirituelle \t Chien marron \t Chien sauvage \t *Canis lupus familiaris* \t ⭐⭐ RÉSISTANCE SPIRITUELLE \t Devenu sauvage, il était craint et respecté par les marrons, qui y voyaient un protecteur des forêts (Bangou 1992)."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Insecte               \t Ravèt                     \t Cafard / Blatte           \t Periplaneta americana          \t ⭐⭐ Ambivalent       \t Animal du quotidien créole au fort symbolisme négatif — sa présence dans la maison signale un manque de protection spirituelle. Dans le quimbois, il est utilisé dans certains sorts de nuisance."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Plante / Résistance    \t Vaniy                        \t Vanilier                \t Vanilla planifolia             \t Cultivé par les esclaves et affranchis à Pointe-Noire. La maîtrise de la pollinisation manuelle — technique développée en 1841 par Edmond Albius, esclave réunionnais — est un acte de résistance intellectuelle et économique majeur. Une source de revenus autonomes hors de la plantation. ⭐⭐⭐ RÉSISTANCE ÉCONOMIQUE"
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Carrefour             \t Carrefour de la Petite Rivière Salée     \t Sainte-Marie, intersection chemins rivière-mer (16.2500° N, 61.6200° W) \t ⭐⭐ Symbolique          \t Dépôts d’offrandes pour apaiser les esprits des ancêtres kalinagos (Simpson 1970, p. 56 ; Boucher 2008, p. 189). Lieu de rituels de purification et de protection."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "tilisation de **pièges en lianes** et de fosses camouflées. \t **Forêts de Basse-Terre** (ex. : Forêt nationale de Guadeloupe), zones montagneuses \t **Culte des ancêtres guerriers**"
+    }
+  },
+  "text": "Ah mes amis, aujourd’hui on va parler de ces choses qui résistent, qui persistent, qui murmurent dans l’ombre de notre histoire. Comme une chanson qui refuse de s’éteindre, comme ces voix qui traversent les siècles sans jamais se taire. La Guadeloupe, c’est ça : une terre où chaque feuille, chaque animal, chaque pierre porte en lui une mémoire, une force, une leçon. Et aujourd’hui, on va écouter ce que la nature nous raconte, parce que parfois, c’est elle qui a les mots les plus justes.\n\nPrenez le vanilier, par exemple. Cette liane fragile qui s’enroule autour des arbres comme pour leur chuchoter des secrets. Vous savez que c’est un esclave, Edmond Albius, qui a découvert comment la polliniser à la main ? Un geste simple, presque invisible, mais qui a changé le cours de l’histoire. Imaginez : des mains enchaînées qui apprennent à la terre à donner des gousses parfumées, à créer une richesse qui ne dépendait plus des maîtres. Le vanilier, c’est bien plus qu’une plante, c’est un symbole de résistance, de cette intelligence qui refuse de se soumettre. Et aujourd’hui encore, quand on voit ces fleurs jaunes s’ouvrir dans les jardins de Pointe-Noire, c’est comme si on entendait l’écho de cette liberté conquise.\n\nEt puis il y a le chien marron, ce *Canis lupus familiaris* devenu sauvage, qui errait dans les forêts comme un fantôme. Les anciens disaient qu’il protégeait les marrons, qu’il était leur guide dans l’obscurité. Un animal craint, respecté, presque sacré. Parce que dans notre culture, la résistance ne se limite pas aux humains. Elle est dans les bêtes, dans les plantes, dans les éléments. Le chien marron, c’était la preuve que même domestiqué, on peut retrouver sa force, sa liberté. Et aujourd’hui, quand on marche dans les bois de Basse-Terre, on se demande encore si on ne va pas croiser son regard, comme un rappel que la liberté, ça se prend, ça se défend, ça ne se négocie pas.\n\nParlons maintenant de ce carrefour, là-bas, à la Petite Rivière Salée. Un endroit où la terre rencontre l’eau, où les chemins se croisent, où les esprits des ancêtres kalinagos veillent encore. Les gens y déposent des offrandes, des fleurs, des fruits, pour apaiser les âmes, pour demander protection. Parce que dans notre tradition, les lieux ne sont jamais neutres. Ils portent une histoire, une énergie. Ce carrefour, c’est un peu comme notre mémoire collective : un point de rencontre entre le passé et le présent, entre ce qu’on a été et ce qu’on est. Et quand on y passe, on sent cette présence, comme si les anciens nous disaient : \"N’oublie pas d’où tu viens.\"\n\nAlors oui, la Guadeloupe, c’est tout ça. C’est le vanilier qui murmure des histoires de liberté, le chien marron qui rappelle que la résistance est une seconde nature, le carrefour qui nous connecte à nos racines. C’est cette terre qui parle, qui chante, qui résiste. Et nous, on est là pour écouter, pour transmettre, pour ne jamais oublier. Parce que quand la nature parle, quand l’histoire murmure, la seule chose à faire… c’est de fermer sa gueule, et d’écouter.",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-08-12-matin.mp3"
+}

@@ -1219,5 +1219,15 @@
       <itunes:summary>Découvrez les trésors culturels et naturels de la Guadeloupe, entre musique et traditions vivantes.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,musique,traditions,lézard,plantes,patrimoine</itunes:keywords>
     </item>
+    <item>
+      <title>La Guadeloupe murmure ses combats</title>
+      <description>Découvrez les secrets de résistance de la Guadeloupe à travers sa nature et son histoire.</description>
+      <pubDate>Wed, 12 Aug 2026 03:19:30 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-08-12-matin.mp3" length="1772949" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-08-12-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez les secrets de résistance de la Guadeloupe à travers sa nature et son histoire.</itunes:summary>
+      <itunes:keywords>Guadeloupe,nature,histoire,résistance,vanille,chien_marron,esclavage,mémoire</itunes:keywords>
+    </item>
   </channel>
 </rss>
