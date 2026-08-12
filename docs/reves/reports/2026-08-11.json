@@ -1,10 +1,10 @@
 {
   "date": "2026-08-11",
-  "generated_at": "2026-08-12T00:32:14.425840Z",
+  "generated_at": "2026-08-12T23:16:20.556685Z",
   "technical": {
     "summary": {
-      "total_runs": 158,
-      "global_success_rate": 0.8354430379746836,
+      "total_runs": 178,
+      "global_success_rate": 0.8539325842696629,
       "total_errors_in_logs": 0,
       "total_warnings_in_logs": 0,
       "workflows_in_alert": [
@@ -16,61 +16,61 @@
     "workflows": [
       {
         "name": "horoscope-daily",
-        "runs": 21,
-        "success": 13,
+        "runs": 24,
+        "success": 16,
         "failure": 8,
-        "success_rate": 0.6190476190476191,
-        "avg_duration_s": 295.04761904761904,
+        "success_rate": 0.6666666666666666,
+        "avg_duration_s": 313.875,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "flash-info",
-        "runs": 21,
-        "success": 13,
+        "runs": 24,
+        "success": 16,
         "failure": 8,
-        "success_rate": 0.6190476190476191,
-        "avg_duration_s": 256.4761904761905,
+        "success_rate": 0.6666666666666666,
+        "avg_duration_s": 274.25,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "capsules-daily",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 133.76190476190476,
+        "avg_duration_s": 137.375,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "emission-daily",
-        "runs": 28,
-        "success": 18,
+        "runs": 32,
+        "success": 22,
         "failure": 10,
-        "success_rate": 0.6428571428571429,
-        "avg_duration_s": 145.21428571428572,
+        "success_rate": 0.6875,
+        "avg_duration_s": 146.0625,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "botiran-radio-daily",
-        "runs": 46,
-        "success": 46,
+        "runs": 50,
+        "success": 50,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 253.30434782608697,
+        "avg_duration_s": 300.34,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "daily-radio-orchestrator",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 1099.1904761904761,
+        "avg_duration_s": 1169.9583333333333,
         "last_status": "success",
         "last_failure_url": null
       }
@@ -82,8 +82,8 @@
       "coherent": 3,
       "coherence_rate": 0.23076923076923078,
       "issues_by_type": {
-        "title_mismatch": 3,
-        "format_invalid": 10
+        "format_invalid": 10,
+        "title_mismatch": 3
       }
     },
     "music": {
@@ -92,72 +92,68 @@
         "": 80
       },
       "artists": {
-        "Harmonik": 2,
-        "KALI": 1,
-        "Kassav'": 1,
-        "G'Ny": 1,
+        "Dominique Panol": 3,
+        "Meryl": 1,
+        "Harry Diboula": 1,
+        "Jerry Jeff Walker": 1,
+        "Battery Cremil": 5,
+        "Kali": 1,
+        "Mini All Stars": 1,
+        "BélO": 1,
+        "Francky Vincent": 1,
+        "Nichols": 1,
+        "Dominik Coco": 4,
+        "Naika, Jessie Reyez": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "Patrick Saint-Eloi, Kassav'": 2,
+        "Marcel Lollia Dit Velo": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Princess Liz": 1,
         "Zin": 2,
+        "Joëlle Ursull": 2,
+        "Plastic System Band": 1,
+        "JEAN-CLAUDE NAIMRO": 2,
+        "Tabou Combo": 2,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Ralph Thamar": 1,
+        "JOCELYNE BEROARD": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Jacob Desvarieux": 2,
+        "Zo Konpa, Zouk Machine": 2,
+        "Akiyo": 2,
+        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
+        "Carimi": 2,
+        "Milca": 2,
+        "Robert Loyson": 1,
+        "Sakiyo": 1,
+        "BEL": 1,
+        "Ronald Tulle, Jean-luc Guanel": 1,
+        "Dédé Saint-Prix": 1,
+        "Perle Lama": 1,
+        "Les Aiglons": 1,
+        "Stony": 1,
+        "Patrick Andrey": 1,
+        "Sweet Micky": 1,
+        "Patrick Saint-Eloi": 1,
+        "T-Vice": 1,
+        "Mario Chicot": 2,
+        "Teddyson John": 1,
+        "Antonio Carlos Jobim": 1,
+        "Dms Crew": 1,
+        "Quint Accord": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Gilles Floro": 2,
+        "Patrick Saint Eloi": 1,
+        "Ti Paris": 1,
+        "Zo Konpa, Zouk Love, Konpa Kreyol": 1,
+        "Tanya St-Val": 1,
         "Yoan": 1,
         "Gaoulé Mizik": 1,
-        "JEAN-CLAUDE NAIMRO": 2,
-        "Les Aiglons": 1,
-        "Dominik Coco": 1,
-        "Patrick Saint Eloi": 1,
-        "Edith Lefel": 3,
-        "Akiyo": 1,
-        "Warren Saada": 2,
-        "Klimax": 1,
-        "Nu-Look": 2,
-        "KASSAV'": 1,
-        "Top Vice": 2,
-        "Battery Cremil": 1,
-        "Tanya St-Val": 1,
-        "Teddyson John": 2,
-        "Mario Chicot": 4,
-        "Jacob Desvarieux": 2,
-        "Jean-Claude Naimro": 1,
-        "Ti Paris": 1,
-        "Tabou Combo Super Stars": 1,
-        "Experience 7": 1,
-        "LUTCHIANA 100% MOBULU": 1,
-        "Naika, Jessie Reyez": 1,
-        "Marcel Lollia Dit Velo": 1,
-        "Juan Gabriel": 1,
-        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
-        "Robert Loyson": 1,
-        "Slaï": 2,
-        "Francky Vincent": 1,
-        "Medhy Custos, Christian Nara": 1,
-        "Nichols": 1,
-        "Thierry Delannay": 1,
-        "NICHOLS": 1,
-        "Dominique Panol": 1,
-        "Ralph Thamar": 2,
-        "Princess Erika": 1,
-        "MASS POWER NOU": 1,
-        "Jocelyne Béroard, Kassav'": 1,
-        "T-Vice": 1,
-        "Gilles Floro": 1,
-        "Warren Saada, Nana Fofie": 1,
-        "YVES THOLE ET SON KONVWAKA": 1,
-        "Kim": 1,
-        "HARRY DIBOULA": 1,
-        "Jean-Michel Jean-Louis": 2,
-        "BEL": 1,
-        "Exile": 1,
-        "Tabou Combo de Petion-Ville": 1,
-        "Claudette et Ti Pierre": 2,
-        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
-        "Mass Vocal": 1,
-        "Carimi": 1,
-        "Wck": 1,
-        "Sweet Micky": 1,
-        "T-vice": 1,
-        "Jerry Jeff Walker": 1,
-        "Jean-Luc Guanel": 1
+        "Latin Band": 1,
+        "G'Ny": 1
       },
-      "max_artist_repetition": 4,
-      "top_artist": "Mario Chicot",
+      "max_artist_repetition": 5,
+      "top_artist": "Battery Cremil",
       "consecutive_same_artist": [],
       "abrupt_transitions": []
     },
@@ -197,7 +193,7 @@
         "passages": 13
       },
       "Corinne": {
-        "passages": 3278
+        "passages": 3330
       }
     }
   },
@@ -206,22 +202,22 @@
       {
         "type": "global_success_rate_low",
         "severity": "medium",
-        "context": "Taux succès global : 84% (objectif >90%)"
+        "context": "Taux succès global : 85% (objectif >90%)"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "horoscope-daily : 62% succès sur 7 jours"
+        "context": "horoscope-daily : 67% succès sur 7 jours"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "flash-info : 62% succès sur 7 jours"
+        "context": "flash-info : 67% succès sur 7 jours"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "emission-daily : 64% succès sur 7 jours"
+        "context": "emission-daily : 69% succès sur 7 jours"
       }
     ],
     "editorial": [
@@ -241,6 +237,12 @@
         "context": "Monique : aucun contenu généré aujourd'hui"
       }
     ],
-    "music": []
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Battery Cremil joué 5x (objectif <5)"
+      }
+    ]
   }
 }
