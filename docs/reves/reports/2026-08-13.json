@@ -1,0 +1,224 @@
+{
+  "date": "2026-08-13",
+  "generated_at": "2026-08-14T00:33:55.192298Z",
+  "technical": {
+    "summary": {
+      "total_runs": 159,
+      "global_success_rate": 0.9622641509433962,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 19,
+        "failure": 2,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 385.14285714285717,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 19,
+        "failure": 2,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 351.4761904761905,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 20,
+        "success": 20,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 135.55,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 26,
+        "failure": 2,
+        "success_rate": 0.9285714285714286,
+        "avg_duration_s": 120.85714285714286,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 48,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 372.6875,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1389.2857142857142,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 2,
+      "coherence_rate": 0.15384615384615385,
+      "issues_by_type": {
+        "format_invalid": 11,
+        "title_mismatch": 2
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Ralph Thamar": 1,
+        "Akiyo": 1,
+        "Zo Konpa, Zouk Machine": 1,
+        "Tanya St-Val": 1,
+        "Experience 7": 1,
+        "Slaï": 1,
+        "Jocelyne Labylle": 1,
+        "Djakout #1": 1,
+        "Warren Saada": 1,
+        "Carimi": 2,
+        "JOCELYNE BEROARD": 1,
+        "Orlane": 1,
+        "Dominique Panol": 2,
+        "The Peace Accord": 1,
+        "Top Vice": 2,
+        "Robert Loyson": 1,
+        "Princesse": 1,
+        "Claudette et Ti Pierre": 1,
+        "Fabien Georges": 1,
+        "Mario Chicot": 3,
+        "Gilles Floro": 2,
+        "Battery Cremil": 2,
+        "JACOB F. DESVARIEUX & Georges Decimus": 1,
+        "Marcé, Toumpak": 1,
+        "Nu-Look": 1,
+        "Harmonik": 2,
+        "Medhy Custos, Christian Nara": 1,
+        "Kassav'": 1,
+        "NICHOLS": 1,
+        "Jocelyne Béroard, Kassav'": 2,
+        "Kali": 1,
+        "Tabou Combo": 3,
+        "Djakout # 1": 1,
+        "Tabou Combo Super Stars": 1,
+        "Perle Lama": 1,
+        "Naika, Jessie Reyez": 1,
+        "Jim Rama, Patrick Andrey": 1,
+        "Justice Crew": 1,
+        "Joëlle Ursull": 1,
+        "Edith Lefel": 2,
+        "KALI": 1,
+        "Jeff Joseph": 1,
+        "Juan Gabriel": 1,
+        "Princess Erika": 1,
+        "Francky Vincent": 1,
+        "Kim": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Kaysha": 1,
+        "Patrick Saint-Eloi, Kassav'": 2,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Jean-Philippe Marthély": 1,
+        "Kaysha, Kénédy": 1,
+        "Patrick Saint-Eloi": 1,
+        "Yoan": 1,
+        "T-Vice": 1,
+        "Meryl": 1,
+        "Warren Saada, Nana Fofie": 1,
+        "Les Aiglons": 1,
+        "BélO": 1,
+        "Dédé Saint-Prix": 1,
+        "Jean-Michel Jarre": 1,
+        "T-vice": 1,
+        "Zin": 1,
+        "Dédé Saint-Prix, Gérard Pomer": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Mario Chicot",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Liann la ka fè nou ta an ti mòd",
+          "Lé frégate, la sapotille ek lataniyé"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 3382
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 15% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "11 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
