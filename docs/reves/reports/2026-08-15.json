@@ -1,0 +1,232 @@
+{
+  "date": "2026-08-15",
+  "generated_at": "2026-08-16T00:21:10.154920Z",
+  "technical": {
+    "summary": {
+      "total_runs": 160,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 420.85714285714283,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 383.76190476190476,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 20,
+        "success": 20,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 142.25,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 137.78571428571428,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 429.18367346938777,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1538.7619047619048,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "format_invalid": 10,
+        "title_mismatch": 3
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Alain Ramanisum": 1,
+        "Exile": 1,
+        "Nu-Look": 2,
+        "Akiyo": 3,
+        "Patrick Andrey": 2,
+        "Zouk Factory": 1,
+        "Zin": 3,
+        "T-Vice": 1,
+        "Perle Lama": 1,
+        "Ralph Thamar": 1,
+        "Fanny J": 1,
+        "Alexandre Stellio et son orchestre Créole": 1,
+        "Djakout # 1": 2,
+        "Patrick Saint-Eloi": 2,
+        "Jean-Michel Jean-Louis": 1,
+        "Kaysha, Kénédy": 1,
+        "Slaï": 1,
+        "Jacob Desvarieux": 1,
+        "Warren G": 1,
+        "Jack, Jeff": 1,
+        "Dédé Saint-Prix": 1,
+        "Carimi": 2,
+        "Edith Lefel": 2,
+        "Les Aiglons": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Jean-Luc Guanel": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Claudette et Ti Pierre": 2,
+        "Klimax": 1,
+        "Dominik Coco": 4,
+        "Mario Chicot": 1,
+        "Plastic System Band": 1,
+        "Soft": 1,
+        "KALI": 1,
+        "Jacob Desvarieux, Kassav', Georges Décimus": 1,
+        "Emile Volel & Tanya Saint-Val": 1,
+        "JOCELYNE BEROARD": 1,
+        "Warren Saada, Nana Fofie": 1,
+        "Tanya St-Val": 1,
+        "Ludo": 1,
+        "Latin Band": 1,
+        "Experience 7": 1,
+        "Robert Loyson": 1,
+        "Stony, Oswald": 1,
+        "Juan Gabriel": 1,
+        "Nichols": 1,
+        "Jocelyne Labylle": 2,
+        "BélO": 1,
+        "Warren": 1,
+        "Warren Saada": 2,
+        "HARRY DIBOULA": 1,
+        "Princess Liz": 1,
+        "Jeff Joseph": 1,
+        "JACOB F. DESVARIEUX & Georges Decimus": 1,
+        "Battery Cremil": 2,
+        "Sakiyo": 1,
+        "Top Vice": 1,
+        "Harmonik": 1,
+        "Tabou Combo": 1,
+        "Thierry Delannay": 1,
+        "Zo Konpa, Zouk Machine": 1,
+        "KASSAV'": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav": 1
+      },
+      "max_artist_repetition": 4,
+      "top_artist": "Dominik Coco",
+      "consecutive_same_artist": [
+        {
+          "artist": "Zin",
+          "position": 6,
+          "count": 2
+        },
+        {
+          "artist": "Edith Lefel",
+          "position": 25,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Léwa a nout lavi ka chante",
+          "Léza moun, bwa d’Ind’ an mèm tan"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 3486
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "10 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
