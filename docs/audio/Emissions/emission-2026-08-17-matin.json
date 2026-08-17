@@ -1,0 +1,38 @@
+{
+  "date": "2026-08-17",
+  "edition": "matin",
+  "type": "emission",
+  "title": "La Guadeloupe murmure nos secrets",
+  "duration": "~3 minutes",
+  "word_count": 432,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Pou Joël",
+    "artist": "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP",
+    "genre": ""
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Pratique / Résistance alimentaire \t Kouskous \t Couscous local \t N/A \t ⭐⭐ RÉSISTANCE ALIMENTAIRE \t Plat préparé avec des ingrédients locaux pour remplacer les rations imposées. Symbole de la résistance culinaire (archives ADG)."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Insecte               \t Matoutou fèy              \t Mygale des Antilles       \t Cyrtopholis permata            \t ⭐⭐ Ambivalent        \t Endémique. Toiles associées aux pièges des esprits (*zombi*). Habitat: forêts (MNHN)."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Fruit                \t Grenad péyi                \t Grenade                    \t Punica granatum               \t Fruit d'ornement et de sirop. Les Arawaks le cultivaient déjà."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Carrefour             \t Carrefour de l’Anse Duquéry              \t Trois-Rivières, près de l’Anse Duquéry (16.1900° N, 61.6400° W) \t ⭐⭐ Symbolique          \t Lieu de rencontre arawak pour rituels de commerce et troc. Offrandes de maïs et poisson (Bangou 1992, p. 112 ; Giberti 1989, p. 92). Utilisé pour des cérémonies de prospérité et d’échange."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**300 ap. J.-C. – 1000 ap. J.-C.** \t **Apogée de la société taïno en Guadeloupe** \t **Civilisation taïno : réseau commercial entre les îles, artisanat développé, société pacifique et organisée** \t Commerce de **coquillages**, de pierres vertes (ex. : jadéite), de poteries et de bijoux en or avec les îles voisines (ex. : Porto Rico, Saint-Domingue)"
+    }
+  },
+  "text": "Ah mes amis, aujourd’hui on va marcher sur les traces de nos ancêtres, là où la terre chuchote encore leurs secrets. Comme dans cette chanson de Voukoum qui nous parle de Joël, ce guerrier des temps modernes, moi je vous emmène vers d’autres combattants, ceux qui ont résisté avec leurs mains, leurs graines et leurs prières. La Guadeloupe, voyez-vous, c’est bien plus que du sable et des cocotiers. C’est une histoire vivante, gravée dans chaque feuille, chaque pierre, chaque plat qui mijote dans nos marmites.\n\nPrenez cette petite créature fascinante, le matoutou fèy, cette mygale des Antilles qui tisse sa toile comme une dentelle noire dans nos forêts. Les anciens disaient que ses fils capturaient bien plus que des insectes – ils piégeaient les mauvais esprits, les zombis égarés. Imaginez ces araignées, gardiennes silencieuses de nos nuits, tissant leur magie entre les racines des gommiers. La science l’appelle Cyrtopholis permata, mais nous, on sait qu’elle fait partie de ce monde invisible qui nous protège.\n\nEt puis il y a ce fruit rouge sang, la grenad péyi, que nos aïeux arawaks cultivaient déjà bien avant l’arrivée des bateaux européens. Ces petites perles juteuses, ils les transformaient en sirop pour soigner les fièvres, ou les offraient aux dieux lors des cérémonies. Aujourd’hui encore, quand on croque dans une grenade de Guadeloupe, c’est comme si on goûtait à l’histoire de notre île, à cette résistance douce mais tenace de la terre qui refuse d’oublier.\n\nParlons maintenant de ce lieu sacré, l’Anse Duquéry, où trois chemins se croisent comme les destins de nos peuples. C’est là que les Taïnos se retrouvaient il y a plus de mille ans, échangeant des coquillages contre des pierres vertes venues de loin, négociant la paix avec des offrandes de maïs et de poisson. Ces carrefours n’étaient pas que des lieux de commerce, mais des portes vers l’invisible, où l’on demandait la bénédiction des esprits avant de partir en mer. Et aujourd’hui encore, certains y déposent des fruits ou des fleurs, perpétuant cette mémoire qui refuse de s’effacer.\n\nTout ça, mes amis, c’est notre héritage – le kouskous qui nourrissait nos grands-parents pendant les temps difficiles, les araignées qui veillaient sur nos nuits, les grenades qui portaient nos prières, et ces carrefours où nos ancêtres ont appris à vivre ensemble. Comme dans la chanson de Voukoum, nous sommes tous des Joël, des gardiens de cette terre qui parle encore si on sait écouter. Alors la prochaine fois que vous mangerez un kouskous ou que vous verrez une toile d’araignée briller au soleil, souvenez-vous : vous touchez à l’âme de la Guadeloupe.",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-08-17-matin.mp3"
+}
