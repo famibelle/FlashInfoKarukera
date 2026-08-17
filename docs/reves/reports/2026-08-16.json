@@ -1,0 +1,221 @@
+{
+  "date": "2026-08-16",
+  "generated_at": "2026-08-17T00:20:15.137499Z",
+  "technical": {
+    "summary": {
+      "total_runs": 160,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 419.7142857142857,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 391.4761904761905,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 20,
+        "success": 20,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 145.25,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 143.96428571428572,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 431.61224489795916,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1557.7619047619048,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 4,
+      "coherence_rate": 0.3076923076923077,
+      "issues_by_type": {
+        "format_invalid": 9,
+        "title_mismatch": 4
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Zouk Machine": 1,
+        "Warren": 1,
+        "Carimi": 4,
+        "Jerry Jeff Walker": 1,
+        "BélO": 2,
+        "Meryl": 1,
+        "Jean-Philippe Marthély & Thierry Benoît": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Harmonik": 3,
+        "Tabou Combo": 1,
+        "The Peace Accord": 1,
+        "Battery Cremil": 2,
+        "Exile One": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Georges Decimus, Kassav": 1,
+        "Ralph Thamar": 2,
+        "Marcel Lollia Dit Velo": 1,
+        "Gilles Floro": 2,
+        "Claudette et Ti Pierre": 2,
+        "Djakout # 1": 1,
+        "Mario Chicot": 2,
+        "D'zine": 1,
+        "Warren Saada": 2,
+        "Gérard La Viny": 1,
+        "Naika, Jessie Reyez": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "T-Vice": 2,
+        "Jean-Marie Ragald": 1,
+        "Dominik Coco": 3,
+        "Jacob Desvarieux": 1,
+        "Robert Loyson": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Carlos Santana, Willie Nelson": 1,
+        "JEAN-PHILIPPE MARTHELY/PATRICK SAINT-ELOI": 1,
+        "Kan'nida": 1,
+        "Slaï": 1,
+        "Zo Konpa, Zouk Love, Konpa Kreyol": 1,
+        "Kaysha": 1,
+        "Sweet Micky": 1,
+        "Francky Vincent": 2,
+        "Harry Diboula": 1,
+        "Jean-Michel Jarre": 1,
+        "Nu-Look": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "LUTCHIANA 100% MOBULU": 1,
+        "Zouk Factory": 1,
+        "T-vice": 2,
+        "Experience 7": 1,
+        "Medhy Custos": 1,
+        "Patrick St Eloi": 1,
+        "Juan Gabriel": 1,
+        "Marcé, Toumpak": 1,
+        "Edith Lefel": 1,
+        "Tabou Combo de Petion-Ville": 1,
+        "JOCELYNE BEROARD": 1,
+        "Top Vice": 1,
+        "Jean-Luc Guanel": 1,
+        "Zin": 1,
+        "BEL": 1,
+        "Kimsé": 1,
+        "Thierry Cham": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Djakout #1": 1
+      },
+      "max_artist_repetition": 4,
+      "top_artist": "Carimi",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Douceur des racines et des ailes",
+          "L'âme guadeloupéenne bat dans chaque pierre"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 3538
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 31% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "9 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
