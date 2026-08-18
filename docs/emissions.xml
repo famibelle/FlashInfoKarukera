@@ -1349,5 +1349,15 @@
       <itunes:summary>Découvrez l'âme secrète de la Guadeloupe à travers ses légendes, sa mangrove et ses gardiens nocturn</itunes:summary>
       <itunes:keywords>mangrove,Guadeloupe,grenouilles,résistance,culture,créatures,traditions,esprit</itunes:keywords>
     </item>
+    <item>
+      <title>La Guadeloupe chante sous les étoiles</title>
+      <description>Découvrez la Guadeloupe secrète à travers mythes, nature et résistance sous les étoiles.</description>
+      <pubDate>Tue, 18 Aug 2026 14:32:48 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-08-18-soir.mp3" length="2006685" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-08-18-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez la Guadeloupe secrète à travers mythes, nature et résistance sous les étoiles.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,créole,mythes,nature,résistance,serpan,moun,plantes</itunes:keywords>
+    </item>
   </channel>
 </rss>
