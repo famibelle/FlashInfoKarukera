@@ -1,0 +1,227 @@
+{
+  "date": "2026-08-20",
+  "generated_at": "2026-08-21T00:21:44.293502Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 0.9565217391304348,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 19,
+        "failure": 0,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 579.3333333333334,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 19,
+        "failure": 0,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 526.7619047619048,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 159.76190476190476,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 26,
+        "failure": 0,
+        "success_rate": 0.9285714285714286,
+        "avg_duration_s": 263.85714285714283,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 0.9795918367346939,
+        "avg_duration_s": 901.3877551020408,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1964.952380952381,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "title_mismatch": 3,
+        "format_invalid": 10
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "carimi": 1,
+        "Ralph Thamar": 3,
+        "Gilles Floro": 1,
+        "Zin": 2,
+        "MASS POWER NOU": 1,
+        "Harmonik": 1,
+        "Exile": 1,
+        "Carimi": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Djakout # 1": 1,
+        "Nu-Look": 1,
+        "KASSAV'": 1,
+        "Battery Cremil": 5,
+        "T-vice": 1,
+        "The Peace Accord": 1,
+        "Les Aiglons": 2,
+        "Dominique Panol": 3,
+        "KALI": 1,
+        "Zouk Machine": 1,
+        "PATRICK SAINT-ELOI": 1,
+        "T-Vice": 2,
+        "Francky Vincent": 2,
+        "Orlane": 2,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 3,
+        "Patrick Andrey": 1,
+        "Latin Band": 1,
+        "Kaysha, Kénédy": 1,
+        "Marcé & Toumpak": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Jack, Jeff": 1,
+        "Zo Konpa, Zouk Machine": 1,
+        "Dédé Saint-Prix": 1,
+        "Medhy Custos": 1,
+        "Harry Diboula": 1,
+        "Kim": 1,
+        "Mario Chicot": 2,
+        "Robert Loyson": 1,
+        "Edith Lefel": 1,
+        "Patrick Saint-Eloi": 1,
+        "Gérard La Viny": 1,
+        "Dominik Coco": 1,
+        "Exile One": 1,
+        "Al Lirvat, Robert Mavounzy": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Marcel Lollia Dit Velo": 2,
+        "Warren G": 1,
+        "Perle Lama": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Quint Accord": 1,
+        "Akiyo": 1,
+        "Fanny J": 1,
+        "SOFT": 1,
+        "Princess Erika": 1,
+        "Djakout #1": 1,
+        "Nichols": 1,
+        "JOCELYNE BEROARD": 1,
+        "Zo Konpa, Konpa Lakay, Zouk Machine": 1,
+        "EDDY EDOUARD": 1,
+        "Warren Saada": 1,
+        "WCK": 1,
+        "Warren": 1,
+        "Jean-Marie Ragald": 1
+      },
+      "max_artist_repetition": 5,
+      "top_artist": "Battery Cremil",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Les racines qui murmurent au creux des palétuviers",
+          "L’héritage invisible de la Gwadeloup"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 3707
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "10 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Battery Cremil joué 5x (objectif <5)"
+      }
+    ]
+  }
+}
