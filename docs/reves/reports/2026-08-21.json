@@ -1,0 +1,226 @@
+{
+  "date": "2026-08-21",
+  "generated_at": "2026-08-22T00:20:23.783370Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 0.9565217391304348,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 19,
+        "failure": 0,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 576.1428571428571,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 19,
+        "failure": 0,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 520.0952380952381,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 161.76190476190476,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 26,
+        "failure": 0,
+        "success_rate": 0.9285714285714286,
+        "avg_duration_s": 257.0,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 0.9795918367346939,
+        "avg_duration_s": 905.3877551020408,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1958.095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 4,
+      "coherence_rate": 0.3076923076923077,
+      "issues_by_type": {
+        "title_mismatch": 4,
+        "format_invalid": 9
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Thierry Cham": 1,
+        "Djakout #1": 1,
+        "Kan'nida": 1,
+        "Alain Ramanisum": 2,
+        "Meryl": 1,
+        "Teddyson John": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Ludo": 2,
+        "Warren": 1,
+        "Zin": 2,
+        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
+        "JEAN-PHILIPPE MARTHELY/PATRICK SAINT-ELOI": 1,
+        "Carimi": 4,
+        "T-Vice": 2,
+        "Tanya St-Val": 1,
+        "Slaï": 2,
+        "Dominique Panol": 4,
+        "Zo Konpa, Zouk Love, Konpa Kreyol": 1,
+        "Battery Cremil": 1,
+        "Kaysha": 1,
+        "EDDY EDOUARD": 1,
+        "Mass Vocal": 1,
+        "Lutchiana Mobulu 100%": 1,
+        "Patrick Saint-Eloi": 2,
+        "Claudette et Ti Pierre": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "DJ Zouk": 1,
+        "BélO": 1,
+        "Milca": 2,
+        "Top Vice": 1,
+        "Warren G": 1,
+        "Ralph Thamar": 1,
+        "Dominik Coco": 3,
+        "Mario Chicot": 2,
+        "Harmonik": 1,
+        "Yoan": 2,
+        "Quint Accord": 1,
+        "Edith Lefel": 1,
+        "Fanny J": 1,
+        "Dédé Saint-Prix": 1,
+        "Plastic System Band": 1,
+        "Les Aiglons": 1,
+        "WCK": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Nichols": 1,
+        "Experience 7": 1,
+        "Tabou Combo": 1,
+        "Tabou Combo de Petion-Ville": 1,
+        "Latin Band": 1,
+        "Gilles Floro": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Antonio Carlos Jobim": 1,
+        "Princess Erika": 1,
+        "Perle Lama": 1,
+        "KASSAV'": 1,
+        "Zouk Machine": 1,
+        "Soft": 1,
+        "Jocelyne Labylle": 1,
+        "Carlos Santana, Willie Nelson": 1,
+        "Orlane": 1,
+        "Juan Gabriel": 1,
+        "JEAN-CLAUDE NAIMRO": 1
+      },
+      "max_artist_repetition": 4,
+      "top_artist": "Carimi",
+      "consecutive_same_artist": [
+        {
+          "artist": "Zin",
+          "position": 9,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Trésors de la Guadeloupe entre mer âme et résistan",
+          "Les Racines Parlantes de la Guadeloupe"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 3759
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 31% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "9 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
