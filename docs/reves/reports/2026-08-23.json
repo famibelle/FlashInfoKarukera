@@ -1,0 +1,221 @@
+{
+  "date": "2026-08-23",
+  "generated_at": "2026-08-24T00:21:23.568103Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 0.9565217391304348,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 19,
+        "failure": 0,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 579.9047619047619,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 19,
+        "failure": 0,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 519.5714285714286,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 163.42857142857142,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 26,
+        "failure": 0,
+        "success_rate": 0.9285714285714286,
+        "avg_duration_s": 259.4642857142857,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 0.9795918367346939,
+        "avg_duration_s": 916.4897959183673,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1968.2380952380952,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "format_invalid": 10,
+        "title_mismatch": 3
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Patrick Saint-Eloi": 1,
+        "Princess Erika": 2,
+        "Djakout # 1": 2,
+        "Mario Chicot": 3,
+        "Akiyo": 2,
+        "KASSAV'": 3,
+        "Zouk Machine": 2,
+        "Carimi": 1,
+        "Warren": 1,
+        "Zin": 2,
+        "Djakout #1": 2,
+        "Teddyson John": 1,
+        "Les Aiglons": 2,
+        "Tanya St-Val": 1,
+        "Meryl": 1,
+        "JACOB F. DESVARIEUX & Georges Decimus": 1,
+        "Dominique Panol": 1,
+        "T-Vice": 3,
+        "Kan'nida": 1,
+        "Patrick St Eloi": 1,
+        "Princesse": 1,
+        "Nu-Look": 1,
+        "Nichols": 1,
+        "Dominik Coco": 3,
+        "Zouk Factory": 1,
+        "Battery Cremil": 3,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 3,
+        "JOCELYNE BEROARD": 1,
+        "Edith Lefel": 1,
+        "BEL": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Ralph Thamar": 2,
+        "Harry Diboula": 1,
+        "The Peace Accord": 1,
+        "Fanny J": 1,
+        "Tabou Combo": 2,
+        "Jean-Michel Jean-Louis": 2,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Lutchiana Mobulu 100%": 1,
+        "Dédé St Prix": 1,
+        "Orlane": 1,
+        "HARRY DIBOULA": 1,
+        "Thierry Cham": 1,
+        "Warren Saada": 1,
+        "Axel Tony, Yoan": 1,
+        "Sweet Micky": 1,
+        "Ti Paris": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Patrick Andrey": 1,
+        "Claudette et Ti Pierre": 1,
+        "Kassav'": 1,
+        "Experience 7": 1,
+        "Fabien Georges": 1,
+        "Gilles Floro": 2,
+        "Soft": 1,
+        "Jean Philippe Marthely": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Mario Chicot",
+      "consecutive_same_artist": [
+        {
+          "artist": "Zouk Machine",
+          "position": 6,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Lèkètè an nou ka wè zansèt",
+          "Gwadloup sétenn épi léwò"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 3863
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "10 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
