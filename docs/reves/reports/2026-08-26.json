@@ -1,0 +1,230 @@
+{
+  "date": "2026-08-26",
+  "generated_at": "2026-08-27T00:10:36.913967Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 443.3809523809524,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 398.23809523809524,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 166.9047619047619,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 187.75,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 466.3061224489796,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1682.8095238095239,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 12,
+      "coherent": 1,
+      "coherence_rate": 0.08333333333333333,
+      "issues_by_type": {
+        "format_invalid": 10,
+        "artist_mismatch": 1,
+        "title_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Edith Lefel": 1,
+        "Kim": 1,
+        "Jocelyne Béroard, Kassav'": 2,
+        "Claudette et Ti Pierre": 2,
+        "Sakiyo": 1,
+        "Tabou Combo": 3,
+        "Kaysha, Kénédy": 1,
+        "Carimi": 1,
+        "Harry Diboula": 1,
+        "Dominique Panol": 2,
+        "Battery Cremil": 3,
+        "Jocelyne Labylle": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Georges Decimus, Kassav": 1,
+        "Patrick St Eloi": 1,
+        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
+        "Stony, Oswald": 1,
+        "Kan'nida": 1,
+        "Don Carlos": 1,
+        "Akiyo": 2,
+        "Les Aiglons": 2,
+        "Kaysha": 1,
+        "Dédé Saint-Prix, Gérard Pomer": 1,
+        "Patrick Saint-Eloi": 2,
+        "Joëlle Ursull": 1,
+        "Dominik Coco": 2,
+        "JACOB F. DESVARIEUX & Georges Decimus": 1,
+        "Zin": 1,
+        "Jean Luc Guanel": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "Nilson Sandoval-El Consentido": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Experience 7": 2,
+        "SKEENEY TEE CREWS": 1,
+        "Slaï": 1,
+        "Orlane": 1,
+        "Top Vice": 1,
+        "Stony": 1,
+        "Jean-Marie Ragald": 1,
+        "Tabou Combo Super Stars": 1,
+        "Mini All Stars": 1,
+        "Zo Konpa, Zouk Love, Konpa Kreyol": 1,
+        "Warren Saada": 1,
+        "Francky Vincent": 1,
+        "Kali": 1,
+        "Latin Band": 1,
+        "Thierry Cham": 1,
+        "BélO": 1,
+        "Massak": 1,
+        "Axel Tony, Yoan": 1,
+        "Marcé & Toumpak": 1,
+        "Fanny J": 2,
+        "The Peace Accord": 1,
+        "EDDY EDOUARD": 1,
+        "MASS POWER NOU": 1,
+        "Gaoulé Mizik": 1,
+        "Djakout # 1": 1,
+        "Mario Chicot": 1,
+        "Zouk Machine": 1,
+        "Harmonik": 2,
+        "Djakout #1": 1,
+        "Gilles Floro": 1,
+        "Nichols": 1,
+        "Naika, Jessie Reyez": 1,
+        "Robert Loyson": 1,
+        "DJ Zouk": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Tabou Combo",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Les mornes murmurent nos résistances secrètes",
+          "Guadeloupe entre mèmwa et zéto"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 4018
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 8% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "10 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
