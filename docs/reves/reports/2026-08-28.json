@@ -1,0 +1,258 @@
+{
+  "date": "2026-08-28",
+  "generated_at": "2026-08-29T00:41:54.462629Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 0.9875776397515528,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 472.0952380952381,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 19,
+        "failure": 2,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 469.3333333333333,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 200.57142857142858,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 195.85714285714286,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 478.9795918367347,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1895.3333333333333,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 19,
+      "coherent": 2,
+      "coherence_rate": 0.10526315789473684,
+      "issues_by_type": {
+        "format_invalid": 16,
+        "title_mismatch": 2,
+        "artist_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 117,
+      "genres": {
+        "": 117
+      },
+      "artists": {
+        "Battery Cremil": 4,
+        "Dominik Coco": 6,
+        "Gilles Floro": 2,
+        "Harmonik": 2,
+        "JEAN-CLAUDE NAIMRO": 3,
+        "Patrick St Eloi": 1,
+        "Exile One": 1,
+        "Carimi": 3,
+        "KALI": 1,
+        "Top Vice": 1,
+        "Jacob Desvarieux": 2,
+        "G'Ny": 1,
+        "NICHOLS": 2,
+        "The Peace Accord": 1,
+        "Djakout # 1": 1,
+        "Tabou Combo": 2,
+        "The Teddyson John Project": 1,
+        "BélO": 2,
+        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
+        "T-Vice": 2,
+        "Slaï": 1,
+        "Dédé Saint-Prix": 2,
+        "Zin": 1,
+        "Harry Diboula": 1,
+        "Kan'nida": 1,
+        "Djakout #1": 3,
+        "Jacob Desvarieux, Kassav', Georges Décimus": 1,
+        "DJ BOSS MASS": 1,
+        "Jean-Philippe Marthély & Thierry Benoît": 1,
+        "Akiyo": 3,
+        "Teddyson John": 1,
+        "Jeff Joseph": 1,
+        "Robert Loyson": 1,
+        "JEAN-PHILIPPE MARTHELY/PATRICK SAINT-ELOI": 1,
+        "Soft": 1,
+        "Sakiyo": 1,
+        "Jocelyne Labylle": 2,
+        "Tanya St-Val": 2,
+        "Fabien Georges": 1,
+        "Francky Vincent": 2,
+        "Sweet Micky": 1,
+        "Axel Tony, Yoan": 1,
+        "Ti Paris": 2,
+        "Ralph Thamar": 2,
+        "Warren Saada": 2,
+        "Kassav'": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Antonio Carlos Jobim": 1,
+        "JACOB F. DESVARIEUX & Georges Decimus": 2,
+        "BEL": 1,
+        "Georges Decimus, Kassav": 1,
+        "JOCELYNE BEROARD": 1,
+        "Mario Chicot": 1,
+        "Warren Zevon": 1,
+        "Princess Liz": 1,
+        "Marcel Lollia Dit Velo": 2,
+        "Juan Gabriel": 1,
+        "Zo Konpa, Zouk Machine": 2,
+        "LORYN Official": 1,
+        "Princess Erika": 1,
+        "Don Carlos": 1,
+        "Nu-Look": 1,
+        "Yoan": 1,
+        "Les Aiglons": 1,
+        "Kimsé": 1,
+        "Marcé, Toumpak": 1,
+        "Jean-Michel Jarre": 1,
+        "Mini All Stars": 1,
+        "Patrick Saint-Eloi": 1,
+        "Carlos A, Oliver-K": 1,
+        "Dominique Panol": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "Klimax": 1,
+        "Thierry Cham": 2,
+        "Sam Smith, Kim Petras": 1,
+        "Warren": 1,
+        "Kali": 1,
+        "Jean-Luc Guanel": 1,
+        "SKEENEY TEE CREWS": 1,
+        "T-vice": 1,
+        "Zouk Machine": 2,
+        "Jim Rama, Patrick Andrey": 1
+      },
+      "max_artist_repetition": 6,
+      "top_artist": "Dominik Coco",
+      "consecutive_same_artist": [
+        {
+          "artist": "Zouk Machine",
+          "position": 112,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 4,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 3,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 3,
+        "themes": [
+          "Gouttes de nos racines l'écho vert",
+          "L’empreinte sacrée de nos aïeux et du vent"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 2
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 4096
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 11% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "16 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Dominik Coco joué 6x (objectif <5)"
+      }
+    ]
+  }
+}
