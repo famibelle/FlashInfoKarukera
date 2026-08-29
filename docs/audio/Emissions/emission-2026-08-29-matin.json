@@ -1,0 +1,38 @@
+{
+  "date": "2026-08-29",
+  "edition": "matin",
+  "type": "emission",
+  "title": "La Guadeloupe chante ses racines invincibles",
+  "duration": "~3 minutes",
+  "word_count": 405,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "La vi artis red",
+    "artist": "KALI",
+    "genre": ""
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Animal / Résistance collective \t Pijon \t Pigeon voyageur \t *Columba livia* \t ⭐⭐ RÉSISTANCE COLLECTIVE \t Utilisé pour transmettre des messages entre plantations. Symbole de la résistance par l'organisation (archives ADG)."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Insecte               \t Papiyon nwi               \t Papillon de nuit géant    \t Hyles lineata                  \t ⭐ Symbolique          \t Pollinise les fleurs nocturnes. Associé aux esprits de la nuit (*dlo*)."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Haie / Bordure         \t Zanmann / Amandier péyi      \t Amandier de plage       \t Terminalia catappa             \t Arbre de case et de haie. Ombre dense. Feuilles rouges à l'automne. Fruit comestible."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Source thermale       \t Sources de Sofaïa                        \t Sainte-Rose                         \t ⭐⭐ Emblématique       \t Sources sulfureuses en forêt tropicale dense. Ressourcement et reconnexion à la terre. Lieu reculé à forte charge énergétique."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**1685** \t **Le Code Noir autorise les châtiments corporels** \t **Légalisation de la violence : symboles de la cruauté du système, terreur permanente** \t Révoltes dans les plantations (ex. : révolte de 1686 à la Habitation La Mahaudière), empoisonnement des surveillants \t Habitation La Mahaudière (Basse-Terre) \t Vaudou Nago : invocation de *Shango* (loa de la justice) pour punir les colons, rituels de vengeance"
+    }
+  },
+  "text": "Ah mes amis, ce soir, on plonge dans les racines de notre terre, là où la vie résiste malgré tout, comme une mélodie qui persiste dans le vent. Vous connaissez cette chanson de Kali, *La vi artis red* ? Cette force tranquille qui nous rappelle que même brisés, nous restons debout. Aujourd’hui, je vous emmène dans les coulisses de notre patrimoine, là où la nature et l’histoire se mêlent pour nous murmurer des vérités plus fortes que l’oppression.\n\nRegardez ce géant des nuits, le *papiyon nwi*, ce papillon de nuit aux ailes striées comme des éclairs. Quand il danse autour des fleurs sous la lune, c’est toute la magie de nos forêts qui s’éveille. Les anciens disaient que ces papillons étaient les messagers des *dlo*, ces esprits de l’eau qui veillent sur nous. Et savez-vous qu’ils pollinisent les fleurs nocturnes, ces gardiennes silencieuses de nos nuits tropicales ? Sans eux, pas de fruits, pas de graines, pas de renaissance.\n\nEt puis, il y a cet arbre majestueux, l’amandier péyi, le *zanmann* qui borde nos cases et nos chemins. Ses feuilles rougissent à l’automne comme pour nous rappeler que même la nature sait se parer de couleurs pour résister. Ses fruits, on les croque avec gourmandise, et son ombre dense a abrité des générations de Guadeloupéens. C’est sous ses branches que nos ancêtres se rassemblaient, partageaient leurs histoires, et préparaient leurs révoltes.\n\nParlons maintenant de ces pigeons voyageurs, les *pijon*, ces petits héros de notre résistance. En 1685, quand le Code Noir légalisait la terreur, ces oiseaux devenaient nos complices. Ils transportaient des messages entre les plantations, tissant des liens invisibles entre les esclaves. Et que dire des sources de Sofaïa, ces eaux sulfureuses cachées dans la forêt de Sainte-Rose ? Un lieu sacré où l’on venait se ressourcer, se reconnecter à la terre, et puiser la force de continuer. C’est là que les rituels vaudou invoquaient *Shango*, le loa de la justice, pour punir ceux qui nous opprimaient.\n\nAlors oui, la vie a toujours résisté, comme le chante Kali. Dans le battement d’ailes d’un papillon, dans l’ombre d’un amandier, dans le vol d’un pigeon ou dans les eaux mystérieuses de Sofaïa. Ces symboles nous rappellent que notre identité est indomptable, forgée dans la douleur mais aussi dans la beauté. Et aujourd’hui encore, quand le vent souffle sur nos mangroves, c’est toute cette histoire qui nous murmure : *La vi artis red, épi nou la !*",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-08-29-matin.mp3"
+}
