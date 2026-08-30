@@ -1,0 +1,221 @@
+{
+  "date": "2026-08-29",
+  "generated_at": "2026-08-30T00:50:34.876463Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 0.9875776397515528,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 475.0952380952381,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 19,
+        "failure": 2,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 483.57142857142856,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 203.61904761904762,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 198.14285714285714,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 489.7959183673469,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1926.7142857142858,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 1,
+      "coherence_rate": 0.07692307692307693,
+      "issues_by_type": {
+        "format_invalid": 12,
+        "title_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Carimi": 1,
+        "Lutchiana": 1,
+        "Alain Ramanisum": 1,
+        "Jeff Joseph": 1,
+        "Gaoulé Mizik": 1,
+        "Francky Vincent": 1,
+        "Orlane": 1,
+        "JACOB F. DESVARIEUX & Georges Decimus": 1,
+        "Tanya St-Val": 1,
+        "Tabou Combo": 2,
+        "Exile One": 1,
+        "Princess Liz": 1,
+        "JEAN-PHILIPPE MARTHELY/PATRICK SAINT-ELOI": 1,
+        "Harmonik": 1,
+        "Jean-Luc Guanel": 1,
+        "Dominik Coco": 3,
+        "Dédé Saint-Prix": 2,
+        "Nichols": 2,
+        "T-Vice": 3,
+        "Harry Diboula": 1,
+        "Dominique Panol": 4,
+        "EDDY EDOUARD": 1,
+        "BélO": 2,
+        "Kassav'": 1,
+        "Thierry Cham": 1,
+        "Ralph Thamar": 1,
+        "Jacob Desvarieux, Kassav', Georges Décimus": 1,
+        "Jocelyne Labylle": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Jacob Desvarieux": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "The Peace Accord": 1,
+        "Sakiyo": 1,
+        "Zo Konpa, Zouk Love, Konpa Kreyol": 1,
+        "Akiyo": 1,
+        "Jean-Michel Jarre": 1,
+        "Joëlle Ursull": 2,
+        "Edith Lefel": 1,
+        "KASSAV'": 1,
+        "Zin": 1,
+        "Mario Chicot": 3,
+        "Perle Lama": 1,
+        "Zouk Machine": 2,
+        "Marcel Lollia Dit Velo": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Battery Cremil": 3,
+        "JACOB F. DESVARIEUX/GEORGES DECIMUS": 1,
+        "Patrick Saint-Eloi": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Slaï": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Top Vice": 1,
+        "Milca": 1,
+        "DJ BOSS MASS": 1,
+        "Energy": 1,
+        "BEL": 1,
+        "Jim Rama, Patrick Andrey": 1,
+        "Jerry Jeff Walker": 1,
+        "Patrick Andrey": 1,
+        "Djakout #1": 1,
+        "Latin Band": 1,
+        "Stony": 1,
+        "Kali": 1
+      },
+      "max_artist_repetition": 4,
+      "top_artist": "Dominique Panol",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "La Guadeloupe chante ses racines invincibles",
+          "Gwo siwo ka chanté zansèt nou"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 4148
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 8% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "12 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
