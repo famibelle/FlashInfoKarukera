@@ -1,10 +1,10 @@
 {
   "date": "2026-08-30",
-  "generated_at": "2026-08-31T00:51:18.578381Z",
+  "generated_at": "2026-08-31T23:10:49.284331Z",
   "technical": {
     "summary": {
-      "total_runs": 161,
-      "global_success_rate": 0.9875776397515528,
+      "total_runs": 178,
+      "global_success_rate": 0.9887640449438202,
       "total_errors_in_logs": 0,
       "total_warnings_in_logs": 0,
       "workflows_in_alert": []
@@ -12,61 +12,61 @@
     "workflows": [
       {
         "name": "horoscope-daily",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 505.85714285714283,
+        "avg_duration_s": 496.0416666666667,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "flash-info",
-        "runs": 21,
-        "success": 19,
+        "runs": 24,
+        "success": 22,
         "failure": 2,
-        "success_rate": 0.9047619047619048,
-        "avg_duration_s": 480.6666666666667,
+        "success_rate": 0.9166666666666666,
+        "avg_duration_s": 472.75,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "capsules-daily",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 205.1904761904762,
+        "avg_duration_s": 200.75,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "emission-daily",
-        "runs": 28,
-        "success": 28,
+        "runs": 32,
+        "success": 32,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 197.71428571428572,
+        "avg_duration_s": 192.625,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "botiran-radio-daily",
-        "runs": 49,
-        "success": 49,
+        "runs": 50,
+        "success": 50,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 496.7551020408163,
+        "avg_duration_s": 559.9,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "daily-radio-orchestrator",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 1966.4285714285713,
+        "avg_duration_s": 1931.2083333333333,
         "last_status": "success",
         "last_failure_url": null
       }
@@ -74,11 +74,13 @@
   },
   "antenne": {
     "liners": {
-      "total": 12,
-      "coherent": 0,
-      "coherence_rate": 0.0,
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
       "issues_by_type": {
-        "format_invalid": 12
+        "format_invalid": 7,
+        "artist_mismatch": 3,
+        "title_mismatch": 3
       }
     },
     "music": {
@@ -87,87 +89,72 @@
         "": 80
       },
       "artists": {
-        "Meryl": 1,
-        "EDDY EDOUARD": 1,
-        "Harry Diboula": 1,
-        "Princess Erika": 1,
-        "JACOB F. DESVARIEUX/GEORGES DECIMUS": 1,
-        "Teddyson John": 1,
-        "Sweet Micky": 1,
-        "Ti Paris": 1,
-        "Carimi": 3,
-        "Dominik Coco": 3,
-        "The Peace Accord": 1,
-        "Ralph Thamar": 1,
-        "Mini All Stars": 1,
-        "Fabienne Payoute Bernadin": 1,
-        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
-        "Medhy Custos": 1,
-        "T-vice": 1,
-        "Patrick Saint-Eloi, Kassav'": 1,
-        "Thierry Cham": 2,
-        "Gaoulé Mizik": 1,
-        "Juan Gabriel": 1,
-        "Battery Cremil": 2,
-        "Mario Chicot": 2,
-        "Experience 7": 2,
+        "T-Vice": 3,
+        "Alexandre Stellio et son orchestre Créole": 1,
         "Sakiyo": 1,
-        "Lutchiana": 1,
-        "Edith Lefel": 2,
-        "T-Vice": 1,
-        "KASSAV'": 1,
-        "Zouk Factory": 1,
-        "Marcel Lollia Dit Velo": 2,
-        "Jean-Michel Jarre": 1,
-        "Jean-Claude Naimro": 1,
-        "G'Ny": 1,
-        "BélO": 1,
-        "Jean-Luc Guanel": 1,
-        "Dédé Saint-Prix": 1,
-        "Francky Vincent": 1,
-        "Tanya St-Val": 1,
-        "Dominique Panol": 1,
-        "Harmonik": 1,
-        "Jocelyne Labylle": 1,
-        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
-        "Kim": 1,
-        "The Teddyson John Project": 1,
-        "Kali": 1,
-        "Medhy Custos, Christian Nara": 1,
-        "Tabou Combo": 2,
-        "Top Vice": 1,
-        "Les Aiglons": 1,
-        "Orlane": 1,
         "Zouk Machine": 1,
-        "Kimsé": 1,
-        "Warren": 1,
-        "MASS POWER NOU": 1,
-        "Joëlle Ursull": 1,
-        "Dominik Coco, Fuckly": 1,
-        "Akiyo": 1,
-        "Energy": 1,
-        "Exile One": 1,
-        "Kaysha, Kénédy": 1,
-        "Zin": 1,
+        "Carimi": 3,
+        "Dominique Panol": 6,
+        "Warren Saada": 2,
+        "Jean-Luc Guanel": 1,
+        "Kan'nida": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "Ti Paris": 1,
+        "Dominik Coco": 4,
+        "Mario Chicot": 1,
+        "Ralph Thamar": 2,
+        "EDDY EDOUARD": 1,
+        "Gilles Floro": 2,
+        "Ludo": 1,
+        "Edouard Benoit": 1,
+        "JACOB F. DESVARIEUX & Georges Decimus": 2,
+        "Alain Ramanisum": 1,
+        "Jean-Philippe Marthély": 1,
+        "BélO": 2,
+        "Princess Erika": 1,
+        "Claudette et Ti Pierre": 1,
+        "Dédé Saint-Prix": 1,
+        "T-vice": 1,
+        "JEAN-PHILIPPE MARTHELY/PATRICK SAINT-ELOI": 1,
+        "Jim Rama, Patrick Andrey": 1,
+        "Al Lirvat, Robert Mavounzy": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Jean-Michel Jean-Louis": 2,
+        "Akiyo": 2,
+        "Patrick Saint-Eloi": 1,
+        "Kassav'": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Lutchiana Mobulu": 1,
+        "Experience 7": 1,
+        "Jocelyne Béroard, Kassav'": 2,
+        "Nichols": 1,
         "Marcé & Toumpak": 1,
+        "Tabou Combo": 1,
+        "Joëlle Ursull": 1,
+        "Battery Cremil": 1,
+        "BEL": 1,
+        "Zouklook": 1,
         "Patrick Andrey": 1,
-        "Stony": 1,
-        "D'zine": 1,
-        "Jayd'n Dominique": 1,
+        "Sweet Micky": 1,
+        "Fanny J": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Slaï": 1,
+        "Jean-Michel Jarre": 1,
         "Milca": 1,
-        "Jean-Michel Jean-Louis": 1
+        "Lennikim": 1,
+        "JACOB F. DESVARIEUX/GEORGES DECIMUS": 1,
+        "Edith Lefel": 1,
+        "Justice Crew": 1,
+        "Kaysha": 1
       },
-      "max_artist_repetition": 3,
-      "top_artist": "Carimi",
+      "max_artist_repetition": 6,
+      "top_artist": "Dominique Panol",
       "consecutive_same_artist": [
         {
           "artist": "Dominik Coco",
-          "position": 9,
-          "count": 2
-        },
-        {
-          "artist": "Marcel Lollia Dit Velo",
-          "position": 32,
+          "position": 76,
           "count": 2
         }
       ],
@@ -209,7 +196,7 @@
         "passages": 13
       },
       "Corinne": {
-        "passages": 4199
+        "passages": 4251
       }
     }
   },
@@ -219,12 +206,17 @@
       {
         "type": "liner_coherence_critical",
         "severity": "high",
-        "context": "Cohérence liners : 0% (objectif >90%)"
+        "context": "Cohérence liners : 23% (objectif >90%)"
       },
       {
         "type": "liner_format_issues",
         "severity": "high",
-        "context": "12 liner(s) au format invalide"
+        "context": "7 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "3 liner(s) ne correspondent pas à l'artiste suivant"
       },
       {
         "type": "journalist_no_content",
@@ -232,6 +224,12 @@
         "context": "Monique : aucun contenu généré aujourd'hui"
       }
     ],
-    "music": []
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Dominique Panol joué 6x (objectif <5)"
+      }
+    ]
   }
 }
