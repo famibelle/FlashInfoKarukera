@@ -1,0 +1,237 @@
+{
+  "date": "2026-08-30",
+  "generated_at": "2026-08-31T00:51:18.578381Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 0.9875776397515528,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 505.85714285714283,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 19,
+        "failure": 2,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 480.6666666666667,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 205.1904761904762,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 197.71428571428572,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 496.7551020408163,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1966.4285714285713,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 12,
+      "coherent": 0,
+      "coherence_rate": 0.0,
+      "issues_by_type": {
+        "format_invalid": 12
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Meryl": 1,
+        "EDDY EDOUARD": 1,
+        "Harry Diboula": 1,
+        "Princess Erika": 1,
+        "JACOB F. DESVARIEUX/GEORGES DECIMUS": 1,
+        "Teddyson John": 1,
+        "Sweet Micky": 1,
+        "Ti Paris": 1,
+        "Carimi": 3,
+        "Dominik Coco": 3,
+        "The Peace Accord": 1,
+        "Ralph Thamar": 1,
+        "Mini All Stars": 1,
+        "Fabienne Payoute Bernadin": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Medhy Custos": 1,
+        "T-vice": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Thierry Cham": 2,
+        "Gaoulé Mizik": 1,
+        "Juan Gabriel": 1,
+        "Battery Cremil": 2,
+        "Mario Chicot": 2,
+        "Experience 7": 2,
+        "Sakiyo": 1,
+        "Lutchiana": 1,
+        "Edith Lefel": 2,
+        "T-Vice": 1,
+        "KASSAV'": 1,
+        "Zouk Factory": 1,
+        "Marcel Lollia Dit Velo": 2,
+        "Jean-Michel Jarre": 1,
+        "Jean-Claude Naimro": 1,
+        "G'Ny": 1,
+        "BélO": 1,
+        "Jean-Luc Guanel": 1,
+        "Dédé Saint-Prix": 1,
+        "Francky Vincent": 1,
+        "Tanya St-Val": 1,
+        "Dominique Panol": 1,
+        "Harmonik": 1,
+        "Jocelyne Labylle": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Kim": 1,
+        "The Teddyson John Project": 1,
+        "Kali": 1,
+        "Medhy Custos, Christian Nara": 1,
+        "Tabou Combo": 2,
+        "Top Vice": 1,
+        "Les Aiglons": 1,
+        "Orlane": 1,
+        "Zouk Machine": 1,
+        "Kimsé": 1,
+        "Warren": 1,
+        "MASS POWER NOU": 1,
+        "Joëlle Ursull": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Akiyo": 1,
+        "Energy": 1,
+        "Exile One": 1,
+        "Kaysha, Kénédy": 1,
+        "Zin": 1,
+        "Marcé & Toumpak": 1,
+        "Patrick Andrey": 1,
+        "Stony": 1,
+        "D'zine": 1,
+        "Jayd'n Dominique": 1,
+        "Milca": 1,
+        "Jean-Michel Jean-Louis": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Carimi",
+      "consecutive_same_artist": [
+        {
+          "artist": "Dominik Coco",
+          "position": 9,
+          "count": 2
+        },
+        {
+          "artist": "Marcel Lollia Dit Velo",
+          "position": 32,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "La Guadeloupe se bat en silence comme la brizée",
+          "Échos d’un peuple et sa terre indomptée"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 4199
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 0% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "12 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
