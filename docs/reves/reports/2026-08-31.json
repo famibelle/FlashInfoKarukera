@@ -1,0 +1,235 @@
+{
+  "date": "2026-08-31",
+  "generated_at": "2026-09-01T00:55:49.919661Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 0.9875776397515528,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 505.6190476190476,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 19,
+        "failure": 2,
+        "success_rate": 0.9047619047619048,
+        "avg_duration_s": 481.3333333333333,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 205.9047619047619,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 196.46428571428572,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 555.265306122449,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1968.5238095238096,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "format_invalid": 7,
+        "artist_mismatch": 3,
+        "title_mismatch": 3
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "T-Vice": 3,
+        "Alexandre Stellio et son orchestre Créole": 1,
+        "Sakiyo": 1,
+        "Zouk Machine": 1,
+        "Carimi": 3,
+        "Dominique Panol": 6,
+        "Warren Saada": 2,
+        "Jean-Luc Guanel": 1,
+        "Kan'nida": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "Ti Paris": 1,
+        "Dominik Coco": 4,
+        "Mario Chicot": 1,
+        "Ralph Thamar": 2,
+        "EDDY EDOUARD": 1,
+        "Gilles Floro": 2,
+        "Ludo": 1,
+        "Edouard Benoit": 1,
+        "JACOB F. DESVARIEUX & Georges Decimus": 2,
+        "Alain Ramanisum": 1,
+        "Jean-Philippe Marthély": 1,
+        "BélO": 2,
+        "Princess Erika": 1,
+        "Claudette et Ti Pierre": 1,
+        "Dédé Saint-Prix": 1,
+        "T-vice": 1,
+        "JEAN-PHILIPPE MARTHELY/PATRICK SAINT-ELOI": 1,
+        "Jim Rama, Patrick Andrey": 1,
+        "Al Lirvat, Robert Mavounzy": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Jean-Michel Jean-Louis": 2,
+        "Akiyo": 2,
+        "Patrick Saint-Eloi": 1,
+        "Kassav'": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Lutchiana Mobulu": 1,
+        "Experience 7": 1,
+        "Jocelyne Béroard, Kassav'": 2,
+        "Nichols": 1,
+        "Marcé & Toumpak": 1,
+        "Tabou Combo": 1,
+        "Joëlle Ursull": 1,
+        "Battery Cremil": 1,
+        "BEL": 1,
+        "Zouklook": 1,
+        "Patrick Andrey": 1,
+        "Sweet Micky": 1,
+        "Fanny J": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Slaï": 1,
+        "Jean-Michel Jarre": 1,
+        "Milca": 1,
+        "Lennikim": 1,
+        "JACOB F. DESVARIEUX/GEORGES DECIMUS": 1,
+        "Edith Lefel": 1,
+        "Justice Crew": 1,
+        "Kaysha": 1
+      },
+      "max_artist_repetition": 6,
+      "top_artist": "Dominique Panol",
+      "consecutive_same_artist": [
+        {
+          "artist": "Dominik Coco",
+          "position": 76,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "La Guadeloupe ou zansèt nèg dé solèy",
+          "Échos de la terre et des ancêtres"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 4251
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "7 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "3 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Dominique Panol joué 6x (objectif <5)"
+      }
+    ]
+  }
+}
