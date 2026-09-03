@@ -1,0 +1,221 @@
+{
+  "date": "2026-09-02",
+  "generated_at": "2026-09-03T00:47:44.068769Z",
+  "technical": {
+    "summary": {
+      "total_runs": 160,
+      "global_success_rate": 0.9625,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "flash-info"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 20,
+        "failure": 1,
+        "success_rate": 0.9523809523809523,
+        "avg_duration_s": 486.8095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 18,
+        "failure": 3,
+        "success_rate": 0.8571428571428571,
+        "avg_duration_s": 444.0952380952381,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 209.23809523809524,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 26,
+        "failure": 1,
+        "success_rate": 0.9285714285714286,
+        "avg_duration_s": 214.46428571428572,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 48,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 523.2916666666666,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1878.3809523809523,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 2,
+      "coherence_rate": 0.15384615384615385,
+      "issues_by_type": {
+        "format_invalid": 11,
+        "title_mismatch": 2
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Tabou Combo de Petion-Ville": 1,
+        "Nichols": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Jocelyne Labylle": 1,
+        "Jean-Marie Ragald": 1,
+        "Tabou Combo": 1,
+        "Warren G": 1,
+        "Dominique Panol": 1,
+        "JACOB F. DESVARIEUX/GEORGES DECIMUS": 1,
+        "Harmonik": 1,
+        "Milca": 1,
+        "Carlos Santana, Willie Nelson": 1,
+        "Medhy Custos": 1,
+        "Exile One": 1,
+        "Marcé, Toumpak": 3,
+        "Carimi": 2,
+        "Edith Lefel": 3,
+        "Battery Cremil": 3,
+        "MASS POWER NOU": 1,
+        "Jack, Jeff": 1,
+        "Meryl": 2,
+        "Kan'nida": 2,
+        "Joëlle Ursull": 2,
+        "Dédé Saint-Prix": 1,
+        "Ludo": 2,
+        "DJ Zouk": 1,
+        "Mario Chicot": 2,
+        "Don Carlos": 1,
+        "Fanny J": 1,
+        "KALI": 1,
+        "Lutchiana": 1,
+        "Djakout # 1": 2,
+        "Edouard Benoit": 1,
+        "Naelle": 1,
+        "Antonio Carlos Jobim": 1,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "Kimsé": 1,
+        "Akiyo": 2,
+        "HARRY DIBOULA": 1,
+        "Zouk Factory": 1,
+        "Slaï": 1,
+        "Les Aiglons": 1,
+        "Jacob Desvarieux": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Dominik Coco": 3,
+        "BélO": 2,
+        "T-Vice": 2,
+        "Energy": 1,
+        "Ralph Thamar": 1,
+        "Francky Vincent": 1,
+        "Nu-Look": 1,
+        "KASSAV'": 2,
+        "Alain Ramanisum, Le Groupe Ravanna": 1,
+        "Perle Lama, Thierry Cham": 1,
+        "Princess Erika": 1,
+        "Jean-Michel Jarre": 1,
+        "Claudette et Ti Pierre": 1,
+        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
+        "Robert Loyson": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Marcé, Toumpak",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "L’eau des ancêtres éveille nos racines",
+          "Lafimi rimèd Sofaïa sé manman Gwadloup"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 4329
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 15% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "11 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
