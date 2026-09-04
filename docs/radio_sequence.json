@@ -206,7 +206,7 @@
       "title": "Chante chante chante",
       "artist": "Fabien Georges",
       "genre": "",
-      "duration": 177
+      "duration": 264
     },
     {
       "type": "music",
@@ -413,7 +413,7 @@
     },
     {
       "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-09-04-midi-12.mp3",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-09-04-midi-18.mp3",
       "label": "Capsule culturelle Guadeloupe",
       "icon": "🌺"
     },
@@ -509,9 +509,9 @@
     },
     {
       "type": "music",
-      "videoId": "7Uad2sZn3Mw",
-      "title": "Lekol la",
-      "artist": "Marcel Lollia Dit Velo",
+      "videoId": "u5e1wuRtJDk",
+      "title": "Mauvaise Élève",
+      "artist": "Meryl",
       "genre": "",
       "duration": 643
     },
@@ -712,6 +712,94 @@
       "artist": "Orlane",
       "genre": "",
       "duration": 302
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-09-04-soir-6.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W35-belo_francky-vinc_tabou-combo-.mp3",
+      "label": "Voici **Tabou Combo**, le compas qui pulse comme un cœur haïtien sous les étoiles de Pointe-à-Pitre.",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "GEFDWlKNUj4",
+      "title": "New York",
+      "artist": "Tabou Combo de Petion-Ville",
+      "genre": "",
+      "duration": 579
+    },
+    {
+      "type": "music",
+      "videoId": "-jyFLMBppkI",
+      "title": "M'damou",
+      "artist": "BélO",
+      "genre": "",
+      "duration": 247
+    },
+    {
+      "type": "music",
+      "videoId": "4sEukYuiwq8",
+      "title": "Ma copin's",
+      "artist": "Francky Vincent",
+      "genre": "",
+      "duration": 253
+    },
+    {
+      "type": "music",
+      "videoId": "Ac3vQvaU9WA",
+      "title": "Bolotte",
+      "artist": "Dominique Panol",
+      "genre": "",
+      "duration": 350
+    },
+    {
+      "type": "music",
+      "videoId": "j7XVKwvfj4Y",
+      "title": "Kolé Séré",
+      "artist": "JOCELYNE BEROARD",
+      "genre": "",
+      "duration": 284
+    },
+    {
+      "type": "music",
+      "videoId": "sRIxSd9z6LM",
+      "title": "An Lari-la (Live)",
+      "artist": "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP",
+      "genre": "",
+      "duration": 681
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-09-04-soir-12.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W35-edith-lefel_jocelyne-ber_kassav.mp3",
+      "label": "Jocelyne Béroard, la voix qui porte l’âme de la Guadeloupe à travers les générations.\n\nLe zouk de Kassav’ pulse comme un cœur sous les étoiles de ce soir.",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "ELq4YsnEDw8",
+      "title": "Palé mwen dous",
+      "artist": "Jocelyne Béroard, Kassav'",
+      "genre": "",
+      "duration": 273
+    },
+    {
+      "type": "music",
+      "videoId": "-u2NhEtYe4c",
+      "title": "Ti bébé (Chris & Mathieu)",
+      "artist": "Edith Lefel",
+      "genre": "",
+      "duration": 237
     },
     {
       "type": "music",
