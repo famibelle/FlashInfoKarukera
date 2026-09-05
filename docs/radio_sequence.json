@@ -569,11 +569,10 @@
     },
     {
       "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-09/flash-info-20260905-soir.mp3",
-      "label": "Flash Info Guadeloupe — 2026-09-05, édition du soir",
-      "icon": "📰",
-      "pending": true
+      "subtype": "emission",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-09-05-matin.mp3",
+      "label": "Émission culturelle — matin — 2026-09-05",
+      "icon": "🎤"
     },
     {
       "type": "liner",
