@@ -1729,5 +1729,15 @@
       <itunes:summary>Découvrez les plantes et animaux de Guadeloupe, gardiens de notre mémoire et de notre résistance.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,mémoire,résistance,plantes,animaux,tradition,Kalinagos</itunes:keywords>
     </item>
+    <item>
+      <title>L'âme des crabes et des tambours</title>
+      <description>Découvrez les liens sacrés entre nature, histoire et résistance en Guadeloupe.</description>
+      <pubDate>Sun, 06 Sep 2026 14:27:02 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-09-06-soir.mp3" length="1652805" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-09-06-soir</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez les liens sacrés entre nature, histoire et résistance en Guadeloupe.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,résistance,histoire,tradition,kalinagos,nature,patrimoine</itunes:keywords>
+    </item>
   </channel>
 </rss>
