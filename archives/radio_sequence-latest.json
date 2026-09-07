@@ -64,7 +64,7 @@
       "title": "Eldorado Main Road",
       "artist": "Exile One",
       "genre": "",
-      "duration": 295
+      "duration": 232
     },
     {
       "type": "capsule",
@@ -568,12 +568,34 @@
       "duration": 241
     },
     {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-09/flash-info-20260907-soir.mp3",
-      "label": "Flash Info Guadeloupe — 2026-09-07, édition du soir",
-      "icon": "📰",
-      "pending": true
+      "type": "music",
+      "videoId": "bNn2OTUEoy8",
+      "title": "Pou an passion",
+      "artist": "Edith Lefel",
+      "genre": "",
+      "duration": 289
+    },
+    {
+      "type": "music",
+      "videoId": "Zovyt2rY7pw",
+      "title": "Tim-Tim Bwa Sek",
+      "artist": "JACOB F. DESVARIEUX & Georges Decimus",
+      "genre": "",
+      "duration": 265
+    },
+    {
+      "type": "music",
+      "videoId": "TbWw4YcgQyg",
+      "title": "Ola Ou Ye",
+      "artist": "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav",
+      "genre": "",
+      "duration": 316
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-09-07-matin-6.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
     },
     {
       "type": "liner",

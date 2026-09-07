@@ -1460,8 +1460,8 @@
         }
       ],
       "album": {
-        "name": "Best of 20ème anniversaire",
-        "id": "MPREb_ggIPL8S75EF"
+        "name": "Légende",
+        "id": "MPREb_KcxIM61uv1M"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
@@ -1476,12 +1476,12 @@
       },
       "thumbnails": [
         {
-          "url": "https://yt3.googleusercontent.com/BcCt0A1sz3PfSUDWys57dUbOtXswh2BerLkccQ7fJWflQnf8tQ_l2Eb3UNwzPjifxv88xlC4JpSEghw=w60-h60-l90-rj",
+          "url": "https://yt3.googleusercontent.com/CLhfV_YAoFgMqc8yMG6zXvwERTyWWZ7LrFIv6WGkrQ6dFeC8NWvMX2ELfwEkik7oK0KN6V_oSvZ00wQW=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
         {
-          "url": "https://yt3.googleusercontent.com/BcCt0A1sz3PfSUDWys57dUbOtXswh2BerLkccQ7fJWflQnf8tQ_l2Eb3UNwzPjifxv88xlC4JpSEghw=w120-h120-l90-rj",
+          "url": "https://yt3.googleusercontent.com/CLhfV_YAoFgMqc8yMG6zXvwERTyWWZ7LrFIv6WGkrQ6dFeC8NWvMX2ELfwEkik7oK0KN6V_oSvZ00wQW=w120-h120-l90-rj",
           "width": 120,
           "height": 120
         }
@@ -2829,17 +2829,21 @@
       "creditsBrowseId": "MPTC3Go1CaF6USc"
     },
     {
-      "videoId": "I7O8k4QlKGM",
-      "title": "Pombiray",
+      "videoId": "wIpQ3BRmDSA",
+      "title": "Love (Band Version)",
       "artists": [
         {
-          "name": "Jacob Desvarieux",
-          "id": "UC0tVN86YfaCsBKycehUFs4A"
+          "name": "Warren Saada",
+          "id": "UC7vS0AZmMdFuzqi0PA_rFKg"
+        },
+        {
+          "name": "Nana Fofie",
+          "id": "UCd8KXpRHlJsxp2RZdOEKQXw"
         }
       ],
       "album": {
-        "name": "Euphrasine's blues",
-        "id": "MPREb_5Aj2aUll4oA"
+        "name": "Road To Olympia - 24.04",
+        "id": "MPREb_t0IoWWfhM7h"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
@@ -2854,12 +2858,58 @@
       },
       "thumbnails": [
         {
-          "url": "https://yt3.googleusercontent.com/MBhtkwEzzlstQCd7gIwWvt1kw1rnRKAB_e-sCHH3O1gOUfGKhJkJFJsJZj38kfXi2XjAu3DepAf7vFGl=w60-h60-l90-rj",
+          "url": "https://yt3.googleusercontent.com/npAYmIkx4W6CaaGDh0ezZDbCoujcRgbGbAlR5I0vo5XLAsor3xRWsVczzfdBm3ohF9rjVcsG-oCPzky_6g=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
         {
-          "url": "https://yt3.googleusercontent.com/MBhtkwEzzlstQCd7gIwWvt1kw1rnRKAB_e-sCHH3O1gOUfGKhJkJFJsJZj38kfXi2XjAu3DepAf7vFGl=w120-h120-l90-rj",
+          "url": "https://yt3.googleusercontent.com/npAYmIkx4W6CaaGDh0ezZDbCoujcRgbGbAlR5I0vo5XLAsor3xRWsVczzfdBm3ohF9rjVcsG-oCPzky_6g=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": true,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "1:51",
+      "duration_seconds": 111,
+      "setVideoId": "38D0C4C39331EA3A",
+      "creditsBrowseId": "MPTCwIpQ3BRmDSA"
+    },
+    {
+      "videoId": "znlXwRbJdKc",
+      "title": "Cé ou mwen lé",
+      "artists": [
+        {
+          "name": "HARRY DIBOULA",
+          "id": "UCXCU2wSgm1Ow7cBUqh4KxGA"
+        }
+      ],
+      "album": {
+        "name": "Cé ou mwen lé",
+        "id": "MPREb_z05BqpQtL8g"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpJXy4sBrIb4iI-bF2YeRFDgsF1nkT_DnXeQPt4Qlg5yNmcvUU1Ue0n7KjQ5heoSot6uINrk3dhHp4v2GkiCvpZwCmchlQ",
+        "remove": "AB9zfpLJZs_7jrP9rjj4Hl69KIF45JCVSsL_cG61XG2JjSnMYxUrHQRDzHcnRcW5ChFHwmMqluTfYAYDvfW2d8D0oSNyVin2xw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpJDQQOnq0cAJwispzvZ9eiPCyf64mBGsB4-pQAlFiam4MeGLrc1DVz8pwbWMnwSBwOw47bahIJVJgEGSKQYDRNypQkIHQjPmn9kZn59bYLuSLAZG90",
+        "unpin": "AB9zfpIiUDrj8Y8ZO2hKjFr4FjMH1X47wYlqEX8cDMeo50jPM5AV8k2NSWkGcnk5mqVFF3a5EGGaoctX7a4LFkRFhh9GB6CTP4X_S5PVcKmEkmPPVBNUtns"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/E24y_8GlppINqOENByEvlxOUbx2v19oR-sFtdM0_DKpjeYQRaweFbsG2wQeS4IRJqrq3js_Kk300sXCO=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/E24y_8GlppINqOENByEvlxOUbx2v19oR-sFtdM0_DKpjeYQRaweFbsG2wQeS4IRJqrq3js_Kk300sXCO=w120-h120-l90-rj",
           "width": 120,
           "height": 120
         }
@@ -3016,8 +3066,8 @@
       "title": "Pou an passion",
       "artists": [
         {
-          "name": "Edith Lefel",
-          "id": "UCOElhSK53fxMn9F9kASy1bw"
+          "name": "Nichols",
+          "id": "UCPFYVkusthalIY8uYS6aYTQ"
         }
       ],
       "album": {
@@ -3628,13 +3678,13 @@
       "title": "Manman",
       "artists": [
         {
-          "name": "Claudette et Ti Pierre",
-          "id": "UCiIYkwmEUnFbNxzynd6XC3A"
+          "name": "Waka Flocka Flame",
+          "id": "UC-1BnotsIsigEK4zLw20IDQ"
         }
       ],
       "album": {
-        "name": "Zanmi",
-        "id": "MPREb_DFDRZVaApo1"
+        "name": "Flockaveli",
+        "id": "MPREb_yMKoTRQzNm3"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
@@ -3649,7 +3699,7 @@
       },
       "thumbnails": [
         {
-          "url": "https://yt3.googleusercontent.com/se33FSYMgNseNLJ83_AzOUp6aYlTPEBNqN5TxJnUtgGsatPOQCCZEvB2LNEw4WBw6K-L4pOk1W0-pk4u=w60-h60-l90-rj",
+          "url": "https://yt3.googleusercontent.com/U81yFJskoH-AYYc_mTqpr4uk-bmzL1IF6xIhWcz4v-SwZYXCZ_Qz2udapheIfv3ruyXLaDiiaEyLfn8=w60-h60-s-l90-rj",
           "width": 60,
           "height": 60
         },
@@ -3669,17 +3719,17 @@
       "setVideoId": "FD048CFA6C089E6C"
     },
     {
-      "videoId": "OgE2cqrwQZc",
-      "title": "Bel ti moman",
+      "videoId": "ymgCe9J49e0",
+      "title": "Jack Sparrow",
       "artists": [
         {
-          "name": "Harmonik",
-          "id": "UCLNLGQmETKgrGeB5Z5V50ig"
+          "name": "Meryl",
+          "id": "UCxF_3BaeGCWLlFzwq09ecWg"
         }
       ],
       "album": {
-        "name": "Diferan",
-        "id": "MPREb_D6ODktwnYQL"
+        "name": "Jack Sparrow",
+        "id": "MPREb_bochelrSFSb"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
@@ -3694,12 +3744,12 @@
       },
       "thumbnails": [
         {
-          "url": "https://yt3.googleusercontent.com/UT5A4AFJTlyu1m2LGDLjylvvOmT8epzD-7Nf1t-VZgNX7yaMRtLWvcay7nTIgytUfanVX_XaQoagdRY=w60-h60-l90-rj",
+          "url": "https://yt3.googleusercontent.com/AogLkz3-5bkEA4PnJEYShus30rm9FRyLK1S2cXDRdi-8Xd0R-kiEZWyZ-F3Ff8x2j_cYpaEpEJgJBNPp=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
         {
-          "url": "https://yt3.googleusercontent.com/UT5A4AFJTlyu1m2LGDLjylvvOmT8epzD-7Nf1t-VZgNX7yaMRtLWvcay7nTIgytUfanVX_XaQoagdRY=w120-h120-l90-rj",
+          "url": "https://yt3.googleusercontent.com/AogLkz3-5bkEA4PnJEYShus30rm9FRyLK1S2cXDRdi-8Xd0R-kiEZWyZ-F3Ff8x2j_cYpaEpEJgJBNPp=w120-h120-l90-rj",
           "width": 120,
           "height": 120
         }
