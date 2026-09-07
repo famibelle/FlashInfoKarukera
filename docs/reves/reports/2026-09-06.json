@@ -1,0 +1,231 @@
+{
+  "date": "2026-09-06",
+  "generated_at": "2026-09-07T00:51:03.919526Z",
+  "technical": {
+    "summary": {
+      "total_runs": 160,
+      "global_success_rate": 0.975,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 20,
+        "failure": 1,
+        "success_rate": 0.9523809523809523,
+        "avg_duration_s": 410.4761904761905,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 20,
+        "failure": 1,
+        "success_rate": 0.9523809523809523,
+        "avg_duration_s": 364.0952380952381,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 176.0952380952381,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 26,
+        "failure": 1,
+        "success_rate": 0.9285714285714286,
+        "avg_duration_s": 195.07142857142858,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 48,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 527.8541666666666,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1614.3809523809523,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "format_invalid": 9,
+        "title_mismatch": 3,
+        "artist_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Fanny J": 2,
+        "Princess Erika": 1,
+        "Battery Cremil": 4,
+        "Joëlle Ursull": 1,
+        "Harry Diboula": 1,
+        "JEAN-CLAUDE NAIMRO": 2,
+        "Yoan": 1,
+        "Orlane": 3,
+        "Experience 7": 1,
+        "DJ Zouk": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Princess Liz": 1,
+        "Francky Vincent": 1,
+        "BélO": 1,
+        "Dominik Coco, Fuckly": 1,
+        "BEL": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Dominik Coco": 1,
+        "Jerry Jeff Walker": 1,
+        "Tabou Combo": 1,
+        "JACOB F. DESVARIEUX/GEORGES DECIMUS": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Zo Konpa, Zouk Machine": 1,
+        "Nu-Look": 1,
+        "T-Vice": 2,
+        "Marcé, Toumpak": 2,
+        "HARRY DIBOULA": 1,
+        "Alexandre Stellio et son orchestre Créole": 1,
+        "Zin": 2,
+        "Edouard Benoit": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Stony, Oswald": 1,
+        "Claudette et Ti Pierre": 1,
+        "Kan'nida": 1,
+        "Ti Paris": 1,
+        "KASSAV'": 2,
+        "Dominique Panol": 1,
+        "Ralph Thamar": 1,
+        "Antonio Carlos Jobim": 1,
+        "Medhy Custos": 1,
+        "Top Vice": 2,
+        "Mario Chicot": 2,
+        "Fabienne Payoute Bernadin": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Kaysha, Kénédy": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Gilles Floro": 1,
+        "Kimsé": 1,
+        "Djakout #1": 1,
+        "Don Carlos": 1,
+        "Harmonik": 1,
+        "Dms Crew": 1,
+        "Nilson Sandoval-El Consentido": 1,
+        "Exile One": 1,
+        "JOCELYNE BEROARD": 1,
+        "Ludo": 1,
+        "Kassav'": 1,
+        "Lutchiana": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Les Aiglons": 1,
+        "Carimi": 1,
+        "Meryl": 1,
+        "Jacob Desvarieux, Kassav', Georges Décimus": 1,
+        "Waka Flocka Flame": 1,
+        "The Teddyson John Project": 1,
+        "Edith Lefel": 1,
+        "Tabou Combo de Petion-Ville": 1
+      },
+      "max_artist_repetition": 4,
+      "top_artist": "Battery Cremil",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "L'âme des crabes et des tambours",
+          "Les Racines chantent, la Guadeloupe résiste"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 4537
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "9 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
