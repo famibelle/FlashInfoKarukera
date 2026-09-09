@@ -1779,5 +1779,15 @@
       <itunes:summary>Découvrez les racines de l'âme caraïbe à travers nature, histoire et traditions culinaires en Guadel</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,caraïbe,langouste,gombo,Patrimoine,traditions,créole</itunes:keywords>
     </item>
+    <item>
+      <title>La Guadeloupe murmure ses légendes</title>
+      <description>Découvrez les légendes et symboles qui murmurent l'âme de la Guadeloupe, entre nature et résistance.</description>
+      <pubDate>Wed, 09 Sep 2026 02:46:25 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-09-09-matin.mp3" length="2423469" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-09-09-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez les légendes et symboles qui murmurent l'âme de la Guadeloupe, entre nature et résistance.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,traditions,légendes,nature,symboles,tatou,kalbasi</itunes:keywords>
+    </item>
   </channel>
 </rss>
