@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>La Guadeloupe sous le choc après une disparition tragique à Saint-François, dans votre flash-info du 10 septembre au soir</title>
+      <description><![CDATA[Bonsoir. Nous sommes le jeudi dix septembre deux mille vingt-six, il est seize heures dix-neuf. Voici l'édition du soir de votre Flash Info Guadeloupe.]]></description>
+      <pubDate>Thu, 10 Sep 2026 14:21:58 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-09/flash-info-20260910-soir.mp3" length="1299933" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20260910-soir</guid>
+      <itunes:duration>02:04</itunes:duration>
+    </item>
+
+<item>
       <title>Le centre hospitalier de Capesterre-Belle-Eau offre un bol d’alizés aux aînés des Saintes, dans votre flash-info du 10 septembre à midi</title>
       <description><![CDATA[On fait le point à midi chez nous, ce jeudi dix septembre deux mille vingt-six. Voici les sept infos qui marquent la journée.]]></description>
       <pubDate>Thu, 10 Sep 2026 08:25:48 +0000</pubDate>
@@ -1804,15 +1813,6 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260606-soir.mp3" length="1521213" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260606-soir</guid>
       <itunes:duration>02:27</itunes:duration>
-    </item>
-
-<item>
-      <title>Un été guadeloupéen sous tension, l'alerte rouge est lancée, dans votre flash-info du 6 juin à midi</title>
-      <description><![CDATA[On fait le point à midi, ce samedi six juin deux mille vingt-six. Voici les infos de Guadeloupe.]]></description>
-      <pubDate>Sat, 06 Jun 2026 09:04:29 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260606-midi.mp3" length="169821" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260606-midi</guid>
-      <itunes:duration>00:17</itunes:duration>
     </item>
 
   </channel>
