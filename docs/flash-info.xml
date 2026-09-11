@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Trail urbain à Pointe-à-Pitre : les coureurs s’échauffent dès dimanche, dans votre flash-info du 11 septembre à midi</title>
+      <description><![CDATA[On fait le point à midi chez nous, en Guadeloupe, ce vendredi onze septembre deux mille vingt-six.]]></description>
+      <pubDate>Fri, 11 Sep 2026 08:26:26 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-09/flash-info-20260911-midi.mp3" length="1121589" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20260911-midi</guid>
+      <itunes:duration>01:48</itunes:duration>
+    </item>
+
+<item>
       <title>Chlordécone en Basse-Terre des bus médicaux dépistent, dans votre flash-info du 11 septembre au matin</title>
       <description><![CDATA[Bèl bonjou, chè tout moun ! Nous sommes le vendredi onze septembre deux mille vingt-six, il est quatre heures trente-trois à Paris, et voici votre Flash Info Guadeloupe pour bien démarrer la journée.]]></description>
       <pubDate>Fri, 11 Sep 2026 02:41:58 +0000</pubDate>
@@ -1804,15 +1813,6 @@ On fait le point à midi, avec les sept infos qui comptent ce début de semaine 
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260607-midi.mp3" length="331821" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260607-midi</guid>
       <itunes:duration>00:32</itunes:duration>
-    </item>
-
-<item>
-      <title>La Guadeloupe intronise enfin sa propre Ligue de foot, dans votre flash-info du 7 juin au matin</title>
-      <description><![CDATA[Bèl bonjou, chè zòt ! Dimanch sept jen deux mille vingt-six, cinquièm jounen ka koumansé anba brilé maten-la.]]></description>
-      <pubDate>Sun, 07 Jun 2026 03:36:05 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260607-matin.mp3" length="3296085" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260607-matin</guid>
-      <itunes:duration>05:16</itunes:duration>
     </item>
 
   </channel>
