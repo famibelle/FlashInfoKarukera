@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Météo violente ce matin en Guadeloupe des rafales à 120 km/h, dans votre flash-info du 13 septembre à midi</title>
+      <description><![CDATA[On fait le point à midi chez nous, en Guadeloupe, ce dimanche treize septembre deux mille vingt-six.]]></description>
+      <pubDate>Sun, 13 Sep 2026 08:21:12 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-09/flash-info-20260913-midi.mp3" length="184677" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20260913-midi</guid>
+      <itunes:duration>00:18</itunes:duration>
+    </item>
+
+<item>
       <title>Yonn jenn fèm guadeloupéenne primé pou son matéwo ékolo a inov, dans votre flash-info du 13 septembre au matin</title>
       <description><![CDATA[Bèl bonjou Guadeloupe ! Dimanch trèz septanm deux mille vingt-six, il est katrè trant-twa an maten, épi nou ka démaré ansanm jodi-a pou yonn dé ti nouvèl ka fè jounen nou.]]></description>
       <pubDate>Sun, 13 Sep 2026 02:40:28 +0000</pubDate>
@@ -1803,15 +1812,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260609-midi.mp3" length="1454181" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260609-midi</guid>
       <itunes:duration>02:19</itunes:duration>
-    </item>
-
-<item>
-      <title>Justice : Koury condamné à 24 mois avec sursis pour escroquerie, dans votre flash-info du 9 juin au matin</title>
-      <description><![CDATA[Bèl bonjou, Guadeloupe ! Nous sommes le mardi neuf juin deux mille vingt-six. Il est cinq heures vingt-huit, et voici votre Flash Info du matin pour démarrer la journée informés et connectés.]]></description>
-      <pubDate>Tue, 09 Jun 2026 03:35:22 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260609-matin.mp3" length="2800917" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260609-matin</guid>
-      <itunes:duration>04:29</itunes:duration>
     </item>
 
   </channel>
