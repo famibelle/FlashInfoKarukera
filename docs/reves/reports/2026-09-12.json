@@ -1,0 +1,232 @@
+{
+  "date": "2026-09-12",
+  "generated_at": "2026-09-13T00:51:46.983089Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 456.85714285714283,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 401.9047619047619,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 180.42857142857142,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 175.10714285714286,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 506.9795918367347,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1770.7619047619048,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "title_mismatch": 3,
+        "format_invalid": 9,
+        "artist_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Tabou Combo": 3,
+        "Les Aiglons": 2,
+        "Jocelyne Labylle": 1,
+        "Thierry Delannay": 1,
+        "Alain Ramanisum": 1,
+        "T-Vice": 5,
+        "Warren": 1,
+        "Dms Crew": 1,
+        "Dominik Coco": 2,
+        "Marcé, Toumpak": 2,
+        "Joëlle Ursull": 3,
+        "Princesse": 1,
+        "Zin": 1,
+        "Nichols": 1,
+        "Kim": 1,
+        "Claudette et Ti Pierre": 1,
+        "HARRY DIBOULA": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "TAGLIAMENTO F & ROBERT LOYSON": 1,
+        "Tabou Combo de Petion-Ville": 1,
+        "Fabien Georges": 1,
+        "Ludo": 1,
+        "Battery Cremil": 3,
+        "G'Ny": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Don Carlos": 1,
+        "Jean Luc Guanel": 1,
+        "Harmonik": 1,
+        "Zouk Machine": 2,
+        "Medhy Custos, Christian Nara": 1,
+        "Robert Loyson": 1,
+        "Jacob Desvarieux": 1,
+        "KASSAV'": 2,
+        "BélO": 2,
+        "Jeff Joseph": 1,
+        "Medhy Custos": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "NICHOLS": 1,
+        "Edith Lefel": 1,
+        "Kassav'": 1,
+        "Meryl": 1,
+        "Naelle": 1,
+        "LORYN Official": 1,
+        "Marcé & Toumpak": 1,
+        "Carimi": 2,
+        "Orlane": 1,
+        "WCK": 1,
+        "Tanya St-Val": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Dédé Saint-Prix": 1,
+        "Slaï": 1,
+        "Lynn Anderson": 1,
+        "Perle Lama": 1,
+        "Yoan": 1,
+        "JACOB DESVARIEUX": 1,
+        "Francky Vincent": 1,
+        "Exile One": 1,
+        "Fanny J": 1,
+        "Gilles Floro": 1,
+        "Ti Paris": 1,
+        "Princess Erika": 1,
+        "Mario Chicot": 1
+      },
+      "max_artist_repetition": 5,
+      "top_artist": "T-Vice",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "La Guadeloupe chante nos racines",
+          "Résistances ocultées sou la canopée"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 4849
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "9 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "1 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "T-Vice joué 5x (objectif <5)"
+      }
+    ]
+  }
+}
