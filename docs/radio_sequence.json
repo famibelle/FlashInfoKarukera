@@ -48,7 +48,7 @@
       "title": "Lagé gwoka la",
       "artist": "YVES THOLE ET SON KONVWAKA",
       "genre": "",
-      "duration": 271
+      "duration": 251
     },
     {
       "type": "music",
@@ -473,7 +473,7 @@
     },
     {
       "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-09-13-midi-18.mp3",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-09-13-matin-12.mp3",
       "label": "Capsule culturelle Guadeloupe",
       "icon": "🌺"
     },
@@ -533,7 +533,7 @@
     },
     {
       "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-09-13-midi-24.mp3",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-09-13-midi-6.mp3",
       "label": "Capsule culturelle Guadeloupe",
       "icon": "🌺"
     },
@@ -558,6 +558,18 @@
       "artist": "Dédé Saint-Prix",
       "genre": "",
       "duration": 442
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-09-13-midi-24.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W36-dominique-pa_kali_mario-chicot.mp3",
+      "label": "Mario Chicot, la voix qui porte l’âme des mornes à midi.",
+      "icon": "🎙️"
     },
     {
       "type": "music",
