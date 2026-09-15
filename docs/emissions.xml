@@ -1899,5 +1899,15 @@
       <itunes:summary>Découvrez la Guadeloupe à travers ses chants, sa nature et ses symboles de résistance et de liberté.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,musiquetraditionnelle,mangrove,parulinecaféiette,tichantè,liberté,résistance</itunes:keywords>
     </item>
+    <item>
+      <title>Ki non a manmanw sanmémwar kouwé</title>
+      <description>Plongez dans les légendes et plantes de Guadeloupe qui murmurent nos racines et notre histoire.</description>
+      <pubDate>Tue, 15 Sep 2026 02:43:56 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-09-15-matin.mp3" length="1591005" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-09-15-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Plongez dans les légendes et plantes de Guadeloupe qui murmurent nos racines et notre histoire.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,traditions,plantes,légendes,histoire,ancêtres,rituels</itunes:keywords>
+    </item>
   </channel>
 </rss>
