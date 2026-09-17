@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Hildegarde et Réginald, votre fête tourne à l’orage, dans votre flash-info du 17 septembre au matin</title>
+      <description><![CDATA[Bèl bonjou, Guadeloupe ! Nous sommes le jeudi dix-sept septembre deux mille vingt-six, il est quatre heures trente-deux à Paris, et voici votre Flash Info Botiran pour bien démarrer la journée.]]></description>
+      <pubDate>Thu, 17 Sep 2026 02:38:08 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-09/flash-info-20260917-matin.mp3" length="2520645" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20260917-matin</guid>
+      <itunes:duration>04:01</itunes:duration>
+    </item>
+
+<item>
       <title>Hugo 95 : l'archipel se souvient pour mieux se préparer, dans votre flash-info du 16 septembre au soir</title>
       <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du mercredi seize septembre deux mille vingt-six.]]></description>
       <pubDate>Wed, 16 Sep 2026 14:23:29 +0000</pubDate>
@@ -1803,15 +1812,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260613-matin.mp3" length="2658021" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260613-matin</guid>
       <itunes:duration>04:16</itunes:duration>
-    </item>
-
-<item>
-      <title>Areva jugé pour l'affaire Thierry Dol au Niger, dans votre flash-info du 12 juin au soir</title>
-      <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du vendredi douze juin deux mille vingt-six.]]></description>
-      <pubDate>Fri, 12 Jun 2026 15:18:33 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260612-soir.mp3" length="1651461" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260612-soir</guid>
-      <itunes:duration>02:42</itunes:duration>
     </item>
 
   </channel>
