@@ -1939,5 +1939,15 @@
       <itunes:summary>Podcast culturel guadeloupéen : symboles, nature et mémoire vivante à travers chants et traditions.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,traditions,histoire,nature,symboles,Kalinago,résistance</itunes:keywords>
     </item>
+    <item>
+      <title>Ô Guadeloupe où danse l'écho des ancêtres</title>
+      <description>Découvrez la Guadeloupe à travers ses légendes, sa nature et ses trésors culturels perdus et préserv</description>
+      <pubDate>Thu, 17 Sep 2026 02:43:51 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-09-17-matin.mp3" length="2406309" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-09-17-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez la Guadeloupe à travers ses légendes, sa nature et ses trésors culturels perdus et préserv</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,ancêtres,légendes,nature,paresseux,palmiste,histoire</itunes:keywords>
+    </item>
   </channel>
 </rss>
