@@ -246,11 +246,11 @@
     },
     {
       "type": "music",
-      "videoId": "luut7ZJOSZk",
-      "title": "Ou La La",
-      "artist": "Sweet Micky",
+      "videoId": "-jDs0wZYzMM",
+      "title": "Bon bagay (Carnival '96)",
+      "artist": "T-Vice",
       "genre": "",
-      "duration": 343
+      "duration": 443
     },
     {
       "type": "music",
@@ -570,10 +570,9 @@
     {
       "type": "transition",
       "subtype": "flash_info",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-09/flash-info-20260917-soir.mp3",
-      "label": "Flash Info Guadeloupe — 2026-09-17, édition du soir",
-      "icon": "📰",
-      "pending": true
+      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-09/flash-info-20260917-midi.mp3",
+      "label": "Un lézard porte-bonheur enfin protégé en Guadeloupe, dans votre flash-info du 17 septembre à midi",
+      "icon": "📰"
     },
     {
       "type": "liner",
@@ -747,7 +746,7 @@
       "title": "Lanmou",
       "artist": "Harmonik",
       "genre": "",
-      "duration": 294
+      "duration": 157
     },
     {
       "type": "music",
