@@ -118,11 +118,11 @@
     },
     {
       "type": "music",
-      "videoId": "cmhT5TQ-zOk",
-      "title": "An ba chenn-la (Live)",
-      "artist": "Jean-Philippe Marthély",
+      "videoId": "061wOAHFGrI",
+      "title": "Eldorado Main Road",
+      "artist": "Exile One",
       "genre": "",
-      "duration": 144
+      "duration": 295
     },
     {
       "type": "music",
@@ -453,7 +453,7 @@
       "title": "Bel ti moman",
       "artist": "Harmonik",
       "genre": "",
-      "duration": 296
+      "duration": 254
     },
     {
       "type": "music",
@@ -568,12 +568,34 @@
       "duration": 281
     },
     {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-09/flash-info-20260918-soir.mp3",
-      "label": "Flash Info Guadeloupe — 2026-09-18, édition du soir",
-      "icon": "📰",
-      "pending": true
+      "type": "music",
+      "videoId": "PDTUJT3UIeQ",
+      "title": "Paix Et Lanmou",
+      "artist": "Experience 7",
+      "genre": "",
+      "duration": 227
+    },
+    {
+      "type": "music",
+      "videoId": "PD3WrglWSh8",
+      "title": "Pwofite",
+      "artist": "Djakout # 1",
+      "genre": "",
+      "duration": 360
+    },
+    {
+      "type": "music",
+      "videoId": "kn0AcGmvJms",
+      "title": "Istwa dwòl",
+      "artist": "BélO",
+      "genre": "",
+      "duration": 255
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-09-18-midi-12.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
     },
     {
       "type": "liner",
