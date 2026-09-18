@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Justice sous tension en Guadeloupe justice et mémoire s’affrontent ce soir, dans votre flash-info du 18 septembre au soir</title>
+      <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du vendredi dix-huit septembre deux mille vingt-six.]]></description>
+      <pubDate>Fri, 18 Sep 2026 14:21:49 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-09/flash-info-20260918-soir.mp3" length="1536141" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20260918-soir</guid>
+      <itunes:duration>02:29</itunes:duration>
+    </item>
+
+<item>
       <title>Ce week-end, Pointe-à-Pitre s’anime pour célébrer son âme créole, dans votre flash-info du 18 septembre à midi</title>
       <description><![CDATA[Voici vos 9 segments conformes aux règles éditoriales :
 On fait le point à midi en Guadeloupe ce vendredi 18 septembre 2026. Voici les informations qui marquent l'actualité de notre archipel.]]></description>
@@ -1804,15 +1813,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260614-soir.mp3" length="654645" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260614-soir</guid>
       <itunes:duration>01:04</itunes:duration>
-    </item>
-
-<item>
-      <title>Découvrez ce qui attend la Guadeloupe ce soir, dans votre flash-info du 14 juin à midi</title>
-      <description><![CDATA[On fait le point à midi, ce dimanche quatorze juin deux mille vingt-six.]]></description>
-      <pubDate>Sun, 14 Jun 2026 09:16:19 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260614-midi.mp3" length="169653" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260614-midi</guid>
-      <itunes:duration>00:16</itunes:duration>
     </item>
 
   </channel>
