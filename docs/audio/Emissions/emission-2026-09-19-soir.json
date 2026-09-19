@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-19",
+  "edition": "soir",
+  "type": "emission",
+  "title": "La Guadeloupe chante entre racines et pétales",
+  "duration": "~3 minutes",
+  "word_count": 382,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Pouki Sa (Sina)",
+    "artist": "Joëlle Ursull",
+    "genre": ""
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Animal / Résistance culturelle \t Loro \t Perroquet \t *Amazona* spp. \t ⭐⭐ RÉSISTANCE CULTURELLE \t Son plumage coloré était utilisé dans les parures rituelles. Symbole de la résistance par la beauté et la tradition (Simpson 1970)."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Oiseau                \t Ti chantè                 \t Paruline caféiette        \t Setophaga plumbea              \t ⭐⭐ Culturel          \t Migratrice hivernale. Symbole de voyage et de liberté dans les chants traditionnels. Habitat: mangroves (Barraud 1994)."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Plante racine          \t Madè                         \t Madère                  \t Xanthosoma sagittifolium       \t Tubercule ferme absorbant les sauces créoles. Souvent mélangé à l'igname."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Site archéologique    \t Pétroglyphes de la Vallée d’Or           \t Trois-Rivières, vallée d’Or (16.1800° N, 61.6300° W) \t ⭐⭐ Symbolique          \t Pétroglyphes arawaks liés aux rituels agricoles. Motifs de plantes et animaux (Bangou 1992, p. 90 ; Giberti 1989, p. 105). Utilisé pour des cérémonies de fertilité et de prospérité."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**1500–1635** \t **Arrivée des premiers captifs africains via la traite musulmane et portugaise** \t **Début de la diaspora africaine en Guadeloupe : parmi les premiers esclaves, certains ont été capturés par des marchands musulmans avant d'être revendus aux Européens. Leur héritage culturel (islamique, animiste) influence les pratiques spirituelles locales.** \t **Résistance culturelle**"
+    }
+  },
+  "text": "Ah mes chers amis, aujourd’hui on va parler de ces trésors qui font battre le cœur de notre Guadeloupe. Comme dans cette chanson de Joëlle Ursull, \"Pouki Sa\", où chaque note semble murmurer nos racines, nos luttes et nos beautés. Ici, la nature n’est pas juste un décor, c’est une histoire vivante, une mémoire qui chante à travers les feuilles, les plumes et les pierres.\n\nPrenez ce petit oiseau, le ti chantè, cette paruline caféiette qui nous visite chaque hiver. Quand elle arrive dans nos mangroves, c’est comme si elle nous apportait un message des îles lointaines. Les anciens disaient que son chant léger était un signe de liberté, une mélodie qui traverse les mers. Et c’est vrai, quand on l’observe entre les palétuviers, on comprend pourquoi nos aïeux en ont fait un symbole de voyage et d’espoir.\n\nEt puis il y a le madè, cette racine ferme qui absorbe nos sauces créoles comme une éponge. Dans nos jardins, il pousse sans façon, résistant et généreux. Mélangé à l’igname, il donne cette texture qui fait la fierté de nos plats. Mais saviez-vous que le madè, c’est aussi un héritage de nos ancêtres ? Une plante qui a survécu aux traversées, aux plantations, et qui aujourd’hui encore nourrit nos corps et nos âmes.\n\nParlons maintenant de ces pierres qui parlent, les pétroglyphes de la Vallée d’Or. Là-bas, à Trois-Rivières, les Arawaks ont gravé dans la roche des motifs de plantes et d’animaux, comme une prière pour la fertilité de la terre. Ces dessins, c’est bien plus que de l’art, c’est une mémoire vivante. Nos anciens y voyaient des guides pour les récoltes, des protecteurs pour les familles. Et aujourd’hui encore, certains y viennent pour des cérémonies, comme un pont entre le passé et le présent.\n\nAlors oui, mes amis, tout cela – le ti chantè, le madè, les pétroglyphes, et même le loro, ce perroquet au plumage éclatant qui symbolise notre résistance – tout cela nous rappelle qui nous sommes. Comme dans \"Pouki Sa\", où chaque mot est une étincelle de notre identité, chaque élément de notre terre est une note de notre histoire. Et cette histoire, c’est à nous de la chanter, de la protéger, et de la transmettre. Parce que c’est ça, la Guadeloupe : une mélodie qui ne s’arrête jamais.",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-09-19-soir.mp3"
+}
