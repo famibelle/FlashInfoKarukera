@@ -1979,5 +1979,15 @@
       <itunes:summary>Plongez dans les légendes et la nature de la Guadeloupe, entre résistance et beauté.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,nature,traditions,écosystème,histoire,résistance,plantes</itunes:keywords>
     </item>
+    <item>
+      <title>La Guadeloupe murmure par ses racines</title>
+      <description>Découvrez comment la chèvre et l'igname incarnent la résistance et la mémoire guadeloupéenne.</description>
+      <pubDate>Sat, 19 Sep 2026 02:43:50 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-09-19-matin.mp3" length="1985541" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-09-19-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Découvrez comment la chèvre et l'igname incarnent la résistance et la mémoire guadeloupéenne.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,résistance,mémoire,chèvre,igname,kabrit,tradition</itunes:keywords>
+    </item>
   </channel>
 </rss>
