@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Un avion en feu, des vies sauvées : l’histoire qui secoue la Guadeloupe, dans votre flash-info du 20 septembre au soir</title>
+      <description><![CDATA[Bonsoir. Nous sommes le dimanche vingt septembre deux mille vingt-six, il est seize heures dix-sept à Paris. Voici votre Flash Info Guadeloupe, l'édition du soir.]]></description>
+      <pubDate>Sun, 20 Sep 2026 14:21:19 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-09/flash-info-20260920-soir.mp3" length="1453149" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20260920-soir</guid>
+      <itunes:duration>02:22</itunes:duration>
+    </item>
+
+<item>
       <title>Météo en Guadeloupe ce midi : alertes et surprises vous attendent, dans votre flash-info du 20 septembre à midi</title>
       <description><![CDATA[On fait le point à midi, ce dimanche vingt septembre deux mille vingt-six.]]></description>
       <pubDate>Sun, 20 Sep 2026 08:21:01 +0000</pubDate>
@@ -1804,15 +1813,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260616-soir.mp3" length="1354917" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260616-soir</guid>
       <itunes:duration>02:11</itunes:duration>
-    </item>
-
-<item>
-      <title>Violences conjugales : deux ans et demi de prison ferme pour un homme qui a ébouillanté sa compagne, dans votre flash-info du 16 juin à midi</title>
-      <description><![CDATA[On fait le point à midi chez nous, mardi seize juin deux mille vingt-six. Voici les sept infos du jour.]]></description>
-      <pubDate>Tue, 16 Jun 2026 10:03:59 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260616-midi.mp3" length="1595973" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260616-midi</guid>
-      <itunes:duration>02:35</itunes:duration>
     </item>
 
   </channel>
