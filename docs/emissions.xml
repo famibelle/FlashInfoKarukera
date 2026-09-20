@@ -1999,5 +1999,15 @@
       <itunes:summary>Découvrez les trésors naturels et culturels qui font vibrer la Guadeloupe.</itunes:summary>
       <itunes:keywords>Guadeloupe,culture,nature,pétroglyphes,madè,tichantè,patrimoine</itunes:keywords>
     </item>
+    <item>
+      <title>Mémoire des mangroves et des murmures</title>
+      <description>Voyage sonore entre science, traditions et résistance dans les mangroves guadeloupéennes.</description>
+      <pubDate>Sun, 20 Sep 2026 02:44:57 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-09-20-matin.mp3" length="1545909" type="audio/mpeg" />
+      <guid isPermaLink="false">emission-2026-09-20-matin</guid>
+      <itunes:duration>180</itunes:duration>
+      <itunes:summary>Voyage sonore entre science, traditions et résistance dans les mangroves guadeloupéennes.</itunes:summary>
+      <itunes:keywords>Guadeloupe,culture,traditions,résistance,nature,ancêtres,plantes,esprits</itunes:keywords>
+    </item>
   </channel>
 </rss>
