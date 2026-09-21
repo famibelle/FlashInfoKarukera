@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-21",
+  "edition": "soir",
+  "type": "emission",
+  "title": "Les gardiens verts de nos mémoires",
+  "duration": "~3 minutes",
+  "word_count": 449,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Lekol la",
+    "artist": "Marcel Lollia Dit Velo",
+    "genre": ""
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Plante / Résistance médicinale \t Zéb omega \t Herbe à fièvre \t *Euphorbia hirta* \t ⭐⭐⭐ RÉSISTANCE MÉDICINALE \t Plante africaine introduite par les esclaves Igbo au XVIIIe siècle. Ses feuilles écrasées servaient à désinfecter les plaies des marrons en fuite. Symbole de la pharmacopée clandestine (Wiltgen 1994, archives ADG 1791)."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Poisson               \t Pwason zorey              \t Cichlidé des Antilles     \t Nandopsis haitiensis           \t ⭐⭐ Ambivalent        \t Introduit. Associé à la ruse et à la survie dans les étangs (marronnage)."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Arbre fruitier         \t Sitwèlié / Mombiné           \t Prunier cythère / Mombin \t Spondias dulcis / mombin      \t Arbre caduc marquant les saisons. Jus et sorbets locaux."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Carrefour             \t Carrefour de la Source                   \t Petit-Bourg, près de la source de la Rivière Salée (16.2300° N, 61.6700° W) \t ⭐⭐ Symbolique          \t Carrefour utilisé pour des rituels de purification. Offrandes d’eau et herbes (LESC-CNRS, 2003 ; Boucher 2008, p. 195). Lieu de cérémonies de nettoyage spirituel."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**1815–1848** \t **Résistance culturelle : contes, musique, religion** \t **Préservation de l’identité : défi contre l’oppression, transmission des traditions** \t Pratique secrète du vaudou (ex. : cérémonies pour *Papa Legba*), organisation de veillées \t Forêts de Basse-Terre (Soufrière) \t Vaudou Ibo : rituels de divination (ex. : *tire kart*) pour prédire les révoltes"
+    }
+  },
+  "text": "Ah mes chers auditeurs, aujourd’hui on va parler de ces trésors qui nous entourent, ces plantes, ces animaux, ces lieux qui sont bien plus que de simples éléments de notre paysage. Ils sont les gardiens de notre mémoire, les témoins silencieux de notre résistance. Comme dans \"Lekol la\" de Velo, où chaque note raconte une histoire, chaque espèce, chaque arbre, chaque carrefour de notre île porte en lui un morceau de notre âme créole.\n\nPrenez le pwason zorey, ce petit cichlidé des étangs, un poisson rusé qui a su s’adapter à nos eaux saumâtres. Les anciens disaient qu’il symbolisait la survie, la capacité à se faufiler entre les mailles du filet, comme nos ancêtres marrons qui échappaient à l’oppression. Introduit il y a des siècles, il a trouvé sa place dans nos écosystèmes, un peu comme nous, qui avons su faire de cette terre la nôtre, malgré tout.\n\nEt puis il y a le sitwèlié, ce prunier cythère qui marque nos saisons de ses fruits juteux. Quand les branches se chargent de ces petites prunes dorées, c’est toute la Guadeloupe qui se réveille. Les enfants courent pour en ramasser, les mamans préparent des sorbets, et les anciens racontent comment cet arbre, venu d’ailleurs, est devenu un symbole de notre hospitalité. Ses feuilles, ses fruits, tout est utilisé, rien ne se perd. C’est ça, la sagesse créole : savoir tirer le meilleur de ce que la terre nous offre.\n\nParlons maintenant de ce carrefour près de la source de la Rivière Salée, à Petit-Bourg. Un lieu chargé d’histoire, où l’eau qui coule a vu passer des générations de Guadeloupéens. C’est là que nos ancêtres venaient purifier leur esprit, déposer des offrandes, demander protection. Les herbes qu’on y trouve, comme l’herbe à fièvre, cette *Euphorbia hirta* apportée par les esclaves Igbo, étaient utilisées pour soigner les plaies des marrons en fuite. Ces plantes, ce sont des symboles de résistance, des preuves que même dans l’adversité, on a su préserver notre savoir, notre médecine, notre spiritualité.\n\nCes éléments, mes amis, ne sont pas que des détails de notre environnement. Ils sont les fils qui tissent notre identité. Le pwason zorey, le sitwèlié, l’herbe à fièvre, le carrefour de la Source… Tous racontent la même histoire : celle d’un peuple qui a su transformer l’oppression en force, la douleur en résistance, et la terre en un foyer. Comme le disait Velo dans \"Lekol la\", c’est dans ces petites choses, ces détails qui semblent insignifiants, que réside la vraie leçon. Alors aujourd’hui, quand vous verrez un prunier cythère ou que vous passerez près d’un étang, souvenez-vous : vous marchez sur les traces de ceux qui ont su garder vivante la flamme de notre culture.",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-09-21-soir.mp3"
+}
