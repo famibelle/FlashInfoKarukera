@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Le rallye de Bananier défie les routes et les alizés, dans votre flash-info du 22 septembre à midi</title>
+      <description><![CDATA[On fait le point à midi chez nous, ce mardi vingt-deux septembre deux mille vingt-six. Voici sept infos qui comptent aujourd'hui.]]></description>
+      <pubDate>Tue, 22 Sep 2026 08:26:17 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-09/flash-info-20260922-midi.mp3" length="1922109" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20260922-midi</guid>
+      <itunes:duration>03:06</itunes:duration>
+    </item>
+
+<item>
       <title>Météo ou climat, la Guadeloupe craint un carême sec et ses conséquences, dans votre flash-info du 21 septembre au soir</title>
       <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le lundi vingt-et-un septembre deux mille vingt-six, il est seize heures dix-huit à Paris, et voici l'essentiel de l'actualité ce soir.]]></description>
       <pubDate>Mon, 21 Sep 2026 14:23:36 +0000</pubDate>
@@ -1804,15 +1813,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260618-matin.mp3" length="2431773" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260618-matin</guid>
       <itunes:duration>03:49</itunes:duration>
-    </item>
-
-<item>
-      <title>La Préfecture alerte sur les routes glissantes demain, dans votre flash-info du 17 juin au soir</title>
-      <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce mercredi dix-sept juin deux mille vingt-six.]]></description>
-      <pubDate>Wed, 17 Jun 2026 15:23:25 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260617-soir.mp3" length="1705077" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260617-soir</guid>
-      <itunes:duration>02:45</itunes:duration>
     </item>
 
   </channel>
