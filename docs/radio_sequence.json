@@ -2,7 +2,7 @@
   "generated": "2026-09-22T08:47:50.436332+00:00",
   "music": 80,
   "liners": 13,
-  "capsules": 11,
+  "capsules": 10,
   "transitions": 7,
   "sequence": [
     {
@@ -351,6 +351,38 @@
       "artist": "Orlane",
       "genre": "",
       "duration": 265
+    },
+    {
+      "type": "music",
+      "videoId": "EY50zqdC0nc",
+      "title": "Son sé love",
+      "artist": "Dominique Panol",
+      "genre": "",
+      "duration": 241
+    },
+    {
+      "type": "music",
+      "videoId": "Ai2pfCZ0G68",
+      "title": "Len mou raid",
+      "artist": "Battery Cremil",
+      "genre": "",
+      "duration": 338
+    },
+    {
+      "type": "music",
+      "videoId": "Smg-zoOqZ8s",
+      "title": "Bag La",
+      "artist": "Djakout #1",
+      "genre": "",
+      "duration": 295
+    },
+    {
+      "type": "music",
+      "videoId": "Lj36Yql1N0w",
+      "title": "Lanmou",
+      "artist": "Thierry Cham",
+      "genre": "",
+      "duration": 288
     },
     {
       "type": "capsule",
