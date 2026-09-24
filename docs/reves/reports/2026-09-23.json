@@ -1,0 +1,247 @@
+{
+  "date": "2026-09-23",
+  "generated_at": "2026-09-24T00:45:58.130301Z",
+  "technical": {
+    "summary": {
+      "total_runs": 160,
+      "global_success_rate": 0.91875,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily",
+        "flash-info",
+        "emission-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 18,
+        "failure": 3,
+        "success_rate": 0.8571428571428571,
+        "avg_duration_s": 371.85714285714283,
+        "last_status": "failure",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 17,
+        "failure": 4,
+        "success_rate": 0.8095238095238095,
+        "avg_duration_s": 347.23809523809524,
+        "last_status": "failure",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 146.04761904761904,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 22,
+        "failure": 6,
+        "success_rate": 0.7857142857142857,
+        "avg_duration_s": 129.89285714285714,
+        "last_status": "failure",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 48,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 373.9583333333333,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1437.095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 0,
+      "coherent": 0,
+      "coherence_rate": 0,
+      "issues_by_type": {}
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Medhy Custos": 2,
+        "Edith Lefel": 3,
+        "Tabou Combo": 4,
+        "Marcé, Toumpak": 1,
+        "Carimi": 2,
+        "Zouk Factory": 1,
+        "Ralph Thamar": 3,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Kassav'": 2,
+        "Klimax": 1,
+        "Princesse": 1,
+        "Joëlle Ursull": 2,
+        "Princess Erika": 2,
+        "T-Vice": 1,
+        "Exile": 1,
+        "Teddyson John": 1,
+        "Mario Chicot": 2,
+        "Ludo": 2,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Tanya St-Val": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Experience 7": 1,
+        "Top Vice": 2,
+        "BélO": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Princesse Dinie": 1,
+        "A soft heart": 1,
+        "Zin": 3,
+        "Fabienne Payoute Bernadin": 1,
+        "WCK": 1,
+        "Harmonik": 3,
+        "KASSAV'": 1,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "Zouk Machine": 1,
+        "Lutchiana Mobulu": 1,
+        "Dominik Coco, Fuckly": 1,
+        "HARRY DIBOULA": 1,
+        "NICHOLS": 1,
+        "Patrick St Eloi": 1,
+        "Battery Cremil": 2,
+        "Jeff Joseph": 1,
+        "MAS": 1,
+        "BEL": 1,
+        "Misié Sadik, Fanny J": 1,
+        "Patrick Saint-Eloi": 2,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Thierry Cham": 1,
+        "Warren Saada, Nana Fofie": 1,
+        "Kaysha, Kénédy": 1,
+        "Dominique Panol": 1,
+        "G'Ny": 1,
+        "JEAN-PHILIPPE MARTHELY": 1,
+        "Akiyo": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Stony, Oswald": 1,
+        "Dominik Coco": 1,
+        "Djakout #1": 1,
+        "Meryl": 1
+      },
+      "max_artist_repetition": 4,
+      "top_artist": "Tabou Combo",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Ton cœur sous les feuilles nos racines"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 0
+      },
+      "Maryse Condé": {
+        "passages": 0
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 0
+      },
+      "Corinne": {
+        "passages": 5343
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "workflow_last_run_failed",
+        "severity": "high",
+        "context": "horoscope-daily : dernier run échoué"
+      },
+      {
+        "type": "workflow_last_run_failed",
+        "severity": "high",
+        "context": "flash-info : dernier run échoué"
+      },
+      {
+        "type": "workflow_last_run_failed",
+        "severity": "high",
+        "context": "emission-daily : dernier run échoué"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "emission-daily : 79% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 0% (objectif >90%)"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Harry : aucun contenu généré aujourd'hui"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Maryse Condé : aucun contenu généré aujourd'hui"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Mulatresse Solitude : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
