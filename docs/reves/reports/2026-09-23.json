@@ -1,10 +1,10 @@
 {
   "date": "2026-09-23",
-  "generated_at": "2026-09-24T00:45:58.130301Z",
+  "generated_at": "2026-09-24T23:10:42.531349Z",
   "technical": {
     "summary": {
-      "total_runs": 160,
-      "global_success_rate": 0.91875,
+      "total_runs": 178,
+      "global_success_rate": 0.8707865168539326,
       "total_errors_in_logs": 0,
       "total_warnings_in_logs": 0,
       "workflows_in_alert": [
@@ -16,61 +16,61 @@
     "workflows": [
       {
         "name": "horoscope-daily",
-        "runs": 21,
+        "runs": 24,
         "success": 18,
-        "failure": 3,
-        "success_rate": 0.8571428571428571,
-        "avg_duration_s": 371.85714285714283,
+        "failure": 6,
+        "success_rate": 0.75,
+        "avg_duration_s": 341.0416666666667,
         "last_status": "failure",
         "last_failure_url": null
       },
       {
         "name": "flash-info",
-        "runs": 21,
+        "runs": 24,
         "success": 17,
-        "failure": 4,
-        "success_rate": 0.8095238095238095,
-        "avg_duration_s": 347.23809523809524,
+        "failure": 7,
+        "success_rate": 0.7083333333333334,
+        "avg_duration_s": 318.875,
         "last_status": "failure",
         "last_failure_url": null
       },
       {
         "name": "capsules-daily",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 146.04761904761904,
+        "avg_duration_s": 145.20833333333334,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "emission-daily",
-        "runs": 28,
+        "runs": 32,
         "success": 22,
-        "failure": 6,
-        "success_rate": 0.7857142857142857,
-        "avg_duration_s": 129.89285714285714,
+        "failure": 10,
+        "success_rate": 0.6875,
+        "avg_duration_s": 127.90625,
         "last_status": "failure",
         "last_failure_url": null
       },
       {
         "name": "botiran-radio-daily",
-        "runs": 48,
-        "success": 48,
+        "runs": 50,
+        "success": 50,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 373.9583333333333,
+        "avg_duration_s": 334.2,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "daily-radio-orchestrator",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 1437.095238095238,
+        "avg_duration_s": 1338.5833333333333,
         "last_status": "success",
         "last_failure_url": null
       }
@@ -195,14 +195,29 @@
   "signals": {
     "technical": [
       {
+        "type": "global_success_rate_low",
+        "severity": "medium",
+        "context": "Taux succès global : 87% (objectif >90%)"
+      },
+      {
         "type": "workflow_last_run_failed",
         "severity": "high",
         "context": "horoscope-daily : dernier run échoué"
       },
       {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "horoscope-daily : 75% succès sur 7 jours"
+      },
+      {
         "type": "workflow_last_run_failed",
         "severity": "high",
         "context": "flash-info : dernier run échoué"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "flash-info : 71% succès sur 7 jours"
       },
       {
         "type": "workflow_last_run_failed",
@@ -212,7 +227,7 @@
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "emission-daily : 79% succès sur 7 jours"
+        "context": "emission-daily : 69% succès sur 7 jours"
       }
     ],
     "editorial": [
