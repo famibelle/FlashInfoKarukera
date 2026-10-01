@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-01",
+  "edition": "matin",
+  "type": "emission",
+  "title": "La Guadeloupe murmure ses racines",
+  "duration": "~3 minutes",
+  "word_count": 466,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Pou Joël",
+    "artist": "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP",
+    "genre": ""
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Objet / Résistance économique \t Pot en terre \t Poterie \t N/A \t ⭐⭐ RÉSISTANCE ÉCONOMIQUE \t Fabriqué en secret pour stocker les récoltes. Symbole de l'autonomie artisanale (INAO)."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Mammifère             \t Tatou                     \t Tatou à neuf bandes       \t Dasypus novemcinctus           \t ⭐⭐ Emblématique      \t Introduit. Associé à la protection (carapace utilisée comme talisman). Habitat: zones sèches (ONF)."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Rimèd razié          \t Zeb a pik                  \t Herbe à pique              \t Mimosa pudica                 \t Plante sensitive (se referme au toucher). Utilisée en tisane calmante."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Site archéologique    \t Pétroglyphes du Morne Rita               \t Capesterre de Marie-Galante, morne Rita (16.1800° N, 61.5500° W) \t ⭐⭐ Symbolique          \t Pétroglyphes arawaks liés aux rituels marins. Représentations de poissons et vagues (Giberti 1989, p. 95 ; INAO, 2005). Utilisé pour des cérémonies de protection et de lien avec les esprits marins."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**2017** \t **Ouragan Maria** \t **Résilience face aux catastrophes naturelles : solidarité communautaire et reconstruction** \t Organisation de collectes de fonds, reconstruction des villages détruits \t Toute l’île, surtout Basse-Terre et Grande-Terre \t Vaudou Rada : rituels pour la protection contre les ouragans (ex. : invocation de *Damballa* pour la paix)"
+    }
+  },
+  "text": "Ah mes amis, aujourd’hui on va marcher sur les traces de nos ancêtres, là où la terre parle et où l’eau murmure des secrets. Comme dans *Pou Joël*, cette chanson qui nous rappelle que notre force vient de nos racines, de cette nature qui nous entoure et nous protège. On va parler de ces trésors qui font de la Guadeloupe un pays unique, où chaque plante, chaque animal, chaque pierre raconte une histoire de résistance et de résilience.\n\nCommençons par un petit guerrier à carapace, le tatou à neuf bandes. Vous savez, ce mammifère discret qui se promène dans nos zones sèches, comme un gardien silencieux. Les anciens disaient que sa carapace, dure comme l’acier, pouvait servir de talisman contre les mauvais sorts. Et c’est vrai qu’il en a vu, des tempêtes, des ouragans, et pourtant, il est toujours là, à creuser son chemin dans la terre. Un vrai symbole de persévérance, vous ne trouvez pas ?\n\nEt puis, il y a cette petite plante magique, la *zeb a pik*, qu’on appelle aussi l’herbe à pique. Vous la connaissez ? Dès qu’on la touche, elle se referme sur elle-même, comme pour dire : \"Laissez-moi tranquille !\" Mais ne vous y trompez pas, derrière cette timidité se cache une grande sagesse. Nos grands-mères l’utilisaient en tisane pour calmer les esprits agités, pour apaiser les cœurs après une longue journée. Une plante qui nous rappelle que parfois, il faut savoir se protéger, mais aussi s’ouvrir quand le moment est venu.\n\nParlons maintenant de ces pierres qui parlent, les pétroglyphes du Morne Rita à Marie-Galante. Imaginez, mes amis, des mains arawaks gravées dans la roche, dessinant des poissons, des vagues, comme pour invoquer la protection des esprits de la mer. Ces dessins, ce sont des prières silencieuses, des messages laissés pour nous rappeler que nous ne sommes jamais seuls. Et aujourd’hui encore, certains vont là-bas pour demander force et guidance, surtout quand les ouragans menacent. Comme en 2017, quand Maria a tout balayé sur son passage. Mais vous savez quoi ? On s’est relevés, ensemble, comme un seul peuple, avec cette solidarité qui nous définit.\n\nEt puis, il y a ces pots en terre, fabriqués en secret par nos ancêtres, pour stocker leurs récoltes. Des symboles de résistance économique, de cette autonomie qui nous a permis de survivre malgré tout. Aujourd’hui, quand je vois ces pots, je me dis que c’est ça, la Guadeloupe : une terre qui résiste, qui se bat, mais qui sait aussi célébrer la vie. Comme dans *Pou Joël*, où chaque note, chaque parole, nous rappelle que notre identité est indestructible, forgée par la nature et par l’histoire. Alors oui, mes amis, protégeons ces trésors, car ils sont le cœur battant de notre île. *An nou pran swen nou, pou nou pa janm pèdi nou.*",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-10-01-matin.mp3"
+}
