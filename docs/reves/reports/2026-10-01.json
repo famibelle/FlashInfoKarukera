@@ -1,10 +1,10 @@
 {
   "date": "2026-10-01",
-  "generated_at": "2026-10-02T00:49:04.275126Z",
+  "generated_at": "2026-10-02T23:10:52.997663Z",
   "technical": {
     "summary": {
-      "total_runs": 155,
-      "global_success_rate": 0.6064516129032258,
+      "total_runs": 178,
+      "global_success_rate": 0.6573033707865169,
       "total_errors_in_logs": 0,
       "total_warnings_in_logs": 0,
       "workflows_in_alert": [
@@ -16,61 +16,61 @@
     "workflows": [
       {
         "name": "horoscope-daily",
-        "runs": 21,
-        "success": 3,
+        "runs": 24,
+        "success": 6,
         "failure": 18,
-        "success_rate": 0.14285714285714285,
-        "avg_duration_s": 165.8095238095238,
+        "success_rate": 0.25,
+        "avg_duration_s": 198.75,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "flash-info",
-        "runs": 21,
-        "success": 3,
+        "runs": 24,
+        "success": 6,
         "failure": 18,
-        "success_rate": 0.14285714285714285,
-        "avg_duration_s": 180.76190476190476,
+        "success_rate": 0.25,
+        "avg_duration_s": 212.5,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "capsules-daily",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 147.28571428571428,
+        "avg_duration_s": 151.95833333333334,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "emission-daily",
-        "runs": 28,
-        "success": 3,
+        "runs": 32,
+        "success": 7,
         "failure": 24,
-        "success_rate": 0.10714285714285714,
-        "avg_duration_s": 175.85714285714286,
-        "last_status": "cancelled",
+        "success_rate": 0.21875,
+        "avg_duration_s": 172.96875,
+        "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "botiran-radio-daily",
-        "runs": 43,
-        "success": 43,
+        "runs": 50,
+        "success": 50,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 110.53488372093024,
+        "avg_duration_s": 161.44,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "daily-radio-orchestrator",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 834.2857142857143,
+        "avg_duration_s": 934.7916666666666,
         "last_status": "success",
         "last_failure_url": null
       }
@@ -79,11 +79,12 @@
   "antenne": {
     "liners": {
       "total": 13,
-      "coherent": 0,
-      "coherence_rate": 0.0,
+      "coherent": 1,
+      "coherence_rate": 0.07692307692307693,
       "issues_by_type": {
-        "format_invalid": 12,
-        "artist_mismatch": 1
+        "format_invalid": 11,
+        "artist_mismatch": 1,
+        "title_mismatch": 1
       }
     },
     "music": {
@@ -92,80 +93,75 @@
         "": 80
       },
       "artists": {
-        "Jean Carlos Music Empire": 1,
-        "Dominik Coco": 2,
-        "Lutchiana 100%": 1,
-        "Orlane": 1,
-        "Jean-Philippe Marthély, Thierry Benoît": 1,
-        "Warren Saada, Nana Fofie": 1,
-        "KASSAV'": 1,
-        "Jack, Jeff": 1,
-        "Gilles Floro": 3,
-        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
-        "JEAN-CLAUDE NAIMRO": 1,
-        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
-        "Lutchiana Mobulu 100%": 2,
-        "PERLE LAMA": 1,
-        "YVES THOLE ET SON KONVWAKA": 1,
-        "JOCELYNE BEROARD": 1,
-        "DJ Zouk": 1,
         "Harmonik": 1,
-        "Thierry Cham": 1,
-        "carimi doc pullman": 1,
-        "Zin": 1,
-        "BEL": 1,
-        "BélO": 1,
-        "KALI": 1,
-        "Ludo": 1,
-        "Jean-Philippe Marthély": 1,
-        "Joëlle Ursull": 2,
-        "Ti Paris": 1,
-        "Alain Ramanisum": 1,
-        "Exile": 1,
-        "Energy": 1,
-        "Dominique Panol": 1,
-        "Les Aiglons": 1,
-        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
-        "Meryl": 1,
-        "Djakout": 1,
-        "Soft": 1,
-        "Edith Lefel": 2,
-        "Jean Luc Guanel": 1,
-        "Klimax": 1,
-        "Battery Cremil": 1,
-        "Mario Chicot": 2,
-        "Zouk Machine": 1,
-        "Carlos Usan, Jiminy": 1,
-        "Carlos Watts": 1,
-        "Robert Loyson": 1,
-        "NICHOLS": 1,
-        "Milca": 1,
-        "Sweet Micky": 1,
-        "JEAN-PHILIPPE MARTHELY/PATRICK SAINT-ELOI": 1,
-        "Patrick Saint-Eloi": 1,
-        "Princess Marielle": 1,
-        "Zo Konpa, Zouk Machine": 1,
-        "Djakout # 1": 1,
-        "Tabou Combo": 2,
-        "Edouard Benoit": 1,
-        "Joe Jeff": 1,
-        "Alexandre Stellio et son orchestre Créole": 1,
-        "PATRICK SAINT-ELOI": 1,
-        "Naika, Jessie Reyez": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav": 1,
+        "Orlane": 2,
+        "Fanny J": 1,
+        "Kan'nida": 1,
+        "Nichols": 1,
+        "Jocelyne Labylle, Jean-Luc Guanel": 1,
+        "Nu-Look": 3,
         "Princess Erika": 1,
-        "Kassav'": 1,
-        "Ralph Thamar": 1,
-        "Princess With A Purpose": 1,
-        "WARREN AMYR": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "Mario Chicot": 2,
+        "Sakiyo": 1,
+        "Battery Cremil": 3,
+        "Jocelyne Labylle": 1,
+        "Gilles Floro": 1,
+        "Edith Lefel": 1,
+        "Milca": 1,
+        "Tanya St-Val": 2,
+        "Nils": 1,
+        "Mini All Stars": 1,
+        "Warren Saada, Nana Fofie": 1,
+        "KA": 1,
+        "Zouk Machine": 1,
+        "Ralph Thamar": 3,
+        "T-vice": 1,
+        "HARRY DIBOULA": 1,
+        "Dominique Panol": 2,
+        "PATRICK SAINT-ELOI": 1,
+        "Tabou Combo": 1,
+        "Akiyo": 1,
+        "Dominik Coco": 2,
+        "Medhy Custos, Christian Nara": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
+        "BélO": 2,
+        "KASSAV'": 1,
+        "Robert Loyson": 1,
+        "DJ Zouk": 1,
+        "Patrick Andrey": 1,
+        "Nilson Chaves": 1,
         "Princesse Dinie": 1,
-        "Mass": 1,
-        "EDDY EDOUARD": 1,
-        "Yoan": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "WARREN AMYR": 1,
         "Carimi": 1,
-        "Medhy Custos": 1
+        "Top Vice": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Kaysha": 1,
+        "Alexandre Stellio et son orchestre Créole": 1,
+        "Joe Jeff": 1,
+        "Djakout # 1": 1,
+        "Claudette et Ti Pierre": 1,
+        "Al Lirvat, Robert Mavounzy": 1,
+        "Alain Ramanisum": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Francky Vincent": 1,
+        "ROBERT LOYSON": 1,
+        "KALI": 1,
+        "Kim": 1,
+        "Lutchiana": 1,
+        "Joëlle Ursull": 2,
+        "T-Vice": 2,
+        "Edith Lefel, Malavoi": 1,
+        "Perle Lama": 1,
+        "Jean-Marie Ragald": 1,
+        "Les Aiglons": 1
       },
       "max_artist_repetition": 3,
-      "top_artist": "Gilles Floro",
+      "top_artist": "Nu-Look",
       "consecutive_same_artist": [],
       "abrupt_transitions": []
     },
@@ -205,7 +201,7 @@
         "passages": 13
       },
       "Corinne": {
-        "passages": 5395
+        "passages": 5447
       }
     }
   },
@@ -214,39 +210,34 @@
       {
         "type": "global_success_rate_critical",
         "severity": "high",
-        "context": "Taux succès global : 61% (objectif >90%)"
+        "context": "Taux succès global : 66% (objectif >90%)"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "horoscope-daily : 14% succès sur 7 jours"
+        "context": "horoscope-daily : 25% succès sur 7 jours"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "flash-info : 14% succès sur 7 jours"
-      },
-      {
-        "type": "workflow_last_run_failed",
-        "severity": "high",
-        "context": "emission-daily : dernier run échoué"
+        "context": "flash-info : 25% succès sur 7 jours"
       },
       {
         "type": "workflow_failure_rate",
         "severity": "high",
-        "context": "emission-daily : 11% succès sur 7 jours"
+        "context": "emission-daily : 22% succès sur 7 jours"
       }
     ],
     "editorial": [
       {
         "type": "liner_coherence_critical",
         "severity": "high",
-        "context": "Cohérence liners : 0% (objectif >90%)"
+        "context": "Cohérence liners : 8% (objectif >90%)"
       },
       {
         "type": "liner_format_issues",
         "severity": "high",
-        "context": "12 liner(s) au format invalide"
+        "context": "11 liner(s) au format invalide"
       },
       {
         "type": "liner_artist_mismatch",
