@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Papa Yaya s’invite au MACTe avec son histoire à ne pas manquer, dans votre flash-info du 2 octobre à midi</title>
+      <description><![CDATA[On fait le point à midi en Guadeloupe, vendredi deux octobre deux mille vingt-six. Voici les sept informations de cette mi-journée.]]></description>
+      <pubDate>Fri, 02 Oct 2026 08:25:46 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-10/flash-info-20261002-midi.mp3" length="1436973" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20261002-midi</guid>
+      <itunes:duration>02:18</itunes:duration>
+    </item>
+
+<item>
       <title>Un jeune de 20 ans dans un état grave après une collision à Baillif, dans votre flash-info du 2 octobre au matin</title>
       <description><![CDATA[Bèl bonjou Guadeloupe ! Vendredi deux octobre deux mille vingt-six, il est quatre heures trente-cinq à Paris, et ici, la journée commence sous les alizés.]]></description>
       <pubDate>Fri, 02 Oct 2026 02:43:58 +0000</pubDate>
@@ -1804,15 +1813,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260620-matin.mp3" length="3056757" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260620-matin</guid>
       <itunes:duration>04:56</itunes:duration>
-    </item>
-
-<item>
-      <title>Pompiers en colère : des vies en jeu et pas de réponse, dans votre flash-info du 19 juin au soir</title>
-      <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le vendredi dix-neuf juin deux mille vingt-six, il est dix-sept heures quatorze. Une journée marquée par des mobilisations, des hommages et des initiatives qui comptent en Guadeloupe.]]></description>
-      <pubDate>Fri, 19 Jun 2026 15:20:57 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260619-soir.mp3" length="2552133" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260619-soir</guid>
-      <itunes:duration>04:04</itunes:duration>
     </item>
 
   </channel>
