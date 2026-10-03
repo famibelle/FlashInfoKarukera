@@ -1,8 +1,8 @@
 {
-  "generated": "2026-10-03T02:49:26.934165+00:00",
+  "generated": "2026-10-03T08:42:05.446342+00:00",
   "music": 80,
   "liners": 13,
-  "capsules": 10,
+  "capsules": 11,
   "transitions": 7,
   "sequence": [
     {
@@ -14,57 +14,57 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W39-nichols_patrick-sain_soft.mp3",
-      "label": "Nichols, la voix grave qui porte nos luttes depuis les mornes.",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W39-djakout-1-_jean-marie-r_nu-look.mp3",
+      "label": "Voici Jean-Marie Ragald, la voix du gwoka qui réveille les esprits de Matouba.\n\nDjakout #1, le Ka qui pulse comme un cœur de résistance dans la nuit.",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "pyYgKE9BhS8",
-      "title": "Mwen Envi",
-      "artist": "Nichols",
+      "videoId": "R_VdoEkK68Q",
+      "title": "An ba menm soley",
+      "artist": "Jean-Marie Ragald",
       "genre": "",
-      "duration": 254
+      "duration": 237
     },
     {
       "type": "music",
-      "videoId": "gsSEIvlsX_M",
-      "title": "Ki Jan Ke Fe",
-      "artist": "Patrick Saint-Eloi",
+      "videoId": "xolkM-z5aNM",
+      "title": "Bouje Gouyad",
+      "artist": "Djakout #1, Zafè Chô, NAIMA",
       "genre": "",
-      "duration": 280
+      "duration": 154
     },
     {
       "type": "music",
-      "videoId": "l3MliC2nBRw",
-      "title": "Biguine (feat. Ramon Pymé, Jean-Philippe Fanfan) (feat. Ramon Pymné, Jean-Philippe Fanfan & Ramon Pymé)",
-      "artist": "Soft",
+      "videoId": "OT3c9z8dshY",
+      "title": "Ti cle El Color",
+      "artist": "Nu-Look",
       "genre": "",
-      "duration": 203
+      "duration": 388
     },
     {
       "type": "music",
-      "videoId": "-ZjLrokyVh4",
-      "title": "Gran nonm pa ka ront",
-      "artist": "Battery Cremil",
+      "videoId": "cmhT5TQ-zOk",
+      "title": "An ba chenn-la (Live)",
+      "artist": "Jean-Philippe Marthély",
       "genre": "",
-      "duration": 270
+      "duration": 144
     },
     {
       "type": "music",
-      "videoId": "wEWVKylEsg0",
-      "title": "Karaib' kry",
-      "artist": "Mounia, Jeff Joseph",
+      "videoId": "5HnxHlrN1BY",
+      "title": "Asi Paré (Remastered 2024)",
+      "artist": "Edith Lefel, Malavoi",
       "genre": "",
-      "duration": 191
+      "duration": 221
     },
     {
       "type": "music",
-      "videoId": "W91lwKK7XfI",
-      "title": "Kompa champagne",
-      "artist": "Tabou Combo",
+      "videoId": "BenEIcWtrZA",
+      "title": "La dernière danse (Ne rentre pas chez toi ce soir) (Radio Edit)",
+      "artist": "Slaï",
       "genre": "",
-      "duration": 465
+      "duration": 209
     },
     {
       "type": "capsule",
@@ -81,89 +81,88 @@
     },
     {
       "type": "music",
-      "videoId": "DyAce3_h9Z4",
-      "title": "Le temps n'efface rien",
-      "artist": "Patrick Andrey",
+      "videoId": "30CD2cTs_Oo",
+      "title": "Nou",
+      "artist": "Jean-Philippe Marthély, Thierry Benoît",
       "genre": "",
-      "duration": 268
+      "duration": 227
     },
     {
       "type": "music",
-      "videoId": "jVqiADx_vvc",
-      "title": "Vou é Mwen",
-      "artist": "Energy",
+      "videoId": "Lj36Yql1N0w",
+      "title": "Lanmou",
+      "artist": "Thierry Cham",
       "genre": "",
-      "duration": 210
+      "duration": 288
     },
     {
       "type": "music",
-      "videoId": "K8qVRbEegWU",
-      "title": "Sa fem plere",
-      "artist": "T-vice",
+      "videoId": "W91lwKK7XfI",
+      "title": "Kompa champagne",
+      "artist": "Tabou Combo",
       "genre": "",
-      "duration": 344
+      "duration": 465
     },
     {
       "type": "transition",
       "subtype": "emission",
       "url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-10-03-matin.mp3",
       "label": "Émission culturelle — matin — 2026-10-03",
-      "icon": "🎤",
-      "pending": true
+      "icon": "🎤"
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W39-akiyo_medhy-custos_slai.mp3",
-      "label": "Le soleil se lève sur les mornes, et Slaï nous offre une mélodie qui caresse l’âme comme la brise du petit matin.",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W39-chire-bann_princess-eri_tabou-combo.mp3",
+      "label": "Tabou Combo — l’énergie kompa qui réveille la Caraïbe comme un soleil sur Pointe-à-Pitre.",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "BenEIcWtrZA",
-      "title": "La dernière danse (Ne rentre pas chez toi ce soir) (Radio Edit)",
-      "artist": "Slaï",
+      "videoId": "M0iqMzqLPIU",
+      "title": "Pi Gro Pi Lon",
+      "artist": "Tabou Combo",
       "genre": "",
-      "duration": 209
+      "duration": 305
     },
     {
       "type": "music",
-      "videoId": "keZzIe0JQ9A",
-      "title": "Chenn-la",
-      "artist": "Akiyo",
+      "videoId": "9gtBkP7Htg0",
+      "title": "Tornado",
+      "artist": "Chiré Ban'n",
       "genre": "",
-      "duration": 297
+      "duration": 190
     },
     {
       "type": "music",
-      "videoId": "X21AU10g2bY",
-      "title": "La seule (feat. Fukly)",
-      "artist": "Medhy Custos",
-      "genre": "",
-      "duration": 233
-    },
-    {
-      "type": "music",
-      "videoId": "SePPmsbKS1w",
-      "title": "Le nouveau look",
-      "artist": "Nu-Look",
-      "genre": "",
-      "duration": 355
-    },
-    {
-      "type": "music",
-      "videoId": "9VLav1l1jSw",
-      "title": "L'amour en trop",
-      "artist": "Ralph Thamar",
+      "videoId": "jGT9Ssu2eqg",
+      "title": "A bout de souffle",
+      "artist": "Princess Erika",
       "genre": "",
       "duration": 239
     },
     {
       "type": "music",
-      "videoId": "F9a92CLIch0",
-      "title": "Mon Ton Body",
-      "artist": "Kaysha",
+      "videoId": "CypZwZUkx48",
+      "title": "Bolotte",
+      "artist": "Dominique Panol",
       "genre": "",
-      "duration": 242
+      "duration": 347
+    },
+    {
+      "type": "music",
+      "videoId": "RCI10KtENnM",
+      "title": "Konfidansyel",
+      "artist": "Jean Philippe Marthely",
+      "genre": "",
+      "duration": 274
+    },
+    {
+      "type": "music",
+      "videoId": "587JCv1-JEM",
+      "title": "Ou Se",
+      "artist": "Zin",
+      "genre": "",
+      "duration": 261
     },
     {
       "type": "capsule",
@@ -173,57 +172,57 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W39-alexandre-st_harmonik_warren-saada.mp3",
-      "label": "Warren Saada, la voix qui réveille les mémoires de Pointe-à-Pitre comme un Ka au petit matin.\n\nHarmonik, le gwoka électrique qui pulse dans nos veines dès l’aube.",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W39-dominik-coco_edith-lefel_thierry-cham.mp3",
+      "label": "Edith Lefel, la voix qui berce comme une brise sur les mornes.",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "iKMLwHKsU6Q",
-      "title": "Réunis",
-      "artist": "Warren Saada",
+      "videoId": "Im7W1HWKSIk",
+      "title": "Adieu (feat. Claudine Pennont)",
+      "artist": "Edith Lefel, Ashanty",
       "genre": "",
-      "duration": 165
+      "duration": 279
     },
     {
       "type": "music",
-      "videoId": "5wUj9r7ZhEs",
-      "title": "Doukounou (feat. AndyBeatz & Richie)",
-      "artist": "Harmonik",
+      "videoId": "RiptcnL_I-A",
+      "title": "Ocean",
+      "artist": "Thierry Cham",
       "genre": "",
-      "duration": 265
+      "duration": 240
     },
     {
       "type": "music",
-      "videoId": "7T_gm-uLeU8",
-      "title": "Paris biguine",
-      "artist": "Alexandre Stellio et son orchestre Créole",
-      "genre": "",
-      "duration": 168
-    },
-    {
-      "type": "music",
-      "videoId": "kv35Iyqs2PA",
-      "title": "Jean Fouyé / Piè fouyé",
-      "artist": "Tanya St-Val",
-      "genre": "",
-      "duration": 295
-    },
-    {
-      "type": "music",
-      "videoId": "UqApRzCwxzA",
-      "title": "Mwen Sé Gwadloupéyen",
+      "videoId": "lvHbeqlUFn0",
+      "title": "Clair obscur",
       "artist": "Dominik Coco",
       "genre": "",
-      "duration": 392
+      "duration": 250
     },
     {
       "type": "music",
-      "videoId": "jB4DNq1cLlU",
-      "title": "Ti Femme Ta La",
-      "artist": "Leona Gabriel, Orchestre de la Boule Blanche",
+      "videoId": "ZpvZ4OEZhM4",
+      "title": "Fin du monde",
+      "artist": "Alain Ramanisum",
       "genre": "",
-      "duration": 179
+      "duration": 223
+    },
+    {
+      "type": "music",
+      "videoId": "-OnZbj7yNRQ",
+      "title": "Maye",
+      "artist": "Perle Lama",
+      "genre": "",
+      "duration": 266
+    },
+    {
+      "type": "music",
+      "videoId": "eFUvGKprY5E",
+      "title": "Anvi mortel",
+      "artist": "Ludo",
+      "genre": "",
+      "duration": 288
     },
     {
       "type": "capsule",
@@ -233,57 +232,57 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W39-battery-crem_les-aiglons_zouk-machine.mp3",
-      "label": "Le soleil se glisse entre les cases, et Zouk Machine électrise l’aube d’un rythme qui fait vibrer les mémoires.",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-matin-2026-W39-dzine_exile_mario-chicot.mp3",
+      "label": "Exile, la voix qui réveille les esprits comme un Ka au petit matin.",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "Bxxg6GxsvSo",
-      "title": "Maldòn (Version originale)",
-      "artist": "Zouk Machine",
+      "videoId": "UUZXSBw_wk0",
+      "title": "Never Lets Go",
+      "artist": "Exile",
       "genre": "",
-      "duration": 246
+      "duration": 252
     },
     {
       "type": "music",
-      "videoId": "JbdLX7ns0Oo",
-      "title": "Zouk machine",
-      "artist": "Zouk Machine",
+      "videoId": "tcYcuvZA9_s",
+      "title": "Petite fille",
+      "artist": "Mario Chicot",
       "genre": "",
-      "duration": 307
+      "duration": 251
     },
     {
       "type": "music",
-      "videoId": "jENtvc9qH2g",
-      "title": "La Vérité",
-      "artist": "Battery Cremil",
+      "videoId": "Hj-6SoxflWc",
+      "title": "Sa Pa Dim Anyien",
+      "artist": "D'zine",
       "genre": "",
-      "duration": 268
+      "duration": 739
     },
     {
       "type": "music",
-      "videoId": "R5niFsyus78",
-      "title": "Chaperon blanc",
-      "artist": "Les Aiglons",
+      "videoId": "LnYWYlLJRFM",
+      "title": "Just Come (feat. Apotre, Frè Evens, Jeff Testaman & Maestro Williams)",
+      "artist": "Jean Carlos Music Empire",
       "genre": "",
-      "duration": 495
+      "duration": 241
     },
     {
       "type": "music",
-      "videoId": "OfhjjEocV-g",
-      "title": "Soley sur mon frère",
-      "artist": "Dominik Coco",
+      "videoId": "PI31KHtOrvg",
+      "title": "Tonight",
+      "artist": "Harmonik",
       "genre": "",
-      "duration": 106
+      "duration": 308
     },
     {
       "type": "music",
-      "videoId": "-_H1cAVbRDM",
-      "title": "T'en aller",
-      "artist": "Stony, Oswald",
+      "videoId": "keZzIe0JQ9A",
+      "title": "Chenn-la",
+      "artist": "Akiyo",
       "genre": "",
-      "duration": 244
+      "duration": 297
     },
     {
       "type": "capsule",
@@ -295,63 +294,62 @@
       "type": "transition",
       "subtype": "flash_info",
       "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-10/flash-info-20261003-midi.mp3",
-      "label": "Flash Info Guadeloupe — 2026-10-03, édition du midi",
-      "icon": "📰",
-      "pending": true
+      "label": "La Guadeloupe sous surveillance météo ce midi, dans votre flash-info du 3 octobre à midi",
+      "icon": "📰"
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W39-battery-crem_eddy-edouard_tabou-combo.mp3",
-      "label": "Le soleil est à son zénith, et Eddy Edouard fait danser les ombres sur les murs de Pointe-à-Pitre.",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W39-dede-saint-p_leona-gabrie_patrick-andr.mp3",
+      "label": "Le soleil est au zénith, et Dédé Saint-Prix fait monter la chaleur avec sa voix qui porte l’âme de la Martinique.",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "42G3A4a5wMk",
-      "title": "Pèdi Batay La",
-      "artist": "EDDY EDOUARD",
+      "videoId": "bKuCXR1aLgg",
+      "title": "Avan-Van Tombé d'Amour",
+      "artist": "Dédé Saint-Prix",
       "genre": "",
-      "duration": 295
+      "duration": 442
     },
     {
       "type": "music",
-      "videoId": "WuGgUZLHNS8",
-      "title": "Lakay (Live)",
-      "artist": "Tabou Combo",
+      "videoId": "jB4DNq1cLlU",
+      "title": "Ti Femme Ta La",
+      "artist": "Leona Gabriel, Orchestre de la Boule Blanche",
       "genre": "",
-      "duration": 650
+      "duration": 179
     },
     {
       "type": "music",
-      "videoId": "Ai2pfCZ0G68",
-      "title": "Len mou raid",
-      "artist": "Battery Cremil",
+      "videoId": "MvMkgpARPQM",
+      "title": "Dans mes veines",
+      "artist": "Patrick Andrey",
       "genre": "",
-      "duration": 338
+      "duration": 241
     },
     {
       "type": "music",
-      "videoId": "AVxi7Au6q5g",
-      "title": "Son",
-      "artist": "KA",
+      "videoId": "iVDHVrE6kvg",
+      "title": "Ena en sime",
+      "artist": "Alain Ramanisum",
       "genre": "",
-      "duration": 185
+      "duration": 229
     },
     {
       "type": "music",
-      "videoId": "QsiovWdXfqM",
-      "title": "I'm Ready (feat. Alexandra Juniel) (feat. Alexandra Juniel)",
-      "artist": "Kaysha",
+      "videoId": "tQ5eCfaEmA8",
+      "title": "Pwomès",
+      "artist": "T-Vice",
       "genre": "",
-      "duration": 238
+      "duration": 281
     },
     {
       "type": "music",
-      "videoId": "XqJW2MsRpP8",
-      "title": "Satisfaction",
-      "artist": "Georges Decimus, Kassav",
+      "videoId": "iKMLwHKsU6Q",
+      "title": "Réunis",
+      "artist": "Warren Saada",
       "genre": "",
-      "duration": 320
+      "duration": 165
     },
     {
       "type": "capsule",
@@ -361,57 +359,57 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W39-djakout--1_fabien-georg_orlane.mp3",
-      "label": "Le soleil est haut, mais le Ka résonne encore — voici Fabien Georges, une voix qui porte l’âme de la Guadeloupe comme un chant de marron.",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W39-experience-7_jean-luc-gua_joelle-ursul.mp3",
+      "label": "Voici Jean-Luc Guanel, la voix chaude qui porte l’âme de Pointe-à-Pitre.",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "TOUurUu-ITw",
-      "title": "Chante chante chante",
-      "artist": "Fabien Georges",
+      "videoId": "vDm162HPYa4",
+      "title": "Pa fè bétiz'",
+      "artist": "Jean-Luc Guanel",
       "genre": "",
-      "duration": 177
+      "duration": 283
     },
     {
       "type": "music",
-      "videoId": "6Ck139pu7CQ",
-      "title": "Chokola",
-      "artist": "Orlane",
+      "videoId": "vutxWqC0_-A",
+      "title": "Ti bébé (An poésie kréyol)",
+      "artist": "Joëlle Ursull",
       "genre": "",
-      "duration": 277
+      "duration": 289
     },
     {
       "type": "music",
-      "videoId": "czLNa5kh4ko",
-      "title": "Premye lo",
-      "artist": "Djakout # 1",
+      "videoId": "h-S9_b5XKFc",
+      "title": "Marche Si Trottoi",
+      "artist": "Experience 7",
       "genre": "",
-      "duration": 392
+      "duration": 225
     },
     {
       "type": "music",
-      "videoId": "_rkS9jmSwUU",
-      "title": "Caribbean Love",
-      "artist": "Top Vice, Tuco Bouzi",
+      "videoId": "r0lyxx79c9E",
+      "title": "Swing Karaib",
+      "artist": "Patrick Saint-Eloi, Kassav'",
       "genre": "",
-      "duration": 378
+      "duration": 279
     },
     {
       "type": "music",
-      "videoId": "EXUn5D7g7NM",
-      "title": "La vi artis red",
-      "artist": "KALI",
+      "videoId": "Ke-hNr8bATY",
+      "title": "Nou renouvle povwa",
+      "artist": "Djakout",
       "genre": "",
-      "duration": 253
+      "duration": 361
     },
     {
       "type": "music",
-      "videoId": "ZdZEgBnchmo",
-      "title": "Bo kote'w",
-      "artist": "Carimi",
+      "videoId": "l3MliC2nBRw",
+      "title": "Biguine (feat. Ramon Pymé, Jean-Philippe Fanfan) (feat. Ramon Pymné, Jean-Philippe Fanfan & Ramon Pymé)",
+      "artist": "Soft",
       "genre": "",
-      "duration": 314
+      "duration": 203
     },
     {
       "type": "capsule",
@@ -421,167 +419,17 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W39-djakout-1-_fanny-j_joelle-ursul.mp3",
-      "label": "Zafè Chô, le gwoka qui pulse comme un cœur sous le soleil de midi.\n\nFanny J, la voix qui porte l’amour et la fierté antillaise.",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W39-soft_teddyson-joh_yoan.mp3",
+      "label": "Teddyson John, la voix chaude qui enveloppe les midis caribéens comme une brise de Pointe-à-Pitre.\n\nSoft, douceur créole qui coule comme l’eau des sources de Dolé.",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "Z_OriOuWpV4",
-      "title": "Fanny J",
-      "artist": "Fanny J",
+      "videoId": "rCR8F9BlOWg",
+      "title": "Me Lover",
+      "artist": "Teddyson John",
       "genre": "",
-      "duration": 233
-    },
-    {
-      "type": "music",
-      "videoId": "xolkM-z5aNM",
-      "title": "Bouje Gouyad",
-      "artist": "Djakout #1, Zafè Chô, NAIMA",
-      "genre": "",
-      "duration": 154
-    },
-    {
-      "type": "music",
-      "videoId": "6u7C2vKh5Qc",
-      "title": "Pouki Sa (Sina)",
-      "artist": "Joëlle Ursull",
-      "genre": "",
-      "duration": 280
-    },
-    {
-      "type": "music",
-      "videoId": "nTRib77Zolw",
-      "title": "Absence",
-      "artist": "Gilles Floro",
-      "genre": "",
-      "duration": 294
-    },
-    {
-      "type": "music",
-      "videoId": "1Y52b1uGJY4",
-      "title": "Se ou ki la",
-      "artist": "Fanny J",
-      "genre": "",
-      "duration": 265
-    },
-    {
-      "type": "music",
-      "videoId": "LQcTdHrpeKs",
-      "title": "C'est ma vie (Remix)",
-      "artist": "Princess Erika",
-      "genre": "",
-      "duration": 303
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-10-03-midi-18.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W39-carimi_mass_zin.mp3",
-      "label": "Zin — le gwoka moderne qui pulse comme un cœur de résistance à midi.",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "PXuIuhccXrc",
-      "title": "Manyen w",
-      "artist": "Zin",
-      "genre": "",
-      "duration": 315
-    },
-    {
-      "type": "music",
-      "videoId": "VTzECgKcu3M",
-      "title": "My First Time",
-      "artist": "Carimi",
-      "genre": "",
-      "duration": 302
-    },
-    {
-      "type": "music",
-      "videoId": "k31l1kCOSi8",
-      "title": "Nia sisse",
-      "artist": "Mass",
-      "genre": "",
-      "duration": 274
-    },
-    {
-      "type": "music",
-      "videoId": "upebt3prGv8",
-      "title": "Si Sé Kon Sa",
-      "artist": "Mario Chicot",
-      "genre": "",
-      "duration": 281
-    },
-    {
-      "type": "music",
-      "videoId": "Thgeh3_FvGk",
-      "title": "An nou inmé",
-      "artist": "Milca",
-      "genre": "",
-      "duration": 338
-    },
-    {
-      "type": "music",
-      "videoId": "63VzIAzjAkI",
-      "title": "Chawa",
-      "artist": "Jacob Desvarieux, Georges Décimus, Kassav",
-      "genre": "",
-      "duration": 284
-    },
-    {
-      "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-10-03-midi-24.mp3",
-      "label": "Capsule culturelle Guadeloupe",
-      "icon": "🌺"
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W39-djakout--1_orlane_tabou-combo.mp3",
-      "label": "Orlane, une mélodie qui porte l’âme de la Guadeloupe dans chaque note.",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "lzVkVun-QGw",
-      "title": "Anmourèz",
-      "artist": "Orlane",
-      "genre": "",
-      "duration": 265
-    },
-    {
-      "type": "music",
-      "videoId": "6Yats3CDhXs",
-      "title": "New York City",
-      "artist": "Tabou Combo",
-      "genre": "",
-      "duration": 529
-    },
-    {
-      "type": "music",
-      "videoId": "IOUK9e3VWCA",
-      "title": "Sa w'mete",
-      "artist": "Djakout # 1",
-      "genre": "",
-      "duration": 721
-    },
-    {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-10/flash-info-20261003-soir.mp3",
-      "label": "Flash Info Guadeloupe — 2026-10-03, édition du soir",
-      "icon": "📰",
-      "pending": true
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W39-claudette-et_soft_warren.mp3",
-      "label": "Soft — la voix chaude qui enveloppe les nuits de Pointe-à-Pitre comme une berceuse de résistance.",
-      "icon": "🎙️"
+      "duration": 216
     },
     {
       "type": "music",
@@ -593,43 +441,193 @@
     },
     {
       "type": "music",
-      "videoId": "_9yiBWJ_5Kw",
-      "title": "Tout Se Pou w'",
-      "artist": "Claudette et Ti Pierre",
+      "videoId": "ryFMN4wdnts",
+      "title": "Nan kem",
+      "artist": "Yoan",
       "genre": "",
-      "duration": 261
+      "duration": 279
     },
     {
       "type": "music",
-      "videoId": "vOom1Z_PBVI",
-      "title": "Si ou renmen'n",
-      "artist": "Warren",
+      "videoId": "dxrdHkT52Zs",
+      "title": "Douvan jou",
+      "artist": "Patrick Saint-Eloi",
       "genre": "",
-      "duration": 291
+      "duration": 292
     },
     {
       "type": "music",
-      "videoId": "u5e1wuRtJDk",
-      "title": "Mauvaise Élève",
-      "artist": "Meryl",
+      "videoId": "X6zr5yJCmuQ",
+      "title": "Anmwe",
+      "artist": "Mini All Stars",
       "genre": "",
-      "duration": 148
+      "duration": 479
     },
     {
       "type": "music",
-      "videoId": "PDTUJT3UIeQ",
-      "title": "Paix Et Lanmou",
-      "artist": "Experience 7",
+      "videoId": "qvbX5Jn9b9A",
+      "title": "Pa palé",
+      "artist": "Carimi",
       "genre": "",
-      "duration": 227
+      "duration": 270
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-10-03-midi-18.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W39-jean-claude-_kassav_nu-look.mp3",
+      "label": "Voici Jean-Claude Naimro, la voix qui porte le gwoka comme un souffle de Matouba.\n\nKassav’ électrise le zouk, énergie pure de la Caraïbe debout.",
+      "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "ZpvZ4OEZhM4",
-      "title": "Fin du monde",
-      "artist": "Alain Ramanisum",
+      "videoId": "RnFxRIZsAsQ",
+      "title": "En Mouvmen",
+      "artist": "JEAN-CLAUDE NAIMRO",
       "genre": "",
-      "duration": 223
+      "duration": 300
+    },
+    {
+      "type": "music",
+      "videoId": "KWYOqGeTD9c",
+      "title": "Syé Bwa",
+      "artist": "KASSAV'",
+      "genre": "",
+      "duration": 279
+    },
+    {
+      "type": "music",
+      "videoId": "oP34AtKP4Ks",
+      "title": "Destination finale",
+      "artist": "Nu-Look",
+      "genre": "",
+      "duration": 390
+    },
+    {
+      "type": "music",
+      "videoId": "Mm5S87aQKUQ",
+      "title": "Tchè Mwen Cé Ta Ou",
+      "artist": "Battery Cremil",
+      "genre": "",
+      "duration": 266
+    },
+    {
+      "type": "music",
+      "videoId": "VTzECgKcu3M",
+      "title": "My First Time",
+      "artist": "Carimi",
+      "genre": "",
+      "duration": 302
+    },
+    {
+      "type": "music",
+      "videoId": "_XyzMQeOAq8",
+      "title": "Sove lanmou",
+      "artist": "Zouk Machine",
+      "genre": "",
+      "duration": 285
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-10-03-midi-24.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-midi-2026-W39-lutchiana-10_patrick-sain_tanya-st-val.mp3",
+      "label": "Tanya Saint-Val, une voix qui porte l’âme des mornes à midi.\n\nLutchiana 100%, l’énergie pure du zouk qui pulse comme le soleil de Guadeloupe.",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "vF-elwFfAUc",
+      "title": "Fanm",
+      "artist": "Tanya St-Val",
+      "genre": "",
+      "duration": 242
+    },
+    {
+      "type": "music",
+      "videoId": "0DLlIw-NgOk",
+      "title": "Femme africaine",
+      "artist": "Lutchiana 100%",
+      "genre": "",
+      "duration": 235
+    },
+    {
+      "type": "music",
+      "videoId": "abGqdRPbA64",
+      "title": "An Plas'ay",
+      "artist": "Patrick Saint-Eloi",
+      "genre": "",
+      "duration": 321
+    },
+    {
+      "type": "transition",
+      "subtype": "flash_info",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-10/flash-info-20261003-soir.mp3",
+      "label": "Flash Info Guadeloupe — 2026-10-03, édition du soir",
+      "icon": "📰",
+      "pending": true
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W39-les-aiglons_mounia-jeff_nu-look.mp3",
+      "label": "Le soleil a laissé place aux étoiles, mais le Ka, lui, ne s’éteint jamais — et ce soir, Les Aiglons font danser la nuit comme une vague sur",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "IxQJTGSgYcU",
+      "title": "Démisyon",
+      "artist": "Les Aiglons",
+      "genre": "",
+      "duration": 324
+    },
+    {
+      "type": "music",
+      "videoId": "wEWVKylEsg0",
+      "title": "Karaib' kry",
+      "artist": "Mounia, Jeff Joseph",
+      "genre": "",
+      "duration": 191
+    },
+    {
+      "type": "music",
+      "videoId": "SePPmsbKS1w",
+      "title": "Le nouveau look",
+      "artist": "Nu-Look",
+      "genre": "",
+      "duration": 355
+    },
+    {
+      "type": "music",
+      "videoId": "XqJW2MsRpP8",
+      "title": "Satisfaction",
+      "artist": "Georges Decimus, Kassav",
+      "genre": "",
+      "duration": 320
+    },
+    {
+      "type": "music",
+      "videoId": "FuesqCIDlYU",
+      "title": "Èske",
+      "artist": "T-Vice",
+      "genre": "",
+      "duration": 305
+    },
+    {
+      "type": "music",
+      "videoId": "4lq5UfxzoZU",
+      "title": "HERE WE GO",
+      "artist": "WARREN AMYR",
+      "genre": "",
+      "duration": 199
     },
     {
       "type": "capsule",
@@ -647,27 +645,27 @@
     },
     {
       "type": "music",
-      "videoId": "hiG4pUFTcOs",
-      "title": "Tèt pen sèk",
-      "artist": "Jean-Michel Jean-Louis",
+      "videoId": "uEYYbj4WPQs",
+      "title": "Assez joué",
+      "artist": "Yoan",
       "genre": "",
-      "duration": 316
+      "duration": 228
     },
     {
       "type": "music",
-      "videoId": "U_iL6OYHe8M",
-      "title": "La guadeloupe trengle",
-      "artist": "ROBERT LOYSON",
+      "videoId": "R5niFsyus78",
+      "title": "Chaperon blanc",
+      "artist": "Les Aiglons",
       "genre": "",
-      "duration": 515
+      "duration": 495
     },
     {
       "type": "music",
-      "videoId": "Ke-hNr8bATY",
-      "title": "Nou renouvle povwa",
-      "artist": "Djakout",
+      "videoId": "bO7zsIh4Vmo",
+      "title": "Mauve Chauffe",
+      "artist": "Edouard Benoit",
       "genre": "",
-      "duration": 361
+      "duration": 291
     },
     {
       "type": "transition",
@@ -679,71 +677,17 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W39-carimi_ludo_thierry-dela.mp3",
-      "label": "Ludo, la voix chaude qui enveloppe les soirées guadeloupéennes comme un gwoka sous les étoiles.\n\nThierry Delannay, le son qui fait danser les mémoires des nuits antillaises.",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W39-francky-vinc_jacob-desvar_tabou-combo.mp3",
+      "label": "Tabou Combo — l’énergie haïtienne qui fait vibrer les corps sous les étoiles.",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "ASnBbxpTqWo",
-      "title": "Pa lésew alé",
-      "artist": "Ludo",
+      "videoId": "0Y6lUE452A4",
+      "title": "Kitém Fè Zafèm (Remastered Version)",
+      "artist": "Tabou Combo",
       "genre": "",
-      "duration": 254
-    },
-    {
-      "type": "music",
-      "videoId": "WQnzkpiIrqY",
-      "title": "Interlude",
-      "artist": "Thierry Delannay",
-      "genre": "",
-      "duration": 55
-    },
-    {
-      "type": "music",
-      "videoId": "qvbX5Jn9b9A",
-      "title": "Pa palé",
-      "artist": "Carimi",
-      "genre": "",
-      "duration": 270
-    },
-    {
-      "type": "music",
-      "videoId": "PQd_hGixTNI",
-      "title": "Pou Zot",
-      "artist": "JEAN-CLAUDE NAIMRO",
-      "genre": "",
-      "duration": 254
-    },
-    {
-      "type": "music",
-      "videoId": "KK2XLLk2dvw",
-      "title": "Naturel",
-      "artist": "Harmonik",
-      "genre": "",
-      "duration": 336
-    },
-    {
-      "type": "music",
-      "videoId": "Uqm7fnxW5GE",
-      "title": "Pedale Kompa (feat. Black Alex)",
-      "artist": "T-Vice",
-      "genre": "",
-      "duration": 369
-    },
-    {
-      "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W39-battery-crem_francky-vinc_ludo.mp3",
-      "label": "Le gwoka de Battery Cremil pulse comme un cœur sous les étoiles de Matouba.",
-      "icon": "🎙️"
-    },
-    {
-      "type": "music",
-      "videoId": "n3-dC96VKK0",
-      "title": "Déception",
-      "artist": "Battery Cremil",
-      "genre": "",
-      "duration": 292
+      "duration": 420
     },
     {
       "type": "music",
@@ -755,35 +699,95 @@
     },
     {
       "type": "music",
-      "videoId": "eFUvGKprY5E",
-      "title": "Anvi mortel",
-      "artist": "Ludo",
+      "videoId": "JFtFXTPWqWk",
+      "title": "Tim-Tim Bwa Sek",
+      "artist": "Jacob Desvarieux, Georges Décimus, Kassav'",
       "genre": "",
-      "duration": 288
+      "duration": 265
     },
     {
       "type": "music",
-      "videoId": "RiptcnL_I-A",
-      "title": "Ocean",
-      "artist": "Thierry Cham",
+      "videoId": "Nx5PCCHA1f8",
+      "title": "Lanmityé",
+      "artist": "Akiyo",
       "genre": "",
-      "duration": 240
+      "duration": 239
     },
     {
       "type": "music",
-      "videoId": "AooAscmvWY8",
-      "title": "Sweet Florence",
-      "artist": "Jacob Desvarieux",
+      "videoId": "it5y_lfR_UE",
+      "title": "Kenbéy pa lagéy",
+      "artist": "Jean Luc Guanel",
       "genre": "",
-      "duration": 481
+      "duration": 291
     },
     {
       "type": "music",
-      "videoId": "dxrdHkT52Zs",
-      "title": "Douvan jou",
-      "artist": "Patrick Saint-Eloi",
+      "videoId": "4N5y6Os5Z3M",
+      "title": "Lè ou enmé",
+      "artist": "Medhy Custos, Christian Nara",
       "genre": "",
-      "duration": 292
+      "duration": 267
+    },
+    {
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-10-03-soir-6.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
+    },
+    {
+      "type": "liner",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W39-gny_gerard-louis_kali.mp3",
+      "label": "Kali, la voix qui murmure à l'oreille des étoiles ce soir.",
+      "icon": "🎙️"
+    },
+    {
+      "type": "music",
+      "videoId": "EXUn5D7g7NM",
+      "title": "La vi artis red",
+      "artist": "KALI",
+      "genre": "",
+      "duration": 253
+    },
+    {
+      "type": "music",
+      "videoId": "UCkp_jQYa1I",
+      "title": "LÉKER FINN BRISÉ",
+      "artist": "Gérard Louis",
+      "genre": "",
+      "duration": 247
+    },
+    {
+      "type": "music",
+      "videoId": "s9PsvLlGms0",
+      "title": "Fanm isi",
+      "artist": "G'ny",
+      "genre": "",
+      "duration": 207
+    },
+    {
+      "type": "music",
+      "videoId": "OfhjjEocV-g",
+      "title": "Soley sur mon frère",
+      "artist": "Dominik Coco",
+      "genre": "",
+      "duration": 106
+    },
+    {
+      "type": "music",
+      "videoId": "owh1PywaWkU",
+      "title": "Gro-Siwo Woulé",
+      "artist": "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP",
+      "genre": "",
+      "duration": 360
+    },
+    {
+      "type": "music",
+      "videoId": "Uqm7fnxW5GE",
+      "title": "Pedale Kompa (feat. Black Alex)",
+      "artist": "T-Vice",
+      "genre": "",
+      "duration": 369
     },
     {
       "type": "capsule",
@@ -793,49 +797,49 @@
     },
     {
       "type": "liner",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W39-edith-lefel_mario-chicot_nu-look.mp3",
-      "label": "Edith Lefel, la voix qui berce les nuits guadeloupéennes comme une berceuse des mornes.\n\nMario Chicot, le gwoka qui pulse sous les étoiles, mémoire vivante de nos luttes.",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/liners/liner-soir-2026-W39-battery-crem_francois-lad_t-vice.mp3",
+      "label": "Le Ka d’Akiyo pulse comme un cœur battant sous les étoiles de Matouba.",
       "icon": "🎙️"
     },
     {
       "type": "music",
-      "videoId": "L_AeHFlo8Ac",
-      "title": "Sé pasyans",
-      "artist": "Edith Lefel",
+      "videoId": "oaSAJ75m27E",
+      "title": "Krak la",
+      "artist": "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo",
       "genre": "",
-      "duration": 302
+      "duration": 440
     },
     {
       "type": "music",
-      "videoId": "Z8tOBGmlQas",
-      "title": "Pouki mwen konsa",
-      "artist": "Mario Chicot",
+      "videoId": "jENtvc9qH2g",
+      "title": "La Vérité",
+      "artist": "Battery Cremil",
       "genre": "",
-      "duration": 297
+      "duration": 268
     },
     {
       "type": "music",
-      "videoId": "OT3c9z8dshY",
-      "title": "Ti cle El Color",
-      "artist": "Nu-Look",
-      "genre": "",
-      "duration": 388
-    },
-    {
-      "type": "music",
-      "videoId": "U4gmC6FnQLM",
-      "title": "Pran plezi ou",
+      "videoId": "K8qVRbEegWU",
+      "title": "Sa fem plere",
       "artist": "T-vice",
       "genre": "",
-      "duration": 554
+      "duration": 344
     },
     {
       "type": "music",
-      "videoId": "587JCv1-JEM",
-      "title": "Ou Se",
-      "artist": "Zin",
+      "videoId": "4oNgdFEimXk",
+      "title": "Mwen Geri",
+      "artist": "Princesse Dinie",
       "genre": "",
-      "duration": 261
+      "duration": 172
+    },
+    {
+      "type": "music",
+      "videoId": "hiG4pUFTcOs",
+      "title": "Tèt pen sèk",
+      "artist": "Jean-Michel Jean-Louis",
+      "genre": "",
+      "duration": 316
     }
   ]
 }
