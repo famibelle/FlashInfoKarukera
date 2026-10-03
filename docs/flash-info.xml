@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>La Guadeloupe sous surveillance météo ce midi, dans votre flash-info du 3 octobre à midi</title>
+      <description><![CDATA[On fait le point à midi en Guadeloupe, ce samedi trois octobre deux mille vingt-six.]]></description>
+      <pubDate>Sat, 03 Oct 2026 08:21:18 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-10/flash-info-20261003-midi.mp3" length="164157" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20261003-midi</guid>
+      <itunes:duration>00:15</itunes:duration>
+    </item>
+
+<item>
       <title>Six ans après, la justice tombe enfin pour les assassins de l'entrepreneur du Gosier, dans votre flash-info du 3 octobre au matin</title>
       <description><![CDATA[Bèl bonjou, Guadeloupe ! Samedi trois octobre deux mille vingt-six, il est quatre heures trente-trois à Paris, et nous voici ensemble pour ce premier flash de la journée.]]></description>
       <pubDate>Sat, 03 Oct 2026 02:40:12 +0000</pubDate>
@@ -1804,15 +1813,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260621-matin.mp3" length="3490725" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260621-matin</guid>
       <itunes:duration>05:36</itunes:duration>
-    </item>
-
-<item>
-      <title>Tensions apaisées pour les pompiers de Guadeloupe, dans votre flash-info du 20 juin au soir</title>
-      <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du samedi vingt juin deux mille vingt-six.]]></description>
-      <pubDate>Sat, 20 Jun 2026 15:00:43 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260620-soir.mp3" length="1491789" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260620-soir</guid>
-      <itunes:duration>02:25</itunes:duration>
     </item>
 
   </channel>
