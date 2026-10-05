@@ -1,0 +1,241 @@
+{
+  "date": "2026-10-04",
+  "generated_at": "2026-10-05T00:54:11.007903Z",
+  "technical": {
+    "summary": {
+      "total_runs": 158,
+      "global_success_rate": 0.8037974683544303,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily",
+        "flash-info",
+        "emission-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 12,
+        "failure": 9,
+        "success_rate": 0.5714285714285714,
+        "avg_duration_s": 287.04761904761904,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 12,
+        "failure": 9,
+        "success_rate": 0.5714285714285714,
+        "avg_duration_s": 285.23809523809524,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 155.28571428571428,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 15,
+        "failure": 12,
+        "success_rate": 0.5357142857142857,
+        "avg_duration_s": 190.03571428571428,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 46,
+        "success": 46,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 309.45652173913044,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1221.3809523809523,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "format_invalid": 10,
+        "title_mismatch": 3
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "KALI": 1,
+        "Jean-Marie Ragald": 1,
+        "Warren": 1,
+        "HARRY DIBOULA": 1,
+        "Djakout # 1": 2,
+        "Tabou Combo": 3,
+        "Battery Cremil": 1,
+        "Slaï": 2,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Stony Iron": 1,
+        "Jocelyne Béroard": 1,
+        "Zin": 1,
+        "Gilles Floro": 2,
+        "Princess Erika": 1,
+        "Les Aiglons": 3,
+        "T-Vice": 2,
+        "Harmonik": 3,
+        "Marcel Lollia Dit Velo": 1,
+        "Dominik Coco": 3,
+        "Patrick Saint-Eloi": 2,
+        "Carimi": 1,
+        "Marcé, Toumpak": 1,
+        "Georges Decimus, Kassav": 1,
+        "KASSAV'": 2,
+        "JEAN-CLAUDE NAIMRO": 2,
+        "Carlos Usan, Jiminy": 1,
+        "Thierry Cham": 2,
+        "Perle Lama": 2,
+        "Edith Lefel, Malavoi": 1,
+        "Stony, Oswald": 1,
+        "T-vice": 1,
+        "Meryl": 1,
+        "Lutchiana 100%": 1,
+        "Kassav'": 1,
+        "Mario Chicot": 1,
+        "Edouard Benoit": 1,
+        "Fanny J": 1,
+        "Ralph Thamar": 1,
+        "Akim kim": 1,
+        "Dominique Panol": 2,
+        "Patrick Andrey": 1,
+        "Jean Luc Guanel": 1,
+        "WARREN AMYR": 1,
+        "Joëlle Ursull": 2,
+        "carimi": 1,
+        "Zouk Machine": 2,
+        "ROBERT LOYSON": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Dominik Coco, Fuckly": 1,
+        "Francky Vincent": 2,
+        "Jean Carlos Music Empire": 1,
+        "Dédé Saint-Prix": 1,
+        "Top Vice": 1,
+        "Exile": 1,
+        "Nu-Look": 1,
+        "Mass": 1,
+        "Experience 7": 1,
+        "Sweet Micky": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Tabou Combo",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Lanmityé lanmè ak vaniy avèk malè",
+          "Mémwar anba latè ka palé"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 5551
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "global_success_rate_low",
+        "severity": "medium",
+        "context": "Taux succès global : 80% (objectif >90%)"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "horoscope-daily : 57% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "flash-info : 57% succès sur 7 jours"
+      },
+      {
+        "type": "workflow_failure_rate",
+        "severity": "high",
+        "context": "emission-daily : 54% succès sur 7 jours"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "10 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
