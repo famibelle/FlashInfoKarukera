@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>L'alerte jaune s'abat sur la Guadeloupe avec l'onde tropicale 47, dans votre flash-info du 6 octobre au matin</title>
+      <description><![CDATA[Bèl bonjou la Guadeloupe ! Nous sommes mardi six octobre deux mille vingt-six, il est quatre heures trente-six à Paris, et voici votre flash info du matin sur Radio Botiran.]]></description>
+      <pubDate>Tue, 06 Oct 2026 02:43:10 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-10/flash-info-20261006-matin.mp3" length="2855301" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20261006-matin</guid>
+      <itunes:duration>04:33</itunes:duration>
+    </item>
+
+<item>
       <title>Mobilisation lycéenne aux Abymes la colère éclate, dans votre flash-info du 5 octobre au soir</title>
       <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du lundi cinq octobre deux mille vingt-six.]]></description>
       <pubDate>Mon, 05 Oct 2026 14:28:16 +0000</pubDate>
@@ -1804,15 +1813,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260623-soir.mp3" length="1302261" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260623-soir</guid>
       <itunes:duration>02:06</itunes:duration>
-    </item>
-
-<item>
-      <title>Black-out en Guadeloupe les salariés d'EDF jugés ce matin, dans votre flash-info du 23 juin à midi</title>
-      <description><![CDATA[On fait le point à midi chez nous. Mardi vingt-trois juin deux mille vingt-six, voici ce qui fait l'actualité aujourd'hui.]]></description>
-      <pubDate>Tue, 23 Jun 2026 09:23:48 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260623-midi.mp3" length="1700781" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260623-midi</guid>
-      <itunes:duration>02:42</itunes:duration>
     </item>
 
   </channel>
