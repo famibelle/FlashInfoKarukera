@@ -1,0 +1,231 @@
+{
+  "date": "2026-10-06",
+  "generated_at": "2026-10-07T00:51:42.708998Z",
+  "technical": {
+    "summary": {
+      "total_runs": 160,
+      "global_success_rate": 0.93125,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": [
+        "horoscope-daily",
+        "flash-info",
+        "emission-daily"
+      ]
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 18,
+        "failure": 3,
+        "success_rate": 0.8571428571428571,
+        "avg_duration_s": 370.85714285714283,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 18,
+        "failure": 3,
+        "success_rate": 0.8571428571428571,
+        "avg_duration_s": 369.5238095238095,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 166.23809523809524,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 23,
+        "failure": 4,
+        "success_rate": 0.8214285714285714,
+        "avg_duration_s": 205.17857142857142,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 48,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 442.2708333333333,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1537.3333333333333,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 4,
+      "coherence_rate": 0.3076923076923077,
+      "issues_by_type": {
+        "format_invalid": 9,
+        "title_mismatch": 4
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Dominik Coco": 2,
+        "Tabou Combo": 1,
+        "Mass": 1,
+        "Fabien Georges": 1,
+        "Perle Lama": 1,
+        "Marcé & Toumpak": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Tanya St-Val": 2,
+        "Dominique Panol": 1,
+        "Slaï": 1,
+        "Jocelyne Béroard": 1,
+        "Teddyson John": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Akim kim": 1,
+        "Carimi": 1,
+        "Harry Diboula": 1,
+        "Battery Cremil": 1,
+        "Nu-Look": 1,
+        "MASS POWER NOU": 1,
+        "Princess Erika": 3,
+        "Joëlle Ursull": 3,
+        "Sweet Micky": 1,
+        "Jean Carlos Music Empire": 1,
+        "G'ny": 1,
+        "Djakout # 1": 1,
+        "Energy": 1,
+        "Experience 7": 1,
+        "BEL": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Claudette et Ti Pierre": 1,
+        "Mario Chicot": 2,
+        "Jean-Philippe Marthély": 1,
+        "ROBERT LOYSON": 1,
+        "Kassav'": 1,
+        "Claudette Pace": 1,
+        "Top Vice, Tuco Bouzi": 1,
+        "KASSAV'": 1,
+        "Sakiyo": 1,
+        "Francky Vincent": 1,
+        "Exile": 2,
+        "Zin": 2,
+        "Edouard Benoit": 1,
+        "PATRICK SAINT-ELOI": 1,
+        "Top Vice": 1,
+        "Zo Konpa, Zouk Machine": 1,
+        "Jim Rama & Patrick Andrey": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Jean-Marie Ragald": 2,
+        "Jean Philippe Marthely": 1,
+        "Dédé Saint-Prix": 1,
+        "Carlos Watts": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Edith Lefel": 1,
+        "WARREN AMYR": 1,
+        "Patrick Saint-Eloi": 1,
+        "Ti Paris": 1,
+        "Jeff Joseph": 1,
+        "Zouk Machine": 1,
+        "Gilles Floro": 2,
+        "Medhy Custos": 1,
+        "Meryl": 1,
+        "Harmonik": 1,
+        "Fabien Darcy": 1,
+        "Jacob Desvarieux": 1,
+        "Akiyo": 1,
+        "Kaysha": 1,
+        "Kan'nida": 1,
+        "Jocelyne Béroard, Kassav'": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Princess Erika",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Le chant des ancêtres sous les korossoli",
+          "Gwo tala ki koule an mwen"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 5655
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 31% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "9 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
