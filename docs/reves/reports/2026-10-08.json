@@ -1,0 +1,218 @@
+{
+  "date": "2026-10-08",
+  "generated_at": "2026-10-09T00:52:45.541516Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 406.42857142857144,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 406.57142857142856,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 173.0952380952381,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 163.75,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 515.204081632653,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1674.3809523809523,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 1,
+      "coherence_rate": 0.07692307692307693,
+      "issues_by_type": {
+        "format_invalid": 12,
+        "title_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Gilles Floro": 1,
+        "Meryl": 2,
+        "Orlane": 1,
+        "Lutchiana Mobulu 100%": 1,
+        "Francky Vincent": 2,
+        "Teddyson John": 1,
+        "Patrick Saint-Eloi": 1,
+        "Dominik Coco": 2,
+        "JEAN-CLAUDE NAIMRO": 2,
+        "Zin": 2,
+        "Carimi": 3,
+        "Jean-Philippe Marthély": 1,
+        "Marcé & Toumpak": 1,
+        "Mario Chicot": 2,
+        "Jacob Desvarieux": 1,
+        "Jean-Philippe Marthély, Thierry Benoît": 1,
+        "Mounia, Jeff Joseph": 1,
+        "T-Vice": 3,
+        "Ti Paris": 1,
+        "Thierry Delannay": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 2,
+        "Thierry Cham": 1,
+        "Nichols": 2,
+        "Dominique Ruiz": 1,
+        "Tanya St-Val": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Stony": 1,
+        "Djakout # 1": 2,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Battery Cremil": 2,
+        "Dominique Panol": 1,
+        "Gérard Louis": 1,
+        "Edouard Benoit": 1,
+        "Nu-Look": 1,
+        "Yoan": 2,
+        "Sweet Micky": 1,
+        "Patrick Andrey": 3,
+        "Joëlle Ursull": 2,
+        "Marcé": 1,
+        "Princess Erika": 1,
+        "Harmonik": 2,
+        "BEL": 1,
+        "Kimsé": 1,
+        "Princesse Dinie": 1,
+        "Sakiyo": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Alain Ramanisum": 1,
+        "Milca": 1,
+        "Jean Carlos Music Empire": 1,
+        "Akiyo": 1,
+        "MASS POWER NOU": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Fabien Georges": 1,
+        "Jocelyne Labylle, Jean-Luc Guanel": 1,
+        "Kan'nida": 1,
+        "Zouk Machine": 1,
+        "Djakout": 1,
+        "Les Aiglons": 1,
+        "Mini All Stars": 1,
+        "BélO": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Carimi",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "La frégate le colombo et la grotte",
+          "Kriké Manikou danse avec la lanti péyi"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 5759
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 8% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "12 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
