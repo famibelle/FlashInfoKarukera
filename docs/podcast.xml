@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:ns0="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
   <channel>
     <title>Karukera — Flash Info &amp; Horoscope</title>
     <link>https://famibelle.github.io/FlashInfoKarukera/</link>
@@ -7,21 +7,22 @@
     <language>fr</language>
     <copyright>© Botiran</copyright>
     <itunes:author>Botiran</itunes:author>
-    <itunes:owner>
-      <itunes:name>Botiran</itunes:name>
-      <itunes:email>medhi.famibelle@outlook.fr</itunes:email>
-    </itunes:owner>
-    <itunes:image href="https://famibelle.github.io/FlashInfoKarukera/artwork.jpg" />
-    <image>
-      <url>https://famibelle.github.io/FlashInfoKarukera/artwork.jpg</url>
-      <title>Karukera — Flash Info &amp; Horoscope</title>
-      <link>https://famibelle.github.io/FlashInfoKarukera/</link>
-    </image>
-    <itunes:category text="News">
-      <itunes:category text="Daily News" />
-    </itunes:category>
+    <itunes:owner><itunes:name>Botiran</itunes:name><itunes:email>medhi.famibelle@outlook.fr</itunes:email></itunes:owner>
+    <itunes:image href="https://famibelle.github.io/FlashInfoKarukera/artwork.jpg"/>
+    <image><url>https://famibelle.github.io/FlashInfoKarukera/artwork.jpg</url><title>Karukera — Flash Info &amp; Horoscope</title><link>https://famibelle.github.io/FlashInfoKarukera/</link></image>
+    <itunes:category text="News"><itunes:category text="Daily News"/></itunes:category>
     <itunes:explicit>no</itunes:explicit>
+
     <item>
+      <title>Verseau ♒ &amp; Cancer ♋ : Le lambi souffle sur tes dossiers en attente, dans votre horoscope du 9 octobre à midi</title>
+      <description><![CDATA[Nous sommes le vendredi 9 octobre 2026 et cet après-midi, le ciel nous parle à travers trois voix : celle de la Balance, légère comme l’urakan qui plane au-dessus des mornes ; celle du Cancer, profond comme le manyòk qui nourrit sans se montrer ; et celle du Verseau, électrique comme la foumi manyok qui trace son chemin sans bruit. Écoutez bien, ces signes-là ne mentent pas quand ils dansent avec le gwoka du temps.]]></description>
+      <pubDate>Fri, 09 Oct 2026 08:17:24 +0000</pubDate>
+      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/horoscope/2026-10/horoscope-20261009-midi.mp3" length="2531373" type="audio/mpeg"/>
+      <guid isPermaLink="false">horoscope-20261009-midi</guid>
+      <itunes:duration>04:02</itunes:duration>
+    </item>
+
+<item>
       <title>Drone et lycées en ébullition la Guadeloupe sous tension, dans votre flash-info du 9 octobre au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Nous sommes le vendredi neuf octobre deux mille vingt-six, et voici votre Flash Info du matin sur Radio Botiran.</description>
       <pubDate>Fri, 09 Oct 2026 02:46:49 +0000</pubDate>
@@ -29,7 +30,8 @@
       <guid isPermaLink="false">flash-info-20261009-matin</guid>
       <itunes:duration>04:32</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Bélier ♈ : Le flamboyant boit les marques rouges du crabe, dans votre horoscope du 9 octobre au matin</title>
       <description>Nous sommes le vendredi 9 octobre 2026 et ce matin, le ciel s’ouvre comme une feuille de bananier sous la rosée. Les esprits ont parlé : Balance, Sagittaire, Bélier, trois feux qui dansent sur la même braise. Écoutons ce que la mangrove nous murmure avant que le soleil ne monte.</description>
       <pubDate>Fri, 09 Oct 2026 02:35:51 +0000</pubDate>
@@ -37,7 +39,8 @@
       <guid isPermaLink="false">horoscope-20261009-matin</guid>
       <itunes:duration>03:49</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le tribunal enterre les élections du Gosier, la justice parle, dans votre flash-info du 8 octobre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du jeudi huit octobre deux mille vingt-six.</description>
       <pubDate>Thu, 08 Oct 2026 14:25:07 +0000</pubDate>
@@ -45,7 +48,8 @@
       <guid isPermaLink="false">flash-info-20261008-soir</guid>
       <itunes:duration>02:44</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Bélier ♈ : Manman dlo rattrape la queue du Gwo Zandoli, dans votre horoscope du 8 octobre au soir</title>
       <description>Nous sommes le jeudi 8 octobre 2026 et ce soir, la lune se lève sur trois feux qui dansent dans le même vent : Balance, Bélier, Lion. Écoutez bien, l’igwann a posé sa patte sur votre épaule, il attend que vous compreniez ce que la patience a à vous dire. Soufflez, posez la journée comme on pose un panier de manyòk à l’ombre du manguier. Demain est une autre racine à déterrer.</description>
       <pubDate>Thu, 08 Oct 2026 14:14:45 +0000</pubDate>
@@ -53,7 +57,8 @@
       <guid isPermaLink="false">horoscope-20261008-soir</guid>
       <itunes:duration>04:50</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Baptiste Tailhades booste l’ambition cycliste de la Guadeloupe, dans votre flash-info du 8 octobre à midi</title>
       <description>On fait le point à midi chez nous, ce jeudi huit octobre deux mille vingt-six. Voici sept infos qui font l'actualité aujourd'hui.</description>
       <pubDate>Thu, 08 Oct 2026 08:27:48 +0000</pubDate>
@@ -61,7 +66,8 @@
       <guid isPermaLink="false">flash-info-20261008-midi</guid>
       <itunes:duration>02:23</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Cancer ♋ : Le Hèrkil danse sur la Soufrière qui mijote, dans votre horoscope du 8 octobre à midi</title>
       <description>Nous sommes le jeudi 8 octobre 2026 et cet après-midi, le ciel caribéen murmure à l’oreille de ceux qui savent écouter. Les astres ont choisi de danser pour la Balance, le Scorpion et le Cancer, trois signes qui portent en eux la force des eaux mêlées, comme la mangrove entre mer et terre. Alors, respirez profond, laissez la chaleur de l’après-midi vous traverser, et avancez : la journée n’a pas dit son dernier mot.</description>
       <pubDate>Thu, 08 Oct 2026 08:18:50 +0000</pubDate>
@@ -69,7 +75,8 @@
       <guid isPermaLink="false">horoscope-20261008-midi</guid>
       <itunes:duration>04:27</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Souveraineté alimentaire en Guadeloupe des projets locaux peinent à couvrir les besoins, dans votre flash-info du 8 octobre au matin</title>
       <description>Bèl bonjou Guadeloupe ! Nous sommes le jeudi huit octobre deux mille vingt-six, il est quatre heures quarante à Paris, et voici votre Flash Info du matin sur Radio Botiran.</description>
       <pubDate>Thu, 08 Oct 2026 02:47:11 +0000</pubDate>
@@ -77,7 +84,8 @@
       <guid isPermaLink="false">flash-info-20261008-matin</guid>
       <itunes:duration>05:23</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Cancer ♋ : Le lamantin porte la dachine en silence, dans votre horoscope du 8 octobre au matin</title>
       <description>Nous sommes le jeudi 8 octobre 2026 et ce matin, le ciel se souvient. Il a choisi de parler à ceux qui savent écouter entre les lignes : Balance, Cancer, Bélier, trois façons d’être au monde, trois chemins qui se croisent dans la mangrove de ce jour. Prenez votre café noir, sans sucre ou avec trois cuillerées, peu importe, mais ouvrez grand les fenêtres. L’air sent la terre après la pluie et quelque chose d’autre, une promesse qui ne dit pas encore son nom.</description>
       <pubDate>Thu, 08 Oct 2026 02:34:08 +0000</pubDate>
@@ -85,7 +93,8 @@
       <guid isPermaLink="false">horoscope-20261008-matin</guid>
       <itunes:duration>04:47</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Mobilisation lycéenne au Moule deux jeunes interpellés l’affaire s’emballe, dans votre flash-info du 7 octobre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce mercredi sept octobre deux mille vingt-six.</description>
       <pubDate>Wed, 07 Oct 2026 14:25:22 +0000</pubDate>
@@ -93,7 +102,8 @@
       <guid isPermaLink="false">flash-info-20261007-soir</guid>
       <itunes:duration>02:32</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Scorpion ♏ : Balance danse entre les larmes de la Soufrière, dans votre horoscope du 7 octobre au soir</title>
       <description>Nous sommes le mercredi 7 octobre 2026 et ce soir, la nuit pose ses questions à ceux qui savent écouter. Les étoiles ont choisi de parler à trois d’entre vous : Balance, Verseau, Scorpion, ceux qui pèsent, ceux qui rêvent, ceux qui brûlent sans se consumer. Respirez, chers insoumis de l’instant. La journée a usé vos épaules, mais la mangrove veille, et ses racines tiennent encore.</description>
       <pubDate>Wed, 07 Oct 2026 14:14:19 +0000</pubDate>
@@ -101,7 +111,8 @@
       <guid isPermaLink="false">horoscope-20261007-soir</guid>
       <itunes:duration>04:33</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un judoka de Capesterre vise les podiums internationaux, dans votre flash-info du 7 octobre à midi</title>
       <description>On fait le point à midi chez nous ce mercredi sept octobre deux mille vingt-six. Voici les sept informations de la mi-journée.</description>
       <pubDate>Wed, 07 Oct 2026 08:28:30 +0000</pubDate>
@@ -109,7 +120,8 @@
       <guid isPermaLink="false">flash-info-20261007-midi</guid>
       <itunes:duration>03:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Capricorne ♑ &amp; Balance ♎ : Le sucrier jaune picore l’ombre du kabrit, dans votre horoscope du 7 octobre à midi</title>
       <description>Nous sommes le mercredi 7 octobre 2026 et cet après-midi, le ciel a décidé de parler à ceux qui savent écouter sans se presser. Trois signes se détachent dans la lumière oblique de cette saison qui hésite encore entre l’or et la cendre : Balance, Sagittaire, Capricorne. Allez, respirez un coup, la journée n’est pas finie, elle se réinvente encore.</description>
       <pubDate>Wed, 07 Oct 2026 08:16:35 +0000</pubDate>
@@ -117,7 +129,8 @@
       <guid isPermaLink="false">horoscope-20261007-midi</guid>
       <itunes:duration>04:31</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Une Guadeloupéenne fait entrer l’Outre-mer au Sénat, dans votre flash-info du 7 octobre au matin</title>
       <description>Bèl bonjou Guadeloupe ! Mercredi sept octobre deux mille vingt-six, il est quatre heures quarante-et-un à Paris, et nous voilà ensemble pour ce flash info du matin. Une journée qui commence sous les averses, mais avec des nouvelles qui méritent l'attention.</description>
       <pubDate>Wed, 07 Oct 2026 02:48:35 +0000</pubDate>
@@ -125,7 +138,8 @@
       <guid isPermaLink="false">flash-info-20261007-matin</guid>
       <itunes:duration>04:50</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Capricorne ♑ : Le zyé du Kabrit danse sous la zeb a pik, dans votre horoscope du 7 octobre au matin</title>
       <description>Nous sommes le mercredi 7 octobre 2026 et ce matin, la mangrove chuchote aux oreilles de ceux qui savent écouter. Les esprits de Rivière au Sel se réveillent avec le jour, et trois signes vont porter leur marque aujourd’hui : Balance, Capricorne, Scorpion. Ouvrez les yeux avant d’ouvrir les fenêtres, l’air sent déjà le sel et la terre mouillée.</description>
       <pubDate>Wed, 07 Oct 2026 02:35:52 +0000</pubDate>
@@ -133,7 +147,8 @@
       <guid isPermaLink="false">horoscope-20261007-matin</guid>
       <itunes:duration>04:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lycées paralysés en Guadeloupe les élèves montent au créneau, dans votre flash-info du 6 octobre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le mardi six octobre deux mille vingt-six, il est seize heures vingt-et-une à Paris, et voici les informations qui rythment ce début de soirée.</description>
       <pubDate>Tue, 06 Oct 2026 14:25:10 +0000</pubDate>
@@ -141,7 +156,8 @@
       <guid isPermaLink="false">flash-info-20261006-soir</guid>
       <itunes:duration>02:45</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Poissons ♓ : Le corossol mûrit dans la paume qui tendait des filets, dans votre horoscope du 6 octobre au soir</title>
       <description>Nous sommes le mardi 6 octobre 2026 et ce soir, les étoiles ont choisi de parler à ceux qui marchent entre deux eaux, entre deux désirs, entre deux vérités. Balance, Capricorne, Poissons, vos cœurs battent au rythme des marées, et ce soir, la mangrove vous murmure ses secrets. Posez vos fardeaux, laissez la nuit laver les traces de la journée.</description>
       <pubDate>Tue, 06 Oct 2026 14:14:42 +0000</pubDate>
@@ -149,7 +165,8 @@
       <guid isPermaLink="false">horoscope-20261006-soir</guid>
       <itunes:duration>04:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Les jeunes guerriers du handball guadeloupéen entrent en guerre aujourd'hui, dans votre flash-info du 6 octobre à midi</title>
       <description>On fait le point à midi chez nous, ce mardi six octobre deux mille vingt-six. Voici les infos qui rythment la journée.</description>
       <pubDate>Tue, 06 Oct 2026 08:25:48 +0000</pubDate>
@@ -157,7 +174,8 @@
       <guid isPermaLink="false">flash-info-20261006-midi</guid>
       <itunes:duration>01:53</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Sagittaire ♐ &amp; Balance ♎ : Le wasou danse sur le dos de la manman dlo, dans votre horoscope du 6 octobre à midi</title>
       <description>Nous sommes le mardi 6 octobre 2026 et cet après-midi, le ciel nous parle à travers trois signes, Balance, Sagittaire, Cancer. Écoutez bien : les étoiles ne mentent pas, mais elles ne crient pas non plus. Elles murmurent, comme l’urakan qui passe au-dessus des mornes sans faire de bruit. Alors, tendez l’oreille.</description>
       <pubDate>Tue, 06 Oct 2026 08:16:05 +0000</pubDate>
@@ -165,7 +183,8 @@
       <guid isPermaLink="false">horoscope-20261006-midi</guid>
       <itunes:duration>04:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>L'alerte jaune s'abat sur la Guadeloupe avec l'onde tropicale 47, dans votre flash-info du 6 octobre au matin</title>
       <description>Bèl bonjou la Guadeloupe ! Nous sommes mardi six octobre deux mille vingt-six, il est quatre heures trente-six à Paris, et voici votre flash info du matin sur Radio Botiran.</description>
       <pubDate>Tue, 06 Oct 2026 02:43:10 +0000</pubDate>
@@ -173,7 +192,8 @@
       <guid isPermaLink="false">flash-info-20261006-matin</guid>
       <itunes:duration>04:33</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Verseau ♒ &amp; Balance ♎ : Le lambi chante sous la peau de l’abwiko, dans votre horoscope du 6 octobre au matin</title>
       <description>Nous sommes le mardi 6 octobre 2026 et ce matin, le ciel se souvient de qui nous sommes. Les astres ont parlé à la mangrove, et la mangrove murmure aux trois signes qui vont danser aujourd’hui : Balance, Verseau, Bélier. Écoutez bien, ce n’est pas un conseil, c’est une correspondance.</description>
       <pubDate>Tue, 06 Oct 2026 02:31:00 +0000</pubDate>
@@ -181,7 +201,8 @@
       <guid isPermaLink="false">horoscope-20261006-matin</guid>
       <itunes:duration>04:36</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Mobilisation lycéenne aux Abymes la colère éclate, dans votre flash-info du 5 octobre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du lundi cinq octobre deux mille vingt-six.</description>
       <pubDate>Mon, 05 Oct 2026 14:28:16 +0000</pubDate>
@@ -189,7 +210,8 @@
       <guid isPermaLink="false">flash-info-20261005-soir</guid>
       <itunes:duration>02:49</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Bélier ♈ : Le flamboyant boit la rivière entre ses racines, dans votre horoscope du 5 octobre au soir</title>
       <description>Nous sommes le lundi 5 octobre 2026 et ce soir, la lune se lève sur trois feux qui dansent dans le ciel créole : Balance, Bélier, Cancer. Écoutez bien, l’igwann a choisi de sortir de sa cachette, et sa patience parle à ceux qui savent attendre. Respirez l’odeur du khan qui brûle dans les champs, même de loin, même en rêve. Ce soir, c’est à vous.</description>
       <pubDate>Mon, 05 Oct 2026 14:16:59 +0000</pubDate>
@@ -197,7 +219,8 @@
       <guid isPermaLink="false">horoscope-20261005-soir</guid>
       <itunes:duration>04:47</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Mormeck en Guadeloupe donne de l’espoir et parle Olympisme, dans votre flash-info du 5 octobre à midi</title>
       <description>On fait le point à midi chez nous, ce lundi cinq octobre deux mille vingt-six. Voici sept infos qui font l'actualité aujourd'hui.</description>
       <pubDate>Mon, 05 Oct 2026 08:34:41 +0000</pubDate>
@@ -205,7 +228,8 @@
       <guid isPermaLink="false">flash-info-20261005-midi</guid>
       <itunes:duration>02:02</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Poissons ♓ &amp; Vierge ♍ : Ton rêve danse entre deux flots comme un zandoli sous l’orage, dans votre horoscope du 5 octobre à midi</title>
       <description>Nous sommes le lundi 5 octobre 2026 et la mangrove chuchote les noms de ceux qui vont danser avec le destin cet après-midi. Écoutez bien : c’est la Balance qui cherche son équilibre entre deux eaux, le Poissons qui nage dans des rêves trop grands pour son corps, et la Vierge qui compte ses grains de riz un à un sans voir le cyclone qui approche. Prenez une gorgée de café, respirez l’odeur du khan qui brûle quelque part, et avancez, l’igwann vous regarde depuis les branches.</description>
       <pubDate>Mon, 05 Oct 2026 08:24:22 +0000</pubDate>
@@ -213,7 +237,8 @@
       <guid isPermaLink="false">horoscope-20261005-midi</guid>
       <itunes:duration>04:15</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Des coups de feu font trembler Trois-Rivières, l'ombre d'une enquête plane, dans votre flash-info du 5 octobre au matin</title>
       <description>Bèl bonjou, la Guadeloupe ! Nous sommes le lundi cinq octobre deux mille vingt-six, il est quatre heures quarante-cinq à Paris. Voici votre flash info du matin sur Radio Botiran.</description>
       <pubDate>Mon, 05 Oct 2026 02:50:59 +0000</pubDate>
@@ -221,7 +246,8 @@
       <guid isPermaLink="false">flash-info-20261005-matin</guid>
       <itunes:duration>04:46</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Vierge ♍ : La terre sous tes sabots danse avec les pas du razè, dans votre horoscope du 5 octobre au matin</title>
       <description>Nous sommes le lundi 5 octobre 2026 et la mer ce matin respire plus fort que d’habitude, comme si elle voulait rappeler à ceux qui l’oublient qu’elle est là, vivante, sous le béton et les routes goudronnées. Ce matin, c’est aux Balance, aux Taureau et aux Vierge que je tends l’oreille, ceux qui portent en eux l’équilibre des vagues, la patience de la terre et la précision des racines qui savent où chercher l’eau. Écoutez : ce que la journée va vous murmurer, c’est déjà dans le vent qui tourne autour de vos épaules.</description>
       <pubDate>Mon, 05 Oct 2026 02:39:20 +0000</pubDate>
@@ -229,7 +255,8 @@
       <guid isPermaLink="false">horoscope-20261005-matin</guid>
       <itunes:duration>04:17</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Écoutez l'appel urgent des responsables de l'UPLG à Capesterre, dans votre flash-info du 4 octobre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du dimanche quatre octobre deux mille vingt-six.</description>
       <pubDate>Sun, 04 Oct 2026 15:45:19 +0000</pubDate>
@@ -237,7 +264,8 @@
       <guid isPermaLink="false">flash-info-20261004-soir</guid>
       <itunes:duration>01:29</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Vierge ♍ : La balance danse comme la mangouste attend, dans votre horoscope du 4 octobre au soir</title>
       <description>Nous sommes le dimanche 4 octobre 2026 et ce soir, la nuit s’étire comme une mangrove entre deux eaux, ni tout à fait terre, ni tout à fait mer, mais un peu des deux, et c’est là que les choses se décident. Écoutez bien : ce sont les Balance, les Capricorne et les Vierge que le ciel a choisi de visiter ce soir. Pas pour leur dire quoi faire, non, juste pour leur rappeler qu’ils ne sont pas seuls dans leur tête.</description>
       <pubDate>Sun, 04 Oct 2026 15:35:54 +0000</pubDate>
@@ -245,7 +273,8 @@
       <guid isPermaLink="false">horoscope-20261004-soir</guid>
       <itunes:duration>05:03</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Tempête en approche, prudence ce soir à la Guadeloupe, dans votre flash-info du 4 octobre à midi</title>
       <description>On fait le point à midi, ce dimanche quatre octobre deux mille vingt-six.</description>
       <pubDate>Sun, 04 Oct 2026 10:16:26 +0000</pubDate>
@@ -253,7 +282,8 @@
       <guid isPermaLink="false">flash-info-20261004-midi</guid>
       <itunes:duration>00:14</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Balance ♎ : Le marakoudja mûrit dans l'ombre du gwo zandoli, dans votre horoscope du 4 octobre à midi</title>
       <description>Nous sommes le dimanche 4 octobre 2026 et cet après-midi, le ciel nous murmure trois noms comme des graines lancées au vent : Balance, Bélier, Gémeaux. Écoutez bien, ces signes-là ne sont pas des cases, mais des chemins qui s’ouvrent sous vos pas, des mangroves où l’eau douce et l’eau salée se mélangent sans se demander permission. Prenez ce que vous voulez, laissez le reste, mais avancez. La journée est à vous.</description>
       <pubDate>Sun, 04 Oct 2026 10:11:12 +0000</pubDate>
@@ -261,7 +291,8 @@
       <guid isPermaLink="false">horoscope-20261004-midi</guid>
       <itunes:duration>03:49</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un Guadeloupéen remporte The Voice Kids, l’île en émoi !, dans votre flash-info du 4 octobre au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Dimanche quatre octobre deux mille vingt-six, il est cinq heures onze à Paris, et nous voilà ensemble pour ce premier flash de la journée. L'actualité ne dort jamais, et ce matin, elle nous parle de mobilisation, de victoires, et de questions qui comptent chez nous.</description>
       <pubDate>Sun, 04 Oct 2026 03:19:15 +0000</pubDate>
@@ -269,7 +300,8 @@
       <guid isPermaLink="false">flash-info-20261004-matin</guid>
       <itunes:duration>05:20</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Capricorne ♑ &amp; Balance ♎ : Le lamantin boit l’écho du kabrit dans le tambour, dans votre horoscope du 4 octobre au matin</title>
       <description>Nous sommes le dimanche 4 octobre 2026 et ce matin, le ciel se souvient de ceux qui marchent avec l'équilibre des balances, de ceux qui gravissent les montagnes comme des capricornes têtus, et de ceux qui foncent tête première, béliers de feu.
 
@@ -279,7 +311,8 @@
       <guid isPermaLink="false">horoscope-20261004-matin</guid>
       <itunes:duration>03:54</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Tragédie à Morne-à-l’Eau un jeune homme de 26 ans disparaît dans un accident, dans votre flash-info du 3 octobre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du samedi trois octobre deux mille vingt-six.</description>
       <pubDate>Sat, 03 Oct 2026 15:05:22 +0000</pubDate>
@@ -287,7 +320,8 @@
       <guid isPermaLink="false">flash-info-20261003-soir</guid>
       <itunes:duration>01:47</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Balance ♎ : Le Gwo Zandoli boit la rivière murmureuse de la Balans, dans votre horoscope du 3 octobre au soir</title>
       <description>Nous sommes le samedi 3 octobre 2026 et ce soir, la lune danse avec les nuages comme une vieille femme qui tresse ses cheveux avant la nuit. Écoutez bien, mes enfants : ce sont les signes Balance, Poissons et Bélier que les esprits ont posés sur notre chemin. Respirez, soufflez la poussière du jour, la mangrove vous attend.</description>
       <pubDate>Sat, 03 Oct 2026 14:57:31 +0000</pubDate>
@@ -295,7 +329,8 @@
       <guid isPermaLink="false">horoscope-20261003-soir</guid>
       <itunes:duration>03:57</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La Guadeloupe sous surveillance météo ce midi, dans votre flash-info du 3 octobre à midi</title>
       <description>On fait le point à midi en Guadeloupe, ce samedi trois octobre deux mille vingt-six.</description>
       <pubDate>Sat, 03 Oct 2026 08:21:18 +0000</pubDate>
@@ -303,7 +338,8 @@
       <guid isPermaLink="false">flash-info-20261003-midi</guid>
       <itunes:duration>00:15</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Taureau ♉ : La marée ajuste ses poids comme des dossiers oubliés, dans votre horoscope du 3 octobre à midi</title>
       <description>Nous sommes le samedi 3 octobre 2026 et cet après-midi, la lumière tombe comme une mangue mûre sur les épaules de ceux qui savent encore écouter. Je vois trois signes qui dansent aujourd’hui dans le même vent de résistance douce : Balance, Capricorne, Taureau, ceux qui pèsent, ceux qui bâtissent, ceux qui tiennent la terre. À vous de jouer, mes gens, mais souvenez-vous : même l’igwann sait qu’il faut parfois rester immobile pour mieux bondir.</description>
       <pubDate>Sat, 03 Oct 2026 08:14:36 +0000</pubDate>
@@ -311,7 +347,8 @@
       <guid isPermaLink="false">horoscope-20261003-midi</guid>
       <itunes:duration>04:19</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Six ans après, la justice tombe enfin pour les assassins de l'entrepreneur du Gosier, dans votre flash-info du 3 octobre au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Samedi trois octobre deux mille vingt-six, il est quatre heures trente-trois à Paris, et nous voici ensemble pour ce premier flash de la journée.</description>
       <pubDate>Sat, 03 Oct 2026 02:40:12 +0000</pubDate>
@@ -319,7 +356,8 @@
       <guid isPermaLink="false">flash-info-20261003-matin</guid>
       <itunes:duration>04:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Balance ♎ : Le zandoli du matin allume l’étincelle des nuits sans sommeil, dans votre horoscope du 3 octobre au matin</title>
       <description>Nous sommes le samedi 3 octobre 2026 et ce matin, le ciel se souvient qu’il a porté des pirogues, des révoltes et des silences plus lourds que la canne à sucre. Écoutez : aujourd’hui, c’est aux Balance, Bélier et Capricorne que la parole des ancêtres va glisser dans l’oreille comme l’urakan sur l’eau, sans prévenir, mais sans se tromper. Réveillez-vous avec le goût du café noir et du roucou sur les doigts, parce que la journée commence là où la nuit a laissé ses traces.</description>
       <pubDate>Sat, 03 Oct 2026 02:28:27 +0000</pubDate>
@@ -327,7 +365,8 @@
       <guid isPermaLink="false">horoscope-20261003-matin</guid>
       <itunes:duration>03:22</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Nou Las Palé appelle à la mobilisation générale dès la semaine prochaine, dans votre flash-info du 2 octobre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du vendredi deux octobre deux mille vingt-six.</description>
       <pubDate>Fri, 02 Oct 2026 14:24:47 +0000</pubDate>
@@ -335,7 +374,8 @@
       <guid isPermaLink="false">flash-info-20261002-soir</guid>
       <itunes:duration>01:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Balance ♎ : La dachine infuse sous les feuilles rouges du zanmann, dans votre horoscope du 2 octobre au soir</title>
       <description>Nous sommes le vendredi 2 octobre 2026 et ce soir, la lune danse avec les esprits des mornes. Je vois trois signes qui tremblent sous sa lumière : Balance, Capricorne, Cancer. Respirez, vous êtes chez vous dans cette nuit qui commence.</description>
       <pubDate>Fri, 02 Oct 2026 14:14:25 +0000</pubDate>
@@ -343,7 +383,8 @@
       <guid isPermaLink="false">horoscope-20261002-soir</guid>
       <itunes:duration>05:01</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Papa Yaya s’invite au MACTe avec son histoire à ne pas manquer, dans votre flash-info du 2 octobre à midi</title>
       <description>On fait le point à midi en Guadeloupe, vendredi deux octobre deux mille vingt-six. Voici les sept informations de cette mi-journée.</description>
       <pubDate>Fri, 02 Oct 2026 08:25:46 +0000</pubDate>
@@ -351,7 +392,8 @@
       <guid isPermaLink="false">flash-info-20261002-midi</guid>
       <itunes:duration>02:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Poissons ♓ &amp; Lion ♌ : L'horizon mord l'écho rose des tambours, dans votre horoscope du 2 octobre à midi</title>
       <description>Nous sommes le vendredi 2 octobre 2026 et cet après-midi, le ciel s’ouvre comme une mangrove à marée montante, les signes qui dansent dans la lumière sont ceux de la Balance, des Poissons et du Lion.
 
@@ -361,7 +403,8 @@
       <guid isPermaLink="false">horoscope-20261002-midi</guid>
       <itunes:duration>04:32</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un jeune de 20 ans dans un état grave après une collision à Baillif, dans votre flash-info du 2 octobre au matin</title>
       <description>Bèl bonjou Guadeloupe ! Vendredi deux octobre deux mille vingt-six, il est quatre heures trente-cinq à Paris, et ici, la journée commence sous les alizés.</description>
       <pubDate>Fri, 02 Oct 2026 02:43:58 +0000</pubDate>
@@ -369,7 +412,8 @@
       <guid isPermaLink="false">flash-info-20261002-matin</guid>
       <itunes:duration>05:37</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Vierge ♍ : Le marigot reflète la queue du gran pélikan, dans votre horoscope du 2 octobre au matin</title>
       <description>Nous sommes le vendredi 2 octobre 2026 et ce matin, la rosée sur les feuilles de malomé sent encore l’ail sauvage, signe que les esprits veillent. Écoutez bien : aujourd’hui, c’est aux Balance, Vierge et Taureau que la mangrove murmure ses secrets. Prêts à traverser ?</description>
       <pubDate>Fri, 02 Oct 2026 02:29:59 +0000</pubDate>
@@ -377,7 +421,8 @@
       <guid isPermaLink="false">horoscope-20261002-matin</guid>
       <itunes:duration>04:19</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Une mobilisation massive demain contre la vie chère en Guadeloupe, dans votre flash-info du 1 octobre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du jeudi deux octobre deux mille vingt-six.</description>
       <pubDate>Thu, 01 Oct 2026 14:24:46 +0000</pubDate>
@@ -385,7 +430,8 @@
       <guid isPermaLink="false">flash-info-20261001-soir</guid>
       <itunes:duration>02:17</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Bélier ♈ : Le bèf broute l’影 des pas ka, dans votre horoscope du 1 octobre au soir</title>
       <description>Nous sommes le jeudi 1 octobre 2026 et ce soir, la lune se lève sur trois feux qui dansent ensemble : Balance, Bélier, Taureau. Écoutez bien, c’est à vous que la nuit parle ce soir, à travers le bruissement des feuilles de khan et le souffle de l’urakan qui passe entre les branches. Posez vos fardeaux, respirez l’odeur du malomé qui brûle quelque part, et laissez venir.</description>
       <pubDate>Thu, 01 Oct 2026 14:15:18 +0000</pubDate>
@@ -393,7 +439,8 @@
       <guid isPermaLink="false">horoscope-20261001-soir</guid>
       <itunes:duration>03:44</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La maison Auguste Lacour sauvée par les Bernard, dans votre flash-info du 1 octobre à midi</title>
       <description>On fait le point à midi chez nous, en Guadeloupe, ce jeudi premier octobre deux mille vingt-six.</description>
       <pubDate>Thu, 01 Oct 2026 08:26:51 +0000</pubDate>
@@ -401,7 +448,8 @@
       <guid isPermaLink="false">flash-info-20261001-midi</guid>
       <itunes:duration>02:08</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Poissons ♓ : Le vaniy mûrit dans l’ombre de la carapace, dans votre horoscope du 1 octobre à midi</title>
       <description>Nous sommes le jeudi 1 octobre 2026 et la mangrove chuchote les noms de ceux qui vont danser avec le destin cet après-midi. Écoutez bien : la Balance, le Scorpion et les Poissons sont appelés à tendre l’oreille, car l’igwann a choisi de se montrer aujourd’hui. Pas pour fuir, non, pour vous rappeler que la patience est une arme quand le monde s’agite trop vite.</description>
       <pubDate>Thu, 01 Oct 2026 08:17:14 +0000</pubDate>
@@ -409,7 +457,8 @@
       <guid isPermaLink="false">horoscope-20261001-midi</guid>
       <itunes:duration>03:45</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Ary Chalus condamné une décision qui fait déjà débat, dans votre flash-info du 1 octobre au matin</title>
       <description>Bèl bonjou Guadeloupe ! Nous sommes le jeudi premier octobre deux mille vingt-six, il est quatre heures quarante-trois à Paris, et voici votre Flash Info du matin sur Radio Botiran.</description>
       <pubDate>Thu, 01 Oct 2026 02:51:09 +0000</pubDate>
@@ -417,7 +466,8 @@
       <guid isPermaLink="false">flash-info-20261001-matin</guid>
       <itunes:duration>05:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Balance ♎ : Touloulou glisse entre deux eaux comme un zandoli sous la lune, dans votre horoscope du 1 octobre au matin</title>
       <description>Nous sommes le jeudi 1 octobre 2026 et ce matin, la rosée sur les feuilles de malomé sent encore l’ail sauvage, comme un rappel que les protections invisibles veillent avant même que le soleil ne perce. Écoutez bien : aujourd’hui, c’est aux Balance, aux Cancer et aux Gémeaux que la mangrove murmure ses conseils. Prêts à traverser ? Alors ouvrez grand les oreilles, et le cœur.</description>
       <pubDate>Thu, 01 Oct 2026 02:38:01 +0000</pubDate>
@@ -425,7 +475,8 @@
       <guid isPermaLink="false">horoscope-20261001-matin</guid>
       <itunes:duration>03:57</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Une chanson guadeloupéenne sacrée reine des Caribbean Music Awards, dans votre flash-info du 22 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce mardi vingt-deux septembre deux mille vingt-six.</description>
       <pubDate>Tue, 22 Sep 2026 14:36:15 +0000</pubDate>
@@ -433,7 +484,8 @@
       <guid isPermaLink="false">flash-info-20260922-soir</guid>
       <itunes:duration>02:13</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Verseau ♒ &amp; Vierge ♍ : La mango blan danse avec le lambi, dans votre horoscope du 22 septembre au soir</title>
       <description>Nous sommes le mardi 22 septembre 2026 et ce soir, la nuit pose ses questions à ceux qui savent écouter. Les astres ont choisi de murmurer à l’oreille de la Vierge, du Scorpion et du Verseau, trois signes qui portent en eux la patience de l’igwann, cette façon de rester immobile jusqu’à ce que le moment soit juste. Soufflez, maintenant. La journée a pesé comme une pierre de khan sous le soleil, mais ce soir, c’est le temps de la foumi manyok, celui où l’on se retrouve, où l’on se nourrit dans l’ombre, où l’on prépare demain sans bruit.</description>
       <pubDate>Tue, 22 Sep 2026 14:13:35 +0000</pubDate>
@@ -441,7 +493,8 @@
       <guid isPermaLink="false">horoscope-20260922-soir</guid>
       <itunes:duration>04:40</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le rallye de Bananier défie les routes et les alizés, dans votre flash-info du 22 septembre à midi</title>
       <description>On fait le point à midi chez nous, ce mardi vingt-deux septembre deux mille vingt-six. Voici sept infos qui comptent aujourd'hui.</description>
       <pubDate>Tue, 22 Sep 2026 08:26:17 +0000</pubDate>
@@ -449,7 +502,8 @@
       <guid isPermaLink="false">flash-info-20260922-midi</guid>
       <itunes:duration>03:06</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Vierge ♍ : La flamboyante boit les braises de ton regard, dans votre horoscope du 22 septembre à midi</title>
       <description>Nous sommes le mardi 22 septembre 2026 et la terre tourne encore, malgré tout ce qu’on lui a fait porter. Cet après-midi, écoutez bien : c’est la Vierge, le Bélier et le Scorpion que les astres ont désignés pour nous parler. Pas de hasard, juste des signes qui se croisent comme des chemins dans la mangrove.</description>
       <pubDate>Tue, 22 Sep 2026 08:16:02 +0000</pubDate>
@@ -457,7 +511,8 @@
       <guid isPermaLink="false">horoscope-20260922-midi</guid>
       <itunes:duration>03:49</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Cancer ♋ : Le bèf fend la marée du touloulou, dans votre horoscope du 22 septembre au matin</title>
       <description>Nous sommes le mardi 22 septembre 2026 et ce matin, le ciel se souvient de ceux qui portent la terre dans leurs mains. Vierge, Taureau, Cancer, vous êtes les racines qui boivent l’aube avant que le jour ne s’étire. Écoutez : la foumi manyok a déjà tracé son chemin dans la rosée.</description>
       <pubDate>Tue, 22 Sep 2026 02:28:19 +0000</pubDate>
@@ -465,7 +520,8 @@
       <guid isPermaLink="false">horoscope-20260922-matin</guid>
       <itunes:duration>03:49</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Météo ou climat, la Guadeloupe craint un carême sec et ses conséquences, dans votre flash-info du 21 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le lundi vingt-et-un septembre deux mille vingt-six, il est seize heures dix-huit à Paris, et voici l'essentiel de l'actualité ce soir.</description>
       <pubDate>Mon, 21 Sep 2026 14:23:36 +0000</pubDate>
@@ -473,7 +529,8 @@
       <guid isPermaLink="false">flash-info-20260921-soir</guid>
       <itunes:duration>02:53</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Verseau ♒ : Lè lavi ta soufle douvan wèy lanbi, dans votre horoscope du 21 septembre au soir</title>
       <description>Nous sommes le lundi 21 septembre 2026 et ce soir, la lune se lève sur trois signes qui portent l’ombre et la lumière comme le khan porte la sève, entre blessure et douceur. Vierge, Scorpion, Verseau, écoutez : la nuit vous parle en créole des ancêtres, pas en français des livres. Posez vos corps fatigués, laissez la foumi manyok travailler en silence sous vos peaux.</description>
       <pubDate>Mon, 21 Sep 2026 14:13:53 +0000</pubDate>
@@ -481,7 +538,8 @@
       <guid isPermaLink="false">horoscope-20260921-soir</guid>
       <itunes:duration>03:42</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Les pitchouns de Gourbeyre et Baillif voguent déjà avec David Ducosson, dans votre flash-info du 21 septembre à midi</title>
       <description>On fait le point à midi chez nous, ce lundi vingt-et-un septembre deux mille vingt-six.</description>
       <pubDate>Mon, 21 Sep 2026 08:26:58 +0000</pubDate>
@@ -489,7 +547,8 @@
       <guid isPermaLink="false">flash-info-20260921-midi</guid>
       <itunes:duration>03:00</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Poissons ♓ : Le Touloulou caresse les œufs de Karet, dans votre horoscope du 21 septembre à midi</title>
       <description>Nous sommes le lundi 21 septembre 2026 et la mer, ce matin, a laissé sur le sable des traces que personne ne lira. Pourtant, les signes parlent, Vierge, Poissons, Cancer, vous êtes appelés cet après-midi. Écoutez : l’igwann s’est réveillé sous la pierre, et sa patience est votre force aujourd’hui.</description>
       <pubDate>Mon, 21 Sep 2026 08:16:55 +0000</pubDate>
@@ -497,7 +556,8 @@
       <guid isPermaLink="false">horoscope-20260921-midi</guid>
       <itunes:duration>04:30</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Ciryl Gane devient le premier Guadeloupéen champion incontesté de l'UFC, dans votre flash-info du 21 septembre au matin</title>
       <description>Bèl bonjou Guadeloupe ! Nous sommes le lundi vingt-et-un septembre deux mille vingt-six, il est quatre heures trente-six à Paris. Voici votre flash info du matin, pour démarrer la journée informés et Lyanhnage.</description>
       <pubDate>Mon, 21 Sep 2026 02:42:53 +0000</pubDate>
@@ -505,7 +565,8 @@
       <guid isPermaLink="false">flash-info-20260921-matin</guid>
       <itunes:duration>05:08</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Verseau ♒ &amp; Scorpion ♏ : Lambi chante dans tes côtes tandis que Hèrkil danse avec l’huile de coco, dans votre horoscope du 21 septembre au matin</title>
       <description>Nous sommes le lundi 21 septembre 2026 et ce matin, la rosée sur les feuilles de malomé sent encore l’ail sauvage, signe que les esprits veillent. Écoutez : la Vierge, le Scorpion et le Verseau sont appelés à danser avec l’invisible aujourd’hui. Pas besoin de chercher loin, la réponse est déjà dans le battement de votre propre cœur.</description>
       <pubDate>Mon, 21 Sep 2026 02:30:50 +0000</pubDate>
@@ -513,7 +574,8 @@
       <guid isPermaLink="false">horoscope-20260921-matin</guid>
       <itunes:duration>04:01</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un avion en feu, des vies sauvées : l’histoire qui secoue la Guadeloupe, dans votre flash-info du 20 septembre au soir</title>
       <description>Bonsoir. Nous sommes le dimanche vingt septembre deux mille vingt-six, il est seize heures dix-sept à Paris. Voici votre Flash Info Guadeloupe, l'édition du soir.</description>
       <pubDate>Sun, 20 Sep 2026 14:21:19 +0000</pubDate>
@@ -521,7 +583,8 @@
       <guid isPermaLink="false">flash-info-20260920-soir</guid>
       <itunes:duration>02:22</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Verseau ♒ &amp; Cancer ♋ : Le lambi crache son ombre en spirale dans le bouillon du Cancer, dans votre horoscope du 20 septembre au soir</title>
       <description>Nous sommes le dimanche 20 septembre 2026 et ce soir, la lune se lève sur trois signes qui portent l’eau et la terre en eux comme une mangrove porte ses racines entre deux mondes.
 
@@ -531,7 +594,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">horoscope-20260920-soir</guid>
       <itunes:duration>04:47</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Météo en Guadeloupe ce midi : alertes et surprises vous attendent, dans votre flash-info du 20 septembre à midi</title>
       <description>On fait le point à midi, ce dimanche vingt septembre deux mille vingt-six.</description>
       <pubDate>Sun, 20 Sep 2026 08:21:01 +0000</pubDate>
@@ -539,7 +603,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">flash-info-20260920-midi</guid>
       <itunes:duration>00:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Cancer ♋ : L’hibou scrute la marée qui se retire, dans votre horoscope du 20 septembre à midi</title>
       <description>Nous sommes le dimanche 20 septembre 2026 et cet après-midi, le ciel nous parle à travers trois signes, Vierge, Scorpion, Cancer, comme trois racines qui plongent dans la même terre.
 
@@ -549,7 +614,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">horoscope-20260920-midi</guid>
       <itunes:duration>04:33</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Route du Rhum en danger à cause d'un bras de fer historique, dans votre flash-info du 20 septembre au matin</title>
       <description>Bèl bonjou Guadeloupe, nous sommes le dimanche vingt septembre deux mille vingt-six, il est quatre heures trente-deux à Paris et voici votre Flash Info du matin sur Radio Botiran.</description>
       <pubDate>Sun, 20 Sep 2026 02:39:18 +0000</pubDate>
@@ -557,7 +623,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">flash-info-20260920-matin</guid>
       <itunes:duration>04:51</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Scorpion ♏ : Le filet du pêcheur attrape la sueur des algues, dans votre horoscope du 20 septembre au matin</title>
       <description>Nous sommes le dimanche 20 septembre 2026 et ce matin, la rosée sur les feuilles de malomé chuchote encore les secrets de la nuit. Écoutez bien : aujourd’hui, c’est la Vierge qui porte l’igwann en elle, patience et précision, , la Balance qui danse avec l’urakan, équilibre et envol, , et le Scorpion qui creuse comme la foumi manyok, sans bruit mais sans relâche. Prenez votre café, respirez l’odeur du bois d’inde qui monte des cuisines, et laissez ces signes vous traverser avant que le soleil ne brûle trop fort.</description>
       <pubDate>Sun, 20 Sep 2026 02:27:43 +0000</pubDate>
@@ -565,7 +632,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">horoscope-20260920-matin</guid>
       <itunes:duration>03:50</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Acquittement surprise en cour d'assises : l'impensable verdict choque l'archipel, dans votre flash-info du 19 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe en ce samedi dix-neuf septembre deux mille vingt-six.</description>
       <pubDate>Sat, 19 Sep 2026 14:19:45 +0000</pubDate>
@@ -573,7 +641,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">flash-info-20260919-soir</guid>
       <itunes:duration>01:33</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Capricorne ♑ &amp; Vierge ♍ : Le piment lampion danse dans l'ombre du kabrit, dans votre horoscope du 19 septembre au soir</title>
       <description>Nous sommes le samedi 19 septembre 2026 et ce soir, la lune se lève sur trois signes qui portent l’ombre et la patience comme une seconde peau : Vierge, Scorpion, Capricorne.
 
@@ -583,7 +652,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">horoscope-20260919-soir</guid>
       <itunes:duration>03:51</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gwada en alerte météo ce soir, restez branchés, dans votre flash-info du 19 septembre à midi</title>
       <description>On fait le point à midi chez nous en Guadeloupe, samedi dix-neuf septembre deux mille vingt-six.</description>
       <pubDate>Sat, 19 Sep 2026 08:20:07 +0000</pubDate>
@@ -591,7 +661,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">flash-info-20260919-midi</guid>
       <itunes:duration>00:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Vierge ♍ : Un cabri danse sur les moutures de Manman dlo, dans votre horoscope du 19 septembre à midi</title>
       <description>Nous sommes le samedi 19 septembre 2026 et cet après-midi, le ciel nous parle à travers trois voix qui savent ce que c’est que de tenir debout entre deux eaux : la Vierge, la Balance, le Verseau. Écoutez bien, mes enfants, parce que ces signes-là ne mentent pas, ils pèsent, ils équilibrent, ils inventent. Alors respirez l’air de Rivière au Sel, laissez la mangrove vous rappeler que les racines tiennent même quand le sol tremble, et avancez.</description>
       <pubDate>Sat, 19 Sep 2026 08:13:32 +0000</pubDate>
@@ -599,7 +670,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">horoscope-20260919-midi</guid>
       <itunes:duration>04:21</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bovin furieux à Sainte-Rose un homme grièvement blessé, dans votre flash-info du 19 septembre au matin</title>
       <description>Bèl bonjou Guadeloupe ! Samedi dix-neuf septembre deux mille vingt-six, il est quatre heures trente-deux à Paris, et ici, l'aube se lève sur la Guadeloupe avec cette lumière qui annonce une journée à vivre.</description>
       <pubDate>Sat, 19 Sep 2026 02:38:07 +0000</pubDate>
@@ -607,7 +679,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">flash-info-20260919-matin</guid>
       <itunes:duration>04:35</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Sagittaire ♐ : L’ouassou porte la rosée au sommet du manguier, dans votre horoscope du 19 septembre au matin</title>
       <description>Nous sommes le samedi 19 septembre 2026 et ce matin, la rosée sur les feuilles de malomé chuchote que trois signes vont marcher devant les autres. Vierge, Sagittaire, Gémeaux, vous êtes ceux que l’igwann observe depuis l’aube, ceux pour qui la foumi a déjà tracé son chemin dans la terre humide. Levez-vous, le jour ne vous attendra pas.</description>
       <pubDate>Sat, 19 Sep 2026 02:26:31 +0000</pubDate>
@@ -615,7 +688,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">horoscope-20260919-matin</guid>
       <itunes:duration>04:07</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Justice sous tension en Guadeloupe justice et mémoire s’affrontent ce soir, dans votre flash-info du 18 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du vendredi dix-huit septembre deux mille vingt-six.</description>
       <pubDate>Fri, 18 Sep 2026 14:21:49 +0000</pubDate>
@@ -623,7 +697,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">flash-info-20260918-soir</guid>
       <itunes:duration>02:29</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Sagittaire ♐ &amp; Vierge ♍ : Le Wasou danse sur les chiffres de la Mango blan, dans votre horoscope du 18 septembre au soir</title>
       <description>Nous sommes le vendredi 18 septembre 2026 et ce soir, la lune se lève sur trois signes qui portent en eux la trace des marées, Vierge, Sagittaire, Cancer. Écoutez bien : l’igwann a choisi ce moment pour sortir de sa cache, immobile sous les feuilles, et vous rappeler que la patience n’est pas de l’attente, mais une forme de combat. Soufflez maintenant. Posez la journée comme on pose un panier de manyòk au pied de la case, lourd, mais nécessaire. Demain, on recommence.</description>
       <pubDate>Fri, 18 Sep 2026 14:13:33 +0000</pubDate>
@@ -631,7 +706,8 @@ Vierge, Cancer, Verseau, ce soir, c’est à vous que la nuit parle. Posez la jo
       <guid isPermaLink="false">horoscope-20260918-soir</guid>
       <itunes:duration>03:59</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Ce week-end, Pointe-à-Pitre s’anime pour célébrer son âme créole, dans votre flash-info du 18 septembre à midi</title>
       <description>Voici vos 9 segments conformes aux règles éditoriales :
 On fait le point à midi en Guadeloupe ce vendredi 18 septembre 2026. Voici les informations qui marquent l'actualité de notre archipel.</description>
@@ -640,7 +716,8 @@ On fait le point à midi en Guadeloupe ce vendredi 18 septembre 2026. Voici les 
       <guid isPermaLink="false">flash-info-20260918-midi</guid>
       <itunes:duration>03:15</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Taureau ♉ : Le manguier emporte le bœuf la nuit tombée, dans votre horoscope du 18 septembre à midi</title>
       <description>Nous sommes le vendredi 18 septembre 2026 et la mangrove chuchote les noms de ceux qui doivent écouter aujourd’hui. Cet après-midi, c’est aux enfants de la terre et de l’eau que je m’adresse, Vierge aux racines profondes, Taureau au pas lent mais sûr, Cancer qui porte sa maison sur le dos comme l’igwann porte sa peau. Avancez, la foumi manyok a déjà tracé le chemin dans l’ombre.</description>
       <pubDate>Fri, 18 Sep 2026 08:14:43 +0000</pubDate>
@@ -648,7 +725,8 @@ On fait le point à midi en Guadeloupe ce vendredi 18 septembre 2026. Voici les 
       <guid isPermaLink="false">horoscope-20260918-midi</guid>
       <itunes:duration>04:02</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Préfet et procureur lancent SOS contre l'hécatombe desThirty et un homicides en Guadeloupe, dans votre flash-info du 18 septembre au matin</title>
       <description>Bèl bonjou Guadeloupe ! Vendredi dix-huit septembre deux mille vingt-six, quatre heures trente-deux à Paris, mais ici l'aube se lève sur les mornes et les côtes de la Guadeloupe. L'info ne dort pas, et nous non plus. Voici ce qui fait l'actualité ce matin.</description>
       <pubDate>Fri, 18 Sep 2026 02:39:11 +0000</pubDate>
@@ -656,7 +734,8 @@ On fait le point à midi en Guadeloupe ce vendredi 18 septembre 2026. Voici les 
       <guid isPermaLink="false">flash-info-20260918-matin</guid>
       <itunes:duration>04:27</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Vierge ♍ : L’amandier dépose ses fruits dans tes paumes silencieuses, dans votre horoscope du 18 septembre au matin</title>
       <description>Nous sommes le vendredi 18 septembre 2026 et ce matin, le ciel se souvient des ancêtres qui marchaient avant nous sur cette terre de mangrove et de sel. Écoutez bien : la Vierge, le Sagittaire et la Balance sont les signes qui dansent dans la lumière rasante de l’aube. Préparez vos corps, vos esprits, la journée commence avec le pas de l’igwann, lent, précis, invisible jusqu’au moment où il frappe.</description>
       <pubDate>Fri, 18 Sep 2026 02:27:59 +0000</pubDate>
@@ -664,7 +743,8 @@ On fait le point à midi en Guadeloupe ce vendredi 18 septembre 2026. Voici les 
       <guid isPermaLink="false">horoscope-20260918-matin</guid>
       <itunes:duration>04:35</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Trente et un drames en neuf mois la Guadeloupe en pleure, dans votre flash-info du 17 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le jeudi dix-sept septembre deux mille vingt-six, il est seize heures vingt à Paris. Une journée marquée par des appels à la mobilisation face à la violence, des décisions judiciaires lourdes et des enjeux climatiques qui touchent directement la Guadeloupe.</description>
       <pubDate>Thu, 17 Sep 2026 14:26:14 +0000</pubDate>
@@ -672,7 +752,8 @@ On fait le point à midi en Guadeloupe ce vendredi 18 septembre 2026. Voici les 
       <guid isPermaLink="false">flash-info-20260917-soir</guid>
       <itunes:duration>03:21</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Gémeaux ♊ : La mangouste creuse où le tambouyé a posé ses doigts, dans votre horoscope du 17 septembre au soir</title>
       <description>Nous sommes le jeudi 17 septembre 2026 et ce soir, la lune se lève sur trois signes qui portent en eux la marque de l’eau et du vent, Vierge aux racines profondes, Cancer aux bras ouverts, Gémeaux aux ailes légères. Écoutez bien : ce n’est pas le ciel qui vous parle, c’est la terre sous vos pieds, la mer contre vos chevilles, l’air qui soulève les feuilles de gommier. Ce soir, c’est à vous que la nuit s’adresse. Posez la journée comme on pose un panier de manyòk après la récolte, lourd, mais nécessaire. Soufflez. L’igwann vous observe depuis les branches, immobile. Il attend que vous soyez prêts.</description>
       <pubDate>Thu, 17 Sep 2026 14:14:47 +0000</pubDate>
@@ -680,7 +761,8 @@ On fait le point à midi en Guadeloupe ce vendredi 18 septembre 2026. Voici les 
       <guid isPermaLink="false">horoscope-20260917-soir</guid>
       <itunes:duration>04:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un lézard porte-bonheur enfin protégé en Guadeloupe, dans votre flash-info du 17 septembre à midi</title>
       <description>On fait le point à midi chez nous, ce jeudi dix-sept septembre deux mille vingt-six. Sept informations à retenir pour suivre l'actualité de la Guadeloupe.</description>
       <pubDate>Thu, 17 Sep 2026 08:24:54 +0000</pubDate>
@@ -688,7 +770,8 @@ On fait le point à midi en Guadeloupe ce vendredi 18 septembre 2026. Voici les 
       <guid isPermaLink="false">flash-info-20260917-midi</guid>
       <itunes:duration>02:12</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Poissons ♓ &amp; Scorpion ♏ : Le zagalliac danse sur le rocher qui écoute, dans votre horoscope du 17 septembre à midi</title>
       <description>Nous sommes le jeudi 17 septembre 2026 et cet après-midi, la mangrove chuchote trois noms, ceux que la mer a retenus pour nous aujourd’hui.
 
@@ -698,7 +781,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260917-midi</guid>
       <itunes:duration>04:00</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Hildegarde et Réginald, votre fête tourne à l’orage, dans votre flash-info du 17 septembre au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Nous sommes le jeudi dix-sept septembre deux mille vingt-six, il est quatre heures trente-deux à Paris, et voici votre Flash Info Botiran pour bien démarrer la journée.</description>
       <pubDate>Thu, 17 Sep 2026 02:38:08 +0000</pubDate>
@@ -706,7 +790,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260917-matin</guid>
       <itunes:duration>04:01</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Sagittaire ♐ : Le mango blan danse sous l’ouassou, dans votre horoscope du 17 septembre au matin</title>
       <description>Nous sommes le jeudi 17 septembre 2026 et ce matin, la rosée n’a pas encore quitté les feuilles de malomé. Écoutez bien : la terre parle à ceux qui savent tendre l’oreille, Vierge, Verseau, Sagittaire, c’est à vous qu’elle murmure aujourd’hui. L’igwann se réveille sans bruit dans les branches, prêt à vous rappeler que la patience est une arme qui ne rouille pas.</description>
       <pubDate>Thu, 17 Sep 2026 02:27:21 +0000</pubDate>
@@ -714,7 +799,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260917-matin</guid>
       <itunes:duration>03:36</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Hugo 95 : l'archipel se souvient pour mieux se préparer, dans votre flash-info du 16 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du mercredi seize septembre deux mille vingt-six.</description>
       <pubDate>Wed, 16 Sep 2026 14:23:29 +0000</pubDate>
@@ -722,7 +808,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260916-soir</guid>
       <itunes:duration>02:43</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Capricorne ♑ &amp; Poissons ♓ : L’ombre du Kabrit porte la karet, dans votre horoscope du 16 septembre au soir</title>
       <description>Nous sommes le mercredi 16 septembre 2026 et ce soir, la lune se lève sur trois signes qui portent l’eau et la terre comme une mémoire ancienne : Vierge, Capricorne, Poissons. Vous qui avez passé la journée à compter les grains de sable, à peser les mots, à porter le poids des choses invisibles, ce soir, laissez l’igwann vous apprendre la patience. Posez. Respirez. La nuit est à vous, et la mangrove sait que les racines tiennent même quand le vent arrache les feuilles.</description>
       <pubDate>Wed, 16 Sep 2026 14:13:25 +0000</pubDate>
@@ -730,7 +817,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260916-soir</guid>
       <itunes:duration>04:39</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Carnaval de Pointe-à-Pitre déjà en effervescence malgré l’attente, dans votre flash-info du 16 septembre à midi</title>
       <description>On fait le point à midi chez nous, ce mercredi seize septembre deux mille vingt-six. Voici les infos de la mi-journée.</description>
       <pubDate>Wed, 16 Sep 2026 08:23:59 +0000</pubDate>
@@ -738,7 +826,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260916-midi</guid>
       <itunes:duration>02:46</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Scorpion ♏ : Le madè danse sous la lune gwoka, dans votre horoscope du 16 septembre à midi</title>
       <description>Nous sommes le mercredi 16 septembre 2026 et cet après-midi, le ciel de Karukera chuchote à trois signes, ceux qui marchent avec la précision d’un coutelas, ceux qui brûlent comme la flamme d’un rhum vieux, et ceux qui nagent dans les eaux troubles sans jamais se noyer. Vierge, Sagittaire, Scorpion… écoutez bien : la mangrove vous attend.</description>
       <pubDate>Wed, 16 Sep 2026 08:14:54 +0000</pubDate>
@@ -746,7 +835,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260916-midi</guid>
       <itunes:duration>03:33</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Stanley Glandor en procès à Basse-Terre, l'attente du verdict, dans votre flash-info du 16 septembre au matin</title>
       <description>Bèl bonjou Guadeloupe ! Nous sommes mercredi seize septembre deux mille vingt-six, il est quatre heures trente-et-un, et voici votre Flash Info du matin sur Radio Botiran. Une journée qui commence sous les nuages, avec des nouvelles qui comptent pour chez nous.</description>
       <pubDate>Wed, 16 Sep 2026 02:39:16 +0000</pubDate>
@@ -754,7 +844,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260916-matin</guid>
       <itunes:duration>05:17</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Taureau ♉ : Le manguié écoute le bèf ruminer, dans votre horoscope du 16 septembre au matin</title>
       <description>Nous sommes le mercredi 16 septembre 2026 et ce matin, le ciel se souvient. Il a retenu trois noms pour nous : la Vierge, le Bélier, le Taureau. Écoutez bien, les ancêtres parlent dans le vent qui soulève les feuilles de malomé devant votre porte. Ils disent que cette journée sera une mangrove : entre deux eaux, entre deux vérités, et c’est là que la vie pousse.</description>
       <pubDate>Wed, 16 Sep 2026 02:26:23 +0000</pubDate>
@@ -762,7 +853,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260916-matin</guid>
       <itunes:duration>03:57</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Procès Glandor le cœur battant des familles guadeloupéennes, dans votre flash-info du 15 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du mardi quinze septembre deux mille vingt-six.</description>
       <pubDate>Tue, 15 Sep 2026 14:22:15 +0000</pubDate>
@@ -770,7 +862,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260915-soir</guid>
       <itunes:duration>02:35</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Cancer ♋ &amp; Gémeaux ♊ : Le Gémeaux danse en sandwich entre deux marées du Cancer, dans votre horoscope du 15 septembre au soir</title>
       <description>Nous sommes le mardi 15 septembre 2026 et ce soir, la lune se lève sur les signes qui ont gardé en eux la trace des marées anciennes. Vierge, Cancer, Gémeaux, vous portez dans vos os le sel des eaux qui ont vu naître et mourir des mondes. Soufflez maintenant. Posez la journée comme on dépose un fardeau au pied d’un manguier. La nuit est à vous, et elle sait vos noms.</description>
       <pubDate>Tue, 15 Sep 2026 14:12:51 +0000</pubDate>
@@ -778,7 +871,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260915-soir</guid>
       <itunes:duration>03:43</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le Gwad Avenir Tour U19 perd la sélection francilienne mais mise sur nos jeunes talents, dans votre flash-info du 15 septembre à midi</title>
       <description>On fait le point à midi ce mardi quinze septembre deux mille vingt-six. Sept actualités à suivre en Guadeloupe, entre sport, engagement associatif et projets immobiliers. Voici vos infos de la mi-journée.</description>
       <pubDate>Tue, 15 Sep 2026 08:25:11 +0000</pubDate>
@@ -786,7 +880,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260915-midi</guid>
       <itunes:duration>02:50</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Balance ♎ : Le lamantin caresse les racines du mangouste, dans votre horoscope du 15 septembre à midi</title>
       <description>Nous sommes le mardi 15 septembre 2026 et la mangrove chuchote que cet après-midi, ce sont les Vierge, les Balance et les Gémeaux que les esprits ont choisi de visiter. Écoutez bien : l’igwann se cache dans l’ombre, mais son regard perce tout. Allez, respirez, la journée n’a pas dit son dernier mot.</description>
       <pubDate>Tue, 15 Sep 2026 08:14:42 +0000</pubDate>
@@ -794,7 +889,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260915-midi</guid>
       <itunes:duration>04:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Des poissons morts à Gaschet le mystère persiste près de trois semaines après, dans votre flash-info du 15 septembre au matin</title>
       <description>Bèl bonjou à toutes et à tous, nous sommes le mardi quinze septembre deux mille vingt-six. Voici votre Flash Info Guadeloupe, pour commencer la journée informés et ensemble.</description>
       <pubDate>Tue, 15 Sep 2026 02:39:09 +0000</pubDate>
@@ -802,7 +898,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260915-matin</guid>
       <itunes:duration>05:30</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Vierge ♍ : Le Soufrière danse avec le manguier sous la même pluie, dans votre horoscope du 15 septembre au matin</title>
       <description>Nous sommes le mardi 15 septembre 2026 et ce matin, le ciel se souvient de ceux qui marchent avec la terre sous les pieds. Écoutez : la Vierge, le Scorpion et le Cancer sont les signes qui portent la voix des ancêtres aujourd’hui. Prenez votre café, respirez l’air qui vient de la mer, et laissez l’igwann vous rappeler que la patience est une arme.</description>
       <pubDate>Tue, 15 Sep 2026 02:27:13 +0000</pubDate>
@@ -810,7 +907,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260915-matin</guid>
       <itunes:duration>04:00</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Météo du mardi : prévision des ondées et averses, dans votre flash-info du 14 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre flash info ce lundi quatorze septembre deux mille vingt-six.</description>
       <pubDate>Mon, 14 Sep 2026 14:25:04 +0000</pubDate>
@@ -818,7 +916,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260914-soir</guid>
       <itunes:duration>00:44</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Vierge ♍ : Le vent porte les pas des Chutes, dans votre horoscope du 14 septembre au soir</title>
       <description>Nous sommes le lundi 14 septembre 2026 et ce soir, la lune se lève sur Rivière au Sel comme une pirogue qui glisse sans bruit. Écoutez bien : les signes qui dansent avec elle, ce sont la Vierge, les Gémeaux, le Scorpion, ceux qui portent en eux la foumi manyok, cette patience qui construit sans hâte et sans bruit. Posez vos soucis comme on pose un panier de manioc au pied du manguier, et laissez la nuit vous laver.</description>
       <pubDate>Mon, 14 Sep 2026 14:15:09 +0000</pubDate>
@@ -826,7 +925,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260914-soir</guid>
       <itunes:duration>04:23</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un enfant de cinq ans gravement blessé à Saint-François après un accident de la route, dans votre flash-info du 14 septembre à midi</title>
       <description>On fait le point à midi chez nous, ce lundi quatorze septembre deux mille vingt-six. Voici les infos de la mi-journée.</description>
       <pubDate>Mon, 14 Sep 2026 08:27:35 +0000</pubDate>
@@ -834,7 +934,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260914-midi</guid>
       <itunes:duration>02:33</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Poissons ♓ : L’onde tisse ta patience en filet corossol, dans votre horoscope du 14 septembre à midi</title>
       <description>Nous sommes le lundi 14 septembre 2026 et la mer porte encore l’écho des marées d’hier. Cet après-midi, c’est aux signes de la Vierge, du Poissons et du Bélier que je tends l’oreille, ceux qui marchent entre la précision des racines et l’appel des vagues. Écoutez bien : la mangrove vous parle aujourd’hui.</description>
       <pubDate>Mon, 14 Sep 2026 08:17:14 +0000</pubDate>
@@ -842,7 +943,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260914-midi</guid>
       <itunes:duration>03:51</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un homme entre la vie et la mort après une chute au quai Gatine, dans votre flash-info du 14 septembre au matin</title>
       <description>Bèl bonjou Guadeloupe, et tous ceux qui nous écoutent ce matin. Nous sommes le lundi quatorze septembre deux mille vingt-six, il est quatre heures trente-huit à Paris, et voici votre Flash Info Botiran.</description>
       <pubDate>Mon, 14 Sep 2026 02:42:46 +0000</pubDate>
@@ -850,7 +952,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260914-matin</guid>
       <itunes:duration>03:42</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Capricorne ♑ : Le tim fait danser l’ombre du Mango blan, dans votre horoscope du 14 septembre au matin</title>
       <description>Nous sommes le lundi 14 septembre 2026 et ce matin, la rosée sur les feuilles de malomé chuchote que le temps est venu d’écouter. Les anciens disaient : quand l’igwann lève la tête vers le soleil avant l’aube, c’est signe que trois feux vont guider la journée. Ce matin, Vierge, Capricorne, Sagittaire, vous êtes ces feux. Réveillez-vous, mais pas n’importe comment : avec la patience de la foumi qui sait que chaque grain compte.</description>
       <pubDate>Mon, 14 Sep 2026 02:31:34 +0000</pubDate>
@@ -858,7 +961,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260914-matin</guid>
       <itunes:duration>04:27</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Demain en Guadeloupe le ciel joue à cache-cache avec la pluie, dans votre flash-info du 13 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du dimanche treize septembre deux mille vingt-six.</description>
       <pubDate>Sun, 13 Sep 2026 14:20:20 +0000</pubDate>
@@ -866,7 +970,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260913-soir</guid>
       <itunes:duration>00:39</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Capricorne ♑ &amp; Vierge ♍ : Le kabrit monte mango blan qui rit, dans votre horoscope du 13 septembre au soir</title>
       <description>Nous sommes le dimanche 13 septembre 2026 et ce soir, la lune se lève sur les trois signes que les anciens appelaient les marcheurs de l’ombre et de la lumière, ceux qui portent le poids du réel sans jamais s’y engluer. Vierge, Sagittaire, Capricorne… vos pas résonnent sur la terre rouge ce soir, comme ceux des marrons qui savaient que la nuit n’est pas l’ennemi, mais le passage. Soufflez maintenant. Posez la journée comme on pose un sac de farine de manioc après la route, avec le soulagement de celui qui sait que demain, il faudra encore nourrir.</description>
       <pubDate>Sun, 13 Sep 2026 14:12:01 +0000</pubDate>
@@ -874,7 +979,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260913-soir</guid>
       <itunes:duration>04:50</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Météo violente ce matin en Guadeloupe des rafales à 120 km/h, dans votre flash-info du 13 septembre à midi</title>
       <description>On fait le point à midi chez nous, en Guadeloupe, ce dimanche treize septembre deux mille vingt-six.</description>
       <pubDate>Sun, 13 Sep 2026 08:21:12 +0000</pubDate>
@@ -882,7 +988,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260913-midi</guid>
       <itunes:duration>00:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Vierge ♍ : Le scarabée porte l'eau vive en silence mûr, dans votre horoscope du 13 septembre à midi</title>
       <description>Nous sommes le dimanche 13 septembre 2026 et cet après-midi, la mangrove respire encore entre deux eaux, comme nous. Écoutez bien : aujourd’hui, c’est la Vierge qui cherche son chemin dans les détails, le Lion qui rugit sans se soucier des branches qui craquent, et le Scorpion qui attend, l’œil vif comme l’igwann sur son rocher. La journée est à vous, prenez-la, mais ne la serrez pas trop fort, elle a besoin d’air.</description>
       <pubDate>Sun, 13 Sep 2026 08:14:13 +0000</pubDate>
@@ -890,7 +997,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260913-midi</guid>
       <itunes:duration>03:58</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Yonn jenn fèm guadeloupéenne primé pou son matéwo ékolo a inov, dans votre flash-info du 13 septembre au matin</title>
       <description>Bèl bonjou Guadeloupe ! Dimanch trèz septanm deux mille vingt-six, il est katrè trant-twa an maten, épi nou ka démaré ansanm jodi-a pou yonn dé ti nouvèl ka fè jounen nou.</description>
       <pubDate>Sun, 13 Sep 2026 02:40:28 +0000</pubDate>
@@ -898,7 +1006,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260913-matin</guid>
       <itunes:duration>05:11</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Vierge ♍ : Gran Pélikan cueille la mousse des mangues, dans votre horoscope du 13 septembre au matin</title>
       <description>Nous sommes le dimanche 13 septembre 2026 et ce matin, la mer respire encore l’odeur du sel de la nuit. Écoutez bien : aujourd’hui, c’est aux Vierge, Lion et Poissons que les esprits de Karukera murmurent leurs vérités. Préparez-vous, la journée ne sera pas une ligne droite, mais une mangrove à traverser, les pieds dans deux eaux.</description>
       <pubDate>Sun, 13 Sep 2026 02:27:26 +0000</pubDate>
@@ -906,7 +1015,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260913-matin</guid>
       <itunes:duration>03:39</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un drame à Baillif : un homme tué par balle après une collision, dans votre flash-info du 12 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du samedi douze septembre deux mille vingt-six.</description>
       <pubDate>Sat, 12 Sep 2026 14:22:43 +0000</pubDate>
@@ -914,7 +1024,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260912-soir</guid>
       <itunes:duration>02:00</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Sagittaire ♐ &amp; Gémeaux ♊ : «Le ouassou danse sur les graines de fwou-fwou», dans votre horoscope du 12 septembre au soir</title>
       <description>Nous sommes le samedi 12 septembre 2026 et ce soir, la lune se lève sur trois signes qui portent en eux la trace des marées, Vierge, Gémeaux, Sagittaire. Vous qui avez marché aujourd’hui avec le poids des détails ou l’impatience des grands chemins, posez vos pas là où la terre respire encore. Ce soir, laissez l’igwann vous rappeler que la patience est une arme, et la foumi, que le travail invisible construit les lendemains. Soufflez. La nuit est à vous.</description>
       <pubDate>Sat, 12 Sep 2026 14:11:41 +0000</pubDate>
@@ -922,7 +1033,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260912-soir</guid>
       <itunes:duration>04:46</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Météo explosive ce midi en Guadeloupe, à suivre en direct, dans votre flash-info du 12 septembre à midi</title>
       <description>On fait le point à midi chez nous en Guadeloupe ce samedi douze septembre deux mille vingt-six.</description>
       <pubDate>Sat, 12 Sep 2026 08:19:45 +0000</pubDate>
@@ -930,7 +1042,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260912-midi</guid>
       <itunes:duration>00:17</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Scorpion ♏ : La sève de l’alowès fait danser la carapace du scarabée, dans votre horoscope du 12 septembre à midi</title>
       <description>Nous sommes le samedi 12 septembre 2026 et la mangrove chuchote les noms de ceux qui vont danser avec le jour aujourd’hui. Cet après-midi, ce sont les pas de la Vierge, du Taureau et du Scorpion que la terre retient, trois signes qui portent en eux la force tranquille de l’igwann, cette patience qui sait attendre son heure avant de frapper. Allez, respirez l’odeur du khan qui brûle sous le soleil, et laissez la foumi manyok vous rappeler que même dans l’ombre, on construit.</description>
       <pubDate>Sat, 12 Sep 2026 08:14:00 +0000</pubDate>
@@ -938,7 +1051,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260912-midi</guid>
       <itunes:duration>03:42</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Procès Caboul : verdict imminent dans le drame de Baie-Mahault, dans votre flash-info du 12 septembre au matin</title>
       <description>Bèl bonjou, chers auditeurs de Radio Botiran. Samedi douze septembre deux mille vingt-six, il est quatre heures trente-deux à Paris, et nous voilà ensemble pour ce flash info du matin. Une journée qui commence sous les ondées, mais avec des nouvelles qui comptent pour la Guadeloupe.</description>
       <pubDate>Sat, 12 Sep 2026 02:40:52 +0000</pubDate>
@@ -946,7 +1060,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260912-matin</guid>
       <itunes:duration>05:28</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Vierge ♍ : La mangouste danse l’essoufflement du bœuf sous l’awokasi, dans votre horoscope du 12 septembre au matin</title>
       <description>Nous sommes le samedi 12 septembre 2026 et ce matin, le ciel a parlé à ceux qui savent écouter sans se presser. Les signes retenus ce matin-là sont la Vierge, le Taureau et le Verseau, trois manières d’être au monde, trois façons de tenir debout quand la terre tremble sous les pieds. Préparez votre café, ouvrez la fenêtre, laissez entrer l’air du large : la journée commence avec eux, comme un zandoli qui lâche sa queue pour mieux repartir.</description>
       <pubDate>Sat, 12 Sep 2026 02:27:16 +0000</pubDate>
@@ -954,7 +1069,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260912-matin</guid>
       <itunes:duration>03:42</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Victoria, 71 ans, survit avec 200 euros par mois depuis 17 mois, dans votre flash-info du 11 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le vendredi onze septembre deux mille vingt-six, il est seize heures vingt-deux en métropole.</description>
       <pubDate>Fri, 11 Sep 2026 14:25:15 +0000</pubDate>
@@ -962,7 +1078,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260911-soir</guid>
       <itunes:duration>01:34</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Bélier ♈ : La flamme danse sur l’écaille du caïman endormi, dans votre horoscope du 11 septembre au soir</title>
       <description>Nous sommes le vendredi 11 septembre 2026 et ce soir, la lune glisse entre deux eaux, comme une pirogue qui cherche son chemin dans la mangrove. Je vous appelle, vous qui portez en vous la précision de la Vierge, l’équilibre fragile de la Balance, ou l’élan fou du Bélier, venez, posez vos fardeaux. La nuit est à nous, et elle a des oreilles pour écouter ce que le jour a étouffé.</description>
       <pubDate>Fri, 11 Sep 2026 14:14:05 +0000</pubDate>
@@ -970,7 +1087,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260911-soir</guid>
       <itunes:duration>04:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Trail urbain à Pointe-à-Pitre : les coureurs s’échauffent dès dimanche, dans votre flash-info du 11 septembre à midi</title>
       <description>On fait le point à midi chez nous, en Guadeloupe, ce vendredi onze septembre deux mille vingt-six.</description>
       <pubDate>Fri, 11 Sep 2026 08:26:26 +0000</pubDate>
@@ -978,7 +1096,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260911-midi</guid>
       <itunes:duration>01:48</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Cancer ♋ : Gwo Zandoli danse en touloulou sous la marée, dans votre horoscope du 11 septembre à midi</title>
       <description>Nous sommes le vendredi 11 septembre 2026 et la mer, ce matin, a déposé ses secrets sur le sable de Gosier comme une offrande. Écoutez bien, mes enfants : cet après-midi, c’est aux signes de la Vierge, du Cancer et du Bélier que je tends l’oreille. Que vos pas soient légers, mais que vos racines tiennent bon, la mangrove ne craint pas les marées.</description>
       <pubDate>Fri, 11 Sep 2026 08:16:53 +0000</pubDate>
@@ -986,7 +1105,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260911-midi</guid>
       <itunes:duration>04:00</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Chlordécone en Basse-Terre des bus médicaux dépistent, dans votre flash-info du 11 septembre au matin</title>
       <description>Bèl bonjou, chè tout moun ! Nous sommes le vendredi onze septembre deux mille vingt-six, il est quatre heures trente-trois à Paris, et voici votre Flash Info Guadeloupe pour bien démarrer la journée.</description>
       <pubDate>Fri, 11 Sep 2026 02:41:58 +0000</pubDate>
@@ -994,7 +1114,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260911-matin</guid>
       <itunes:duration>05:46</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Scorpion ♏ : L'odeur du café réveille les fourmis, dans votre horoscope du 11 septembre au matin</title>
       <description>Nous sommes le vendredi 11 septembre 2026 et ce matin, la mer a parlé avant le soleil. Écoutez : trois signes ont entendu l’appel des eaux profondes, Vierge, Scorpion, Poissons. Prenez votre café, mais gardez une gorgée pour les esprits qui veillent sur vos pas.</description>
       <pubDate>Fri, 11 Sep 2026 02:28:12 +0000</pubDate>
@@ -1002,7 +1123,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260911-matin</guid>
       <itunes:duration>03:48</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La Guadeloupe sous le choc après une disparition tragique à Saint-François, dans votre flash-info du 10 septembre au soir</title>
       <description>Bonsoir. Nous sommes le jeudi dix septembre deux mille vingt-six, il est seize heures dix-neuf. Voici l'édition du soir de votre Flash Info Guadeloupe.</description>
       <pubDate>Thu, 10 Sep 2026 14:21:58 +0000</pubDate>
@@ -1010,7 +1132,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260910-soir</guid>
       <itunes:duration>02:04</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Poissons ♓ : La marée crabe dessine la patience du manguier, dans votre horoscope du 10 septembre au soir</title>
       <description>Nous sommes le jeudi 10 septembre 2026 et ce soir, la lune se lève sur trois signes qui portent en eux la marque des eaux mêlées, celles de la mangrove, celles des rêves qui résistent, celles des colères qui grondent sans prévenir. Écoutez bien, vous les Vierges aux mains précises, vous les Poissons aux âmes liquides, vous les Béliers aux cornes de feu : ce soir, c’est à vous que la nuit parle. Soufflez, posez la journée comme on dépose un fardeau au pied du fromager. Demain est un autre cyclone.</description>
       <pubDate>Thu, 10 Sep 2026 14:12:38 +0000</pubDate>
@@ -1018,7 +1141,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260910-soir</guid>
       <itunes:duration>04:03</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le centre hospitalier de Capesterre-Belle-Eau offre un bol d’alizés aux aînés des Saintes, dans votre flash-info du 10 septembre à midi</title>
       <description>On fait le point à midi chez nous, ce jeudi dix septembre deux mille vingt-six. Voici les sept infos qui marquent la journée.</description>
       <pubDate>Thu, 10 Sep 2026 08:25:48 +0000</pubDate>
@@ -1026,7 +1150,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260910-midi</guid>
       <itunes:duration>02:07</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Poissons ♓ &amp; Vierge ♍ : La tortue danse avec la mangue égarée, dans votre horoscope du 10 septembre à midi</title>
       <description>Nous sommes le jeudi 10 septembre 2026 et la mer, ce matin, a laissé sur le sable des traces que seul l’igwann saurait lire sans bouger. Cet après-midi, ce sont les signes de la Vierge, des Gémeaux et des Poissons qui dansent avec les courants, ceux qui calculent, ceux qui parlent, ceux qui rêvent. Écoutez bien : la mangrove murmure des choses que vos pieds nus comprendront mieux que vos têtes.</description>
       <pubDate>Thu, 10 Sep 2026 08:15:50 +0000</pubDate>
@@ -1034,7 +1159,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260910-midi</guid>
       <itunes:duration>04:01</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Pompiers en détresse : l'archipel au bord du naufrage, dans votre flash-info du 10 septembre au matin</title>
       <description>Bèl bonjou Guadeloupe ! Nous sommes le jeudi dix septembre deux mille vingt-six, il est quatre heures trente-quatre en métropole, et voici votre Flash Info Botiran pour bien démarrer la journée.</description>
       <pubDate>Thu, 10 Sep 2026 02:41:31 +0000</pubDate>
@@ -1042,7 +1168,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260910-matin</guid>
       <itunes:duration>04:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Gémeaux ♊ : Le fwou-fwou danse entre les racines du gwoka, dans votre horoscope du 10 septembre au matin</title>
       <description>Nous sommes le jeudi 10 septembre 2026 et ce matin, l’air porte encore l’humidité de la nuit, cette moiteur qui colle aux draps comme une promesse ou un avertissement. Écoutez bien : aujourd’hui, c’est la Vierge qui marche devant, le Scorpion qui rôde dans l’ombre, et les Gémeaux qui dansent entre deux vérités. À vous de choisir quel pas suivre.</description>
       <pubDate>Thu, 10 Sep 2026 02:28:20 +0000</pubDate>
@@ -1050,7 +1177,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">horoscope-20260910-matin</guid>
       <itunes:duration>03:52</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Prison ferme pour viol d’enfant à Petit-Canal, l’affaire qui choque toute la Guadeloupe, dans votre flash-info du 9 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du mercredi neuf septembre deux mille vingt-six.</description>
       <pubDate>Wed, 09 Sep 2026 14:21:56 +0000</pubDate>
@@ -1058,7 +1186,8 @@ Vierge, Scorpion, Poissons… Les signes qui savent écouter ce que le vent empo
       <guid isPermaLink="false">flash-info-20260909-soir</guid>
       <itunes:duration>01:26</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Capricorne ♑ : Le zandoli berce en silence l’écho du kabrit, dans votre horoscope du 9 septembre au soir</title>
       <description>Nous sommes le mercredi 9 septembre 2026 et ce soir, la lune se lève sur trois feux qui brûlent sans se consumer. Vierge, Capricorne, Bélier, vos pas ont creusé des sillons profonds aujourd’hui, mais la terre sous vos pieds n’a pas fini de parler.
 
@@ -1068,7 +1197,8 @@ Soufflez. Posez la journée comme on pose un panier de mangues mûres au pied du
       <guid isPermaLink="false">horoscope-20260909-soir</guid>
       <itunes:duration>04:11</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un géant guadeloupéen tire sa révérence après 40 ans d'engagement, dans votre flash-info du 9 septembre à midi</title>
       <description>On fait le point à midi en Guadeloupe, ce mercredi neuf septembre deux mille vingt-six. Voici les infos de la mi-journée.</description>
       <pubDate>Wed, 09 Sep 2026 08:25:23 +0000</pubDate>
@@ -1076,7 +1206,8 @@ Soufflez. Posez la journée comme on pose un panier de mangues mûres au pied du
       <guid isPermaLink="false">flash-info-20260909-midi</guid>
       <itunes:duration>01:50</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Bélier ♈ : Le gwoka mange la lumière du grand scarabée, dans votre horoscope du 9 septembre à midi</title>
       <description>Nous sommes le mercredi 9 septembre 2026 et cet après-midi, comme l’igwann péyi qui se fond dans la roche avant de bondir, trois signes vont sentir la terre trembler sous leurs pas.
 
@@ -1086,7 +1217,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">horoscope-20260909-midi</guid>
       <itunes:duration>04:26</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Une Guadeloupéenne agressée en mer héliportée en urgence, dans votre flash-info du 9 septembre au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Nous sommes le mercredi neuf septembre deux mille vingt-six, il est quatre heures trente-deux en Guadeloupe, et voici votre Flash Info du matin sur Radio Botiran.</description>
       <pubDate>Wed, 09 Sep 2026 02:39:27 +0000</pubDate>
@@ -1094,7 +1226,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">flash-info-20260909-matin</guid>
       <itunes:duration>04:58</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Capricorne ♑ &amp; Balance ♎ : Le sirik compte les graines du grenad péyi, dans votre horoscope du 9 septembre au matin</title>
       <description>Nous sommes le mercredi 9 septembre 2026 et ce matin, l’aube se lève sur trois signes qui portent en eux la patience de l’igwann et la ruse du zandoli. Vierge, Balance, Capricorne, vous êtes ceux que la lumière du jour va chercher là où vous vous cachez, dans l’ombre des détails ou dans l’équilibre des branches. Écoutez : la terre sous vos pieds sait déjà ce que l’air va vous murmurer.</description>
       <pubDate>Wed, 09 Sep 2026 02:26:47 +0000</pubDate>
@@ -1102,7 +1235,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">horoscope-20260909-matin</guid>
       <itunes:duration>04:07</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un collectif bloque la RN4 au Gosier pour réclamer plus de sécurité, dans votre flash-info du 8 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le mardi huit septembre deux mille vingt-six, il est seize heures vingt-et-une à Paris, et voici les nouvelles de ce soir.</description>
       <pubDate>Tue, 08 Sep 2026 14:25:33 +0000</pubDate>
@@ -1110,7 +1244,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">flash-info-20260908-soir</guid>
       <itunes:duration>02:21</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Bélier ♈ : Le flamboyant mange l’ombre de la mangouste, dans votre horoscope du 8 septembre au soir</title>
       <description>Nous sommes le mardi 8 septembre 2026 et ce soir, la lune se lève sur les trois signes que le vent a choisis pour nous : Vierge, Capricorne, Bélier. Pas de hasard, juste la trace d’une marée qui monte, d’une sève qui cherche son chemin, d’un souffle qui veut encore croire à l’aube. Posez vos soucis comme on pose un panier de fruits mûrs au pied du manguier : ils seront là demain, mais ce soir, ils n’ont pas faim.</description>
       <pubDate>Tue, 08 Sep 2026 14:14:54 +0000</pubDate>
@@ -1118,7 +1253,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">horoscope-20260908-soir</guid>
       <itunes:duration>04:31</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le Centre des Arts de Pointe-à-Pitre ressuscite après onze ans d’oubli, dans votre flash-info du 8 septembre à midi</title>
       <description>On fait le point à midi en Guadeloupe, mardi huit septembre deux mille vingt-six. Voici les informations de cette mi-journée.</description>
       <pubDate>Tue, 08 Sep 2026 08:27:52 +0000</pubDate>
@@ -1126,7 +1262,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">flash-info-20260908-midi</guid>
       <itunes:duration>02:38</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Scorpion ♏ &amp; Vierge ♍ : La mangouste danse sur le cœur en ébullition du Scorpion, dans votre horoscope du 8 septembre à midi</title>
       <description>Nous sommes le mardi 8 septembre 2026 et le ciel, aujourd’hui, a choisi de parler à ceux qui marchent avec la terre sous les pieds, Vierge, Capricorne, Scorpion. Cet après-midi, c’est à vous que la lumière oblique du soleil dicte ses vérités. Écoutez bien : ce que vous portez en silence va enfin trouver sa forme.</description>
       <pubDate>Tue, 08 Sep 2026 08:17:17 +0000</pubDate>
@@ -1134,7 +1271,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">horoscope-20260908-midi</guid>
       <itunes:duration>04:17</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélén météo guildivienne : parapluie obligatoire ce matin, dans votre flash-info du 8 septembre au matin</title>
       <description>Bèl bonjou Guadeloupe ! Mardi huit septembre deux mille vingt-six, il est quatre heures trente-trois à Paris, et nous voilà ensemble pour ce premier flash de la journée.</description>
       <pubDate>Tue, 08 Sep 2026 02:37:31 +0000</pubDate>
@@ -1142,7 +1280,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">flash-info-20260908-matin</guid>
       <itunes:duration>02:42</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Verseau ♒ : Le lambi danse un manman dlo qui s’étire, dans votre horoscope du 8 septembre au matin</title>
       <description>Nous sommes le mardi 8 septembre 2026 et ce matin, le ciel se souvient des ancêtres qui marchaient avant nous. Les signes qui dansent dans la lumière naissante sont la Vierge, le Verseau, la Balance, trois manières de tenir debout quand le monde tremble. Écoutez : l’igwann est immobile dans les feuilles, mais son œil voit tout.</description>
       <pubDate>Tue, 08 Sep 2026 02:27:04 +0000</pubDate>
@@ -1150,7 +1289,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">horoscope-20260908-matin</guid>
       <itunes:duration>04:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Boucans et santé un duo explosif en Guadeloupe aujourd'hui, dans votre flash-info du 7 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du lundi sept septembre deux mille vingt-six.</description>
       <pubDate>Mon, 07 Sep 2026 14:34:40 +0000</pubDate>
@@ -1158,7 +1298,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">flash-info-20260907-soir</guid>
       <itunes:duration>02:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Poissons ♓ : Le vent lave l’écaille du karet, dans votre horoscope du 7 septembre au soir</title>
       <description>Nous sommes le lundi 7 septembre 2026 et ce soir, la lune se lève sur trois signes qui portent l’eau et la terre comme des racines sous la peau : Vierge, Poissons, Taureau. Vous qui savez ce que c’est que d’attendre, de sentir la vie pousser sans bruit sous l’écorce, écoutez bien. La nuit va vous parler dans une langue que vous connaissez déjà, celle des igwann immobiles, celle des khan qui murmurent dans le vent, celle des gouti qui traversent les sentiers sans laisser de trace. Soufflez. Posez la journée comme on pose un panier de manyòk au pied du manguier. Demain est une autre terre à labourer. Ce soir, c’est l’heure des esprits qui dansent entre les gouttes de pluie.</description>
       <pubDate>Mon, 07 Sep 2026 14:14:38 +0000</pubDate>
@@ -1166,7 +1307,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">horoscope-20260907-soir</guid>
       <itunes:duration>04:16</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le Cygne Noir met KO l'US Baie-Mahault en ouverture, dans votre flash-info du 7 septembre à midi</title>
       <description>On fait le point à midi chez nous, ce lundi sept septembre deux mille vingt-six. Voici les sept infos de la mi-journée.</description>
       <pubDate>Mon, 07 Sep 2026 08:28:14 +0000</pubDate>
@@ -1174,7 +1316,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">flash-info-20260907-midi</guid>
       <itunes:duration>02:43</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Scorpion ♏ : Le Bèf à Bos porte l’ombre arrondie du Hèrkil, dans votre horoscope du 7 septembre à midi</title>
       <description>Nous sommes le lundi 7 septembre 2026 et cet après-midi, c’est le souffle des ancêtres qui souffle sur trois signes, la Vierge, le Taureau, le Scorpion. Écoutez bien : la terre vous parle, la mer vous attend, et quelque part, un igwann immobile dans la chaleur vous observe. Prenez ce que la journée vous donne, mais surtout, ne vous laissez pas prendre.</description>
       <pubDate>Mon, 07 Sep 2026 08:17:11 +0000</pubDate>
@@ -1182,7 +1325,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">horoscope-20260907-midi</guid>
       <itunes:duration>04:07</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Premier Guadeloupéen à triompher à l'UFC Salahdine Parnasse écrit l'histoire, dans votre flash-info du 7 septembre au matin</title>
       <description>Bèl bonjou la Guadeloupe ! Nous sommes lundi sept septembre deux mille vingt-six, il est quatre heures trente-cinq à Paris. Une nouvelle journée commence sous les ondées, avec des nouvelles qui comptent pour chez nous.</description>
       <pubDate>Mon, 07 Sep 2026 02:41:57 +0000</pubDate>
@@ -1190,7 +1334,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">flash-info-20260907-matin</guid>
       <itunes:duration>04:12</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Sagittaire ♐ : Gran Pélikan porte Wasou sur ses ailes en traversant la pluie, dans votre horoscope du 7 septembre au matin</title>
       <description>Nous sommes le lundi 7 septembre 2026 et ce matin, la rosée sur les feuilles de malomé sent encore l’ail sauvage, signe que les esprits veillent. Écoutez bien : aujourd’hui, c’est la Vierge qui marche en tête, suivie du Lion qui rugit sans crier gare, et du Sagittaire qui vise déjà plus loin que l’horizon. Prenez votre café, mais gardez un œil sur l’urakan, il tourne au-dessus des mornes, et ça, c’est jamais innocent.</description>
       <pubDate>Mon, 07 Sep 2026 02:29:43 +0000</pubDate>
@@ -1198,7 +1343,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">horoscope-20260907-matin</guid>
       <itunes:duration>03:53</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La canne à sucre en danger grave en Guadeloupe, dans votre flash-info du 6 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du dimanche six septembre deux mille vingt-six.</description>
       <pubDate>Sun, 06 Sep 2026 14:21:01 +0000</pubDate>
@@ -1206,7 +1352,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">flash-info-20260906-soir</guid>
       <itunes:duration>01:43</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Bélier ♈ : Gran Pélikan danse sur la queue du Gwo Zandoli, dans votre horoscope du 6 septembre au soir</title>
       <description>Nous sommes le dimanche 6 septembre 2026 et ce soir, la lune se lève sur trois feux qui dansent dans le même vent : la Vierge, le Lion, le Bélier. Écoutez bien, ce n’est pas un hasard si ces signes se parlent ce soir. La terre tremble un peu sous leurs pas, comme sous ceux de l’igwann quand il sent venir l’orage. Soufflez, posez la journée. Demain est une autre mangrove à traverser.</description>
       <pubDate>Sun, 06 Sep 2026 14:11:20 +0000</pubDate>
@@ -1214,7 +1361,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">horoscope-20260906-soir</guid>
       <itunes:duration>04:59</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Attention chyè-a ka monté en Guadeloupe, dans votre flash-info du 6 septembre à midi</title>
       <description>On fait le point à midi chez nous en Guadeloupe ce dimanche six septembre deux mille vingt-six.</description>
       <pubDate>Sun, 06 Sep 2026 08:20:21 +0000</pubDate>
@@ -1222,7 +1370,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">flash-info-20260906-midi</guid>
       <itunes:duration>00:14</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Sagittaire ♐ &amp; Gémeaux ♊ : Le Wasou et le Foufou dansent sur la même vague de marakoudja, dans votre horoscope du 6 septembre à midi</title>
       <description>Nous sommes le dimanche 6 septembre 2026 et cet après-midi, le ciel nous murmure trois noms comme des feuilles qui tombent sur la terre de Karukera : Vierge, Gémeaux, Sagittaire. Écoutez bien, vous qui portez ces signes en vous, la journée n’a pas dit son dernier mot. Elle respire encore, elle attend vos pas sur le chemin.</description>
       <pubDate>Sun, 06 Sep 2026 08:13:37 +0000</pubDate>
@@ -1230,7 +1379,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">horoscope-20260906-midi</guid>
       <itunes:duration>04:02</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gosiériens sous le choc après un crime de trop, dans votre flash-info du 6 septembre au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Dimanche six septembre deux mille vingt-six, il est quatre heures trente-deux à Paris, et nous voilà ensemble pour ce premier flash de la journée. L'actualité ne dort jamais, et ce matin, elle nous parle de justice, de mémoire, et de défis qui touchent directement le quotidien de la Guadeloupe.</description>
       <pubDate>Sun, 06 Sep 2026 02:39:02 +0000</pubDate>
@@ -1238,7 +1388,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">flash-info-20260906-matin</guid>
       <itunes:duration>04:54</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Sagittaire ♐ &amp; Cancer ♋ : L’ouassou rêve d’un Touloulou qui lui tend la lune, dans votre horoscope du 6 septembre au matin</title>
       <description>Nous sommes le dimanche 6 septembre 2026 et ce matin, le ciel se souvient des anciens qui disaient : « Quand la rosée est lourde sur les feuilles de malomé, c’est que les esprits ont passé la nuit à tisser nos destins. » Aujourd’hui, la parole est donnée à la Vierge, au Cancer et au Sagittaire, trois signes qui portent en eux la patience de l’igwann, la mémoire de l’iyam et l’envol de l’urakan. Écoutez bien : ce que la terre murmure à l’aube, le vent le portera jusqu’à vous.</description>
       <pubDate>Sun, 06 Sep 2026 02:26:53 +0000</pubDate>
@@ -1246,7 +1397,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">horoscope-20260906-matin</guid>
       <itunes:duration>04:02</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Teddy Riner forfait pour les Mondiaux de judo, dans votre flash-info du 5 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce samedi cinq septembre deux mille vingt-six.</description>
       <pubDate>Sat, 05 Sep 2026 14:20:59 +0000</pubDate>
@@ -1254,7 +1406,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">flash-info-20260905-soir</guid>
       <itunes:duration>02:16</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Vierge ♍ : Lion dévore l’ombre de la mango, dans votre horoscope du 5 septembre au soir</title>
       <description>Nous sommes le samedi 5 septembre 2026 et ce soir, la lune se lève sur trois feux qui dansent différemment. Vierge, tu es comme l’igwann péyi : immobile en apparence, mais ton esprit calcule chaque mouvement, chaque silence. Sagittaire, ton rire est celui de l’urakan, tu traverses les cieux sans t’excuser, et ce soir, tu emportes avec toi ceux qui osent te suivre. Lion, tu es la flamme du gommier blanc : puissante, nécessaire, mais souviens-toi que même les arbres les plus droits ont besoin d’ombre pour ne pas se consumer. Soufflez maintenant. Posez la journée comme on pose un panier de manyòk au pied du manguier, elle a donné ce qu’elle pouvait. Demain est une autre terre.</description>
       <pubDate>Sat, 05 Sep 2026 14:11:43 +0000</pubDate>
@@ -1262,7 +1415,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">horoscope-20260905-soir</guid>
       <itunes:duration>05:02</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Météo explosive ce samedi en Guadeloupe attention aux orages, dans votre flash-info du 5 septembre à midi</title>
       <description>On fait le point à midi, ce samedi cinq septembre deux mille vingt-six.</description>
       <pubDate>Sat, 05 Sep 2026 08:20:21 +0000</pubDate>
@@ -1270,7 +1424,8 @@ Vierge, Bélier, Scorpion, aujourd’hui, c’est votre heure. Pas pour plaire, 
       <guid isPermaLink="false">flash-info-20260905-midi</guid>
       <itunes:duration>00:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Vierge ♍ : Le colibri danse sur la mangue qui n’a pas encore mûri, dans votre horoscope du 5 septembre à midi</title>
       <description>Nous sommes le samedi 5 septembre 2026 et la mangrove chuchote que cet après-midi, c’est à la Vierge, aux Gémeaux et au Verseau qu’elle tend ses racines.
 
@@ -1280,7 +1435,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260905-midi</guid>
       <itunes:duration>03:58</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Mister Guadeloupe pompier : le feu et la flamme, dans votre flash-info du 5 septembre au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Samedi cinq septembre deux mille vingt-six, il est quatre heures trente et une à Paris, et voici votre flash info du matin sur Radio Botiran.</description>
       <pubDate>Sat, 05 Sep 2026 02:38:42 +0000</pubDate>
@@ -1288,7 +1444,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260905-matin</guid>
       <itunes:duration>05:26</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Bélier ♈ &amp; Gémeaux ♊ : Léwo foufou danse sur l’ombre du gwo zandoli, dans votre horoscope du 5 septembre au matin</title>
       <description>Nous sommes le samedi 5 septembre 2026 et ce matin, le ciel se souvient qu’il a porté nos ancêtres avant nous. Les signes qui dansent dans la lumière naissante sont ceux de la Vierge, des Gémeaux et du Bélier, trois feux qui ne brûlent pas de la même façon, mais qui éclairent ceux qui savent regarder. Prenez votre café comme on prend une parole : lentement, pour en garder le goût sur la langue.</description>
       <pubDate>Sat, 05 Sep 2026 02:25:58 +0000</pubDate>
@@ -1296,7 +1453,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260905-matin</guid>
       <itunes:duration>04:03</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le dernier match de Gaël Monfils à l'US Open émeut la Guadeloupe, dans votre flash-info du 4 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du vendredi quatre septembre deux mille vingt-six.</description>
       <pubDate>Fri, 04 Sep 2026 14:20:31 +0000</pubDate>
@@ -1304,7 +1462,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260904-soir</guid>
       <itunes:duration>01:34</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Capricorne ♑ : La mangouste danse sur l'ombre du kabrit, dans votre horoscope du 4 septembre au soir</title>
       <description>Nous sommes le vendredi 4 septembre 2026 et ce soir, la lune se lève sur trois signes qui portent en eux la marque des racines profondes, celles qu’on ne voit pas, mais qui tiennent l’arbre debout. Vierge, Capricorne, Scorpion : vous êtes les gardiens des secrets que la terre murmure quand le jour s’efface. Laissez tomber les masques, ce soir. La nuit est à vous, et elle sait.</description>
       <pubDate>Fri, 04 Sep 2026 14:12:23 +0000</pubDate>
@@ -1312,7 +1471,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260904-soir</guid>
       <itunes:duration>04:04</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Marie-Kate Céleste expose ses toiles à Grand-Bourg jusqu'au 15 septembre, dans votre flash-info du 4 septembre à midi</title>
       <description>Pause actualité chez nous ce vendredi quatre septembre deux mille vingt-six. Il est dix heures vingt-deux à Paris, et c'est l'heure de votre flash info de mi-journée.</description>
       <pubDate>Fri, 04 Sep 2026 08:25:56 +0000</pubDate>
@@ -1320,7 +1480,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260904-midi</guid>
       <itunes:duration>02:25</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Poissons ♓ &amp; Cancer ♋ : La méduse caresse l’épaule du crabe rouge, dans votre horoscope du 4 septembre à midi</title>
       <description>Nous sommes le vendredi 4 septembre 2026 et cet après-midi, le ciel s’ouvre comme une mangrove à marée basse, on y voit les racines, les chemins secrets, et ceux qui savent marcher sans se noyer. Je vous appelle, Vierge, Cancer, Poissons : vos pas aujourd’hui sont ceux de l’igwann péyi, immobiles en apparence, mais prêts à bondir quand l’instant sera juste. Avancez. La foumi manyok vous regarde.</description>
       <pubDate>Fri, 04 Sep 2026 08:15:42 +0000</pubDate>
@@ -1328,7 +1489,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260904-midi</guid>
       <itunes:duration>04:29</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>La Guadeloupe et ses sargasses sous haute surveillance sénatoriale, dans votre flash-info du 4 septembre au matin</title>
       <description>Bèl bonjou à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce vendredi quatre septembre deux mille vingt-six. Il est quatre heures trente-deux à Paris, et déjà la Guadeloupe s'éveille sous un ciel chargé.</description>
       <pubDate>Fri, 04 Sep 2026 02:38:48 +0000</pubDate>
@@ -1336,7 +1498,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260904-matin</guid>
       <itunes:duration>04:17</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Capricorne ♑ : Le bèf tisse des fils d’or dans la rosée, dans votre horoscope du 4 septembre au matin</title>
       <description>Nous sommes le vendredi 4 septembre 2026 et ce matin, le ciel se souvient des racines qui tiennent debout. Ce sont les signes de la terre, Vierge, Capricorne, Taureau, qui ouvrent la marche aujourd’hui. Écoutez : la terre parle bas, mais elle ne ment jamais.</description>
       <pubDate>Fri, 04 Sep 2026 02:27:10 +0000</pubDate>
@@ -1344,7 +1507,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260904-matin</guid>
       <itunes:duration>03:56</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Canotages à l’arrêt la saison de Thuram terminée, dans votre flash-info du 3 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du jeudi trois septembre deux mille vingt-six.</description>
       <pubDate>Thu, 03 Sep 2026 14:25:28 +0000</pubDate>
@@ -1352,7 +1516,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260903-soir</guid>
       <itunes:duration>02:39</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Cancer ♋ : Le sucrier mange les cendres du crabe, dans votre horoscope du 3 septembre au soir</title>
       <description>Nous sommes le jeudi 3 septembre 2026 et ce soir, la lune se lève sur les signes qui portent l’eau et la terre dans leur nom : Vierge aux racines profondes, Cancer aux carapaces fragiles, Gémeaux aux ailes de vent. Écoutez bien, mes sœurs, mes frères, l’igwann attend son heure dans l’ombre, et la foumi manyok a déjà commencé son travail. Soufflez, posez la journée comme on dépose un panier de manyòk au pied de la case. La nuit est à vous, mais elle n’appartient à personne.</description>
       <pubDate>Thu, 03 Sep 2026 14:14:21 +0000</pubDate>
@@ -1360,7 +1525,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260903-soir</guid>
       <itunes:duration>04:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>L’athlète légendaire Rémi Marcoux tire sa révérence après des décennies de compétition, dans votre flash-info du 3 septembre à midi</title>
       <description>On fait le point à midi chez nous, ce jeudi trois septembre deux mille vingt-six. Voici les infos de cette rentrée scolaire et du sport local en Guadeloupe.</description>
       <pubDate>Thu, 03 Sep 2026 08:25:55 +0000</pubDate>
@@ -1368,7 +1534,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260903-midi</guid>
       <itunes:duration>02:20</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Bélier ♈ : Le bélier danse sur l’écorce mûre de la vierge, dans votre horoscope du 3 septembre à midi</title>
       <description>Nous sommes le jeudi 3 septembre 2026 et cet après-midi, la mangrove chuchote trois noms à mon oreille : Vierge, Verseau, Bélier. Écoutez bien, ces signes-là portent aujourd’hui la patience de l’igwann et l’envol de l’urakan. Prenez votre souffle, la journée n’a pas dit son dernier mot.</description>
       <pubDate>Thu, 03 Sep 2026 08:15:53 +0000</pubDate>
@@ -1376,7 +1543,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260903-midi</guid>
       <itunes:duration>04:08</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un homme retrouvé sans vie dans une case abandonnée au Moule, l’enquête est ouverte, dans votre flash-info du 3 septembre au matin</title>
       <description>Bèl bonjou Guadeloupe, nous sommes le jeudi trois septembre deux mille vingt-six, il est cinq heures treize.</description>
       <pubDate>Thu, 03 Sep 2026 03:19:20 +0000</pubDate>
@@ -1384,7 +1552,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260903-matin</guid>
       <itunes:duration>04:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Gémeaux ♊ : Le manguier en fleur danse avec les ailes du fwou-fwou, dans votre horoscope du 3 septembre au matin</title>
       <description>Nous sommes le jeudi 3 septembre 2026 et ce matin, le ciel se souvient. Il a retenu trois noms pour nous parler : la Vierge, le Sagittaire, les Gémeaux. Écoutez bien, ceux-là, aujourd’hui, c’est à vous que la mangrove murmure.</description>
       <pubDate>Thu, 03 Sep 2026 03:06:57 +0000</pubDate>
@@ -1392,7 +1561,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260903-matin</guid>
       <itunes:duration>04:20</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Le Mémorial ACTe sous le feu des critiques après des soirées controversées, dans votre flash-info du 2 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du mercredi deux septembre deux mille vingt-six.</description>
       <pubDate>Wed, 02 Sep 2026 14:25:51 +0000</pubDate>
@@ -1400,7 +1570,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260902-soir</guid>
       <itunes:duration>02:14</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Capricorne ♑ &amp; Lion ♌ : Le pélikan rêve en montant les mornes, dans votre horoscope du 2 septembre au soir</title>
       <description>Nous sommes le mercredi 2 septembre 2026 et ce soir, la lune se lève sur les trois qui savent tenir debout sans faire de bruit. Vierge, Capricorne, Lion, ceux qui portent le poids des choses sans le montrer, ceux qui calculent leurs pas comme l’igwann avant de frapper, ceux qui brûlent sans se consumer. Posez vos charges, mes enfants. La nuit est à vous, et la mangrove veille.</description>
       <pubDate>Wed, 02 Sep 2026 14:15:02 +0000</pubDate>
@@ -1408,7 +1579,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260902-soir</guid>
       <itunes:duration>04:30</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Chaleena Valmond réveille nos racines avec des cours en ligne à la rentrée, dans votre flash-info du 2 septembre à midi</title>
       <description>On fait le point à midi chez nous. Mercredi deux septembre deux mille vingt-six, voici vos infos de la mi-journée.</description>
       <pubDate>Wed, 02 Sep 2026 08:25:29 +0000</pubDate>
@@ -1416,7 +1588,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260902-midi</guid>
       <itunes:duration>01:42</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Gémeaux ♊ &amp; Capricorne ♑ : Le fwou-fwou danse sur l’arc-en-ciel de la Source, dans votre horoscope du 2 septembre à midi</title>
       <description>Nous sommes le mercredi 2 septembre 2026 et la mangrove chuchote les noms de ceux qui vont danser avec le jour cet après-midi. Écoutez bien : la Vierge, le Capricorne, les Gémeaux, trois façons de tenir debout quand le soleil tape sur les épaules. Prenez votre ombre avec vous, elle sait des choses que vous ignorez.</description>
       <pubDate>Wed, 02 Sep 2026 08:16:23 +0000</pubDate>
@@ -1424,7 +1597,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260902-midi</guid>
       <itunes:duration>05:05</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Football bloqué en Guadeloupe, les passionnés en colère, dans votre flash-info du 2 septembre au matin</title>
       <description>Bèl bonjou Guadeloupe ! Nous sommes mercredi deux septembre deux mille vingt-six, il est quatre heures quarante-huit à Paris, et voici votre Flash Info du matin sur Radio Botiran.</description>
       <pubDate>Wed, 02 Sep 2026 02:54:28 +0000</pubDate>
@@ -1432,7 +1606,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260902-matin</guid>
       <itunes:duration>04:54</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Lion ♌ &amp; Balance ♎ : Léyon vlé dansé zansèt dlo, dans votre horoscope du 2 septembre au matin</title>
       <description>Nous sommes le mercredi 2 septembre 2026 et ce matin, la mangrove chuchote les noms de ceux qui vont danser avec le jour. Écoutez : la Vierge, la Balance, le Lion, trois feux sous la même rosée. Ce matin, c’est à vous que la terre rouge de Basse-Terre offre ses premières gouttes.</description>
       <pubDate>Wed, 02 Sep 2026 02:42:49 +0000</pubDate>
@@ -1440,7 +1615,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260902-matin</guid>
       <itunes:duration>04:23</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Carrière de Deshaies relancée après 20 mois d’arrêt les riverains inquiets, dans votre flash-info du 1 septembre au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du mardi premier septembre deux mille vingt-six.</description>
       <pubDate>Tue, 01 Sep 2026 14:24:17 +0000</pubDate>
@@ -1448,7 +1624,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260901-soir</guid>
       <itunes:duration>01:52</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Scorpion ♏ : Taureau, la vanille mûrit en silence pendant que tu comptes les pas de ton hèrkil, dans votre horoscope du 1 septembre au soir</title>
       <description>Nous sommes le mardi 1 septembre 2026 et ce soir, la lune se lève sur trois signes qui portent la terre en eux comme le manyòk porte la mémoire des jardins de case : Vierge, Scorpion, Taureau. Vous qui savez compter les grains de sable et les silences, vous qui sentez la morsure des racines avant qu’elles ne percent la peau, ce soir est à vous. Posez la journée comme on pose un panier de fruits mûrs au pied de l’arbre, elle a donné ce qu’elle pouvait. Soufflez maintenant. L’igwann veille, immobile dans l’ombre.</description>
       <pubDate>Tue, 01 Sep 2026 14:14:28 +0000</pubDate>
@@ -1456,7 +1633,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260901-soir</guid>
       <itunes:duration>03:59</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Davy Vaïtilingon relance sa carrière avec une victoire historique, dans votre flash-info du 1 septembre à midi</title>
       <description>Mardi premier septembre deux mille vingt-six, il est midi en Guadeloupe. Voici les informations qui rythment votre journée. Six actualités locales et culturelles à retenir ce midi.</description>
       <pubDate>Tue, 01 Sep 2026 08:25:14 +0000</pubDate>
@@ -1464,7 +1642,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260901-midi</guid>
       <itunes:duration>01:45</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Bélier ♈ : Le mango blan danse sous la suie du gwo zandoli, dans votre horoscope du 1 septembre à midi</title>
       <description>Nous sommes le mardi 1er septembre 2026 et cet après-midi, le ciel nous parle à travers trois signes qui dansent ensemble comme des foumis manyok autour de leur nid, Vierge, Balance, Bélier. Écoutez bien : ces voix-là ne chuchotent pas, elles résistent, elles persistent, elles avancent malgré tout. Prenez votre part de cette énergie-là pour traverser la journée.</description>
       <pubDate>Tue, 01 Sep 2026 08:16:35 +0000</pubDate>
@@ -1472,7 +1651,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260901-midi</guid>
       <itunes:duration>04:12</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Rentrée scolaire tendue à Capesterre et Trois-Rivières l’eau menace les cours, dans votre flash-info du 31 août au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre flash info en ce lundi trente-et-un août deux mille vingt-six.</description>
       <pubDate>Mon, 31 Aug 2026 14:26:00 +0000</pubDate>
@@ -1480,7 +1660,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260831-soir</guid>
       <itunes:duration>02:36</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Scorpion ♏ : La mangouste danse sur les braises de la couresse, dans votre horoscope du 31 août au soir</title>
       <description>Nous sommes le lundi 31 août 2026 et ce soir, la lune se lève sur trois feux qui méritent qu’on les écoute. Vierge, Verseau, Scorpion, vos noms résonnent comme des racines sous la terre, comme des branches qui craquent dans le vent de la Soufrière. Posez vos soucis, laissez la nuit vous laver. Ce soir, c’est à vous que je parle.</description>
       <pubDate>Mon, 31 Aug 2026 14:15:17 +0000</pubDate>
@@ -1488,7 +1669,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260831-soir</guid>
       <itunes:duration>04:04</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>L'USCB en feu aux tirs au but pour la Coupe de France, dans votre flash-info du 31 août à midi</title>
       <description>Flash info Guadeloupe du lundi trente-et-un août deux mille vingt-six. On fait le point à midi sur l'actualité sportive et locale.</description>
       <pubDate>Mon, 31 Aug 2026 08:27:34 +0000</pubDate>
@@ -1496,7 +1678,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260831-midi</guid>
       <itunes:duration>02:23</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Sagittaire ♐ &amp; Lion ♌ : Le flamboyant boit l’eau qui monte sous les cuisses du Sagittaire, dans votre horoscope du 31 août à midi</title>
       <description>Nous sommes le lundi 31 août 2026 et la mangrove chuchote les noms de ceux qui doivent écouter aujourd’hui. Cet après-midi, ce sont les Vierge, les Sagittaire et les Lion que les esprits ont désignés, pas pour les flatter, non, mais pour leur rappeler que la terre sous leurs pieds n’est pas un décor, mais un vivant qui respire. Alors, prenez une gorgée de ce rhum arrangé à la malomé, laissez la chaleur vous traverser, et avancez.</description>
       <pubDate>Mon, 31 Aug 2026 08:17:17 +0000</pubDate>
@@ -1504,7 +1687,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260831-midi</guid>
       <itunes:duration>04:43</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Inondations à Saint-François trois femmes secourues en urgence, dans votre flash-info du 31 août au matin</title>
       <description>Bèl bonjou, Guadeloupe ! Lundi trente-et-un août deux mille vingt-six, il est quatre heures trente-trois à Paris, et nous voici ensemble pour ce flash info du matin.</description>
       <pubDate>Mon, 31 Aug 2026 02:40:03 +0000</pubDate>
@@ -1512,7 +1696,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260831-matin</guid>
       <itunes:duration>04:07</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Gémeaux ♊ : Le fwou fwou boit l’écho du couteau bien tranchant, dans votre horoscope du 31 août au matin</title>
       <description>Nous sommes le lundi 31 août 2026 et ce matin, le ciel de Karukera souffle les noms de ceux qui vont marcher sous son regard : Vierge, Bélier, Gémeaux. Écoutez bien, la terre est encore humide de la nuit, et les esprits parlent bas dans les feuilles du gommier. C’est l’heure où l’igwann sort de sa cache, où la foumi manyok trace son chemin sans bruit. À vous de trouver le vôtre.</description>
       <pubDate>Mon, 31 Aug 2026 02:28:31 +0000</pubDate>
@@ -1520,7 +1705,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260831-matin</guid>
       <itunes:duration>03:48</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Orage et jet-ski sous vigilance orange, la Guadeloupe en mode survie, dans votre flash-info du 30 août au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du dimanche trente août deux mille vingt-six.</description>
       <pubDate>Sun, 30 Aug 2026 14:21:22 +0000</pubDate>
@@ -1528,7 +1714,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260830-soir</guid>
       <itunes:duration>01:37</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Taureau ♉ &amp; Bélier ♈ : Le flamboyant crache les racines du taureau, dans votre horoscope du 30 août au soir</title>
       <description>Nous sommes le dimanche 30 août 2026 et ce soir, les étoiles ont choisi leur monde : la terre ferme de la Vierge, la patience du Taureau, l’élan du Bélier. Trois forces qui savent ce que résister veut dire, comme l’igwann sous la pluie, immobile, mais prêt. Soufflez, posez la journée. La nuit est à vous, et la mangrove veille.</description>
       <pubDate>Sun, 30 Aug 2026 14:11:57 +0000</pubDate>
@@ -1536,7 +1723,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">horoscope-20260830-soir</guid>
       <itunes:duration>04:07</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Un phénomène météo va bousculer votre dimanche guadeloupéen, dans votre flash-info du 30 août à midi</title>
       <description>On fait le point à midi chez nous, en Guadeloupe, ce dimanche trente août deux mille vingt-six.</description>
       <pubDate>Sun, 30 Aug 2026 08:30:52 +0000</pubDate>
@@ -1544,7 +1732,8 @@ Trois signes qui savent ce que c’est que de porter plusieurs vies en soi, comm
       <guid isPermaLink="false">flash-info-20260830-midi</guid>
       <itunes:duration>00:16</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Verseau ♒ : La mangouste danse sur le tambour qui attend, dans votre horoscope du 30 août à midi</title>
       <description>Nous sommes le dimanche 30 août 2026 et cet après-midi, le ciel de Karukera nous murmure trois noms, trois feux qui dansent différemment, mais qui brûlent de la même braise.
 
@@ -1554,7 +1743,8 @@ Vierge, Bélier, Verseau… Vous êtes les enfants de cette heure où la terre r
       <guid isPermaLink="false">horoscope-20260830-midi</guid>
       <itunes:duration>03:51</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Incendie criminel à Trois-Rivières un radar tourelle réduit en cendres, dans votre flash-info du 30 août au matin</title>
       <description>Bèl bonjou Guadeloupe ! Dimanche trente août deux mille vingt-six, il est quatre heures trente-quatre à Paris, et nous voilà ensemble pour ce premier flash de la journée. La Guadeloupe s'éveille sous un ciel chargé, avec des nouvelles qui touchent chaque commune, chaque famille.</description>
       <pubDate>Sun, 30 Aug 2026 02:39:46 +0000</pubDate>
@@ -1562,7 +1752,8 @@ Vierge, Bélier, Verseau… Vous êtes les enfants de cette heure où la terre r
       <guid isPermaLink="false">flash-info-20260830-matin</guid>
       <itunes:duration>04:02</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Bélier ♈ : Le flamboyant craque sous tes doigts comme la patience, dans votre horoscope du 30 août au matin</title>
       <description>Nous sommes le dimanche 30 août 2026 et ce matin, le ciel s’est posé sur trois signes comme une feuille de malomé sur le seuil d’une case, pour écarter ce qui ne doit pas entrer. Vierge, Balance, Bélier : aujourd’hui, c’est à vous que la lumière de l’aube murmure des vérités que les autres n’entendront pas. Réveillez-vous avec l’odeur du café de pays et la patience de l’igwann sous les feuilles, ce qui doit venir viendra.</description>
       <pubDate>Sun, 30 Aug 2026 02:27:43 +0000</pubDate>
@@ -1570,7 +1761,8 @@ Vierge, Bélier, Verseau… Vous êtes les enfants de cette heure où la terre r
       <guid isPermaLink="false">horoscope-20260830-matin</guid>
       <itunes:duration>04:11</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Orages violents demain en Guadeloupe : prudence sur les routes, dans votre flash-info du 29 août au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du samedi vingt-neuf août deux mille vingt-six.</description>
       <pubDate>Sat, 29 Aug 2026 14:21:25 +0000</pubDate>
@@ -1578,7 +1770,8 @@ Vierge, Bélier, Verseau… Vous êtes les enfants de cette heure où la terre r
       <guid isPermaLink="false">flash-info-20260829-soir</guid>
       <itunes:duration>01:37</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Cancer ♋ : Le zandoli coule entre tes doigts comme la marée sur les algues, dans votre horoscope du 29 août au soir</title>
       <description>Nous sommes le samedi 29 août 2026 et ce soir, les astres ont choisi de murmurer à l’oreille de trois signes seulement, ceux qui portent en eux la patience de l’igwann, l’équilibre fragile de la zandoli sur sa branche, et cette sensibilité de mangrove entre deux eaux.
 
@@ -1588,7 +1781,8 @@ Vierge, Balance, Cancer… ce soir, c’est à vous que la nuit parle. Posez vos
       <guid isPermaLink="false">horoscope-20260829-soir</guid>
       <itunes:duration>04:24</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>L'alerte météo en Guadeloupe ce midi change la donne, dans votre flash-info du 29 août à midi</title>
       <description>On fait le point à midi chez nous, en Guadeloupe, ce samedi vingt-neuf août deux mille vingt-six.</description>
       <pubDate>Sat, 29 Aug 2026 08:20:48 +0000</pubDate>
@@ -1596,7 +1790,8 @@ Vierge, Balance, Cancer… ce soir, c’est à vous que la nuit parle. Posez vos
       <guid isPermaLink="false">flash-info-20260829-midi</guid>
       <itunes:duration>00:18</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Sagittaire ♐ : La Rivière Salée porte les rêves de Wasou, dans votre horoscope du 29 août à midi</title>
       <description>Nous sommes le samedi 29 août 2026 et la mangrove chuchote les noms de ceux qui vont danser avec le destin cet après-midi. Écoutez bien : la Vierge, le Sagittaire et la Balance sont appelés à traverser leur propre Rivière au Sel aujourd’hui. Pas pour pleurer, non, pour reconnaître les traces de l’igwann dans leur ombre, et savoir quand frapper.</description>
       <pubDate>Sat, 29 Aug 2026 08:13:33 +0000</pubDate>
@@ -1604,7 +1799,8 @@ Vierge, Balance, Cancer… ce soir, c’est à vous que la nuit parle. Posez vos
       <guid isPermaLink="false">horoscope-20260829-midi</guid>
       <itunes:duration>04:44</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Six ans après l'affaire ils sont enfin mis en examen, dans votre flash-info du 29 août au matin</title>
       <description>Bèl bonjou Guadeloupe ! Samedi vingt-neuf août deux mille vingt-six, il est quatre heures trente et une à Paris, et nous voilà ensemble pour ce flash info du matin.</description>
       <pubDate>Sat, 29 Aug 2026 02:40:07 +0000</pubDate>
@@ -1612,7 +1808,8 @@ Vierge, Balance, Cancer… ce soir, c’est à vous que la nuit parle. Posez vos
       <guid isPermaLink="false">flash-info-20260829-matin</guid>
       <itunes:duration>04:12</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Vierge ♍ &amp; Poissons ♓ : Le mango blan danse sous l’orage en Poissons, dans votre horoscope du 29 août au matin</title>
       <description>Nous sommes le samedi 29 août 2026 et ce matin, la mer est calme, mais sous la surface, les courants travaillent. Les signes qui vont danser avec nous aujourd’hui, ce sont la Vierge, le Capricorne et les Poissons, ceux qui portent le poids des détails, la patience des montagnes et les rêves qui nagent entre deux eaux. Écoutez bien : l’igwann est immobile, mais il voit tout.</description>
       <pubDate>Sat, 29 Aug 2026 02:25:04 +0000</pubDate>
@@ -1620,7 +1817,8 @@ Vierge, Balance, Cancer… ce soir, c’est à vous que la nuit parle. Posez vos
       <guid isPermaLink="false">horoscope-20260829-matin</guid>
       <itunes:duration>04:09</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Indira Ampiot en feu à Miss Monde, la Guadeloupe en liesse, dans votre flash-info du 28 août au soir</title>
       <description>Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe ce vendredi vingt-huit août deux mille vingt-six.</description>
       <pubDate>Fri, 28 Aug 2026 18:27:29 +0000</pubDate>
@@ -1628,7 +1826,8 @@ Vierge, Balance, Cancer… ce soir, c’est à vous que la nuit parle. Posez vos
       <guid isPermaLink="false">flash-info-20260828-soir</guid>
       <itunes:duration>02:55</itunes:duration>
     </item>
-    <item>
+
+<item>
       <title>Balance ♎ &amp; Vierge ♍ : La mangouste compte les fourmis en regardant la marée murmurer, dans votre horoscope du 28 août au soir</title>
       <description>Nous sommes le vendredi 28 août 2026 et ce soir, la lune se lève sur les eaux troubles de la mangrove, là où les racines respirent encore les rêves des anciens. Écoutez bien : ce sont les signes de la terre ferme et des balances qui tremblent que je retiens pour vous, Vierge aux mains pleines de graines, Capricorne qui escaladez les mornes pierre par pierre, Balance qui cherchez l’équilibre entre deux vents contraires. Posez vos fardeaux, soufflez sur les braises de la journée, et laissez l’igwann vous rappeler que la patience est une arme qui ne rouille pas.</description>
       <pubDate>Fri, 28 Aug 2026 18:07:35 +0000</pubDate>
@@ -1636,21 +1835,6 @@ Vierge, Balance, Cancer… ce soir, c’est à vous que la nuit parle. Posez vos
       <guid isPermaLink="false">horoscope-20260828-soir</guid>
       <itunes:duration>04:16</itunes:duration>
     </item>
-    <item>
-      <title>La solidarité s’affiche en grand à Boisripeaux aujourd’hui, dans votre flash-info du 28 août à midi</title>
-      <description>Vendredi vingt-huit août deux mille vingt-six, il est quatorze heures trois. Voici votre Flash Info Guadeloupe, l'actualité en direct de chez nous.</description>
-      <pubDate>Fri, 28 Aug 2026 12:14:48 +0000</pubDate>
-      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-08/flash-info-20260828-midi.mp3" length="1803237" type="audio/mpeg" />
-      <guid isPermaLink="false">flash-info-20260828-midi</guid>
-      <itunes:duration>02:55</itunes:duration>
-    </item>
-    <item>
-      <title>Guadeloupe mémoire vivante et sacrée</title>
-      <description>Émission culturelle quotidienne sur les symboles, l'histoire et la nature de la Guadeloupe.</description>
-      <pubDate>Fri, 09 Oct 2026 02:52:52 +0000</pubDate>
-      <enclosure url="https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-10-09-matin.mp3" length="1645653" type="audio/mpeg" />
-      <guid isPermaLink="false">emission-2026-10-09-matin</guid>
-      <itunes:duration>180</itunes:duration>
-    </item>
+
   </channel>
 </rss>
