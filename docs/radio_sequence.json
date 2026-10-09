@@ -568,12 +568,10 @@
       "duration": 288
     },
     {
-      "type": "transition",
-      "subtype": "flash_info",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/audio/flash-info/2026-10/flash-info-20261009-soir.mp3",
-      "label": "Flash Info Guadeloupe — 2026-10-09, édition du soir",
-      "icon": "📰",
-      "pending": true
+      "type": "capsule",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-10-09-matin-6.mp3",
+      "label": "Capsule culturelle Guadeloupe",
+      "icon": "🌺"
     },
     {
       "type": "liner",
@@ -791,7 +789,7 @@
     },
     {
       "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-10-09-soir-12.mp3",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-10-09-soir-6.mp3",
       "label": "Capsule culturelle Guadeloupe",
       "icon": "🌺"
     },
@@ -807,7 +805,23 @@
       "title": "Nan kem",
       "artist": "Yoan",
       "genre": "",
-      "duration": 279
+      "duration": 337
+    },
+    {
+      "type": "music",
+      "videoId": "_WcvRyXdDnY",
+      "title": "Miyel",
+      "artist": "Joëlle Ursull",
+      "genre": "",
+      "duration": 269
+    },
+    {
+      "type": "music",
+      "videoId": "2jxyyeYSdfo",
+      "title": "Mèsi Bon Dié Mèsi (feat. Tuco Bouzi)",
+      "artist": "Top Vice",
+      "genre": "",
+      "duration": 369
     },
     {
       "type": "music",
