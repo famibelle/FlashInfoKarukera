@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Tempête tropicale en approche, vigilance maximale ce soir, dans votre flash-info du 10 octobre à midi</title>
+      <description><![CDATA[On fait le point à midi, ce samedi dix octobre deux mille vingt-six.]]></description>
+      <pubDate>Sat, 10 Oct 2026 08:20:17 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-10/flash-info-20261010-midi.mp3" length="198813" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20261010-midi</guid>
+      <itunes:duration>00:19</itunes:duration>
+    </item>
+
+<item>
       <title>Un homme s’immole à la mairie, un corps découvert à Baie-Mahault, dans votre flash-info du 10 octobre au matin</title>
       <description><![CDATA[Bèl bonjou Guadeloupe ! Samedi dix octobre deux mille vingt-six, il est quatre heures quarante à Paris, et nous voici ensemble pour ce premier flash de la journée. L'actualité ne dort jamais, et ce matin, les nouvelles s'annoncent chargées.]]></description>
       <pubDate>Sat, 10 Oct 2026 02:46:39 +0000</pubDate>
@@ -1804,15 +1813,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260628-matin.mp3" length="2575317" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260628-matin</guid>
       <itunes:duration>04:08</itunes:duration>
-    </item>
-
-<item>
-      <title>Fermez les classes Irénée, le rectorat dit non à Germain Saint-Ruf, dans votre flash-info du 27 juin au soir</title>
-      <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du samedi vingt-sept juin deux mille vingt-six.]]></description>
-      <pubDate>Sat, 27 Jun 2026 14:46:19 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260627-soir.mp3" length="994365" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260627-soir</guid>
-      <itunes:duration>01:38</itunes:duration>
     </item>
 
   </channel>
