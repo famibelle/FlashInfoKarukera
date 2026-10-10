@@ -1,0 +1,220 @@
+{
+  "date": "2026-10-09",
+  "generated_at": "2026-10-10T00:50:50.139242Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 400.76190476190476,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 400.7142857142857,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 171.0,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 166.75,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 516.6938775510204,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1675.4285714285713,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 2,
+      "coherence_rate": 0.15384615384615385,
+      "issues_by_type": {
+        "title_mismatch": 2,
+        "format_invalid": 11
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Carimi": 2,
+        "Alexandre Stellio et son orchestre Créole": 1,
+        "Djakout # 1": 2,
+        "Harmonik": 1,
+        "JACOB F. DESVARIEUX, Georges Decimus": 1,
+        "Joëlle Ursull": 2,
+        "Meryl": 1,
+        "Nu-Look": 2,
+        "Edith Lefel, Les Frères Dejean": 1,
+        "Edith Lefel": 3,
+        "Les Aiglons": 1,
+        "Gilles Floro": 3,
+        "Dédé Saint-Prix": 2,
+        "Jean-Philippe Marthély": 1,
+        "Naelle": 1,
+        "Claudette et Ti Pierre": 2,
+        "Jean-Philippe Marthély, Thierry Benoît": 1,
+        "SOFT": 1,
+        "Ralph Thamar": 2,
+        "Alian Ramanisum": 1,
+        "Dominik Coco": 2,
+        "Le Waki Band": 1,
+        "Top Vice": 1,
+        "BélO": 3,
+        "Battery Cremil": 1,
+        "Jeff Joseph": 1,
+        "Harry Diboula": 1,
+        "Tabou Combo": 3,
+        "Jocelyne Labylle": 1,
+        "carimi doc pullman": 1,
+        "Perle Lama": 1,
+        "Zouk Machine": 1,
+        "WCK": 1,
+        "Warren Saada, Nana Fofie": 1,
+        "Naika, Jessie Reyez": 1,
+        "Al Lirvat, Robert Mavounzy": 1,
+        "Dominique Panol": 1,
+        "Thierry Cham": 1,
+        "Zin": 2,
+        "KASSAV'": 1,
+        "Energy": 1,
+        "KA": 1,
+        "T-Vice": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Kan'nida": 1,
+        "KALI": 1,
+        "Tabou Combo De Petion-Ville": 1,
+        "Milca": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Patrick Andrey": 2,
+        "Ludo": 1,
+        "Jacob Desvarieux, Georges Décimus, Kassav'": 1,
+        "D'zine": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Teddyson John": 1,
+        "Yoan": 1,
+        "Teddyson John, GMS Productions": 1,
+        "Jocelyne Beroard": 1,
+        "Francky Vincent": 1,
+        "The Warren J. 5": 1,
+        "Francois Ladrezeau, Jean Pierre Coquerel, Patrick Coqk, Akiyo": 1,
+        "Kassav'": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Edith Lefel",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Guadeloupe mémoire vivante et sacrée",
+          "L’âme guadeloupéenne dans le zandoli"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 5811
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 15% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "11 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
