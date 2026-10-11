@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Une surprise de taille secoue l'archipel ce midi, dans votre flash-info du 11 octobre à midi</title>
+      <description><![CDATA[On fait le point à midi, ce dimanche onze octobre deux mille vingt-six.]]></description>
+      <pubDate>Sun, 11 Oct 2026 08:21:42 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-10/flash-info-20261011-midi.mp3" length="132621" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20261011-midi</guid>
+      <itunes:duration>00:13</itunes:duration>
+    </item>
+
+<item>
       <title>Gendarmes blessés aux Abymes : une attaque qui fait trembler l'île, dans votre flash-info du 11 octobre au matin</title>
       <description><![CDATA[Bèl bonjou Guadeloupe ! Dimanche onze octobre deux mille vingt-six, il est quatre heures quarante-deux en métropole, et déjà l'actualité ne s'arrête pas. On démarre cette journée ensemble, avec les infos qu'il faut.]]></description>
       <pubDate>Sun, 11 Oct 2026 02:50:06 +0000</pubDate>
@@ -1804,15 +1813,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260629-matin.mp3" length="2619213" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260629-matin</guid>
       <itunes:duration>04:11</itunes:duration>
-    </item>
-
-<item>
-      <title>Le nouveau patron du tourisme à Marie-Galante veut tout faire péter, dans votre flash-info du 28 juin au soir</title>
-      <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Nous sommes le dimanche vingt-huit juin deux mille vingt-six, il est seize heures quarante-quatre.]]></description>
-      <pubDate>Sun, 28 Jun 2026 14:47:24 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-06/flash-info-20260628-soir.mp3" length="997653" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260628-soir</guid>
-      <itunes:duration>01:37</itunes:duration>
     </item>
 
   </channel>
