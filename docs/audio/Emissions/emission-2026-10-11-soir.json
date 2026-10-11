@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-11",
+  "edition": "soir",
+  "type": "emission",
+  "title": "La Guadeloupe notre pharmacie sacrée",
+  "duration": "~3 minutes",
+  "word_count": 496,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Mwen Malad Aw",
+    "artist": "KASSAV'",
+    "genre": ""
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Plante / Résistance médicinale \t Zéb omega \t Herbe à fièvre \t *Euphorbia hirta* \t ⭐⭐⭐ RÉSISTANCE MÉDICINALE \t Plante africaine introduite par les esclaves Igbo au XVIIIe siècle. Ses feuilles écrasées servaient à désinfecter les plaies des marrons en fuite. Symbole de la pharmacopée clandestine (Wiltgen 1994, archives ADG 1791)."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Reptile               \t Léza moun                 \t Gymnophtalme d'Underwood  \t Gymnophtalmus underwoodi       \t ⭐ Ambivalent          \t Introduit. Associé à la discrétion (marronnage). Habitat: zones rocheuses (Faune Guadeloupe 2022)."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Fruit                \t Pwayo / Poyo               \t Banane plantain            \t Musa paradisiaca              \t Banane verte cuisinée en légume : frite, bouillie, en gratin. Base de la cuisine créole."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Source cachée         \t Source de la Forêt de Dubuisson          \t Basse-Terre, forêt de Dubuisson (16.2100° N, 61.6800° W) \t ⭐⭐ Symbolique          \t Source discrète utilisée pour des rituels de purification. Eau mélangée à des herbes (archives DASSA, 1835 ; Boucher 2008, p. 200). Lieu de cérémonies de purification et de guérison."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**1848–1900** \t **Le Gwoka devient un symbole de résistance** \t **Patrimoine immatériel : reconnaissance de la lutte des ancêtres, outil de résistance culturelle** \t Organisation de *Léwoz* (cérémonies de Gwoka), utilisation de la musique comme outil politique \t Zones rurales (Sainte-Rose, Deshaies) \t Vaudou Petwo : fusion du Gwoka et des rituels Petwo (ex. : *tambour Fundeh*)"
+    }
+  },
+  "text": "Ah mes chers amis, aujourd’hui on va parler de ce qui nous soigne, nous nourrit et nous protège depuis des siècles. Comme dans cette chanson de Kassav’, \"Mwen Malad Aw\", où la douleur et la guérison s’entremêlent, notre terre elle-même est une mélodie de résistance. Entre les plantes qui guérissent et les animaux qui nous observent en silence, la Guadeloupe est un remède vivant, une pharmacie à ciel ouvert où chaque feuille, chaque pierre, chaque source murmure des histoires de survie.\n\nRegardez ce petit lézard discret, le léza moun, ce gymnophtalme d’Underwood. On dirait qu’il porte en lui le secret des marrons, ceux qui fuyaient dans les mornes pour échapper à l’esclavage. Ce reptile, introduit sans qu’on sache vraiment comment, a choisi les zones rocheuses, les endroits cachés, comme s’il nous rappelait que parfois, il faut savoir se faire invisible pour survivre. Les anciens disaient que le voir, c’était un signe : la discrétion est une force, surtout quand le monde autour de vous veut vous effacer.\n\nEt puis il y a le pwayo, cette banane plantain qui est bien plus qu’un simple fruit. Dans nos assiettes, elle se transforme en tout : bouillie, frite, en gratin, en accompagnement de nos plats les plus réconfortants. Mais saviez-vous qu’elle aussi porte l’histoire de notre peuple ? Introduite par nos ancêtres africains, elle a traversé l’océan pour devenir la base de notre cuisine créole. Chaque bouchée, c’est un peu de résistance, un peu de mémoire. Comme le disait ma grand-mère : \"Quand tu manges du pwayo, tu manges la force de ceux qui t’ont précédé.\"\n\nParlons maintenant de cette source cachée dans la forêt de Dubuisson, un lieu où l’eau coule en silence, comme un secret bien gardé. Nos ancêtres y venaient pour des rituels de purification, mélangeant son eau claire avec des herbes sacrées. On dit que ceux qui s’y rendaient en sortaient plus légers, comme si l’eau emportait avec elle les peines et les chaînes du passé. C’est là, entre les arbres centenaires, que le gwoka résonnait aussi, transformant la douleur en musique, la souffrance en danse. Le gwoka, ce n’est pas qu’un rythme, c’est un cri de liberté, un héritage qui a traversé les siècles pour nous rappeler que même dans l’obscurité, on peut trouver la lumière.\n\nAlors oui, mes amis, quand Kassav’ chante \"Mwen Malad Aw\", c’est toute cette histoire qu’on entend. La maladie, la guérison, la résistance, tout est lié. Nos plantes, nos animaux, nos sources, nos musiques, tout ça fait partie de nous, comme une mélodie qui ne s’arrête jamais. Et aujourd’hui, quand je vois les jeunes oublier ces trésors, j’ai mal, oui, j’ai mal pour cette terre qui nous a tant donné. Mais je sais aussi que tant qu’il y aura des mains pour planter, des voix pour chanter et des cœurs pour se souvenir, la Guadeloupe restera debout, fière et indomptable. Alors prenez soin de cette nature qui est la nôtre, parce qu’elle, elle a toujours pris soin de nous.",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-10-11-soir.mp3"
+}
