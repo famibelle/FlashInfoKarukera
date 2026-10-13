@@ -3561,13 +3561,13 @@
       "title": "A fleur de peau",
       "artists": [
         {
-          "name": "Edith Lefel",
-          "id": "UCOElhSK53fxMn9F9kASy1bw"
+          "name": "Naelle",
+          "id": "UCl2HQJQvqs6-FKdzTwaoZpw"
         }
       ],
       "album": {
-        "name": "Le Meilleur De Edith Lefel",
-        "id": "MPREb_CLJwmrClNMJ"
+        "name": "Always in Season",
+        "id": "MPREb_otv6EAfoT7B"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
@@ -3582,18 +3582,18 @@
       },
       "thumbnails": [
         {
-          "url": "https://yt3.googleusercontent.com/cbKLsoCFd3y1thQyWuXR51D0nVNjfS95MPjiEWgBGMJwFBOr0rEEt1Ajrsl3OgJ9hlT4kW8M6KUcDNy2=w60-h60-l90-rj",
+          "url": "https://yt3.googleusercontent.com/Q2iIUsSO94-6mAEuHUGAxe5FbaaHWit4bjgvY31MkC2WXqOfnzlVE0mZp1IkJDH-FPIIIiLHQo1DybjB=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
         {
-          "url": "https://yt3.googleusercontent.com/cbKLsoCFd3y1thQyWuXR51D0nVNjfS95MPjiEWgBGMJwFBOr0rEEt1Ajrsl3OgJ9hlT4kW8M6KUcDNy2=w120-h120-l90-rj",
+          "url": "https://yt3.googleusercontent.com/Q2iIUsSO94-6mAEuHUGAxe5FbaaHWit4bjgvY31MkC2WXqOfnzlVE0mZp1IkJDH-FPIIIiLHQo1DybjB=w120-h120-l90-rj",
           "width": 120,
           "height": 120
         }
       ],
       "isAvailable": true,
-      "isExplicit": true,
+      "isExplicit": false,
       "videoType": "MUSIC_VIDEO_TYPE_ATV",
       "views": null,
       "communityVoteStatus": null,
