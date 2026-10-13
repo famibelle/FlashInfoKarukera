@@ -1,0 +1,232 @@
+{
+  "date": "2026-10-12",
+  "generated_at": "2026-10-13T00:53:36.101151Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 405.3809523809524,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 404.04761904761904,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 169.57142857142858,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 170.0,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 525.5510204081633,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1683.142857142857,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "artist_mismatch": 2,
+        "format_invalid": 8,
+        "title_mismatch": 3
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "Warren Saada, Nana Fofie": 1,
+        "Kassav'": 2,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "Nu-Look": 2,
+        "Edith Lefel": 2,
+        "Stony": 2,
+        "Mario Chicot": 2,
+        "Dominique Panol": 5,
+        "Les Aiglons": 2,
+        "Yoan": 1,
+        "Francky Vincent": 1,
+        "Akiyo": 3,
+        "Zin": 3,
+        "Claudette et Ti Pierre": 2,
+        "Patrick Saint-Eloi": 1,
+        "Battery Cremil": 2,
+        "Kan'nida": 2,
+        "Tabou Combo": 2,
+        "Thierry Cham": 1,
+        "Naelle": 1,
+        "Joëlle Ursull": 2,
+        "Naika, Jessie Reyez": 1,
+        "Ludo, Guerdy": 1,
+        "HARRY DIBOULA": 1,
+        "BélO": 2,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Dominik Coco": 1,
+        "Exile": 1,
+        "Fanny J, Emma'a": 1,
+        "Princess With A Purpose": 1,
+        "ROBERT LOYSON": 1,
+        "Princess Erika": 1,
+        "Alexandre Stellio et son orchestre Créole": 1,
+        "Soft": 1,
+        "Carlos Watts": 1,
+        "Alian Ramanisum": 1,
+        "Lutchiana Mobulu 100%": 1,
+        "Djakout #1, Zafè Chô, NAIMA": 1,
+        "Dominique Ruiz": 1,
+        "Tanya St-Val": 2,
+        "T-vice": 1,
+        "Carimi": 2,
+        "Nichols": 1,
+        "Princesse Dinie": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Jean-Marie Ragald": 1,
+        "Harmonik": 1,
+        "Perle Lama": 1,
+        "T-Vice": 2,
+        "Mass": 1,
+        "Ralph Thamar": 1,
+        "Slaï": 2,
+        "Klimax": 1,
+        "Warren Saada": 1,
+        "Harry Diboula": 1
+      },
+      "max_artist_repetition": 5,
+      "top_artist": "Dominique Panol",
+      "consecutive_same_artist": [
+        {
+          "artist": "Zin",
+          "position": 53,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Amezon Gwadloup ka palé",
+          "La Guadeloupe murmure sous la lune"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 5967
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "8 liner(s) au format invalide"
+      },
+      {
+        "type": "liner_artist_mismatch",
+        "severity": "high",
+        "context": "2 liner(s) ne correspondent pas à l'artiste suivant"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Dominique Panol joué 5x (objectif <5)"
+      }
+    ]
+  }
+}
