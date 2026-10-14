@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Le lycéen Fred Jolo toujours introuvable inquiète tout le monde, dans votre flash-info du 14 octobre à midi</title>
+      <description><![CDATA[On fait le point à midi chez nous ce mercredi quatorze octobre deux mille vingt-six. Voici sept infos qui rythment la journée.]]></description>
+      <pubDate>Wed, 14 Oct 2026 08:26:35 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-10/flash-info-20261014-midi.mp3" length="1634973" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20261014-midi</guid>
+      <itunes:duration>02:40</itunes:duration>
+    </item>
+
+<item>
       <title>Un piéton meurt dans un accident sur la Rocade au Gosier, dans votre flash-info du 14 octobre au matin</title>
       <description><![CDATA[Bèl bonjou Guadeloupe ! Nous sommes mercredi quatorze octobre deux mille vingt-six, il est quatre heures trente-cinq à Paris, et voici votre flash info du matin sur Radio Botiran.]]></description>
       <pubDate>Wed, 14 Oct 2026 02:42:03 +0000</pubDate>
@@ -1804,15 +1813,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-07/flash-info-20260702-matin.mp3" length="3541053" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260702-matin</guid>
       <itunes:duration>05:36</itunes:duration>
-    </item>
-
-<item>
-      <title>Un enfant blessé une fusillade endeuille Capesterre, dans votre flash-info du 1 juillet au soir</title>
-      <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du mercredi premier juillet deux mille vingt-six.]]></description>
-      <pubDate>Wed, 01 Jul 2026 15:17:12 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-07/flash-info-20260701-soir.mp3" length="1422765" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260701-soir</guid>
-      <itunes:duration>02:18</itunes:duration>
     </item>
 
   </channel>
