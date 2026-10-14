@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-14",
+  "edition": "soir",
+  "type": "emission",
+  "title": "Les gardiens verts de nos mémoires",
+  "duration": "~3 minutes",
+  "word_count": 354,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Zanmi Camarade",
+    "artist": "Claudette et Ti Pierre",
+    "genre": ""
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Oiseau / Résistance            \t Urakan / Frégate         \t Frégate superbe           \t Fregata magnificens       \t ⭐⭐ LIBERTÉ              \t Oiseau qui ne se pose presque jamais, vole pendant des jours sans toucher terre. Symbole du marronnage aérien, de la liberté absolue et de l'insoumission. Associé aux esprits qui ne peuvent être enchaînés."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Reptile / Résistance  \t Igwann péyi                \t Iguane des Petites Antilles \t Iguana delicatissima         \t ⭐⭐⭐ TOTEM DE RÉSISTANCE \t Animal totem des Arawaks. Symbole de sagesse et de persévérance. Les esclaves marrons s'identifiaient à lui : immobile et invisible dans la forêt, il sait attendre, observer et survivre. Sa couleur qui se fond dans le décor est une métaphore du marronage."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Fruit                \t Pòm sirèt / Girembèl       \t Pomme surette / Groseille pays \t Phyllanthus acidus        \t Petit fruit jaune citron très acidulé, chair croquante autour d'un noyau. Consommé en confiture, punch ou nature. Se ramasse en grappes."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Source cachée         \t Source de la Ravine Chaude               \t Gourbeyre, ravine Chaude (16.1500° N, 61.6500° W) \t ⭐⭐ Emblématique        \t Source thermale discrète utilisée pour des rituels de fertilité. Eau riche en minéraux (Giberti 1989, p. 134 ; archives ADG, 1995). Lieu de cérémonies de fertilité et de régénération."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**1815–1848** \t **Persistance des révoltes locales contre l’esclavage** \t **Pression constante : rappel que la liberté est un droit inaliénable, refus de l’oppression** \t Révoltes en 1822 (ex. : à La Grande Anse) et 1831, coordination avec Cyrille Bissette \t La Grande Anse (Basse-Terre), plantations de la Côte-sous-le-Vent \t Vaudou Kongolais : rituels de rébellion (ex. : *pwen de révolte* enterrés dans les champs)"
+    }
+  },
+  "text": "Ah mes chers zanmis, aujourd’hui on va parler de ces forces vivantes qui nous rappellent d’où on vient. Comme dans cette chanson de Claudette et Ti Pierre, où chaque note porte l’âme de ceux qui ont résisté, la nature ici nous murmure les mêmes histoires de liberté. Écoutez bien, parce que nos racines, elles sont aussi dans les branches des palétuviers et dans le vol des frégates.\n\nRegardez-moi cette petite merveille, la pomme surette, ce fruit jaune qui pique la langue comme un souvenir d’enfance. Les anciens disaient que sa saveur acide, c’est comme la vie – parfois dure, mais toujours pleine de caractère. On la cueille en grappes, comme on ramassait jadis les forces pour continuer. En confiture ou en punch, elle garde ce goût de résistance, ce petit quelque chose qui rappelle qu’on ne se laisse pas faire.\n\nEt puis il y a l’igwann péyi, ce lézard sage qui se fond dans les feuilles comme un esprit de la forêt. Les Arawaks le vénéraient, et les marrons s’en inspiraient : rester immobile, observer, attendre son heure. Sa peau change avec la lumière, comme nos ancêtres qui savaient se cacher pour survivre. Cet animal, c’est un totem de patience et de ruse, une leçon vivante de notre histoire.\n\nParlons maintenant de la Ravine Chaude, cette source qui murmure sous les fougères. Ses eaux chaudes, chargées de minéraux, ont vu passer des générations de femmes et d’hommes en quête de force. On y venait pour des rituels de fertilité, pour se régénérer, comme si la terre elle-même offrait un refuge. Pendant les années sombres, entre 1815 et 1848, quand les révoltes grondaient encore, ces lieux sacrés étaient des havres de résistance.\n\nAlors oui, mes amis, quand on voit la frégate superbe planer sans jamais se poser, quand on goûte la pomme surette ou qu’on croise l’igwann péyi, c’est toute notre histoire qui nous regarde. Ces symboles, ces fruits, ces animaux, ces sources, ce sont les gardiens de notre mémoire. Comme dans *Zanmi Camarade*, ils nous rappellent que la liberté, c’est un combat qui continue – et que la nature, elle, ne nous abandonnera jamais.",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-10-14-soir.mp3"
+}
