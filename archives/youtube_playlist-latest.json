@@ -396,8 +396,100 @@
       "setVideoId": "B7061D0A88BFD562"
     },
     {
-      "videoId": "yANMnKJK7c4",
-      "title": "Aki yo la o la kale kon sa",
+      "videoId": "AooAscmvWY8",
+      "title": "Sweet Florence",
+      "artists": [
+        {
+          "name": "Jacob Desvarieux",
+          "id": "UC0tVN86YfaCsBKycehUFs4A"
+        }
+      ],
+      "album": {
+        "name": "Banzawa",
+        "id": "MPREb_GcaQ5otmPi6"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpIGWrMy0iVyAhuD84OyYUFghgNXgpSolTSd_usiKrb8yhTJVjlLR-e_7JFZ5u7hEMe0ZcWO40JDA7Y8W-60YyYDrdg4lw",
+        "remove": "AB9zfpJIcGEgmG-YOKgMhpdN9s89K4X3oeFTgT1y4knqvfqNIAfIYcG_FHfu0PKZAVY84Q0p1Cof0aQze9wenJh5vxfbTiOKnw"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpL-zk33p9dAJSDkDjDFU4hbg2SaFMA5m4Buc7iCMkDUb1GRRQagTZpwXdSsDGSu7eXskLxfTPN9Ah23_y4_EmXOK29TP2LakuirLMxxa3j9CWOCNLk",
+        "unpin": "AB9zfpIYnrPmA6x4xISLEknogNbmTQPd3wmw3Sl9vkiHTetuaV2zyPLKs1aVpz2lnSQYhuxqSP03KTkCaLcQ8oXvN7430MmbWR_CLvZrneUml-HsPwhePSQ"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/EJ3XGBtaI12fBE7MooTETCgPLPxI7vqw4V9uqFX5QFydILV9AQP_AXZlmt0y-pacN0LeT6UKMclt8Vf_=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/EJ3XGBtaI12fBE7MooTETCgPLPxI7vqw4V9uqFX5QFydILV9AQP_AXZlmt0y-pacN0LeT6UKMclt8Vf_=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "8:01",
+      "duration_seconds": 481,
+      "setVideoId": "E78EAEB50E957F13",
+      "creditsBrowseId": "MPTCAooAscmvWY8"
+    },
+    {
+      "videoId": "U_iL6OYHe8M",
+      "title": "La guadeloupe trengle",
+      "artists": [
+        {
+          "name": "ROBERT LOYSON",
+          "id": "UCKfraM9ROWIRLg3F9PBxReQ"
+        }
+      ],
+      "album": {
+        "name": "Le Cercle Culturel Ansois Présente: Robert Loyson, Vol. 2 (Special Folklore)",
+        "id": "MPREb_xluwyb3KjiG"
+      },
+      "likeStatus": "INDIFFERENT",
+      "inLibrary": false,
+      "pinnedToListenAgain": false,
+      "feedbackTokens": {
+        "add": "AB9zfpI5m_Qntl7Ln-pGOD_Rhow_MrzkDZxskW_GvH208sd97Ym6mlcFRuuehpdbzt9mXt6IcU5otERTgUTu9tPJCZy4UiiYqw",
+        "remove": "AB9zfpJVKVnQmbXYQCW6YmMTlwGgn11XepnNBcFwWogzqeku0FdJAYh1YCWRvP3B3-kOSOpHcxpF6NXyI_4DZC5Gy85PrJ0vHg"
+      },
+      "listenAgainFeedbackTokens": {
+        "pin": "AB9zfpIXCRCbkJXbBCRfyObqcZblhkgLHxtSOJswq1VnH_5OMILjesC2dT6klTvjAjKKsO0Yg0a8t_TkP6N4cyjhgUDToqhS-06T8Pz8oM236ReBauYTMo8",
+        "unpin": "AB9zfpIASebixPOrEhDZCoIcNE3TDFld6oVhXc856ralNBURtH75gyze0mwOFXgrcDyeF0n_nB7_eWbrwxSLTOl3i22v-RUJqfWQbDLPVui4t4tTQvH7brc"
+      },
+      "thumbnails": [
+        {
+          "url": "https://yt3.googleusercontent.com/TYyQH0pW_sR5B71-_4JOR5_tOcwxdOV3lsOwLdlMxDeYyuFyYSShpftKPcxLZt4vKd6oh-7_trtJdYyY=w60-h60-l90-rj",
+          "width": 60,
+          "height": 60
+        },
+        {
+          "url": "https://yt3.googleusercontent.com/TYyQH0pW_sR5B71-_4JOR5_tOcwxdOV3lsOwLdlMxDeYyuFyYSShpftKPcxLZt4vKd6oh-7_trtJdYyY=w120-h120-l90-rj",
+          "width": 120,
+          "height": 120
+        }
+      ],
+      "isAvailable": true,
+      "isExplicit": false,
+      "videoType": "MUSIC_VIDEO_TYPE_ATV",
+      "views": null,
+      "communityVoteStatus": null,
+      "duration": "8:35",
+      "duration_seconds": 515,
+      "setVideoId": "A46F1DB38DAF7966",
+      "creditsBrowseId": "MPTCU_iL6OYHe8M"
+    },
+    {
+      "videoId": "0CrbQPyEV-U",
+      "title": "Vérité",
       "artists": [
         {
           "name": "Akiyo",
@@ -405,8 +497,8 @@
         }
       ],
       "album": {
-        "name": "Mémoires",
-        "id": "MPREb_i0Z0rszAkk0"
+        "name": "A dé men pou dèmen",
+        "id": "MPREb_dBuZYEBugkA"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
@@ -421,7 +513,7 @@
       },
       "thumbnails": [
         {
-          "url": "https://yt3.googleusercontent.com/c66RqRL3qbYSp2bInWbORbquq46Hv6JkcdfM6otDopQzlbci2PM6kw8bbkUkADtB1Wc6igTv-wNuZgm-=w60-h60-l90-rj",
+          "url": "https://yt3.googleusercontent.com/699yEGKLZdxQWSjj31H5ouA3JyI4vC0t_jtpVlkc-SCv_F3blsJC0peeyh6Hy192L1uVeELLa2HwLeug=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
@@ -1790,17 +1882,17 @@
       "creditsBrowseId": "MPTCjVqiADx_vvc"
     },
     {
-      "videoId": "vDm162HPYa4",
-      "title": "Pa fè bétiz'",
+      "videoId": "8CoXvSR9qTo",
+      "title": "Te ni dinde",
       "artists": [
         {
-          "name": "Jean-Luc Guanel",
-          "id": "UCa3PCgZcGlW7-2Jk_RVmnYQ"
+          "name": "Ralph Thamar",
+          "id": "UCo6uGRd1uxe8GTiFz7bVo9A"
         }
       ],
       "album": {
-        "name": "A la dous'...",
-        "id": "MPREb_UhOJQj70KTQ"
+        "name": "Un jour",
+        "id": "MPREb_75nvKm3qzu0"
       },
       "likeStatus": "INDIFFERENT",
       "inLibrary": false,
@@ -1815,12 +1907,12 @@
       },
       "thumbnails": [
         {
-          "url": "https://yt3.googleusercontent.com/wibxmjbhX-DyZqA1_DImEq4KNrF0ogpSgn_rxJT6Q_wnjcO9TNQ2HTXEysukLrVXZwR7udi6oXzzf_DZ=w60-h60-l90-rj",
+          "url": "https://yt3.googleusercontent.com/jNMmUtMU-0NG7lXbgpELpE5xB4rGoHpRub7r1HbA7eBn23FkFZbDAYSh753PtMXUHtjUdSgdGbWwF87l=w60-h60-l90-rj",
           "width": 60,
           "height": 60
         },
         {
-          "url": "https://yt3.googleusercontent.com/wibxmjbhX-DyZqA1_DImEq4KNrF0ogpSgn_rxJT6Q_wnjcO9TNQ2HTXEysukLrVXZwR7udi6oXzzf_DZ=w120-h120-l90-rj",
+          "url": "https://yt3.googleusercontent.com/jNMmUtMU-0NG7lXbgpELpE5xB4rGoHpRub7r1HbA7eBn23FkFZbDAYSh753PtMXUHtjUdSgdGbWwF87l=w120-h120-l90-rj",
           "width": 120,
           "height": 120
         }
