@@ -1,0 +1,232 @@
+{
+  "date": "2026-10-14",
+  "generated_at": "2026-10-15T00:42:30.289001Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 422.0,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 408.8095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 170.8095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 165.92857142857142,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 507.1224489795918,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1712.4285714285713,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 4,
+      "coherence_rate": 0.3076923076923077,
+      "issues_by_type": {
+        "format_invalid": 9,
+        "title_mismatch": 4
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Fabien Castet": 1,
+        "Jocelyn Jonaz, Jean-Michel Jean-Louis, Joel Héloise": 1,
+        "BEL": 1,
+        "KALI": 1,
+        "JEAN-PHILIPPE MARTHELY/PATRICK SAINT-ELOI": 1,
+        "Battery Cremil": 5,
+        "Ralph Thamar": 1,
+        "Energy": 1,
+        "Stony-X": 1,
+        "Medhy Custos": 1,
+        "TAGLIAMENTO F, ROBERT LOYSON": 1,
+        "Kafé con Leshe": 1,
+        "BélO": 1,
+        "Perle Lama": 1,
+        "Carlos Nilmmns": 1,
+        "Kim, Affectwave": 1,
+        "Tabou Combo De Petion-Ville": 1,
+        "Orlane": 1,
+        "Kan'nida": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Experience 7": 1,
+        "Sakiyo": 1,
+        "Dédé Saint Prix, Pakatak": 1,
+        "JACOB DESVARIEUX": 1,
+        "Carlos Ann": 1,
+        "Kimsé": 1,
+        "Princess Erika": 2,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "HARRY DIBOULA": 1,
+        "Zouk Machine": 2,
+        "Gilles Floro": 1,
+        "Harmonik": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 2,
+        "Harry Diboula": 1,
+        "Mass": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Dominik Coco": 2,
+        "T-Vice": 1,
+        "Mario Chicot": 2,
+        "Djakout # 1": 2,
+        "Kaysha": 1,
+        "Jean-Marie Ragald": 1,
+        "Zin": 1,
+        "Carimi": 2,
+        "Thierry Cham": 1,
+        "Jacob Desvarieux": 1,
+        "Caroline Almonte, Miki Tsunoda": 1,
+        "Edith Lefel": 1,
+        "Nu-Look": 2,
+        "Top Vice, Tuco Bouzi": 1,
+        "Mini All Stars": 1,
+        "RG": 1,
+        "Jeff West": 1,
+        "1kanal": 1,
+        "Top Vice": 1,
+        "Medhy Custos, Christian Nara": 1,
+        "Jim Rama & Patrick Andrey": 1,
+        "Alain Ramanisum": 1,
+        "Slaï": 1,
+        "Akiyo": 1,
+        "Cardio Workout Crew": 1,
+        "Dominique Ruiz": 1,
+        "Edouard Benoit": 1,
+        "Exile": 1,
+        "Joëlle Ursull": 1,
+        "Yoan": 1,
+        "Lutchiana 100%": 1,
+        "Jean-Luc Guanel": 1
+      },
+      "max_artist_repetition": 5,
+      "top_artist": "Battery Cremil",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Les gardiens verts de nos mémoires",
+          "La Guadeloupe chante sous le vent des ancêtres"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 6071
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 31% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "9 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": [
+      {
+        "type": "artist_overplay",
+        "severity": "medium",
+        "context": "Battery Cremil joué 5x (objectif <5)"
+      }
+    ]
+  }
+}
