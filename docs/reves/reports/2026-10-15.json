@@ -1,0 +1,221 @@
+{
+  "date": "2026-10-15",
+  "generated_at": "2026-10-16T00:42:49.848134Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 431.42857142857144,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 408.23809523809524,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 173.85714285714286,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 167.82142857142858,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 512.6938775510204,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1731.8095238095239,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 3,
+      "coherence_rate": 0.23076923076923078,
+      "issues_by_type": {
+        "format_invalid": 10,
+        "title_mismatch": 3
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Zin": 3,
+        "Mario Chicot": 2,
+        "Jean-Luc Guanel": 1,
+        "Dominik Coco": 3,
+        "Jean-Michel Serres": 1,
+        "T-Vice": 2,
+        "Experience 7": 1,
+        "Zouk Look": 1,
+        "Marcé & Toumpak": 2,
+        "Harmonik": 2,
+        "Tanya St-Val": 2,
+        "Edith Lefel": 3,
+        "Jean-Marie Ragald": 1,
+        "Dédé Saint-Prix": 1,
+        "Battery Cremil": 3,
+        "carimi doc pullman": 1,
+        "KALI": 1,
+        "Warren": 1,
+        "Milca": 2,
+        "Ludo": 1,
+        "Nu-Look": 2,
+        "Mass": 1,
+        "Slaï": 2,
+        "Carimi": 1,
+        "Fanny J": 1,
+        "Nichols": 2,
+        "Ti Paris": 1,
+        "Thierry Cham": 1,
+        "Jean-Philippe Marthély, Thierry Benoît": 1,
+        "Kan'nida": 1,
+        "Claudette et Ti Pierre": 1,
+        "Princesse": 1,
+        "Carlos Usan, Jiminy": 1,
+        "Yoan": 1,
+        "PATRICK SAINT-ELOI": 1,
+        "Ralph Thamar": 1,
+        "Lutchiana Mobulu": 1,
+        "T-vice": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "KA": 1,
+        "Carlos Watts": 1,
+        "Meryl": 1,
+        "Jacob Desvarieux": 1,
+        "BélO": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Top Vice": 1,
+        "Dominique Panol": 1,
+        "Kaysha": 1,
+        "Francky Vincent": 1,
+        "Princesse Dinie": 1,
+        "Gilles Floro": 1,
+        "Princess Erika": 1,
+        "Lutchiana": 1,
+        "Djakout": 1,
+        "Al Lirvat, Robert Mavounzy": 1,
+        "Ernest bee pitit kris la": 1,
+        "WARREN AMYR": 1,
+        "Akiyo": 1,
+        "Patrick Saint-Eloi": 1,
+        "EDDY EDOUARD": 1,
+        "Les Aiglons": 1,
+        "Djakout #1, Tropicana d'Haïti, NAIMA": 1,
+        "Joëlle Ursull": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Zin",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Les siriks chantent nos résiliences",
+          "An nou palé Gwadloup ventresou"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 6123
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 23% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "10 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
