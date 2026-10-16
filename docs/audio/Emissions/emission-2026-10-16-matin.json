@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-16",
+  "edition": "matin",
+  "type": "emission",
+  "title": "De la boue des mornes au parfum des épices guadeloupéennes",
+  "duration": "~3 minutes",
+  "word_count": 503,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Lew mélé",
+    "artist": "Marcé & Toumpak",
+    "genre": ""
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Plante / Résistance            \t Kanaié / Canne à sucre   \t Canne à sucre             \t Saccharum officinarum     \t ⭐⭐⭐ RÉSISTANCE PARADOXALE \t La canne est à la fois l'instrument de l'oppression et le lieu de la résistance. C'est dans les champs de canne que les esclaves ont forgé leur langue créole, leurs chants de travail (le Gwo Ka), leur solidarité et leurs réseaux de communication clandestins."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Insecte               \t Gès piken                 \t Guêpe sociale             \t Polistes crinitus              \t ⭐ Symbolique          \t Nid utilisé dans les remèdes contre les douleurs articulaires (quimbois)."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Épice / Aromate      \t Kòlòmbò                    \t Colombo (épice)            \t Mélange de curcuma, coriandre, cumin, etc. \t Mélange d'épices d'origine tamoule. Plat national de Guadeloupe. Héritage indien."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Carrefour             \t Carrefour de la Croix-Mission            \t Les Abymes, route de la Croix-Mission (16.2400° N, 61.5800° W) \t ⭐⭐ Emblématique        \t Lieu de dépôts d’offrandes pour les ancêtres. Rituels de gadèzafé (protection des foyers) attestés (Hurbon 1972, p. 88 ; archives CRDP, 2003). Utilisé pour des cérémonies de mémoire et de protection familiale."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "*Villages fortifiés** (*kaciquats*) sur les hauteurs pour se protéger. \t **Mornes de Basse-Terre** (ex. : Soufrière) et **Côte Est** (ex. : Saint-François) \t **Culte des *Maboya* et des *zemis***"
+    }
+  },
+  "text": "Ah mes chers amis, aujourd’hui on va parler de ce qui nous lie à cette terre, de ces racines qui plongent profond dans l’histoire et dans la boue de nos mornes. Comme dans \"Lew mélé\" où tout se mêle, la sueur, les rires et les silences, aujourd’hui je vous emmène dans ce mélange sacré où la nature et l’âme guadeloupéenne ne font qu’un. Vous êtes prêts ? Alors écoutez bien, parce que chaque feuille, chaque insecte, chaque épice ici raconte une partie de notre histoire.\n\nRegardez cette petite guêpe, le gès piken, avec ses ailes qui brillent comme de l’or sous le soleil. Vous savez qu’elle est bien plus qu’un simple insecte ? Nos anciens utilisaient son nid pour apaiser les douleurs, comme un remède de grand-mère qui traverse les générations. Imaginez, un petit nid accroché à une branche de manguier, et dedans, toute la force de la terre qui soulage les articulations fatiguées. C’est ça, la nature : elle donne, elle soigne, elle nous rappelle que même les plus petites créatures ont leur place dans notre monde.\n\nEt parlons un peu de ce trésor doré qui parfume nos cuisines : le kòlòmbò. Ce mélange d’épices, c’est comme une symphonie dans nos plats, un héritage venu de loin, des Indes jusqu’à nos assiettes. Le curcuma qui colore, la coriandre qui parfume, le cumin qui réchauffe... Chaque grain raconte l’histoire de ceux qui sont venus ici, qui ont apporté leurs saveurs et qui ont su les mélanger aux nôtres. Le colombo, c’est bien plus qu’un plat, c’est un morceau de notre identité, une façon de dire au monde que nous sommes fiers de ce que nous sommes.\n\nMaintenant, fermez les yeux et imaginez le carrefour de la Croix-Mission, là où la route se sépare comme les chemins de notre histoire. C’est un lieu sacré, où nos ancêtres déposaient des offrandes pour protéger leurs foyers. Vous sentez cette énergie ? C’est là que les esprits veillent, où les prières montent vers le ciel comme une fumée d’encens. Nos anciens savaient que certains endroits sont chargés de mémoire, et la Croix-Mission en est un. C’est là que nous honorons ceux qui nous ont précédés, que nous demandons leur protection, comme un lien invisible entre le passé et le présent.\n\nEt puis il y a la canne à sucre, cette plante qui a façonné notre histoire. Elle a été l’instrument de l’oppression, oui, mais aussi le lieu de notre résistance. C’est dans les champs de canne que nos ancêtres ont forgé leur langue, leurs chants, leur solidarité. La canne, c’est le symbole de notre force, de notre capacité à transformer la douleur en beauté. Comme dans \"Lew mélé\", où tout se mêle, la sueur et les rires, la peine et l’espoir, nous sommes le fruit de ce mélange, de cette terre qui nous a vus naître et grandir. Alors aujourd’hui, souvenons-nous : chaque plante, chaque insecte, chaque épice, chaque lieu sacré fait partie de nous, et c’est à nous de les protéger, comme ils nous ont protégés.",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-10-16-matin.mp3"
+}
