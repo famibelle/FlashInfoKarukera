@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>Nouvelles prévisions météo en Guadeloupe ce midi à écouter sans faute, dans votre flash-info du 17 octobre à midi</title>
+      <description><![CDATA[On fait le point à midi, ce samedi dix-sept octobre deux mille vingt-six.]]></description>
+      <pubDate>Sat, 17 Oct 2026 08:21:05 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-10/flash-info-20261017-midi.mp3" length="166605" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20261017-midi</guid>
+      <itunes:duration>00:16</itunes:duration>
+    </item>
+
+<item>
       <title>Blocages et dettes les élus guadeloupéens montent au créneau, dans votre flash-info du 17 octobre au matin</title>
       <description><![CDATA[Bèl bonjou Guadeloupe ! Samedi dix-sept octobre deux mille vingt-six, il est quatre heures trente-deux à Paris, et nous voilà ensemble pour ce flash info du matin. Une journée qui s'annonce sous le signe de la mobilisation et des défis, mais aussi des victoires à célébrer chez nous.]]></description>
       <pubDate>Sat, 17 Oct 2026 02:40:18 +0000</pubDate>
@@ -1804,15 +1813,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-07/flash-info-20260705-matin.mp3" length="2665365" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260705-matin</guid>
       <itunes:duration>04:17</itunes:duration>
-    </item>
-
-<item>
-      <title>Un ancien proviseur quitte ses fonctions sous les ovations à Basse-Terre, dans votre flash-info du 4 juillet au soir</title>
-      <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour ce Flash Info Guadeloupe du samedi quatre juillet deux mille vingt-six.]]></description>
-      <pubDate>Sat, 04 Jul 2026 14:44:20 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-07/flash-info-20260704-soir.mp3" length="1004997" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260704-soir</guid>
-      <itunes:duration>01:38</itunes:duration>
     </item>
 
   </channel>
