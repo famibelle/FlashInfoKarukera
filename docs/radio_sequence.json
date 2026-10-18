@@ -533,7 +533,7 @@
     },
     {
       "type": "capsule",
-      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-10-18-midi-24.mp3",
+      "url": "https://famibelle.github.io/FlashInfoKarukera/capsules/capsule-2026-10-18-midi-12.mp3",
       "label": "Capsule culturelle Guadeloupe",
       "icon": "🌺"
     },
@@ -666,6 +666,14 @@
       "artist": "Les Aiglons",
       "genre": "",
       "duration": 505
+    },
+    {
+      "type": "music",
+      "videoId": "ZR7GD36-1zk",
+      "title": "Sinobôl",
+      "artist": "Les Aiglons",
+      "genre": "",
+      "duration": 435
     },
     {
       "type": "transition",
@@ -829,9 +837,9 @@
     },
     {
       "type": "music",
-      "videoId": "XOGpRqpgBJE",
-      "title": "Pran San W",
-      "artist": "Zin",
+      "videoId": "6MX3E0CC6q8",
+      "title": "Sa nou chanté",
+      "artist": "Tanya St-Val",
       "genre": "",
       "duration": 309
     }
