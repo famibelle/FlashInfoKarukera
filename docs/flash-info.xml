@@ -14,6 +14,15 @@
     <itunes:explicit>no</itunes:explicit>
 
     <item>
+      <title>La mairie de Basse-Terre veut sauver les façades du centre-ville, dans votre flash-info du 20 octobre à midi</title>
+      <description><![CDATA[On fait le point à midi en Guadeloupe, ce mardi vingt octobre deux mille vingt-six. Voici les infos du jour.]]></description>
+      <pubDate>Tue, 20 Oct 2026 08:26:41 +0000</pubDate>
+      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-10/flash-info-20261020-midi.mp3" length="1512621" type="audio/mpeg"/>
+      <guid isPermaLink="false">flash-info-20261020-midi</guid>
+      <itunes:duration>02:26</itunes:duration>
+    </item>
+
+<item>
       <title>Barrages en feu, justice en marche le procès Lambert relance la colère, dans votre flash-info du 20 octobre au matin</title>
       <description><![CDATA[Bèl bonjou Guadeloupe, moun a'y ! Nous sommes le mardi 20 octobre 2026, il est 04h37 à Paris, et voici votre Flash Info du matin. Ensemble, on démarre cette journée avec les nouvelles qui comptent, celles qui touchent notre terre et nos vies.]]></description>
       <pubDate>Tue, 20 Oct 2026 02:44:02 +0000</pubDate>
@@ -1804,15 +1813,6 @@ On fait le point sur l'actualité de ce week-end, avec le Tour cycliste en ligne
       <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-07/flash-info-20260708-matin.mp3" length="2734677" type="audio/mpeg"/>
       <guid isPermaLink="false">flash-info-20260708-matin</guid>
       <itunes:duration>04:23</itunes:duration>
-    </item>
-
-<item>
-      <title>Baccalauréat 2026 : 99,4 % de réussite en Guadeloupe, dans votre flash-info du 7 juillet au soir</title>
-      <description><![CDATA[Bonsoir à toutes et à tous, ici Harry pour votre Flash Info Guadeloupe. Ce mardi sept juillet deux mille vingt-six, l'actualité chez nous se précise avec la fin de journée sous les alizés.]]></description>
-      <pubDate>Tue, 07 Jul 2026 15:14:22 +0000</pubDate>
-      <enclosure url="https://github.com/famibelle/FlashInfoKarukera/releases/download/flash-info-2026-07/flash-info-20260707-soir.mp3" length="1694397" type="audio/mpeg"/>
-      <guid isPermaLink="false">flash-info-20260707-soir</guid>
-      <itunes:duration>02:44</itunes:duration>
     </item>
 
   </channel>
