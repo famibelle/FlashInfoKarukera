@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-20",
+  "edition": "matin",
+  "type": "emission",
+  "title": "La Guadeloupe, terre où rien ne s’efface",
+  "duration": "~3 minutes",
+  "word_count": 544,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Le temps n'efface rien",
+    "artist": "Patrick Andrey",
+    "genre": ""
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Insecte / Résistance           \t Foumi manyok             \t Fourmi manioc             \t Acromyrmex octospinosus   \t ⭐⭐⭐ RÉSISTANCE COLLECTIVE \t Colonie organisée, invisible, travaillant dans l'ombre et construisant sans relâche. Symbole de la résistance collective et silencieuse des esclaves. Les anciens disaient : « Foumi ka travay, foumi ka manyé » — la fourmi travaille, la fourmi mange."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Mammifère             \t Rat nwè                   \t Rat noir                  \t Rattus rattus                  \t ⭐ Ambivalent          \t Introduit avec les navires européens. Associé aux épidémies et aux sorts de malchance (quimbois)."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Piment               \t Piman végétarien           \t Piment végétarien          \t Capsicum frutescens           \t Petit piment très doux à la saveur légèrement sucrée à maturité. Constitue, avec l'ail, l'oignon, l'oignon-pays et le persil, la base des assaisonnements antillais. Force : 0. Croqué cru dans les salades. Variété endémique du jardin créole antillais."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Cap                   \t Pointe Allègre                           \t Sainte-Rose                         \t ⭐⭐ Symbolique         \t Cap sauvage au nord de Basse-Terre. Rituels discrets liés à la mer et aux vents. Lieu de passage et d'offrandes."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**1685** \t **Le Code Noir autorise les châtiments corporels** \t **Légalisation de la violence : symboles de la cruauté du système, terreur permanente** \t Révoltes dans les plantations (ex. : révolte de 1686 à la Habitation La Mahaudière), empoisonnement des surveillants \t Habitation La Mahaudière (Basse-Terre) \t Vaudou Nago : invocation de *Shango* (loa de la justice) pour punir les colons, rituels de vengeance"
+    }
+  },
+  "text": "Ah mes chers auditeurs, aujourd’hui on va parler de ce que le temps n’efface pas. Pas les cicatrices, pas les souvenirs, pas les traces que nos ancêtres ont laissées dans la terre, dans l’eau, dans l’air même de cette île. Comme cette chanson qui dit que rien ne s’oublie, je vous propose de marcher avec moi dans ces lieux où la nature et l’histoire se mêlent, où chaque plante, chaque animal, chaque cap raconte une résistance, une survie, une mémoire qui refuse de mourir.\n\nCommençons par le piment végétarien, ce petit trésor du jardin créole. Vous le connaissez, ce piment doux qui rougit comme un soleil miniature ? Il est là, discret, dans nos salades, dans nos sauces, avec son goût à peine piquant mais tellement présent. Les anciens le croquaient cru, comme pour rappeler que même dans la douceur, il y a une force. C’est lui, avec l’ail, l’oignon et le persil, qui donne à nos plats cette saveur qui nous parle de chez nous. Et saviez-vous que cette variété-là, elle est née ici, dans nos terres, comme une réponse de la nature à ceux qui voulaient nous priver de tout ?\n\nMais parlons aussi du rat nwè, ce mammifère qui divise. Lui, il est arrivé avec les bateaux des colons, comme un passager clandestin de l’horreur. On l’associe aux maladies, aux sorts, aux malheurs. Pourtant, dans les récits des anciens, il est aussi celui qui volait les provisions des maîtres, qui grignotait les cordes des fouets. Ambivalent, oui. Mais n’est-ce pas le propre de notre histoire ? Ce qui détruit peut aussi devenir un outil de résistance, sans même qu’on le veuille. Les rats noirs, dans l’ombre des plantations, étaient peut-être les premiers à dire : \"Vous ne nous aurez pas.\"\n\nEt puis il y a la foumi manyok, cette petite travailleuse infatigable. Vous les avez vues, ces colonies qui avancent en rang serré, transportant des feuilles, creusant des galeries ? Les anciens disaient : \"Foumi ka travay, foumi ka manyé.\" Elles ne se plaignent pas, elles ne s’arrêtent pas. Elles construisent, encore et encore, comme nos ancêtres qui, malgré le Code Noir de 1685, malgré les fouets et les chaînes, ont continué à semer, à chanter, à résister. À Pointe Allègre, ce cap sauvage où le vent souffle fort, les offrandes glissent dans la mer. C’est là que les esprits des révoltes passées chuchotent encore. C’est là qu’on invoquait Shango, le loa de la justice, pour punir ceux qui croyaient posséder la terre et les hommes.\n\nAlors oui, le temps passe, mais il n’efface rien. Pas les piments qui poussent dans nos jardins, pas les rats qui courent dans nos mémoires, pas les fourmis qui rappellent que la résistance est collective. Pas les caps où l’on dépose encore des fleurs pour ceux qui sont tombés. La Guadeloupe, c’est tout ça à la fois : une terre qui porte les cicatrices de l’histoire, mais aussi les graines de ceux qui ont refusé de plier. Et aujourd’hui, quand je vois un piment mûrir au soleil ou une fourmi tracer son chemin dans la poussière, je me dis que nos ancêtres sont toujours là. Ils nous regardent, ils nous guident. Et leur voix, elle murmure encore : \"Rien ne s’efface. Rien ne se perd.\"",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-10-20-matin.mp3"
+}
