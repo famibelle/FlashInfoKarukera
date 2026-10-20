@@ -1,0 +1,225 @@
+{
+  "date": "2026-10-19",
+  "generated_at": "2026-10-20T00:44:54.079608Z",
+  "technical": {
+    "summary": {
+      "total_runs": 161,
+      "global_success_rate": 1.0,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 458.14285714285717,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 415.3333333333333,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 188.57142857142858,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 28,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 184.46428571428572,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 49,
+        "success": 49,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 533.3265306122449,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1828.4761904761904,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 4,
+      "coherence_rate": 0.3076923076923077,
+      "issues_by_type": {
+        "format_invalid": 9,
+        "title_mismatch": 4
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "WCK": 1,
+        "Dominik Coco": 2,
+        "Edouard Benoit": 1,
+        "Ti Paris": 1,
+        "Edith Lefel": 2,
+        "Princess Erika": 2,
+        "Claudette Pace": 1,
+        "Zo Konpa, Zouk Machine": 1,
+        "Top Vice": 1,
+        "Mass": 1,
+        "Jean-Claude Naimro": 1,
+        "Gilles Floro": 1,
+        "Jim Rama & Patrick Andrey": 1,
+        "Thierry Delannay": 1,
+        "Warren": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Zouk Machine": 1,
+        "Zin": 2,
+        "Tanya St-Val": 1,
+        "Nana Fofie, Warren Saada": 1,
+        "ROBERT LOYSON": 1,
+        "Battery Cremil": 3,
+        "Exile One": 1,
+        "Dédé Saint-Prix": 1,
+        "Kaysha, KissBeatz": 1,
+        "G'ny": 1,
+        "Djakout # 1": 1,
+        "Claudette et Ti Pierre": 1,
+        "Joëlle Ursull": 1,
+        "JEAN-CLAUDE NAIMRO": 1,
+        "BélO": 3,
+        "KASSAV'": 1,
+        "T-Vice": 2,
+        "Stony, Oswald": 1,
+        "Carimi": 2,
+        "Alexandre Stellio": 1,
+        "Perle Lama": 1,
+        "Kimsé": 1,
+        "Jean-Philippe Marthély, Thierry Benoît": 1,
+        "Ludo": 1,
+        "Al Lirvat, Robert Mavounzy": 1,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "Carlos SLM, Gabriel Nieves": 1,
+        "carimi doc pullman": 1,
+        "T-vice": 1,
+        "Thierry Cham": 1,
+        "Exile": 1,
+        "Tabou Combo": 2,
+        "Orlane": 2,
+        "Lutchiana Mobulu": 1,
+        "Jocelyne Labylle": 1,
+        "Stony": 1,
+        "Patrick Saint-Eloi, Kassav'": 1,
+        "Akiyo": 1,
+        "Yoan": 1,
+        "Top Vice, Tuco Bouzi": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Fabien Georges": 1,
+        "Slaï": 1,
+        "PATRICK SAINT-ELOI": 1,
+        "Djakout #1, Zafè Chô, NAIMA": 1,
+        "Jean-Luc Guanel": 2,
+        "Alain Ramanisum": 1,
+        "HARRY DIBOULA": 1,
+        "Lutchiana": 1,
+        "JACOB F. DESVARIEUX, Georges Decimus": 1,
+        "Soft": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Battery Cremil",
+      "consecutive_same_artist": [],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "La Guadeloupe chante ses racines dans la nature",
+          "Anba syèl Gwadloup granmèr ka chonjé"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 6331
+      }
+    }
+  },
+  "signals": {
+    "technical": [],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 31% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "9 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
