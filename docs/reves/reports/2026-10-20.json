@@ -1,0 +1,233 @@
+{
+  "date": "2026-10-20",
+  "generated_at": "2026-10-21T00:43:50.948381Z",
+  "technical": {
+    "summary": {
+      "total_runs": 160,
+      "global_success_rate": 0.9875,
+      "total_errors_in_logs": 0,
+      "total_warnings_in_logs": 0,
+      "workflows_in_alert": []
+    },
+    "workflows": [
+      {
+        "name": "horoscope-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 452.4761904761905,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "flash-info",
+        "runs": 21,
+        "success": 20,
+        "failure": 1,
+        "success_rate": 0.9523809523809523,
+        "avg_duration_s": 436.42857142857144,
+        "last_status": "failure",
+        "last_failure_url": null
+      },
+      {
+        "name": "capsules-daily",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 191.61904761904762,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "emission-daily",
+        "runs": 28,
+        "success": 27,
+        "failure": 1,
+        "success_rate": 0.9642857142857143,
+        "avg_duration_s": 185.71428571428572,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "botiran-radio-daily",
+        "runs": 48,
+        "success": 48,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 507.0,
+        "last_status": "success",
+        "last_failure_url": null
+      },
+      {
+        "name": "daily-radio-orchestrator",
+        "runs": 21,
+        "success": 21,
+        "failure": 0,
+        "success_rate": 1.0,
+        "avg_duration_s": 1795.095238095238,
+        "last_status": "success",
+        "last_failure_url": null
+      }
+    ]
+  },
+  "antenne": {
+    "liners": {
+      "total": 13,
+      "coherent": 1,
+      "coherence_rate": 0.07692307692307693,
+      "issues_by_type": {
+        "format_invalid": 12,
+        "title_mismatch": 1
+      }
+    },
+    "music": {
+      "total_tracks": 80,
+      "genres": {
+        "": 80
+      },
+      "artists": {
+        "Soft": 1,
+        "G'ny": 1,
+        "Caroline Launeaux, Camille Vauclair": 1,
+        "BélO": 2,
+        "Milca": 1,
+        "HARRY DIBOULA": 1,
+        "Exile One": 1,
+        "Teddyson John": 1,
+        "Experience 7": 2,
+        "Zin": 2,
+        "Jacob Desvarieux": 2,
+        "Dominique Panol": 3,
+        "YVES THOLE ET SON KONVWAKA": 1,
+        "Edith Lefel, Les Frères Dejean": 1,
+        "Patrick Saint-Eloi": 2,
+        "Klimax": 1,
+        "T-Vice": 2,
+        "JOCELYNE BEROARD": 1,
+        "Edouard Benoit": 1,
+        "Tabou Combo": 2,
+        "Jocelyne Labylle": 1,
+        "Harmonik": 3,
+        "Stony": 1,
+        "Kan'nida": 3,
+        "Tabou Combo De Petion-Ville": 1,
+        "Dominik Coco, Fuckly": 1,
+        "Ludo": 1,
+        "Joëlle Ursull": 1,
+        "Marcé & Toumpak": 1,
+        "VOUKOUM MOUVMAN KILTIRÈL GWADLOUP": 1,
+        "Battery Cremil": 2,
+        "Carlos SLM, Gabriel Nieves": 1,
+        "Akiyo": 3,
+        "Dominik Coco": 2,
+        "Exile": 1,
+        "Marcel Lollia Dit Velo": 1,
+        "Lutchiana": 1,
+        "Medhy Custos": 1,
+        "Naika, Jessie Reyez": 1,
+        "BEL": 1,
+        "Warren": 1,
+        "Thierry Cham": 1,
+        "Les Aiglons": 1,
+        "Mario Chicot": 1,
+        "Jean-Michel Jean-Louis": 1,
+        "JACOB F. DESVARIEUX, Georges Decimus": 1,
+        "Jean-Michel Serres": 1,
+        "Jocelyne Béroard, Kassav'": 1,
+        "Carimi": 1,
+        "Djakout # 1": 1,
+        "Jean-Philippe Marthély, Patrick Saint-Eloi, Kassav": 1,
+        "Jeff Joseph": 1,
+        "KALI": 1,
+        "Jean-Luc Guanel": 1,
+        "Robert Loyson": 1,
+        "Nu-Look": 1,
+        "Leona Gabriel, Orchestre de la Boule Blanche": 1,
+        "Warren Saada": 1,
+        "Sakiyo": 1,
+        "Princess Erika": 1,
+        "Fabien Georges": 1,
+        "Mass Konpa": 1,
+        "Ti Paris": 1
+      },
+      "max_artist_repetition": 3,
+      "top_artist": "Dominique Panol",
+      "consecutive_same_artist": [
+        {
+          "artist": "Battery Cremil",
+          "position": 36,
+          "count": 2
+        }
+      ],
+      "abrupt_transitions": []
+    },
+    "content": {
+      "flash_infos": {
+        "count": 3,
+        "editions": []
+      },
+      "horoscopes": {
+        "count": 2,
+        "editions": [],
+        "anomalies": []
+      },
+      "emissions": {
+        "count": 2,
+        "themes": [
+          "Voix de l'arbre et des pierres sacrées",
+          "La Guadeloupe, terre où rien ne s’efface"
+        ]
+      },
+      "capsules": {
+        "count": 0,
+        "themes": []
+      }
+    },
+    "journalists": {
+      "Harry": {
+        "passages": 3
+      },
+      "Maryse Condé": {
+        "passages": 3
+      },
+      "Monique": {
+        "passages": 0
+      },
+      "Mulatresse Solitude": {
+        "passages": 13
+      },
+      "Corinne": {
+        "passages": 6357
+      }
+    }
+  },
+  "signals": {
+    "technical": [
+      {
+        "type": "workflow_last_run_failed",
+        "severity": "high",
+        "context": "flash-info : dernier run échoué"
+      }
+    ],
+    "editorial": [
+      {
+        "type": "liner_coherence_critical",
+        "severity": "high",
+        "context": "Cohérence liners : 8% (objectif >90%)"
+      },
+      {
+        "type": "liner_format_issues",
+        "severity": "high",
+        "context": "12 liner(s) au format invalide"
+      },
+      {
+        "type": "journalist_no_content",
+        "severity": "high",
+        "context": "Monique : aucun contenu généré aujourd'hui"
+      }
+    ],
+    "music": []
+  }
+}
