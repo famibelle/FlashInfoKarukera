@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-21",
+  "edition": "matin",
+  "type": "emission",
+  "title": "Sur les sentiers bruissants de nos ancêtres",
+  "duration": "~3 minutes",
+  "word_count": 390,
+  "voice": "fr_marie_* (tons variés)",
+  "inspiration": {
+    "title": "Pourquoi",
+    "artist": "Experience 7",
+    "genre": ""
+  },
+  "elements": {
+    "kreyol_resistance_symbol_ref.md": {
+      "title": "Symboles de la résistance créole",
+      "content": "Lieu / Résistance spirituelle \t Cimetière \t Cimetière des esclaves \t N/A \t ⭐⭐ RÉSISTANCE SPIRITUELLE \t Lieu de mémoire et de rituels pour honorer les ancêtres. Symbole de la résistance par la mémoire (Boucher 2008)."
+    },
+    "faune_guadeloupe_ref.md": {
+      "title": "Faune de Guadeloupe",
+      "content": "Insecte               \t Matoutou fèy              \t Mygale des Antilles       \t Cyrtopholis permata            \t ⭐⭐ Ambivalent        \t Endémique. Toiles associées aux pièges des esprits (*zombi*). Habitat: forêts (MNHN)."
+    },
+    "flore_guadeloupe_ref.md": {
+      "title": "Flore de Guadeloupe",
+      "content": "Arbre                \t Acoma-boukan / Acajou      \t Acomat-boucan              \t Sideroxylon obtusifolium      \t Bois dur endémique de la forêt tropicale guadeloupéenne. Très résistant."
+    },
+    "lieux_spirituels_ref.md": {
+      "title": "Lieux spirituels de Guadeloupe",
+      "content": "Grotte/Abri           \t Abri de la Ravine Chaude                 \t Gourbeyre, ravine Chaude (16.1500° N, 61.6500° W) \t ⭐⭐ Symbolique          \t Utilisé par les Kalinagos pour des rituels de pluie. Vestiges de pierres disposées en cercle (Simpson 1970, p. 98 ; INAO, 2005). Lieu de cérémonies pour invoquer la pluie et la fertilité des terres."
+    },
+    "histoire_guadeloupe_ref.md": {
+      "title": "Histoire de Guadeloupe",
+      "content": "**1900–1946** \t **Affirmation du Gwoka comme symbole identitaire** \t **Reconnaissance culturelle : le Gwoka devient un marqueur de l’identité guadeloupéenne** \t Organisation de festivals (ex. : *Festival Terre de Blues*), enregistrement des chants traditionnels \t Sainte-Rose, Deshaies, Pointe-à-Pitre \t Vaudou Petwo : intégration du Gwoka dans les rituels (ex. : *tambour Fundeh* pour les cérémonies)"
+    }
+  },
+  "text": "Ah mes chers amis, aujourd’hui on va marcher ensemble sur les sentiers de notre mémoire, là où la terre parle encore à ceux qui savent écouter. Comme cette mélodie de Experience 7 qui nous murmure \"Pourquoi\", je vous propose de plonger dans ces lieux où la nature et l’histoire s’entrelacent, où chaque feuille, chaque pierre, chaque souffle de vent porte en lui les échos de notre résistance créole.\n\nRegardez cette petite créature fascinante, la matoutou fèy, cette mygale des Antilles qui tisse sa toile entre les branches comme une dentelle vivante. Les anciens disaient que ses fils argentés captaient les esprits errants, qu’elle était la gardienne des secrets entre les mondes. Endémique à nos forêts, elle symbolise cette ambivalence si chère à notre culture : à la fois crainte et respectée, comme ces forces invisibles qui nous entourent.\n\nEt puis il y a l’acoma-boukan, cet arbre au bois si dur qu’on dirait forgé par les dieux du feu. Les charpentiers de marine l’appelaient \"l’acajou des Antilles\", capable de résister aux tempêtes comme nos ancêtres ont résisté à l’oppression. Ses racines s’enfoncent profondément dans notre terre, comme nos racines culturelles s’accrochent à notre identité. Chaque planche taillée dans son tronc porte en elle l’histoire de ceux qui ont construit notre pays.\n\nMaintenant, laissez-moi vous emmener à la Ravine Chaude, ce lieu sacré où les Kalinagos invoquaient autrefois la pluie. Imaginez ces pierres disposées en cercle, encore tièdes du souffle des anciens, où résonnaient les tambours et les chants pour appeler la fertilité des terres. C’est là que le gwoka a trouvé ses premières notes, bien avant de devenir ce symbole identitaire qui a traversé les siècles. De 1900 à 1946, nos aînés ont transformé ces rythmes en une arme pacifique contre l’oubli, faisant de chaque battement de tambour un acte de résistance spirituelle.\n\nAlors pourquoi ces lieux, ces plantes, ces créatures nous parlent-ils encore aujourd’hui ? Parce qu’ils sont les gardiens de notre âme guadeloupéenne. Le cimetière des esclaves où nos ancêtres reposent, la toile de la matoutou qui capture les esprits, le bois imputrescible de l’acoma, les pierres sacrées de la Ravine Chaude... Tout cela forme une symphonie où chaque note est une réponse à l’oubli. Comme le chante Experience 7, nous sommes les héritiers de cette mémoire vivante, et c’est à nous de la faire résonner encore et toujours.",
+  "audio_url": "https://famibelle.github.io/FlashInfoKarukera/audio/Emissions/emission-2026-10-21-matin.mp3"
+}
