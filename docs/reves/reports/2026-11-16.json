@@ -1,9 +1,9 @@
 {
   "date": "2026-11-16",
-  "generated_at": "2026-11-17T00:28:41.246041Z",
+  "generated_at": "2026-11-17T23:06:42.507175Z",
   "technical": {
     "summary": {
-      "total_runs": 154,
+      "total_runs": 176,
       "global_success_rate": 0.5454545454545454,
       "total_errors_in_logs": 0,
       "total_warnings_in_logs": 0,
@@ -16,61 +16,61 @@
     "workflows": [
       {
         "name": "horoscope-daily",
-        "runs": 21,
+        "runs": 24,
         "success": 0,
-        "failure": 20,
+        "failure": 23,
         "success_rate": 0.0,
-        "avg_duration_s": 257.0952380952381,
+        "avg_duration_s": 237.33333333333334,
         "last_status": "failure",
         "last_failure_url": null
       },
       {
         "name": "flash-info",
-        "runs": 21,
+        "runs": 24,
         "success": 0,
-        "failure": 20,
+        "failure": 23,
         "success_rate": 0.0,
-        "avg_duration_s": 261.7142857142857,
+        "avg_duration_s": 238.91666666666666,
         "last_status": "failure",
         "last_failure_url": null
       },
       {
         "name": "capsules-daily",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 161.28571428571428,
+        "avg_duration_s": 153.70833333333334,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "emission-daily",
-        "runs": 28,
+        "runs": 32,
         "success": 0,
-        "failure": 26,
+        "failure": 30,
         "success_rate": 0.0,
-        "avg_duration_s": 208.42857142857142,
+        "avg_duration_s": 192.59375,
         "last_status": "failure",
         "last_failure_url": null
       },
       {
         "name": "botiran-radio-daily",
-        "runs": 42,
-        "success": 42,
+        "runs": 48,
+        "success": 48,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 7.904761904761905,
+        "avg_duration_s": 7.916666666666667,
         "last_status": "success",
         "last_failure_url": null
       },
       {
         "name": "daily-radio-orchestrator",
-        "runs": 21,
-        "success": 21,
+        "runs": 24,
+        "success": 24,
         "failure": 0,
         "success_rate": 1.0,
-        "avg_duration_s": 1050.1904761904761,
+        "avg_duration_s": 982.9166666666666,
         "last_status": "success",
         "last_failure_url": null
       }
