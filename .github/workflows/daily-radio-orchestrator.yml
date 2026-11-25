@@ -1,10 +1,13 @@
 name: 🚀 Génération complète — Orchestrateur séquentiel
 
 on:
-  schedule:
-    - cron: '0 2 * * *'   # 4h Paris (2h UTC)
-    - cron: '0 8 * * *'   # 10h Paris (8h UTC)
-    - cron: '0 14 * * *'  # 16h Paris (14h UTC)
+  # --- CI/CD désactivée le 2026-11-25 : déclencheurs automatiques commentés.
+  # --- Réactivation : décommenter les lignes ci-dessous. Lancement manuel toujours possible
+  # --- via `gh workflow run <fichier>` ou l'onglet Actions.
+#   schedule:
+#     - cron: '0 2 * * *'   # 4h Paris (2h UTC)
+#     - cron: '0 8 * * *'   # 10h Paris (8h UTC)
+#     - cron: '0 14 * * *'  # 16h Paris (14h UTC)
   workflow_dispatch:
     inputs:
       verbose:

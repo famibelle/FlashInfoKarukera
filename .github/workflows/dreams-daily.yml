@@ -1,9 +1,12 @@
 name: Rêves Nocturnes Quotidiens
 
 on:
-  schedule:
-    - cron: '0 0 * * *'    # 00:00 UTC = 01:00 Paris (heure d'hiver, UTC+1)
-    - cron: '0 23 * * *'   # 23:00 UTC = 01:00 Paris (heure d'été, UTC+2)
+  # --- CI/CD désactivée le 2026-11-25 : déclencheurs automatiques commentés.
+  # --- Réactivation : décommenter les lignes ci-dessous. Lancement manuel toujours possible
+  # --- via `gh workflow run <fichier>` ou l'onglet Actions.
+#   schedule:
+#     - cron: '0 0 * * *'    # 00:00 UTC = 01:00 Paris (heure d'hiver, UTC+1)
+#     - cron: '0 23 * * *'   # 23:00 UTC = 01:00 Paris (heure d'été, UTC+2)
   workflow_dispatch:
     inputs:
       date:

@@ -1,8 +1,11 @@
 name: Émission Culturelle Quotidienne
 
 on:
-  schedule:
-    - cron: "30 16 * * *"  # soir  : 16h30 UTC (18h30 Paris)
+  # --- CI/CD désactivée le 2026-11-25 : déclencheurs automatiques commentés.
+  # --- Réactivation : décommenter les lignes ci-dessous. Lancement manuel toujours possible
+  # --- via `gh workflow run <fichier>` ou l'onglet Actions.
+#   schedule:
+#     - cron: "30 16 * * *"  # soir  : 16h30 UTC (18h30 Paris)
   workflow_dispatch:
     inputs:
       edition:

@@ -1,11 +1,14 @@
 name: 🎶 YouTube Music Radio Playlist Update
 
 on:
-  workflow_run:
-    workflows:
-      - "Horoscope Quotidien"
-      - "Flash Info Guadeloupe"
-    types: [completed]
+  # --- CI/CD désactivée le 2026-11-25 : déclencheurs automatiques commentés.
+  # --- Réactivation : décommenter les lignes ci-dessous. Lancement manuel toujours possible
+  # --- via `gh workflow run <fichier>` ou l'onglet Actions.
+#   workflow_run:
+#     workflows:
+#       - "Horoscope Quotidien"
+#       - "Flash Info Guadeloupe"
+#     types: [completed]
 
   workflow_dispatch:
     inputs:
